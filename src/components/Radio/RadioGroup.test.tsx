@@ -1,0 +1,98 @@
+import * as React from 'react';
+import { renderWithTheme } from '../../testUtils/renderWithTheme';
+import { RadioGroup } from './index';
+
+const testId = 'RadioGroup';
+
+test('it renders a RadioGroup', async () => {
+  const { findByTestId } = renderWithTheme(<RadioGroup data-testid={testId} />);
+
+  const root = await findByTestId(testId);
+  expect(root).toHaveClass('ChromaRadioGroup-root');
+  expect(root.getAttribute('role')).toEqual('radiogroup');
+});
+
+test('it renders a title', async () => {
+  const { findByText } = renderWithTheme(
+    <RadioGroup title="Select one" data-testid={testId} />
+  );
+
+  const title = await findByText(/Select one/);
+  expect(title).toBeInTheDocument();
+  expect(title?.nodeName).toEqual('LEGEND');
+});
+
+test('it renders an inverse color RadioGroup', async () => {
+  const { findByText } = renderWithTheme(
+    <RadioGroup title="Select one" color="inverse" data-testid={testId} />
+  );
+
+  const title = await findByText(/Select one/);
+  expect(title).toHaveClass('ChromaRadioGroup-legendInverse');
+});
+
+test('it renders an align center RadioGroup', async () => {
+  const { findByTestId } = renderWithTheme(
+    <RadioGroup title="Select one" align="center">
+      <input data-testid={testId} />
+    </RadioGroup>
+  );
+
+  const child = await findByTestId(testId);
+  expect(child?.parentElement).toHaveClass('ChromaRadioGroup-alignCenter');
+});
+
+test('it renders a direction row RadioGroup', async () => {
+  const { findByTestId } = renderWithTheme(
+    <RadioGroup title="Select one" direction="row">
+      <input data-testid={testId} />
+    </RadioGroup>
+  );
+
+  const child = await findByTestId(testId);
+  expect(child?.parentElement).toHaveClass('ChromaRadioGroup-directionRow');
+});
+
+test('it renders a justified center RadioGroup', async () => {
+  const { findByTestId } = renderWithTheme(
+    <RadioGroup title="Select one" justify="center">
+      <input data-testid={testId} />
+    </RadioGroup>
+  );
+
+  const child = await findByTestId(testId);
+  expect(child?.parentElement).toHaveClass('ChromaRadioGroup-justifyCenter');
+});
+
+test('it renders a justified spaceBetween RadioGroup', async () => {
+  const { findByTestId } = renderWithTheme(
+    <RadioGroup title="Select one" justify="space-between">
+      <input data-testid={testId} />
+    </RadioGroup>
+  );
+
+  const child = await findByTestId(testId);
+  expect(child?.parentElement).toHaveClass('ChromaRadioGroup-justifyBetween');
+});
+
+test('it renders a justified spaceEvenly RadioGroup', async () => {
+  const { findByTestId } = renderWithTheme(
+    <RadioGroup title="Select one" justify="space-evenly">
+      <input data-testid={testId} />
+    </RadioGroup>
+  );
+
+  const child = await findByTestId(testId);
+  expect(child?.parentElement).toHaveClass('ChromaRadioGroup-justifyEvenly');
+});
+
+test('it renders children', async () => {
+  const { findByTestId } = renderWithTheme(
+    <RadioGroup title="Select one">
+      <input data-testid={testId} />
+    </RadioGroup>
+  );
+
+  const root = await findByTestId(testId);
+  expect(root).toBeInTheDocument();
+});
