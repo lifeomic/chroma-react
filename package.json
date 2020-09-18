@@ -4,8 +4,8 @@
   "description": "Chroma Design System",
   "sideEffects": false,
   "repository": "git@bitbucket.org:lifeomic/chroma-react.git",
-  "author": "LifeOmic <development@lifeomic.com>",
-  "license": "UNLICENSED",
+  "author": "LifeOmic <oss@lifeomic.com>",
+  "license": "MIT",
   "scripts": {
     "build": "run-p build:*",
     "build:esm": "tsc -p tsconfig.build.json -m es2015 --outDir ./dist/esm && cp -r ./src/assets/ ./dist/esm/assets",
