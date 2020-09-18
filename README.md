@@ -1,2 +1,89 @@
-# chroma-react
-Open source design system from LifeOmic, built with React
+<p align="center">
+  <a href="https://github.com/lifeomic/chroma-react">
+    <img src="https://github.com/lifeomic/chroma-react/blob/master/.github/chroma@2x.png?raw=true" alt="Chroma logo" width="300" />
+  </a>
+</p>
+
+<br>
+
+Chroma is an open source design system from the team at LifeOmic. It is built with React and TypeScript. The goal of Chroma is to provide design-approved components to developers to speed up their development process and build visual consistency throughout web applications.
+
+## Usage
+
+To get started with Chroma, follow these steps:
+
+1. Install dependencies
+
+```bash
+yarn add @lifeomic/chroma
+yarn add @material-ui/styles
+yarn add react-router-dom
+```
+
+Chroma leverages `@material-ui/styles` for CSS-in-JS and `react-router-dom` for link-related components.
+
+2. Wrap your application with the `ThemeProvider` provided by Chroma.
+
+```jsx
+import { ThemeProvider } from '@lifeomic/chroma-react/styles';
+
+function App({ children }) {
+  return <ThemeProvider>{children}</ThemeProvider>;
+}
+```
+
+3. Start using components!
+
+```jsx
+import { Button } from '@lifeomic/chroma-react/components/Button';
+
+<Button variant="contained">Button</Button>;
+```
+
+## Theming
+
+Want to override the default theme of Chroma? No problem!
+
+1. Create your component-level overrides and palette overrides. Chroma leverages Material-UI's global theme variation [to override specific component styles](https://material-ui.com/customization/components/#5-global-theme-variation).
+
+```js
+// theme.ts
+import { createTheme } from '@lifeomic/chroma-react/styles';
+import { Overrides } from '@lifeomic/chroma-react/styles/overrides';
+import { Theme } from '@lifeomic/chroma-react/styles';
+import { createPalette } from '@lifeomic/chroma-react/styles';
+
+// The overrides specified here will be *global* component overrides!
+export const overrides = (theme: Theme): Overrides => ({
+  ChromButton: {
+    root: {
+      background: 'red',
+    },
+    outlined: {
+      border: '1px solid red',
+    },
+  },
+});
+
+export const palette = createPalette({
+  primary: {
+    main: '#02bff1',
+  },
+});
+
+export const theme = createTheme({
+  overrides,
+  palette,
+});
+```
+
+2. Update your theme provider.
+
+```jsx
+import { ThemeProvider } from '@lifeomic/chroma-react/styles';
+import { theme } from './theme';
+
+function App({ children }) {
+  return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
+}
+```
