@@ -19,8 +19,7 @@
     "clean": "rm -rf dist/ deploy/docs",
     "lint": "eslint --ext .ts,.tsx.js,.jsx .",
     "start": "yarn docs:start",
-    "test": "jest",
-    "test:ci": "mkdir -p build && yarn test --reporters=\"jest-tap-reporter\"| tap-xunit > build/test-report.xml"
+    "test": "jest"
   },
   "husky": {
     "hooks": {
