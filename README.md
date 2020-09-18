@@ -15,9 +15,7 @@ To get started with Chroma, follow these steps:
 1. Install dependencies
 
 ```bash
-yarn add @lifeomic/chroma
-yarn add @material-ui/styles
-yarn add react-router-dom
+yarn add @lifeomic/chroma @material-ui/styles react-router-dom
 ```
 
 Chroma leverages `@material-ui/styles` for CSS-in-JS and `react-router-dom` for link-related components.
