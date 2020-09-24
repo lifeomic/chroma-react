@@ -19,16 +19,19 @@ jobs:
         with:
           node-version: 12
           registry-url: https://registry.npmjs.org
-      - name: Build, test, and npm publish
+      - name: Lint, test, and build
         run: |
           yarn
           yarn lint
           yarn test
           yarn build
-          npm publish --access public
+      - name: Publish to npm
+        if: startsWith(github.ref, 'refs/tags/v')
+        run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.LIFEOMIC_NPM_TOKEN}}
       - name: Create Release
+        if: startsWith(github.ref, 'refs/tags/v')
         id: create_release
         uses: actions/create-release@latest
         env:
