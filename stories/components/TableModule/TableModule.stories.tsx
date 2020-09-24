@@ -627,6 +627,59 @@ const TestBed: React.FC = () => {
         onRowClick={() => console.log('Row click handler')}
         isLoading={boolean('isLoading', false)}
       />
+
+      <Text size="headline">Specific rows with actions, others without</Text>
+      <TableModule
+        data={data}
+        config={config}
+        isLoading={boolean('isLoading', false)}
+        rowActions={(row) => {
+          if (row.carbs === '37' || row.carbs === '67') {
+            return (
+              <>
+                <Button
+                  variant="text"
+                  color="inverse"
+                  style={{ marginRight: '8px' }}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    e.currentTarget.blur();
+                  }}
+                >
+                  Revoke
+                </Button>
+                <TableActionDivider />
+                <Tooltip title="Share">
+                  <IconButton
+                    aria-label="Share"
+                    icon={Share}
+                    color="inverse"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      e.currentTarget.blur();
+                      console.log(`search ${row}!`);
+                    }}
+                  />
+                </Tooltip>
+                <Tooltip title="Trash">
+                  <IconButton
+                    aria-label="Trash"
+                    icon={Trash}
+                    color="inverse"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      e.currentTarget.blur();
+                      console.log(`trash ${row}!`);
+                    }}
+                  />
+                </Tooltip>
+              </>
+            );
+          }
+
+          return null;
+        }}
+      />
     </FormBox>
   );
 };

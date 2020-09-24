@@ -93,6 +93,11 @@ const TableModuleRow: React.FC<TableModuleRowProps> = React.memo(
       [cells, headingsLength, maxCellWidth, row]
     );
 
+    const maybeRowActions = React.useMemo(() => rowActions?.(row), [
+      row,
+      rowActions,
+    ]);
+
     return (
       <tr
         className={clsx(
@@ -115,26 +120,28 @@ const TableModuleRow: React.FC<TableModuleRowProps> = React.memo(
             )}
             role="cell"
           >
-            <TableModuleActions
-              className={classes.tableModuleActions}
-              tabIndex={0}
-            >
-              {rowActions?.(row)}
-              {onRowClick && (
-                <Tooltip title={rowClickLabel || 'View Details'}>
-                  <IconButton
-                    aria-label={rowClickLabel || 'View Details'}
-                    icon={ChevronRight}
-                    color="inverse"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      e.currentTarget.blur();
-                      onRowClick?.(row);
-                    }}
-                  />
-                </Tooltip>
-              )}
-            </TableModuleActions>
+            {(Boolean(maybeRowActions) || onRowClick) && (
+              <TableModuleActions
+                className={classes.tableModuleActions}
+                tabIndex={0}
+              >
+                {maybeRowActions}
+                {onRowClick && (
+                  <Tooltip title={rowClickLabel || 'View Details'}>
+                    <IconButton
+                      aria-label={rowClickLabel || 'View Details'}
+                      icon={ChevronRight}
+                      color="inverse"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        e.currentTarget.blur();
+                        onRowClick?.(row);
+                      }}
+                    />
+                  </Tooltip>
+                )}
+              </TableModuleActions>
+            )}
           </td>
         )}
       </tr>
