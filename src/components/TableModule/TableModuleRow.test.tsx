@@ -105,3 +105,24 @@ test('it renders the provided `rowActions`', async () => {
   const actions = await findByTestId('row-action');
   expect(actions).toBeInTheDocument();
 });
+
+test('it does not render row actions when the `rowActions` function returns null', async () => {
+  const { findByRole } = renderWithTheme(
+    <table>
+      <tbody>
+        <TableModuleRow
+          data={{}}
+          row={{}}
+          cells={[]}
+          headingsLength={0}
+          rowActions={() => {
+            return null;
+          }}
+        />
+      </tbody>
+    </table>
+  );
+
+  const td = await findByRole('cell');
+  expect(td.innerHTML).toBe('');
+});
