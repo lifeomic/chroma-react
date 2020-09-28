@@ -22,6 +22,10 @@ import {
 } from '../../components/Breadcrumbs';
 import { ButtonClasses, ButtonStylesKey } from '../../components/Button/index';
 import {
+  ButtonFloatClasses,
+  ButtonFloatStylesKey,
+} from '../../components/ButtonFloat';
+import {
   ButtonFilePickerClasses,
   ButtonFilePickerStylesKey,
 } from '../../components/ButtonFilePicker';
@@ -46,6 +50,10 @@ import {
   IconButtonClasses,
   IconButtonStylesKey,
 } from '../../components/IconButton';
+import {
+  IconButtonFloatClasses,
+  IconButtonFloatStylesKey,
+} from '../../components/IconButtonFloat';
 import {
   IconButtonLinkClasses,
   IconButtonLinkStylesKey,
@@ -191,7 +199,7 @@ export interface ChromaComponentNameToClassKey {
   [BreadcrumbNavStylesKey]: BreadcrumbNavClasses;
   [BreadcrumbsStylesKey]: BreadcrumbsClasses;
   [BreadcrumbStylesKey]: BreadcrumbClasses;
-  [ButtonFilePickerStylesKey]: ButtonFilePickerClasses;
+  [ButtonFloatStylesKey]: ButtonFloatClasses;
   [ButtonFilePickerStylesKey]: ButtonFilePickerClasses;
   [ButtonLinkStylesKey]: ButtonLinkClasses;
   [ButtonStylesKey]: ButtonClasses;
@@ -203,6 +211,7 @@ export interface ChromaComponentNameToClassKey {
   [FormBoxStylesKey]: FormBoxClasses;
   [HeaderStylesKey]: HeaderClasses;
   [IconButtonStylesKey]: IconButtonClasses;
+  [IconButtonFloatStylesKey]: IconButtonFloatClasses;
   [IconButtonLinkStylesKey]: IconButtonLinkClasses;
   [IconTileStylesKey]: IconTileClasses;
   [KeymapHelpStylesKey]: KeymapHelpClasses;
