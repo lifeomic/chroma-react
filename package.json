@@ -1,6 +1,6 @@
 {
   "name": "@lifeomic/chroma-react",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Chroma Design System",
   "sideEffects": false,
   "repository": "git@bitbucket.org:lifeomic/chroma-react.git",
