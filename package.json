@@ -14,7 +14,7 @@
     "postbuild:write-svgs": "ts-node --project tsconfig.build.json write-svgs.tsx",
     "docs:build": "build-storybook -c .storybook",
     "docs:deploy": "storybook-to-ghpages",
-    "docs:start": "start-storybook -p 9001 -c .storybook",
+    "docs:start": "start-storybook -p 9001 -c .storybook -s public",
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",
     "watch": "run-p \"build:* -- --watch\"",
     "clean": "rm -rf dist/ deploy/docs",
