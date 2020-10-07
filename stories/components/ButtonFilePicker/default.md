@@ -5,7 +5,7 @@ An element that appears as a Button component, but is used for file selection.
 ## Import
 
 ```js
-import { ButtonFilePicker } from '@lifeomic/chroma-react-react/components/ButtonFilePicker';
+import { ButtonFilePicker } from '@lifeomic/chroma-react/components/ButtonFilePicker';
 ```
 
 <!-- STORY -->

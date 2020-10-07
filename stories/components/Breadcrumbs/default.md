@@ -7,7 +7,7 @@ or products.
 ## Import
 
 ```jsx
-import { Breadcrumbs } from '@lifeomic/chroma-react-react/Breadcrumbs';
+import { Breadcrumbs } from '@lifeomic/chroma-react/Breadcrumbs';
 ```
 
 <!-- STORY -->

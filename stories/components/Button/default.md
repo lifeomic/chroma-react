@@ -5,7 +5,7 @@ A typical Button component.
 ## Import
 
 ```js
-import { Button } from '@lifeomic/chroma-react-react/components/Button';
+import { Button } from '@lifeomic/chroma-react/components/Button';
 ```
 
 <!-- STORY -->

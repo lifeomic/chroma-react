@@ -26,5 +26,5 @@ const App: React.FC = () => (
 
 ## Links
 
-- [Utility Source](https://bitbucket.org/lifeomic/chroma/src/master/src/styles/createTheme.ts)
-- [Story Source](https://bitbucket.org/lifeomic/chroma/src/master/stories/styles/theme/theme.stories.tsx)
+- [Utility Source](https://github.com/lifeomic/chroma-react/blob/master/src/styles/createTheme.ts)
+- [Story Source](https://github.com/lifeomic/chroma-react/blob/master/stories/styles/theme/theme.stories.tsx)

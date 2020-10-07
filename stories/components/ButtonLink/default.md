@@ -9,7 +9,7 @@ react-router-dom. It must be wrapped by a `Router` of some sort.
 ## Import
 
 ```js
-import { ButtonLink } from '@lifeomic/chroma-react-react/components/ButtonLink';
+import { ButtonLink } from '@lifeomic/chroma-react/components/ButtonLink';
 ```
 
 <!-- STORY -->

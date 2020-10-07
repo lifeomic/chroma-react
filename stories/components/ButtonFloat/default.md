@@ -5,7 +5,7 @@ A Button element that floats above other content.
 ## Import
 
 ```js
-import { ButtonFloat } from '@lifeomic/chroma-react-react/components/ButtonFloat';
+import { ButtonFloat } from '@lifeomic/chroma-react/components/ButtonFloat';
 ```
 
 <!-- STORY -->

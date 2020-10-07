@@ -10,7 +10,7 @@ options as props.
 ## Import
 
 ```js
-import { Box } from '@lifeomic/chroma-react-react/components/Box';
+import { Box } from '@lifeomic/chroma-react/components/Box';
 ```
 
 ## Usage
