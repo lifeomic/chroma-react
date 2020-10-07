@@ -3,7 +3,7 @@
   "version": "0.1.3",
   "description": "Chroma Design System",
   "sideEffects": false,
-  "repository": "git@bitbucket.org:lifeomic/chroma-react.git",
+  "repository": "git@github.com:lifeomic/chroma-react.git",
   "author": "LifeOmic <oss@lifeomic.com>",
   "license": "MIT",
   "scripts": {
