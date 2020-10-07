@@ -42,12 +42,28 @@ test('it renders a Box with align="center"', async () => {
   expect(root).toHaveClass('ChromaBox-alignCenter');
 });
 
+test('it renders a Box with align="start"', async () => {
+  const { findByTestId } = renderWithTheme(
+    <Box align="start" data-testid={testId} />
+  );
+  const root = await findByTestId(testId);
+  expect(root).toHaveClass('ChromaBox-alignStart');
+});
+
 test('it renders a Box with align="flex-start"', async () => {
   const { findByTestId } = renderWithTheme(
     <Box align="flex-start" data-testid={testId} />
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaBox-alignStart');
+  expect(root).toHaveClass('ChromaBox-alignFlexStart');
+});
+
+test('it renders a Box with align="end"', async () => {
+  const { findByTestId } = renderWithTheme(
+    <Box align="end" data-testid={testId} />
+  );
+  const root = await findByTestId(testId);
+  expect(root).toHaveClass('ChromaBox-alignEnd');
 });
 
 test('it renders a Box with align="flex-end"', async () => {
@@ -55,7 +71,7 @@ test('it renders a Box with align="flex-end"', async () => {
     <Box align="flex-end" data-testid={testId} />
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaBox-alignEnd');
+  expect(root).toHaveClass('ChromaBox-alignFlexEnd');
 });
 
 test('it renders a Box with justify="center"', async () => {
