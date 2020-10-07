@@ -17,7 +17,14 @@ export interface BoxProps
   ref?: React.Ref<HTMLDivElement>;
   className?: string;
   flexWrap?: boolean;
-  align?: 'stretch' | 'baseline' | 'center' | 'flex-start' | 'flex-end';
+  align?:
+    | 'stretch'
+    | 'baseline'
+    | 'center'
+    | 'start'
+    | 'flex-start'
+    | 'end'
+    | 'flex-end';
   direction?: 'row' | 'column';
   justify?:
     | 'center'
@@ -76,7 +83,9 @@ const useStyles = makeStyles<BoxProps>(
       alignBaseline: { alignItems: 'baseline' },
       alignCenter: { alignItems: 'center' },
       alignStart: { alignItems: 'start' },
+      alignFlexStart: { alignItems: 'flex-start' },
       alignEnd: { alignItems: 'end' },
+      alignFlexEnd: { alignItems: 'flex-end' },
       directionRow: { flexDirection: 'row' },
       directionColumn: { flexDirection: 'column' },
       justifyStart: { justifyContent: 'flex-start' },
@@ -186,8 +195,10 @@ export const Box = React.forwardRef<HTMLDivElement, BoxProps>((props, ref) => {
         {
           [classes.alignBaseline]: align === 'baseline',
           [classes.alignCenter]: align === 'center',
-          [classes.alignStart]: align === 'flex-start',
-          [classes.alignEnd]: align === 'flex-end',
+          [classes.alignStart]: align === 'start',
+          [classes.alignFlexStart]: align === 'flex-start',
+          [classes.alignEnd]: align === 'end',
+          [classes.alignFlexEnd]: align === 'flex-end',
         },
         {
           [classes.justifyBetween]: justify === 'space-between',
