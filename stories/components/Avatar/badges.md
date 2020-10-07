@@ -6,10 +6,7 @@ component.
 ## Import
 
 ```js
-import {
-  Avatar,
-  AvatarBadge,
-} from '@lifeomic/chroma-react-react/components/Avatar';
+import { Avatar, AvatarBadge } from '@lifeomic/chroma-react/components/Avatar';
 ```
 
 <!-- STORY -->

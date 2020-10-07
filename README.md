@@ -8,6 +8,10 @@
 
 Chroma is an open source design system from the team at LifeOmic. It is built with React and TypeScript. The goal of Chroma is to provide design-approved components to developers to speed up their development process and build visual consistency throughout web applications.
 
+<a href="https://lifeomic.github.io/chroma-react" target="_blank" rel="noopener noreferrer">
+  View our Storybook
+</a>
+
 ## Usage
 
 To get started with Chroma, follow these steps:
@@ -46,10 +50,12 @@ Want to override the default theme of Chroma? No problem!
 
 ```js
 // theme.ts
-import { createTheme } from '@lifeomic/chroma-react/styles';
+import {
+  createPalette,
+  createTheme,
+  Theme,
+} from '@lifeomic/chroma-react/styles';
 import { Overrides } from '@lifeomic/chroma-react/styles/overrides';
-import { Theme } from '@lifeomic/chroma-react/styles';
-import { createPalette } from '@lifeomic/chroma-react/styles';
 
 // The overrides specified here will be *global* component overrides!
 export const overrides = (theme: Theme): Overrides => ({

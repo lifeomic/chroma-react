@@ -6,7 +6,7 @@ their name initials, or fallback icon.
 ## Import
 
 ```js
-import { Avatar } from '@lifeomic/chroma-react-react/components/Avatar';
+import { Avatar } from '@lifeomic/chroma-react/components/Avatar';
 ```
 
 <!-- STORY -->

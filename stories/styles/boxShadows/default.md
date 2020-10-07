@@ -26,5 +26,5 @@ const useStyles = makeStyles((theme) => ({
 
 ## Links
 
-- [Utility Source](https://bitbucket.org/lifeomic/chroma/src/master/src/styles/createBoxShadows.ts)
-- [Story Source](https://bitbucket.org/lifeomic/chroma/src/master/stories/styles/boxShadows/boxShadows.stories.tsx)
+- [Utility Source](https://github.com/lifeomic/chroma-react/blob/master/src/styles/createBoxShadows.ts)
+- [Story Source](https://github.com/lifeomic/chroma-react/blob/master/stories/styles/boxShadows/boxShadows.stories.tsx)

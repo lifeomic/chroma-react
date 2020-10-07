@@ -12,7 +12,7 @@ import {
   AlertBody,
   AlertIcon,
   AlertActionsRow,
-} from '@lifeomic/chroma-react-react/components/Alert';
+} from '@lifeomic/chroma-react/components/Alert';
 ```
 
 ## Alert Usage
