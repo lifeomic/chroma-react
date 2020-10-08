@@ -68,7 +68,7 @@ export const useStyles = makeStyles(
       borderRadius: theme.pxToRem(4),
       color: theme.palette.text.primary,
       cursor: 'pointer',
-      display: 'inline-flex',
+      display: 'block',
       fontFamily: theme.typography.fontFamily,
       fontSize: theme.pxToRem(14),
       maxHeight: theme.pxToRem(84),

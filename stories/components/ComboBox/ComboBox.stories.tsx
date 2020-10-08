@@ -42,6 +42,14 @@ const ComboBoxStory: React.FC = () => {
             />
             <SelectOption title="Option 3" value="option 3" />
             <SelectOption title="Option 4" value="option 4" />
+            <SelectOption
+              title="Option 5 has really long content"
+              value="option 5"
+            />
+            <SelectOption
+              title="Option 6 has really long content"
+              value="option 6"
+            />
           </ComboBox>
           <ComboBox
             label="Select option(s)"
@@ -58,6 +66,14 @@ const ComboBoxStory: React.FC = () => {
             />
             <SelectOption title="Option 3" value="option 3" />
             <SelectOption title="Option 4" value="option 4" />
+            <SelectOption
+              title="Option 5 has really long content"
+              value="option 5"
+            />
+            <SelectOption
+              title="Option 6 has really long content"
+              value="option 6"
+            />
           </ComboBox>
           <ComboBox
             label="Select option(s)"
@@ -75,6 +91,14 @@ const ComboBoxStory: React.FC = () => {
             />
             <SelectOption title="Option 3" value="option 3" />
             <SelectOption title="Option 4" value="option 4" />
+            <SelectOption
+              title="Option 5 has really long content"
+              value="option 5"
+            />
+            <SelectOption
+              title="Option 6 has really long content"
+              value="option 6"
+            />
           </ComboBox>
           <ComboBox
             label="Disabled"
@@ -101,6 +125,14 @@ const ComboBoxStory: React.FC = () => {
             />
             <SelectOption title="Option 3" value="option 3" />
             <SelectOption title="Option 4" value="option 4" />
+            <SelectOption
+              title="Option 5 has really long content"
+              value="option 5"
+            />
+            <SelectOption
+              title="Option 6 has really long content"
+              value="option 6"
+            />
           </ComboBox>
         </FormBox>
       </Container>
@@ -130,6 +162,14 @@ const ComboBoxStory: React.FC = () => {
             />
             <SelectOption title="Option 3" value="option 3" />
             <SelectOption title="Option 4" value="option 4" />
+            <SelectOption
+              title="Option 5 has really long content"
+              value="option 5"
+            />
+            <SelectOption
+              title="Option 6 has really long content"
+              value="option 6"
+            />
           </ComboBox>
           <ComboBox
             label="Select option(s)"
@@ -146,6 +186,14 @@ const ComboBoxStory: React.FC = () => {
             />
             <SelectOption title="Option 3" value="option 3" />
             <SelectOption title="Option 4" value="option 4" />
+            <SelectOption
+              title="Option 5 has really long content"
+              value="option 5"
+            />
+            <SelectOption
+              title="Option 6 has really long content"
+              value="option 6"
+            />
           </ComboBox>
           <ComboBox
             label="Select option(s)"
@@ -163,6 +211,14 @@ const ComboBoxStory: React.FC = () => {
             />
             <SelectOption title="Option 3" value="option 3" />
             <SelectOption title="Option 4" value="option 4" />
+            <SelectOption
+              title="Option 5 has really long content"
+              value="option 5"
+            />
+            <SelectOption
+              title="Option 6 has really long content"
+              value="option 6"
+            />
           </ComboBox>
           <ComboBox
             label="Disabled"
@@ -189,6 +245,14 @@ const ComboBoxStory: React.FC = () => {
             />
             <SelectOption title="Option 3" value="option 3" />
             <SelectOption title="Option 4" value="option 4" />
+            <SelectOption
+              title="Option 5 has really long content"
+              value="option 5"
+            />
+            <SelectOption
+              title="Option 6 has really long content"
+              value="option 6"
+            />
           </ComboBox>
         </FormBox>
       </Container>
@@ -219,6 +283,14 @@ const ComboBoxStory: React.FC = () => {
             />
             <SelectOption title="Option 3" value="option 3" />
             <SelectOption title="Option 4" value="option 4" />
+            <SelectOption
+              title="Option 5 has really long content"
+              value="option 5"
+            />
+            <SelectOption
+              title="Option 6 has really long content"
+              value="option 6"
+            />
           </ComboBox>
           <ComboBox
             label="Select option(s)"
@@ -236,6 +308,14 @@ const ComboBoxStory: React.FC = () => {
             />
             <SelectOption title="Option 3" value="option 3" />
             <SelectOption title="Option 4" value="option 4" />
+            <SelectOption
+              title="Option 5 has really long content"
+              value="option 5"
+            />
+            <SelectOption
+              title="Option 6 has really long content"
+              value="option 6"
+            />
           </ComboBox>
           <ComboBox
             label="Select option(s)"
@@ -254,6 +334,14 @@ const ComboBoxStory: React.FC = () => {
             />
             <SelectOption title="Option 3" value="option 3" />
             <SelectOption title="Option 4" value="option 4" />
+            <SelectOption
+              title="Option 5 has really long content"
+              value="option 5"
+            />
+            <SelectOption
+              title="Option 6 has really long content"
+              value="option 6"
+            />
           </ComboBox>
           <ComboBox
             label="Disabled"
@@ -282,6 +370,14 @@ const ComboBoxStory: React.FC = () => {
             />
             <SelectOption title="Option 3" value="option 3" />
             <SelectOption title="Option 4" value="option 4" />
+            <SelectOption
+              title="Option 5 has really long content"
+              value="option 5"
+            />
+            <SelectOption
+              title="Option 6 has really long content"
+              value="option 6"
+            />
           </ComboBox>
         </FormBox>
       </Container>
@@ -312,6 +408,14 @@ const ComboBoxStory: React.FC = () => {
             />
             <SelectOption title="Option 3" value="option 3" />
             <SelectOption title="Option 4" value="option 4" />
+            <SelectOption
+              title="Option 5 has really long content"
+              value="option 5"
+            />
+            <SelectOption
+              title="Option 6 has really long content"
+              value="option 6"
+            />
           </ComboBox>
           <ComboBox
             label="Select option(s)"
@@ -329,6 +433,14 @@ const ComboBoxStory: React.FC = () => {
             />
             <SelectOption title="Option 3" value="option 3" />
             <SelectOption title="Option 4" value="option 4" />
+            <SelectOption
+              title="Option 5 has really long content"
+              value="option 5"
+            />
+            <SelectOption
+              title="Option 6 has really long content"
+              value="option 6"
+            />
           </ComboBox>
           <ComboBox
             label="Select option(s)"
@@ -347,6 +459,14 @@ const ComboBoxStory: React.FC = () => {
             />
             <SelectOption title="Option 3" value="option 3" />
             <SelectOption title="Option 4" value="option 4" />
+            <SelectOption
+              title="Option 5 has really long content"
+              value="option 5"
+            />
+            <SelectOption
+              title="Option 6 has really long content"
+              value="option 6"
+            />
           </ComboBox>
           <ComboBox
             label="Disabled"
@@ -375,6 +495,14 @@ const ComboBoxStory: React.FC = () => {
             />
             <SelectOption title="Option 3" value="option 3" />
             <SelectOption title="Option 4" value="option 4" />
+            <SelectOption
+              title="Option 5 has really long content"
+              value="option 5"
+            />
+            <SelectOption
+              title="Option 6 has really long content"
+              value="option 6"
+            />
           </ComboBox>
         </FormBox>
       </Container>
