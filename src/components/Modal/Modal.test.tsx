@@ -2,6 +2,7 @@ import { fireEvent } from '@testing-library/react';
 import * as React from 'react';
 import { renderWithTheme } from '../../testUtils/renderWithTheme';
 import { Modal, ModalProps } from './index';
+import { OVERLAY_TEST_ID } from './Modal';
 
 const testId = 'Modal';
 
@@ -249,4 +250,37 @@ test('it renders the customHeader when fullscreen', async () => {
 
   const customHeader = await findByTestId(CUSTOM_HEADER_ID);
   expect(customHeader).toBeTruthy();
+});
+
+test('calls "onDismiss" on clicking outside the modal', async () => {
+  const onDismissMock = jest.fn();
+  const props: ModalProps = {
+    ...getBaseProps(),
+    onDismiss: onDismissMock,
+  };
+
+  const { findByTestId } = renderWithTheme(<Modal {...props} />);
+  const overlay = await findByTestId(OVERLAY_TEST_ID);
+
+  fireEvent.mouseDown(overlay);
+  fireEvent.click(overlay);
+
+  expect(onDismissMock).toHaveBeenCalledTimes(1);
+});
+
+test('disables dismissing by clicking outside the modal based on prop', async () => {
+  const onDismissMock = jest.fn();
+  const props: ModalProps = {
+    ...getBaseProps(),
+    onDismiss: onDismissMock,
+    disableDismissOnClickOutside: true,
+  };
+
+  const { findByTestId } = renderWithTheme(<Modal {...props} />);
+  const overlay = await findByTestId(OVERLAY_TEST_ID);
+
+  fireEvent.mouseDown(overlay);
+  fireEvent.click(overlay);
+
+  expect(onDismissMock).not.toHaveBeenCalled();
 });

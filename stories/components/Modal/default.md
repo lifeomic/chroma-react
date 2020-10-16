@@ -82,13 +82,34 @@ vertical sizing.
 
 #### On Dismiss
 
-To wire a callback in when the Modal is closed, use onDismiss.
+To wire a callback in when the `Modal` is closed, use `onDismiss`.
 
 ```jsx
 <Modal
   isOpen={isOpen}
   onDismiss={() => {
     console.log('closing...');
+    setIsOpen(false);
+  }}
+>
+  <p>Modal Content</p>
+</Modal>
+```
+
+By default, the `Modal` will call `onDismiss` when any of the following occurs:
+
+1. The user clicks the close button.
+2. The user presses the `ESC` key.
+3. The user clicks outside the modal content (anywhere on the overlay).
+
+To disable the behavior of #3, use `disableDismissOnClickOutside`.
+
+```jsx
+<Modal
+  isOpen={isOpen}
+  disableDismissOnClickOutside
+  onDismiss={() => {
+    console.log('user clicked close button or pressed ESC');
     setIsOpen(false);
   }}
 >
