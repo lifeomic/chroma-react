@@ -23,6 +23,8 @@ const ariaLabelledBy = 'modal-header';
 
 export const ModalStylesKey = 'ChromaModal';
 
+export const OVERLAY_TEST_ID = 'chroma-overlay-testid';
+
 const useStyles = makeStyles(
   (theme) => ({
     overlay: {
@@ -174,6 +176,7 @@ export interface ModalProps
   isOpen?: boolean;
   justifyActions?: ModalActionsProps['justify'];
   onDismiss?: (props: any) => void;
+  disableDismissOnClickOutside?: boolean;
   onFormSubmit?: (data: any) => void;
   poses?: Variants;
   size?: 0 | 1;
@@ -188,6 +191,7 @@ const ModalInner = React.forwardRef<HTMLDivElement, ModalProps>(
       children,
       onClick,
       onDismiss,
+      disableDismissOnClickOutside,
       onMouseDown,
       onKeyDown,
     },
@@ -204,11 +208,12 @@ const ModalInner = React.forwardRef<HTMLDivElement, ModalProps>(
       <FocusLock autoFocus returnFocus>
         <RemoveScroll allowPinchZoom={allowPinchZoom}>
           <motion.div
+            data-testid={OVERLAY_TEST_ID}
             className={clsx(classes.overlay, overlayClassName)}
             onClick={wrapEvent(onClick, (event: React.SyntheticEvent) => {
               if (mouseDownTarget.current === event.target) {
                 event.stopPropagation();
-                onDismiss && onDismiss(event);
+                onDismiss && !disableDismissOnClickOutside && onDismiss(event);
               }
             })}
             onMouseDown={wrapEvent(onMouseDown, (event: React.MouseEvent) => {
@@ -447,6 +452,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
       isFullScreen,
       isOpen,
       onDismiss,
+      disableDismissOnClickOutside,
       size = 0,
       overlayClassName,
       ...rootProps
@@ -466,6 +472,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
             allowPinchZoom={allowPinchZoom}
             isOpen={isOpen}
             onDismiss={onDismiss}
+            disableDismissOnClickOutside={disableDismissOnClickOutside}
           >
             {isFullScreen ? (
               <FullScreenContent

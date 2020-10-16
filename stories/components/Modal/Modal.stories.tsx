@@ -31,6 +31,10 @@ const ModalStory: React.FC = () => {
           console.log('closing...');
           setIsOpen(false);
         }}
+        disableDismissOnClickOutside={boolean(
+          'disableDismissOnClickOutside',
+          false
+        )}
       />
     </Container>
   );
