@@ -5,4 +5,5 @@ export {
   errorFor,
   helpFor,
   BaseFormElement,
+  BaseFormElementWithNodeLabel,
 } from './FormElementUtils';

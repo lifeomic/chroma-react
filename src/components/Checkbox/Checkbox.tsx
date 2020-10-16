@@ -3,7 +3,7 @@ import * as React from 'react';
 import { makeStyles } from '../../styles';
 import { GetClasses, ClassOverrides } from '../../typeUtils';
 import {
-  BaseFormElement,
+  BaseFormElementWithNodeLabel,
   buildDescribedBy,
   errorFor,
   FormErrorMessage,
@@ -294,7 +294,7 @@ const inverseHasErrorBoxVariants = {
 
 export type CheckboxClasses = GetClasses<typeof useStyles>;
 
-export type CheckboxProps = BaseFormElement &
+export type CheckboxProps = BaseFormElementWithNodeLabel &
   ClassOverrides<CheckboxClasses> & { indeterminate?: boolean };
 
 export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
