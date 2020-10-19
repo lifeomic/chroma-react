@@ -1,13 +1,21 @@
 /**
  * @description Base interface for all form components.  Extends the <input />
- * element props.
+ * element props.  Allows for ReactNode on label prop.
  */
-export interface BaseFormElement
+export interface BaseFormElementWithNodeLabel
   extends React.ComponentPropsWithoutRef<'input'> {
   color?: 'default' | 'inverse';
   hasError?: boolean;
   errorMessage?: string;
   helpMessage?: string;
+  label: string | React.ReactNode;
+}
+
+/**
+ * @description Base interface for all form components.  Extends the <input />
+ * element props.
+ */
+export interface BaseFormElement extends BaseFormElementWithNodeLabel {
   label: string;
 }
 

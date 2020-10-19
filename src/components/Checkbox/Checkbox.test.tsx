@@ -119,3 +119,19 @@ test('it renders an indeterminate-state Checkbox', async () => {
   const checkbox = await findByTestId(testId);
   expect(checkbox.getAttribute('aria-checked')).toEqual('mixed');
 });
+
+test('it allows for label to be a ReactNode', async () => {
+  const props = {
+    id: 'id',
+    label: <a href="https://lifeomic.com">A link</a>,
+  };
+  const { findByTestId, findByText } = renderWithTheme(
+    <Checkbox {...props} data-testid={testId} />
+  );
+
+  const checkbox = await findByTestId(testId);
+  expect(checkbox).toHaveClass('ChromaCheckbox-input');
+  const label = await findByText('A link');
+  expect(label).toBeInTheDocument();
+  expect(label?.tagName).toEqual('A');
+});
