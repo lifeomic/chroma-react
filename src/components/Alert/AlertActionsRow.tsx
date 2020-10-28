@@ -5,7 +5,7 @@ import clsx from 'clsx';
 
 export const AlertActionsRowStylesKey = 'ChromaAlertActionsRow';
 
-const useStyles = makeStyles(
+export const useStyles = makeStyles(
   () => ({
     root: {
       marginTop: '0.5rem',

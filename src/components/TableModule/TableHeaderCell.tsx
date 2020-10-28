@@ -7,7 +7,7 @@ import { TableSortDirection, TableHeader, TableSortClickProps } from './types';
 
 export const TableHeaderCellStylesKey = 'ChromaTableHeaderCell';
 
-const useStyles = makeStyles(
+export const useStyles = makeStyles(
   (theme) => ({
     root: {
       transition: 'color 0.25s ease',

@@ -5,7 +5,7 @@ import { GetClasses } from '../../typeUtils';
 
 export const BreadcrumbNavStylesKey = 'ChromaBreadcrumbNav';
 
-const useStyles = makeStyles(
+export const useStyles = makeStyles(
   (theme) => ({
     root: {},
     ol: {

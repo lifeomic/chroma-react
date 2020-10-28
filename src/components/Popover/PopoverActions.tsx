@@ -5,7 +5,7 @@ import { GetClasses } from '../../typeUtils';
 
 export const PopoverActionsStylesKey = 'ChromaPopoverActions';
 
-const useStyles = makeStyles(
+export const useStyles = makeStyles(
   (theme) => ({
     root: {
       borderTop: `1px solid ${theme.palette.divider}`,

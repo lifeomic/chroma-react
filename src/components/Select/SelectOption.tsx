@@ -10,7 +10,7 @@ export const SelectOptionStylesKey = 'ChromaSelectOption';
 
 export const checkSize = 20;
 
-const useStyles = makeStyles(
+export const useStyles = makeStyles(
   (theme) => ({
     root: {
       paddingTop: theme.spacing(0.5),

@@ -16,7 +16,7 @@ import * as React from 'react';
 
 export const PopoverStylesKey = 'ChromaPopover';
 
-const useStyles = makeStyles(
+export const useStyles = makeStyles(
   (theme) => ({
     root: {
       background: theme.palette.common.white,

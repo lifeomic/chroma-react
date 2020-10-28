@@ -5,7 +5,7 @@ import { GetClasses } from '../../typeUtils';
 
 export const StepConnectorStylesKey = 'ChromaStepConnector';
 
-const useStyles = makeStyles(
+export const useStyles = makeStyles(
   (theme) => ({
     connectorRoot: {
       flex: 1,

@@ -15,7 +15,7 @@ import { Tooltip } from '../Tooltip';
 
 export const TextAreaStylesKey = 'ChromaTextArea';
 
-const useStyles = makeStyles(
+export const useStyles = makeStyles(
   (theme) => ({
     root: {},
     label: {

@@ -5,7 +5,7 @@ import { GetClasses, StandardProps } from '../../typeUtils';
 
 export const IconTileHeroStylesKey = 'ChromaIconTileHero';
 
-const useStyles = makeStyles(
+export const useStyles = makeStyles(
   () => ({
     root: {
       position: 'relative',

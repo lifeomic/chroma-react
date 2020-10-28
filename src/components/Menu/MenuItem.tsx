@@ -5,7 +5,7 @@ import { GetClasses } from '../../typeUtils';
 
 export const MenuItemStylesKey = 'ChromaMenuItem';
 
-const useStyles = makeStyles(
+export const useStyles = makeStyles(
   (theme) => ({
     root: {
       alignItems: 'center',

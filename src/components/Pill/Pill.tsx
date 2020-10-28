@@ -6,7 +6,7 @@ import { motion, MotionProps } from 'framer-motion';
 
 export const PillStylesKey = 'ChromaPill';
 
-const useStyles = makeStyles(
+export const useStyles = makeStyles(
   (theme) => ({
     root: {
       display: 'inline-flex',

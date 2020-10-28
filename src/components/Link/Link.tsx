@@ -9,7 +9,7 @@ import { GetClasses } from '../../typeUtils';
 
 export const LinkStylesKey = 'ChromaLink';
 
-const useStyles = makeStyles(
+export const useStyles = makeStyles(
   (theme) => ({
     root: {
       color: theme.palette.primary.main,

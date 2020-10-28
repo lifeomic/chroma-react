@@ -8,7 +8,7 @@ import { TabStop } from './types';
 
 export const TabStylesKey = 'ChromaTab';
 
-const useStyles = makeStyles(
+export const useStyles = makeStyles(
   (theme) => ({
     root: {
       alignItems: 'center',

@@ -5,7 +5,7 @@ import { Button, ButtonProps } from '../Button';
 
 export const MenuButtonStylesKey = 'ChromaMenuButton';
 
-const useStyles = makeStyles(
+export const useStyles = makeStyles(
   (theme) => ({
     trailingIcon: {
       width: theme.spacing(2),

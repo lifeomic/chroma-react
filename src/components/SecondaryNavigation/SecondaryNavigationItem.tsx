@@ -6,7 +6,7 @@ import { GetClasses, StandardProps } from '../../typeUtils';
 
 export const SecondaryNavigationItemStylesKey = 'ChromaSecondaryNavigationItem';
 
-const useStyles = makeStyles(
+export const useStyles = makeStyles(
   (theme) => ({
     root: {
       paddingTop: theme.spacing(1.5),

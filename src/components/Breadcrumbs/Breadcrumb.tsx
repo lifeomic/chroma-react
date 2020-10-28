@@ -6,7 +6,7 @@ import { GetClasses } from '../../typeUtils';
 
 export const BreadcrumbStylesKey = 'ChromaBreadcrumb';
 
-const useStyles = makeStyles(
+export const useStyles = makeStyles(
   (theme) => ({
     root: {
       display: 'inline',

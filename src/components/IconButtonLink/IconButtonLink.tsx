@@ -9,7 +9,7 @@ import 'focus-visible';
 
 export const IconButtonLinkStylesKey = 'ChromaIconButtonLink';
 
-const useStyles = makeStyles(
+export const useStyles = makeStyles(
   (theme) => ({
     root: {
       alignItems: 'center',

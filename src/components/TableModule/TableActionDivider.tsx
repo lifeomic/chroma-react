@@ -6,7 +6,7 @@ import clsx from 'clsx';
 
 export const TableActionDividerStylesKey = 'ChromaTableActionDivider';
 
-const useStyles = makeStyles(
+export const useStyles = makeStyles(
   (theme) => ({
     root: {
       height: theme.pxToRem(19),

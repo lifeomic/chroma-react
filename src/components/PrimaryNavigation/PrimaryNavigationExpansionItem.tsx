@@ -22,7 +22,7 @@ import { motion, MotionProps, Variants } from 'framer-motion';
 export const PrimaryNavigationExpansionItemStylesKey =
   'ChromaPrimaryNavigationExpansionItem';
 
-const useStyles = makeStyles(
+export const useStyles = makeStyles(
   (theme) => ({
     root: {
       listStyle: 'none',

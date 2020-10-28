@@ -6,7 +6,7 @@ import { GetClasses } from '../../typeUtils';
 
 export const ChipStylesKey = 'ChromaChip';
 
-const useStyles = makeStyles(
+export const useStyles = makeStyles(
   (theme) => ({
     root: {
       margin: theme.spacing(1.25, 1.25, 0, 0),

@@ -7,7 +7,7 @@ import { BreadcrumbNav } from './BreadcrumbNav';
 
 export const BreadcrumbsStylesKey = 'ChromaBreadcrumbs';
 
-const useStyles = makeStyles(
+export const useStyles = makeStyles(
   (_theme) => ({
     root: {},
     inverse: {},

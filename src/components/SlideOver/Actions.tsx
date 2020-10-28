@@ -6,7 +6,7 @@ import clsx from 'clsx';
 
 export const ActionsStylesKey = 'ChromaSlideOverActions';
 
-const useStyles = makeStyles(
+export const useStyles = makeStyles(
   (theme) => ({
     root: {
       borderTop: `1px solid ${theme.palette.divider}`,

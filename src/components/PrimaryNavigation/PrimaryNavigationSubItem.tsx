@@ -12,7 +12,7 @@ import { motion, MotionProps } from 'framer-motion';
 export const PrimaryNavigationSubItemStylesKey =
   'ChromaPrimaryNavigationSubItem';
 
-const useStyles = makeStyles(
+export const useStyles = makeStyles(
   (theme) => ({
     root: {
       listStyle: 'none',

@@ -13,7 +13,7 @@ import { clearClipPath, defaultClipPath } from './clipPaths';
 
 export const SearchFieldStylesKey = 'ChromaSearchField';
 
-const useStyles = makeStyles(
+export const useStyles = makeStyles(
   (theme) => ({
     root: {
       position: 'relative',

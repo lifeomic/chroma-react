@@ -4,7 +4,7 @@ import { GetClasses } from '../../typeUtils';
 
 export const PopoverListStylesKey = 'ChromaPopoverList';
 
-const useStyles = makeStyles(
+export const useStyles = makeStyles(
   (theme) => ({
     root: {
       listStyle: 'none',

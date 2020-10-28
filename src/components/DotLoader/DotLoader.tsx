@@ -6,7 +6,7 @@ import { AnimatePresence, motion, MotionProps } from 'framer-motion';
 
 export const DotLoaderStylesKey = 'ChromaDotLoader';
 
-const useStyles = makeStyles(
+export const useStyles = makeStyles(
   (theme) => ({
     root: {
       height: theme.pxToRem(100),

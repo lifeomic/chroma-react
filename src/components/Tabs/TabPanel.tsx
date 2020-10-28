@@ -8,7 +8,7 @@ import { TabStop } from './types';
 
 export const TabPanelStylesKey = 'ChromaTabPanel';
 
-const useStyles = makeStyles(
+export const useStyles = makeStyles(
   (_theme) => ({
     root: {
       outline: 'none',

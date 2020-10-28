@@ -7,7 +7,7 @@ export const headerHeight = '3.125rem';
 
 export const HeaderStylesKey = 'ChromaHeader';
 
-const useStyles = makeStyles(
+export const useStyles = makeStyles(
   (theme) => ({
     root: {
       alignItems: 'center',

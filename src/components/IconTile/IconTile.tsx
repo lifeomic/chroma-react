@@ -5,7 +5,7 @@ import { GetClasses } from '../../typeUtils';
 
 export const IconTileStylesKey = 'ChromaIconTile';
 
-const useStyles = makeStyles(
+export const useStyles = makeStyles(
   (theme) => ({
     root: {
       width: theme.pxToRem(202),

@@ -10,7 +10,7 @@ import { NotificationStatusType } from '../_private/notificationTypes';
 
 export const SnackbarStylesKey = 'ChromaSnackbar';
 
-const useStyles = makeStyles(
+export const useStyles = makeStyles(
   (theme) => ({
     root: {
       color: theme.palette.text.secondary,

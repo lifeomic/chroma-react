@@ -18,7 +18,7 @@ import 'focus-visible';
 
 export const MenuStylesKey = 'ChromaMenu';
 
-const useStyles = makeStyles(
+export const useStyles = makeStyles(
   (theme) => ({
     root: {
       backgroundColor: theme.palette.common.white,

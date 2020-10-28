@@ -8,7 +8,7 @@ import { Text } from '../Text';
 
 export const StepStylesKey = 'ChromaStep';
 
-const useStyles = makeStyles(
+export const useStyles = makeStyles(
   (theme) => ({
     buttonRoot: {
       alignItems: 'center',
