@@ -14,7 +14,7 @@ import { useRadioGroup } from './useRadioGroup';
 
 export const RadioStylesKey = 'ChromaRadio';
 
-const useStyles = makeStyles(
+export const useStyles = makeStyles(
   (theme) => ({
     root: {
       display: 'flex',

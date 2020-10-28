@@ -5,7 +5,7 @@ import { GetClasses } from '../../typeUtils';
 
 export const ModalActionsStylesKey = 'ChromaModalActions';
 
-const useStyles = makeStyles(
+export const useStyles = makeStyles(
   (theme) => ({
     root: {
       display: 'flex',

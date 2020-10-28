@@ -6,7 +6,7 @@ import { Text } from '../Text';
 
 export const IconTileContentStylesKey = 'ChromaIconTileContent';
 
-const useStyles = makeStyles(
+export const useStyles = makeStyles(
   (theme) => ({
     root: {
       width: '100%',

@@ -15,7 +15,7 @@ import { Text } from '../Text';
 
 export const ToggleStylesKey = 'ChromaToggle';
 
-const useStyles = makeStyles(
+export const useStyles = makeStyles(
   (theme) => ({
     root: {
       display: 'flex',

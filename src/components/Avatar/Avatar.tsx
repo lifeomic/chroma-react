@@ -6,7 +6,7 @@ import { AvatarSizeContext } from './AvatarSizeContext';
 
 export const AvatarStylesKey = 'ChromaAvatar';
 
-const useStyles = makeStyles(
+export const useStyles = makeStyles(
   (theme) => ({
     root: {
       alignItems: 'center',

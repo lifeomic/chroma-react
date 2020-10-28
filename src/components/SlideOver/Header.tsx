@@ -8,7 +8,7 @@ import clsx from 'clsx';
 
 export const HeaderStylesKey = 'ChromaSlideOverHeader';
 
-const useStyles = makeStyles(
+export const useStyles = makeStyles(
   (theme) => ({
     root: {
       alignItems: 'center',

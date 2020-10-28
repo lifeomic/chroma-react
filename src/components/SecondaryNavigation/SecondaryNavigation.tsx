@@ -5,7 +5,7 @@ import { GetClasses, StandardProps } from '../../typeUtils';
 
 export const SecondaryNavigationStylesKey = 'ChromaSecondaryNavigation';
 
-const useStyles = makeStyles(
+export const useStyles = makeStyles(
   (theme) => ({
     root: {
       borderRight: `1px solid ${theme.palette.divider}`,

@@ -6,7 +6,7 @@ import clsx from 'clsx';
 
 export const SlideOverStylesKey = 'ChromaSlideOver';
 
-const useStyles = makeStyles(
+export const useStyles = makeStyles(
   (theme) => ({
     '@keyframes fade-in': {
       '0%': {

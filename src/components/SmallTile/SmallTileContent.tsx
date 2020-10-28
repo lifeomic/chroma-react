@@ -6,7 +6,7 @@ import { Text } from '../Text';
 
 export const SmallTileContentStylesKey = 'ChromaSmallTileContent';
 
-const useStyles = makeStyles(
+export const useStyles = makeStyles(
   (theme) => ({
     root: {
       display: 'flex',

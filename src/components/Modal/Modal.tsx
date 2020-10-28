@@ -25,7 +25,7 @@ export const ModalStylesKey = 'ChromaModal';
 
 export const OVERLAY_TEST_ID = 'chroma-overlay-testid';
 
-const useStyles = makeStyles(
+export const useStyles = makeStyles(
   (theme) => ({
     overlay: {
       backgroundColor: 'rgba(0, 0, 0, 0.5)',

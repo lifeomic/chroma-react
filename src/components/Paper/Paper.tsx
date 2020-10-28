@@ -6,7 +6,7 @@ import { Box, BoxProps } from '../Box';
 
 export const PaperStylesKey = 'ChromaPaper';
 
-const useStyles = makeStyles(
+export const useStyles = makeStyles(
   (theme) => ({
     root: {
       background: theme.palette.common.white,

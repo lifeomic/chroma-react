@@ -6,7 +6,7 @@ import 'focus-visible';
 
 export const ButtonFloatStylesKey = 'ChromaButtonFloat';
 
-const useStyles = makeStyles(
+export const useStyles = makeStyles(
   (theme) => ({
     root: {
       alignItems: 'center',

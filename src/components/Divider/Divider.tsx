@@ -5,7 +5,7 @@ import { GetClasses } from '../../typeUtils';
 
 export const DividerStylesKey = 'ChromaDivider';
 
-const useStyles = makeStyles(
+export const useStyles = makeStyles(
   (theme) => ({
     root: {
       backgroundColor: 'rgba(0, 0, 0, 0.15)',

@@ -8,7 +8,7 @@ import 'focus-visible';
 
 export const ButtonFilePickerStylesKey = 'ChromaButtonFilePicker';
 
-const useStyles = makeStyles(
+export const useStyles = makeStyles(
   (theme) => ({
     root: {
       alignItems: 'center',

@@ -5,7 +5,7 @@ import clsx from 'clsx';
 
 export const BodyStylesKey = 'ChromaSlideOverBody';
 
-const useStyles = makeStyles(
+export const useStyles = makeStyles(
   (theme) => ({
     root: {
       display: 'flex',

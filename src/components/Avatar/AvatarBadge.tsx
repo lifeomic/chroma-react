@@ -6,7 +6,7 @@ import { useAvatarSize } from './AvatarSizeContext';
 
 export const AvatarBadgeStylesKey = 'ChromaAvatarBadge';
 
-const useStyles = makeStyles(
+export const useStyles = makeStyles(
   (theme) => ({
     root: {
       alignItems: 'center',

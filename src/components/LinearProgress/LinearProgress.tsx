@@ -6,7 +6,7 @@ import clsx from 'clsx';
 
 export const LinearProgressStylesKey = 'ChromaLinearProgress';
 
-const useStyles = makeStyles(
+export const useStyles = makeStyles(
   (theme) => ({
     root: {
       '--linear-progress-height': '0.25rem',

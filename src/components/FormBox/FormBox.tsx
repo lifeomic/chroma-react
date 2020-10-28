@@ -6,7 +6,7 @@ import { Box, BoxProps } from '../Box';
 
 export const FormBoxStylesKey = 'ChromaFormBox';
 
-const useStyles = makeStyles(
+export const useStyles = makeStyles(
   (theme) => ({
     root: {},
     vSpacing0: {

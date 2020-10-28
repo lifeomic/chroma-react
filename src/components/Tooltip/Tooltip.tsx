@@ -15,7 +15,7 @@ import * as React from 'react';
 
 export const TooltipStylesKey = 'ChromaTooltip';
 
-const useStyles = makeStyles(
+export const useStyles = makeStyles(
   (theme) => ({
     root: {
       backgroundColor: theme.palette.common.white,

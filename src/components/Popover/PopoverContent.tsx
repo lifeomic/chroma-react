@@ -4,7 +4,7 @@ import { GetClasses } from '../../typeUtils';
 
 export const PopoverContentStylesKey = 'ChromaPopoverContent';
 
-const useStyles = makeStyles(
+export const useStyles = makeStyles(
   (theme) => ({
     root: {
       padding: theme.spacing(1.25, 2.5),

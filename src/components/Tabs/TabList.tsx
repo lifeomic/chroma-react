@@ -7,7 +7,7 @@ import { TabsContext } from './TabsContext';
 
 export const TabListStylesKey = 'ChromaTabList';
 
-const useStyles = makeStyles(
+export const useStyles = makeStyles(
   (theme) => ({
     root: {
       display: 'flex',

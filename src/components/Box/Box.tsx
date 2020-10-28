@@ -55,7 +55,7 @@ export interface BoxProps
   bgColor?: string;
 }
 
-const useStyles = makeStyles<BoxProps>(
+export const useStyles = makeStyles<BoxProps>(
   (theme) => {
     const stringOrThemeSpacing = (value: string | number | undefined) => {
       if (typeof value === 'string') return value;

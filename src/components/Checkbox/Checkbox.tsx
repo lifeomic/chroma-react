@@ -17,7 +17,7 @@ import 'focus-visible';
 
 export const CheckboxStylesKey = 'ChromaCheckbox';
 
-const useStyles = makeStyles(
+export const useStyles = makeStyles(
   (theme) => ({
     root: {
       // All values that are animated to/from need to be specified as css variables for the

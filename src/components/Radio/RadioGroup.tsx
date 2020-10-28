@@ -7,7 +7,7 @@ import { RadioGroupContext } from './useRadioGroup';
 
 export const RadioGroupStylesKey = 'ChromaRadioGroup';
 
-const useStyles = makeStyles(
+export const useStyles = makeStyles(
   (theme) => ({
     root: {
       border: 0,

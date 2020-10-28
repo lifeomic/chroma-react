@@ -5,7 +5,7 @@ import clsx from 'clsx';
 
 export const AlertBodyStylesKey = 'ChromaAlertBody';
 
-const useStyles = makeStyles(
+export const useStyles = makeStyles(
   () => ({
     root: {
       color: 'inherit',

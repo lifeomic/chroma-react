@@ -7,7 +7,7 @@ import { StepConnector } from './StepConnector';
 
 export const StepperStylesKey = 'ChromaStepper';
 
-const useStyles = makeStyles(
+export const useStyles = makeStyles(
   (theme) => ({
     root: {
       backgroundColor: theme.palette.common.white,

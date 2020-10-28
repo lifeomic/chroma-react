@@ -5,7 +5,7 @@ import { GetClasses } from '../../typeUtils';
 
 export const TextStylesKey = 'ChromaText';
 
-const useStyles = makeStyles(
+export const useStyles = makeStyles(
   (theme) => ({
     root: {
       color: theme.palette.black.main,

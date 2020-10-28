@@ -6,7 +6,7 @@ import { NotificationStatusType } from '../_private/notificationTypes';
 
 export const AlertStylesKey = 'ChromaAlert';
 
-const useStyles = makeStyles(
+export const useStyles = makeStyles(
   (theme) => ({
     root: {
       alignItems: 'flex-start',

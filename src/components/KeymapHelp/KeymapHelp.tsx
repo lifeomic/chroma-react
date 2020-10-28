@@ -23,7 +23,7 @@ const BASE_KEY_MAP_DOCS: KeyBindingDoc[] = [
 
 export const KeymapHelpStylesKey = 'ChromaKeymapHelp';
 
-const useStyles = makeStyles(
+export const useStyles = makeStyles(
   (theme) => ({
     root: {},
     sequence: {
