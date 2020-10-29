@@ -27,10 +27,12 @@ export const TableModuleCell: React.FC<TableModuleCell> = React.memo(
         //   then it is left-aligned
         // - If this is the last cell and there is more than one column, then
         //   it is right-aligned
+        // - Allow for left alignment override on last cell
         // - Fallback behavior is left aligned (specified by tableRowCell class)
         className={clsx(
           classes.tableRowCell,
-          ((cell.align && cell.align === 'right') || isLastCellInRow) &&
+          ((isLastCellInRow && cell?.align !== 'left') ||
+            cell?.align === 'right') &&
             classes.tableRowCellAlignRight,
           maxCellWidth && classes.tableRowCellTruncate,
           {
