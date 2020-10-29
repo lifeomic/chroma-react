@@ -86,7 +86,7 @@ test('it renders with "isLastCellInRow"', async () => {
     </RenderInTable>
   );
   const root = await findByTestId(testIds.bodyCell);
-  expect(root).toHaveClass('ChromaTableModule-tableRowCellAlignRight');
+  expect(root).toHaveClass('ChromaTableModule-tableRowCell');
 });
 
 test('it renders with cell "align: right"', async () => {
