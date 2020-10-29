@@ -123,9 +123,10 @@ export const TableHeaderCell: React.FC<TableHeaderCellProps> = ({
         //   then it is left-aligned
         // - If this is the last header and there is more than one column, then
         //   it is right-aligned
+        // - Allow for left alignment override on last header
         // - Fallback behavior is left aligned (specified by root class)
-        ((header.align && header.align === 'right') ||
-          (headingsCount > 1 && index === headingsCount - 1)) &&
+        ((!header.align && headingsCount > 1 && index === headingsCount - 1) ||
+          header?.align === 'right') &&
           classes.rootAlignRight,
         header.className
       )}
