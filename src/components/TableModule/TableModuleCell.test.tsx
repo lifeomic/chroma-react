@@ -73,7 +73,19 @@ test('it renders with "maxCellWidth={2}"', async () => {
   expect(root).toHaveClass('ChromaTableModule-tableRowCellMaxWidth2');
 });
 
-test('it renders with "isLastCellInRow"', async () => {
+test('it applies right-alignment when provided with "isLastCellInRow"', async () => {
+  const { findByTestId } = renderWithTheme(
+    <RenderInTable>
+      <TableModuleCell cell={{}} isLastCellInRow data-testid={testId}>
+        test
+      </TableModuleCell>
+    </RenderInTable>
+  );
+  const root = await findByTestId(testIds.bodyCell);
+  expect(root).toHaveClass('ChromaTableModule-tableRowCellAlignRight');
+});
+
+test('it renders the cell with the provided "align" despite "isLastCellInRow"', async () => {
   const { findByTestId } = renderWithTheme(
     <RenderInTable>
       <TableModuleCell
@@ -87,6 +99,7 @@ test('it renders with "isLastCellInRow"', async () => {
   );
   const root = await findByTestId(testIds.bodyCell);
   expect(root).toHaveClass('ChromaTableModule-tableRowCell');
+  expect(root).not.toHaveClass('ChromaTableModule-tableRowCellAlignRight');
 });
 
 test('it renders with cell "align: right"', async () => {

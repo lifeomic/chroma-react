@@ -86,6 +86,27 @@ test('it renders the last header with align="right"', async () => {
   expect(root).toHaveClass('ChromaTableHeaderCell-rootAlignRight');
 });
 
+test('it renders the last header with the provided "align" override', async () => {
+  const props = getBaseProps();
+  const { findByTestId } = renderWithTheme(
+    <RenderInsideTableRow>
+      <TableHeaderCell
+        {...props}
+        // fudge the props to test this
+        index={1}
+        headingsCount={2}
+        data-testid={testId}
+        // Should expect this to be aligned left, despite being
+        // the last header in the table
+        header={{ ...props.header, align: 'left' }}
+      />
+    </RenderInsideTableRow>
+  );
+  const root = await findByTestId(testId);
+  expect(root).toHaveClass('ChromaTableHeaderCell-root');
+  expect(root).not.toHaveClass('ChromaTableHeaderCell-rootAlignRight');
+});
+
 test('it applies the provided className', async () => {
   const props = getBaseProps();
   const header = {
