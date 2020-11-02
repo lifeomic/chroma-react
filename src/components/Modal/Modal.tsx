@@ -52,6 +52,7 @@ export const useStyles = makeStyles(
       paddingBottom: theme.spacing(0.25),
       width: theme.pxToRem(384),
       maxWidth: theme.pxToRem(600),
+      overflow: 'hidden',
       '@media screen and (max-width: 480px)': {
         marginBottom: theme.spacing(0.75),
         marginLeft: theme.spacing(0.75),
