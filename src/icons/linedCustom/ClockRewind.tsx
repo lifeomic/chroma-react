@@ -12,6 +12,7 @@ export const ClockRewind = (props: React.SVGProps<SVGSVGElement>) => {
       strokeMiterlimit={10}
       width={24}
       height={24}
+      data-icon="clockrewind-custom"
       {...props}
     >
       <path d="M12 7.237v5.398l3.599 1.8M1 5v5h5" />

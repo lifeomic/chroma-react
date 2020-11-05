@@ -12,6 +12,7 @@ export const Batteries = (props: React.SVGProps<SVGSVGElement>) => {
       strokeMiterlimit={10}
       width={24}
       height={24}
+      data-icon="batteries-custom"
       {...props}
     >
       <rect x={1} y={9} width={18} height={12} rx={2} ry={2} />

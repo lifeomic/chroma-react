@@ -12,6 +12,7 @@ export const Root = (props: React.SVGProps<SVGSVGElement>) => {
       strokeMiterlimit={10}
       width={24}
       height={24}
+      data-icon="root-custom"
       {...props}
     >
       <circle cx={11.995} cy={15.48} r={4} />

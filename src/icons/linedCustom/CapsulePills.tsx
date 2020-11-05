@@ -12,6 +12,7 @@ export const CapsulePills = (props: React.SVGProps<SVGSVGElement>) => {
       strokeMiterlimit={10}
       width={24}
       height={24}
+      data-icon="capsulepills-custom"
       {...props}
     >
       <circle cx={20.25} cy={7.825} r={2.749} />

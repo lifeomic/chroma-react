@@ -12,6 +12,7 @@ export const Fork = (props: React.SVGProps<SVGSVGElement>) => {
       strokeMiterlimit={10}
       width={24}
       height={24}
+      data-icon="fork-custom"
       {...props}
     >
       <path d="M18 2v6a4.012 4.012 0 01-4 4h-4a4.012 4.012 0 01-4-4V2M12 2v20" />

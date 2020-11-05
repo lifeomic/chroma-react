@@ -12,6 +12,7 @@ export const Disguise = (props: React.SVGProps<SVGSVGElement>) => {
       strokeMiterlimit={10}
       width={24}
       height={24}
+      data-icon="disguise-custom"
       {...props}
     >
       <circle cx={7} cy={17.5} r={4} />

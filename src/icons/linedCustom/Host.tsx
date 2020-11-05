@@ -12,6 +12,7 @@ export const Host = (props: React.SVGProps<SVGSVGElement>) => {
       strokeMiterlimit={10}
       width={24}
       height={24}
+      data-icon="host-custom"
       {...props}
     >
       <rect x={2} y={8} width={20} height={8} rx={2} />

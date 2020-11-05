@@ -12,6 +12,7 @@ export const MortarBoard = (props: React.SVGProps<SVGSVGElement>) => {
       strokeMiterlimit={10}
       width={24}
       height={24}
+      data-icon="mortarboard-custom"
       {...props}
     >
       <path d="M12 4.5l-10 5 10 5 10-5-10-5z" />

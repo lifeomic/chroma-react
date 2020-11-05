@@ -12,6 +12,7 @@ export const PlotNeedle = (props: React.SVGProps<SVGSVGElement>) => {
       strokeMiterlimit={10}
       width={24}
       height={24}
+      data-icon="plotneedle-custom"
       {...props}
     >
       <path d="M21 21H3V3M3 5h1.6M3 9h1.6M3 13h1.6M3 17h1.6M11 17v4" />

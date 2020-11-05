@@ -12,6 +12,7 @@ export const NodeMesh = (props: React.SVGProps<SVGSVGElement>) => {
       strokeMiterlimit={10}
       width={24}
       height={24}
+      data-icon="nodemesh-custom"
       {...props}
     >
       <circle cx={4.5} cy={4.5} r={2.5} />

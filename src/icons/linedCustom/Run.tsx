@@ -12,6 +12,7 @@ export const Run = (props: React.SVGProps<SVGSVGElement>) => {
       strokeMiterlimit={10}
       width={24}
       height={24}
+      data-icon="run-custom"
       {...props}
     >
       <circle cx={16.5} cy={3.9} r={1.9} />

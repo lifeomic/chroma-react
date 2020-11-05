@@ -12,6 +12,7 @@ export const Filter = (props: React.SVGProps<SVGSVGElement>) => {
       strokeMiterlimit={10}
       width={24}
       height={24}
+      data-icon="filter-custom"
       {...props}
     >
       <path d="M6.464 12h11.072M3 6h18M9.928 18h4.144" />

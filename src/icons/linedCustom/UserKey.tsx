@@ -12,6 +12,7 @@ export const UserKey = (props: React.SVGProps<SVGSVGElement>) => {
       strokeMiterlimit={10}
       width={24}
       height={24}
+      data-icon="userkey-custom"
       {...props}
     >
       <path d="M11.5 13H5a4 4 0 00-4 4v2" />

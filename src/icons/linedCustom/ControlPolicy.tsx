@@ -12,6 +12,7 @@ export const ControlPolicy = (props: React.SVGProps<SVGSVGElement>) => {
       strokeMiterlimit={10}
       width={24}
       height={24}
+      data-icon="controlpolicy-custom"
       {...props}
     >
       <path d="M13.25 22H18a2 2 0 002-2V8l-6-6H6a2 2 0 00-2 2v1.572" />

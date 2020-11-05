@@ -12,6 +12,7 @@ export const Oncoprint = (props: React.SVGProps<SVGSVGElement>) => {
       strokeMiterlimit={10}
       width={24}
       height={24}
+      data-icon="oncoprint-custom"
       {...props}
     >
       <path d="M4 4v6.4M11.5 4v6.4M14.7 4v6.4M20 4v6.4M20 13.6V20M14.7 13.6V20M7.2 13.6V20M4 13.6V20" />

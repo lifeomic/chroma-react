@@ -12,6 +12,7 @@ export const Function = (props: React.SVGProps<SVGSVGElement>) => {
       strokeMiterlimit={10}
       width={24}
       height={24}
+      data-icon="function-custom"
       {...props}
     >
       <path d="M8 4a3 3 0 00-3 3v2a3 3 0 01-3 3 3 3 0 013 3v2a3 3 0 003 3M16 20a3 3 0 003-3v-2a3 3 0 013-3 3 3 0 01-3-3V7a3 3 0 00-3-3" />

@@ -12,6 +12,7 @@ export const Container = (props: React.SVGProps<SVGSVGElement>) => {
       strokeMiterlimit={10}
       width={24}
       height={24}
+      data-icon="container-custom"
       {...props}
     >
       <path d="M5 8.5h14v7H5zM9.667 8.5v7M14.333 8.5v7" />
