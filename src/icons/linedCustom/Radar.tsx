@@ -12,6 +12,7 @@ export const Radar = (props: React.SVGProps<SVGSVGElement>) => {
       strokeMiterlimit={10}
       width={24}
       height={24}
+      data-icon="radar-custom"
       {...props}
     >
       <path d="M12 19.4A7.4 7.4 0 104.6 12a7.383 7.383 0 007.4 7.4zM4.6 12H1.7M22.2 12h-2.8M12 19.4v2.8M12 1.7v2.9" />

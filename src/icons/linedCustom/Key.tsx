@@ -12,6 +12,7 @@ export const Key = (props: React.SVGProps<SVGSVGElement>) => {
       strokeMiterlimit={10}
       width={24}
       height={24}
+      data-icon="key-custom"
       {...props}
     >
       <circle cx={16.55} cy={7.449} r={2} />

@@ -12,6 +12,7 @@ export const NodeTree = (props: React.SVGProps<SVGSVGElement>) => {
       strokeMiterlimit={10}
       width={24}
       height={24}
+      data-icon="nodetree-custom"
       {...props}
     >
       <circle cx={12} cy={19.5} r={2.5} />

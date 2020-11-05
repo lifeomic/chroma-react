@@ -12,6 +12,7 @@ export const Clipboard = (props: React.SVGProps<SVGSVGElement>) => {
       strokeMiterlimit={10}
       width={24}
       height={24}
+      data-icon="clipboard-custom"
       {...props}
     >
       <path d="M19.1 2.7h.1a2.112 2.112 0 012.1 2.1v15.5a2.112 2.112 0 01-2.1 2.1H4.8a2.112 2.112 0 01-2.1-2.1V4.8a2.112 2.112 0 012.1-2.1h.1" />

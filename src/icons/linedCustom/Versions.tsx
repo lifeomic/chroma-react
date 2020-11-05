@@ -12,6 +12,7 @@ export const Versions = (props: React.SVGProps<SVGSVGElement>) => {
       strokeMiterlimit={10}
       width={24}
       height={24}
+      data-icon="versions-custom"
       {...props}
     >
       <rect x={2} y={9} width={20} height={14} rx={2} />

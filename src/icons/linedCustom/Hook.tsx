@@ -12,6 +12,7 @@ export const Hook = (props: React.SVGProps<SVGSVGElement>) => {
       strokeMiterlimit={10}
       width={24}
       height={24}
+      data-icon="hook-custom"
       {...props}
     >
       <circle cx={12} cy={5.1} r={3} />

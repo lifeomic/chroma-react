@@ -12,6 +12,7 @@ export const CodeReview = (props: React.SVGProps<SVGSVGElement>) => {
       strokeMiterlimit={10}
       width={24}
       height={24}
+      data-icon="codereview-custom"
       {...props}
     >
       <path d="M20.102 23L23 20.101l-2.898-2.898M16.237 17.203l-2.898 2.898L16.237 23" />

@@ -12,6 +12,7 @@ export const Webhook = (props: React.SVGProps<SVGSVGElement>) => {
       strokeMiterlimit={10}
       width={24}
       height={24}
+      data-icon="webhook-custom"
       {...props}
     >
       <path d="M9.3 10.5C7.9 9.6 7 8.1 7 6.3c0-2.8 2.2-5 5-5s5 2.2 5 5c0 .4-.1.9-.2 1.3" />

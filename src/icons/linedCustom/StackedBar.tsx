@@ -12,6 +12,7 @@ export const StackedBar = (props: React.SVGProps<SVGSVGElement>) => {
       strokeMiterlimit={10}
       width={24}
       height={24}
+      data-icon="stackedbar-custom"
       {...props}
     >
       <path d="M18 14v-4M18 20v-2M12 12V4M12 20v-4M6 15v-1M6 20v-1" />

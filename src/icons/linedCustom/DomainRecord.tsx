@@ -12,6 +12,7 @@ export const DomainRecord = (props: React.SVGProps<SVGSVGElement>) => {
       strokeMiterlimit={10}
       width={24}
       height={24}
+      data-icon="domainrecord-custom"
       {...props}
     >
       <path d="M12 22a10 10 0 119.55-12.976M2 12h12.36" />

@@ -12,6 +12,7 @@ export const ClearList = (props: React.SVGProps<SVGSVGElement>) => {
       strokeMiterlimit={10}
       width={24}
       height={24}
+      data-icon="clearlist-custom"
       {...props}
     >
       <path d="M3 12h18M3 6h10.867M3 18h18M21 4l-4 4M17 4l4 4" />

@@ -12,6 +12,7 @@ export const CornerUpRightSquare = (props: React.SVGProps<SVGSVGElement>) => {
       strokeMiterlimit={10}
       width={24}
       height={24}
+      data-icon="corneruprightsquare-custom"
       {...props}
     >
       <path d="M20.03 15.356v3.994a2 2 0 01-2 2H5a2 2 0 01-2-2V6.338a2 2 0 012-2h4.1M17.123 11.405l4.208-4.208L17.135 3" />

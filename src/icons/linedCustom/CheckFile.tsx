@@ -12,6 +12,7 @@ export const CheckFile = (props: React.SVGProps<SVGSVGElement>) => {
       strokeMiterlimit={10}
       width={24}
       height={24}
+      data-icon="checkfile-custom"
       {...props}
     >
       <path d="M20 8.5l-7.999 9L9 14.5" />

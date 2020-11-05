@@ -12,6 +12,7 @@ export const Library = (props: React.SVGProps<SVGSVGElement>) => {
       strokeMiterlimit={10}
       width={24}
       height={24}
+      data-icon="library-custom"
       {...props}
     >
       <path d="M20.332 20L16.844 4M12 20V4M6 20V4" />

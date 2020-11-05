@@ -12,6 +12,7 @@ export const OfficeBuilding = (props: React.SVGProps<SVGSVGElement>) => {
       strokeMiterlimit={10}
       width={24}
       height={24}
+      data-icon="officebuilding-custom"
       {...props}
     >
       <path d="M9 15.25h0M12 15.25h0M15 15.25h0M9 12.25h0M12 12.25h0M15 12.25h0M9 9.25h0M12 9.25h0M15 9.25h0M9 6.25h0M12 6.25h0M15 6.25h0M12 19.25v2.656" />

@@ -12,6 +12,7 @@ export const Procedure = (props: React.SVGProps<SVGSVGElement>) => {
       strokeMiterlimit={10}
       width={24}
       height={24}
+      data-icon="procedure-custom"
       {...props}
     >
       <path d="M10 5H6M11.932 12H18.5a3.5 3.5 0 000-7H14M10 19H5.5a3.5 3.5 0 010-7h3.408M18 19h-4" />

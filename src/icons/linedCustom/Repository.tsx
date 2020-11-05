@@ -12,6 +12,7 @@ export const Repository = (props: React.SVGProps<SVGSVGElement>) => {
       strokeMiterlimit={10}
       width={24}
       height={24}
+      data-icon="repository-custom"
       {...props}
     >
       <path d="M22 16v4a2 2 0 01-2 2H4a2 2 0 01-2-2v-4M5.966 2.143h12v6h-12z" />

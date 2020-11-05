@@ -12,6 +12,7 @@ export const Jira = (props: React.SVGProps<SVGSVGElement>) => {
       strokeMiterlimit={10}
       width={24}
       height={24}
+      data-icon="jira-custom"
       {...props}
     >
       <path d="M19.522 3.851h-8.207a3.723 3.723 0 003.705 3.705h1.512v1.459a3.723 3.723 0 003.7 3.7V4.563a.716.716 0 00-.71-.712z" />

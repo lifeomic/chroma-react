@@ -12,6 +12,7 @@ export const Checklist = (props: React.SVGProps<SVGSVGElement>) => {
       strokeMiterlimit={10}
       width={24}
       height={24}
+      data-icon="checklist-custom"
       {...props}
     >
       <path d="M12.768 4.019L6.973 9.82 5.235 8.082" />

@@ -12,6 +12,7 @@ export const Planet = (props: React.SVGProps<SVGSVGElement>) => {
       strokeMiterlimit={10}
       width={24}
       height={24}
+      data-icon="planet-custom"
       {...props}
     >
       <circle cx={12} cy={12} r={10} />
