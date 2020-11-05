@@ -13,6 +13,7 @@ export const Guide: React.FC<AdaptiveIconProps> = ({
       viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      data-icon="guide-adaptive"
       {...rootProps}
     >
       <g transform="translate(2,2)">

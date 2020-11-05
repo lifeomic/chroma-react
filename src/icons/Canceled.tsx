@@ -18,6 +18,7 @@ export const Canceled: React.FunctionComponent<FilledIconProps> = ({
       height={size}
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
+      data-icon="canceled-filled"
       {...rootProps}
     >
       <mask id={randomlyGeneratedMaskId} fill={palette.common.white}>
