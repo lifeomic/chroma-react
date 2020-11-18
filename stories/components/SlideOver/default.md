@@ -63,6 +63,19 @@ The title for the Panel.
 </SlideOver>
 ```
 
+### Children
+
+If you'd like to render custom content in the Header instead of a title-only header, provide children:
+
+```jsx
+<SlideOver>
+  <Header>
+    <Avatar name="User" />
+    <Text>User</Text>
+  </Header>
+</SlideOver>
+```
+
 ### onClose
 
 A callback for when the Close icon button is clicked. This will commonly close

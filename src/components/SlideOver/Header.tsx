@@ -27,7 +27,7 @@ export type HeaderClasses = GetClasses<typeof useStyles>;
 export interface HeaderProps {
   className?: string;
   onClose: () => any;
-  title: string;
+  title?: string;
   classes?: {
     root?: string;
     text?: string;
@@ -36,6 +36,7 @@ export interface HeaderProps {
 }
 
 export const Header: React.FC<HeaderProps> = ({
+  children,
   classes: additionalClasses,
   className,
   onClose,
@@ -48,9 +49,16 @@ export const Header: React.FC<HeaderProps> = ({
       className={clsx(classes.root, additionalClasses?.root, className)}
       {...rootProps}
     >
-      <Text className={clsx(additionalClasses?.text)} size="body" weight="bold">
-        {title}
-      </Text>
+      {children}
+      {title && (
+        <Text
+          className={clsx(additionalClasses?.text)}
+          size="body"
+          weight="bold"
+        >
+          {title}
+        </Text>
+      )}
       <IconButton
         className={additionalClasses?.button}
         aria-label="Close panel"

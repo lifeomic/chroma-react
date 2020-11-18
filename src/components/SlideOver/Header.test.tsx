@@ -57,3 +57,14 @@ test('it renders the provided title', async () => {
   const title = await findByText(/SlideOverTitle/);
   expect(title).toBeInTheDocument();
 });
+
+test('it renders the provided children', async () => {
+  const { findByTestId } = renderWithTheme(
+    <Header {...getBaseProps()}>
+      <p data-testid={testId}>children</p>
+    </Header>
+  );
+
+  const children = await findByTestId(testId);
+  expect(children).toBeInTheDocument();
+});
