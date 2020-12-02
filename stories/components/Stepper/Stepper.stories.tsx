@@ -38,6 +38,14 @@ const StepperStory: React.FC = () => {
           <Step icon={Flag} title="Completed" />
         </Stepper>
       </Container>
+      <Container>
+        <Stepper activeStep={3} as="div">
+          <Step title="Registered" />
+          <Step title="Consented" />
+          <Step title="Demographics" />
+          <Step title="Completed" />
+        </Stepper>
+      </Container>
     </>
   );
 };

@@ -122,7 +122,7 @@ export interface StepProps {
   className?: string;
   completed?: boolean;
   disabled?: boolean;
-  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   index?: number;
   onClick?: (index: number | undefined) => void;
   subTitle?: string;
@@ -161,15 +161,29 @@ export const Step: React.FC<StepProps> = ({
         )}
         justify="center"
       >
-        <Icon
-          aria-hidden="true"
-          className={clsx(
-            classes.icon,
-            active && classes.activeIcon,
-            completed && classes.completedIcon
-          )}
-          role="img"
-        />
+        {Icon ? (
+          <Icon
+            aria-hidden="true"
+            className={clsx(
+              classes.icon,
+              active && classes.activeIcon,
+              completed && classes.completedIcon
+            )}
+            role="img"
+          />
+        ) : (
+          <Text
+            aria-hidden="true"
+            size="headline"
+            className={clsx(
+              classes.icon,
+              active && classes.activeIcon,
+              completed && classes.completedIcon
+            )}
+          >
+            {(index || 0) + 1}
+          </Text>
+        )}
       </Box>
       <Text
         className={clsx(classes.title, active && classes.activeTitle)}

@@ -57,7 +57,7 @@ button components (clickable) or div components.
 
 The following props are available on the component:
 
-- icon: A React SVG component to render.
+- icon: A React SVG component to render. Leaving out icon will render its ordered number.
 - title: The primary text to display directly underneath the Stepper icon.
 - subTitle: The text to display directly underneath the title.
 - subTitlePillLabel: A Pill to display directly underneath the title (usually to
@@ -83,6 +83,16 @@ component.
 
 ```jsx
 <Step subTitlePillLabel={320} />
+```
+
+### Rendering Steps Ordered as 1, 2, 3, etc
+
+By not providing the Icon, `Step` will display the `index + 1` in the icons place.
+
+```jsx
+<Step title="First" />
+<Step title="Second" />
+<Step title="Last" />
 ```
 
 ## Links
