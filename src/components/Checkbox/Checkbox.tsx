@@ -14,6 +14,7 @@ import { generateUniqueId } from '../_private/UniqueId';
 import { Text } from '../Text';
 import { motion, useMotionValue, useTransform } from 'framer-motion';
 import 'focus-visible';
+import { screenreaderOnlyStyles } from '../../styles/screenreaderOnly';
 
 export const CheckboxStylesKey = 'ChromaCheckbox';
 
@@ -85,6 +86,9 @@ export const useStyles = makeStyles(
       zIndex: 2,
     },
     box: {},
+    srOnly: {
+      ...screenreaderOnlyStyles,
+    },
   }),
   { name: CheckboxStylesKey }
 );
@@ -300,6 +304,7 @@ export type CheckboxProps = BaseFormElementWithNodeLabel &
 export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
   (
     {
+      ['aria-label']: ariaLabel,
       checked,
       className,
       classes: additionalClasses,
@@ -324,6 +329,12 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
 
     const pathLength = useMotionValue(0);
     const opacity = useTransform(pathLength, [0.05, 0.15], [0, 1]);
+
+    if (!label && !ariaLabel && process.env.NODE_ENV === 'development') {
+      throw new Error(
+        'If a "label" is not provided to Checkbox, please provide "aria-label".'
+      );
+    }
 
     return (
       <motion.div
@@ -449,9 +460,12 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
             </motion.svg>
             <Text
               size="subbody"
-              className={color === 'inverse' ? classes.labelInverse : undefined}
+              className={clsx(
+                color === 'inverse' ? classes.labelInverse : undefined,
+                !label && ariaLabel && classes.srOnly
+              )}
             >
-              {label}
+              {label || ariaLabel}
             </Text>
           </motion.label>
         </div>

@@ -135,3 +135,12 @@ test('it allows for label to be a ReactNode', async () => {
   expect(label).toBeInTheDocument();
   expect(label?.tagName).toEqual('A');
 });
+
+test('it renders an aria-label when not provided with label', async () => {
+  const { findByLabelText } = renderWithTheme(
+    <Checkbox label="" aria-label="aria-label-text" data-testid={testId} />
+  );
+
+  const ariaLabel = await findByLabelText(/aria-label-text/);
+  expect(ariaLabel).toBeInTheDocument();
+});

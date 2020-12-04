@@ -15,11 +15,11 @@ test('it renders a RadioGroupMinimal', async () => {
 });
 
 test('it renders a title', async () => {
-  const { findByLabelText } = renderWithTheme(
+  const { findByText } = renderWithTheme(
     <RadioGroupMinimal title="Select one" data-testid={testId} />
   );
 
-  const title = await findByLabelText(/Select one/);
+  const title = await findByText(/Select one/);
   expect(title).toBeInTheDocument();
   expect(title?.nodeName).toEqual('LEGEND');
 });
@@ -59,4 +59,18 @@ test('it renders children', async () => {
 
   const root = await findByTestId(testId);
   expect(root).toBeInTheDocument();
+});
+
+test('it renders an aria-label when not provided with title', async () => {
+  const { findByText } = renderWithTheme(
+    <RadioGroupMinimal
+      title=""
+      aria-label="aria-label-title"
+      data-testid={testId}
+    />
+  );
+
+  const ariaLabel = await findByText(/aria-label-title/);
+  expect(ariaLabel).toBeInTheDocument();
+  expect(ariaLabel?.nodeName).toEqual('LEGEND');
 });

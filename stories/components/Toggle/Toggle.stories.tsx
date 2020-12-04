@@ -54,6 +54,14 @@ const ToggleStory: React.FC = () => {
             placement="right"
             fullWidth
           />
+          <Toggle
+            checked={checked}
+            onChange={(e) => {
+              setChecked(e.target.checked);
+            }}
+            label=""
+            aria-label="Toggle with no label"
+          />
         </FormBox>
       </Container>
 
@@ -97,6 +105,14 @@ const ToggleStory: React.FC = () => {
             label="With right placement + fullWidth"
             placement="right"
             fullWidth
+          />
+          <Toggle
+            checked={checked}
+            onChange={(e) => {
+              setChecked(e.target.checked);
+            }}
+            label=""
+            aria-label="Toggle with no label"
           />
         </FormBox>
       </Container>
@@ -155,6 +171,15 @@ const ToggleStory: React.FC = () => {
             color="inverse"
             fullWidth
           />
+          <Toggle
+            checked={checked}
+            onChange={(e) => {
+              setChecked(e.target.checked);
+            }}
+            label=""
+            aria-label="Toggle with no label"
+            color="inverse"
+          />
         </FormBox>
       </Container>
 
@@ -211,6 +236,15 @@ const ToggleStory: React.FC = () => {
             placement="right"
             color="inverse"
             fullWidth
+          />
+          <Toggle
+            checked={checked}
+            onChange={(e) => {
+              setChecked(e.target.checked);
+            }}
+            label=""
+            aria-label="Toggle with no label"
+            color="inverse"
           />
         </FormBox>
       </Container>

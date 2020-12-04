@@ -36,7 +36,6 @@ const TextAreaStory: React.FC = () => {
             tooltipMessage="Here is descriptive text"
             secondaryLabel="Optional"
           />
-          <TextArea helpMessage="No label" />
           <TextArea disabled label="Disabled" />
           <TextArea label="Full Width" fullWidth />
           <TextArea label="Description" helpMessage="Helper text goes here" />
@@ -53,6 +52,7 @@ const TextAreaStory: React.FC = () => {
             errorMessage="This is required"
           />
           <TextArea
+            label="Description"
             hasError
             helpMessage="Helper text goes here"
             errorMessage="This is required"
@@ -61,6 +61,15 @@ const TextAreaStory: React.FC = () => {
             label="Read only"
             value="This is a read-only textarea"
             readOnly
+          />
+          <TextArea
+            value={text}
+            onChange={(e) => {
+              setText(e.target.value);
+            }}
+            label=""
+            aria-label="TextArea with no label"
+            helpMessage="No label"
           />
         </FormBox>
       </Container>
@@ -88,7 +97,6 @@ const TextAreaStory: React.FC = () => {
             tooltipMessage="Here is descriptive text"
             secondaryLabel="Optional"
           />
-          <TextArea helpMessage="No label" />
           <TextArea disabled label="Disabled" />
           <TextArea label="Full Width" fullWidth />
           <TextArea label="Description" helpMessage="Helper text goes here" />
@@ -105,6 +113,7 @@ const TextAreaStory: React.FC = () => {
             errorMessage="This is required"
           />
           <TextArea
+            label="Description"
             hasError
             helpMessage="Helper text goes here"
             errorMessage="This is required"
@@ -113,6 +122,15 @@ const TextAreaStory: React.FC = () => {
             label="Read only"
             value="This is a read-only textarea"
             readOnly
+          />
+          <TextArea
+            value={text}
+            onChange={(e) => {
+              setText(e.target.value);
+            }}
+            label=""
+            aria-label="TextArea with no label"
+            helpMessage="No label"
           />
         </FormBox>
       </Container>
@@ -142,7 +160,6 @@ const TextAreaStory: React.FC = () => {
             secondaryLabel="Optional"
             color="inverse"
           />
-          <TextArea helpMessage="No label" color="inverse" />
           <TextArea disabled label="Disabled" color="inverse" />
           <TextArea label="Full Width" fullWidth color="inverse" />
           <TextArea
@@ -165,6 +182,7 @@ const TextAreaStory: React.FC = () => {
             color="inverse"
           />
           <TextArea
+            label="Description"
             hasError
             helpMessage="Helper text goes here"
             errorMessage="This is required"
@@ -175,6 +193,16 @@ const TextAreaStory: React.FC = () => {
             value="This is a read-only textarea"
             color="inverse"
             readOnly
+          />
+          <TextArea
+            value={text}
+            onChange={(e) => {
+              setText(e.target.value);
+            }}
+            label=""
+            aria-label="TextArea with no label"
+            color="inverse"
+            helpMessage="No label"
           />
         </FormBox>
       </Container>
@@ -204,7 +232,6 @@ const TextAreaStory: React.FC = () => {
             secondaryLabel="Optional"
             color="inverse"
           />
-          <TextArea helpMessage="No label" color="inverse" />
           <TextArea disabled label="Disabled" color="inverse" />
           <TextArea label="Full Width" fullWidth color="inverse" />
           <TextArea
@@ -227,6 +254,7 @@ const TextAreaStory: React.FC = () => {
             color="inverse"
           />
           <TextArea
+            label="Description"
             hasError
             helpMessage="Helper text goes here"
             errorMessage="This is required"
@@ -237,6 +265,16 @@ const TextAreaStory: React.FC = () => {
             value="This is a read-only textarea"
             color="inverse"
             readOnly
+          />
+          <TextArea
+            value={text}
+            onChange={(e) => {
+              setText(e.target.value);
+            }}
+            label=""
+            aria-label="TextArea with no label"
+            color="inverse"
+            helpMessage="No label"
           />
         </FormBox>
       </Container>

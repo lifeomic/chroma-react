@@ -4,6 +4,7 @@ import { makeStyles } from '../../styles';
 import { GetClasses } from '../../typeUtils';
 import { RadioProps } from './Radio';
 import { RadioGroupContext } from './useRadioGroup';
+import { screenreaderOnlyStyles } from '../../styles/screenreaderOnly';
 
 export const RadioGroupStylesKey = 'ChromaRadioGroup';
 
@@ -59,6 +60,9 @@ export const useStyles = makeStyles(
     directionColumn: {
       flexDirection: 'column',
     },
+    srOnly: {
+      ...screenreaderOnlyStyles,
+    },
   }),
   { name: RadioGroupStylesKey }
 );
@@ -66,7 +70,10 @@ export const useStyles = makeStyles(
 export type RadioGroupClasses = GetClasses<typeof useStyles>;
 
 export interface RadioGroupProps
-  extends Pick<RadioProps, 'color' | 'name' | 'onChange' | 'value'> {
+  extends Pick<
+    RadioProps,
+    'aria-label' | 'color' | 'name' | 'onChange' | 'value'
+  > {
   className?: string;
   align?: 'center' | 'flex-start';
   direction?: 'row' | 'column';
@@ -75,6 +82,7 @@ export interface RadioGroupProps
 }
 
 export const RadioGroup: React.FC<RadioGroupProps> = ({
+  ['aria-label']: ariaLabel,
   className,
   align = 'flex-start',
   color = 'default',
@@ -97,6 +105,12 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
     onChange?.(e);
   };
 
+  if (!title && !ariaLabel && process.env.NODE_ENV === 'development') {
+    throw new Error(
+      'If a "title" is not provided to RadioGroup, please provide "aria-label".'
+    );
+  }
+
   return (
     <RadioGroupContext.Provider
       value={{
@@ -111,15 +125,17 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
         role="radiogroup"
         {...rootProps}
       >
-        {title && (
-          <legend
-            className={clsx(classes.legend, {
+        <legend
+          className={clsx(
+            classes.legend,
+            {
               [classes.legendInverse]: color === 'inverse',
-            })}
-          >
-            {title}
-          </legend>
-        )}
+            },
+            !title && ariaLabel && classes.srOnly
+          )}
+        >
+          {title || ariaLabel}
+        </legend>
         <div
           className={clsx(
             classes.radios,

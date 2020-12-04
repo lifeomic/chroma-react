@@ -90,6 +90,14 @@ const CheckboxStory: React.FC = () => {
             indeterminate
             label="Indeterminate + disabled"
           />
+          <Checkbox
+            checked={checked}
+            onChange={(e) => {
+              setChecked(e.target.checked);
+            }}
+            label=""
+            aria-label="Checkbox with no label"
+          />
         </FormBox>
       </Container>
 
@@ -163,6 +171,14 @@ const CheckboxStory: React.FC = () => {
             disabled
             indeterminate
             label="Indeterminate + disabled"
+          />
+          <Checkbox
+            checked={checked}
+            onChange={(e) => {
+              setChecked(e.target.checked);
+            }}
+            label=""
+            aria-label="Checkbox with no label"
           />
         </FormBox>
       </Container>
@@ -254,6 +270,15 @@ const CheckboxStory: React.FC = () => {
             indeterminate
             label="Indeterminate + disabled"
           />
+          <Checkbox
+            checked={checked}
+            onChange={(e) => {
+              setChecked(e.target.checked);
+            }}
+            color="inverse"
+            label=""
+            aria-label="Checkbox with no label"
+          />
         </FormBox>
       </Container>
 
@@ -343,6 +368,15 @@ const CheckboxStory: React.FC = () => {
             disabled
             indeterminate
             label="Indeterminate + disabled"
+          />
+          <Checkbox
+            checked={checked}
+            onChange={(e) => {
+              setChecked(e.target.checked);
+            }}
+            color="inverse"
+            label=""
+            aria-label="Checkbox with no label"
           />
         </FormBox>
       </Container>
