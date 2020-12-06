@@ -2,7 +2,14 @@ import { storiesOf } from '@storybook/react';
 import { boolean, radios } from '@storybook/addon-knobs';
 import * as React from 'react';
 import { FormBox } from '../../../src/components/FormBox';
-import { Radio, RadioGroup, RadioGroupProps, RadioGroupMinimal, RadioGroupMinimalProps } from '../../../src/components/Radio';
+import { Divider } from '../../../src/components/Divider';
+import {
+  Radio,
+  RadioGroup,
+  RadioGroupProps,
+  RadioGroupMinimal,
+  RadioGroupMinimalProps,
+} from '../../../src/components/Radio';
 import { Container } from '../../storyComponents/Container';
 import radioMd from './radio.md';
 import radioGroupMd from './radioGroup.md';
@@ -74,7 +81,28 @@ const RadioStory: React.FC = () => {
       >
         <FormBox padding={2}>
           <RadioGroup
-            title="Select an option"
+            title=""
+            aria-label="Select an option"
+            name="chroma1"
+            value="opt2"
+            onChange={handleChange}
+            {...getPropOptions()}
+          >
+            <Radio value="opt1" label="Option 1" />
+            <Radio value="opt2" label="Option 2" />
+            <Radio value="opt3" disabled label="Disabled (not selectable)" />
+            <Radio
+              value="opt4"
+              label="Option 4"
+              helpMessage="This is some helper text."
+            />
+          </RadioGroup>
+
+          <Divider />
+
+          <RadioGroup
+            aria-label="RadioGroup with no title"
+            title=""
             name="chroma1"
             value="opt2"
             onChange={handleChange}
@@ -123,6 +151,26 @@ const RadioStory: React.FC = () => {
               helpMessage="This is some helper text."
             />
           </RadioGroup>
+
+          <Divider />
+
+          <RadioGroup
+            aria-label="RadioGroup with no title"
+            title=""
+            name="chroma1"
+            value="opt2"
+            onChange={handleChange}
+            {...getPropOptions()}
+          >
+            <Radio value="opt1" label="Option 1" />
+            <Radio value="opt2" label="Option 2" />
+            <Radio value="opt3" disabled label="Disabled (not selectable)" />
+            <Radio
+              value="opt4"
+              label="Option 4"
+              helpMessage="This is some helper text."
+            />
+          </RadioGroup>
         </FormBox>
       </Container>
 
@@ -153,6 +201,27 @@ const RadioStory: React.FC = () => {
             />
             <Radio
               name="chroma3"
+              value="opt4"
+              label="Option 4"
+              helpMessage="This is some helper text."
+            />
+          </RadioGroup>
+
+          <Divider />
+
+          <RadioGroup
+            aria-label="RadioGroup with no title"
+            title=""
+            name="chroma1"
+            value="opt2"
+            onChange={handleChange}
+            color="inverse"
+            {...getPropOptions()}
+          >
+            <Radio value="opt1" label="Option 1" />
+            <Radio value="opt2" label="Option 2" />
+            <Radio value="opt3" disabled label="Disabled (not selectable)" />
+            <Radio
               value="opt4"
               label="Option 4"
               helpMessage="This is some helper text."
@@ -177,7 +246,7 @@ const RadioStory: React.FC = () => {
             value="opt4"
             onChange={handleChange}
             {...getPropOptions()}
-            >
+          >
             <Radio name="chroma4" value="opt1" label="Option 1" />
             <Radio name="chroma4" value="opt2" label="Option 2" />
             <Radio
@@ -185,13 +254,34 @@ const RadioStory: React.FC = () => {
               value="opt3"
               disabled
               label="Disabled (not selectable)"
-              />
+            />
             <Radio
               name="chroma4"
               value="opt4"
               label="Option 4"
               helpMessage="This is some helper text."
-              />
+            />
+          </RadioGroup>
+
+          <Divider />
+
+          <RadioGroup
+            aria-label="RadioGroup with no title"
+            title=""
+            name="chroma1"
+            value="opt2"
+            onChange={handleChange}
+            color="inverse"
+            {...getPropOptions()}
+          >
+            <Radio value="opt1" label="Option 1" />
+            <Radio value="opt2" label="Option 2" />
+            <Radio value="opt3" disabled label="Disabled (not selectable)" />
+            <Radio
+              value="opt4"
+              label="Option 4"
+              helpMessage="This is some helper text."
+            />
           </RadioGroup>
         </FormBox>
       </Container>
@@ -205,10 +295,10 @@ const RadioMinimalStory: React.FC = () => {
     setValueProp(e.target.value);
   };
   console.log(`selected value is: ${valueProp}`);
-  
+
   return (
     <Container
-    containerStyles={{ display: 'flex', flexFlow: 'wrap', padding: 0 }}
+      containerStyles={{ display: 'flex', flexFlow: 'wrap', padding: 0 }}
     >
       <Container
         containerStyles={{
@@ -216,7 +306,7 @@ const RadioMinimalStory: React.FC = () => {
           flexFlow: 'column',
           padding: 0,
         }}
-        >
+      >
         <FormBox padding={2}>
           <RadioGroupMinimal
             title="Select an option"
@@ -224,13 +314,10 @@ const RadioMinimalStory: React.FC = () => {
             value="opt2"
             onChange={handleChange}
             {...getMinimalPropOptions()}
-            >
+          >
             <Radio value="opt1" label="Option 1" />
             <Radio value="opt2" label="Option 2" />
-            <Radio
-              value="opt3"
-              label="Option 3"
-              />
+            <Radio value="opt3" label="Option 3" />
           </RadioGroupMinimal>
         </FormBox>
       </Container>
@@ -241,7 +328,7 @@ const RadioMinimalStory: React.FC = () => {
           flexFlow: 'column',
           padding: 0,
         }}
-        >
+      >
         <FormBox padding={2}>
           <RadioGroupMinimal
             title="Select an option"
@@ -249,14 +336,10 @@ const RadioMinimalStory: React.FC = () => {
             value="opt1"
             onChange={handleChange}
             {...getMinimalPropOptions()}
-            >
+          >
             <Radio name="chroma2" value="opt1" label="Option 1" />
             <Radio name="chroma2" value="opt2" label="Option 2" />
-            <Radio
-              name="chroma2"
-              value="opt3"
-              label="Option 3"
-              />
+            <Radio name="chroma2" value="opt3" label="Option 3" />
           </RadioGroupMinimal>
         </FormBox>
       </Container>
@@ -267,7 +350,7 @@ const RadioMinimalStory: React.FC = () => {
           flexFlow: 'column',
           padding: 0,
         }}
-        >
+      >
         <FormBox padding={2}>
           <RadioGroupMinimal
             title="Select an option"
@@ -276,14 +359,10 @@ const RadioMinimalStory: React.FC = () => {
             value="opt1"
             onChange={handleChange}
             {...getMinimalPropOptions()}
-            >
+          >
             <Radio name="chroma3" value="opt1" label="Option 1" />
             <Radio name="chroma3" value="opt2" label="Option 2" />
-            <Radio
-              name="chroma3"
-              value="opt3"
-              label="Option 3"
-              />
+            <Radio name="chroma3" value="opt3" label="Option 3" />
           </RadioGroupMinimal>
         </FormBox>
       </Container>
@@ -294,7 +373,7 @@ const RadioMinimalStory: React.FC = () => {
           flexFlow: 'column',
           padding: 0,
         }}
-        >
+      >
         <FormBox padding={2}>
           <RadioGroupMinimal
             title="Select an option"
@@ -306,18 +385,13 @@ const RadioMinimalStory: React.FC = () => {
           >
             <Radio name="chroma4" value="opt1" label="Option 1" />
             <Radio name="chroma4" value="opt2" label="Option 2" />
-            <Radio
-              name="chroma4"
-              value="opt3"
-              label="Option 3"
-            />
+            <Radio name="chroma4" value="opt3" label="Option 3" />
           </RadioGroupMinimal>
         </FormBox>
       </Container>
     </Container>
   );
 };
-
 
 storiesOf('Form Components/Radio', module)
   .add('Radio Group', () => <RadioStory />, {

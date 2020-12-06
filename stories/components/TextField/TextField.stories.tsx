@@ -59,6 +59,14 @@ const AllTextFieldsStory: React.FC = () => {
               placeholder="Required"
               errorMessage="This is required!"
             />
+            <TextField
+              value={text}
+              onChange={(e) => {
+                setText(e.target.value);
+              }}
+              label=""
+              aria-label="Name"
+            />
           </FormBox>
         </Container>
 
@@ -106,6 +114,14 @@ const AllTextFieldsStory: React.FC = () => {
               hasError
               placeholder="Required"
               errorMessage="This is required!"
+            />
+            <TextField
+              value={text}
+              onChange={(e) => {
+                setText(e.target.value);
+              }}
+              label=""
+              aria-label="Name"
             />
           </FormBox>
         </Container>
@@ -165,6 +181,15 @@ const AllTextFieldsStory: React.FC = () => {
               errorMessage="This is required!"
               color="inverse"
             />
+            <TextField
+              value={text}
+              onChange={(e) => {
+                setText(e.target.value);
+              }}
+              label=""
+              aria-label="Name"
+              color="inverse"
+            />
           </FormBox>
         </Container>
 
@@ -221,6 +246,15 @@ const AllTextFieldsStory: React.FC = () => {
               hasError
               placeholder="Required"
               errorMessage="This is required!"
+              color="inverse"
+            />
+            <TextField
+              value={text}
+              onChange={(e) => {
+                setText(e.target.value);
+              }}
+              label=""
+              aria-label="Name"
               color="inverse"
             />
           </FormBox>

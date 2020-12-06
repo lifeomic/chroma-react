@@ -93,6 +93,22 @@ const SelectStory: React.FC = () => {
             <SelectOption title="Option 3" value="option 3" />
             <SelectOption title="Option 4" value="option 4" />
           </Select>
+          <Select
+            aria-label="Select with no label"
+            label=""
+            placeholder="Pick one…"
+            value={selectValue}
+            onChange={(v: string) => setSelectValue(v)}
+          >
+            <SelectOption title="Option 1" value="option 1" />
+            <SelectOption
+              title="Option 2"
+              subtitle="This is a subtitle. For options that need a little extra description."
+              value="option 2"
+            />
+            <SelectOption title="Option 3" value="option 3" />
+            <SelectOption title="Option 4" value="option 4" />
+          </Select>
         </FormBox>
       </Container>
       <Container
@@ -161,6 +177,22 @@ const SelectStory: React.FC = () => {
             value={selectValue}
             onChange={(v: string) => setSelectValue(v)}
             fullWidth
+          >
+            <SelectOption title="Option 1" value="option 1" />
+            <SelectOption
+              title="Option 2"
+              subtitle="This is a subtitle. For options that need a little extra description."
+              value="option 2"
+            />
+            <SelectOption title="Option 3" value="option 3" />
+            <SelectOption title="Option 4" value="option 4" />
+          </Select>
+          <Select
+            aria-label="Select with no label"
+            label=""
+            placeholder="Pick one…"
+            value={selectValue}
+            onChange={(v: string) => setSelectValue(v)}
           >
             <SelectOption title="Option 1" value="option 1" />
             <SelectOption
@@ -258,6 +290,23 @@ const SelectStory: React.FC = () => {
             <SelectOption title="Option 3" value="option 3" />
             <SelectOption title="Option 4" value="option 4" />
           </Select>
+          <Select
+            aria-label="Select with no label"
+            label=""
+            placeholder="Pick one…"
+            value={selectValue}
+            onChange={(v: string) => setSelectValue(v)}
+            color="inverse"
+          >
+            <SelectOption title="Option 1" value="option 1" />
+            <SelectOption
+              title="Option 2"
+              subtitle="This is a subtitle. For options that need a little extra description."
+              value="option 2"
+            />
+            <SelectOption title="Option 3" value="option 3" />
+            <SelectOption title="Option 4" value="option 4" />
+          </Select>
         </FormBox>
       </Container>
       <Container
@@ -335,6 +384,23 @@ const SelectStory: React.FC = () => {
             onChange={(v: string) => setSelectValue(v)}
             color="inverse"
             fullWidth
+          >
+            <SelectOption title="Option 1" value="option 1" />
+            <SelectOption
+              title="Option 2"
+              subtitle="This is a subtitle. For options that need a little extra description."
+              value="option 2"
+            />
+            <SelectOption title="Option 3" value="option 3" />
+            <SelectOption title="Option 4" value="option 4" />
+          </Select>
+          <Select
+            aria-label="Select with no label"
+            label=""
+            placeholder="Pick one…"
+            value={selectValue}
+            onChange={(v: string) => setSelectValue(v)}
+            color="inverse"
           >
             <SelectOption title="Option 1" value="option 1" />
             <SelectOption

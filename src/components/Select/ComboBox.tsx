@@ -6,7 +6,6 @@ import { Rover, useRoverState } from 'reakit/Rover';
 import { SelectOptionProps } from './SelectOption';
 import { SelectProps, useStyles } from './Select';
 import { Text } from '../Text';
-import { warning } from '../../utils';
 import {
   buildDescribedBy,
   errorFor,
@@ -100,6 +99,7 @@ export interface ComboBoxProps
 }
 
 export const ComboBox: React.FC<ComboBoxProps> = ({
+  ['aria-label']: ariaLabel,
   children,
   className,
   color = 'default',
@@ -193,10 +193,11 @@ export const ComboBox: React.FC<ComboBoxProps> = ({
     onChange?.([...valueOptions, optionValue], [...metaOptions, meta]);
   };
 
-  warning(
-    !label && !popoverAriaLabel && process.env.NODE_ENV === 'development',
-    'Chroma Warning: It is recommended you provided "popoverAriaLabel" if "label" is blank for the <Select> component.'
-  );
+  if (!label && !ariaLabel && process.env.NODE_ENV === 'development') {
+    throw new Error(
+      'If a "label" is not provided to ComboBox, please provide "aria-label".'
+    );
+  }
 
   return (
     <div className={clsx(classes.root, className)}>
@@ -204,11 +205,12 @@ export const ComboBox: React.FC<ComboBoxProps> = ({
         aria-hidden="true"
         className={clsx(
           classes.label,
-          color === 'inverse' && classes.labelInverse
+          color === 'inverse' && classes.labelInverse,
+          !label && ariaLabel && classes.srOnly
         )}
         htmlFor={uniqueId}
       >
-        {label}
+        {label || ariaLabel}
       </label>
       <PopoverDisclosure
         className={clsx(
@@ -332,7 +334,7 @@ export const ComboBox: React.FC<ComboBoxProps> = ({
       <Portal>
         <FocusLock>
           <ReakitPopover
-            aria-label={label || popoverAriaLabel}
+            aria-label={label || ariaLabel || popoverAriaLabel}
             className={classes.popover}
             {...popover}
             style={{ width }}

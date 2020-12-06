@@ -12,6 +12,7 @@ import {
 } from '../_private/forms';
 import { generateUniqueId } from '../_private/UniqueId';
 import { Text } from '../Text';
+import { screenreaderOnlyStyles } from '../../styles/screenreaderOnly';
 
 export const ToggleStylesKey = 'ChromaToggle';
 
@@ -131,6 +132,9 @@ export const useStyles = makeStyles(
     labelFullWidth: {
       display: 'flex',
     },
+    srOnly: {
+      ...screenreaderOnlyStyles,
+    },
   }),
   { name: ToggleStylesKey }
 );
@@ -145,6 +149,7 @@ export interface ToggleProps extends BaseFormElement {
 export const Toggle = React.forwardRef<HTMLInputElement, ToggleProps>(
   (
     {
+      ['aria-label']: ariaLabel,
       checked,
       className,
       color = 'default',
@@ -165,6 +170,12 @@ export const Toggle = React.forwardRef<HTMLInputElement, ToggleProps>(
     const [uniqueId] = React.useState<string>(
       () => id || name || generateUniqueId('toggle-')
     );
+
+    if (!label && !ariaLabel && process.env.NODE_ENV === 'development') {
+      throw new Error(
+        'If a "label" is not provided to Toggle, please provide "aria-label".'
+      );
+    }
 
     return (
       <div
@@ -192,7 +203,8 @@ export const Toggle = React.forwardRef<HTMLInputElement, ToggleProps>(
             fullWidth && classes.labelContainerFullWidth,
             {
               [classes.labelContainerRight]: placement === 'right',
-            }
+            },
+            !label && ariaLabel && classes.srOnly
           )}
         >
           <label
@@ -203,7 +215,7 @@ export const Toggle = React.forwardRef<HTMLInputElement, ToggleProps>(
               className={color === 'inverse' ? classes.labelInverse : undefined}
               size="subbody"
             >
-              {label}
+              {label || ariaLabel}
             </Text>
           </label>
           {helpMessage && (

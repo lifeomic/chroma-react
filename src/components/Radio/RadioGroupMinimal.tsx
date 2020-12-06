@@ -4,6 +4,7 @@ import { makeStyles } from '../../styles';
 import { GetClasses } from '../../typeUtils';
 import { RadioProps } from './Radio';
 import { RadioGroupContext } from './useRadioGroup';
+import { screenreaderOnlyStyles } from '../../styles/screenreaderOnly';
 
 export const RadioGroupMinimalStylesKey = 'ChromaRadioGroupMinimal';
 
@@ -122,6 +123,9 @@ export const useStyles = makeStyles(
         borderRadius: theme.pxToRem(3),
       },
     },
+    srOnly: {
+      ...screenreaderOnlyStyles,
+    },
   }),
   { name: RadioGroupMinimalStylesKey }
 );
@@ -129,7 +133,10 @@ export const useStyles = makeStyles(
 export type RadioGroupMinimalClasses = GetClasses<typeof useStyles>;
 
 export interface RadioGroupMinimalProps
-  extends Pick<RadioProps, 'color' | 'name' | 'onChange' | 'value'> {
+  extends Pick<
+    RadioProps,
+    'aria-label' | 'color' | 'name' | 'onChange' | 'value'
+  > {
   background?: boolean;
   className?: string;
   direction?: 'row' | 'column';
@@ -137,6 +144,7 @@ export interface RadioGroupMinimalProps
 }
 
 export const RadioGroupMinimal: React.FC<RadioGroupMinimalProps> = ({
+  ['aria-label']: ariaLabel,
   background = 'true',
   className,
   color = 'default',
@@ -158,6 +166,12 @@ export const RadioGroupMinimal: React.FC<RadioGroupMinimalProps> = ({
     onChange && onChange(e);
   };
 
+  if (!title && !ariaLabel && process.env.NODE_ENV === 'development') {
+    throw new Error(
+      'If a "title" is not provided to RadioGroupMinimal, please provide "aria-label".'
+    );
+  }
+
   return (
     <RadioGroupContext.Provider
       value={{
@@ -172,7 +186,9 @@ export const RadioGroupMinimal: React.FC<RadioGroupMinimalProps> = ({
         role="radiogroup"
         {...rootProps}
       >
-        {title && <legend aria-label={title} />}
+        <legend className={clsx(!title && ariaLabel && classes.srOnly)}>
+          {title || ariaLabel}
+        </legend>
         <div
           className={clsx(
             classes.radios,

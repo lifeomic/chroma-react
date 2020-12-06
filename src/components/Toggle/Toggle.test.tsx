@@ -167,3 +167,12 @@ test('it renders a Toggle with right placement and full width', async () => {
     'ChromaToggle-labelContainerFullWidth'
   );
 });
+
+test('it renders an aria-label when not provided with label', async () => {
+  const { findByLabelText } = renderWithTheme(
+    <Toggle label="" aria-label="aria-label-text" data-testid={testId} />
+  );
+
+  const ariaLabel = await findByLabelText(/aria-label-text/);
+  expect(ariaLabel).toBeInTheDocument();
+});

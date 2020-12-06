@@ -21,11 +21,11 @@ import {
 import { generateUniqueId } from '../_private/UniqueId';
 import { Text } from '../Text';
 import { SelectOptionProps } from './SelectOption';
-import { warning } from '../../utils';
 import { motion, useReducedMotion } from 'framer-motion';
 import { RoverOption } from './RoverOption';
 import { useRoverState } from 'reakit/Rover';
 import { getTestProps } from '../../testUtils/getTestProps';
+import { screenreaderOnlyStyles } from '../../styles/screenreaderOnly';
 
 export const testIds = {
   placeholderText: 'select-placeholderText',
@@ -202,6 +202,9 @@ export const useStyles = makeStyles(
       marginTop: theme.spacing(0.875),
       marginLeft: 0,
     },
+    srOnly: {
+      ...screenreaderOnlyStyles,
+    },
   }),
   { name: SelectStylesKey }
 );
@@ -285,6 +288,7 @@ export interface SelectProps
       React.ComponentPropsWithoutRef<'select'>,
       'className' | 'id' | 'value'
     > {
+  ['aria-label']?: string;
   fullWidth?: boolean;
   onChange?: (value: string, meta: any) => void;
   placeholder?: string;
@@ -308,6 +312,7 @@ export interface SelectProps
 }
 
 export const Select: React.FC<SelectProps> = ({
+  ['aria-label']: ariaLabel,
   children,
   className,
   color = 'default',
@@ -373,10 +378,11 @@ export const Select: React.FC<SelectProps> = ({
     [hidePopover, onChange]
   );
 
-  warning(
-    !label && !popoverAriaLabel && process.env.NODE_ENV === 'development',
-    'Chroma Warning: It is recommended you provided "popoverAriaLabel" if "label" is blank for the <Select> component.'
-  );
+  if (!label && !ariaLabel && process.env.NODE_ENV === 'development') {
+    throw new Error(
+      'If a "label" is not provided to Select, please provide "aria-label".'
+    );
+  }
 
   return (
     <div className={clsx(classes.root, className)}>
@@ -384,11 +390,12 @@ export const Select: React.FC<SelectProps> = ({
         aria-hidden="true"
         className={clsx(
           classes.label,
-          color === 'inverse' && classes.labelInverse
+          color === 'inverse' && classes.labelInverse,
+          !label && ariaLabel && classes.srOnly
         )}
         htmlFor={uniqueId}
       >
-        {label}
+        {label || ariaLabel}
       </label>
       <PopoverDisclosure
         className={clsx(
@@ -472,7 +479,7 @@ export const Select: React.FC<SelectProps> = ({
       <Portal>
         <FocusLock>
           <ReakitPopover
-            aria-label={label || popoverAriaLabel}
+            aria-label={label || ariaLabel || popoverAriaLabel}
             className={classes.popover}
             {...popover}
             style={{ width }}

@@ -169,3 +169,12 @@ test('it renders an inverse color icon when icon and tooltipMessage are provided
   const icon = await findByRole('img', { hidden: true });
   expect(icon).toHaveClass('ChromaTextArea-labelIconInverse');
 });
+
+test('it renders an aria-label when not provided with label', async () => {
+  const { findByLabelText } = renderWithTheme(
+    <TextArea label="" aria-label="aria-label-text" data-testid={testId} />
+  );
+
+  const ariaLabel = await findByLabelText(/aria-label-text/);
+  expect(ariaLabel).toBeInTheDocument();
+});

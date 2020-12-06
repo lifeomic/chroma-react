@@ -96,3 +96,15 @@ test('it renders children', async () => {
   const root = await findByTestId(testId);
   expect(root).toBeInTheDocument();
 });
+
+test('it renders an aria-label when not provided with title', async () => {
+  const { findByText } = renderWithTheme(
+    <RadioGroup title="" aria-label="aria-label-title">
+      <input data-testid={testId} />
+    </RadioGroup>
+  );
+
+  const ariaLabel = await findByText(/aria-label-title/);
+  expect(ariaLabel).toBeInTheDocument();
+  expect(ariaLabel?.nodeName).toEqual('LEGEND');
+});

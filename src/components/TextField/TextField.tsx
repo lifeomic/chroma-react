@@ -12,6 +12,7 @@ import {
 } from '../_private/forms';
 import { generateUniqueId } from '../_private/UniqueId';
 import { Tooltip } from '../Tooltip';
+import { screenreaderOnlyStyles } from '../../styles/screenreaderOnly';
 
 export const TextFieldStylesKey = 'ChromaTextField';
 
@@ -143,6 +144,9 @@ export const useStyles = makeStyles(
       display: 'flex',
       outline: 'none',
     },
+    srOnly: {
+      ...screenreaderOnlyStyles,
+    },
   }),
   { name: TextFieldStylesKey }
 );
@@ -165,6 +169,7 @@ export interface TextFieldProps
 export const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
   (
     {
+      ['aria-label']: ariaLabel,
       className,
       color = 'default',
       errorMessage,
@@ -187,17 +192,24 @@ export const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
       () => id || name || generateUniqueId('textField-')
     );
 
+    if (!label && !ariaLabel && process.env.NODE_ENV === 'development') {
+      throw new Error(
+        'If a "label" is not provided to TextField, please provide "aria-label".'
+      );
+    }
+
     return (
       <div className={clsx(classes.root, className)}>
         <label
           aria-hidden="true"
           className={clsx(
             classes.label,
-            color === 'inverse' && classes.labelInverse
+            color === 'inverse' && classes.labelInverse,
+            !label && ariaLabel && classes.srOnly
           )}
           htmlFor={uniqueId}
         >
-          {label}
+          {label || ariaLabel}
           {!!Icon && tooltipMessage && (
             <Tooltip title={tooltipMessage}>
               <span className={classes.tooltipContainer}>
