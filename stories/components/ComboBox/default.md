@@ -73,6 +73,14 @@ provided, `popoverAriaLabel` should be provided.
 <ComboBox label="Name" />
 ```
 
+### Secondary Label
+
+A secondary, supplemental label to display for the combobox element.
+
+```jsx
+<Select secondaryLabel="Optional" />
+```
+
 ### Placeholder
 
 The placeholder text to display.

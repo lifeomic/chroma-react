@@ -33,6 +33,16 @@ test('it renders the provided label', async () => {
   expect(label).toBeInTheDocument();
 });
 
+test('it renders the provided secondaryLabel', async () => {
+  const props = getBaseProps();
+  const { findByText } = renderWithTheme(
+    <Select {...props} data-testid={testId} secondaryLabel="Optional" />
+  );
+
+  const label = await findByText('Optional');
+  expect(label).toBeInTheDocument();
+});
+
 test('it renders the provided helpMessage', async () => {
   const props = getBaseProps();
   const { findByText } = renderWithTheme(

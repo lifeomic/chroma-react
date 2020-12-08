@@ -58,6 +58,12 @@ export const useStyles = makeStyles(
         marginBottom: theme.spacing(0),
       },
     },
+    labelSecondary: {
+      fontSize: theme.pxToRem(11),
+      display: 'inline-block',
+      margin: theme.spacing(0, 0.75),
+      opacity: 0.65,
+    },
     labelInverse: {
       color: theme.palette.common.white,
     },
@@ -289,6 +295,7 @@ export interface SelectProps
       'className' | 'id' | 'value'
     > {
   ['aria-label']?: string;
+  secondaryLabel?: string;
   fullWidth?: boolean;
   onChange?: (value: string, meta: any) => void;
   placeholder?: string;
@@ -322,6 +329,7 @@ export const Select: React.FC<SelectProps> = ({
   helpMessage,
   id,
   label,
+  secondaryLabel,
   onChange,
   placeholder,
   placement,
@@ -396,6 +404,16 @@ export const Select: React.FC<SelectProps> = ({
         htmlFor={uniqueId}
       >
         {label || ariaLabel}
+        {secondaryLabel ? (
+          <span
+            className={clsx(
+              classes.labelSecondary,
+              color === 'inverse' && classes.labelInverse
+            )}
+          >
+            {secondaryLabel}
+          </span>
+        ) : null}
       </label>
       <PopoverDisclosure
         className={clsx(

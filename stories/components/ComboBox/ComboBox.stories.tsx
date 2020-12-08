@@ -77,6 +77,30 @@ const ComboBoxStory: React.FC = () => {
           </ComboBox>
           <ComboBox
             label="Select option(s)"
+            secondaryLabel="Optional"
+            placeholder="Optionally pick any that apply…"
+            value={comboValue}
+            onChange={(v: Array<string>) => setComboValue(v)}
+          >
+            <SelectOption title="Option 1" value="option 1" />
+            <SelectOption
+              title="Option 2"
+              subtitle="This is a subtitle. For options that need a little extra description."
+              value="option 2"
+            />
+            <SelectOption title="Option 3" value="option 3" />
+            <SelectOption title="Option 4" value="option 4" />
+            <SelectOption
+              title="Option 5 has really long content"
+              value="option 5"
+            />
+            <SelectOption
+              title="Option 6 has really long content"
+              value="option 6"
+            />
+          </ComboBox>
+          <ComboBox
+            label="Select option(s)"
             placeholder="Pick any that apply…"
             value={comboValue}
             onChange={(v: Array<string>) => setComboValue(v)}
@@ -206,6 +230,30 @@ const ComboBoxStory: React.FC = () => {
             value={comboValue}
             onChange={(v: Array<string>) => setComboValue(v)}
             helpMessage="Some helper text…"
+          >
+            <SelectOption title="Option 1" value="option 1" />
+            <SelectOption
+              title="Option 2"
+              subtitle="This is a subtitle. For options that need a little extra description."
+              value="option 2"
+            />
+            <SelectOption title="Option 3" value="option 3" />
+            <SelectOption title="Option 4" value="option 4" />
+            <SelectOption
+              title="Option 5 has really long content"
+              value="option 5"
+            />
+            <SelectOption
+              title="Option 6 has really long content"
+              value="option 6"
+            />
+          </ComboBox>
+          <ComboBox
+            label="Select option(s)"
+            secondaryLabel="Optional"
+            placeholder="Optionally pick any that apply…"
+            value={comboValue}
+            onChange={(v: Array<string>) => setComboValue(v)}
           >
             <SelectOption title="Option 1" value="option 1" />
             <SelectOption
@@ -377,6 +425,31 @@ const ComboBoxStory: React.FC = () => {
           </ComboBox>
           <ComboBox
             label="Select option(s)"
+            secondaryLabel="Optional"
+            placeholder="Optionally pick any that apply…"
+            value={comboValue}
+            onChange={(v: Array<string>) => setComboValue(v)}
+            color="inverse"
+          >
+            <SelectOption title="Option 1" value="option 1" />
+            <SelectOption
+              title="Option 2"
+              subtitle="This is a subtitle. For options that need a little extra description."
+              value="option 2"
+            />
+            <SelectOption title="Option 3" value="option 3" />
+            <SelectOption title="Option 4" value="option 4" />
+            <SelectOption
+              title="Option 5 has really long content"
+              value="option 5"
+            />
+            <SelectOption
+              title="Option 6 has really long content"
+              value="option 6"
+            />
+          </ComboBox>
+          <ComboBox
+            label="Select option(s)"
             placeholder="Pick any that apply…"
             value={comboValue}
             onChange={(v: Array<string>) => setComboValue(v)}
@@ -512,6 +585,31 @@ const ComboBoxStory: React.FC = () => {
             onChange={(v: Array<string>) => setComboValue(v)}
             color="inverse"
             helpMessage="Some helper text…"
+          >
+            <SelectOption title="Option 1" value="option 1" />
+            <SelectOption
+              title="Option 2"
+              subtitle="This is a subtitle. For options that need a little extra description."
+              value="option 2"
+            />
+            <SelectOption title="Option 3" value="option 3" />
+            <SelectOption title="Option 4" value="option 4" />
+            <SelectOption
+              title="Option 5 has really long content"
+              value="option 5"
+            />
+            <SelectOption
+              title="Option 6 has really long content"
+              value="option 6"
+            />
+          </ComboBox>
+          <ComboBox
+            label="Select option(s)"
+            secondaryLabel="Optional"
+            placeholder="Optionally pick any that apply…"
+            value={comboValue}
+            onChange={(v: Array<string>) => setComboValue(v)}
+            color="inverse"
           >
             <SelectOption title="Option 1" value="option 1" />
             <SelectOption

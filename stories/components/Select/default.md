@@ -37,6 +37,14 @@ provided, `popoverAriaLabel` should be provided.
 <Select label="Name" />
 ```
 
+### Secondary Label
+
+A secondary, supplemental label to display for the Select element.
+
+```jsx
+<Select secondaryLabel="Optional" />
+```
+
 ### Placeholder
 
 The placeholder text to display.
