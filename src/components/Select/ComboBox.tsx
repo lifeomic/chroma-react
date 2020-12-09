@@ -109,6 +109,7 @@ export const ComboBox: React.FC<ComboBoxProps> = ({
   helpMessage,
   id,
   label,
+  secondaryLabel,
   onChange,
   placeholder,
   placement,
@@ -211,6 +212,16 @@ export const ComboBox: React.FC<ComboBoxProps> = ({
         htmlFor={uniqueId}
       >
         {label || ariaLabel}
+        {secondaryLabel ? (
+          <span
+            className={clsx(
+              classes.labelSecondary,
+              color === 'inverse' && classes.labelInverse
+            )}
+          >
+            {secondaryLabel}
+          </span>
+        ) : null}
       </label>
       <PopoverDisclosure
         className={clsx(

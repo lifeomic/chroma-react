@@ -59,6 +59,22 @@ const SelectStory: React.FC = () => {
           </Select>
           <Select
             label="Select an option"
+            secondaryLabel="Optional"
+            placeholder="Optionally pick one…"
+            value={selectValue}
+            onChange={(v: string) => setSelectValue(v)}
+          >
+            <SelectOption title="Option 1" value="option 1" />
+            <SelectOption
+              title="Option 2"
+              subtitle="This is a subtitle. For options that need a little extra description."
+              value="option 2"
+            />
+            <SelectOption title="Option 3" value="option 3" />
+            <SelectOption title="Option 4" value="option 4" />
+          </Select>
+          <Select
+            label="Select an option"
             placeholder="Pick one…"
             value={selectValue}
             onChange={(v: string) => setSelectValue(v)}
@@ -141,6 +157,22 @@ const SelectStory: React.FC = () => {
             value={selectValue}
             onChange={(v: string) => setSelectValue(v)}
             helpMessage="Some helper text…"
+          >
+            <SelectOption title="Option 1" value="option 1" />
+            <SelectOption
+              title="Option 2"
+              subtitle="This is a subtitle. For options that need a little extra description."
+              value="option 2"
+            />
+            <SelectOption title="Option 3" value="option 3" />
+            <SelectOption title="Option 4" value="option 4" />
+          </Select>
+          <Select
+            label="Select an option"
+            secondaryLabel="Optional"
+            placeholder="Optionally pick one…"
+            value={selectValue}
+            onChange={(v: string) => setSelectValue(v)}
           >
             <SelectOption title="Option 1" value="option 1" />
             <SelectOption
@@ -249,6 +281,23 @@ const SelectStory: React.FC = () => {
           </Select>
           <Select
             label="Select an option"
+            secondaryLabel="Optional"
+            placeholder="Optionally pick one…"
+            value={selectValue}
+            onChange={(v: string) => setSelectValue(v)}
+            color="inverse"
+          >
+            <SelectOption title="Option 1" value="option 1" />
+            <SelectOption
+              title="Option 2"
+              subtitle="This is a subtitle. For options that need a little extra description."
+              value="option 2"
+            />
+            <SelectOption title="Option 3" value="option 3" />
+            <SelectOption title="Option 4" value="option 4" />
+          </Select>
+          <Select
+            label="Select an option"
             placeholder="Pick one…"
             value={selectValue}
             onChange={(v: string) => setSelectValue(v)}
@@ -341,6 +390,23 @@ const SelectStory: React.FC = () => {
             onChange={(v: string) => setSelectValue(v)}
             color="inverse"
             helpMessage="Some helper text…"
+          >
+            <SelectOption title="Option 1" value="option 1" />
+            <SelectOption
+              title="Option 2"
+              subtitle="This is a subtitle. For options that need a little extra description."
+              value="option 2"
+            />
+            <SelectOption title="Option 3" value="option 3" />
+            <SelectOption title="Option 4" value="option 4" />
+          </Select>
+          <Select
+            label="Select an option"
+            secondaryLabel="Optional"
+            placeholder="Optionally pick one…"
+            value={selectValue}
+            onChange={(v: string) => setSelectValue(v)}
+            color="inverse"
           >
             <SelectOption title="Option 1" value="option 1" />
             <SelectOption
