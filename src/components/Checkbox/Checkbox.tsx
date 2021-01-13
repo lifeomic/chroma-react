@@ -450,6 +450,7 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
                   fill="transparent"
                   strokeWidth="2.25"
                   stroke="#FFFFFF"
+                  strokeOpacity="1"
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   style={{ pathLength, opacity }}
