@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { renderWithTheme } from '../../testUtils/renderWithTheme';
 import { RadioGroup } from './index';
+import { RadioGroupContext } from './useRadioGroup';
 
 const testId = 'RadioGroup';
 
@@ -107,4 +108,22 @@ test('it renders an aria-label when not provided with title', async () => {
   const ariaLabel = await findByText(/aria-label-title/);
   expect(ariaLabel).toBeInTheDocument();
   expect(ariaLabel?.nodeName).toEqual('LEGEND');
+});
+
+test('it uses the new value when the prop value changes', async () => {
+  const TestComponent = ({ testValue }: { testValue: string }) => (
+    <RadioGroup value={testValue}>
+      <RadioGroupContext.Consumer>
+        {({ value }) => <span>Current Value: {value}</span>}
+      </RadioGroupContext.Consumer>
+    </RadioGroup>
+  );
+  const { findByText, rerender } = renderWithTheme(
+    <TestComponent testValue="INITIAL" />
+  );
+
+  rerender(<TestComponent testValue="UPDATED" />);
+
+  const content = await findByText(/^Current Value:/);
+  expect(content.textContent).toBe('Current Value: UPDATED');
 });

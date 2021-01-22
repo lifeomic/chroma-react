@@ -99,6 +99,10 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
 
   const [contextValue, setContextValue] = React.useState(value);
 
+  React.useEffect(() => {
+    setContextValue(value);
+  }, [value]);
+
   const handleContextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setContextValue(e.target.value);
 
