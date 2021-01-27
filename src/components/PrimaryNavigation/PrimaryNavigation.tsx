@@ -23,7 +23,7 @@ export const PrimaryNavigationStylesKey = 'ChromaPrimaryNavigation';
 export const useStyles = makeStyles(
   (theme) => ({
     root: {
-      '--link-color': theme.palette.black[400],
+      '--link-color': theme.palette.black[300],
       '--link-hover': theme.palette.black[50],
       '--link-active': theme.palette.primary[300],
       '--link-active-bg': theme.palette.action.active,
@@ -37,7 +37,7 @@ export const useStyles = makeStyles(
       overflowY: 'auto',
       width: '100%',
       fallbacks: {
-        color: theme.palette.black[400],
+        color: theme.palette.black[300],
       },
     },
     header: {
