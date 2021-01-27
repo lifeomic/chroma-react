@@ -111,8 +111,10 @@ export const TableHeaderCell: React.FC<TableHeaderCellProps> = ({
 
   const canSort = onClick && header.onSort;
 
+  const Tag = !header?.content && !header.label ? 'td' : 'th';
+
   return (
-    <th
+    <Tag
       className={clsx(
         classes.root,
         header.onSort && classes.clickable,
@@ -165,6 +167,6 @@ export const TableHeaderCell: React.FC<TableHeaderCellProps> = ({
           height={18}
         />
       )}
-    </th>
+    </Tag>
   );
 };
