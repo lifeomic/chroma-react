@@ -306,7 +306,10 @@ export const SearchField = React.forwardRef<HTMLInputElement, SearchFieldProps>(
         )}
       >
         <input
-          aria-describedby={buildDescribedBy(uniqueId)}
+          aria-describedby={buildDescribedBy({
+            hasHelpMessage: !!helpMessage,
+            uniqueId,
+          })}
           className={clsx(
             classes.input,
             {

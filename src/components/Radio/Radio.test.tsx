@@ -18,7 +18,7 @@ test('it renders a Radio', async () => {
   const radio = await findByTestId(testId);
   expect(radio).toBeInTheDocument();
   expect(radio).toHaveClass('ChromaRadio-input');
-  expect(radio.getAttribute('aria-describedby')).toBeTruthy();
+  expect(radio.getAttribute('aria-describedby')).toBeFalsy();
   expect(radio.getAttribute('role')).toEqual('radio');
   expect(radio.getAttribute('type')).toEqual('radio');
   expect(radio.getAttribute('id')).toBeTruthy();
@@ -128,4 +128,30 @@ test('it renders children', async () => {
 
   const children = await findByTestId('id-children');
   expect(children).toBeInTheDocument();
+});
+
+// For accessibility audit
+test('it does not apply aria-describedby', async () => {
+  const props = getBaseProps();
+  const { findByTestId } = renderWithTheme(
+    <Radio {...props} data-testid={testId} id="unique-id" />
+  );
+
+  const input = await findByTestId(testId);
+  expect(input.getAttribute('aria-describedby')).toEqual(null);
+});
+
+test('it applies aria-describedby for helpMessage', async () => {
+  const props = getBaseProps();
+  const { findByTestId } = renderWithTheme(
+    <Radio
+      {...props}
+      data-testid={testId}
+      helpMessage="Help Message"
+      id="unique-id"
+    />
+  );
+
+  const input = await findByTestId(testId);
+  expect(input.getAttribute('aria-describedby')).toEqual('help-for-unique-id');
 });

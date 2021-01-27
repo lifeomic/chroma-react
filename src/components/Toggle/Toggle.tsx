@@ -186,7 +186,11 @@ export const Toggle = React.forwardRef<HTMLInputElement, ToggleProps>(
         )}
       >
         <input
-          aria-describedby={buildDescribedBy(uniqueId)}
+          aria-describedby={buildDescribedBy({
+            hasError,
+            hasHelpMessage: !!helpMessage,
+            uniqueId,
+          })}
           className={clsx(classes.input, hasError && classes.error, {
             [classes.inputInverse]: color === 'inverse',
           })}

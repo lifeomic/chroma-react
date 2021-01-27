@@ -19,7 +19,7 @@ test('it renders a TextField', async () => {
   const textfield = await findByTestId(testId);
   expect(textfield).toBeInTheDocument();
   expect(textfield).toHaveClass('ChromaTextField-input');
-  expect(textfield.getAttribute('aria-describedby')).toBeTruthy();
+  expect(textfield.getAttribute('aria-describedby')).toBeFalsy();
   expect(textfield.getAttribute('type')).toEqual('text');
   expect(textfield.getAttribute('id')).toBeTruthy();
 });
@@ -92,6 +92,71 @@ test('it uses the name to generate a unique id', async () => {
 
   const textfield = await findByTestId(testId);
   expect(textfield.getAttribute('id')).toEqual('unique-name');
+});
+
+// For accessibility audit
+test('it does not apply aria-describedby', async () => {
+  const props = getBaseProps();
+  const { findByTestId } = renderWithTheme(
+    <TextField {...props} data-testid={testId} id="unique-id" />
+  );
+
+  const textfield = await findByTestId(testId);
+  expect(textfield.getAttribute('aria-describedby')).toEqual(null);
+});
+
+test('it applies aria-describedby for errorMessage', async () => {
+  const props = getBaseProps();
+  const { findByTestId } = renderWithTheme(
+    <TextField
+      {...props}
+      data-testid={testId}
+      errorMessage="Error!"
+      hasError
+      id="unique-id"
+    />
+  );
+
+  const textfield = await findByTestId(testId);
+  expect(textfield.getAttribute('aria-describedby')).toEqual(
+    'error-for-unique-id'
+  );
+});
+
+test('it applies aria-describedby for helpMessage', async () => {
+  const props = getBaseProps();
+  const { findByTestId } = renderWithTheme(
+    <TextField
+      {...props}
+      data-testid={testId}
+      helpMessage="Help Message"
+      id="unique-id"
+    />
+  );
+
+  const textfield = await findByTestId(testId);
+  expect(textfield.getAttribute('aria-describedby')).toEqual(
+    'help-for-unique-id'
+  );
+});
+
+test('it applies aria-describedby for helpMessage and errorMessage', async () => {
+  const props = getBaseProps();
+  const { findByTestId } = renderWithTheme(
+    <TextField
+      {...props}
+      data-testid={testId}
+      errorMessage="Error!"
+      hasError
+      helpMessage="Help Message"
+      id="unique-id"
+    />
+  );
+
+  const textfield = await findByTestId(testId);
+  expect(textfield.getAttribute('aria-describedby')).toEqual(
+    'error-for-unique-id help-for-unique-id'
+  );
 });
 
 test('it renders an inverse color TextField', async () => {

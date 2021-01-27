@@ -236,3 +236,66 @@ test('it can be operated using only the keyboard', async () => {
   expect(mockFn).toHaveBeenCalledTimes(1);
   expect(mockFn).toHaveBeenCalledWith('option2', undefined);
 });
+
+// For accessibility audit
+test('it does not apply aria-describedby', async () => {
+  const props = getBaseProps();
+  const { findByTestId } = renderWithTheme(
+    <Select {...props} data-testid={testId} id="unique-id" />
+  );
+
+  const select = await findByTestId(testId);
+  expect(select.getAttribute('aria-describedby')).toEqual(null);
+});
+
+test('it applies aria-describedby for errorMessage', async () => {
+  const props = getBaseProps();
+  const { findByTestId } = renderWithTheme(
+    <Select
+      {...props}
+      data-testid={testId}
+      errorMessage="Error!"
+      hasError
+      id="unique-id"
+    />
+  );
+
+  const select = await findByTestId(testId);
+  expect(select.getAttribute('aria-describedby')).toEqual(
+    'error-for-unique-id'
+  );
+});
+
+test('it applies aria-describedby for helpMessage', async () => {
+  const props = getBaseProps();
+  const { findByTestId } = renderWithTheme(
+    <Select
+      {...props}
+      data-testid={testId}
+      helpMessage="Help Message"
+      id="unique-id"
+    />
+  );
+
+  const select = await findByTestId(testId);
+  expect(select.getAttribute('aria-describedby')).toEqual('help-for-unique-id');
+});
+
+test('it applies aria-describedby for helpMessage and errorMessage', async () => {
+  const props = getBaseProps();
+  const { findByTestId } = renderWithTheme(
+    <Select
+      {...props}
+      data-testid={testId}
+      hasError
+      helpMessage="Help Message"
+      id="unique-id"
+      errorMessage="Error!"
+    />
+  );
+
+  const select = await findByTestId(testId);
+  expect(select.getAttribute('aria-describedby')).toEqual(
+    'error-for-unique-id help-for-unique-id'
+  );
+});
