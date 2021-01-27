@@ -230,6 +230,7 @@ test('it applies none for aria-sort when isSorting is falsy', async () => {
   expect(root.getAttribute('aria-sort')).toBe('none');
 });
 
+// For accessibility audit
 test('it renders td if there is no header content or label', async () => {
   const props = getBaseProps();
   const header = {
