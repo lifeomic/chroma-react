@@ -61,6 +61,30 @@ test('it uses the name to generate a unique id', async () => {
   expect(root.getAttribute('id')).toEqual('unique-name');
 });
 
+// For accessibility audit
+test('it does not apply aria-describedby', async () => {
+  const props = getBaseProps();
+  const { findByTestId } = renderWithTheme(
+    <SearchField {...props} data-testid={testId} id="unique-id" />
+  );
+  const root = await findByTestId(testId);
+  expect(root.getAttribute('aria-describedby')).toEqual(null);
+});
+
+test('it applies aria-describedby for helpMessage', async () => {
+  const props = getBaseProps();
+  const { findByTestId } = renderWithTheme(
+    <SearchField
+      {...props}
+      data-testid={testId}
+      helpMessage="Help Message"
+      id="unique-id"
+    />
+  );
+  const root = await findByTestId(testId);
+  expect(root.getAttribute('aria-describedby')).toEqual('help-for-unique-id');
+});
+
 test('it renders an inverse color SearchField', async () => {
   const props = getBaseProps();
   const { findByTestId, findByRole } = renderWithTheme(

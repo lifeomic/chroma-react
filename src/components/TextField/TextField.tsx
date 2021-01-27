@@ -231,7 +231,11 @@ export const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
           )}
         </label>
         <input
-          aria-describedby={buildDescribedBy(uniqueId)}
+          aria-describedby={buildDescribedBy({
+            hasError,
+            hasHelpMessage: !!helpMessage,
+            uniqueId,
+          })}
           ref={ref}
           className={clsx(
             classes.input,

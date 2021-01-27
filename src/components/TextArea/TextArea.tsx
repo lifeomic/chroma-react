@@ -216,7 +216,11 @@ export const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
           )}
         </label>
         <textarea
-          aria-describedby={buildDescribedBy(uniqueId)}
+          aria-describedby={buildDescribedBy({
+            hasError,
+            hasHelpMessage: !!helpMessage,
+            uniqueId,
+          })}
           className={clsx(
             classes.textarea,
             { [classes.textareaInverse]: color === 'inverse' },

@@ -12,6 +12,7 @@ import { makeStyles } from '../../styles';
 import { GetClasses } from '../../typeUtils';
 import {
   BaseFormElement,
+  buildDescribedBy,
   errorFor,
   FormErrorMessage,
   FormHelpMessage,
@@ -424,6 +425,11 @@ export const Select: React.FC<SelectProps> = ({
           }
         )}
         ref={buttonRef}
+        aria-describedby={buildDescribedBy({
+          hasError,
+          hasHelpMessage: !!helpMessage,
+          uniqueId,
+        })}
         id={uniqueId}
         {...popover}
         {...rootProps}

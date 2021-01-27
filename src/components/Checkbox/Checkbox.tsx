@@ -345,7 +345,11 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
         whileTap="pressed"
       >
         <input
-          aria-describedby={buildDescribedBy(uniqueId)}
+          aria-describedby={buildDescribedBy({
+            hasError,
+            hasHelpMessage: !!helpMessage,
+            uniqueId,
+          })}
           aria-checked={
             checked && !indeterminate
               ? 'true'

@@ -114,6 +114,71 @@ test('it uses the name to generate a unique id', async () => {
   expect(checkbox.getAttribute('id')).toEqual('unique-name');
 });
 
+// For accessibility audit
+test('it does not apply aria-describedby', async () => {
+  const props = getBaseProps();
+  const { findByTestId } = renderWithTheme(
+    <Toggle label={props.label} id="unique-id" data-testid={testId} />
+  );
+
+  const checkbox = await findByTestId(testId);
+  expect(checkbox.getAttribute('aria-describedby')).toEqual(null);
+});
+
+test('it applies aria-describedby for errorMessage', async () => {
+  const props = getBaseProps();
+  const { findByTestId } = renderWithTheme(
+    <Toggle
+      label={props.label}
+      id="unique-id"
+      data-testid={testId}
+      errorMessage="Error!"
+      hasError
+    />
+  );
+
+  const checkbox = await findByTestId(testId);
+  expect(checkbox.getAttribute('aria-describedby')).toEqual(
+    'error-for-unique-id'
+  );
+});
+
+test('it applies aria-describedby for helpMessage', async () => {
+  const props = getBaseProps();
+  const { findByTestId } = renderWithTheme(
+    <Toggle
+      label={props.label}
+      id="unique-id"
+      data-testid={testId}
+      helpMessage="Help Message"
+    />
+  );
+
+  const checkbox = await findByTestId(testId);
+  expect(checkbox.getAttribute('aria-describedby')).toEqual(
+    'help-for-unique-id'
+  );
+});
+
+test('it applies aria-describedby for helpMessage and errorMessage', async () => {
+  const props = getBaseProps();
+  const { findByTestId } = renderWithTheme(
+    <Toggle
+      label={props.label}
+      id="unique-id"
+      data-testid={testId}
+      errorMessage="Error!"
+      hasError
+      helpMessage="Help Message"
+    />
+  );
+
+  const checkbox = await findByTestId(testId);
+  expect(checkbox.getAttribute('aria-describedby')).toEqual(
+    'error-for-unique-id help-for-unique-id'
+  );
+});
+
 test('it calls the provided onChange event on-click', async () => {
   const props = getBaseProps();
   const handleChange = jest.fn();

@@ -145,7 +145,10 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
     return (
       <div className={clsx(classes.root, className)}>
         <input
-          aria-describedby={buildDescribedBy(uniqueId)}
+          aria-describedby={buildDescribedBy({
+            hasHelpMessage: !!helpMessage,
+            uniqueId,
+          })}
           className={clsx(classes.input, {
             [classes.inputInverse]:
               color === 'inverse' || colorFromContext === 'inverse',

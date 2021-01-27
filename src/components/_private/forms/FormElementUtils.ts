@@ -42,18 +42,40 @@ export interface BaseFormMessage {
   describedById?: string;
 }
 
+export interface buildDescribedByProps {
+  hasError?: boolean;
+  hasHelpMessage?: boolean;
+  uniqueId: string;
+}
+
 /**
  * A utility function to build the `aria-describedby` attribute.
  *
+ * @param hasError - Boolean to define if component has an error
+ * @param hasHelpMessage - Boolean to define if component has a help message
  * @param uniqueId - Unique identifier for the element.
  */
-export const buildDescribedBy = (uniqueId: string) => {
-  if (!buildDescribedBy) {
+export const buildDescribedBy = ({
+  hasError,
+  hasHelpMessage,
+  uniqueId,
+}: buildDescribedByProps) => {
+  if (!buildDescribedBy || (!hasHelpMessage && !hasError)) {
     // Type requires either string | undefined
     return undefined;
   }
 
-  return `${errorFor(uniqueId)} ${helpFor(uniqueId)}`;
+  if (hasError && hasHelpMessage) {
+    return `${errorFor(uniqueId)} ${helpFor(uniqueId)}`;
+  }
+
+  if (hasError) {
+    return errorFor(uniqueId);
+  }
+
+  if (hasHelpMessage) {
+    return helpFor(uniqueId);
+  }
 };
 
 export const errorFor = (uniqueId: string) => `error-for-${uniqueId}`;

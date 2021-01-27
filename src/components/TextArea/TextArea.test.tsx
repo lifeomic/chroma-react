@@ -19,7 +19,7 @@ test('it renders a TextArea', async () => {
   const textarea = await findByTestId(testId);
   expect(textarea).toBeInTheDocument();
   expect(textarea).toHaveClass('ChromaTextArea-textarea');
-  expect(textarea.getAttribute('aria-describedby')).toBeTruthy();
+  expect(textarea.getAttribute('aria-describedby')).toBeFalsy();
   expect(textarea.getAttribute('cols')).toEqual('1');
 });
 
@@ -102,6 +102,71 @@ test('it uses the name to generate a unique id', async () => {
 
   const textarea = await findByTestId(testId);
   expect(textarea.getAttribute('id')).toEqual('unique-name');
+});
+
+// For accessibility audit
+test('it does not apply aria-describedby', async () => {
+  const props = getBaseProps();
+  const { findByTestId } = renderWithTheme(
+    <TextArea {...props} data-testid={testId} id="unique-id" />
+  );
+
+  const textarea = await findByTestId(testId);
+  expect(textarea.getAttribute('aria-describedby')).toEqual(null);
+});
+
+test('it applies aria-describedby for errorMessage', async () => {
+  const props = getBaseProps();
+  const { findByTestId } = renderWithTheme(
+    <TextArea
+      {...props}
+      data-testid={testId}
+      hasError
+      errorMessage="Error!"
+      id="unique-id"
+    />
+  );
+
+  const textarea = await findByTestId(testId);
+  expect(textarea.getAttribute('aria-describedby')).toEqual(
+    'error-for-unique-id'
+  );
+});
+
+test('it applies aria-describedby for helpMessage', async () => {
+  const props = getBaseProps();
+  const { findByTestId } = renderWithTheme(
+    <TextArea
+      {...props}
+      data-testid={testId}
+      helpMessage="Help Message"
+      id="unique-id"
+    />
+  );
+
+  const textarea = await findByTestId(testId);
+  expect(textarea.getAttribute('aria-describedby')).toEqual(
+    'help-for-unique-id'
+  );
+});
+
+test('it applies aria-describedby for helpMessage and errorMessage', async () => {
+  const props = getBaseProps();
+  const { findByTestId } = renderWithTheme(
+    <TextArea
+      {...props}
+      data-testid={testId}
+      errorMessage="Error!"
+      hasError
+      helpMessage="Help Message"
+      id="unique-id"
+    />
+  );
+
+  const textarea = await findByTestId(testId);
+  expect(textarea.getAttribute('aria-describedby')).toEqual(
+    'error-for-unique-id help-for-unique-id'
+  );
 });
 
 test('it renders an inverse color TextArea', async () => {

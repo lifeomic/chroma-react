@@ -233,7 +233,11 @@ export const ComboBox: React.FC<ComboBoxProps> = ({
           }
         )}
         ref={buttonRef}
-        aria-describedby={buildDescribedBy(uniqueId)}
+        aria-describedby={buildDescribedBy({
+          hasError,
+          hasHelpMessage: !!helpMessage,
+          uniqueId,
+        })}
         id={uniqueId}
         {...popover}
         {...rootProps}
