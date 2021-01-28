@@ -191,7 +191,7 @@ export const useStyles = makeStyles(
     },
     chip: {
       alignItems: 'center',
-      background: theme.palette.primary[600],
+      background: theme.palette.primary.main,
       borderRadius: theme.pxToRem(3),
       color: theme.palette.common.white,
       display: 'inline-block',
