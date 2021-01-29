@@ -41,6 +41,7 @@ export const useStyles = makeStyles(
       userSelect: 'none',
       '&:hover, &:focus': {
         textDecoration: 'none',
+        color: theme.palette.common.white,
         backgroundColor: theme.palette.primary[800],
         outline: 'none',
       },
