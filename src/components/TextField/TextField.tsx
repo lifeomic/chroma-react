@@ -12,7 +12,6 @@ import {
 } from '../_private/forms';
 import { generateUniqueId } from '../_private/UniqueId';
 import { Tooltip } from '../Tooltip';
-import { screenreaderOnlyStyles } from '../../styles/screenreaderOnly';
 
 export const TextFieldStylesKey = 'ChromaTextField';
 
@@ -144,9 +143,6 @@ export const useStyles = makeStyles(
       display: 'flex',
       outline: 'none',
     },
-    srOnly: {
-      ...screenreaderOnlyStyles,
-    },
   }),
   { name: TextFieldStylesKey }
 );
@@ -200,42 +196,43 @@ export const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
 
     return (
       <div className={clsx(classes.root, className)}>
-        <label
-          aria-hidden="true"
-          className={clsx(
-            classes.label,
-            color === 'inverse' && classes.labelInverse,
-            !label && ariaLabel && classes.srOnly
-          )}
-          htmlFor={uniqueId}
-        >
-          {label || ariaLabel}
-          {!!Icon && tooltipMessage && (
-            <Tooltip title={tooltipMessage}>
-              <span className={classes.tooltipContainer}>
-                <Icon
-                  className={clsx(
-                    classes.labelIcon,
-                    color === 'inverse' && classes.labelIconInverse
-                  )}
-                  width={16}
-                  height={16}
-                  role="img"
-                  aria-hidden
-                />
-              </span>
-            </Tooltip>
-          )}
-          {secondaryLabel && (
-            <span className={classes.labelSecondary}>{secondaryLabel}</span>
-          )}
-        </label>
+        {label && (
+          <label
+            className={clsx(
+              classes.label,
+              color === 'inverse' && classes.labelInverse
+            )}
+            htmlFor={uniqueId}
+          >
+            {label}
+            {!!Icon && tooltipMessage && (
+              <Tooltip title={tooltipMessage}>
+                <span className={classes.tooltipContainer}>
+                  <Icon
+                    className={clsx(
+                      classes.labelIcon,
+                      color === 'inverse' && classes.labelIconInverse
+                    )}
+                    width={16}
+                    height={16}
+                    role="img"
+                    aria-hidden
+                  />
+                </span>
+              </Tooltip>
+            )}
+            {secondaryLabel && (
+              <span className={classes.labelSecondary}>{secondaryLabel}</span>
+            )}
+          </label>
+        )}
         <input
           aria-describedby={buildDescribedBy({
             hasError,
             hasHelpMessage: !!helpMessage,
             uniqueId,
           })}
+          aria-label={ariaLabel}
           ref={ref}
           className={clsx(
             classes.input,

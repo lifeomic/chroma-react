@@ -227,6 +227,20 @@ test('it renders an inverse color icon when icon and tooltipMessage are provided
   expect(icon).toHaveClass('ChromaTextField-labelIconInverse');
 });
 
+test('it renders label when provided', async () => {
+  const { findByLabelText } = renderWithTheme(
+    <TextField label="label-text" data-testid={testId} />
+  );
+
+  const label = await findByLabelText(/label-text/);
+  expect(label).toBeInTheDocument();
+});
+
+test('it does not render label when not provided', async () => {
+  renderWithTheme(<TextField label="" data-testid={testId} />);
+  expect(document.querySelectorAll('label').length).toEqual(0);
+});
+
 test('it renders an aria-label when not provided with label', async () => {
   const { findByLabelText } = renderWithTheme(
     <TextField label="" aria-label="aria-label-text" data-testid={testId} />
