@@ -198,7 +198,6 @@ export const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
       <div className={clsx(classes.root, className)}>
         {label && (
           <label
-            aria-hidden="true"
             className={clsx(
               classes.label,
               color === 'inverse' && classes.labelInverse

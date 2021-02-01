@@ -237,12 +237,8 @@ test('it renders label when provided', async () => {
 });
 
 test('it does not render label when not provided', async () => {
-  const { queryByLabelText } = renderWithTheme(
-    <TextField label="" data-testid={testId} />
-  );
-
-  const label = await queryByLabelText(/label-text/);
-  expect(label).not.toBeInTheDocument();
+  renderWithTheme(<TextField label="" data-testid={testId} />);
+  expect(document.querySelectorAll('label').length).toEqual(0);
 });
 
 test('it renders an aria-label when not provided with label', async () => {
