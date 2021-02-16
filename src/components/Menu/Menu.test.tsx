@@ -121,6 +121,58 @@ test('it calls the provided "onClick" of a MenuItem', async () => {
   });
 });
 
+test('it disables menu item', async () => {
+  const { findByTestId } = renderWithTheme(
+    <Menu
+      aria-label="Menu"
+      anchorElement={<button data-testid={anchorTestId}>Open</button>}
+      data-testid={testId}
+      items={[
+        <MenuItem
+          disabled={true}
+          key={0}
+          text="option1"
+          data-testid="option"
+        />,
+      ]}
+    />
+  );
+
+  // Click anchor to open
+  const button = await findByTestId(anchorTestId);
+  fireEvent.click(button);
+
+  const option = await findByTestId('option');
+  expect(option).toBeDisabled();
+});
+
+test('it spreads menu item props properly', async () => {
+  const { findByTestId } = renderWithTheme(
+    <Menu
+      aria-label="Menu"
+      anchorElement={<button data-testid={anchorTestId}>Open</button>}
+      data-testid={testId}
+      items={[
+        <MenuItem
+          className="menu-item-1"
+          disabled={true}
+          key={0}
+          text="option1"
+          data-testid="option"
+        />,
+      ]}
+    />
+  );
+
+  // Click anchor to open
+  const button = await findByTestId(anchorTestId);
+  fireEvent.click(button);
+
+  const option = await findByTestId('option');
+  expect(option).toBeDisabled();
+  expect(option).toHaveClass('menu-item-1');
+});
+
 test('it applies the provided className', async () => {
   const { findByTestId } = renderWithTheme(
     <Menu
