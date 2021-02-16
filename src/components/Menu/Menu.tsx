@@ -129,6 +129,7 @@ export const Menu: React.FC<MenuProps> = ({
             items.map((item, i) => (
               <ReakitMenuItem
                 {...menu}
+                {...item.props}
                 key={i}
                 onClick={(e: any) => {
                   menu.hide();
