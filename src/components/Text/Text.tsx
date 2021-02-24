@@ -42,7 +42,7 @@ export const useStyles = makeStyles(
       letterSpacing: theme.pxToRem(0.5),
     },
     tooltip: {
-      fontSize: theme.pxToRem(10),
+      fontSize: theme.pxToRem(11),
       letterSpacing: theme.pxToRem(0.5),
       lineHeight: theme.pxToRem(18),
     },
