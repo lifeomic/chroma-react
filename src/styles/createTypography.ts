@@ -58,7 +58,7 @@ export const fontSizes: FontSize = {
   button: '0.75rem',
   subtitle: '0.875rem',
   caption: '0.75rem',
-  tooltip: '0.625rem',
+  tooltip: '0.6875rem',
   code: '1rem',
 };
 
