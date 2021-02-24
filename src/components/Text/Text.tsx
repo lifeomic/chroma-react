@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import * as React from 'react';
-import { makeStyles } from '../../styles';
+import { fontSizes, makeStyles } from '../../styles';
 import { GetClasses } from '../../typeUtils';
 
 export const TextStylesKey = 'ChromaText';
@@ -21,7 +21,7 @@ export const useStyles = makeStyles(
       lineHeight: theme.pxToRem(28),
     },
     body: {
-      fontSize: theme.pxToRem(16),
+      fontSize: fontSizes.body,
       lineHeight: theme.pxToRem(26),
     },
     subbody: {
@@ -33,22 +33,22 @@ export const useStyles = makeStyles(
       lineHeight: theme.pxToRem(22),
     },
     caption: {
-      fontSize: theme.pxToRem(12),
+      fontSize: fontSizes.caption,
       letterSpacing: theme.pxToRem(0.5),
       lineHeight: theme.pxToRem(20),
     },
     button: {
-      fontSize: theme.pxToRem(12),
+      fontSize: fontSizes.button,
       letterSpacing: theme.pxToRem(0.5),
     },
     tooltip: {
-      fontSize: theme.pxToRem(11),
+      fontSize: fontSizes.tooltip,
       letterSpacing: theme.pxToRem(0.5),
       lineHeight: theme.pxToRem(18),
     },
     code: {
       fontFamily: theme.typography.fontFamilyMonospace,
-      fontSize: theme.pxToRem(16),
+      fontSize: fontSizes.body,
       lineHeight: theme.pxToRem(26),
       letterSpacing: 'normal',
     },
