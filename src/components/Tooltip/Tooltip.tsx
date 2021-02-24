@@ -18,10 +18,10 @@ export const TooltipStylesKey = 'ChromaTooltip';
 export const useStyles = makeStyles(
   (theme) => ({
     root: {
-      backgroundColor: theme.palette.common.white,
+      backgroundColor: theme.palette.common.black,
       borderRadius: theme.pxToRem(4),
       boxShadow: theme.boxShadows.tooltip,
-      color: theme.palette.text.hint,
+      color: theme.palette.common.white,
       fontFamily: theme.typography.fontFamily,
       fontSize: fontSizes.tooltip,
       letterSpacing: '0.021875em',
@@ -29,7 +29,7 @@ export const useStyles = makeStyles(
       paddingLeft: theme.spacing(1),
       paddingRight: theme.spacing(1),
       paddingTop: theme.spacing(0.5),
-      paddingBottom: theme.spacing(0.5),
+      paddingBottom: theme.spacing(0.75),
       zIndex: 1300,
     },
   }),
