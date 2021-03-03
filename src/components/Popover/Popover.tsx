@@ -20,6 +20,7 @@ export const useStyles = makeStyles(
   (theme) => ({
     root: {
       background: theme.palette.common.white,
+      color: theme.palette.text.primary,
       borderRadius: theme.pxToRem(10),
       boxShadow: theme.boxShadows.popover,
       minWidth: theme.pxToRem(224),
