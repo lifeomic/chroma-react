@@ -182,6 +182,10 @@ import {
 } from '../../components/TextField';
 import { ToggleClasses, ToggleStylesKey } from '../../components/Toggle';
 import { TooltipClasses, TooltipStylesKey } from '../../components/Tooltip';
+import {
+  ButtonUnstyledClasses,
+  ButtonUnstyledStylesKey,
+} from '../../components/ButtonUnstyled';
 
 export type ChromaOverrides = {
   [Name in keyof ChromaComponentNameToClassKey]?: Partial<
@@ -203,6 +207,7 @@ export interface ChromaComponentNameToClassKey {
   [ButtonFilePickerStylesKey]: ButtonFilePickerClasses;
   [ButtonLinkStylesKey]: ButtonLinkClasses;
   [ButtonStylesKey]: ButtonClasses;
+  [ButtonUnstyledStylesKey]: ButtonUnstyledClasses;
   [CheckboxStylesKey]: CheckboxClasses;
   [ChipStylesKey]: ChipClasses;
   [DividerStylesKey]: DividerClasses;
