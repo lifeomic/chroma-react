@@ -24,7 +24,7 @@ export interface Theme extends Omit<MuiTheme, 'palette'> {
   pxToRem: (size: number) => string;
 }
 
-interface ThemeOptions
+export interface ThemeOptions
   extends Omit<MuiThemeOptions, 'overrides' | 'palette' | 'typography'> {
   palette?: PaletteOptions;
   typography?: TypographyOptions;
