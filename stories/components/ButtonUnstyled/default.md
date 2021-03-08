@@ -56,8 +56,6 @@ A class name can be provided.
   - Pressing `Space` or `Enter` triggers the click action.
 - When the Button has focus, Space and Enter keys activates it.
 - When the Button is disabled, the tabIndex is set to `-1`.
-- The icon of Button has `role="img"` and `aria-hidden` attributes so that it
-  does not get picked up by screen readers.
 
 ## Links
 

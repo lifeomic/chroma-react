@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { ButtonUnstyled, ButtonUnstyledProps } from './index';
+import { fireEvent } from '@testing-library/react';
 import { renderWithTheme } from '../../testUtils/renderWithTheme';
 
 const testId = 'ButtonUnstyled';
@@ -55,4 +56,17 @@ test('it renders a disabled button', async () => {
   const button = await findByTestId(testId);
   expect(button).toBeDisabled();
   expect(button.getAttribute('tabIndex')).toEqual('-1');
+});
+
+test('it calls onClick', async () => {
+  const mockFn = jest.fn();
+  const props = getBaseProps();
+  const { findByTestId } = renderWithTheme(
+    <ButtonUnstyled {...props} data-testid={testId} onClick={mockFn}>
+      Button
+    </ButtonUnstyled>
+  );
+  const button = await findByTestId(testId);
+  fireEvent.click(button);
+  expect(mockFn).toHaveBeenCalled();
 });
