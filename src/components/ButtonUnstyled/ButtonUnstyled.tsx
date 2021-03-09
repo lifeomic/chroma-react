@@ -11,6 +11,7 @@ export const useStyles = makeStyles(
       backgroundColor: 'transparent',
       border: 0,
       borderRadius: theme.pxToRem(4),
+      color: 'inherit',
       cursor: 'pointer',
       padding: 0,
       width: 'fit-content',
