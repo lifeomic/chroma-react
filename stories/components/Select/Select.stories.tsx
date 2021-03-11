@@ -1,10 +1,15 @@
 import { storiesOf } from '@storybook/react';
 import * as React from 'react';
 import { FormBox } from '../../../src/components/FormBox';
-import { Select, SelectOption } from '../../../src/components/Select';
+import {
+  GroupHeading,
+  Select,
+  SelectOption,
+} from '../../../src/components/Select';
 import { Container } from '../../storyComponents/Container';
 import { Noop } from '../../storyComponents/Noop';
 import defaultMd from './default.md';
+import groupHeadingMd from './groupHeading.md';
 import selectedOptionDisplayMd from './selectedOptionDisplay.md';
 import selectOptionMd from './selectOption.md';
 
@@ -125,6 +130,19 @@ const SelectStory: React.FC = () => {
             <SelectOption title="Option 3" value="option 3" />
             <SelectOption title="Option 4" value="option 4" />
           </Select>
+          <Select
+            label="Grouped select options"
+            placeholder="Pick one…"
+            value={selectValue}
+            onChange={(v: string) => setSelectValue(v)}
+          >
+            <GroupHeading>Group 1</GroupHeading>
+            <SelectOption title="Option 1" value="option 1" />
+            <SelectOption title="Option 2" value="option 2" />
+            <GroupHeading>Group 2</GroupHeading>
+            <SelectOption title="Option 3" value="option 3" />
+            <SelectOption title="Option 4" value="option 4" />
+          </Select>
         </FormBox>
       </Container>
       <Container
@@ -232,6 +250,19 @@ const SelectStory: React.FC = () => {
               subtitle="This is a subtitle. For options that need a little extra description."
               value="option 2"
             />
+            <SelectOption title="Option 3" value="option 3" />
+            <SelectOption title="Option 4" value="option 4" />
+          </Select>
+          <Select
+            label="Grouped select options"
+            placeholder="Pick one…"
+            value={selectValue}
+            onChange={(v: string) => setSelectValue(v)}
+          >
+            <GroupHeading>Group 1</GroupHeading>
+            <SelectOption title="Option 1" value="option 1" />
+            <SelectOption title="Option 2" value="option 2" />
+            <GroupHeading>Group 2</GroupHeading>
             <SelectOption title="Option 3" value="option 3" />
             <SelectOption title="Option 4" value="option 4" />
           </Select>
@@ -356,6 +387,20 @@ const SelectStory: React.FC = () => {
             <SelectOption title="Option 3" value="option 3" />
             <SelectOption title="Option 4" value="option 4" />
           </Select>
+          <Select
+            label="Grouped select options"
+            placeholder="Pick one…"
+            value={selectValue}
+            onChange={(v: string) => setSelectValue(v)}
+            color="inverse"
+          >
+            <GroupHeading>Group 1</GroupHeading>
+            <SelectOption title="Option 1" value="option 1" />
+            <SelectOption title="Option 2" value="option 2" />
+            <GroupHeading>Group 2</GroupHeading>
+            <SelectOption title="Option 3" value="option 3" />
+            <SelectOption title="Option 4" value="option 4" />
+          </Select>
         </FormBox>
       </Container>
       <Container
@@ -477,6 +522,20 @@ const SelectStory: React.FC = () => {
             <SelectOption title="Option 3" value="option 3" />
             <SelectOption title="Option 4" value="option 4" />
           </Select>
+          <Select
+            label="Grouped select options"
+            placeholder="Pick one…"
+            value={selectValue}
+            onChange={(v: string) => setSelectValue(v)}
+            color="inverse"
+          >
+            <GroupHeading>Group 1</GroupHeading>
+            <SelectOption title="Option 1" value="option 1" />
+            <SelectOption title="Option 2" value="option 2" />
+            <GroupHeading>Group 2</GroupHeading>
+            <SelectOption title="Option 3" value="option 3" />
+            <SelectOption title="Option 4" value="option 4" />
+          </Select>
         </FormBox>
       </Container>
     </Container>
@@ -492,4 +551,7 @@ storiesOf('Form Components/Select', module)
   })
   .add('Selected Option Display', () => <Noop />, {
     readme: { content: selectedOptionDisplayMd },
+  })
+  .add('Group Heading', () => <Noop />, {
+    readme: { content: groupHeadingMd },
   });

@@ -22,6 +22,7 @@ import { generateUniqueId } from '../_private/UniqueId';
 import { Text } from '../Text';
 import { SelectOptionProps } from './SelectOption';
 import { motion, useReducedMotion } from 'framer-motion';
+import { GroupHeading } from './GroupHeading';
 import { RoverOption } from './RoverOption';
 import { useRoverState } from 'reakit/Rover';
 import { getTestProps } from '../../testUtils/getTestProps';
@@ -370,6 +371,10 @@ export const Select: React.FC<SelectProps> = ({
         return null;
       }
 
+      if (child.type === GroupHeading) {
+        return null;
+      }
+
       return child.props.value === value;
     });
 
@@ -524,6 +529,10 @@ export const Select: React.FC<SelectProps> = ({
                 React.Children.map(children, (child) => {
                   if (!React.isValidElement(child)) {
                     return null;
+                  }
+
+                  if (child.type === GroupHeading) {
+                    return child;
                   }
 
                   const option: React.ReactElement<SelectOptionProps> = child;
