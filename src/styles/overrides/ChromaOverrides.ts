@@ -130,9 +130,11 @@ import {
   SecondaryNavigationStylesKey,
 } from '../../components/SecondaryNavigation';
 import {
+  GroupHeadingClasses,
   SelectClasses,
   SelectOptionClasses,
   RoverOptionClasses,
+  GroupHeadingStylesKey,
   SelectOptionStylesKey,
   SelectStylesKey,
   RoverOptionStylesKey,
@@ -214,6 +216,7 @@ export interface ChromaComponentNameToClassKey {
   [DotLoaderStylesKey]: DotLoaderClasses;
   [ExpansionPanelStylesKey]: ExpansionPanelClasses;
   [FormBoxStylesKey]: FormBoxClasses;
+  [GroupHeadingStylesKey]: GroupHeadingClasses;
   [HeaderStylesKey]: HeaderClasses;
   [IconButtonStylesKey]: IconButtonClasses;
   [IconButtonFloatStylesKey]: IconButtonFloatClasses;
