@@ -1,13 +1,20 @@
 import * as React from 'react';
 import { renderWithTheme } from '../../testUtils/renderWithTheme';
-import { GroupHeading } from './index';
+import { GroupHeading, GroupHeadingProps } from './index';
 
 const testId = 'GroupHeading';
 
+const getBaseProps = (): GroupHeadingProps => ({
+  ['data-select-role']: 'heading',
+});
+
 test('it renders a GroupHeading', async () => {
+  const props = getBaseProps();
   const text = 'a heading';
   const { findByTestId } = renderWithTheme(
-    <GroupHeading data-testid={testId}>{text}</GroupHeading>
+    <GroupHeading {...props} data-testid={testId}>
+      {text}
+    </GroupHeading>
   );
 
   const heading = await findByTestId(testId);
@@ -16,8 +23,9 @@ test('it renders a GroupHeading', async () => {
 });
 
 test('it applies the provided className', async () => {
+  const props = getBaseProps();
   const { findByTestId } = renderWithTheme(
-    <GroupHeading data-testid={testId} className="custom-class-name">
+    <GroupHeading {...props} data-testid={testId} className="custom-class-name">
       Heading
     </GroupHeading>
   );

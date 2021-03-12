@@ -28,11 +28,13 @@ export type GroupHeadingClasses = GetClasses<typeof useStyles>;
 
 export interface GroupHeadingProps {
   className?: string;
+  ['data-select-role']: 'heading';
 }
 
 export const GroupHeading: React.FC<GroupHeadingProps> = ({
   children,
   className,
+  ['data-select-role']: dataSelectRole,
   ...rootProps
 }) => {
   const classes = useStyles({});

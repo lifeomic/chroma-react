@@ -22,7 +22,6 @@ import { generateUniqueId } from '../_private/UniqueId';
 import { Text } from '../Text';
 import { SelectOptionProps } from './SelectOption';
 import { motion, useReducedMotion } from 'framer-motion';
-import { GroupHeading } from './GroupHeading';
 import { RoverOption } from './RoverOption';
 import { useRoverState } from 'reakit/Rover';
 import { getTestProps } from '../../testUtils/getTestProps';
@@ -285,6 +284,10 @@ const listItemMotionVariantsReduced = {
 
 export type SelectClasses = GetClasses<typeof useStyles>;
 
+const isHeadingElement = (element: React.ReactElement) => {
+  return element.props['data-select-role'] === 'heading';
+};
+
 export interface SelectProps
   extends Pick<
       BaseFormElement,
@@ -371,7 +374,7 @@ export const Select: React.FC<SelectProps> = ({
         return null;
       }
 
-      if (child.type === GroupHeading) {
+      if (isHeadingElement(child)) {
         return null;
       }
 
@@ -531,7 +534,7 @@ export const Select: React.FC<SelectProps> = ({
                     return null;
                   }
 
-                  if (child.type === GroupHeading) {
+                  if (isHeadingElement(child)) {
                     return child;
                   }
 
