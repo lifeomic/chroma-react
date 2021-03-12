@@ -23,10 +23,10 @@ import {
   value={selectValue}
   onChange={(v: string) => setSelectValue(v)}
 >
-  <GroupHeading>Group 1</GroupHeading>
+  <GroupHeading data-select-role="heading">Group 1</GroupHeading>
   <SelectOption title="Option 1" value="option 1" />
   <SelectOption title="Option 2" subtitle="subtitle" value="option 2" />
-  <GroupHeading>Group 2</GroupHeading>
+  <GroupHeading data-select-role="heading">Group 2</GroupHeading>
   <SelectOption title="Option 3" value="option 3" />
   <SelectOption title="Option 4" value="option 4" />
 </Select>
@@ -37,8 +37,14 @@ import {
 A class name can be provided.
 
 ```jsx
-<GroupHeading className="mr-4">Group 1</GroupHeading>
+<GroupHeading className="mr-4" data-select-role="heading">
+  Group 1
+</GroupHeading>
 ```
+
+### Select Role
+
+Required. This provides a hint to the `<Select>` parent for how to handle rendering. Currently `heading` is the only valid value.
 
 ## Links
 

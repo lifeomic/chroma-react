@@ -148,7 +148,9 @@ test('it renders the provided group headings', async () => {
   const props = getBaseProps();
   const { findByTestId, findByRole } = renderWithTheme(
     <Select {...props} data-testid={testId}>
-      <GroupHeading data-testid={headingId}>Group 1</GroupHeading>
+      <GroupHeading data-select-role="heading" data-testid={headingId}>
+        Group 1
+      </GroupHeading>
       <SelectOption title="option1" value="option1" />
     </Select>
   );
@@ -180,7 +182,9 @@ test('it *does not* render the group headings if select not clicked', async () =
   const props = getBaseProps();
   const { queryByTestId } = renderWithTheme(
     <Select {...props}>
-      <GroupHeading data-testid={headingId}>Group 1</GroupHeading>
+      <GroupHeading data-select-role="heading" data-testid={headingId}>
+        Group 1
+      </GroupHeading>
       <SelectOption title="option1" value="option1" />
     </Select>
   );
@@ -283,9 +287,9 @@ test('it can be operated using only the keyboard with headings', async () => {
 
   const { findByTestId, findAllByRole } = renderWithTheme(
     <Select {...props} onChange={mockFn} data-testid={testId}>
-      <GroupHeading>Group 1</GroupHeading>
+      <GroupHeading data-select-role="heading">Group 1</GroupHeading>
       <SelectOption title="option1" value="option1" />
-      <GroupHeading>Group 2</GroupHeading>
+      <GroupHeading data-select-role="heading">Group 2</GroupHeading>
       <SelectOption title="option2" value="option2" />
     </Select>
   );
