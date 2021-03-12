@@ -8,9 +8,17 @@ export const GroupHeadingStylesKey = 'ChromaSelectGroupHeading';
 export const useStyles = makeStyles(
   (theme) => ({
     root: {
+      fontSize: theme.pxToRem(10),
       fontWeight: theme.typography.fontWeightBold,
-      margin: theme.spacing(0, 0.75),
-      opacity: 0.55,
+      letterSpacing: theme.pxToRem(1),
+      padding: theme.spacing(0.25, 2, 0.5),
+      color: theme.palette.text.secondary,
+      textTransform: 'uppercase',
+      '&:not(:first-child)': {
+        marginTop: theme.spacing(0.75),
+        paddingTop: theme.spacing(1.25),
+        borderTop: `solid 1px ${theme.palette.divider}`,
+      },
     },
   }),
   { name: GroupHeadingStylesKey }
