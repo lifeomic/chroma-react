@@ -2,10 +2,17 @@ import { fireEvent, within } from '@testing-library/dom';
 import * as React from 'react';
 import { act } from 'react-dom/test-utils';
 import { renderWithTheme } from '../../testUtils/renderWithTheme';
-import { Select, SelectOption, SelectProps, SelectTestIds } from './index';
+import {
+  GroupHeading,
+  Select,
+  SelectOption,
+  SelectProps,
+  SelectTestIds,
+} from './index';
 import { waitFor } from '@testing-library/dom';
 import { press } from 'reakit-test-utils';
 
+const headingId = 'GroupHeading';
 const testId = 'Select';
 const optionId = 'SelectOption';
 
@@ -137,6 +144,26 @@ test('it renders the provided select options', async () => {
   expect(option).toBeInTheDocument();
 });
 
+test('it renders the provided group headings', async () => {
+  const props = getBaseProps();
+  const { findByTestId, findByRole } = renderWithTheme(
+    <Select {...props} data-testid={testId}>
+      <GroupHeading data-testid={headingId}>Group 1</GroupHeading>
+      <SelectOption title="option1" value="option1" />
+    </Select>
+  );
+
+  const select = await findByTestId(testId);
+
+  fireEvent.click(select);
+
+  const listOptions = await findByRole('listbox');
+  expect(listOptions).toBeInTheDocument();
+
+  const heading = await findByTestId(headingId);
+  expect(heading).toBeInTheDocument();
+});
+
 test('it *does not* render the select options if select not clicked', async () => {
   const props = getBaseProps();
   const { queryByTestId } = renderWithTheme(
@@ -147,6 +174,19 @@ test('it *does not* render the select options if select not clicked', async () =
 
   const option = queryByTestId(optionId);
   expect(option).not.toBeInTheDocument();
+});
+
+test('it *does not* render the group headings if select not clicked', async () => {
+  const props = getBaseProps();
+  const { queryByTestId } = renderWithTheme(
+    <Select {...props}>
+      <GroupHeading data-testid={headingId}>Group 1</GroupHeading>
+      <SelectOption title="option1" value="option1" />
+    </Select>
+  );
+
+  const heading = queryByTestId(headingId);
+  expect(heading).not.toBeInTheDocument();
 });
 
 test('it calls the provided onChange (with args) when an option is clicked', async () => {
@@ -220,6 +260,42 @@ test('it can be operated using only the keyboard', async () => {
   fireEvent.click(select);
 
   const [option1, option2] = await findAllByRole('option');
+
+  // First option should always have focus
+  expect(option1).toHaveFocus();
+  // Arrow down should focus next item
+  press.ArrowDown();
+  expect(option2).toHaveFocus();
+  // Arrow up should focus previous item
+  press.ArrowUp();
+  expect(option1).toHaveFocus();
+  // Change back to option 2
+  press.ArrowDown();
+  // Enter should "submit" the select
+  press.Enter();
+  expect(mockFn).toHaveBeenCalledTimes(1);
+  expect(mockFn).toHaveBeenCalledWith('option2', undefined);
+});
+
+test('it can be operated using only the keyboard with headings', async () => {
+  const props = getBaseProps();
+  const mockFn = jest.fn();
+
+  const { findByTestId, findAllByRole } = renderWithTheme(
+    <Select {...props} onChange={mockFn} data-testid={testId}>
+      <GroupHeading>Group 1</GroupHeading>
+      <SelectOption title="option1" value="option1" />
+      <GroupHeading>Group 2</GroupHeading>
+      <SelectOption title="option2" value="option2" />
+    </Select>
+  );
+
+  const select = await findByTestId(testId);
+
+  fireEvent.click(select);
+
+  // heading1, option1, heading2, option2
+  const [, option1, , option2] = await findAllByRole('option');
 
   // First option should always have focus
   expect(option1).toHaveFocus();

@@ -23,3 +23,10 @@ export {
   RoverOptionProps,
   RoverOptionStylesKey,
 } from './RoverOption';
+
+export {
+  GroupHeading,
+  GroupHeadingClasses,
+  GroupHeadingProps,
+  GroupHeadingStylesKey,
+} from './GroupHeading';
