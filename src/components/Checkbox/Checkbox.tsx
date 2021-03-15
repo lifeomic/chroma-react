@@ -23,8 +23,8 @@ export const useStyles = makeStyles(
     root: {
       // All values that are animated to/from need to be specified as css variables for the
       // framer-motion library to handle the animations correctly (no mix of hex/rgb + variables)
-      '--checkbox-primary': theme.palette.primary[600],
-      '--checkbox-emphasis': theme.palette.primary[800],
+      '--checkbox-primary': theme.palette.primary.main,
+      '--checkbox-emphasis': theme.palette.primary[900],
       '--checkbox-secondary': theme.palette.graphite[100],
       '--checkbox-secondary-emphasis': theme.palette.graphite[900],
       '--checkbox-error': theme.palette.error[900],
