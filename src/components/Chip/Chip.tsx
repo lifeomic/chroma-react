@@ -15,7 +15,7 @@ export const useStyles = makeStyles(
       backgroundColor: theme.palette.black[50],
       display: 'inline-flex',
       alignItems: 'center',
-      color: theme.palette.black[400],
+      color: theme.palette.black[600],
       paddingLeft: theme.spacing(1),
       paddingRight: theme.spacing(1),
     },
@@ -38,7 +38,7 @@ export const useStyles = makeStyles(
     },
     deleteButton: {
       alignItems: 'center',
-      background: theme.palette.black[400],
+      background: theme.palette.black[600],
       borderRadius: 9999,
       border: 'none',
       display: 'inline-flex',
@@ -52,16 +52,16 @@ export const useStyles = makeStyles(
       width: theme.pxToRem(14),
       transition: 'background 0.25s ease, opacity 0.25s ease',
       '&:hover': {
-        background: theme.palette.black[400],
+        background: theme.palette.black[600],
         opacity: 0.85,
       },
       '&:disabled': {
-        background: theme.palette.black[100],
+        background: theme.palette.black[300],
         color: theme.palette.common.white,
         cursor: 'initial',
       },
       '&:focus': {
-        background: theme.palette.black[200],
+        background: theme.palette.black[400],
         outline: 'none',
       },
     },
