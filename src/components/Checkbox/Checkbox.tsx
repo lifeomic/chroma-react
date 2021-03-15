@@ -155,13 +155,13 @@ const tickVariants = {
 const disabledDefaultTickVariants = {
   checked: {
     stroke: 'var(--tick-disabled)',
-    strokeOpacity: 0.35,
+    strokeOpacity: 0.65,
     pathLength: 1,
   },
   unchecked: {
     pathLength: 0,
     stroke: 'var(--tick-disabled)',
-    strokeOpacity: 0.35,
+    strokeOpacity: 0.65,
   },
 };
 
@@ -169,12 +169,12 @@ const disabledInverseTickVariants = {
   checked: {
     pathLength: 1,
     stroke: 'var(--tick-primary)',
-    strokeOpacity: 0.35,
+    strokeOpacity: 0.65,
   },
   unchecked: {
     pathLength: 0,
     stroke: 'var(--tick-primary)',
-    strokeOpacity: 0.35,
+    strokeOpacity: 0.65,
   },
 };
 
@@ -193,12 +193,12 @@ const indeterminateDisabledTickVariants = {
   checked: {
     pathLength: 1,
     stroke: 'var(--tick-disabled)',
-    strokeOpacity: 0.35,
+    strokeOpacity: 0.65,
   },
   unchecked: {
     pathLength: 0,
     stroke: 'var(--tick-disabled)',
-    strokeOpacity: 0.35,
+    strokeOpacity: 0.65,
   },
 };
 
