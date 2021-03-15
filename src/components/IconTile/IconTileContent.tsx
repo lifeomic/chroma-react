@@ -23,7 +23,7 @@ export const useStyles = makeStyles(
       letterSpacing: 0.25,
     },
     caption: {
-      color: theme.palette.black[400],
+      color: theme.palette.black[500],
       textTransform: 'uppercase',
       letterSpacing: 2,
     },
