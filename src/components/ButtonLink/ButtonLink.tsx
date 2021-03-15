@@ -42,7 +42,7 @@ export const useStyles = makeStyles(
       '&:hover, &:focus': {
         textDecoration: 'none',
         color: theme.palette.common.white,
-        backgroundColor: theme.palette.primary[800],
+        backgroundColor: theme.palette.primary[900],
         outline: 'none',
       },
       '&:focus.focus-visible': {
@@ -73,8 +73,8 @@ export const useStyles = makeStyles(
       transition: 'border 0.25s ease, color 0.25s ease',
       '&:hover, &:focus': {
         backgroundColor: 'transparent',
-        border: `1px solid ${theme.palette.primary[800]}`,
-        color: theme.palette.primary[800],
+        border: `1px solid ${theme.palette.primary[900]}`,
+        color: theme.palette.primary[900],
       },
     },
     outlinedInverse: {
@@ -101,7 +101,7 @@ export const useStyles = makeStyles(
       transition: 'color 0.25s ease',
       '&:hover, &:focus': {
         backgroundColor: 'transparent',
-        color: theme.palette.primary[800],
+        color: theme.palette.primary[900],
       },
     },
     textInverse: {
