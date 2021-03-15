@@ -23,8 +23,8 @@ export const useStyles = makeStyles(
     root: {
       // All values that are animated to/from need to be specified as css variables for the
       // framer-motion library to handle the animations correctly (no mix of hex/rgb + variables)
-      '--checkbox-primary': theme.palette.primary[600],
-      '--checkbox-emphasis': theme.palette.primary[800],
+      '--checkbox-primary': theme.palette.primary.main,
+      '--checkbox-emphasis': theme.palette.primary[900],
       '--checkbox-secondary': theme.palette.graphite[100],
       '--checkbox-secondary-emphasis': theme.palette.graphite[900],
       '--checkbox-error': theme.palette.error[900],
@@ -155,13 +155,13 @@ const tickVariants = {
 const disabledDefaultTickVariants = {
   checked: {
     stroke: 'var(--tick-disabled)',
-    strokeOpacity: 0.35,
+    strokeOpacity: 0.65,
     pathLength: 1,
   },
   unchecked: {
     pathLength: 0,
     stroke: 'var(--tick-disabled)',
-    strokeOpacity: 0.35,
+    strokeOpacity: 0.65,
   },
 };
 
@@ -169,12 +169,12 @@ const disabledInverseTickVariants = {
   checked: {
     pathLength: 1,
     stroke: 'var(--tick-primary)',
-    strokeOpacity: 0.35,
+    strokeOpacity: 0.65,
   },
   unchecked: {
     pathLength: 0,
     stroke: 'var(--tick-primary)',
-    strokeOpacity: 0.35,
+    strokeOpacity: 0.65,
   },
 };
 
@@ -193,12 +193,12 @@ const indeterminateDisabledTickVariants = {
   checked: {
     pathLength: 1,
     stroke: 'var(--tick-disabled)',
-    strokeOpacity: 0.35,
+    strokeOpacity: 0.65,
   },
   unchecked: {
     pathLength: 0,
     stroke: 'var(--tick-disabled)',
-    strokeOpacity: 0.35,
+    strokeOpacity: 0.65,
   },
 };
 
