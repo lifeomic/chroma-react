@@ -16,7 +16,7 @@ const shades: Color = {
 
 const blue: SimplePaletteColorOptions & Color = {
   ...shades,
-  main: shades[600],
+  main: shades[800],
   light: shades[300],
   contrastText: text.contrast,
 };
