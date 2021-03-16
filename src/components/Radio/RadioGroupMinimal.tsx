@@ -122,6 +122,7 @@ export const useStyles = makeStyles(
     },
     directionRow: {
       flexDirection: 'row',
+      justifyContent: 'space-between',
       '& label': {
         whiteSpace: 'nowrap',
       },
