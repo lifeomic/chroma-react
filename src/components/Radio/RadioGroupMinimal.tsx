@@ -74,7 +74,7 @@ export const useStyles = makeStyles(
             transform: 'scale3d(1, 1, 1)',
             transition: '0.2s cubic-bezier(0.34, 1.56, 0.64, 1)',
             transitionProperty: 'transform, opacity',
-            background: theme.palette.primary[700],
+            background: theme.palette.primary.main,
           },
           '& label > p': {
             color: theme.palette.common.white,
