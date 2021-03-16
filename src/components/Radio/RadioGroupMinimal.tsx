@@ -23,7 +23,17 @@ export const useStyles = makeStyles(
       width: '100%',
     },
     legend: {
-      display: 'none',
+      color: theme.palette.black[800],
+      fontSize: theme.pxToRem(14),
+      fontWeight: theme.typography.fontWeightBold,
+      marginBottom: theme.spacing(1.5),
+      padding: 0,
+      '&:empty': {
+        marginBottom: theme.spacing(0),
+      },
+    },
+    legendInverse: {
+      color: theme.palette.common.white,
     },
     radios: {
       background: 'rgba(132, 137, 166, 0.15)',
@@ -186,7 +196,15 @@ export const RadioGroupMinimal: React.FC<RadioGroupMinimalProps> = ({
         role="radiogroup"
         {...rootProps}
       >
-        <legend className={clsx(!title && ariaLabel && classes.srOnly)}>
+        <legend
+          className={clsx(
+            classes.legend,
+            {
+              [classes.legendInverse]: color === 'inverse',
+            },
+            !title && ariaLabel && classes.srOnly
+          )}
+        >
           {title || ariaLabel}
         </legend>
         <div
