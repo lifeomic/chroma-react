@@ -103,17 +103,17 @@ const RadioStory: React.FC = () => {
           <RadioGroup
             aria-label="RadioGroup with no title"
             title=""
-            name="chroma1"
-            value="opt2"
+            name="chroma2"
+            value="opt5"
             onChange={handleChange}
             {...getPropOptions()}
           >
-            <Radio value="opt1" label="Option 1" />
-            <Radio value="opt2" label="Option 2" />
-            <Radio value="opt3" disabled label="Disabled (not selectable)" />
+            <Radio value="opt5" label="Option 5" />
+            <Radio value="opt6" label="Option 6" />
+            <Radio value="opt7" disabled label="Disabled (not selectable)" />
             <Radio
-              value="opt4"
-              label="Option 4"
+              value="opt8"
+              label="Option 8"
               helpMessage="This is some helper text."
             />
           </RadioGroup>
@@ -131,23 +131,21 @@ const RadioStory: React.FC = () => {
         <FormBox padding={2}>
           <RadioGroup
             title="Select an option"
-            name="chroma2"
-            value="opt1"
+            name="chroma3"
+            value="opt9"
             onChange={handleChange}
             {...getPropOptions()}
           >
-            <Radio name="chroma2" value="opt1" label="Option 1" />
-            <Radio name="chroma2" value="opt2" label="Option 2" />
+            <Radio value="opt9" label="Option 9" />
+            <Radio value="opt10" label="Option 10" />
             <Radio
-              name="chroma2"
-              value="opt3"
+              value="opt11"
               disabled
               label="Disabled (not selectable)"
             />
             <Radio
-              name="chroma2"
-              value="opt4"
-              label="Option 4"
+              value="opt12"
+              label="Option 12"
               helpMessage="This is some helper text."
             />
           </RadioGroup>
@@ -157,17 +155,17 @@ const RadioStory: React.FC = () => {
           <RadioGroup
             aria-label="RadioGroup with no title"
             title=""
-            name="chroma1"
-            value="opt2"
+            name="chroma4"
+            value="opt13"
             onChange={handleChange}
             {...getPropOptions()}
           >
-            <Radio value="opt1" label="Option 1" />
-            <Radio value="opt2" label="Option 2" />
-            <Radio value="opt3" disabled label="Disabled (not selectable)" />
+            <Radio value="opt13" label="Option 13" />
+            <Radio value="opt14" label="Option 14" />
+            <Radio value="opt15" disabled label="Disabled (not selectable)" />
             <Radio
-              value="opt4"
-              label="Option 4"
+              value="opt16"
+              label="Option 16"
               helpMessage="This is some helper text."
             />
           </RadioGroup>
@@ -186,23 +184,23 @@ const RadioStory: React.FC = () => {
           <RadioGroup
             title="Select an option"
             color="inverse"
-            name="chroma3"
-            value="opt1"
+            name="chroma5"
+            value="opt17"
             onChange={handleChange}
             {...getPropOptions()}
           >
-            <Radio name="chroma3" value="opt1" label="Option 1" />
-            <Radio name="chroma3" value="opt2" label="Option 2" />
+            <Radio value="opt17" label="Option 17" />
+            <Radio value="opt18" label="Option 18" />
             <Radio
-              name="chroma3"
-              value="opt3"
+            
+              value="opt19"
               disabled
               label="Disabled (not selectable)"
             />
             <Radio
-              name="chroma3"
-              value="opt4"
-              label="Option 4"
+            
+              value="opt20"
+              label="Option 20"
               helpMessage="This is some helper text."
             />
           </RadioGroup>
@@ -212,18 +210,18 @@ const RadioStory: React.FC = () => {
           <RadioGroup
             aria-label="RadioGroup with no title"
             title=""
-            name="chroma1"
-            value="opt2"
+            name="chroma6"
+            value="opt21"
             onChange={handleChange}
             color="inverse"
             {...getPropOptions()}
           >
-            <Radio value="opt1" label="Option 1" />
-            <Radio value="opt2" label="Option 2" />
-            <Radio value="opt3" disabled label="Disabled (not selectable)" />
+            <Radio value="opt21" label="Option 21" />
+            <Radio value="opt22" label="Option 22" />
+            <Radio value="opt23" disabled label="Disabled (not selectable)" />
             <Radio
-              value="opt4"
-              label="Option 4"
+              value="opt24"
+              label="Option 24"
               helpMessage="This is some helper text."
             />
           </RadioGroup>
@@ -242,23 +240,22 @@ const RadioStory: React.FC = () => {
           <RadioGroup
             title="Select an option"
             color="inverse"
-            name="chroma4"
-            value="opt4"
+            name="chroma7"
+            value="opt25"
             onChange={handleChange}
             {...getPropOptions()}
           >
-            <Radio name="chroma4" value="opt1" label="Option 1" />
-            <Radio name="chroma4" value="opt2" label="Option 2" />
+            <Radio value="opt25" label="Option 25" />
+            <Radio value="opt26" label="Option 26" />
             <Radio
-              name="chroma4"
-              value="opt3"
+            
+              value="opt27"
               disabled
               label="Disabled (not selectable)"
             />
             <Radio
-              name="chroma4"
-              value="opt4"
-              label="Option 4"
+              value="opt28"
+              label="Option 28"
               helpMessage="This is some helper text."
             />
           </RadioGroup>
@@ -268,18 +265,18 @@ const RadioStory: React.FC = () => {
           <RadioGroup
             aria-label="RadioGroup with no title"
             title=""
-            name="chroma1"
-            value="opt2"
+            name="chroma8"
+            value="opt29"
             onChange={handleChange}
             color="inverse"
             {...getPropOptions()}
           >
-            <Radio value="opt1" label="Option 1" />
-            <Radio value="opt2" label="Option 2" />
-            <Radio value="opt3" disabled label="Disabled (not selectable)" />
+            <Radio value="opt29" label="Option 29" />
+            <Radio value="opt30" label="Option 30" />
+            <Radio value="opt31" disabled label="Disabled (not selectable)" />
             <Radio
-              value="opt4"
-              label="Option 4"
+              value="opt32"
+              label="Option 32"
               helpMessage="This is some helper text."
             />
           </RadioGroup>
