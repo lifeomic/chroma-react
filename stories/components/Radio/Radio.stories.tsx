@@ -81,7 +81,7 @@ const RadioStory: React.FC = () => {
       >
         <FormBox padding={2}>
           <RadioGroup
-            title=""
+            title="Select an option"
             aria-label="Select an option"
             name="chroma1"
             value="opt2"
