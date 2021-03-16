@@ -97,7 +97,7 @@ export const useStyles = makeStyles(
       },
     },
     radiosInverse: {
-      background: 'rgba(230, 231, 237, 0.25)',
+      background: 'rgba(230, 231, 237, 0.1125)',
       '& input:checked + div': {
         '&::before': {
           background: 'rgba(255, 255, 255, 0.5)',
