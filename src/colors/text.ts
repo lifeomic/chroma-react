@@ -4,9 +4,9 @@ import { TypeText } from './types';
 
 const text: TypeText = {
   primary: black[900],
-  secondary: black[600],
+  secondary: black[700],
+  hint: black[600],
   disabled: black[400],
-  hint: black[400],
   contrast: gray[200],
   dark: black[900],
 };
