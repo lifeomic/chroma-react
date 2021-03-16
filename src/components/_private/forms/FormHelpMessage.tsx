@@ -16,7 +16,7 @@ const useStyles = makeStyles(
     },
     inverse: {
       color: theme.palette.common.white,
-      opacity: 0.65,
+      opacity: 0.9,
     },
   }),
   { name: FormHelpMessageStylesKey }
