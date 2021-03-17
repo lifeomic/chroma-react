@@ -57,7 +57,7 @@ const DividerStory: React.FC = () => (
       <Container
         containerStyles={{
           alignItems: 'center',
-          background: '#0096e1',
+          background: '#006eb7',
           flex: 1,
           justifyContent: 'space-evenly',
           padding: '32px 0',
