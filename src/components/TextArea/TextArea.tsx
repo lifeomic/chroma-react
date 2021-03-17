@@ -30,9 +30,6 @@ export const useStyles = makeStyles(
         marginBottom: theme.spacing(0),
       },
     },
-    labelInverse: {
-      color: theme.palette.common.white,
-    },
     labelIcon: {
       marginLeft: theme.spacing(0.75),
       color: theme.palette.primary.main,
@@ -41,10 +38,16 @@ export const useStyles = makeStyles(
       mixBlendMode: 'screen',
     },
     labelSecondary: {
+      color: theme.palette.text.hint,
       fontSize: theme.pxToRem(11),
       display: 'inline-block',
       margin: theme.spacing(0, 0.75),
-      opacity: 0.65,
+    },
+    labelInverse: {
+      color: theme.palette.common.white,
+      '&$labelSecondary': {
+        opacity: 0.9,
+      },
     },
     textarea: {
       backgroundColor: 'rgba(132, 137, 166, 0.15)',
@@ -212,7 +215,14 @@ export const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
             </Tooltip>
           )}
           {secondaryLabel && (
-            <span className={classes.labelSecondary}>{secondaryLabel}</span>
+            <span
+              className={clsx(
+                classes.labelSecondary,
+                color === 'inverse' && classes.labelInverse
+              )}
+            >
+              {secondaryLabel}
+            </span>
           )}
         </label>
         <textarea
