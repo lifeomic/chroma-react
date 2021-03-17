@@ -32,7 +32,7 @@ export const useStyles = makeStyles(
       },
       '&:focus': {
         borderRadius: '9999px',
-        color: theme.palette.primary[700],
+        color: theme.palette.primary.main,
         outline: 'none',
         '&.focus-visible': {
           boxShadow: theme.boxShadows.focusVisible,
