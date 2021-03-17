@@ -2,16 +2,16 @@ import text from './text';
 import { Color, SimplePaletteColorOptions } from './types';
 
 const shades: Color = {
-  50: '#e6f6ec',
-  100: '#cbeed9',
-  200: '#b2e5c7',
-  300: '#97dcb4',
-  400: '#7ed4a2',
-  500: '#63cc8f',
-  600: '#48c47d',
-  700: '#2bbb6a',
-  800: '#8cc654',
-  900: '#007029',
+  50: '#f0f9e8',
+  100: '#d9f0c5',
+  200: '#c0e59f',
+  300: '#a6db77',
+  400: '#91d357',
+  500: '#7dcb35',
+  600: '#6dba2d',
+  700: '#58a623',
+  800: '#429218',
+  900: '#0f7000',
 };
 
 const green: SimplePaletteColorOptions & Color = {
