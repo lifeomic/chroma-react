@@ -15,7 +15,7 @@ const useStyles = makeStyles(
       marginTop: theme.spacing(0.375),
     },
     inverse: {
-      mixBlendMode: 'color-dodge',
+      color: theme.palette.error[50],
     },
   }),
   { name: FormErrorMessageStylesKey }
