@@ -1,6 +1,6 @@
 <svg width="1220" height="100%" viewBox="0 0 1220 369" fill="none"
   xmlns="http://www.w3.org/2000/svg">
-  <rect width="1220" height="100%" fill="#0096E1"/>
+  <rect width="1220" height="100%" fill="#006eb7"/>
   <mask id="mask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="441" y="1" width="779" height="368">
     <path d="M441 11C441 5.47716 445.477 1 451 1H1210C1215.52 1 1220 5.47715 1220 11V369H441V11Z" fill="white" fill-opacity="0.27"/>
   </mask>
