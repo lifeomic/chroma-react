@@ -103,7 +103,7 @@ export const useStyles = makeStyles(
       },
     },
     buttonInverse: {
-      backgroundColor: 'rgba(230, 231, 237, 0.25)',
+      backgroundColor: 'rgba(230, 231, 237, 0.1)',
       color: theme.palette.common.white,
       '&:focus': {
         boxShadow: '0 0 0 2px rgba(255, 255, 255, .3)',
@@ -113,11 +113,11 @@ export const useStyles = makeStyles(
         color: theme.palette.text.primary,
       },
       '& $buttonText$placeholderText': {
-        color: 'rgba(255, 255, 255, 0.8)',
+        color: theme.palette.common.white,
       },
     },
     buttonError: {
-      backgroundColor: 'rgba(255, 255, 255, 0.5)',
+      backgroundColor: 'rgba(255, 255, 255, 0.1)',
       border: `1px solid ${theme.palette.error.main}`,
       '&:focus': {
         border: `1px solid ${theme.palette.error.main}`,
@@ -144,7 +144,7 @@ export const useStyles = makeStyles(
       whiteSpace: 'nowrap',
       width: '100%',
       '&$placeholderText': {
-        color: theme.palette.black[400],
+        color: theme.palette.text.hint,
       },
     },
     placeholderText: {},
