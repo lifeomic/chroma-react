@@ -137,7 +137,7 @@ const TextAreaStory: React.FC = () => {
 
       <Container
         containerStyles={{
-          background: '#0096e1',
+          background: '#006eb7',
           flex: 1,
           flexFlow: 'column',
           padding: 0,

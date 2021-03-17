@@ -132,7 +132,7 @@ const FormBoxStory: React.FC = () => {
         </FormBox>
       </Container>
       <Container
-        containerStyles={{ background: '#0096e1', flex: 1, padding: 0 }}
+        containerStyles={{ background: '#006eb7', flex: 1, padding: 0 }}
       >
         <FormBox padding={2} className={classes.fullWidth}>
           <FormBox className={classes.extraPadding}>

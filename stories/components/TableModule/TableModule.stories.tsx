@@ -612,6 +612,7 @@ const TestBed: React.FC = () => {
               content: () => {
                 return (
                   <Checkbox
+                    aria-label="checkbox"
                     label=""
                     onClick={(e) => {
                       e.stopPropagation();

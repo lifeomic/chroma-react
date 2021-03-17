@@ -21,7 +21,7 @@ const LinkStory: React.FC = () => (
       </Link>
       <div
         style={{
-          background: '#0096e1',
+          background: '#006eb7',
           padding: '16px 64px',
           textAlign: 'center',
         }}
