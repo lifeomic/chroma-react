@@ -117,7 +117,7 @@ export const useStyles = makeStyles(
       },
     },
     buttonError: {
-      backgroundColor: 'rgba(255, 255, 255, 0.1)',
+      backgroundColor: 'rgba(230, 231, 237, 0.1)',
       border: `1px solid ${theme.palette.error.main}`,
       '&:focus': {
         border: `1px solid ${theme.palette.error.main}`,
