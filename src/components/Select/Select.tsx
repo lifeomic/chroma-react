@@ -62,7 +62,7 @@ export const useStyles = makeStyles(
       fontSize: theme.pxToRem(11),
       display: 'inline-block',
       margin: theme.spacing(0, 0.75),
-      opacity: 0.75,
+      color: theme.palette.text.hint,
     },
     labelInverse: {
       color: theme.palette.common.white,
