@@ -62,10 +62,13 @@ export const useStyles = makeStyles(
       fontSize: theme.pxToRem(11),
       display: 'inline-block',
       margin: theme.spacing(0, 0.75),
-      opacity: 0.65,
+      opacity: 0.75,
     },
     labelInverse: {
       color: theme.palette.common.white,
+      '&$labelSecondary': {
+        opacity: 0.9,
+      },
     },
     button: {
       alignItems: 'center',
