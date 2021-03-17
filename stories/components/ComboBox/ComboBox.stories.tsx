@@ -364,7 +364,7 @@ const ComboBoxStory: React.FC = () => {
       </Container>
       <Container
         containerStyles={{
-          background: '#006eb7',
+          background: '#0096e1',
           flex: 1,
           flexFlow: 'column',
           padding: 0,
