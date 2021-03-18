@@ -29,7 +29,7 @@ const TextAreaStory: React.FC = () => {
               setText(e.target.value);
             }}
             label="Name"
-            />
+          />
           <TextArea label="Name" secondaryLabel="Optional" />
           <TextArea
             aria-label="Name"
@@ -37,7 +37,7 @@ const TextAreaStory: React.FC = () => {
             icon={HelpCircle}
             tooltipMessage="Here is descriptive text"
             secondaryLabel="Optional"
-            />
+          />
           <TextArea aria-label="Name" disabled label="Disabled" />
           <TextArea aria-label="Name" label="Full Width" fullWidth />
           <TextArea aria-label="Name" label="Description" helpMessage="Helper text goes here" />
@@ -47,27 +47,27 @@ const TextAreaStory: React.FC = () => {
             label="Description"
             hasError
             errorMessage="This is required"
-            />
+          />
           <TextArea
             aria-label="Name"
             label="Description"
             hasError
             helpMessage="Helper text goes here"
             errorMessage="This is required"
-            />
+          />
           <TextArea
             aria-label="Name"
             label="Description"
             hasError
             helpMessage="Helper text goes here"
             errorMessage="This is required"
-            />
+          />
           <TextArea
             aria-label="Name"
             label="Read only"
             value="This is a read-only textarea"
             readOnly
-            />
+          />
           <TextArea
             value={text}
             onChange={(e) => {
@@ -114,27 +114,27 @@ const TextAreaStory: React.FC = () => {
             label="Description"
             hasError
             errorMessage="This is required"
-            />
+          />
           <TextArea
             aria-label="Name"
             label="Description"
             hasError
             helpMessage="Helper text goes here"
             errorMessage="This is required"
-            />
+          />
           <TextArea
             aria-label="Name"
             label="Description"
             hasError
             helpMessage="Helper text goes here"
             errorMessage="This is required"
-            />
+          />
           <TextArea
             aria-label="Name"
             label="Read only"
             value="This is a read-only textarea"
             readOnly
-            />
+          />
           <TextArea
             value={text}
             onChange={(e) => {
@@ -164,7 +164,7 @@ const TextAreaStory: React.FC = () => {
             }}
             label="Name"
             color="inverse"
-            />
+          />
           <TextArea aria-label="Name" label="Name" secondaryLabel="Optional" color="inverse" />
           <TextArea
             aria-label="Name"
@@ -181,7 +181,7 @@ const TextAreaStory: React.FC = () => {
             label="Description"
             helpMessage="Helper text goes here"
             color="inverse"
-            />
+          />
           <TextArea aria-label="Name" label="Description" hasError color="inverse" />
           <TextArea
             aria-label="Name"
@@ -189,7 +189,7 @@ const TextAreaStory: React.FC = () => {
             hasError
             errorMessage="This is required"
             color="inverse"
-            />
+          />
           <TextArea
             aria-label="Name"
             label="Description"
@@ -197,7 +197,7 @@ const TextAreaStory: React.FC = () => {
             helpMessage="Helper text goes here"
             errorMessage="This is required"
             color="inverse"
-            />
+          />
           <TextArea
             aria-label="Name"
             label="Description"
@@ -205,14 +205,14 @@ const TextAreaStory: React.FC = () => {
             helpMessage="Helper text goes here"
             errorMessage="This is required"
             color="inverse"
-            />
+          />
           <TextArea
             aria-label="Name"
             label="Read only"
             value="This is a read-only textarea"
             color="inverse"
             readOnly
-            />
+          />
           <TextArea
             value={text}
             onChange={(e) => {
