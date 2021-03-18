@@ -11,7 +11,7 @@ export const useStyles = makeStyles(
     root: {
       display: 'inline-flex',
       alignItems: 'center',
-      background: theme.palette.black[400],
+      background: theme.palette.black[500],
       color: theme.palette.common.white,
       borderRadius: theme.pxToRem(20),
       fontSize: theme.typography.caption.fontSize,

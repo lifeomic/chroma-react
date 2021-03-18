@@ -12,7 +12,7 @@ export const useStyles = makeStyles(
       fontWeight: theme.typography.fontWeightBold,
       letterSpacing: theme.pxToRem(1),
       padding: theme.spacing(0.25, 2, 0.5),
-      color: theme.palette.text.secondary,
+      color: theme.palette.text.hint,
       textTransform: 'uppercase',
       '&:not(:first-child)': {
         marginTop: theme.spacing(0.75),

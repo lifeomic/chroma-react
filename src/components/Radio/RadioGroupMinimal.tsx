@@ -23,7 +23,17 @@ export const useStyles = makeStyles(
       width: '100%',
     },
     legend: {
-      display: 'none',
+      color: theme.palette.black[800],
+      fontSize: theme.pxToRem(14),
+      fontWeight: theme.typography.fontWeightBold,
+      marginBottom: theme.spacing(1.5),
+      padding: 0,
+      '&:empty': {
+        marginBottom: theme.spacing(0),
+      },
+    },
+    legendInverse: {
+      color: theme.palette.common.white,
     },
     radios: {
       background: 'rgba(132, 137, 166, 0.15)',
@@ -74,7 +84,7 @@ export const useStyles = makeStyles(
             transform: 'scale3d(1, 1, 1)',
             transition: '0.2s cubic-bezier(0.34, 1.56, 0.64, 1)',
             transitionProperty: 'transform, opacity',
-            background: theme.palette.primary[700],
+            background: theme.palette.primary.main,
           },
           '& label > p': {
             color: theme.palette.common.white,
@@ -97,7 +107,7 @@ export const useStyles = makeStyles(
       },
     },
     radiosInverse: {
-      background: 'rgba(230, 231, 237, 0.25)',
+      backgroundColor: 'rgba(230, 231, 237, 0.1)',
       '& input:checked + div': {
         '&::before': {
           background: 'rgba(255, 255, 255, 0.5)',
@@ -112,6 +122,7 @@ export const useStyles = makeStyles(
     },
     directionRow: {
       flexDirection: 'row',
+      justifyContent: 'space-between',
       '& label': {
         whiteSpace: 'nowrap',
       },
@@ -186,7 +197,15 @@ export const RadioGroupMinimal: React.FC<RadioGroupMinimalProps> = ({
         role="radiogroup"
         {...rootProps}
       >
-        <legend className={clsx(!title && ariaLabel && classes.srOnly)}>
+        <legend
+          className={clsx(
+            classes.legend,
+            {
+              [classes.legendInverse]: color === 'inverse',
+            },
+            !title && ariaLabel && classes.srOnly
+          )}
+        >
           {title || ariaLabel}
         </legend>
         <div

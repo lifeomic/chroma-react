@@ -76,7 +76,8 @@ export const useStyles = makeStyles(
       color: theme.palette.primary.main,
     },
     completedIcon: {
-      color: theme.palette.black[200],
+      color: theme.palette.black[500],
+      opacity: 0.75,
     },
     title: {
       color: theme.palette.black[500],
@@ -98,8 +99,9 @@ export const useStyles = makeStyles(
       marginTop: theme.spacing(0.5),
     },
     completedPillSubTitle: {
-      background: theme.palette.black[200],
+      background: theme.palette.black[500],
       marginTop: theme.spacing(0.5),
+      opacity: 0.75,
     },
     disabled: {
       cursor: 'not-allowed',

@@ -24,31 +24,37 @@ const SearchFieldStory: React.FC = () => {
       >
         <FormBox padding={2}>
           <SearchField
+            aria-label="Search"
             onSearch={handleSearchEnter}
             onClear={() => console.log('cleared')}
           />
           <SearchField
+            aria-label="Search"
             placeholder="Search for&hellip;"
             onSearch={handleSearchEnter}
           />
           <SearchField
+            aria-label="Search"
             placeholder="Disabled"
             onSearch={handleSearchEnter}
             disabled
           />
           <SearchField
-            aria-label="Broaden your search&hellip;"
+            aria-label="Search"
             placeholder="Broaden your search&hellip;"
             onSearch={handleSearchEnter}
             fullWidth
           />
           <SearchField
+            aria-label="Search"
             placeholder="Search for&hellip;"
             onSearch={handleSearchEnter}
             helpMessage="Helper text goes here"
           />
-          <SearchField onSearch={handleSearchEnter} height={0} />
           <SearchField
+            aria-label="Search" onSearch={handleSearchEnter} height={0} />
+          <SearchField
+            aria-label="Search"
             placeholder="Search for&hellip;"
             onSearch={handleSearchEnter}
             helpMessage="disableClearOnSearch enabled"
@@ -66,21 +72,32 @@ const SearchFieldStory: React.FC = () => {
         }}
       >
         <FormBox padding={2}>
-          <SearchField onSearch={handleSearchEnter} />
-          <SearchField placeholder="Search for&hellip;" />
-          <SearchField placeholder="Disabled" disabled />
+          <SearchField
+            aria-label="Search"
+            onSearch={handleSearchEnter} />
+          <SearchField
+            aria-label="Search"
+            placeholder="Search for&hellip;" />
+          <SearchField
+            aria-label="Search"
+            placeholder="Disabled" disabled />
           <SearchField
             aria-label="Broaden your search&hellip;"
             placeholder="Broaden your search&hellip;"
             fullWidth
           />
           <SearchField
+            aria-label="Search"
             placeholder="Search for&hellip;"
             onSearch={handleSearchEnter}
             helpMessage="Helper text goes here"
           />
-          <SearchField onSearch={handleSearchEnter} height={0} />
           <SearchField
+            aria-label="Search"
+            onSearch={handleSearchEnter}
+            height={0} />
+          <SearchField
+            aria-label="Search"
             placeholder="Search for&hellip;"
             onSearch={handleSearchEnter}
             helpMessage="disableClearOnSearch enabled"
@@ -91,20 +108,26 @@ const SearchFieldStory: React.FC = () => {
 
       <Container
         containerStyles={{
-          background: '#0096e1',
+          background: '#006eb7',
           flex: 1,
           flexFlow: 'column',
           padding: 0,
         }}
       >
         <FormBox padding={2}>
-          <SearchField color="inverse" onSearch={handleSearchEnter} />
           <SearchField
+            aria-label="Search"
+            color="inverse"
+            onSearch={handleSearchEnter}
+          />
+          <SearchField
+            aria-label="Search"
             placeholder="Search for&hellip;"
             color="inverse"
             onSearch={handleSearchEnter}
           />
           <SearchField
+            aria-label="Search"
             placeholder="Disabled"
             color="inverse"
             onSearch={handleSearchEnter}
@@ -118,17 +141,20 @@ const SearchFieldStory: React.FC = () => {
             fullWidth
           />
           <SearchField
+            aria-label="Search"
             placeholder="Search for&hellip;"
             color="inverse"
             onSearch={handleSearchEnter}
             helpMessage="Helper text goes here"
           />
           <SearchField
+            aria-label="Search"
             color="inverse"
             onSearch={handleSearchEnter}
             height={0}
           />
           <SearchField
+            aria-label="Search"
             color="inverse"
             placeholder="Search for&hellip;"
             onSearch={handleSearchEnter}
@@ -147,13 +173,19 @@ const SearchFieldStory: React.FC = () => {
         }}
       >
         <FormBox padding={2}>
-          <SearchField color="inverse" onSearch={handleSearchEnter} />
           <SearchField
+            aria-label="Search"
+            color="inverse"
+            onSearch={handleSearchEnter}
+          />
+          <SearchField
+            aria-label="Search"
             placeholder="Search for&hellip;"
             color="inverse"
             onSearch={handleSearchEnter}
           />
           <SearchField
+            aria-label="Search"
             placeholder="Disabled"
             color="inverse"
             onSearch={handleSearchEnter}
@@ -167,17 +199,20 @@ const SearchFieldStory: React.FC = () => {
             fullWidth
           />
           <SearchField
+            aria-label="Search"
             placeholder="Search for&hellip;"
             color="inverse"
             onSearch={handleSearchEnter}
             helpMessage="Helper text goes here"
           />
           <SearchField
+            aria-label="Search"
             color="inverse"
             onSearch={handleSearchEnter}
             height={0}
           />
           <SearchField
+            aria-label="Search"
             color="inverse"
             placeholder="Search for&hellip;"
             onSearch={handleSearchEnter}

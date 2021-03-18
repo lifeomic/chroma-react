@@ -36,7 +36,7 @@ export const useStyles = makeStyles(
         'background-color 0.25s ease, color 0.25s ease, opacity 0.25s ease',
       userSelect: 'none',
       '&:hover': {
-        backgroundColor: theme.palette.primary[800],
+        backgroundColor: theme.palette.primary[900],
         outline: 'none',
       },
       '&:focus': {
@@ -82,8 +82,8 @@ export const useStyles = makeStyles(
       transition: 'border 0.25s ease, color 0.25s ease',
       '&:hover': {
         backgroundColor: 'transparent',
-        border: `1px solid ${theme.palette.primary[800]}`,
-        color: theme.palette.primary[800],
+        border: `1px solid ${theme.palette.primary[900]}`,
+        color: theme.palette.primary[900],
       },
       '&:disabled': {
         backgroundColor: 'transparent',
@@ -116,7 +116,7 @@ export const useStyles = makeStyles(
       transition: 'color 0.25s ease',
       '&:hover': {
         backgroundColor: 'transparent',
-        color: theme.palette.primary[800],
+        color: theme.palette.primary[900],
       },
       '&:disabled': {
         backgroundColor: 'transparent',

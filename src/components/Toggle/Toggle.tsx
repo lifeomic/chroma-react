@@ -83,12 +83,12 @@ export const useStyles = makeStyles(
       },
     },
     inputInverse: {
-      background: 'rgba(230, 231, 237, 0.25)',
+      backgroundColor: 'rgba(230, 231, 237, 0.1)',
       border: '1px solid rgba(255, 255, 255, 0.2)',
       mixBlendMode: 'hard-light',
       '&:checked': {
-        background: theme.palette.secondary.main,
-        border: `1px solid ${theme.palette.secondary.main}`,
+        background: theme.palette.secondary[500],
+        border: `1px solid ${theme.palette.secondary[500]}`,
       },
       '&:focus': {
         boxShadow: '0 0 0 2px rgba(255, 255, 255, .3)',

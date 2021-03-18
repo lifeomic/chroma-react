@@ -14,7 +14,7 @@ export const useStyles = makeStyles(
       borderTop: `1px solid ${theme.palette.divider}`,
     },
     text: {
-      color: theme.palette.black[400],
+      color: theme.palette.black[500],
       letterSpacing: 'unset',
       lineHeight: 1.5,
     },
