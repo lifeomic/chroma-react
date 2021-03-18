@@ -23,7 +23,6 @@ const TextAreaStory: React.FC = () => {
       >
         <FormBox padding={2}>
           <TextArea
-            aria-label="Name"
             value={text}
             onChange={(e) => {
               setText(e.target.value);
@@ -32,38 +31,33 @@ const TextAreaStory: React.FC = () => {
           />
           <TextArea label="Name" secondaryLabel="Optional" />
           <TextArea
-            aria-label="Name"
             label="Name"
             icon={HelpCircle}
             tooltipMessage="Here is descriptive text"
             secondaryLabel="Optional"
           />
-          <TextArea aria-label="Name" disabled label="Disabled" />
-          <TextArea aria-label="Name" label="Full Width" fullWidth />
-          <TextArea aria-label="Name" label="Description" helpMessage="Helper text goes here" />
-          <TextArea aria-label="Name" label="Description" hasError />
+          <TextArea disabled label="Disabled" />
+          <TextArea label="Full Width" fullWidth />
+          <TextArea label="Description" helpMessage="Helper text goes here" />
+          <TextArea label="Description" hasError />
           <TextArea
-            aria-label="Name"
             label="Description"
             hasError
             errorMessage="This is required"
           />
           <TextArea
-            aria-label="Name"
-            label="Description"
-            hasError
-            helpMessage="Helper text goes here"
-            errorMessage="This is required"
-          />
-          <TextArea
-            aria-label="Name"
             label="Description"
             hasError
             helpMessage="Helper text goes here"
             errorMessage="This is required"
           />
           <TextArea
-            aria-label="Name"
+            label="Description"
+            hasError
+            helpMessage="Helper text goes here"
+            errorMessage="This is required"
+          />
+          <TextArea
             label="Read only"
             value="This is a read-only textarea"
             readOnly
@@ -73,7 +67,6 @@ const TextAreaStory: React.FC = () => {
             onChange={(e) => {
               setText(e.target.value);
             }}
-            label=""
             aria-label="TextArea with no label"
             helpMessage="No label"
           />
@@ -90,47 +83,41 @@ const TextAreaStory: React.FC = () => {
       >
         <FormBox padding={2}>
           <TextArea
-            aria-label="Name"
             value={text}
             onChange={(e) => {
               setText(e.target.value);
             }}
             label="Name"
           />
-          <TextArea aria-label="Name" label="Name" secondaryLabel="Optional" />
+          <TextArea label="Name" secondaryLabel="Optional" />
           <TextArea
-            aria-label="Name"
             label="Name"
             icon={HelpCircle}
             tooltipMessage="Here is descriptive text"
             secondaryLabel="Optional"
           />
-          <TextArea aria-label="Name" disabled label="Disabled" />
-          <TextArea aria-label="Name" label="Full Width" fullWidth />
-          <TextArea aria-label="Name" label="Description" helpMessage="Helper text goes here" />
-          <TextArea aria-label="Name" label="Description" hasError />
+          <TextArea disabled label="Disabled" />
+          <TextArea label="Full Width" fullWidth />
+          <TextArea label="Description" helpMessage="Helper text goes here" />
+          <TextArea label="Description" hasError />
           <TextArea
-            aria-label="Name"
             label="Description"
             hasError
             errorMessage="This is required"
           />
           <TextArea
-            aria-label="Name"
-            label="Description"
-            hasError
-            helpMessage="Helper text goes here"
-            errorMessage="This is required"
-          />
-          <TextArea
-            aria-label="Name"
             label="Description"
             hasError
             helpMessage="Helper text goes here"
             errorMessage="This is required"
           />
           <TextArea
-            aria-label="Name"
+            label="Description"
+            hasError
+            helpMessage="Helper text goes here"
+            errorMessage="This is required"
+          />
+          <TextArea
             label="Read only"
             value="This is a read-only textarea"
             readOnly
@@ -140,7 +127,6 @@ const TextAreaStory: React.FC = () => {
             onChange={(e) => {
               setText(e.target.value);
             }}
-            label=""
             aria-label="TextArea with no label"
             helpMessage="No label"
           />
@@ -157,7 +143,6 @@ const TextAreaStory: React.FC = () => {
       >
         <FormBox padding={2}>
           <TextArea
-            aria-label="Name"
             value={text}
             onChange={(e) => {
               setText(e.target.value);
@@ -165,33 +150,29 @@ const TextAreaStory: React.FC = () => {
             label="Name"
             color="inverse"
           />
-          <TextArea aria-label="Name" label="Name" secondaryLabel="Optional" color="inverse" />
+          <TextArea label="Name" secondaryLabel="Optional" color="inverse" />
           <TextArea
-            aria-label="Name"
             label="Name"
             icon={HelpCircle}
             tooltipMessage="Here is descriptive text"
             secondaryLabel="Optional"
             color="inverse"
           />
-          <TextArea aria-label="Name" disabled label="Disabled" color="inverse" />
-          <TextArea aria-label="Name" label="Full Width" fullWidth color="inverse" />
+          <TextArea disabled label="Disabled" color="inverse" />
+          <TextArea label="Full Width" fullWidth color="inverse" />
           <TextArea
-            aria-label="Name"
             label="Description"
             helpMessage="Helper text goes here"
             color="inverse"
           />
-          <TextArea aria-label="Name" label="Description" hasError color="inverse" />
+          <TextArea label="Description" hasError color="inverse" />
           <TextArea
-            aria-label="Name"
             label="Description"
             hasError
             errorMessage="This is required"
             color="inverse"
           />
           <TextArea
-            aria-label="Name"
             label="Description"
             hasError
             helpMessage="Helper text goes here"
@@ -199,7 +180,6 @@ const TextAreaStory: React.FC = () => {
             color="inverse"
           />
           <TextArea
-            aria-label="Name"
             label="Description"
             hasError
             helpMessage="Helper text goes here"
@@ -207,7 +187,6 @@ const TextAreaStory: React.FC = () => {
             color="inverse"
           />
           <TextArea
-            aria-label="Name"
             label="Read only"
             value="This is a read-only textarea"
             color="inverse"
@@ -218,7 +197,6 @@ const TextAreaStory: React.FC = () => {
             onChange={(e) => {
               setText(e.target.value);
             }}
-            label=""
             aria-label="TextArea with no label"
             color="inverse"
             helpMessage="No label"
@@ -236,7 +214,6 @@ const TextAreaStory: React.FC = () => {
       >
         <FormBox padding={2}>
           <TextArea
-            aria-label="Name"
             value={text}
             onChange={(e) => {
               setText(e.target.value);
@@ -244,33 +221,29 @@ const TextAreaStory: React.FC = () => {
             label="Name"
             color="inverse"
           />
-          <TextArea aria-label="Name" label="Name" secondaryLabel="Optional" color="inverse" />
+          <TextArea label="Name" secondaryLabel="Optional" color="inverse" />
           <TextArea
-            aria-label="Name"
             label="Name"
             icon={HelpCircle}
             tooltipMessage="Here is descriptive text"
             secondaryLabel="Optional"
             color="inverse"
           />
-          <TextArea aria-label="Name" disabled label="Disabled" color="inverse" />
-          <TextArea aria-label="Name" label="Full Width" fullWidth color="inverse" />
+          <TextArea disabled label="Disabled" color="inverse" />
+          <TextArea label="Full Width" fullWidth color="inverse" />
           <TextArea
-            aria-label="Name"
             label="Description"
             helpMessage="Helper text goes here"
             color="inverse"
           />
-          <TextArea aria-label="Name" label="Description" hasError color="inverse" />
+          <TextArea label="Description" hasError color="inverse" />
           <TextArea
-            aria-label="Name"
             label="Description"
             hasError
             errorMessage="This is required"
             color="inverse"
           />
           <TextArea
-            aria-label="Name"
             label="Description"
             hasError
             helpMessage="Helper text goes here"
@@ -278,7 +251,6 @@ const TextAreaStory: React.FC = () => {
             color="inverse"
           />
           <TextArea
-            aria-label="Name"
             label="Description"
             hasError
             helpMessage="Helper text goes here"
@@ -286,7 +258,6 @@ const TextAreaStory: React.FC = () => {
             color="inverse"
           />
           <TextArea
-            aria-label="Name"
             label="Read only"
             value="This is a read-only textarea"
             color="inverse"
@@ -297,7 +268,6 @@ const TextAreaStory: React.FC = () => {
             onChange={(e) => {
               setText(e.target.value);
             }}
-            label=""
             aria-label="TextArea with no label"
             color="inverse"
             helpMessage="No label"
