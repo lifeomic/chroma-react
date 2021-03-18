@@ -198,7 +198,6 @@ export const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
     return (
       <div className={clsx(classes.root, className)}>
         <label
-          aria-hidden="true"
           className={clsx(
             classes.label,
             {
