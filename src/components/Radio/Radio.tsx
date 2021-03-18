@@ -73,9 +73,9 @@ export const useStyles = makeStyles(
       },
     },
     inputInverse: {
-      backgroundColor: 'rgba(230, 231, 237, 0.25)',
+      backgroundColor: 'rgba(230, 231, 237, 0.1)',
       '&:checked': {
-        backgroundColor: 'rgba(230, 231, 237, 0.35)',
+        backgroundColor: 'rgba(230, 231, 237, 0.1)',
         border: `1px solid rgba(230, 231, 237, 0.55)`,
       },
       '&:focus': {
