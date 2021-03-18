@@ -79,7 +79,7 @@ const FormBoxStory: React.FC = () => {
             fullWidth
           />
           <RadioGroupMinimal
-            aria-label="Selext an option"
+            aria-label="Select an option"
             title=""
             name="radioGroupMinimal1"
             value="opt1"
@@ -90,7 +90,7 @@ const FormBoxStory: React.FC = () => {
           </RadioGroupMinimal>
           <Box>
             <RadioGroup
-              aria-label="Selext an option"
+              aria-label="Select an option"
               title="Select an option"
               name="radioGroup2"
               value="opt4"
@@ -100,7 +100,7 @@ const FormBoxStory: React.FC = () => {
               <Radio value="opt6" label="Option 6" />
             </RadioGroup>
             <RadioGroupMinimal
-              aria-label="Selext an option"
+              aria-label="Select an option"
               title="Select an option"
               direction="column"
               name="radioGroupMinimal3"
@@ -154,7 +154,7 @@ const FormBoxStory: React.FC = () => {
             fullWidth
           />
           <RadioGroupMinimal
-            aria-label="Selext an option"
+            aria-label="Select an option"
             title=""
             name="radioGroupMinimal4"
             value="opt10"
@@ -165,7 +165,7 @@ const FormBoxStory: React.FC = () => {
           </RadioGroupMinimal>
           <Box>
             <RadioGroup
-              aria-label="Selext an option"
+              aria-label="Select an option"
               title="Select an option"
               name="radioGroup5"
               value="opt13"
@@ -175,7 +175,7 @@ const FormBoxStory: React.FC = () => {
               <Radio value="opt15" label="Option 15" />
             </RadioGroup>
             <RadioGroupMinimal
-              aria-label="Selext an option"
+              aria-label="Select an option"
               title="Select an option"
               direction="column"
               name="radioGroupMinimal6"
@@ -238,7 +238,7 @@ const FormBoxStory: React.FC = () => {
             fullWidth
           />
           <RadioGroupMinimal
-            aria-label="Selext an option"
+            aria-label="Select an option"
             title=""
             color="inverse"
             name="radioGroupMinimal7"
@@ -250,7 +250,7 @@ const FormBoxStory: React.FC = () => {
           </RadioGroupMinimal>
           <Box>
             <RadioGroup
-              aria-label="Selext an option"
+              aria-label="Select an option"
               title="Select an option"
               name="radioGroup8"
               value="opt22"
@@ -261,7 +261,7 @@ const FormBoxStory: React.FC = () => {
               <Radio value="opt24" label="Option 24" />
             </RadioGroup>
             <RadioGroupMinimal
-              aria-label="Selext an option"
+              aria-label="Select an option"
               title="Select an option"
               direction="column"
               color="inverse"
@@ -325,7 +325,7 @@ const FormBoxStory: React.FC = () => {
             fullWidth
           />
           <RadioGroupMinimal
-            aria-label="Selext an option"
+            aria-label="Select an option"
             title=""
             color="inverse"
             name="radioGroupMinimal10"
@@ -337,7 +337,7 @@ const FormBoxStory: React.FC = () => {
           </RadioGroupMinimal>
           <Box>
             <RadioGroup
-              aria-label="Selext an option"
+              aria-label="Select an option"
               title="Select an option"
               name="radioGroup11"
               value="opt31"
@@ -348,7 +348,7 @@ const FormBoxStory: React.FC = () => {
               <Radio value="opt33" label="Option 33" />
             </RadioGroup>
             <RadioGroupMinimal
-              aria-label="Selext an option"
+              aria-label="Select an option"
               title="Select an option"
               direction="column"
               color="inverse"
