@@ -245,7 +245,7 @@ const disabledInverseBox = {
 
 const inverseBox = {
   fill: 'var(--checkbox-secondary)',
-  fillOpacity: 0.25,
+  fillOpacity: 0.1,
   stroke: 'var(--checkbox-secondary)',
   strokeOpacity: 0.55,
   strokeWidth: 1,
