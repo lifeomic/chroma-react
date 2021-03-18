@@ -67,7 +67,6 @@ const TextAreaStory: React.FC = () => {
             onChange={(e) => {
               setText(e.target.value);
             }}
-            label=""
             aria-label="TextArea with no label"
             helpMessage="No label"
           />
@@ -128,7 +127,6 @@ const TextAreaStory: React.FC = () => {
             onChange={(e) => {
               setText(e.target.value);
             }}
-            label=""
             aria-label="TextArea with no label"
             helpMessage="No label"
           />
@@ -199,7 +197,6 @@ const TextAreaStory: React.FC = () => {
             onChange={(e) => {
               setText(e.target.value);
             }}
-            label=""
             aria-label="TextArea with no label"
             color="inverse"
             helpMessage="No label"
@@ -271,7 +268,6 @@ const TextAreaStory: React.FC = () => {
             onChange={(e) => {
               setText(e.target.value);
             }}
-            label=""
             aria-label="TextArea with no label"
             color="inverse"
             helpMessage="No label"
