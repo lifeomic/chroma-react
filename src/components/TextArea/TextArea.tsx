@@ -30,9 +30,6 @@ export const useStyles = makeStyles(
         marginBottom: theme.spacing(0),
       },
     },
-    labelInverse: {
-      color: theme.palette.common.white,
-    },
     labelIcon: {
       marginLeft: theme.spacing(0.75),
       color: theme.palette.primary.main,
@@ -41,10 +38,16 @@ export const useStyles = makeStyles(
       mixBlendMode: 'screen',
     },
     labelSecondary: {
+      color: theme.palette.text.hint,
       fontSize: theme.pxToRem(11),
       display: 'inline-block',
       margin: theme.spacing(0, 0.75),
-      opacity: 0.65,
+    },
+    labelInverse: {
+      color: theme.palette.common.white,
+      '&$labelSecondary': {
+        opacity: 0.9,
+      },
     },
     textarea: {
       backgroundColor: 'rgba(132, 137, 166, 0.15)',
@@ -73,7 +76,12 @@ export const useStyles = makeStyles(
         opacity: 0.625,
       },
       '&:read-only': {
-        opacity: 0.625,
+        cursor: 'not-allowed',
+        opacity: 0.9,
+        '&:focus': {
+          backgroundColor: 'rgba(132, 137, 166, 0.15)',
+          border: `1px solid transparent`,
+        }
       },
       '&::-webkit-input-placeholder': {
         color: theme.palette.black[400],
@@ -89,11 +97,17 @@ export const useStyles = makeStyles(
       },
     },
     textareaInverse: {
-      backgroundColor: 'rgba(230, 231, 237, 0.25)',
+      backgroundColor: 'rgba(230, 231, 237, 0.1)',
       color: theme.palette.common.white,
       '&:focus': {
-        backgroundColor: 'rgba(230, 231, 237, 0.35)',
+        backgroundColor: 'rgba(230, 231, 237, 0.1)',
         border: `1px solid rgba(230, 231, 237, 0.55)`,
+      },
+      '&:read-only': {
+        opacity: 1,
+        '&:focus': {
+          backgroundColor: 'rgba(230, 231, 237, 0.1)',
+        }
       },
       '&::-webkit-input-placeholder': {
         color: 'rgba(255, 255, 255, 0.8)',
@@ -109,7 +123,7 @@ export const useStyles = makeStyles(
       },
     },
     textareaError: {
-      backgroundColor: 'rgba(255, 255, 255, 0.5)',
+      backgroundColor: 'rgba(230, 231, 237, 0.1)',
       border: `1px solid ${theme.palette.error.main}`,
       '&:focus': {
         border: `1px solid ${theme.palette.error.main}`,
@@ -212,7 +226,14 @@ export const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
             </Tooltip>
           )}
           {secondaryLabel && (
-            <span className={classes.labelSecondary}>{secondaryLabel}</span>
+            <span
+              className={clsx(
+                classes.labelSecondary,
+                color === 'inverse' && classes.labelInverse
+              )}
+            >
+              {secondaryLabel}
+            </span>
           )}
         </label>
         <textarea
