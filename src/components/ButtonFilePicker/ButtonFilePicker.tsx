@@ -157,6 +157,9 @@ export const useStyles = makeStyles(
       height: '100%',
       width: '100%',
       cursor: 'pointer',
+      '&::-webkit-file-upload-button:hover': {
+        cursor: 'pointer',
+      },
     },
     disabled: {
       cursor: 'not-allowed',
