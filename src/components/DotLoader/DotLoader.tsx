@@ -45,7 +45,7 @@ export const useStyles = makeStyles(
     },
     bounce4: {
       animation: '$bounce 1s 0.6s infinite',
-      fill: theme.palette.green.main,
+      fill: theme.palette.green.light,
     },
   }),
   { name: DotLoaderStylesKey }
