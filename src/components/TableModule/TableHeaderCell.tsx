@@ -37,10 +37,10 @@ export const useStyles = makeStyles(
         borderBottom: `4px solid ${theme.palette.primary.main}`,
       },
       // First and last headers have additional spacing intentionally
-      '&:first-of-type': {
+      '&:first-child': {
         paddingLeft: theme.spacing(4),
       },
-      '&:last-of-type': {
+      '&:last-child': {
         paddingRight: theme.spacing(4),
       },
     },
