@@ -25,7 +25,7 @@ export const useStyles = makeStyles(
       background: theme.palette.primary.main,
     },
     highlight: {
-      background: `linear-gradient(135deg, ${theme.palette.primary.light} 0%, ${theme.palette.primary.main} 22%, rgb(166, 66, 254) 92%)`,
+      background: `linear-gradient(135deg, ${theme.palette.primary.light} 0%, ${theme.palette.primary.main} 40%, rgb(166, 66, 254) 92%)`,
       boxShadow: theme.boxShadows.table,
       borderRadius: theme.spacing(0.25, 1),
       borderBottom: 'solid 1px rgba(0, 83, 154, 0.75)',
