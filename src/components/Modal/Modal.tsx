@@ -46,6 +46,8 @@ export const useStyles = makeStyles(
     content: {
       background: theme.palette.common.white,
       borderRadius: theme.pxToRem(10),
+      display: 'flex',
+      flexDirection: 'column',
       margin: '10vh auto',
       outline: 'none',
       paddingTop: theme.spacing(0.25),
