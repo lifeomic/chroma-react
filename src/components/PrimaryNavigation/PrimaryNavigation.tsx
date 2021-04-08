@@ -261,6 +261,7 @@ export const PrimaryNavigation = React.forwardRef<
             <button
               className={classes.footToggle}
               onClick={toggleSidebarCollapsed}
+              role="checkbox"
               aria-checked={isSidebarCollapsed}
               {...getTestProps(testIds.toggleButton)}
             >
