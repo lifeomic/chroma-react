@@ -1,7 +1,8 @@
-import { boolean, select, text } from '@storybook/addon-knobs';
+import { boolean, select, text, number } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
 import * as React from 'react';
 import { Button } from '../../../src/components/Button';
+import { Box } from '../../../src/components/Box';
 import { Checkbox } from '../../../src/components/Checkbox';
 import { FormBox } from '../../../src/components/FormBox';
 import { Modal } from '../../../src/components/Modal';
@@ -25,8 +26,15 @@ const ModalStory: React.FC = () => {
       <Modal
         isOpen={isOpen}
         title={text('title', 'Dialog Example')}
-        fullWidth={boolean('is full width?', false)}
-        size={select('size', [0, 1], 0)}
+        fullWidth={boolean('fullWidth', false)}
+        size={
+          number('size', 0, {
+            range: false,
+            min: 0,
+            max: 2,
+            step: 1,
+          }) as any
+        }
         onDismiss={() => {
           console.log('closing...');
           setIsOpen(false);
@@ -35,10 +43,46 @@ const ModalStory: React.FC = () => {
           'disableDismissOnClickOutside',
           false
         )}
-      />
+      >
+        <Content />
+      </Modal>
     </Container>
   );
 };
+
+function Content() {
+  const [width, setWidth] = React.useState(32);
+  const [height, setHeight] = React.useState(16);
+
+  const setSize = (width: number, height: number) => {
+    setHeight(height);
+    setWidth(width);
+  };
+
+  return (
+    <div>
+      <Box
+        margin={0}
+        padding={2}
+        width={width}
+        height={height}
+        bgColor="blue.200"
+        style={{ display: 'box' }}
+      >
+        <Box direction="column">
+          <Box margin={1} width={18} justify="space-between">
+            <Button onClick={() => setSize(32, 16)}>Small</Button>
+            <Button onClick={() => setSize(256, 256)}>Large</Button>
+          </Box>
+          <Box margin={1} width={18} justify="space-between">
+            <Button onClick={() => setSize(width, height + 16)}>Taller</Button>
+            <Button onClick={() => setSize(width + 16, height)}>Wider</Button>
+          </Box>
+        </Box>
+      </Box>
+    </div>
+  );
+}
 
 const ActionsModalStory: React.FC = () => {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -55,8 +99,15 @@ const ActionsModalStory: React.FC = () => {
       <Modal
         isOpen={isOpen}
         title={text('title', 'Actions Example')}
-        fullWidth={boolean('is full width?', false)}
-        size={select('size', [0, 1], 0)}
+        fullWidth={boolean('fullWidth', false)}
+        size={
+          number('size', 0, {
+            range: false,
+            min: 0,
+            max: 2,
+            step: 1,
+          }) as any
+        }
         onDismiss={() => {
           console.log('closing...');
           setIsOpen(false);
@@ -102,8 +153,15 @@ const FormModalStory: React.FC = () => {
       <Modal
         isOpen={isOpen}
         title={text('title', 'Actions Example')}
-        fullWidth={boolean('is full width?', false)}
-        size={select('size', [0, 1], 0)}
+        fullWidth={boolean('fullWidth', false)}
+        size={
+          number('size', 0, {
+            range: false,
+            min: 0,
+            max: 2,
+            step: 1,
+          }) as any
+        }
         onDismiss={() => {
           console.log('closing...');
           setIsOpen(false);
