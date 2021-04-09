@@ -48,12 +48,11 @@ export const useStyles = makeStyles(
       borderRadius: theme.pxToRem(10),
       display: 'flex',
       flexDirection: 'column',
-      margin: '10vh auto',
+      margin: 'auto',
       outline: 'none',
       paddingTop: theme.spacing(0.25),
       paddingBottom: theme.spacing(0.25),
       width: theme.pxToRem(384),
-      maxWidth: theme.pxToRem(600),
       overflow: 'hidden',
       '@media screen and (max-width: 480px)': {
         marginBottom: theme.spacing(0.75),
@@ -65,9 +64,11 @@ export const useStyles = makeStyles(
       },
     },
     contentFullWidth: {
-      width: 'calc(100% - 6rem)',
+      width: 'unset',
+      minWidth: theme.pxToRem(600),
+      maxWidth: 'calc(100vw - 6rem)',
       '@media screen and (max-width: 480px)': {
-        width: 'unset',
+        maxWidth: 'unset',
       },
     },
     contentSize0: {
@@ -78,6 +79,12 @@ export const useStyles = makeStyles(
     },
     contentSize1: {
       maxHeight: theme.pxToRem(480),
+      '@media screen and (max-width: 480px)': {
+        maxHeight: 'unset',
+      },
+    },
+    contentSize2: {
+      maxHeight: 'calc(100vh - 9rem)',
       '@media screen and (max-width: 480px)': {
         maxHeight: 'unset',
       },
@@ -182,7 +189,7 @@ export interface ModalProps
   disableDismissOnClickOutside?: boolean;
   onFormSubmit?: (data: any) => void;
   poses?: Variants;
-  size?: 0 | 1;
+  size?: 0 | 1 | 2;
   title?: string;
 }
 
@@ -354,6 +361,7 @@ const Content = React.forwardRef<HTMLDivElement, ModalProps>(
                 {
                   [classes.contentSize0]: size === 0,
                   [classes.contentSize1]: size === 1,
+                  [classes.contentSize2]: size === 2,
                 },
                 contentClassName
               )}
