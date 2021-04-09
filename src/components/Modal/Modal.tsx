@@ -67,6 +67,12 @@ export const useStyles = makeStyles(
       width: 'unset',
       minWidth: theme.pxToRem(600),
       maxWidth: 'calc(100vw - 6rem)',
+      // Allow minWidth to dynamically shrink on smaller
+      // screens that are wider than 480px.
+      // 43.5rem is 37.5rem (600px) plus the margin of 6rem
+      '@media screen and (max-width: 43.5rem)': {
+        minWidth: 'calc(100vw - 6rem)',
+      },
       '@media screen and (max-width: 480px)': {
         maxWidth: 'unset',
       },
