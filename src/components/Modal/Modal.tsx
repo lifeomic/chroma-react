@@ -395,7 +395,6 @@ const FullScreenContent = React.forwardRef<HTMLDivElement, ModalProps>(
     ref
   ) => {
     const classes = useStyles({});
-    const shouldReduceMotion = useReducedMotion();
 
     return (
       <motion.div
@@ -410,18 +409,15 @@ const FullScreenContent = React.forwardRef<HTMLDivElement, ModalProps>(
         })}
         ref={ref}
         initial={
-          shouldReduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.2 }
+          { opacity: 0 }
         }
         animate={
-          shouldReduceMotion
-            ? { opacity: 1 }
-            : {
-                opacity: 1,
-                scale: 1,
-                transition: { duration: 0.3, ease: 'easeOut' },
-              }
+          {
+            opacity: 1,
+            transition: { duration: 0.1, ease: [0.16, 1, 0.3, 1] }, // https://easings.net/#easeOutExpo
+          }
         }
-        exit={{ opacity: 0, transition: { duration: 0.2, ease: 'easeIn' } }}
+        exit={{ opacity: 0, transition: { duration: 0.08, ease: [0.7, 0, 0.84, 0] } }} // https://easings.net/#easeInExpo
         {...rootProps}
       >
         {customHeader ? (
