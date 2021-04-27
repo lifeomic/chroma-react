@@ -63,6 +63,11 @@ export const useStyles = makeStyles(
         maxWidth: '480px',
         width: 'unset',
       },
+      '& form': {
+        display: 'flex',
+        flexDirection: 'column',
+        overflow: 'hidden',
+      }
     },
     contentFullWidth: {
       width: 'calc(100% - 6rem)',
@@ -98,6 +103,7 @@ export const useStyles = makeStyles(
       alignItems: 'center',
       borderBottom: `1px solid ${theme.palette.divider}`,
       display: 'flex',
+      height: theme.pxToRem(43),
       justifyContent: 'space-between',
       '&:only-child': {
         borderBottom: 'none',
