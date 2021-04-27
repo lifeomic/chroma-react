@@ -63,6 +63,11 @@ export const useStyles = makeStyles(
         maxWidth: '480px',
         width: 'unset',
       },
+      '& form': {
+        display: 'flex',
+        flexDirection: 'column',
+        overflow: 'hidden',
+      }
     },
     contentFullWidth: {
       width: 'calc(100% - 6rem)',
