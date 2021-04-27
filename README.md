@@ -1,3 +1,5 @@
+# Chroma React
+
 <p align="center">
   <a href="https://github.com/lifeomic/chroma-react">
     <img src="https://github.com/lifeomic/chroma-react/blob/master/.github/chroma@2x.png?raw=true" alt="Chroma logo" width="300" />
