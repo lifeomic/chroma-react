@@ -13,9 +13,10 @@ export const useStyles = makeStyles(
       // Handle the case where an IconButton or IconbuttonLink is in a cell
       // We don't want it to be too large to push out the height of the row!
       '& > button, & > a': {
-        padding: 0,
         display: 'flex',
+        height: theme.pxToRem(26),
         marginRight: theme.spacing(2.5),
+        padding: 0,
         '& > svg': {
           height: theme.pxToRem(15),
           width: theme.pxToRem(15),
