@@ -85,8 +85,7 @@ export const useStyles = makeStyles(
       margin: 0,
       minWidth: theme.pxToRem(175),
       outline: 'none',
-      overflowX: 'hidden',
-      overflowY: 'auto',
+      overflow: 'hidden',
       padding: theme.spacing(0.5, 3.75, 0.5, 1.25),
       position: 'relative',
       transition: 'border 0.5s ease',
@@ -128,6 +127,7 @@ export const useStyles = makeStyles(
       display: 'flex',
       flexFlow: 'column',
       minHeight: theme.pxToRem(32),
+      height: theme.pxToRem(32),
       justifyContent: 'center',
       position: 'absolute',
       right: theme.pxToRem(-6),
@@ -150,6 +150,9 @@ export const useStyles = makeStyles(
     placeholderText: {},
     comboBoxPlaceholder: {
       marginTop: theme.spacing(0.25),
+    },
+    comboxBoxOverflow: {
+      overflowY: 'auto',
     },
     buttonFullWidth: {
       width: '100%',
