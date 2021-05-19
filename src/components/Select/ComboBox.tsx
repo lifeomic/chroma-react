@@ -226,6 +226,7 @@ export const ComboBox: React.FC<ComboBoxProps> = ({
       <PopoverDisclosure
         className={clsx(
           classes.button,
+          classes.comboxBoxOverflow,
           hasError && classes.buttonError,
           fullWidth && classes.buttonFullWidth,
           {
