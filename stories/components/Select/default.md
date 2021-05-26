@@ -22,7 +22,7 @@ import { Select, SelectOption } from '@lifeomic/chroma-react/components/Select';
 >
   <SelectOption title="Option 1" value="option 1" />
   <SelectOption title="Option 2" subtitle="subtitle" value="option 2" />
-  <SelectOption title="Option 3" value="option 3" />
+  <SelectOption disabled title="Option 3" value="option 3" />
   <SelectOption title="Option 4" value="option 4" />
 </Select>
 ```

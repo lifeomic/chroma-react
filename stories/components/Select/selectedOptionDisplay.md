@@ -51,6 +51,7 @@ Option and you have access to the entire object.
     meta={{ name: 'Option 2', description: 'description' }}
   />
   <SelectOption
+    disabled
     title="Option 3"
     value="option 3"
     meta={{ name: 'Option 3', description: 'description' }}
