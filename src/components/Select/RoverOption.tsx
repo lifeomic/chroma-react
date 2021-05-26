@@ -30,7 +30,7 @@ export const useStyles = makeStyles(
 export type RoverOptionClasses = GetClasses<typeof useStyles>;
 
 export interface RoverOptionProps
-  extends Pick<React.ComponentPropsWithoutRef<'select'>, 'value'> {
+  extends Pick<React.ComponentPropsWithoutRef<'select'>, 'value' | 'disabled'> {
   option: React.ReactElement<SelectOptionProps>;
   handleOptionSelect: (optionValue: string, meta: any) => void;
   variants?: Variants;
@@ -44,6 +44,7 @@ export const RoverOption: React.FC<RoverOptionProps> = React.memo(
     rover,
     variants,
     value,
+    disabled,
   }) => {
     const classes = useStyles({});
     const { value: optionValue, meta } = option?.props || {};
@@ -61,9 +62,11 @@ export const RoverOption: React.FC<RoverOptionProps> = React.memo(
         value={option?.props?.value}
         variants={variants}
         onClick={handleClick}
+        disabled={disabled}
       >
         {React.cloneElement<SelectOptionProps>(option, {
           isChecked: optionValue === value,
+          disabled,
           ...option.props,
         })}
       </Rover>

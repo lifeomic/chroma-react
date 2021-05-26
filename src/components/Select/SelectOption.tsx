@@ -44,6 +44,10 @@ export const useStyles = makeStyles(
         },
       },
     },
+    disabled: {
+      cursor: 'not-allowed',
+      opacity: 0.625,
+    },
   }),
   { name: SelectOptionStylesKey }
 );
@@ -52,6 +56,7 @@ export type SelectOptionClasses = GetClasses<typeof useStyles>;
 
 export interface SelectOptionProps {
   className?: string;
+  disabled?: boolean;
   isChecked?: boolean;
   meta?: any;
   subtitle?: string;
@@ -65,6 +70,7 @@ export const SelectOption: React.FC<SelectOptionProps> = ({
   isChecked,
   title,
   subtitle,
+  disabled,
   ...rootProps
 }) => {
   const classes = useStyles({});
@@ -78,7 +84,10 @@ export const SelectOption: React.FC<SelectOptionProps> = ({
         <Box
           direction="column"
           justify="flex-start"
-          className={isChecked ? classes.checked : undefined}
+          className={clsx(
+            isChecked && classes.checked,
+            disabled && classes.disabled
+          )}
         >
           {title && (
             <Text className={classes.title} size="subbody">
