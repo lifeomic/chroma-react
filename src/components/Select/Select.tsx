@@ -26,6 +26,7 @@ import { RoverOption } from './RoverOption';
 import { useRoverState } from 'reakit/Rover';
 import { getTestProps } from '../../testUtils/getTestProps';
 import { screenreaderOnlyStyles } from '../../styles/screenreaderOnly';
+import { Tooltip } from '../Tooltip';
 
 export const testIds = {
   placeholderText: 'select-placeholderText',
@@ -69,6 +70,17 @@ export const useStyles = makeStyles(
       '&$labelSecondary': {
         opacity: 0.9,
       },
+    },
+    labelIcon: {
+      marginLeft: theme.spacing(0.75),
+      color: theme.palette.primary.main,
+    },
+    labelIconInverse: {
+      mixBlendMode: 'screen',
+    },
+    tooltipContainer: {
+      display: 'flex',
+      outline: 'none',
     },
     button: {
       alignItems: 'center',
@@ -307,6 +319,7 @@ export interface SelectProps
   ['aria-label']?: string;
   secondaryLabel?: string;
   fullWidth?: boolean;
+  icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   onChange?: (value: string, meta: any) => void;
   placeholder?: string;
   placement?:
@@ -326,6 +339,7 @@ export interface SelectProps
   selectedOptionDisplay?: (
     option: SelectOptionProps
   ) => string | null | undefined | React.ReactNode;
+  tooltipMessage?: string;
 }
 
 export const Select: React.FC<SelectProps> = ({
@@ -337,6 +351,7 @@ export const Select: React.FC<SelectProps> = ({
   fullWidth,
   hasError,
   helpMessage,
+  icon: Icon,
   id,
   label,
   secondaryLabel,
@@ -345,6 +360,7 @@ export const Select: React.FC<SelectProps> = ({
   placement,
   popoverAriaLabel,
   selectedOptionDisplay,
+  tooltipMessage,
   value,
   ...rootProps
 }) => {
@@ -418,6 +434,22 @@ export const Select: React.FC<SelectProps> = ({
         htmlFor={uniqueId}
       >
         {label || ariaLabel}
+        {!!Icon && tooltipMessage && (
+          <Tooltip title={tooltipMessage}>
+            <span className={classes.tooltipContainer}>
+              <Icon
+                className={clsx(
+                  classes.labelIcon,
+                  color === 'inverse' && classes.labelIconInverse
+                )}
+                width={16}
+                height={16}
+                role="img"
+                aria-hidden
+              />
+            </span>
+          </Tooltip>
+        )}
         {secondaryLabel ? (
           <span
             className={clsx(

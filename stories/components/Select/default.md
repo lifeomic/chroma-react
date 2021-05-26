@@ -61,6 +61,20 @@ Makes the element take 100% of the width.
 <Select fullWidth />
 ```
 
+### Icon + Tooltip Message
+
+An additional icon and tooltip element can be used to provide additional context
+for the user on how the entry will be used.
+
+```jsx
+<Select
+  label="Name"
+  secondaryLabel="Optional"
+  icon={HelpCircle}
+  tooltipMessage="If you provide your name, you'll get free tacos!"
+/>
+```
+
 ### Help Message
 
 Caption, help text to display underneath the element. This should be

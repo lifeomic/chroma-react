@@ -11,6 +11,7 @@ import {
 } from './index';
 import { waitFor } from '@testing-library/dom';
 import { press } from 'reakit-test-utils';
+import { IconComponent } from '../../testUtils/IconComponent';
 
 const headingId = 'GroupHeading';
 const testId = 'Select';
@@ -38,6 +39,37 @@ test('it renders the provided label', async () => {
 
   const label = await findByText('Select one');
   expect(label).toBeInTheDocument();
+});
+
+test('it renders an icon when icon and tooltipMessage are provided', async () => {
+  const props = getBaseProps();
+  const { findByTestId } = renderWithTheme(
+    <Select
+      {...props}
+      icon={IconComponent}
+      tooltipMessage="tooltipMessage"
+      data-testid={testId}
+    />
+  );
+
+  const icon = await findByTestId('iconComponent');
+  expect(icon).toHaveClass('ChromaSelect-labelIcon');
+});
+
+test('it renders an inverse color icon when icon and tooltipMessage are provided', async () => {
+  const props = getBaseProps();
+  const { findByTestId } = renderWithTheme(
+    <Select
+      {...props}
+      color="inverse"
+      icon={IconComponent}
+      tooltipMessage="tooltipMessage"
+      data-testid={testId}
+    />
+  );
+
+  const icon = await findByTestId('iconComponent');
+  expect(icon).toHaveClass('ChromaSelect-labelIconInverse');
 });
 
 test('it renders the provided secondaryLabel', async () => {

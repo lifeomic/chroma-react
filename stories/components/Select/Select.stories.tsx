@@ -6,6 +6,7 @@ import {
   Select,
   SelectOption,
 } from '../../../src/components/Select';
+import { HelpCircle } from '../../../src/icons/lined';
 import { Container } from '../../storyComponents/Container';
 import { Noop } from '../../storyComponents/Noop';
 import defaultMd from './default.md';
@@ -63,11 +64,13 @@ const SelectStory: React.FC = () => {
             <SelectOption title="Option 4" value="option 4" />
           </Select>
           <Select
+            icon={HelpCircle}
             label="Select an option"
             secondaryLabel="Optional"
             placeholder="Optionally pick one…"
             value={selectValue}
             onChange={(v: string) => setSelectValue(v)}
+            tooltipMessage="Perhaps you don't want to use help text? You can stow it here."
           >
             <SelectOption title="Option 1" value="option 1" />
             <SelectOption
@@ -186,11 +189,13 @@ const SelectStory: React.FC = () => {
             <SelectOption title="Option 4" value="option 4" />
           </Select>
           <Select
+            icon={HelpCircle}
             label="Select an option"
             secondaryLabel="Optional"
             placeholder="Optionally pick one…"
             value={selectValue}
             onChange={(v: string) => setSelectValue(v)}
+            tooltipMessage="Perhaps you don't want to use help text? You can stow it here."
           >
             <SelectOption title="Option 1" value="option 1" />
             <SelectOption
@@ -311,12 +316,14 @@ const SelectStory: React.FC = () => {
             <SelectOption title="Option 4" value="option 4" />
           </Select>
           <Select
+            icon={HelpCircle}
             label="Select an option"
             secondaryLabel="Optional"
             placeholder="Optionally pick one…"
             value={selectValue}
             onChange={(v: string) => setSelectValue(v)}
             color="inverse"
+            tooltipMessage="Perhaps you don't want to use help text? You can stow it here."
           >
             <SelectOption title="Option 1" value="option 1" />
             <SelectOption
@@ -446,12 +453,14 @@ const SelectStory: React.FC = () => {
             <SelectOption title="Option 4" value="option 4" />
           </Select>
           <Select
+            icon={HelpCircle}
             label="Select an option"
             secondaryLabel="Optional"
             placeholder="Optionally pick one…"
             value={selectValue}
             onChange={(v: string) => setSelectValue(v)}
             color="inverse"
+            tooltipMessage="Perhaps you don't want to use help text? You can stow it here."
           >
             <SelectOption title="Option 1" value="option 1" />
             <SelectOption
