@@ -160,5 +160,5 @@ Applies the color to the element.
 
 ## Links
 
-- [Component Source](https://github.com/lifeomic/chroma-react/blob/master/src/components/ComboBox/ComboBox.tsx)
+- [Component Source](https://github.com/lifeomic/chroma-react/blob/master/src/components/Select/ComboBox.tsx)
 - [Story Source](https://github.com/lifeomic/chroma-react/blob/master/stories/components/ComboBox/ComboBox.stories.tsx)
