@@ -379,3 +379,26 @@ test('it applies aria-describedby for helpMessage and errorMessage', async () =>
     'error-for-unique-id help-for-unique-id'
   );
 });
+
+test('it can render a disabled option', async () => {
+  const props = getBaseProps();
+  const mockFn = jest.fn();
+
+  const { findByTestId } = renderWithTheme(
+    <Select {...props} onChange={mockFn} data-testid={testId}>
+      <SelectOption title="option1" value="option1" />
+      <SelectOption
+        data-testid="disabled-option"
+        disabled
+        title="option2"
+        value="option2"
+      />
+    </Select>
+  );
+
+  const select = await findByTestId(testId);
+  fireEvent.click(select);
+
+  const option = await findByTestId('disabled-option');
+  expect(option.parentElement).toHaveAttribute('aria-disabled', 'true');
+});
