@@ -113,7 +113,6 @@ export interface RadioProps extends BaseFormElement {}
 export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
   (
     {
-      ['aria-label']: ariaLabel,
       className,
       children,
       checked = false,
@@ -143,12 +142,6 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
       onChangeFromContext && onChangeFromContext(e);
     };
 
-    if (!label && !ariaLabel && process.env.NODE_ENV === 'development') {
-      throw new Error(
-        'If a "label" is not provided to Radio, please provide "aria-label".'
-      );
-    }
-
     return (
       <div className={clsx(classes.root, className)}>
         <input
@@ -156,7 +149,6 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
             hasHelpMessage: !!helpMessage,
             uniqueId,
           })}
-          aria-label={ariaLabel}
           className={clsx(classes.input, {
             [classes.inputInverse]:
               color === 'inverse' || colorFromContext === 'inverse',
@@ -177,20 +169,18 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
           {...rootProps}
         />
         <div className={classes.labelContainer}>
-          {label && (
-            <label className={classes.label} htmlFor={uniqueId}>
-              <Text
-                size="subbody"
-                className={
-                  color === 'inverse' || colorFromContext === 'inverse'
-                    ? classes.labelInverse
-                    : undefined
-                }
-              >
-                {label}
-              </Text>
-            </label>
-          )}
+          <label className={classes.label} htmlFor={uniqueId}>
+            <Text
+              size="subbody"
+              className={
+                color === 'inverse' || colorFromContext === 'inverse'
+                  ? classes.labelInverse
+                  : undefined
+              }
+            >
+              {label}
+            </Text>
+          </label>
           {helpMessage && (
             <FormHelpMessage
               color={color || colorFromContext}
