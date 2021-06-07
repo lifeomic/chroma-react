@@ -33,13 +33,13 @@ export interface TableHeader extends TableAlignOptions {
   className?: string;
 }
 
-export interface TableCell extends TableAlignOptions {
+export interface TableCell<Item = any> extends TableAlignOptions {
   valuePath?: string;
-  content?(cell: any): any;
+  content?(cell: Item): any;
   className?: string;
 }
 
-export interface TableConfiguration {
+export interface TableConfiguration<Item = any> {
   header: TableHeader;
-  cell: TableCell;
+  cell: TableCell<Item>;
 }
