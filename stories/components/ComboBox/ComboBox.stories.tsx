@@ -40,7 +40,7 @@ const ComboBoxStory: React.FC = () => {
               subtitle="This is a subtitle. For options that need a little extra description."
               value="option 2"
             />
-            <SelectOption title="Option 3" value="option 3" />
+            <SelectOption disabled title="Option 3" value="option 3" />
             <SelectOption title="Option 4" value="option 4" />
             <SelectOption
               title="Option 5 has really long content"
@@ -64,7 +64,7 @@ const ComboBoxStory: React.FC = () => {
               subtitle="This is a subtitle. For options that need a little extra description."
               value="option 2"
             />
-            <SelectOption title="Option 3" value="option 3" />
+            <SelectOption disabled title="Option 3" value="option 3" />
             <SelectOption title="Option 4" value="option 4" />
             <SelectOption
               title="Option 5 has really long content"
@@ -88,7 +88,7 @@ const ComboBoxStory: React.FC = () => {
               subtitle="This is a subtitle. For options that need a little extra description."
               value="option 2"
             />
-            <SelectOption title="Option 3" value="option 3" />
+            <SelectOption disabled title="Option 3" value="option 3" />
             <SelectOption title="Option 4" value="option 4" />
             <SelectOption
               title="Option 5 has really long content"
@@ -113,7 +113,7 @@ const ComboBoxStory: React.FC = () => {
               subtitle="This is a subtitle. For options that need a little extra description."
               value="option 2"
             />
-            <SelectOption title="Option 3" value="option 3" />
+            <SelectOption disabled title="Option 3" value="option 3" />
             <SelectOption title="Option 4" value="option 4" />
             <SelectOption
               title="Option 5 has really long content"
@@ -147,7 +147,7 @@ const ComboBoxStory: React.FC = () => {
               subtitle="This is a subtitle. For options that need a little extra description."
               value="option 2"
             />
-            <SelectOption title="Option 3" value="option 3" />
+            <SelectOption disabled title="Option 3" value="option 3" />
             <SelectOption title="Option 4" value="option 4" />
             <SelectOption
               title="Option 5 has really long content"
@@ -176,7 +176,7 @@ const ComboBoxStory: React.FC = () => {
               subtitle="This is a subtitle. For options that need a little extra description."
               value="option 2"
             />
-            <SelectOption title="Option 3" value="option 3" />
+            <SelectOption disabled title="Option 3" value="option 3" />
             <SelectOption title="Option 4" value="option 4" />
             <SelectOption
               title="Option 5 has really long content"
@@ -213,7 +213,7 @@ const ComboBoxStory: React.FC = () => {
               subtitle="This is a subtitle. For options that need a little extra description."
               value="option 2"
             />
-            <SelectOption title="Option 3" value="option 3" />
+            <SelectOption disabled title="Option 3" value="option 3" />
             <SelectOption title="Option 4" value="option 4" />
             <SelectOption
               title="Option 5 has really long content"
@@ -237,7 +237,7 @@ const ComboBoxStory: React.FC = () => {
               subtitle="This is a subtitle. For options that need a little extra description."
               value="option 2"
             />
-            <SelectOption title="Option 3" value="option 3" />
+            <SelectOption disabled title="Option 3" value="option 3" />
             <SelectOption title="Option 4" value="option 4" />
             <SelectOption
               title="Option 5 has really long content"
@@ -261,7 +261,7 @@ const ComboBoxStory: React.FC = () => {
               subtitle="This is a subtitle. For options that need a little extra description."
               value="option 2"
             />
-            <SelectOption title="Option 3" value="option 3" />
+            <SelectOption disabled title="Option 3" value="option 3" />
             <SelectOption title="Option 4" value="option 4" />
             <SelectOption
               title="Option 5 has really long content"
@@ -286,7 +286,7 @@ const ComboBoxStory: React.FC = () => {
               subtitle="This is a subtitle. For options that need a little extra description."
               value="option 2"
             />
-            <SelectOption title="Option 3" value="option 3" />
+            <SelectOption disabled title="Option 3" value="option 3" />
             <SelectOption title="Option 4" value="option 4" />
             <SelectOption
               title="Option 5 has really long content"
@@ -320,7 +320,7 @@ const ComboBoxStory: React.FC = () => {
               subtitle="This is a subtitle. For options that need a little extra description."
               value="option 2"
             />
-            <SelectOption title="Option 3" value="option 3" />
+            <SelectOption disabled title="Option 3" value="option 3" />
             <SelectOption title="Option 4" value="option 4" />
             <SelectOption
               title="Option 5 has really long content"
@@ -349,7 +349,7 @@ const ComboBoxStory: React.FC = () => {
               subtitle="This is a subtitle. For options that need a little extra description."
               value="option 2"
             />
-            <SelectOption title="Option 3" value="option 3" />
+            <SelectOption disabled title="Option 3" value="option 3" />
             <SelectOption title="Option 4" value="option 4" />
             <SelectOption
               title="Option 5 has really long content"
@@ -387,7 +387,7 @@ const ComboBoxStory: React.FC = () => {
               subtitle="This is a subtitle. For options that need a little extra description."
               value="option 2"
             />
-            <SelectOption title="Option 3" value="option 3" />
+            <SelectOption disabled title="Option 3" value="option 3" />
             <SelectOption title="Option 4" value="option 4" />
             <SelectOption
               title="Option 5 has really long content"
@@ -412,7 +412,7 @@ const ComboBoxStory: React.FC = () => {
               subtitle="This is a subtitle. For options that need a little extra description."
               value="option 2"
             />
-            <SelectOption title="Option 3" value="option 3" />
+            <SelectOption disabled title="Option 3" value="option 3" />
             <SelectOption title="Option 4" value="option 4" />
             <SelectOption
               title="Option 5 has really long content"
@@ -437,7 +437,7 @@ const ComboBoxStory: React.FC = () => {
               subtitle="This is a subtitle. For options that need a little extra description."
               value="option 2"
             />
-            <SelectOption title="Option 3" value="option 3" />
+            <SelectOption disabled title="Option 3" value="option 3" />
             <SelectOption title="Option 4" value="option 4" />
             <SelectOption
               title="Option 5 has really long content"
@@ -463,7 +463,7 @@ const ComboBoxStory: React.FC = () => {
               subtitle="This is a subtitle. For options that need a little extra description."
               value="option 2"
             />
-            <SelectOption title="Option 3" value="option 3" />
+            <SelectOption disabled title="Option 3" value="option 3" />
             <SelectOption title="Option 4" value="option 4" />
             <SelectOption
               title="Option 5 has really long content"
@@ -499,7 +499,7 @@ const ComboBoxStory: React.FC = () => {
               subtitle="This is a subtitle. For options that need a little extra description."
               value="option 2"
             />
-            <SelectOption title="Option 3" value="option 3" />
+            <SelectOption disabled title="Option 3" value="option 3" />
             <SelectOption title="Option 4" value="option 4" />
             <SelectOption
               title="Option 5 has really long content"
@@ -529,7 +529,7 @@ const ComboBoxStory: React.FC = () => {
               subtitle="This is a subtitle. For options that need a little extra description."
               value="option 2"
             />
-            <SelectOption title="Option 3" value="option 3" />
+            <SelectOption disabled title="Option 3" value="option 3" />
             <SelectOption title="Option 4" value="option 4" />
             <SelectOption
               title="Option 5 has really long content"
@@ -567,7 +567,7 @@ const ComboBoxStory: React.FC = () => {
               subtitle="This is a subtitle. For options that need a little extra description."
               value="option 2"
             />
-            <SelectOption title="Option 3" value="option 3" />
+            <SelectOption disabled title="Option 3" value="option 3" />
             <SelectOption title="Option 4" value="option 4" />
             <SelectOption
               title="Option 5 has really long content"
@@ -592,7 +592,7 @@ const ComboBoxStory: React.FC = () => {
               subtitle="This is a subtitle. For options that need a little extra description."
               value="option 2"
             />
-            <SelectOption title="Option 3" value="option 3" />
+            <SelectOption disabled title="Option 3" value="option 3" />
             <SelectOption title="Option 4" value="option 4" />
             <SelectOption
               title="Option 5 has really long content"
@@ -617,7 +617,7 @@ const ComboBoxStory: React.FC = () => {
               subtitle="This is a subtitle. For options that need a little extra description."
               value="option 2"
             />
-            <SelectOption title="Option 3" value="option 3" />
+            <SelectOption disabled title="Option 3" value="option 3" />
             <SelectOption title="Option 4" value="option 4" />
             <SelectOption
               title="Option 5 has really long content"
@@ -643,7 +643,7 @@ const ComboBoxStory: React.FC = () => {
               subtitle="This is a subtitle. For options that need a little extra description."
               value="option 2"
             />
-            <SelectOption title="Option 3" value="option 3" />
+            <SelectOption disabled title="Option 3" value="option 3" />
             <SelectOption title="Option 4" value="option 4" />
             <SelectOption
               title="Option 5 has really long content"
@@ -679,7 +679,7 @@ const ComboBoxStory: React.FC = () => {
               subtitle="This is a subtitle. For options that need a little extra description."
               value="option 2"
             />
-            <SelectOption title="Option 3" value="option 3" />
+            <SelectOption disabled title="Option 3" value="option 3" />
             <SelectOption title="Option 4" value="option 4" />
             <SelectOption
               title="Option 5 has really long content"
@@ -709,7 +709,7 @@ const ComboBoxStory: React.FC = () => {
               subtitle="This is a subtitle. For options that need a little extra description."
               value="option 2"
             />
-            <SelectOption title="Option 3" value="option 3" />
+            <SelectOption disabled title="Option 3" value="option 3" />
             <SelectOption title="Option 4" value="option 4" />
             <SelectOption
               title="Option 5 has really long content"
