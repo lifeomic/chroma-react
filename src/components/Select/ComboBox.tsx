@@ -382,6 +382,7 @@ export const ComboBox: React.FC<ComboBoxProps> = ({
                     aria-selected={value?.includes(option?.props?.value)}
                     className={classes.option}
                     as={motion.li}
+                    disabled={child?.props?.disabled}
                     role="option"
                     value={option?.props?.value}
                     variants={
