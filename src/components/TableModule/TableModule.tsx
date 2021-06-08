@@ -194,12 +194,12 @@ export const useStyles = makeStyles(
 
 export type TableModuleClasses = GetClasses<typeof useStyles>;
 
-export interface TableModuleProps
+export interface TableModuleProps<Item = any>
   extends React.DetailedHTMLProps<
     React.HTMLAttributes<HTMLTableElement>,
     HTMLTableElement
   > {
-  config?: Array<TableConfiguration>;
+  config?: Array<TableConfiguration<Item>>;
   data?: Array<any>;
   isLoading?: boolean;
   onRowClick?: (row: any) => void;
