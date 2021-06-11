@@ -9,12 +9,10 @@ on:
 
 jobs:
   build:
+    if: ${{ github.head_ref }} == "master"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Exit if not on master branch
-        if: endsWith(github.ref, 'master') == false
-        run: exit 0
       - uses: actions/setup-node@v1
         with:
           node-version: 12
