@@ -3,13 +3,21 @@ import { TextFieldProps, TextField } from '../TextField';
 
 import { makeStyles } from '../../styles';
 import clsx from 'clsx';
+import { GetClasses } from '../../typeUtils';
 
-const useStyles = makeStyles((theme) => ({
-  textField: {
-    marginTop: theme.spacing(2),
-    marginBottom: theme.spacing(1),
-  },
-}));
+export const UnitNumberFormatFieldStylesKey = 'ChromaUnitNumberFormatField';
+
+const useStyles = makeStyles(
+  (theme) => ({
+    textField: {
+      marginTop: theme.spacing(2),
+      marginBottom: theme.spacing(1),
+    },
+  }),
+  { name: UnitNumberFormatFieldStylesKey }
+);
+
+export type UnitNumberFormatFieldClasses = GetClasses<typeof useStyles>;
 
 export const UnitNumberFormatField: React.FC<
   Omit<TextFieldProps, 'onChange' | 'value'> & {

@@ -185,6 +185,12 @@ import {
 import { ToggleClasses, ToggleStylesKey } from '../../components/Toggle';
 import { TooltipClasses, TooltipStylesKey } from '../../components/Tooltip';
 import {
+  UnitNumberFormatFieldClasses,
+  UnitNumberFormatFieldStylesKey,
+  PhoneNumberFormatFieldClasses,
+  PhoneNumberFormatFieldStylesKey,
+} from '../../components/NumberFormat';
+import {
   ButtonUnstyledClasses,
   ButtonUnstyledStylesKey,
 } from '../../components/ButtonUnstyled';
@@ -234,6 +240,7 @@ export interface ChromaComponentNameToClassKey {
   [PageHeaderStylesKey]: PageHeaderClasses;
   [PageLayoutStylesKey]: PageLayoutClasses;
   [PaperStylesKey]: PaperClasses;
+  [PhoneNumberFormatFieldStylesKey]: PhoneNumberFormatFieldClasses;
   [PillStylesKey]: PillClasses;
   [PopoverActionsStylesKey]: PopoverActionsClasses;
   [PopoverStylesKey]: PopoverClasses;
@@ -270,4 +277,5 @@ export interface ChromaComponentNameToClassKey {
   [TextFieldStylesKey]: TextFieldClasses;
   [ToggleStylesKey]: ToggleClasses;
   [TooltipStylesKey]: TooltipClasses;
+  [UnitNumberFormatFieldStylesKey]: UnitNumberFormatFieldClasses;
 }

@@ -5,6 +5,9 @@ import flags from 'react-phone-number-input/flags';
 import PhoneInput, { PhoneInputProps } from 'react-phone-number-input';
 import { makeStyles } from '../../styles';
 import clsx from 'clsx';
+import { GetClasses } from '../../typeUtils';
+
+export const PhoneNumberFormatFieldStylesKey = 'ChromaPhoneNumberFormatField';
 
 const useStyles = ({
   about,
@@ -13,31 +16,36 @@ const useStyles = ({
   about?: string;
   errorMessage?: string;
 }) =>
-  makeStyles((theme) => ({
-    textField: {
-      marginTop: theme.spacing(2),
-      marginBottom: theme.spacing(1),
-    },
-    phoneInputRoot: {
-      display: 'flex',
-      width: '100%',
-      position: 'relative',
-      '& > .PhoneInputCountry': {
-        position: 'absolute',
-        bottom: theme.spacing(about || errorMessage ? 5.25 : 2.5),
-        left: theme.spacing(1),
-        '& .PhoneInputCountryIcon--border': {
-          boxShadow: 'unset',
-          backgroundColor: 'unset',
+  makeStyles(
+    (theme) => ({
+      textField: {
+        marginTop: theme.spacing(2),
+        marginBottom: theme.spacing(1),
+      },
+      phoneInputRoot: {
+        display: 'flex',
+        width: '100%',
+        position: 'relative',
+        '& > .PhoneInputCountry': {
+          position: 'absolute',
+          bottom: theme.spacing(about || errorMessage ? 5.25 : 2.5),
+          left: theme.spacing(1),
+          '& .PhoneInputCountryIcon--border': {
+            boxShadow: 'unset',
+            backgroundColor: 'unset',
+          },
         },
       },
-    },
-    phoneInput: {
-      '& > input': {
-        paddingLeft: theme.spacing(6),
+      phoneInput: {
+        '& > input': {
+          paddingLeft: theme.spacing(6),
+        },
       },
-    },
-  }))({});
+    }),
+    { name: PhoneNumberFormatFieldStylesKey }
+  )({});
+
+export type PhoneNumberFormatFieldClasses = GetClasses<typeof useStyles>;
 
 const PhoneInputCompatibleChromaInput = React.forwardRef<
   HTMLInputElement,
