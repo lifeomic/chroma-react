@@ -1,7 +1,5 @@
 import clsx from 'clsx';
 import * as React from 'react';
-import { makeStyles, useTheme } from '../../styles';
-import { GetClasses } from '../../typeUtils';
 import {
   BaseFormElement,
   buildDescribedBy,
@@ -10,10 +8,12 @@ import {
   FormHelpMessage,
   helpFor,
 } from '../_private/forms';
-import { generateUniqueId } from '../_private/UniqueId';
-import { Tooltip } from '../Tooltip';
-import { Popover, PopoverItem, PopoverList } from '../Popover';
 import { ButtonUnstyled } from '../ButtonUnstyled';
+import { generateUniqueId } from '../_private/UniqueId';
+import { GetClasses } from '../../typeUtils';
+import { makeStyles, useTheme } from '../../styles';
+import { Popover, PopoverItem, PopoverList } from '../Popover';
+import { Tooltip } from '../Tooltip';
 
 export const ColorPickerStylesKey = 'ChromaColorPicker';
 
@@ -174,7 +174,6 @@ export const useStyles = makeStyles(
       display: 'flex',
       flexWrap: 'wrap',
       padding: 0,
-      // justifyContent: 'space-between',
     },
     popoverItem: {
       padding: 0,
@@ -208,19 +207,27 @@ export const useStyles = makeStyles(
   { name: ColorPickerStylesKey }
 );
 
+const isValidHexColor = (color: string) => {
+  const hexRegex = new RegExp(/^#[0-9A-F]{6}$/i);
+  const shortHandHexRegex = new RegExp(/^#([0-9A-F]{3}){1,2}$/i);
+  return hexRegex.test(color) || shortHandHexRegex.test(color);
+};
+
 export type ColorPickerClasses = GetClasses<typeof useStyles>;
 
 export interface ColorPickerProps
-  extends React.ComponentPropsWithoutRef<'input'> {
+  extends Omit<React.ComponentPropsWithoutRef<'input'>, 'onChange'> {
   color?: BaseFormElement['color'];
-  colorOptions?: Array<string>;
+  colorSuggestions?: Array<string>;
   colorVariant?: 'square' | 'circle';
   errorMessage?: BaseFormElement['errorMessage'];
   fullWidth?: boolean;
   hasError?: BaseFormElement['hasError'];
   helpMessage?: BaseFormElement['helpMessage'];
   icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  invalidColorText?: string;
   label?: BaseFormElement['label'];
+  onChange?: (color: string) => void;
   secondaryLabel?: string;
   tooltipMessage?: string;
   value?: string;
@@ -232,7 +239,7 @@ export const ColorPicker = React.forwardRef<HTMLInputElement, ColorPickerProps>(
       ['aria-label']: ariaLabel,
       className,
       color = 'default',
-      colorOptions,
+      colorSuggestions,
       colorVariant = 'square',
       disabled,
       errorMessage,
@@ -241,6 +248,7 @@ export const ColorPicker = React.forwardRef<HTMLInputElement, ColorPickerProps>(
       helpMessage,
       icon: Icon,
       id,
+      invalidColorText = 'Invalid Color',
       label,
       name,
       onChange,
@@ -252,29 +260,32 @@ export const ColorPicker = React.forwardRef<HTMLInputElement, ColorPickerProps>(
     },
     ref
   ) => {
-    // const [error, setError] = React.useState(false);
     const [colorValue, setColorValue] = React.useState<string>(value);
 
     const classes = useStyles({});
     const { palette } = useTheme();
 
-    const colors = [
-      palette?.red?.main,
-      palette?.red?.light,
-      palette?.orange?.main,
-      palette?.orange?.light,
-      palette?.yellow?.main,
-      palette?.yellow?.light,
-      palette?.green?.main,
-      palette?.green?.light,
-      palette?.blue?.main,
-      palette?.blue?.light,
-      palette?.purple?.main,
-      palette?.purple?.light,
-      palette?.black?.main,
-      palette?.black?.light,
-      palette?.common?.white,
-    ].filter(Boolean) as Array<string>;
+    const colors = colorSuggestions?.length
+      ? colorSuggestions
+      : ([
+          palette?.red?.main,
+          palette?.red?.light,
+          palette?.orange?.main,
+          palette?.orange?.light,
+          palette?.yellow?.main,
+          palette?.yellow?.light,
+          palette?.green?.main,
+          palette?.green?.light,
+          palette?.blue?.main,
+          palette?.blue?.light,
+          palette?.purple?.main,
+          palette?.purple?.light,
+          palette?.black?.main,
+          palette?.black?.light,
+          palette?.common?.white,
+        ].filter(Boolean) as Array<string>);
+
+    const isValidColor = isValidHexColor(colorValue);
 
     const [uniqueId] = React.useState<string>(
       () => id || name || generateUniqueId('ColorPicker-')
@@ -285,12 +296,6 @@ export const ColorPicker = React.forwardRef<HTMLInputElement, ColorPickerProps>(
         'If a "label" is not provided to ColorPicker, please provide "aria-label".'
       );
     }
-
-    const isValidColor = (color: string) => {
-      const s = new Option().style;
-      s.color = color;
-      return s.color !== '';
-    };
 
     const Color = ({
       className,
@@ -307,14 +312,14 @@ export const ColorPicker = React.forwardRef<HTMLInputElement, ColorPickerProps>(
           colorVariant === 'square' && classes.colorSquare
         )}
         style={{
-          backgroundColor: isValidColor(color) ? color : 'black',
+          backgroundColor: isValidHexColor(color) ? color : '#000000',
         }}
       />
     );
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      setColorValue(e.target.value);
-      onChange?.(e);
+    const handleChange = (color: string) => {
+      setColorValue(color);
+      onChange?.(color);
     };
 
     return (
@@ -332,14 +337,14 @@ export const ColorPicker = React.forwardRef<HTMLInputElement, ColorPickerProps>(
               <Tooltip title={tooltipMessage}>
                 <span className={classes.tooltipContainer}>
                   <Icon
+                    aria-hidden
                     className={clsx(
                       classes.labelIcon,
                       color === 'inverse' && classes.labelIconInverse
                     )}
-                    width={16}
                     height={16}
+                    width={16}
                     role="img"
-                    aria-hidden
                   />
                 </span>
               </Tooltip>
@@ -369,7 +374,6 @@ export const ColorPicker = React.forwardRef<HTMLInputElement, ColorPickerProps>(
               uniqueId,
             })}
             aria-label={ariaLabel}
-            ref={ref}
             className={clsx(
               classes.input,
               fullWidth && classes.inputFullWidth,
@@ -380,51 +384,56 @@ export const ColorPicker = React.forwardRef<HTMLInputElement, ColorPickerProps>(
             disabled={disabled}
             id={uniqueId}
             name={name}
-            onChange={handleChange}
+            onChange={(e) => handleChange(e.target.value)}
             readOnly={readOnly}
+            ref={ref}
             type="text"
-            // value={colorValue}
+            value={colorValue}
             {...rootProps}
           />
 
           <Popover
-            aria-label="Color Picker"
             anchorElement={
-              <ButtonUnstyled disabled={disabled || readOnly}>
+              <ButtonUnstyled
+                aria-label="Pick color"
+                disabled={disabled || readOnly}
+              >
                 <Color className={classes.colorPosition} color={colorValue} />
               </ButtonUnstyled>
             }
+            aria-label="Color Picker"
           >
             {({ popover }: { popover: any }) => (
               <>
-                {!!colorValue && isValidColor(colorValue) && (
-                  <div
-                    className={classes.valueDisplay}
-                    style={{
-                      backgroundColor: colorValue,
-                      // color: palette.getContrastText(colorValue),
-                    }}
-                  >
-                    {colorValue}
-                  </div>
-                )}
+                <div
+                  className={classes.valueDisplay}
+                  style={{
+                    backgroundColor: isValidColor
+                      ? value
+                      : palette?.common?.black,
+                    color: isValidHexColor(value)
+                      ? palette.getContrastText(value)
+                      : palette?.common?.white,
+                  }}
+                >
+                  {isValidColor ? value : invalidColorText}
+                </div>
+
                 <PopoverList className={classes.popoverList}>
-                  {(colorOptions?.length ? colorOptions : colors).map(
-                    (color: string, index: number) => (
-                      <PopoverItem className={classes.popoverItem} key={index}>
-                        <ButtonUnstyled
-                          aria-label={`${color} Option`}
-                          className={classes.colorButton}
-                          onClick={() => {
-                            setColorValue(color);
-                            popover.hide();
-                          }}
-                        >
-                          <Color color={color} />
-                        </ButtonUnstyled>
-                      </PopoverItem>
-                    )
-                  )}
+                  {colors.map((color: string, index: number) => (
+                    <PopoverItem className={classes.popoverItem} key={index}>
+                      <ButtonUnstyled
+                        aria-label={`Pick ${color}`}
+                        className={classes.colorButton}
+                        onClick={() => {
+                          handleChange?.(color);
+                          popover.hide();
+                        }}
+                      >
+                        <Color color={color} />
+                      </ButtonUnstyled>
+                    </PopoverItem>
+                  ))}
                 </PopoverList>
               </>
             )}
@@ -439,18 +448,18 @@ export const ColorPicker = React.forwardRef<HTMLInputElement, ColorPickerProps>(
               classes.helpMessage,
               color === 'inverse' && classes.helpMessageInverse
             )}
-            rootElementId={uniqueId}
             describedById={helpFor(uniqueId)}
+            rootElementId={uniqueId}
           >
             {helpMessage}
           </FormHelpMessage>
         )}
         {hasError && errorMessage && (
           <FormErrorMessage
-            color={color}
             className={clsx(classes.trailerMessage)}
-            rootElementId={uniqueId}
+            color={color}
             describedById={errorFor(uniqueId)}
+            rootElementId={uniqueId}
           >
             {errorMessage}
           </FormErrorMessage>
