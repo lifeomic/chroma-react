@@ -63,11 +63,11 @@ export const useStyles = makeStyles(
         maxWidth: '480px',
         width: 'unset',
       },
-      '& form': {
-        display: 'flex',
-        flexDirection: 'column',
-        overflow: 'hidden',
-      }
+      // '& form': {
+      //   display: 'flex',
+      //   flexDirection: 'column',
+      //   overflow: 'hidden',
+      // }
     },
     contentFullWidth: {
       width: 'calc(100% - 6rem)',
@@ -408,16 +408,15 @@ const FullScreenContent = React.forwardRef<HTMLDivElement, ModalProps>(
           event.stopPropagation();
         })}
         ref={ref}
-        initial={
-          { opacity: 0 }
-        }
-        animate={
-          {
-            opacity: 1,
-            transition: { duration: 0.1, ease: [0.16, 1, 0.3, 1] }, // https://easings.net/#easeOutExpo
-          }
-        }
-        exit={{ opacity: 0, transition: { duration: 0.08, ease: [0.7, 0, 0.84, 0] } }} // https://easings.net/#easeInExpo
+        initial={{ opacity: 0 }}
+        animate={{
+          opacity: 1,
+          transition: { duration: 0.1, ease: [0.16, 1, 0.3, 1] }, // https://easings.net/#easeOutExpo
+        }}
+        exit={{
+          opacity: 0,
+          transition: { duration: 0.08, ease: [0.7, 0, 0.84, 0] },
+        }} // https://easings.net/#easeInExpo
         {...rootProps}
       >
         {customHeader ? (
