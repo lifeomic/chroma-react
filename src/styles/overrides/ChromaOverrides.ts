@@ -188,6 +188,10 @@ import {
   ButtonUnstyledClasses,
   ButtonUnstyledStylesKey,
 } from '../../components/ButtonUnstyled';
+import {
+  ColorPickerClasses,
+  ColorPickerStylesKey,
+} from '../../components/ColorPicker';
 
 export type ChromaOverrides = {
   [Name in keyof ChromaComponentNameToClassKey]?: Partial<
@@ -212,6 +216,7 @@ export interface ChromaComponentNameToClassKey {
   [ButtonUnstyledStylesKey]: ButtonUnstyledClasses;
   [CheckboxStylesKey]: CheckboxClasses;
   [ChipStylesKey]: ChipClasses;
+  [ColorPickerStylesKey]: ColorPickerClasses;
   [DividerStylesKey]: DividerClasses;
   [DotLoaderStylesKey]: DotLoaderClasses;
   [ExpansionPanelStylesKey]: ExpansionPanelClasses;
