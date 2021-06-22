@@ -164,8 +164,8 @@ export const useStyles = makeStyles(
       outline: 'none',
     },
     valueDisplay: {
-      borderBottom: `${theme.pxToRem(1)} solid ${theme.palette.divider}`,
       alignItems: 'center',
+      borderBottom: `${theme.pxToRem(1)} solid ${theme.palette.divider}`,
       display: 'flex',
       height: theme.pxToRem(50),
       justifyContent: 'center',
@@ -188,9 +188,9 @@ export const useStyles = makeStyles(
     color: {
       boxShadow: 'inset 0 0 3px rgb(38 44 50 / 20%)',
       display: 'block',
-      height: 20,
+      height: theme.pxToRem(20),
       margin: theme.spacing(1),
-      width: 20,
+      width: theme.pxToRem(20),
     },
     colorPosition: {
       position: 'absolute',
@@ -198,10 +198,10 @@ export const useStyles = makeStyles(
       top: 0,
     },
     colorCircle: {
-      borderRadius: 10,
+      borderRadius: theme.pxToRem(10),
     },
     colorSquare: {
-      borderRadius: 5,
+      borderRadius: theme.pxToRem(5),
     },
   }),
   { name: ColorPickerStylesKey }
@@ -219,7 +219,6 @@ export interface ColorPickerProps
   extends Omit<React.ComponentPropsWithoutRef<'input'>, 'onChange'> {
   color?: BaseFormElement['color'];
   colorSuggestions?: Array<string>;
-  colorVariant?: 'square' | 'circle';
   errorMessage?: BaseFormElement['errorMessage'];
   fullWidth?: boolean;
   hasError?: BaseFormElement['hasError'];
@@ -231,6 +230,7 @@ export interface ColorPickerProps
   secondaryLabel?: string;
   tooltipMessage?: string;
   value?: string;
+  variant?: 'square' | 'circle';
 }
 
 export const ColorPicker = React.forwardRef<HTMLInputElement, ColorPickerProps>(
@@ -240,7 +240,6 @@ export const ColorPicker = React.forwardRef<HTMLInputElement, ColorPickerProps>(
       className,
       color = 'default',
       colorSuggestions,
-      colorVariant = 'square',
       disabled,
       errorMessage,
       fullWidth,
@@ -256,6 +255,7 @@ export const ColorPicker = React.forwardRef<HTMLInputElement, ColorPickerProps>(
       secondaryLabel,
       tooltipMessage,
       value = '',
+      variant = 'square',
       ...rootProps
     },
     ref
@@ -308,8 +308,8 @@ export const ColorPicker = React.forwardRef<HTMLInputElement, ColorPickerProps>(
         className={clsx(
           className,
           classes.color,
-          colorVariant === 'circle' && classes.colorCircle,
-          colorVariant === 'square' && classes.colorSquare
+          variant === 'circle' && classes.colorCircle,
+          variant === 'square' && classes.colorSquare
         )}
         style={{
           backgroundColor: isValidHexColor(color) ? color : '#000000',

@@ -1,6 +1,6 @@
 # Color Picker
 
-An input component for form usage.
+An input component for selecting a color.
 
 <!-- STORY -->
 
@@ -38,7 +38,7 @@ Supplies a list of suggestions for the user to choose from.
 <ColorPicker colorSuggestions={['#fff', '#000']} />
 ```
 
-### Color Variant
+### Variant
 
 Styles the color component with a square or circle border radius
 

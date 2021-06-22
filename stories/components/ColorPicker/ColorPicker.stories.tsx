@@ -31,12 +31,12 @@ const AllColorPickersStory: React.FC = () => {
               value={text}
             />
             <ColorPicker
-              colorVariant="circle"
               label="Color"
               onChange={(value) => {
                 setText(value);
               }}
               value={text}
+              variant="circle"
             />
             <ColorPicker
               disabled
@@ -65,12 +65,12 @@ const AllColorPickersStory: React.FC = () => {
             />
             <ColorPicker
               color="inverse"
-              colorVariant="circle"
               label="Color"
               onChange={(value) => {
                 setText(value);
               }}
               value={text}
+              variant="circle"
             />
             <ColorPicker
               color="inverse"
