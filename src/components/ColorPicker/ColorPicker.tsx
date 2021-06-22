@@ -175,6 +175,9 @@ export const useStyles = makeStyles(
       height: theme.pxToRem(50),
       justifyContent: 'center',
     },
+    popover: {
+      width: '14rem',
+    },
     popoverList: {
       display: 'flex',
       flexWrap: 'wrap',
@@ -212,7 +215,7 @@ export const useStyles = makeStyles(
   { name: ColorPickerStylesKey }
 );
 
-const isValidHexColor = (color: string) => {
+export const isValidHexColor = (color: string) => {
   const hexRegex = new RegExp(/^#[0-9A-F]{6}$/i);
   const shortHandHexRegex = new RegExp(/^#([0-9A-F]{3}){1,2}$/i);
   return hexRegex.test(color) || shortHandHexRegex.test(color);
@@ -409,6 +412,7 @@ export const ColorPicker = React.forwardRef<HTMLInputElement, ColorPickerProps>(
               </ButtonUnstyled>
             }
             aria-label="Color Picker"
+            className={classes.popover}
           >
             {({ popover }: PopoverRenderProps) => (
               <>
