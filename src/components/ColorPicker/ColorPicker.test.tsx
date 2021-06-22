@@ -2,6 +2,7 @@ import * as React from 'react';
 import { ColorPicker, ColorPickerProps } from './index';
 import { IconComponent } from '../../testUtils/IconComponent';
 import { renderWithTheme } from '../../testUtils/renderWithTheme';
+import { fireEvent } from '@testing-library/dom';
 
 const testId = 'ColorPicker';
 
@@ -48,6 +49,21 @@ test('it renders a TextField with a secondaryLabel', async () => {
 
   const secondaryLabel = await findByText('(Optional)');
   expect(secondaryLabel).toBeInTheDocument();
+});
+
+test('it adds secondaryLabel inverse className when color is inverse', async () => {
+  const props = getBaseProps();
+  const { findByText } = renderWithTheme(
+    <ColorPicker
+      {...props}
+      color="inverse"
+      secondaryLabel="(Optional)"
+      data-testid={testId}
+    />
+  );
+
+  const secondaryLabel = await findByText('(Optional)');
+  expect(secondaryLabel).toHaveClass('ChromaColorPicker-labelInverse');
 });
 
 test('it renders the provided help message', async () => {
@@ -256,6 +272,53 @@ test('it renders an aria-label when not provided with label', async () => {
   expect(ariaLabel).toBeInTheDocument();
 });
 
+test('it renders default color suggestions if none provided', async () => {
+  const { findAllByLabelText } = renderWithTheme(
+    <ColorPicker data-testid={testId} />
+  );
+
+  const colors = await findAllByLabelText(/Pick #/);
+  expect(colors).toHaveLength(15);
+});
+
+test('it renders color suggestions', async () => {
+  const colorSuggestions = ['#fff', '#000'];
+  const { findAllByLabelText } = renderWithTheme(
+    <ColorPicker data-testid={testId} colorSuggestions={colorSuggestions} />
+  );
+
+  const colors = await findAllByLabelText(/Pick #/);
+  expect(colors).toHaveLength(2);
+});
+
+test('it adds className for circle variant', async () => {
+  const { findByLabelText } = renderWithTheme(
+    <ColorPicker data-testid={testId} variant="circle" />
+  );
+
+  const colorPicker = await findByLabelText(/Pick color/);
+  expect(colorPicker.firstChild).toHaveClass('ChromaColorPicker-colorCircle');
+});
+
+test('it adds className for square variant', async () => {
+  const { findByLabelText } = renderWithTheme(
+    <ColorPicker data-testid={testId} variant="square" />
+  );
+
+  const colorPicker = await findByLabelText(/Pick color/);
+  expect(colorPicker.firstChild).toHaveClass('ChromaColorPicker-colorSquare');
+});
+
+test('it renders default invalidColorText if none provided', async () => {
+  const color = '#f7';
+  const { findByText } = renderWithTheme(
+    <ColorPicker data-testid={testId} value={color} />
+  );
+
+  const invalidText = await findByText('Invalid Color');
+  expect(invalidText).toBeInTheDocument();
+});
+
 test('it renders invalidColorText when color is invalid', async () => {
   const color = '#f7';
   const invalidColorText = 'Invalid Color Selected';
@@ -271,14 +334,20 @@ test('it renders invalidColorText when color is invalid', async () => {
   expect(invalidText).toBeInTheDocument();
 });
 
-test('it renders default invalidColorText if none provided', async () => {
+test('it sets default styles when color is invalid', async () => {
   const color = '#f7';
+  const invalidColorText = 'Invalid Color Selected';
   const { findByText } = renderWithTheme(
-    <ColorPicker data-testid={testId} value={color} />
+    <ColorPicker
+      data-testid={testId}
+      invalidColorText={invalidColorText}
+      value={color}
+    />
   );
 
-  const invalidText = await findByText('Invalid Color');
-  expect(invalidText).toBeInTheDocument();
+  const invalidText = await findByText(invalidColorText);
+  expect(invalidText).toHaveStyle('color: rgb(255, 255, 255)');
+  expect(invalidText).toHaveStyle('background-color: rgb(38, 44, 50)');
 });
 
 test('it renders valid colors text', async () => {
@@ -289,4 +358,41 @@ test('it renders valid colors text', async () => {
 
   const validColorText = await findByText(color);
   expect(validColorText).toBeInTheDocument();
+});
+
+test('it sets styles when color is valid', async () => {
+  const color = '#f7bf4d';
+  const { findByText } = renderWithTheme(
+    <ColorPicker data-testid={testId} value={color} />
+  );
+
+  const validColorText = await findByText(color);
+  expect(validColorText).toHaveStyle('color: rgba(0, 0, 0, 0.87)');
+  expect(validColorText).toHaveStyle('background-color: rgb(247, 191, 77)');
+});
+
+test('it calls onChange when typing into input', async () => {
+  const onChangeMock = jest.fn();
+  const { findByTestId } = renderWithTheme(
+    <ColorPicker data-testid={testId} onChange={onChangeMock} />
+  );
+
+  const textfield = await findByTestId(testId);
+  fireEvent.change(textfield, { target: { value: '#f7bf4f' } });
+  expect(onChangeMock).toHaveBeenCalledWith('#f7bf4f');
+});
+
+test('it calls onChange when clicking a suggested color', async () => {
+  const onChangeMock = jest.fn();
+  const { findByLabelText } = renderWithTheme(
+    <ColorPicker data-testid={testId} onChange={onChangeMock} />
+  );
+
+  const colorPicker = await findByLabelText(/Pick color/);
+  fireEvent.click(colorPicker);
+
+  const color = await findByLabelText(/Pick #f7bf4d/);
+  fireEvent.click(color);
+
+  expect(onChangeMock).toHaveBeenCalledWith('#f7bf4d');
 });

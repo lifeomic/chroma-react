@@ -12,7 +12,12 @@ import { ButtonUnstyled } from '../ButtonUnstyled';
 import { generateUniqueId } from '../_private/UniqueId';
 import { GetClasses } from '../../typeUtils';
 import { makeStyles, useTheme } from '../../styles';
-import { Popover, PopoverItem, PopoverList } from '../Popover';
+import {
+  Popover,
+  PopoverItem,
+  PopoverList,
+  PopoverRenderProps,
+} from '../Popover';
 import { Tooltip } from '../Tooltip';
 
 export const ColorPickerStylesKey = 'ChromaColorPicker';
@@ -268,22 +273,22 @@ export const ColorPicker = React.forwardRef<HTMLInputElement, ColorPickerProps>(
     const colors = colorSuggestions?.length
       ? colorSuggestions
       : ([
-          palette?.red?.main,
-          palette?.red?.light,
-          palette?.orange?.main,
-          palette?.orange?.light,
-          palette?.yellow?.main,
-          palette?.yellow?.light,
-          palette?.green?.main,
-          palette?.green?.light,
-          palette?.blue?.main,
-          palette?.blue?.light,
-          palette?.purple?.main,
-          palette?.purple?.light,
-          palette?.black?.main,
-          palette?.black?.light,
-          palette?.common?.white,
-        ].filter(Boolean) as Array<string>);
+          palette.red.main,
+          palette.red.light,
+          palette.orange.main,
+          palette.orange.light,
+          palette.yellow.main,
+          palette.yellow.light,
+          palette.green.main,
+          palette.green.light,
+          palette.blue.main,
+          palette.blue.light,
+          palette.purple.main,
+          palette.purple.light,
+          palette.black.main,
+          palette.black.light,
+          palette.common.white,
+        ] as Array<string>);
 
     const isValidColor = isValidHexColor(colorValue);
 
@@ -291,6 +296,7 @@ export const ColorPicker = React.forwardRef<HTMLInputElement, ColorPickerProps>(
       () => id || name || generateUniqueId('ColorPicker-')
     );
 
+    // istanbul ignore if - not testing dev errors
     if (!label && !ariaLabel && process.env.NODE_ENV === 'development') {
       throw new Error(
         'If a "label" is not provided to ColorPicker, please provide "aria-label".'
@@ -319,6 +325,7 @@ export const ColorPicker = React.forwardRef<HTMLInputElement, ColorPickerProps>(
 
     const handleChange = (color: string) => {
       setColorValue(color);
+      // istanbul ignore next - not a great way to test not calling onChange
       onChange?.(color);
     };
 
@@ -403,17 +410,17 @@ export const ColorPicker = React.forwardRef<HTMLInputElement, ColorPickerProps>(
             }
             aria-label="Color Picker"
           >
-            {({ popover }: { popover: any }) => (
+            {({ popover }: PopoverRenderProps) => (
               <>
                 <div
                   className={classes.valueDisplay}
                   style={{
                     backgroundColor: isValidColor
                       ? value
-                      : palette?.common?.black,
+                      : palette.common.black,
                     color: isValidHexColor(value)
                       ? palette.getContrastText(value)
-                      : palette?.common?.white,
+                      : palette.common.white,
                   }}
                 >
                   {isValidColor ? value : invalidColorText}
@@ -426,6 +433,7 @@ export const ColorPicker = React.forwardRef<HTMLInputElement, ColorPickerProps>(
                         aria-label={`Pick ${color}`}
                         className={classes.colorButton}
                         onClick={() => {
+                          // istanbul ignore next - not a great way to test not calling onChange
                           handleChange?.(color);
                           popover.hide();
                         }}
