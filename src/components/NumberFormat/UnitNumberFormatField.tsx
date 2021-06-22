@@ -187,6 +187,9 @@ export const PercentFormatField: React.FC<
   );
 };
 
+/**
+ * @param props All currency values are expected to be an integer amount of pennies
+ */
 export const PriceFormatField: React.FC<
   Omit<TextFieldProps, 'onChange' | 'value'> & {
     min?: number;
@@ -195,9 +198,21 @@ export const PriceFormatField: React.FC<
     onChange: (val: number) => void;
   }
 > = (props) => {
+  const { value, onChange, min, max, ...otherProps } = props;
+  if (
+    !Number.isInteger(value) ||
+    (min && !Number.isInteger(min)) ||
+    (max && !Number.isInteger(max))
+  ) {
+    throw new Error('Non-integer amount of pennies passed to PriceFormatField');
+  }
   return (
     <UnitNumberFormatField
-      {...props}
+      value={value / 100} // Value in pennies converted to dollars
+      onChange={(val) => onChange(val * 100)} // Dollar converted to expected pennies
+      min={min ? min / 100 : undefined} // Min in pennies converted to dollars
+      max={max ? max / 100 : undefined} // Max in pennies converted to dollars
+      {...otherProps}
       prefixUnits={true}
       units={'$'}
       decimalScale={2}

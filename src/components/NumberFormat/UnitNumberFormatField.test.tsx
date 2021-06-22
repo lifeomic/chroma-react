@@ -351,11 +351,50 @@ test('rendering a PercentFormatField renders a UnitNumberFormatField with % unit
 
 test('rendering a PriceFormatField renders a UnitNumberFormatField with $ prefixed units', async () => {
   const onChange = jest.fn();
-  const value = 10;
+  const value = 1000;
   const view = renderWithTheme(
     <PriceFormatField value={value} onChange={onChange} />
   );
   const textfield = await view.getByRole('textbox');
   expect(textfield).toBeInTheDocument();
+  expect(textfield).toHaveAttribute('value', '$10.00');
+});
+
+test('rendering a PriceFormatField with noninteger amount of pennies throws', async () => {
+  const onChange = jest.fn();
+  const value = 1000.5;
+  expect(() =>
+    renderWithTheme(<PriceFormatField value={value} onChange={onChange} />)
+  ).toThrow();
+});
+
+test('PriceFormatField passes value as pennies to onChange', async () => {
+  const onChange = jest.fn();
+  const value = 1000;
+  const view = renderWithTheme(
+    <PriceFormatField value={value} onChange={onChange} />
+  );
+
+  const textfield = await view.getByRole('textbox');
+  fireEvent.change(textfield, { target: { value: '2' } });
+
+  expect(onChange).toHaveBeenCalled();
+  expect(onChange).toHaveBeenCalledTimes(1);
+  expect(onChange).toHaveBeenCalledWith(200);
+});
+
+test('PriceFormatField converts its min, max, and value to dollars', async () => {
+  const onChange = jest.fn();
+  const value = 1000;
+  const min = 100;
+  const max = 200;
+  const view = renderWithTheme(
+    <PriceFormatField value={value} onChange={onChange} min={min} max={max} />
+  );
+
+  const textfield = await view.getByRole('textbox');
+
+  expect(textfield).toHaveAttribute('min', '1');
+  expect(textfield).toHaveAttribute('max', '2');
   expect(textfield).toHaveAttribute('value', '$10.00');
 });
