@@ -3,4 +3,5 @@ export {
   ColorPickerClasses,
   ColorPickerProps,
   ColorPickerStylesKey,
+  isValidHexColor,
 } from './ColorPicker';

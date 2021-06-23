@@ -186,8 +186,8 @@ export const useStyles = makeStyles(
       },
     },
     swatchButton: {
-      height: 20,
-      width: 20,
+      height: theme.pxToRem(20),
+      width: theme.pxToRem(20),
       position: 'absolute',
       right: theme.spacing(1),
       top: theme.spacing(1),
@@ -242,7 +242,7 @@ export const useStyles = makeStyles(
   { name: ColorPickerStylesKey }
 );
 
-const isValidHexColor = (color: string) => {
+export const isValidHexColor = (color: string) => {
   const hexRegex = new RegExp(/^#[0-9A-F]{6}$/i);
   const shortHandHexRegex = new RegExp(/^#([0-9A-F]{3}){1,2}$/i);
   return hexRegex.test(color) || shortHandHexRegex.test(color);
@@ -430,7 +430,6 @@ export const ColorPicker = React.forwardRef<HTMLInputElement, ColorPickerProps>(
           />
 
           <Popover
-            className={classes.popover}
             anchorElement={
               <ButtonUnstyled
                 className={classes.swatchButton}
@@ -441,6 +440,7 @@ export const ColorPicker = React.forwardRef<HTMLInputElement, ColorPickerProps>(
               </ButtonUnstyled>
             }
             aria-label="Color Picker"
+            className={classes.popover}
           >
             {({ popover }: PopoverRenderProps) => (
               <>
