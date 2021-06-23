@@ -20,6 +20,7 @@ import {
 } from '../Popover';
 import { Tooltip } from '../Tooltip';
 import { fade } from '@material-ui/core/styles/colorManipulator';
+import 'focus-visible';
 
 export const ColorPickerStylesKey = 'ChromaColorPicker';
 
@@ -184,6 +185,13 @@ export const useStyles = makeStyles(
         width: '100%',
       },
     },
+    swatchButton: {
+      height: 20,
+      width: 20,
+      position: 'absolute',
+      right: theme.spacing(1),
+      top: theme.spacing(1),
+    },
     popover: {
       minWidth: 'unset',
     },
@@ -195,6 +203,17 @@ export const useStyles = makeStyles(
       padding: 0,
       '& $color': {
         margin: 0,
+      },
+      '&:focus': {
+        outline: 'none',
+      },
+      // We use this + a polyfill for older browser
+      // to get accessible buttons for keyboard-users.
+      // Users will not see these styles unless they use their keyboard
+      // to focus the element
+      '&:focus.focus-visible': {
+        outline: `solid 2px ${theme.palette.primary.main}`,
+        outlineOffset: theme.spacing(1),
       },
     },
     popoverItem: {
@@ -211,13 +230,7 @@ export const useStyles = makeStyles(
       boxShadow: 'inset 0 0 3px rgb(38 44 50 / 20%)',
       display: 'block',
       height: theme.pxToRem(20),
-      margin: theme.spacing(1),
       width: theme.pxToRem(20),
-    },
-    colorPosition: {
-      position: 'absolute',
-      right: 0,
-      top: 0,
     },
     colorCircle: {
       borderRadius: theme.pxToRem(10),
@@ -420,10 +433,11 @@ export const ColorPicker = React.forwardRef<HTMLInputElement, ColorPickerProps>(
             className={classes.popover}
             anchorElement={
               <ButtonUnstyled
+                className={classes.swatchButton}
                 aria-label="Pick color"
                 disabled={disabled || readOnly}
               >
-                <Color className={classes.colorPosition} color={colorValue} />
+                <Color color={colorValue} />
               </ButtonUnstyled>
             }
             aria-label="Color Picker"
