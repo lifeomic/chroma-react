@@ -186,17 +186,14 @@ export const useStyles = makeStyles(
       },
     },
     swatchButton: {
-      height: 20,
-      width: 20,
+      height: theme.pxToRem(20),
+      width: theme.pxToRem(20),
       position: 'absolute',
       right: theme.spacing(1),
       top: theme.spacing(1),
     },
     popover: {
       minWidth: 'unset',
-    },
-    popover: {
-      width: '14rem',
     },
     popoverList: {
       display: 'grid',
@@ -433,7 +430,6 @@ export const ColorPicker = React.forwardRef<HTMLInputElement, ColorPickerProps>(
           />
 
           <Popover
-            className={classes.popover}
             anchorElement={
               <ButtonUnstyled
                 className={classes.swatchButton}
