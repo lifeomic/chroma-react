@@ -19,6 +19,8 @@ import {
   PopoverRenderProps,
 } from '../Popover';
 import { Tooltip } from '../Tooltip';
+import { fade } from '@material-ui/core/styles/colorManipulator';
+import 'focus-visible';
 
 export const ColorPickerStylesKey = 'ChromaColorPicker';
 
@@ -170,18 +172,52 @@ export const useStyles = makeStyles(
     },
     valueDisplay: {
       alignItems: 'center',
-      borderBottom: `${theme.pxToRem(1)} solid ${theme.palette.divider}`,
       display: 'flex',
       height: theme.pxToRem(50),
       justifyContent: 'center',
+      position: 'relative',
+      '&::after': {
+        background: fade(theme.palette.common.black, 0.25),
+        bottom: 0,
+        content: `''`,
+        height: theme.pxToRem(1),
+        position: 'absolute',
+        width: '100%',
+      },
+    },
+    swatchButton: {
+      height: 20,
+      width: 20,
+      position: 'absolute',
+      right: theme.spacing(1),
+      top: theme.spacing(1),
+    },
+    popover: {
+      minWidth: 'unset',
     },
     popover: {
       width: '14rem',
     },
     popoverList: {
-      display: 'flex',
-      flexWrap: 'wrap',
+      display: 'grid',
+      gridGap: theme.spacing(1.5),
+      gridTemplateColumns: `repeat(6, ${theme.pxToRem(20)})`,
+      margin: theme.spacing(2),
       padding: 0,
+      '& $color': {
+        margin: 0,
+      },
+      '&:focus': {
+        outline: 'none',
+      },
+      // We use this + a polyfill for older browser
+      // to get accessible buttons for keyboard-users.
+      // Users will not see these styles unless they use their keyboard
+      // to focus the element
+      '&:focus.focus-visible': {
+        outline: `solid 2px ${theme.palette.primary.main}`,
+        outlineOffset: theme.spacing(1),
+      },
     },
     popoverItem: {
       padding: 0,
@@ -197,19 +233,13 @@ export const useStyles = makeStyles(
       boxShadow: 'inset 0 0 3px rgb(38 44 50 / 20%)',
       display: 'block',
       height: theme.pxToRem(20),
-      margin: theme.spacing(1),
       width: theme.pxToRem(20),
-    },
-    colorPosition: {
-      position: 'absolute',
-      right: 10,
-      top: 0,
     },
     colorCircle: {
       borderRadius: theme.pxToRem(10),
     },
     colorSquare: {
-      borderRadius: theme.pxToRem(5),
+      borderRadius: theme.pxToRem(4),
     },
   }),
   { name: ColorPickerStylesKey }
@@ -403,12 +433,14 @@ export const ColorPicker = React.forwardRef<HTMLInputElement, ColorPickerProps>(
           />
 
           <Popover
+            className={classes.popover}
             anchorElement={
               <ButtonUnstyled
+                className={classes.swatchButton}
                 aria-label="Pick color"
                 disabled={disabled || readOnly}
               >
-                <Color className={classes.colorPosition} color={colorValue} />
+                <Color color={colorValue} />
               </ButtonUnstyled>
             }
             aria-label="Color Picker"
