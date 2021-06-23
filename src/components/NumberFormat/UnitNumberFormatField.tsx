@@ -19,17 +19,22 @@ const useStyles = makeStyles(
 
 export type UnitNumberFormatFieldClasses = GetClasses<typeof useStyles>;
 
-export const UnitNumberFormatField: React.FC<
-  Omit<TextFieldProps, 'onChange' | 'value'> & {
-    min?: number;
-    max?: number;
-    value: number;
-    units: string;
-    decimalScale?: number;
-    prefixUnits?: boolean;
-    onChange: (val: number) => void;
-  }
-> = (props) => {
+export type UnitNumberFormatFieldProps = Omit<
+  TextFieldProps,
+  'onChange' | 'value'
+> & {
+  min?: number;
+  max?: number;
+  value: number;
+  units: string;
+  decimalScale?: number;
+  prefixUnits?: boolean;
+  onChange: (val: number) => void;
+};
+
+export const UnitNumberFormatField: React.FC<UnitNumberFormatFieldProps> = (
+  props
+) => {
   const {
     onChange,
     onBlur,
@@ -174,14 +179,19 @@ export const UnitNumberFormatField: React.FC<
   );
 };
 
-export const PercentFormatField: React.FC<
-  Omit<TextFieldProps, 'onChange' | 'value'> & {
-    min?: number;
-    max?: number;
-    value: number;
-    onChange: (val: number) => void;
-  }
-> = (props) => {
+export type PercentFormatFieldProps = Omit<
+  TextFieldProps,
+  'onChange' | 'value'
+> & {
+  min?: number;
+  max?: number;
+  value: number;
+  onChange: (val: number) => void;
+};
+
+export const PercentFormatField: React.FC<PercentFormatFieldProps> = (
+  props
+) => {
   return (
     <UnitNumberFormatField {...props} units={'%'} max={props.max || 100} />
   );
@@ -190,14 +200,17 @@ export const PercentFormatField: React.FC<
 /**
  * @param props All currency values are expected to be an integer amount of pennies
  */
-export const PriceFormatField: React.FC<
-  Omit<TextFieldProps, 'onChange' | 'value'> & {
-    min?: number;
-    max?: number;
-    value: number;
-    onChange: (val: number) => void;
-  }
-> = (props) => {
+
+export type PriceFormatFieldProps = Omit<
+  TextFieldProps,
+  'onChange' | 'value'
+> & {
+  min?: number;
+  max?: number;
+  value: number;
+  onChange: (val: number) => void;
+};
+export const PriceFormatField: React.FC<PriceFormatFieldProps> = (props) => {
   const { value, onChange, min, max, ...otherProps } = props;
   if (
     !Number.isInteger(value) ||
