@@ -1,4 +1,4 @@
-import { ChevronDown } from '../../icons/lined';
+import { ChevronDown } from '@lifeomic/chromicons';
 import { generateUniqueId } from '../_private/UniqueId';
 import { motion, useReducedMotion } from 'framer-motion';
 import { Portal } from 'reakit/Portal';

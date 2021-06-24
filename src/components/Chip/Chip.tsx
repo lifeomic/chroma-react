@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import * as React from 'react';
-import { X } from '../../icons/lined';
+import { X } from '@lifeomic/chromicons';
 import { makeStyles } from '../../styles';
 import { GetClasses } from '../../typeUtils';
 

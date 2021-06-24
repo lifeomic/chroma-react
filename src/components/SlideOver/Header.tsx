@@ -2,7 +2,7 @@ import { GetClasses } from '../../typeUtils';
 import { IconButton } from '../IconButton';
 import { makeStyles } from '../../styles';
 import { Text } from '../Text';
-import { X } from '../../icons/lined';
+import { X } from '@lifeomic/chromicons';
 import * as React from 'react';
 import clsx from 'clsx';
 
