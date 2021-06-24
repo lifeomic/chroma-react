@@ -7,7 +7,7 @@ import { TableModuleProps, testIds } from './TableModule';
 import { TableModuleCell } from './TableModuleCell';
 import { TableModuleActions } from './TableModuleActions';
 import { IconButton } from '../IconButton';
-import { ChevronRight } from '../../icons/lined';
+import { ChevronRight } from '@lifeomic/chromicons';
 import { Tooltip } from '../Tooltip';
 
 export interface TableModuleRowProps

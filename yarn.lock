@@ -2056,6 +2056,11 @@
     "@types/yargs" "^15.0.0"
     chalk "^3.0.0"
 
+"@lifeomic/chromicons@^0.2.1":
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/@lifeomic/chromicons/-/chromicons-0.2.1.tgz#7cfbab7f087ebcd53ad47d7308689d865dc576c1"
+  integrity sha512-+/RJq/ai6SfibQ/8btNlhYYh0CEASmO4xX0G4OyVfAZgVDgX3D7Ccx1+ZqaN203y4PPMpoMIsO6gdIV6UY4k9Q==
+
 "@material-ui/core@^4.9.11":
   version "4.9.11"
   resolved "https://registry.yarnpkg.com/@material-ui/core/-/core-4.9.11.tgz#02f45f4dbea6db191fdc0d993323d64cfae613fd"

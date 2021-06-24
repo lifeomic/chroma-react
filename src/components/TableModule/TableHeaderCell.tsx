@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import * as React from 'react';
-import { ChevronDown } from '../../icons/lined';
+import { ChevronDown } from '@lifeomic/chromicons';
 import { makeStyles } from '../../styles/index';
 import { GetClasses } from '../../typeUtils';
 import { TableSortDirection, TableHeader, TableSortClickProps } from './types';

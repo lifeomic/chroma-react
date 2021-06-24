@@ -5,7 +5,7 @@ import { Text } from '../Text';
 import clsx from 'clsx';
 import * as React from 'react';
 import { IconButton } from '../IconButton';
-import { X } from '../../icons/lined';
+import { X } from '@lifeomic/chromicons';
 import { NotificationStatusType } from '../_private/notificationTypes';
 
 export const SnackbarStylesKey = 'ChromaSnackbar';

@@ -13,7 +13,7 @@ import { Portal } from 'reakit/Portal';
 import { RemoveScroll } from 'react-remove-scroll';
 import { Text } from '../Text';
 import { useForkedRef, wrapEvent } from './helpers';
-import { X } from '../../icons/lined';
+import { X } from '@lifeomic/chromicons';
 import clsx from 'clsx';
 import FocusLock from 'react-focus-lock';
 import * as React from 'react';

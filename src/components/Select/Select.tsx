@@ -7,7 +7,7 @@ import {
   usePopoverState,
 } from 'reakit/Popover';
 import { Portal } from 'reakit/Portal';
-import { ChevronDown } from '../../icons/lined';
+import { ChevronDown } from '@lifeomic/chromicons';
 import { makeStyles } from '../../styles';
 import { GetClasses } from '../../typeUtils';
 import {
