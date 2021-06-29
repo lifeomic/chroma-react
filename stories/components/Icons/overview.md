@@ -1,5 +1,7 @@
 # Icons Overview
 
+**NOTE:** These icons are deprecated in favor of using [Chromicons](https://github.com/lifeomic/chromicons) directly and will be removed in a future release.  The Chromicons viewer can be found at https://lifeomic.github.io/chromicons.com/.
+
 Chroma provides different variations of icons:
 
 **Lined**: The default icon style, based off of feather icon set.

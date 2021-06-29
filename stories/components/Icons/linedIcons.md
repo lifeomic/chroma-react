@@ -1,3 +1,5 @@
+**NOTE:** These icons are deprecated in favor of using [Chromicons](https://github.com/lifeomic/chromicons) directly and will be removed in a future release.  The Chromicons viewer can be found at https://lifeomic.github.io/chromicons.com/.
+
 # Lined Icons
 
 A default set of lined icons exposed by Chroma. The default icon style, based
