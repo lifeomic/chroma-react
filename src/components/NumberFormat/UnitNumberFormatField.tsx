@@ -19,17 +19,22 @@ const useStyles = makeStyles(
 
 export type UnitNumberFormatFieldClasses = GetClasses<typeof useStyles>;
 
-export const UnitNumberFormatField: React.FC<
-  Omit<TextFieldProps, 'onChange' | 'value'> & {
-    min?: number;
-    max?: number;
-    value: number;
-    units: string;
-    decimalScale?: number;
-    prefixUnits?: boolean;
-    onChange: (val: number) => void;
-  }
-> = (props) => {
+export type UnitNumberFormatFieldProps = Omit<
+  TextFieldProps,
+  'onChange' | 'value'
+> & {
+  min?: number;
+  max?: number;
+  value: number;
+  units: string;
+  decimalScale?: number;
+  prefixUnits?: boolean;
+  onChange: (val: number) => void;
+};
+
+export const UnitNumberFormatField: React.FC<UnitNumberFormatFieldProps> = (
+  props
+) => {
   const {
     onChange,
     onBlur,
@@ -174,30 +179,53 @@ export const UnitNumberFormatField: React.FC<
   );
 };
 
-export const PercentFormatField: React.FC<
-  Omit<TextFieldProps, 'onChange' | 'value'> & {
-    min?: number;
-    max?: number;
-    value: number;
-    onChange: (val: number) => void;
-  }
-> = (props) => {
+export type PercentFormatFieldProps = Omit<
+  TextFieldProps,
+  'onChange' | 'value'
+> & {
+  min?: number;
+  max?: number;
+  value: number;
+  onChange: (val: number) => void;
+};
+
+export const PercentFormatField: React.FC<PercentFormatFieldProps> = (
+  props
+) => {
   return (
     <UnitNumberFormatField {...props} units={'%'} max={props.max || 100} />
   );
 };
 
-export const PriceFormatField: React.FC<
-  Omit<TextFieldProps, 'onChange' | 'value'> & {
-    min?: number;
-    max?: number;
-    value: number;
-    onChange: (val: number) => void;
+/**
+ * @param props All currency values are expected to be an integer amount of pennies
+ */
+
+export type PriceFormatFieldProps = Omit<
+  TextFieldProps,
+  'onChange' | 'value'
+> & {
+  min?: number;
+  max?: number;
+  value: number;
+  onChange: (val: number) => void;
+};
+export const PriceFormatField: React.FC<PriceFormatFieldProps> = (props) => {
+  const { value, onChange, min, max, ...otherProps } = props;
+  if (
+    !Number.isInteger(value) ||
+    (min && !Number.isInteger(min)) ||
+    (max && !Number.isInteger(max))
+  ) {
+    throw new Error('Non-integer amount of pennies passed to PriceFormatField');
   }
-> = (props) => {
   return (
     <UnitNumberFormatField
-      {...props}
+      value={value / 100} // Value in pennies converted to dollars
+      onChange={(val) => onChange(val * 100)} // Dollar converted to expected pennies
+      min={min ? min / 100 : undefined} // Min in pennies converted to dollars
+      max={max ? max / 100 : undefined} // Max in pennies converted to dollars
+      {...otherProps}
       prefixUnits={true}
       units={'$'}
       decimalScale={2}

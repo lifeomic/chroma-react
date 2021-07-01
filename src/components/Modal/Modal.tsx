@@ -13,7 +13,7 @@ import { Portal } from 'reakit/Portal';
 import { RemoveScroll } from 'react-remove-scroll';
 import { Text } from '../Text';
 import { useForkedRef, wrapEvent } from './helpers';
-import { X } from '../../icons/lined';
+import { X } from '@lifeomic/chromicons';
 import clsx from 'clsx';
 import FocusLock from 'react-focus-lock';
 import * as React from 'react';
@@ -67,7 +67,7 @@ export const useStyles = makeStyles(
         display: 'flex',
         flexDirection: 'column',
         overflow: 'hidden',
-      }
+      },
     },
     contentFullWidth: {
       width: 'calc(100% - 6rem)',
@@ -408,16 +408,15 @@ const FullScreenContent = React.forwardRef<HTMLDivElement, ModalProps>(
           event.stopPropagation();
         })}
         ref={ref}
-        initial={
-          { opacity: 0 }
-        }
-        animate={
-          {
-            opacity: 1,
-            transition: { duration: 0.1, ease: [0.16, 1, 0.3, 1] }, // https://easings.net/#easeOutExpo
-          }
-        }
-        exit={{ opacity: 0, transition: { duration: 0.08, ease: [0.7, 0, 0.84, 0] } }} // https://easings.net/#easeInExpo
+        initial={{ opacity: 0 }}
+        animate={{
+          opacity: 1,
+          transition: { duration: 0.1, ease: [0.16, 1, 0.3, 1] }, // https://easings.net/#easeOutExpo
+        }}
+        exit={{
+          opacity: 0,
+          transition: { duration: 0.08, ease: [0.7, 0, 0.84, 0] },
+        }} // https://easings.net/#easeInExpo
         {...rootProps}
       >
         {customHeader ? (

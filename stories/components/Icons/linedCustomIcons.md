@@ -1,3 +1,5 @@
+**NOTE:** These icons are deprecated in favor of using [Chromicons](https://github.com/lifeomic/chromicons) directly and will be removed in a future release. The Chromicons viewer can be found at https://lifeomic.github.io/chromicons.com/.
+
 # Lined Custom Icons
 
 A custom-designed set of lined icons exposed by Chroma. The lined custom set is

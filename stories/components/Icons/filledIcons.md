@@ -1,3 +1,5 @@
+**NOTE:** These icons are deprecated in favor of using [Chromicons](https://github.com/lifeomic/chromicons) directly and will be removed in a future release. The Chromicons viewer can be found at https://lifeomic.github.io/chromicons.com/.
+
 # Filled Icons
 
 A default set of icons exposed by Chroma.

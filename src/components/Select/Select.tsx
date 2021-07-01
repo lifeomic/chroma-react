@@ -7,7 +7,7 @@ import {
   usePopoverState,
 } from 'reakit/Popover';
 import { Portal } from 'reakit/Portal';
-import { ChevronDown } from '../../icons/lined';
+import { ChevronDown } from '@lifeomic/chromicons';
 import { makeStyles } from '../../styles';
 import { GetClasses } from '../../typeUtils';
 import {
@@ -205,7 +205,7 @@ export const useStyles = makeStyles(
     chipList: {
       display: 'flex',
       flexFlow: 'wrap',
-      margin: theme.spacing(0, -0.5),
+      margin: theme.spacing(-0.5, -0.5, 0),
     },
     chip: {
       alignItems: 'center',
@@ -215,7 +215,7 @@ export const useStyles = makeStyles(
       display: 'inline-block',
       height: theme.pxToRem(22),
       fontSize: theme.pxToRem(12),
-      margin: theme.spacing(0.25),
+      margin: theme.spacing(0.5, 0.25, 0),
       overflow: 'hidden',
       paddingLeft: theme.spacing(1),
       paddingRight: theme.spacing(1),

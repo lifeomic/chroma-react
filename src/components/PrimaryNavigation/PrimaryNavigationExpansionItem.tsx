@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import * as React from 'react';
 import { NavLinkProps, useLocation } from 'react-router-dom';
-import { Plus } from '../../icons/lined';
+import { Plus } from '@lifeomic/chromicons';
 import { makeStyles } from '../../styles/index';
 import { GetClasses, StandardProps } from '../../typeUtils';
 import { sideBarWidthCollapsed, useLayoutManager } from '../LayoutManager';
