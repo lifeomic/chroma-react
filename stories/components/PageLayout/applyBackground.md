@@ -21,7 +21,7 @@ import { PageLayout } from '@lifeomic/chroma-react/components/PageLayout';
 
 ### Overriding The Image
 
-To override the image, leverage the styles key:
+To override the image at the theme level, leverage the styles key:
 
 ```js
 ChromaPageLayout: {
@@ -30,6 +30,18 @@ ChromaPageLayout: {
     // any additional props to apply
   }
 }
+```
+
+To override the image for a single use, pass in backgroundImage:
+
+```jsx
+<PageLayout
+  title="Account 1"
+  applyBackgroundCover
+  backgroundImage={overrideImage}
+>
+  {/* Your content */}
+</PageLayout>
 ```
 
 ## Links
