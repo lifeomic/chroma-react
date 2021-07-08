@@ -184,7 +184,7 @@ export const useStyles = makeStyles(
       display: 'block',
       listStyle: 'none',
       margin: 0,
-      maxHeight: theme.pxToRem(168),
+      maxHeight: theme.pxToRem(328),
       overflowY: 'auto',
       padding: theme.spacing(1, 0),
     },
