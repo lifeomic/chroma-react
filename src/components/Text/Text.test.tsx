@@ -178,3 +178,43 @@ test('it applies the marginBottom class when "marginBottom"', async () => {
   const root = await findByTestId(testId);
   expect(root).toHaveClass('ChromaText-marginBottom');
 });
+
+test('it renders align="center"', async () => {
+  const { findByTestId } = renderWithTheme(
+    <Text data-testid={testId} align="center">
+      test
+    </Text>
+  );
+  const root = await findByTestId(testId);
+  expect(root).toHaveClass('ChromaText-alignCenter');
+});
+
+test('it renders align="justify"', async () => {
+  const { findByTestId } = renderWithTheme(
+    <Text data-testid={testId} align="justify">
+      test
+    </Text>
+  );
+  const root = await findByTestId(testId);
+  expect(root).toHaveClass('ChromaText-alignJustify');
+});
+
+test('it renders align="left"', async () => {
+  const { findByTestId } = renderWithTheme(
+    <Text data-testid={testId} align="left">
+      test
+    </Text>
+  );
+  const root = await findByTestId(testId);
+  expect(root).toHaveClass('ChromaText-alignLeft');
+});
+
+test('it renders align="right"', async () => {
+  const { findByTestId } = renderWithTheme(
+    <Text data-testid={testId} align="right">
+      test
+    </Text>
+  );
+  const root = await findByTestId(testId);
+  expect(root).toHaveClass('ChromaText-alignRight');
+});

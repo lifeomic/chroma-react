@@ -48,6 +48,12 @@ const TextStory: React.FunctionComponent = () => {
       <Text size="code" marginBottom>
         code text
       </Text>
+
+      <Text size="headline">Alignment</Text>
+      <Text align="center">align center</Text>
+      <Text align="left">align left</Text>
+      <Text align="right">align right</Text>
+      <Text align="justify">align justify</Text>
     </Container>
   );
 };

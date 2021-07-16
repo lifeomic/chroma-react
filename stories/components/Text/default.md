@@ -40,6 +40,14 @@ The sizing options are listed above in the story.
 <Text color="inverse">body text</Text>
 ```
 
+### Align
+
+`Text` supports an `align` prop for the `text-align` CSS property.
+
+```jsx
+<Text align="center">aligned center</Text>
+```
+
 ### Set component to `<h1>`
 
 There may be cases where the text needs to be an `h1` tag. The `useH1` prop can
