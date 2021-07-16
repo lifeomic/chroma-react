@@ -67,11 +67,24 @@ export const useStyles = makeStyles(
     marginBottom: {
       marginBottom: theme.spacing(1),
     },
+    alignCenter: {
+      textAlign: 'center',
+    },
+    alignJustify: {
+      textAlign: 'justify',
+    },
+    alignLeft: {
+      textAlign: 'left',
+    },
+    alignRight: {
+      textAlign: 'right',
+    },
   }),
   { name: TextStylesKey }
 );
 
 export interface TextOwnProps extends React.HTMLAttributes<HTMLElement> {
+  align?: 'center' | 'justify' | 'left' | 'right';
   size?:
     | 'headline'
     | 'body'
@@ -95,6 +108,7 @@ export interface TextProps extends TextOwnProps {}
 export const Text = React.forwardRef<HTMLParagraphElement, TextProps>(
   (
     {
+      align,
       children,
       className,
       color = 'default',
@@ -137,6 +151,12 @@ export const Text = React.forwardRef<HTMLParagraphElement, TextProps>(
             [classes.inverseColor]: color === 'inverse',
           },
           marginBottom && classes.marginBottom,
+          {
+            [classes.alignCenter]: align === 'center',
+            [classes.alignJustify]: align === 'justify',
+            [classes.alignLeft]: align === 'left',
+            [classes.alignRight]: align === 'right',
+          },
           className
         )}
         ref={ref}
