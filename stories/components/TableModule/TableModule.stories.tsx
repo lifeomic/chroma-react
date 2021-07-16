@@ -14,7 +14,7 @@ import {
   TableModuleActions,
   TableSortClickProps,
 } from '../../../src/components/TableModule';
-import { Share, Trash } from '../../../src/icons/lined';
+import { Share, Trash } from '@lifeomic/chromicons';
 import { Container } from '../../storyComponents/Container';
 import { Noop } from '../../storyComponents/Noop';
 import alignmentMd from './alignment.md';

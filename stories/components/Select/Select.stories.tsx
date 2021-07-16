@@ -6,7 +6,7 @@ import {
   Select,
   SelectOption,
 } from '../../../src/components/Select';
-import { HelpCircle } from '../../../src/icons/lined';
+import { HelpCircle } from '@lifeomic/chromicons';
 import { Container } from '../../storyComponents/Container';
 import { Noop } from '../../storyComponents/Noop';
 import defaultMd from './default.md';

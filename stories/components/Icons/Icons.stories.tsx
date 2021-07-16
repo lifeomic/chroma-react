@@ -764,6 +764,7 @@ const AdaptiveIconsStory: React.FC = () => (
   </Container>
 );
 
+/** @deprecated */
 const LinedIconsStory: React.FC = () => (
   <Container
     containerStyles={{
@@ -778,6 +779,7 @@ const LinedIconsStory: React.FC = () => (
   </Container>
 );
 
+/** @deprecated */
 const LinedCustomIconsStory: React.FC = () => (
   <Container
     containerStyles={{

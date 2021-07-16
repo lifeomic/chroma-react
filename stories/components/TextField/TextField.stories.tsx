@@ -2,7 +2,7 @@ import { storiesOf } from '@storybook/react';
 import * as React from 'react';
 import { FormBox } from '../../../src/components/FormBox';
 import { TextField } from '../../../src/components/TextField';
-import { HelpCircle } from '../../../src/icons/lined';
+import { HelpCircle } from '@lifeomic/chromicons';
 import { Container } from '../../storyComponents/Container';
 import defaultMd from './default.md';
 

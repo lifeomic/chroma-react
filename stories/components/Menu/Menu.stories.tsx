@@ -8,7 +8,7 @@ import {
   HelpCircle,
   MoreHorizontal,
   Trash,
-} from '../../../src/icons/lined';
+} from '@lifeomic/chromicons';
 import { Container } from '../../storyComponents/Container';
 import defaultMd from './default.md';
 import menuButtonMd from './menuButton.md';

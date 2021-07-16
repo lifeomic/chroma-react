@@ -2,7 +2,7 @@ import { storiesOf } from '@storybook/react';
 import * as React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { ButtonLink } from '../../../src/components/ButtonLink';
-import { Grid } from '../../../src/icons/lined';
+import { Grid } from '@lifeomic/chromicons';
 import { Container } from '../../storyComponents/Container';
 import defaultMd from './default.md';
 

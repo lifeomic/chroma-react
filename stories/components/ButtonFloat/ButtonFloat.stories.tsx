@@ -2,7 +2,7 @@ import { boolean } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
 import * as React from 'react';
 import { ButtonFloat } from '../../../src/components/ButtonFloat';
-import { Edit, Plus, ChevronDown } from '../../../src/icons/lined';
+import { Edit, Plus, ChevronDown } from '@lifeomic/chromicons';
 import { Container } from '../../storyComponents/Container';
 import defaultMd from './default.md';
 
