@@ -4,7 +4,7 @@ import * as React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { Button } from '../../../src/components/Button';
 import { IconButton } from '../../../src/components/IconButton';
-import { MoreHorizontal } from '../../../src/icons/lined';
+import { MoreHorizontal } from '@lifeomic/chromicons';
 import { Header } from '../../../src/components/Header';
 import {
   LayoutManager,

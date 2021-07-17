@@ -16,7 +16,7 @@ import {
   Link,
   Image,
   Smile,
-} from '../../../src/icons/lined';
+} from '@lifeomic/chromicons';
 
 const DividerStory: React.FC = () => (
   <>
