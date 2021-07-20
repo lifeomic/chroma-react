@@ -148,7 +148,11 @@ const tickVariants = {
   pressed: (isChecked: boolean) => ({
     pathLength: isChecked ? 0.85 : 0.2,
   }),
-  checked: { pathLength: 1 },
+  checked: {
+    pathLength: 1,
+    stroke: 'var(--tick-primary)',
+    strokeOpacity: 1,
+  },
   unchecked: { pathLength: 0 },
 };
 
@@ -336,10 +340,15 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
       );
     }
 
+    const variant = [
+      checked ? 'checked' : 'unchecked',
+      disabled ? 'disabled' : 'enabled',
+    ];
+
     return (
       <motion.div
         className={clsx(classes.root, className)}
-        animate={checked ? 'checked' : 'unchecked'}
+        animate={variant}
         initial={false}
         whileHover="hover"
         whileTap="pressed"
@@ -375,7 +384,7 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
           <motion.label
             className={classes.label}
             htmlFor={uniqueId}
-            animate={checked ? 'checked' : 'unchecked'}
+            animate={variant}
             whileHover="hover"
             whileTap="pressed"
           >
