@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import * as React from 'react';
 import { GlobalHotKeys } from 'react-hotkeys';
-import { SideBar } from '../../icons/SideBar';
+import { Sidebar } from '@lifeomic/chromicons';
 import { makeStyles } from '../../styles';
 import { GetClasses } from '../../typeUtils';
 import { sideBarWidthCollapsed, useLayoutManager } from '../LayoutManager';
@@ -266,7 +266,7 @@ export const PrimaryNavigation = React.forwardRef<
               {...getTestProps(testIds.toggleButton)}
             >
               <span className={classes.footToggleContainer}>
-                <SideBar role="img" aria-hidden width={24} height={24} />
+                <Sidebar aria-hidden />
               </span>
               <motion.span
                 className={classes.toggleText}
