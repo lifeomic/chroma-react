@@ -2,6 +2,7 @@ import { IconComponent } from '../../testUtils/IconComponent';
 import { renderWithTheme } from '../../testUtils/renderWithTheme';
 import { TextField, TextFieldProps } from './index';
 import * as React from 'react';
+import { Text } from '../Text/Text';
 
 const testId = 'TextField';
 
@@ -31,7 +32,9 @@ test('it applies the provided className', async () => {
   );
 
   const textfield = await findByTestId(testId);
-  expect(textfield?.parentElement).toHaveClass('custom-class-name');
+  expect(textfield?.parentElement?.parentElement).toHaveClass(
+    'custom-class-name'
+  );
 });
 
 test('it renders a TextField with a secondaryLabel', async () => {
@@ -181,7 +184,7 @@ test('it renders an inverse color TextField', async () => {
   const error = await findByText(/TextArea error message/);
   expect(error).toHaveClass('ChromaFormErrorMessage-inverse');
 
-  expect(textfield?.previousSibling).toHaveClass(
+  expect(textfield?.parentElement?.previousSibling).toHaveClass(
     'ChromaTextField-labelInverse'
   );
 });
@@ -248,4 +251,46 @@ test('it renders an aria-label when not provided with label', async () => {
 
   const ariaLabel = await findByLabelText(/aria-label-text/);
   expect(ariaLabel).toBeInTheDocument();
+});
+
+test('it renders startAdornment', async () => {
+  const { findByTestId } = renderWithTheme(
+    <TextField
+      label=""
+      aria-label="aria-label-text"
+      startAdornment={<Text data-testid="start-adornment">~</Text>}
+    />
+  );
+
+  const startAdornment = await findByTestId('start-adornment');
+  expect(startAdornment).toBeInTheDocument();
+});
+
+test('it renders endAdornment', async () => {
+  const { findByTestId } = renderWithTheme(
+    <TextField
+      label=""
+      aria-label="aria-label-text"
+      endAdornment={<Text data-testid="end-adornment">lb</Text>}
+    />
+  );
+
+  const endAdornment = await findByTestId('end-adornment');
+  expect(endAdornment).toBeInTheDocument();
+});
+
+test('it renders startAdornment and endAdornment', async () => {
+  const { findByTestId } = renderWithTheme(
+    <TextField
+      label=""
+      aria-label="aria-label-text"
+      startAdornment={<Text data-testid="start-adornment">~</Text>}
+      endAdornment={<Text data-testid="end-adornment">lb</Text>}
+    />
+  );
+
+  const startAdornment = await findByTestId('start-adornment');
+  expect(startAdornment).toBeInTheDocument();
+  const endAdornment = await findByTestId('end-adornment');
+  expect(endAdornment).toBeInTheDocument();
 });

@@ -48,6 +48,10 @@ export const useStyles = makeStyles(
         opacity: 0.9,
       },
     },
+    inputContainer: {
+      position: 'relative',
+      width: 'fit-content',
+    },
     input: {
       backgroundColor: 'rgba(132, 137, 166, 0.15)',
       border: `1px solid transparent`,
@@ -77,7 +81,7 @@ export const useStyles = makeStyles(
         '&:focus': {
           backgroundColor: 'rgba(132, 137, 166, 0.15)',
           border: `1px solid transparent`,
-        }
+        },
       },
       '&::-webkit-input-placeholder': {
         color: theme.palette.black[400],
@@ -103,7 +107,7 @@ export const useStyles = makeStyles(
         opacity: 1,
         '&:focus': {
           backgroundColor: 'rgba(230, 231, 237, 0.1)',
-        }
+        },
       },
       '&::-webkit-input-placeholder': {
         color: 'rgba(255, 255, 255, 0.8)',
@@ -117,6 +121,58 @@ export const useStyles = makeStyles(
       '&:-moz-placeholder': {
         color: 'rgba(255, 255, 255, 0.8)',
       },
+    },
+    inputStartAdornment: {
+      paddingLeft: theme.spacing(4),
+    },
+    inputEndAdornment: {
+      paddingRight: theme.spacing(4),
+    },
+    adornment: {
+      position: 'absolute',
+
+      '& p': {
+        color: theme.palette.text.primary,
+        fontSize: theme.pxToRem(14),
+        lineHeight: 'unset',
+        margin: 0,
+        maxWidth: theme.pxToRem(20),
+        userSelect: 'none',
+      },
+
+      '& svg': {
+        color: theme.palette.black[500],
+        height: theme.pxToRem(20),
+        width: theme.pxToRem(20),
+      },
+
+      '& button': {
+        color: theme.palette.black[500],
+        padding: 0,
+      },
+    },
+    adornmentInverse: {
+      '& p': {
+        color: theme.palette.common.white,
+      },
+
+      '& svg': {
+        color: theme.palette.common.white,
+      },
+
+      '& button': {
+        color: theme.palette.common.white,
+      },
+    },
+    startAdornment: {
+      bottom: 8,
+      left: 8,
+      top: 8,
+    },
+    endAdornment: {
+      bottom: 8,
+      right: 8,
+      top: 8,
     },
     hasTrailer: {
       marginBottom: theme.spacing(0.5),
@@ -174,6 +230,8 @@ export interface TextFieldProps
   label?: BaseFormElement['label'];
   secondaryLabel?: string;
   tooltipMessage?: string;
+  startAdornment?: React.ReactNode;
+  endAdornment?: React.ReactNode;
 }
 
 export const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
@@ -192,6 +250,8 @@ export const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
       name,
       secondaryLabel,
       tooltipMessage,
+      startAdornment,
+      endAdornment,
       ...rootProps
     },
     ref
@@ -247,28 +307,55 @@ export const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
             )}
           </label>
         )}
-        <input
-          aria-describedby={buildDescribedBy({
-            hasError,
-            hasHelpMessage: !!helpMessage,
-            uniqueId,
-          })}
-          aria-label={ariaLabel}
-          ref={ref}
-          className={clsx(
-            classes.input,
-            fullWidth && classes.inputFullWidth,
-            hasError && classes.inputError,
-            hasError && color === 'inverse' && classes.inputErrorInverse,
-            {
-              [classes.inputInverse]: color === 'inverse',
-            }
+
+        <div className={classes.inputContainer}>
+          {startAdornment && (
+            <span
+              className={clsx(
+                classes.adornment,
+                color === 'inverse' && classes.adornmentInverse,
+                classes.startAdornment
+              )}
+            >
+              {startAdornment}
+            </span>
           )}
-          type="text"
-          id={uniqueId}
-          name={name}
-          {...rootProps}
-        />
+          <input
+            aria-describedby={buildDescribedBy({
+              hasError,
+              hasHelpMessage: !!helpMessage,
+              uniqueId,
+            })}
+            aria-label={ariaLabel}
+            ref={ref}
+            className={clsx(
+              classes.input,
+              startAdornment && classes.inputStartAdornment,
+              endAdornment && classes.inputEndAdornment,
+              fullWidth && classes.inputFullWidth,
+              hasError && classes.inputError,
+              hasError && color === 'inverse' && classes.inputErrorInverse,
+              {
+                [classes.inputInverse]: color === 'inverse',
+              }
+            )}
+            type="text"
+            id={uniqueId}
+            name={name}
+            {...rootProps}
+          />
+          {endAdornment && (
+            <span
+              className={clsx(
+                classes.adornment,
+                color === 'inverse' && classes.adornmentInverse,
+                classes.endAdornment
+              )}
+            >
+              {endAdornment}
+            </span>
+          )}
+        </div>
         {helpMessage && (
           <FormHelpMessage
             color={color}

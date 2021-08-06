@@ -54,6 +54,39 @@ The placeholder text to display.
 <TextField placeholder="Enter your name" />
 ```
 
+### Adornment
+
+An element that can be placed inside at the start or end of the input.
+Element should only be an Icon, IconButton, or Text.
+
+```jsx
+<TextField startAdornment={<DollarSign />} />
+```
+
+```jsx
+<TextField endAdornment={<Text>K</Text>} />
+```
+
+```jsx
+<TextField endAdornment={<IconButton icon={Check} />} />
+```
+
+If you are using the TextField adornments in a form, you will need to prevent default
+
+```jsx
+<TextField
+  endAdornment={
+    <IconButton
+      icon={Check}
+      onClick={(e) => {
+        e.preventDefault();
+        // Your other click logic here
+      }}
+    />
+  }
+/>
+```
+
 ### Full Width
 
 Makes the element take 100% of the width
