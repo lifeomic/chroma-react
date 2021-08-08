@@ -140,6 +140,10 @@ export const useStyles = makeStyles(
         userSelect: 'none',
       },
 
+      '& a': {
+        padding: 0,
+      },
+
       '& svg': {
         color: theme.palette.black[500],
         height: theme.pxToRem(20),
@@ -152,15 +156,7 @@ export const useStyles = makeStyles(
       },
     },
     adornmentInverse: {
-      '& p': {
-        color: theme.palette.common.white,
-      },
-
-      '& svg': {
-        color: theme.palette.common.white,
-      },
-
-      '& button': {
+      '& p, & svg, & button': {
         color: theme.palette.common.white,
       },
     },
@@ -230,6 +226,8 @@ export interface TextFieldProps
   label?: BaseFormElement['label'];
   secondaryLabel?: string;
   tooltipMessage?: string;
+  // Adornment Recommended components:
+  // Icon, IconButton, IconButtonLink, or Text
   startAdornment?: React.ReactNode;
   endAdornment?: React.ReactNode;
 }
