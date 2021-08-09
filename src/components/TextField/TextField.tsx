@@ -131,15 +131,6 @@ export const useStyles = makeStyles(
     adornment: {
       position: 'absolute',
 
-      '& p': {
-        color: theme.palette.text.primary,
-        fontSize: theme.pxToRem(14),
-        lineHeight: 'unset',
-        margin: 0,
-        maxWidth: theme.pxToRem(20),
-        userSelect: 'none',
-      },
-
       '& a': {
         padding: 0,
       },
@@ -156,7 +147,7 @@ export const useStyles = makeStyles(
       },
     },
     adornmentInverse: {
-      '& p, & svg, & button': {
+      '& svg, & button': {
         color: theme.palette.common.white,
       },
     },
@@ -227,7 +218,7 @@ export interface TextFieldProps
   secondaryLabel?: string;
   tooltipMessage?: string;
   // Adornment Recommended components:
-  // Icon, IconButton, IconButtonLink, or Text
+  // Icon, IconButton, or IconButtonLink
   startAdornment?: React.ReactNode;
   endAdornment?: React.ReactNode;
 }

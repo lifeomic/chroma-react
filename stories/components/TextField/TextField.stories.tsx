@@ -7,7 +7,6 @@ import { Container } from '../../storyComponents/Container';
 import defaultMd from './default.md';
 import { IconButton } from '../../../src/components/IconButton';
 import { IconButtonLink } from '../../../src/components/IconButtonLink';
-import { Text } from '../../../src/components/Text';
 import { BrowserRouter } from 'react-router-dom';
 
 const AllTextFieldsStory: React.FC = () => {
@@ -72,7 +71,7 @@ const AllTextFieldsStory: React.FC = () => {
               aria-label="Name"
             />
             <TextField
-              startAdornment={<Text>$</Text>}
+              startAdornment={<User />}
               value={text}
               onChange={(e) => {
                 setText(e.target.value);
@@ -81,7 +80,7 @@ const AllTextFieldsStory: React.FC = () => {
               aria-label="Name"
             />
             <TextField
-              endAdornment={<Text>K</Text>}
+              endAdornment={<User />}
               value={text}
               onChange={(e) => {
                 setText(e.target.value);

@@ -57,14 +57,10 @@ The placeholder text to display.
 ### Adornment
 
 An element that can be placed inside at the start or end of the input.
-Element should only be an Icon, IconButton, IconButtonLink, or Text.
+Element should only be an Icon, IconButton, or IconButtonLink.
 
 ```jsx
 <TextField startAdornment={<DollarSign />} />
-```
-
-```jsx
-<TextField startAdornment={<Text>K</Text>} />
 ```
 
 ```jsx
