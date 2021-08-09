@@ -2056,10 +2056,10 @@
     "@types/yargs" "^15.0.0"
     chalk "^3.0.0"
 
-"@lifeomic/chromicons@^0.2.1":
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/@lifeomic/chromicons/-/chromicons-0.2.1.tgz#7cfbab7f087ebcd53ad47d7308689d865dc576c1"
-  integrity sha512-+/RJq/ai6SfibQ/8btNlhYYh0CEASmO4xX0G4OyVfAZgVDgX3D7Ccx1+ZqaN203y4PPMpoMIsO6gdIV6UY4k9Q==
+"@lifeomic/chromicons@^1.2.1":
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/@lifeomic/chromicons/-/chromicons-1.2.1.tgz#2f5aa6a4532a260078b05f8f35034da8b758c7f5"
+  integrity sha512-eKyj2cb/MSOberwhcNH2HyXOb5LXrSaxi58KuIQHW7sGZwr1WTNQxsRhuQHjrk+NEBM6eBpUGMlHvtP1Pghfjw==
 
 "@material-ui/core@^4.9.11":
   version "4.9.11"

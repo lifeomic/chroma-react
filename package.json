@@ -30,14 +30,14 @@
     }
   },
   "peerDependencies": {
-    "@lifeomic/chromicons": "^0.2.1",
+    "@lifeomic/chromicons": "^1.2.1",
     "react": "16",
     "react-dom": "16",
     "react-router-dom": ">=5.1.2"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0-0",
-    "@lifeomic/chromicons": "^0.2.1",
+    "@lifeomic/chromicons": "^1.2.1",
     "@material-ui/types": "^5.0.1",
     "@storybook/addon-a11y": "^5.3.18",
     "@storybook/addon-actions": "^5.3.18",
