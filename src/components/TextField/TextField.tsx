@@ -50,7 +50,14 @@ export const useStyles = makeStyles(
     },
     inputContainer: {
       position: 'relative',
+      minWidth: theme.pxToRem(180),
       width: 'fit-content',
+    },
+    inputContainerFullWidth: {
+      width: '100%',
+      '& $inputHasAdornment': {
+        maxWidth: 'unset',
+      },
     },
     input: {
       backgroundColor: 'rgba(132, 137, 166, 0.15)',
@@ -59,7 +66,7 @@ export const useStyles = makeStyles(
       color: theme.palette.text.primary,
       fontFamily: theme.typography.fontFamily,
       fontSize: theme.pxToRem(14),
-      minWidth: theme.pxToRem(175),
+      minWidth: theme.pxToRem(180),
       lineHeight: 1.25,
       paddingBottom: theme.spacing(1),
       paddingLeft: theme.spacing(1.25),
@@ -96,6 +103,9 @@ export const useStyles = makeStyles(
         color: theme.palette.black[400],
       },
     },
+    inputHasAdornment: {
+      maxWidth: theme.pxToRem(152),
+    },
     inputInverse: {
       backgroundColor: 'rgba(230, 231, 237, 0.1)',
       color: theme.palette.common.white,
@@ -123,10 +133,10 @@ export const useStyles = makeStyles(
       },
     },
     inputStartAdornment: {
-      paddingLeft: theme.spacing(4),
+      paddingLeft: theme.spacing(4.25),
     },
     inputEndAdornment: {
-      paddingRight: theme.spacing(4),
+      paddingRight: theme.spacing(4.25),
     },
     adornment: {
       position: 'absolute',
@@ -153,12 +163,12 @@ export const useStyles = makeStyles(
     },
     startAdornment: {
       bottom: 8,
-      left: 8,
+      left: 10,
       top: 8,
     },
     endAdornment: {
       bottom: 8,
-      right: 8,
+      right: 10,
       top: 8,
     },
     hasTrailer: {
@@ -297,7 +307,12 @@ export const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
           </label>
         )}
 
-        <div className={classes.inputContainer}>
+        <div
+          className={clsx(
+            classes.inputContainer,
+            fullWidth && classes.inputContainerFullWidth
+          )}
+        >
           {startAdornment && (
             <span
               className={clsx(
@@ -319,6 +334,9 @@ export const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
             ref={ref}
             className={clsx(
               classes.input,
+              startAdornment || endAdornment
+                ? classes.inputHasAdornment
+                : undefined,
               startAdornment && classes.inputStartAdornment,
               endAdornment && classes.inputEndAdornment,
               fullWidth && classes.inputFullWidth,
