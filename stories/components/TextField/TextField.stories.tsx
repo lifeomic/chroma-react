@@ -2,9 +2,12 @@ import { storiesOf } from '@storybook/react';
 import * as React from 'react';
 import { FormBox } from '../../../src/components/FormBox';
 import { TextField } from '../../../src/components/TextField';
-import { HelpCircle } from '@lifeomic/chromicons';
+import { HelpCircle, Lock, Mail, User } from '@lifeomic/chromicons';
 import { Container } from '../../storyComponents/Container';
 import defaultMd from './default.md';
+import { IconButton } from '../../../src/components/IconButton';
+import { IconButtonLink } from '../../../src/components/IconButtonLink';
+import { BrowserRouter } from 'react-router-dom';
 
 const AllTextFieldsStory: React.FC = () => {
   const [text, setText] = React.useState('');
@@ -67,6 +70,24 @@ const AllTextFieldsStory: React.FC = () => {
               label=""
               aria-label="Name"
             />
+            <TextField
+              startAdornment={<User />}
+              value={text}
+              onChange={(e) => {
+                setText(e.target.value);
+              }}
+              label=""
+              aria-label="Name"
+            />
+            <TextField
+              endAdornment={<User />}
+              value={text}
+              onChange={(e) => {
+                setText(e.target.value);
+              }}
+              label=""
+              aria-label="Name"
+            />
           </FormBox>
         </Container>
 
@@ -116,6 +137,24 @@ const AllTextFieldsStory: React.FC = () => {
               errorMessage="This is required!"
             />
             <TextField
+              value={text}
+              onChange={(e) => {
+                setText(e.target.value);
+              }}
+              label=""
+              aria-label="Name"
+            />
+            <TextField
+              startAdornment={<User />}
+              value={text}
+              onChange={(e) => {
+                setText(e.target.value);
+              }}
+              label=""
+              aria-label="Name"
+            />
+            <TextField
+              endAdornment={<User />}
               value={text}
               onChange={(e) => {
                 setText(e.target.value);
@@ -182,6 +221,26 @@ const AllTextFieldsStory: React.FC = () => {
               color="inverse"
             />
             <TextField
+              value={text}
+              onChange={(e) => {
+                setText(e.target.value);
+              }}
+              label=""
+              aria-label="Name"
+              color="inverse"
+            />
+            <TextField
+              startAdornment={<IconButton aria-label="Mail" icon={Mail} />}
+              value={text}
+              onChange={(e) => {
+                setText(e.target.value);
+              }}
+              label=""
+              aria-label="Name"
+              color="inverse"
+            />
+            <TextField
+              endAdornment={<IconButton aria-label="Mail" icon={Mail} />}
               value={text}
               onChange={(e) => {
                 setText(e.target.value);
@@ -257,6 +316,32 @@ const AllTextFieldsStory: React.FC = () => {
               aria-label="Name"
               color="inverse"
             />
+            <BrowserRouter>
+              <TextField
+                startAdornment={
+                  <IconButtonLink aria-label="Check" icon={Lock} to="" />
+                }
+                value={text}
+                onChange={(e) => {
+                  setText(e.target.value);
+                }}
+                label=""
+                aria-label="Name"
+                color="inverse"
+              />
+              <TextField
+                endAdornment={
+                  <IconButtonLink aria-label="Check" icon={Lock} to="" />
+                }
+                value={text}
+                onChange={(e) => {
+                  setText(e.target.value);
+                }}
+                label=""
+                aria-label="Name"
+                color="inverse"
+              />
+            </BrowserRouter>
           </FormBox>
         </Container>
       </Container>

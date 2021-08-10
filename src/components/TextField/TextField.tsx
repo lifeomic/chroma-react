@@ -48,6 +48,17 @@ export const useStyles = makeStyles(
         opacity: 0.9,
       },
     },
+    inputContainer: {
+      position: 'relative',
+      minWidth: theme.pxToRem(180),
+      width: 'fit-content',
+    },
+    inputContainerFullWidth: {
+      width: '100%',
+      '& $inputHasAdornment': {
+        maxWidth: 'unset',
+      },
+    },
     input: {
       backgroundColor: 'rgba(132, 137, 166, 0.15)',
       border: `1px solid transparent`,
@@ -55,7 +66,7 @@ export const useStyles = makeStyles(
       color: theme.palette.text.primary,
       fontFamily: theme.typography.fontFamily,
       fontSize: theme.pxToRem(14),
-      minWidth: theme.pxToRem(175),
+      minWidth: theme.pxToRem(180),
       lineHeight: 1.25,
       paddingBottom: theme.spacing(1),
       paddingLeft: theme.spacing(1.25),
@@ -77,7 +88,7 @@ export const useStyles = makeStyles(
         '&:focus': {
           backgroundColor: 'rgba(132, 137, 166, 0.15)',
           border: `1px solid transparent`,
-        }
+        },
       },
       '&::-webkit-input-placeholder': {
         color: theme.palette.black[400],
@@ -92,6 +103,9 @@ export const useStyles = makeStyles(
         color: theme.palette.black[400],
       },
     },
+    inputHasAdornment: {
+      maxWidth: theme.pxToRem(152),
+    },
     inputInverse: {
       backgroundColor: 'rgba(230, 231, 237, 0.1)',
       color: theme.palette.common.white,
@@ -103,7 +117,7 @@ export const useStyles = makeStyles(
         opacity: 1,
         '&:focus': {
           backgroundColor: 'rgba(230, 231, 237, 0.1)',
-        }
+        },
       },
       '&::-webkit-input-placeholder': {
         color: 'rgba(255, 255, 255, 0.8)',
@@ -117,6 +131,45 @@ export const useStyles = makeStyles(
       '&:-moz-placeholder': {
         color: 'rgba(255, 255, 255, 0.8)',
       },
+    },
+    inputStartAdornment: {
+      paddingLeft: theme.spacing(4.25),
+    },
+    inputEndAdornment: {
+      paddingRight: theme.spacing(4.25),
+    },
+    adornment: {
+      position: 'absolute',
+
+      '& a': {
+        padding: 0,
+      },
+
+      '& svg': {
+        color: theme.palette.black[500],
+        height: theme.pxToRem(20),
+        width: theme.pxToRem(20),
+      },
+
+      '& button': {
+        color: theme.palette.black[500],
+        padding: 0,
+      },
+    },
+    adornmentInverse: {
+      '& svg, & button': {
+        color: theme.palette.common.white,
+      },
+    },
+    startAdornment: {
+      bottom: 8,
+      left: 10,
+      top: 8,
+    },
+    endAdornment: {
+      bottom: 8,
+      right: 10,
+      top: 8,
     },
     hasTrailer: {
       marginBottom: theme.spacing(0.5),
@@ -174,6 +227,10 @@ export interface TextFieldProps
   label?: BaseFormElement['label'];
   secondaryLabel?: string;
   tooltipMessage?: string;
+  // Adornment Recommended components:
+  // Icon, IconButton, or IconButtonLink
+  startAdornment?: React.ReactNode;
+  endAdornment?: React.ReactNode;
 }
 
 export const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
@@ -192,6 +249,8 @@ export const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
       name,
       secondaryLabel,
       tooltipMessage,
+      startAdornment,
+      endAdornment,
       ...rootProps
     },
     ref
@@ -247,28 +306,63 @@ export const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
             )}
           </label>
         )}
-        <input
-          aria-describedby={buildDescribedBy({
-            hasError,
-            hasHelpMessage: !!helpMessage,
-            uniqueId,
-          })}
-          aria-label={ariaLabel}
-          ref={ref}
+
+        <div
           className={clsx(
-            classes.input,
-            fullWidth && classes.inputFullWidth,
-            hasError && classes.inputError,
-            hasError && color === 'inverse' && classes.inputErrorInverse,
-            {
-              [classes.inputInverse]: color === 'inverse',
-            }
+            classes.inputContainer,
+            fullWidth && classes.inputContainerFullWidth
           )}
-          type="text"
-          id={uniqueId}
-          name={name}
-          {...rootProps}
-        />
+        >
+          {startAdornment && (
+            <span
+              className={clsx(
+                classes.adornment,
+                color === 'inverse' && classes.adornmentInverse,
+                classes.startAdornment
+              )}
+            >
+              {startAdornment}
+            </span>
+          )}
+          <input
+            aria-describedby={buildDescribedBy({
+              hasError,
+              hasHelpMessage: !!helpMessage,
+              uniqueId,
+            })}
+            aria-label={ariaLabel}
+            ref={ref}
+            className={clsx(
+              classes.input,
+              startAdornment || endAdornment
+                ? classes.inputHasAdornment
+                : undefined,
+              startAdornment && classes.inputStartAdornment,
+              endAdornment && classes.inputEndAdornment,
+              fullWidth && classes.inputFullWidth,
+              hasError && classes.inputError,
+              hasError && color === 'inverse' && classes.inputErrorInverse,
+              {
+                [classes.inputInverse]: color === 'inverse',
+              }
+            )}
+            type="text"
+            id={uniqueId}
+            name={name}
+            {...rootProps}
+          />
+          {endAdornment && (
+            <span
+              className={clsx(
+                classes.adornment,
+                color === 'inverse' && classes.adornmentInverse,
+                classes.endAdornment
+              )}
+            >
+              {endAdornment}
+            </span>
+          )}
+        </div>
         {helpMessage && (
           <FormHelpMessage
             color={color}
