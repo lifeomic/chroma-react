@@ -139,25 +139,21 @@ export const useStyles = makeStyles(
       paddingRight: theme.spacing(4.25),
     },
     adornment: {
+      display: 'flex',
       position: 'absolute',
-
-      '& a': {
+      '& a, & button': {
         padding: 0,
       },
-
       '& svg': {
-        color: theme.palette.black[500],
         height: theme.pxToRem(20),
         width: theme.pxToRem(20),
-      },
-
-      '& button': {
-        color: theme.palette.black[500],
-        padding: 0,
+        '&, & a, & button': {
+          color: theme.palette.black[500],
+        },
       },
     },
     adornmentInverse: {
-      '& svg, & button': {
+      '& a, & button, & svg': {
         color: theme.palette.common.white,
       },
     },
