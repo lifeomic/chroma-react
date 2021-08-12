@@ -71,7 +71,7 @@ const AllTextFieldsStory: React.FC = () => {
               aria-label="Name"
             />
             <TextField
-              startAdornment={<User />}
+              startAdornment={<User aria-hidden />}
               value={text}
               onChange={(e) => {
                 setText(e.target.value);
@@ -80,7 +80,7 @@ const AllTextFieldsStory: React.FC = () => {
               aria-label="Name"
             />
             <TextField
-              endAdornment={<User />}
+              endAdornment={<User aria-hidden />}
               value={text}
               onChange={(e) => {
                 setText(e.target.value);
@@ -145,7 +145,7 @@ const AllTextFieldsStory: React.FC = () => {
               aria-label="Name"
             />
             <TextField
-              startAdornment={<User />}
+              startAdornment={<User aria-hidden />}
               value={text}
               onChange={(e) => {
                 setText(e.target.value);
@@ -154,7 +154,7 @@ const AllTextFieldsStory: React.FC = () => {
               aria-label="Name"
             />
             <TextField
-              endAdornment={<User />}
+              endAdornment={<User aria-hidden />}
               value={text}
               onChange={(e) => {
                 setText(e.target.value);

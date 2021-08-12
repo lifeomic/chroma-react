@@ -60,8 +60,10 @@ An element that can be placed inside at the start or end of the input.
 Element should only be an Icon, IconButton, or IconButtonLink.
 
 ```jsx
-<TextField startAdornment={<DollarSign />} />
+<TextField startAdornment={<DollarSign aria-hidden />} />
 ```
+
+**NOTE:** When using an icon only, it's important to add `aria-hidden` so they are removed from the Accessibility Tree.
 
 ```jsx
 <TextField endAdornment={<IconButton icon={Check} />} />
