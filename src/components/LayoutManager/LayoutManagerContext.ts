@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { canAccessLocalStorage } from '../../utils';
 
 export const LayoutManagerStoreKey = '@@lifeomic/store/layoutSidebarCollapsed';
 
@@ -13,7 +14,7 @@ export const LayoutManagerContext = React.createContext<
 >({
   isSidebarCollapseDisabled: false,
   isSidebarCollapsed: !!(
-    'localStorage' in window &&
+    canAccessLocalStorage() &&
     localStorage &&
     localStorage.getItem(LayoutManagerStoreKey) === 'true'
   ),
