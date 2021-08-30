@@ -18,7 +18,7 @@ import {
   Info,
   XCircle,
   X,
-} from '../../../src/icons/lined';
+} from '@lifeomic/chromicons';
 import defaultMd from './default.md';
 
 const AlertStory: React.FC = () => (

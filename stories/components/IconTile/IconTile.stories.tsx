@@ -6,7 +6,7 @@ import {
   IconTileContent,
   IconTileHero,
 } from '../../../src/components/IconTile';
-import { Airplay, Droplet, Heart } from '../../../src/icons/lined';
+import { Airplay, Droplet, Heart } from '@lifeomic/chromicons';
 import { Container } from '../../storyComponents/Container';
 import { Noop } from '../../storyComponents/Noop';
 import defaultMd from './default.md';

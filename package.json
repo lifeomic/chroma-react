@@ -13,8 +13,7 @@
     "build": "run-p build:*",
     "build:esm": "tsc -p tsconfig.build.json -m es2015 --outDir ./dist/esm && cp -r ./src/assets/ ./dist/esm/assets",
     "build:cjs": "tsc -p tsconfig.build.json -m commonjs --outDir ./dist && cp -r ./src/assets/ ./dist/assets",
-    "postbuild": "cp package.json ./dist/ && yarn postbuild:write-svgs",
-    "postbuild:write-svgs": "ts-node --project tsconfig.build.json write-svgs.tsx",
+    "postbuild": "cp package.json ./dist/",
     "docs:build": "build-storybook -c .storybook -s public",
     "docs:deploy": "storybook-to-ghpages --s docs:build",
     "docs:start": "start-storybook -p 9001 -c .storybook -s public",
@@ -31,14 +30,14 @@
     }
   },
   "peerDependencies": {
-    "@lifeomic/chromicons": "^0.2.1",
+    "@lifeomic/chromicons": "^1.2.1",
     "react": "16",
     "react-dom": "16",
     "react-router-dom": ">=5.1.2"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0-0",
-    "@lifeomic/chromicons": "^0.2.1",
+    "@lifeomic/chromicons": "^1.2.1",
     "@material-ui/types": "^5.0.1",
     "@storybook/addon-a11y": "^5.3.18",
     "@storybook/addon-actions": "^5.3.18",
@@ -85,7 +84,6 @@
     "tap-xunit": "^2.4.1",
     "ts-jest": "^25.4.0",
     "ts-loader": "^7.0.1",
-    "ts-node": "^8.9.0",
     "typescript": "^3.8.3"
   },
   "dependencies": {
@@ -95,7 +93,6 @@
     "deepmerge": "^4.2.2",
     "focus-visible": "^5.1.0",
     "framer-motion": "^1.10.3",
-    "react-feather": "^2.0.4",
     "react-focus-lock": "^2.3.1",
     "react-hotkeys": "^2.0.0",
     "react-phone-number-input": "^3.1.23",

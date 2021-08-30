@@ -1,4 +1,5 @@
-import React from 'react';
+import 'react-phone-number-input/style.css';
+import * as React from 'react';
 import { TextFieldProps, TextField } from '../TextField';
 // @ts-ignore The flags module is not typed
 import flags from 'react-phone-number-input/flags';

@@ -112,3 +112,23 @@ test('it renders a background when `applyBackgroundCover={true}`', async () => {
     'ChromaPageLayout-backgroundCover'
   );
 });
+
+test('it sets background-image with provided "backgroundImage"', async () => {
+  const props = getBaseProps();
+  const testId = 'backgroundImage';
+  const backgroundImage = 'myBackgroundImage';
+
+  const { findByTestId } = renderWithTheme(
+    <PageLayout
+      {...props}
+      data-testid={testId}
+      applyBackgroundCover={true}
+      backgroundImage={backgroundImage}
+    />
+  );
+
+  const root = await findByTestId(testId);
+  expect(root?.firstElementChild).toHaveStyle(
+    `background-image: url(${backgroundImage})`
+  );
+});

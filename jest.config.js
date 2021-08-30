@@ -31,6 +31,7 @@ module.exports = {
   },
   moduleNameMapper: {
     '\\.(jpg|jpeg|png|gif|svg)$': '<rootDir>/test/imageMock.js',
+    '\\.(css)$': '<rootDir>/test/emptyMock.js',
   },
   globals: {
     'ts-jest': {

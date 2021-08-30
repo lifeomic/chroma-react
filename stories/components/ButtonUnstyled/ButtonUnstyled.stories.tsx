@@ -3,7 +3,7 @@ import md from './default.md';
 import { Alert, AlertBody, AlertIcon } from '../../../src/components/Alert';
 import { ButtonUnstyled } from '../../../src/components/ButtonUnstyled';
 import { Container } from '../../storyComponents/Container';
-import { Info } from '../../../src/icons/lined';
+import { Info } from '@lifeomic/chromicons';
 import { storiesOf } from '@storybook/react';
 import { Text } from '../../../src/components/Text';
 

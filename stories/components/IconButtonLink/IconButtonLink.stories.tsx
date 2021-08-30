@@ -3,7 +3,7 @@ import * as React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { IconButtonLink } from '../../../src/components/IconButtonLink';
 import { Text } from '../../../src/components/Text';
-import { Edit, X } from '../../../src/icons/lined';
+import { Edit, X } from '@lifeomic/chromicons';
 import { Container } from '../../storyComponents/Container';
 import { spacing } from '../../storyStyles';
 import defaultMd from './default.md';

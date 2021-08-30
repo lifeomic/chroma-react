@@ -1,6 +1,6 @@
 import { storiesOf } from '@storybook/react';
 import * as React from 'react';
-import { Activity, Flag, User, Zap } from 'react-feather';
+import { Activity, Flag, User, Zap } from '@lifeomic/chromicons';
 import { Step, Stepper } from '../../../src/components/Stepper';
 import { Container } from '../../storyComponents/Container';
 import defaultMd from './default.md';

@@ -69,6 +69,7 @@ export type PageLayoutClasses = GetClasses<typeof useStyles>;
 
 export interface PageLayoutProps
   extends StandardProps<HTMLDivElement, PageLayoutClasses> {
+  backgroundImage?: string;
   disclaimer?: React.ReactNode;
   headerActions?: PageHeaderProps['actions'];
   headerAlign?: PageHeaderProps['align'];
@@ -99,6 +100,7 @@ const ConditionalWrapper: React.FC<ConditionalWrapperProps> = ({
 export const PageLayout = React.forwardRef<HTMLDivElement, PageLayoutProps>(
   (
     {
+      backgroundImage,
       headerAlign = 'center',
       headerCenter,
       headerCenterClassName,
@@ -134,7 +136,18 @@ export const PageLayout = React.forwardRef<HTMLDivElement, PageLayoutProps>(
         <ConditionalWrapper
           condition={applyBackgroundCover}
           wrapper={(children: React.ReactNode) => (
-            <div className={classes.backgroundCover}>{children}</div>
+            <div
+              className={classes.backgroundCover}
+              style={
+                backgroundImage
+                  ? {
+                      backgroundImage: `url(${backgroundImage})`,
+                    }
+                  : undefined
+              }
+            >
+              {children}
+            </div>
           )}
         >
           <PageHeader
