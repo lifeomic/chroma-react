@@ -94,7 +94,7 @@ export const LayoutManager: React.FC<LayoutManagerProps> = ({
         }
         setIsSidebarCollapsed((state) => {
           const isOpen = !state;
-          localStorage &&
+          'localStorage' in window &&
             localStorage.setItem(
               LayoutManagerStoreKey,
               isOpen ? 'true' : 'false'
@@ -136,7 +136,8 @@ export const LayoutManager: React.FC<LayoutManagerProps> = ({
 
 LayoutManager.defaultProps = {
   initialIsSidebarCollapsed: !!(
-    localStorage && localStorage.getItem(LayoutManagerStoreKey) === 'true'
+    'localStorage' in window &&
+    localStorage.getItem(LayoutManagerStoreKey) === 'true'
   ),
   isSidebarCollapseDisabled: false,
 };

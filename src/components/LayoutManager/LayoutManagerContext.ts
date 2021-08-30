@@ -13,7 +13,8 @@ export const LayoutManagerContext = React.createContext<
 >({
   isSidebarCollapseDisabled: false,
   isSidebarCollapsed: !!(
-    localStorage && localStorage.getItem(LayoutManagerStoreKey) === 'true'
+    'localStorage' in window &&
+    localStorage.getItem(LayoutManagerStoreKey) === 'true'
   ),
   toggleSidebarCollapsed: () => undefined,
 });
