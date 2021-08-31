@@ -7,6 +7,7 @@ import {
   LayoutManagerContextValue,
   LayoutManagerStoreKey,
 } from './LayoutManagerContext';
+import { canAccessLocalStorage } from './canAccessLocalStorage';
 
 export const LayoutManagerStylesKey = 'ChromaLayoutManager';
 
@@ -94,7 +95,7 @@ export const LayoutManager: React.FC<LayoutManagerProps> = ({
         }
         setIsSidebarCollapsed((state) => {
           const isOpen = !state;
-          localStorage &&
+          canAccessLocalStorage() &&
             localStorage.setItem(
               LayoutManagerStoreKey,
               isOpen ? 'true' : 'false'
@@ -136,7 +137,8 @@ export const LayoutManager: React.FC<LayoutManagerProps> = ({
 
 LayoutManager.defaultProps = {
   initialIsSidebarCollapsed: !!(
-    localStorage && localStorage.getItem(LayoutManagerStoreKey) === 'true'
+    canAccessLocalStorage() &&
+    localStorage.getItem(LayoutManagerStoreKey) === 'true'
   ),
   isSidebarCollapseDisabled: false,
 };
