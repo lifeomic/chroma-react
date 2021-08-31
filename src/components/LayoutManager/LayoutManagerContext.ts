@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { canAccessLocalStorage } from '../../utils';
+import { canAccessLocalStorage } from './canAccessLocalStorage';
 
 export const LayoutManagerStoreKey = '@@lifeomic/store/layoutSidebarCollapsed';
 
