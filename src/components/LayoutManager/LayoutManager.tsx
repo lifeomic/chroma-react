@@ -7,7 +7,7 @@ import {
   LayoutManagerContextValue,
   LayoutManagerStoreKey,
 } from './LayoutManagerContext';
-import { canAccessLocalStorage } from '../../utils';
+import { canAccessLocalStorage } from './canAccessLocalStorage';
 
 export const LayoutManagerStylesKey = 'ChromaLayoutManager';
 
