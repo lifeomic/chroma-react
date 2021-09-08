@@ -118,7 +118,12 @@ import {
   PrimaryNavigationSubItemClasses,
   PrimaryNavigationSubItemStylesKey,
 } from '../../components/PrimaryNavigation';
-import { RadioClasses, RadioStylesKey } from '../../components/Radio';
+import {
+  RadioClasses,
+  RadioGroupMinimalClasses,
+  RadioGroupMinimalStylesKey,
+  RadioStylesKey,
+} from '../../components/Radio';
 import {
   SearchFieldClasses,
   SearchFieldStylesKey,
@@ -257,6 +262,7 @@ export interface ChromaComponentNameToClassKey {
   [PrimaryNavigationStylesKey]: PrimaryNavigationClasses;
   [PrimaryNavigationSubItemStylesKey]: PrimaryNavigationSubItemClasses;
   [RadioStylesKey]: RadioClasses;
+  [RadioGroupMinimalStylesKey]: RadioGroupMinimalClasses;
   [RoverOptionStylesKey]: RoverOptionClasses;
   [SearchFieldStylesKey]: SearchFieldClasses;
   [SecondaryNavigationItemStylesKey]: SecondaryNavigationItemClasses;
