@@ -18,7 +18,6 @@ export const useStyles = makeStyles(
       margin: 0,
       minWidth: 0,
       padding: 0,
-      position: 'relative',
       verticalAlign: 'top',
       width: '100%',
     },
