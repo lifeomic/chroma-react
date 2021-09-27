@@ -37,21 +37,23 @@ export interface RoverOptionProps
   rover: RoverStateReturn;
 }
 
-export const RoverOption: React.FC<RoverOptionProps> = React.memo(
-  ({
-    handleOptionSelect: handleSelectOption,
-    option,
-    rover,
-    variants,
-    value,
-    disabled,
-  }) => {
+export const RoverOption = React.forwardRef<HTMLLIElement, RoverOptionProps>(
+  (
+    {
+      handleOptionSelect: handleSelectOption,
+      option,
+      rover,
+      variants,
+      value,
+      disabled,
+    },
+    ref
+  ) => {
     const classes = useStyles({});
     const { value: optionValue, meta } = option?.props || {};
     const handleClick = React.useCallback(() => {
       handleSelectOption(optionValue, meta);
     }, [optionValue, meta, handleSelectOption]);
-
     return (
       <Rover
         {...rover}
@@ -63,6 +65,7 @@ export const RoverOption: React.FC<RoverOptionProps> = React.memo(
         variants={variants}
         onClick={handleClick}
         disabled={disabled}
+        ref={ref}
       >
         {React.cloneElement<SelectOptionProps>(option, {
           isChecked: optionValue === value,
