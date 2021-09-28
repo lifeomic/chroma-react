@@ -20,6 +20,7 @@ module.exports = {
     '@testing-library/jest-dom',
     '<rootDir>/test/mockMuiStyles.js',
     '<rootDir>/test/documentRangeMock.js',
+    '<rootDir>/test/svgLengthMock.js',
   ],
   coverageThreshold: {
     global: {

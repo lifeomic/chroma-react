@@ -31,7 +31,7 @@
   },
   "peerDependencies": {
     "@lifeomic/chromicons": "^1.2.1",
-    "react": "17.0.0",
+    "react": "16",
     "react-dom": "16",
     "react-router-dom": ">=5.1.2"
   },
@@ -92,7 +92,7 @@
     "clsx": "^1.1.0",
     "deepmerge": "^4.2.2",
     "focus-visible": "^5.1.0",
-    "framer-motion": "^1.10.3",
+    "framer-motion": "^4.1.17",
     "react-focus-lock": "^2.3.1",
     "react-hotkeys": "^2.0.0",
     "react-phone-number-input": "^3.1.23",
