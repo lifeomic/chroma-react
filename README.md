@@ -44,6 +44,14 @@ import { Button } from '@lifeomic/chroma-react/components/Button';
 <Button variant="contained">Button</Button>;
 ```
 
+4. Add jest config (optional)
+
+To include the jest configuration setup, add the following:
+
+```js
+setupFilesAfterEnv: ['@lifeomic/chroma-react/jest'];
+```
+
 ## Theming
 
 Want to override the default theme of Chroma? No problem!
