@@ -78,7 +78,7 @@
     "react-json-tree": "^0.11.2",
     "react-router-dom": "^5.1.2",
     "react-test-renderer": "^16.13.1",
-    "reakit-test-utils": "^0.11.1",
+    "reakit-test-utils": "^0.15.2",
     "semantic-release": "^17.4.4",
     "storybook-readme": "^5.0.8",
     "tap-xunit": "^2.4.1",
@@ -92,11 +92,11 @@
     "clsx": "^1.1.0",
     "deepmerge": "^4.2.2",
     "focus-visible": "^5.1.0",
-    "framer-motion": "^1.10.3",
+    "framer-motion": "^4.1.17",
     "react-focus-lock": "^2.3.1",
     "react-hotkeys": "^2.0.0",
     "react-phone-number-input": "^3.1.23",
     "react-remove-scroll": "^2.3.0",
-    "reakit": "1.0.0-rc.1"
+    "reakit": "^1.3.10"
   }
 }

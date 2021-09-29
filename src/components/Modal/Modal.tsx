@@ -234,7 +234,7 @@ const ModalInner = React.forwardRef<HTMLDivElement, ModalProps>(
               }
             })}
             ref={thisRef}
-            positionTransition
+            layout
             initial={{ opacity: 0 }}
             animate={{
               opacity: 1,
