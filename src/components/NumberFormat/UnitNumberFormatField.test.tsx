@@ -361,17 +361,11 @@ test('rendering a PriceFormatField renders a UnitNumberFormatField with $ prefix
 });
 
 test('rendering a PriceFormatField with noninteger amount of pennies throws', async () => {
-  // Avoid uncaught exception from showing in the console
-  jest.spyOn(console, 'error');
-  (console.error as jest.Mock).mockImplementation(() => {});
-
   const onChange = jest.fn();
   const value = 1000.5;
   expect(() =>
     renderWithTheme(<PriceFormatField value={value} onChange={onChange} />)
   ).toThrow();
-
-  (console.error as jest.Mock).mockRestore();
 });
 
 test('PriceFormatField passes value as pennies to onChange', async () => {
