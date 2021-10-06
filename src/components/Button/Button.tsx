@@ -149,6 +149,10 @@ export const useStyles = makeStyles(
       height: theme.spacing(2),
       marginRight: theme.spacing(1),
     },
+    trailingIcon: {
+      marginRight: 0,
+      marginLeft: theme.spacing(1),
+    },
   }),
   { name: ButtonStylesKey }
 );
@@ -161,6 +165,7 @@ export interface ButtonProps extends React.ComponentPropsWithoutRef<'button'> {
   fullWidth?: boolean;
   icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   variant?: 'contained' | 'outlined' | 'text';
+  trailingIcon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
 }
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
@@ -172,6 +177,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       disabled,
       fullWidth,
       icon: Icon,
+      trailingIcon: TrailingIcon,
       variant = 'contained',
       ...rootProps
     },
@@ -204,6 +210,13 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       >
         {!!Icon && <Icon role="img" aria-hidden className={classes.icon} />}
         {children}
+        {!!TrailingIcon && (
+          <TrailingIcon
+            role="img"
+            aria-hidden
+            className={clsx(classes.icon, classes.trailingIcon)}
+          />
+        )}
       </button>
     );
   }

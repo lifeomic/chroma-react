@@ -1,5 +1,8 @@
 import * as React from 'react';
-import { IconComponent } from '../../testUtils/IconComponent';
+import {
+  IconComponent,
+  testId as iconComponentTestId,
+} from '../../testUtils/IconComponent';
 import { renderWithTheme } from '../../testUtils/renderWithTheme';
 import { Button, ButtonProps } from './index';
 
@@ -117,5 +120,17 @@ test('it renders with `variant="text" color="inverse"`', async () => {
   );
   const button = await findByTestId(testId);
   expect(button).toHaveClass('ChromaButton-textInverse');
+});
+
+test('it renders a trailing icon', async () => {
+  const props = getBaseProps();
+  const { findByTestId } = renderWithTheme(
+    <Button {...props} data-testid={testId} trailingIcon={IconComponent}>
+      Button
+    </Button>
+  );
+  const trailingIcon = await findByTestId(iconComponentTestId);
+  expect(trailingIcon).toBeInTheDocument();
+  expect(trailingIcon).toHaveClass('ChromaButton-trailingIcon');
 });
 // #endregion
