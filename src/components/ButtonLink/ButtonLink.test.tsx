@@ -242,9 +242,11 @@ test('it renders a disabled inverse link when disabled', async () => {
 test('it renders a trailing icon', async () => {
   const props = getBaseProps();
   const { findByTestId } = renderWithTheme(
-    <ButtonLink {...props} data-testid={testId} trailingIcon={IconComponent}>
-      ButtonLink
-    </ButtonLink>
+    <RenderContainer>
+      <ButtonLink {...props} data-testid={testId} trailingIcon={IconComponent}>
+        ButtonLink
+      </ButtonLink>
+    </RenderContainer>
   );
   const trailingIcon = await findByTestId(iconComponentTestId);
   expect(trailingIcon).toBeInTheDocument();
