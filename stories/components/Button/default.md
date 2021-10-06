@@ -40,6 +40,15 @@ icon set.
 <Button icon={Edit}>Button</Button>
 ```
 
+### Trailing Icon
+
+The Button component takes a `trailingIcon` prop. This icon will be
+rendered after the text. It's recommended to use the Chromicons icon set.
+
+```jsx
+<Button trailingIcon={ChevronDown}>Button</Button>
+```
+
 ### Color
 
 When a button needs to be rendered, but on a dark-colored background, the
