@@ -22,6 +22,7 @@ export interface MenuButtonProps extends ButtonProps {
   trailingIcon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
 }
 
+/** @deprecated Please use `trailingIcon` from Button instead. This will be removed in a future release */
 export const MenuButton = React.forwardRef<HTMLButtonElement, MenuButtonProps>(
   ({ children, trailingIcon: TrailingIcon, ...rootProps }, ref) => {
     const classes = useStyles({});
