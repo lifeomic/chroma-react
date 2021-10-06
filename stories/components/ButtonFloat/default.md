@@ -54,7 +54,7 @@ The Button Float component takes a `trailingIcon` prop. This icon will be
 rendered after the text. It's recommended to use the Chroma icon set.
 
 ```jsx
-<ButtonFloat trailingIcon={ChevronDown}>Button</Button>
+<ButtonFloat trailingIcon={ChevronDown}>Button</ButtonFloat>
 ```
 
 ### Disabled
