@@ -33,8 +33,7 @@ The content to render inside of a button.
 
 ### Icon
 
-The Button component takes an `icon` prop. It's recommended to use the Chroma
-icon set.
+The Button component takes an `icon` prop. It's recommended to use the [Chromicons](https://lifeomic.github.io/chromicons.com/) icon set.
 
 ```jsx
 <Button icon={Edit}>Button</Button>
