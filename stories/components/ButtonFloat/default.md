@@ -13,7 +13,7 @@ import { ButtonFloat } from '@lifeomic/chroma-react/components/ButtonFloat';
 ### Icon
 
 The Button Float component takes an icon prop. It's recommended to use the
-Chroma icon set.
+[Chromicons](https://lifeomic.github.io/chromicons.com/) icon set.
 
 ```jsx
 <ButtonFloat icon={Edit} />
@@ -54,7 +54,7 @@ The Button Float component takes a `trailingIcon` prop. This icon will be
 rendered after the text. It's recommended to use the Chroma icon set.
 
 ```jsx
-<ButtonFloat trailingIcon={ChevronDown}>Button</Button>
+<ButtonFloat trailingIcon={ChevronDown}>Button</ButtonFloat>
 ```
 
 ### Disabled

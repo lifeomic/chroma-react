@@ -23,7 +23,7 @@ button, as it is read from the screen reader, so the more context, the better!
 ### Icon (_required_)
 
 The Icon Button Float component requires an `icon` prop. It's recommended to use
-the Chroma icon set.
+the [Chromicons](https://lifeomic.github.io/chromicons.com/) icon set.
 
 ```jsx
 <IconButtonFloat icon={Edit} />
