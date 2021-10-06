@@ -13,7 +13,7 @@ import { ButtonFloat } from '@lifeomic/chroma-react/components/ButtonFloat';
 ### Icon
 
 The Button Float component takes an icon prop. It's recommended to use the
-Chroma icon set.
+[Chromicons](https://lifeomic.github.io/chromicons.com/) icon set.
 
 ```jsx
 <ButtonFloat icon={Edit} />

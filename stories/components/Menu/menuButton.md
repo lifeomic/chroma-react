@@ -21,7 +21,7 @@ for that component are also available here.
 ### Icon
 
 The Menu Button component takes an `icon` prop. It's recommended to use the
-Chroma icon set.
+[Chromicons](https://lifeomic.github.io/chromicons.com/) icon set.
 
 ```jsx
 <Menu

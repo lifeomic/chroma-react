@@ -84,7 +84,8 @@ const [isOpen, setIsOpen] = React.useState(true);
 
 ### Icon
 
-An Icon can be provided to the Snackbar.
+An Icon can be provided to the Snackbar. It's recommended to use the
+[Chromicons](https://lifeomic.github.io/chromicons.com/) icon set.
 
 ```jsx
 <Snackbar icon={Zap} />

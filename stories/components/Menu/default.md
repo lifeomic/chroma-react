@@ -98,7 +98,8 @@ A Menu Item can contain just text.
 
 #### Icon
 
-An Icon can be rendered for the Menu Item.
+An Icon can be rendered for the Menu Item. It's recommended to use the
+[Chromicons](https://lifeomic.github.io/chromicons.com/) icon set.
 
 ```jsx
 <Menu
