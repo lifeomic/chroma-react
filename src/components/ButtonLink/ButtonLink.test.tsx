@@ -243,7 +243,7 @@ test('it renders a trailing icon', async () => {
   const props = getBaseProps();
   const { findByTestId } = renderWithTheme(
     <ButtonLink {...props} data-testid={testId} trailingIcon={IconComponent}>
-      Button
+      ButtonLink
     </ButtonLink>
   );
   const trailingIcon = await findByTestId(iconComponentTestId);
