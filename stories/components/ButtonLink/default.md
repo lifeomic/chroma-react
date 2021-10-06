@@ -62,7 +62,7 @@ The following props are available to Button Link:
 - disabled
 - fullWidth
 - icon
-- trailing Icon
+- trailingIcon
 - variant
 
 ## Accessibility
