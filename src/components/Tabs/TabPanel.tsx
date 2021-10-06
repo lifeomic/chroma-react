@@ -37,7 +37,6 @@ export const TabPanel: React.FC<TabPanelProps> = ({
     <BaseTabPanel
       {...tab}
       className={clsx(classes.root, className)}
-      tabId={stopId}
       {...rootProps}
     />
   );
