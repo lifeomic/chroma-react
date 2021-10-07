@@ -126,7 +126,10 @@ export const useStyles = makeStyles(
       height: theme.spacing(2),
       marginRight: theme.spacing(1),
     },
-
+    trailingIcon: {
+      marginRight: 0,
+      marginLeft: theme.spacing(1),
+    },
     disabled: {
       pointerEvents: 'none',
       color: theme.palette.grey[900],
@@ -158,6 +161,7 @@ export interface ButtonLinkProps extends LinkProps {
   disabled?: ButtonProps['disabled'];
   fullWidth?: ButtonProps['fullWidth'];
   icon?: ButtonProps['icon'];
+  trailingIcon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   variant?: ButtonProps['variant'];
 }
 
@@ -173,6 +177,7 @@ export const ButtonLink = React.forwardRef<HTMLAnchorElement, ButtonLinkProps>(
       rel,
       target,
       to,
+      trailingIcon: TrailingIcon,
       variant,
       ...rootProps
     },
@@ -220,6 +225,13 @@ export const ButtonLink = React.forwardRef<HTMLAnchorElement, ButtonLinkProps>(
       >
         {!!Icon && <Icon role="img" aria-hidden className={classes.icon} />}
         {children}
+        {!!TrailingIcon && (
+          <TrailingIcon
+            role="img"
+            aria-hidden
+            className={clsx(classes.icon, classes.trailingIcon)}
+          />
+        )}
       </LinkOrExternalLink>
     );
   }
