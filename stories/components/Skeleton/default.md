@@ -37,7 +37,8 @@ The skeleton component takes two variants for different styled elements.
 
 ### Height and Width
 
-Numbers and strings are used as raw CSS.
+Numbers and strings are used as raw CSS. <br/>
+**<em>Only one height and width property allowed.</em>**
 
 ```jsx
 <Skeleton fullHeight fullWidth />

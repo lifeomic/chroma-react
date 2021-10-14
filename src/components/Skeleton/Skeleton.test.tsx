@@ -4,13 +4,12 @@ import { Skeleton, SkeletonProps } from './index';
 
 const testId = 'Skeleton';
 
-const getBaseProps = (): SkeletonProps => ({
+const props: SkeletonProps = {
   height: 30,
   width: 30,
-});
+};
 
 test('it renders a Skeleton', async () => {
-  const props = getBaseProps();
   const { findByTestId } = renderWithTheme(
     <Skeleton {...props} data-testid={testId} />
   );
@@ -21,7 +20,6 @@ test('it renders a Skeleton', async () => {
 });
 
 test('it applies the provided className', async () => {
-  const props = getBaseProps();
   const { findByTestId } = renderWithTheme(
     <Skeleton {...props} data-testid={testId} className="custom-class-name" />
   );
@@ -31,7 +29,6 @@ test('it applies the provided className', async () => {
 });
 
 test('it adds className for pulse animation', async () => {
-  const props = getBaseProps();
   const { findByTestId } = renderWithTheme(
     <Skeleton data-testid={testId} {...props} animation="pulse" />
   );
@@ -41,7 +38,6 @@ test('it adds className for pulse animation', async () => {
 });
 
 test('it adds className for shine animation', async () => {
-  const props = getBaseProps();
   const { findByTestId } = renderWithTheme(
     <Skeleton data-testid={testId} {...props} animation="shine" />
   );
@@ -51,7 +47,6 @@ test('it adds className for shine animation', async () => {
 });
 
 test('it adds className for no animation', async () => {
-  const props = getBaseProps();
   const { findByTestId } = renderWithTheme(
     <Skeleton data-testid={testId} {...props} animation="none" />
   );
@@ -61,7 +56,6 @@ test('it adds className for no animation', async () => {
 });
 
 test('it adds className for circle variant', async () => {
-  const props = getBaseProps();
   const { findByTestId } = renderWithTheme(
     <Skeleton data-testid={testId} {...props} variant="circle" />
   );
@@ -71,7 +65,6 @@ test('it adds className for circle variant', async () => {
 });
 
 test('it adds className for rectangle variant', async () => {
-  const props = getBaseProps();
   const { findByTestId } = renderWithTheme(
     <Skeleton data-testid={testId} {...props} variant="rectangle" />
   );
@@ -81,9 +74,8 @@ test('it adds className for rectangle variant', async () => {
 });
 
 test('it adds className for fullHeight', async () => {
-  const props = getBaseProps();
   const { findByTestId } = renderWithTheme(
-    <Skeleton data-testid={testId} {...props} fullHeight />
+    <Skeleton data-testid={testId} fullHeight width={props.width} />
   );
 
   const skeleton = await findByTestId(testId);
@@ -91,7 +83,6 @@ test('it adds className for fullHeight', async () => {
 });
 
 test('it sets defined height', async () => {
-  const props = getBaseProps();
   const { findByTestId } = renderWithTheme(
     <Skeleton data-testid={testId} {...props} height={100} />
   );
@@ -101,9 +92,8 @@ test('it sets defined height', async () => {
 });
 
 test('it adds className for fullWidth', async () => {
-  const props = getBaseProps();
   const { findByTestId } = renderWithTheme(
-    <Skeleton data-testid={testId} {...props} fullWidth />
+    <Skeleton data-testid={testId} height={props.height} fullWidth />
   );
 
   const skeleton = await findByTestId(testId);
@@ -111,7 +101,6 @@ test('it adds className for fullWidth', async () => {
 });
 
 test('it sets defined width', async () => {
-  const props = getBaseProps();
   const { findByTestId } = renderWithTheme(
     <Skeleton data-testid={testId} {...props} width={200} />
   );

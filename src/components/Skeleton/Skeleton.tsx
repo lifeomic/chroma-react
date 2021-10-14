@@ -57,19 +57,39 @@ export const useStyles = makeStyles(
   }),
   { name: SkeletonStylesKey }
 );
-export interface SkeletonOwnProps {
-  animation?: 'pulse' | 'shine' | 'none';
-  className?: string;
-  fullHeight?: boolean;
-  fullWidth?: boolean;
-  height?: number | string;
-  variant?: 'circle' | 'rectangle';
-  width?: number | string;
-}
 
 export type SkeletonClasses = GetClasses<typeof useStyles>;
 
-export interface SkeletonProps extends SkeletonOwnProps {}
+export interface SkeletonOwnProps {
+  animation?: 'pulse' | 'shine' | 'none';
+  className?: string;
+  variant?: 'circle' | 'rectangle';
+}
+
+interface fullHeightSkeleton extends SkeletonOwnProps {
+  fullHeight: boolean;
+  height?: never;
+}
+
+interface HeightSkeleton extends SkeletonOwnProps {
+  fullHeight?: never;
+  height: number | string;
+}
+
+interface fullWidthSkeleton extends SkeletonOwnProps {
+  fullWidth: boolean;
+  width?: never;
+}
+
+interface WidthSkeleton extends SkeletonOwnProps {
+  fullWidth?: never;
+  width: number | string;
+}
+
+type Height = fullHeightSkeleton | HeightSkeleton;
+type Width = fullWidthSkeleton | WidthSkeleton;
+
+export type SkeletonProps = Height & Width;
 
 export const Skeleton: React.FC<SkeletonProps> = ({
   animation = 'pulse',
