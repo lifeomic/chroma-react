@@ -5,7 +5,7 @@ import { GetClasses } from '../../typeUtils';
 
 export const SkeletonStylesKey = 'ChromaSkeleton';
 
-export const useStyles = makeStyles<SkeletonProps>(
+export const useStyles = makeStyles(
   (theme) => ({
     '@keyframes pulse': {
       '0%': {
@@ -34,8 +34,6 @@ export const useStyles = makeStyles<SkeletonProps>(
     },
     fullHeight: { height: '100%' },
     fullWidth: { width: '100%' },
-    height: { height: ({ height }) => height },
-    width: { width: ({ width }) => width },
     pulseAnimation: { animation: '$pulse 1.5s ease-in-out 0.5s infinite' },
     shineAnimation: {
       overflow: 'hidden',
@@ -73,18 +71,17 @@ export type SkeletonClasses = GetClasses<typeof useStyles>;
 
 export interface SkeletonProps extends SkeletonOwnProps {}
 
-export const Skeleton: React.FC<SkeletonProps> = (props) => {
-  const {
-    animation = 'pulse',
-    className,
-    fullHeight,
-    fullWidth,
-    height,
-    variant = 'rectangle',
-    width,
-    ...rootProps
-  } = props;
-  const classes = useStyles(props);
+export const Skeleton: React.FC<SkeletonProps> = ({
+  animation = 'pulse',
+  className,
+  fullHeight,
+  fullWidth,
+  height,
+  variant = 'rectangle',
+  width,
+  ...rootProps
+}) => {
+  const classes = useStyles({});
 
   return (
     <span
@@ -102,10 +99,9 @@ export const Skeleton: React.FC<SkeletonProps> = (props) => {
         },
         fullHeight && classes.fullHeight,
         fullWidth && classes.fullWidth,
-        height && classes.height,
-        width && classes.width,
         className
       )}
+      style={{ height, width }}
       {...rootProps}
     />
   );

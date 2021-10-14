@@ -80,7 +80,17 @@ test('it adds className for rectangle variant', async () => {
   expect(skeleton).toHaveClass('ChromaSkeleton-rectangle');
 });
 
-test('it sets height', async () => {
+test('it adds className for fullHeight', async () => {
+  const props = getBaseProps();
+  const { findByTestId } = renderWithTheme(
+    <Skeleton data-testid={testId} {...props} fullHeight />
+  );
+
+  const skeleton = await findByTestId(testId);
+  expect(skeleton).toHaveClass('ChromaSkeleton-fullHeight');
+});
+
+test('it sets defined height', async () => {
   const props = getBaseProps();
   const { findByTestId } = renderWithTheme(
     <Skeleton data-testid={testId} {...props} height={100} />
@@ -90,7 +100,17 @@ test('it sets height', async () => {
   expect(skeleton).toHaveStyle('height: 100px');
 });
 
-test('it sets width', async () => {
+test('it adds className for fullWidth', async () => {
+  const props = getBaseProps();
+  const { findByTestId } = renderWithTheme(
+    <Skeleton data-testid={testId} {...props} fullWidth />
+  );
+
+  const skeleton = await findByTestId(testId);
+  expect(skeleton).toHaveClass('ChromaSkeleton-fullWidth');
+});
+
+test('it sets defined width', async () => {
   const props = getBaseProps();
   const { findByTestId } = renderWithTheme(
     <Skeleton data-testid={testId} {...props} width={200} />
