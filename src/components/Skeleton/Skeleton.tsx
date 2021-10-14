@@ -41,7 +41,7 @@ export const useStyles = makeStyles(
 
       '&::after': {
         animation: '$shine 1.6s linear 0.5s infinite',
-        background: `linear-gradient(90deg, transparent, ${theme.palette.graphite[100]}, transparent)`,
+        background: `linear-gradient(90deg, transparent, rgba(230, 231, 237, 0.4), transparent)`, // graphite[200] with opacity
         bottom: 0,
         content: `''`,
         left: 0,
@@ -86,7 +86,7 @@ export const Skeleton: React.FC<SkeletonProps> = ({
 
   return (
     <span
-      aria-hidden
+      aria-busy
       className={clsx(
         classes.root,
         {
