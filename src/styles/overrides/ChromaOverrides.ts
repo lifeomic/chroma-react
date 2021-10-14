@@ -203,6 +203,7 @@ import {
   ColorPickerClasses,
   ColorPickerStylesKey,
 } from '../../components/ColorPicker';
+import { SkeletonClasses, SkeletonStylesKey } from '../../components/Skeleton';
 
 export type ChromaOverrides = {
   [Name in keyof ChromaComponentNameToClassKey]?: Partial<
@@ -269,6 +270,7 @@ export interface ChromaComponentNameToClassKey {
   [SecondaryNavigationStylesKey]: SecondaryNavigationClasses;
   [SelectOptionStylesKey]: SelectOptionClasses;
   [SelectStylesKey]: SelectClasses;
+  [SkeletonStylesKey]: SkeletonClasses;
   [SlideOverStylesKey]: SlideOverClasses;
   [SlideOverActionsStylesKey]: SlideOverActionsClasses;
   [SlideOverBodyStylesKey]: SlideOverBodyClasses;

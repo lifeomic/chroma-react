@@ -16,6 +16,7 @@ test('it renders a Skeleton', async () => {
 
   const skeleton = await findByTestId(testId);
   expect(skeleton).toBeInTheDocument();
+  expect(skeleton).toHaveAttribute('aria-busy', 'true');
   expect(skeleton).toHaveClass('ChromaSkeleton-root');
 });
 

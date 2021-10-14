@@ -13,7 +13,7 @@ import { Skeleton } from '@lifeomic/chroma-react/components/Skeleton';
 ## Usage
 
 ```jsx
-<Skeleton animation="shine" height={70} variant="circle" width="100%" />
+<Skeleton animation="shine" height={70} variant="circle" width={70} />
 ```
 
 ### Animation
@@ -52,6 +52,10 @@ A class name can be provided.
 ```jsx
 <Skeleton className="mr-4" />
 ```
+
+### Accessibility
+
+- The component has the [`aria-busy`](https://developer.mozilla.org/en-US/docs/Web/API/Element/ariaBusy) attribute.
 
 ## Links
 
