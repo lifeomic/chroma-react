@@ -37,9 +37,10 @@ The skeleton component takes two variants for different styled elements.
 
 ### Height and Width
 
-Numbers and strings are are used as raw CSS.
+Numbers and strings are used as raw CSS.
 
 ```jsx
+<Skeleton fullHeight fullWidth />
 <Skeleton height={70} width="100%" />
 ```
 
