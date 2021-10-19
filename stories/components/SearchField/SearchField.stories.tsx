@@ -24,7 +24,7 @@ const SearchFieldStory: React.FC = () => {
       >
         <FormBox padding={2}>
           <SearchField
-            // aria-label="Search"
+            aria-label="Search"
             onSearch={handleSearchEnter}
             onClear={() => console.log('cleared')}
           />
