@@ -12,7 +12,7 @@ export const LinkStylesKey = 'ChromaLink';
 export const useStyles = makeStyles(
   (theme) => ({
     root: {
-      color: theme.palette.primary.main,
+      color: 'rgba(0, 83, 154, 0.9)',
       transition: 'color 0.25s ease',
       textDecoration: 'none',
       '&:hover': {
