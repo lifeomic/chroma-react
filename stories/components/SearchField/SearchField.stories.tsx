@@ -52,7 +52,10 @@ const SearchFieldStory: React.FC = () => {
             helpMessage="Helper text goes here"
           />
           <SearchField
-            aria-label="Search" onSearch={handleSearchEnter} height={0} />
+            aria-label="Search"
+            onSearch={handleSearchEnter}
+            height={0}
+          />
           <SearchField
             aria-label="Search"
             placeholder="Search for&hellip;"
@@ -72,15 +75,9 @@ const SearchFieldStory: React.FC = () => {
         }}
       >
         <FormBox padding={2}>
-          <SearchField
-            aria-label="Search"
-            onSearch={handleSearchEnter} />
-          <SearchField
-            aria-label="Search"
-            placeholder="Search for&hellip;" />
-          <SearchField
-            aria-label="Search"
-            placeholder="Disabled" disabled />
+          <SearchField aria-label="Search" onSearch={handleSearchEnter} />
+          <SearchField aria-label="Search" placeholder="Search for&hellip;" />
+          <SearchField aria-label="Search" placeholder="Disabled" disabled />
           <SearchField
             aria-label="Broaden your search&hellip;"
             placeholder="Broaden your search&hellip;"
@@ -95,7 +92,8 @@ const SearchFieldStory: React.FC = () => {
           <SearchField
             aria-label="Search"
             onSearch={handleSearchEnter}
-            height={0} />
+            height={0}
+          />
           <SearchField
             aria-label="Search"
             placeholder="Search for&hellip;"

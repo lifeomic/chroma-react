@@ -18,7 +18,7 @@ test('it renders a SearchField', async () => {
   expect(root).toBeInTheDocument();
   expect(root.getAttribute('type')).toEqual('search');
 
-  const searchButton = await findByLabelText(/Search/);
+  const searchButton = await findByLabelText('Search');
   expect(searchButton).toBeInTheDocument();
   expect(searchButton.getAttribute('tabIndex')).toEqual('-1');
   expect(searchButton).toHaveClass('ChromaSearchField-buttonHeight1');
@@ -108,7 +108,7 @@ test('it renders a "height={0}" SearchField', async () => {
   const { findByLabelText } = renderWithTheme(
     <SearchField {...props} height={0} data-testid={testId} />
   );
-  const searchButton = await findByLabelText(/Search/);
+  const searchButton = await findByLabelText('Search');
   expect(searchButton).toHaveClass('ChromaSearchField-buttonHeight0');
 });
 

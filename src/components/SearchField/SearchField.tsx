@@ -223,6 +223,7 @@ export interface SearchFieldProps
 export const SearchField = React.forwardRef<HTMLInputElement, SearchFieldProps>(
   (
     {
+      ['aria-label']: ariaLabel,
       className,
       color = 'default',
       disableClearOnSearch = false,
@@ -247,6 +248,12 @@ export const SearchField = React.forwardRef<HTMLInputElement, SearchFieldProps>(
 
     const [showClear, setShowClear] = React.useState<boolean>(false);
     const [searchText, setSearchText] = React.useState<string>('');
+
+    if (!ariaLabel && process.env.NODE_ENV === 'development') {
+      console.warn(
+        'Please provide an aria-label to SearchField. This will be a required property in a future major release.'
+      );
+    }
 
     const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
       if (e.target.value.length > 0) {
@@ -310,6 +317,7 @@ export const SearchField = React.forwardRef<HTMLInputElement, SearchFieldProps>(
             hasHelpMessage: !!helpMessage,
             uniqueId,
           })}
+          aria-label={ariaLabel || 'Search field'}
           className={clsx(
             classes.input,
             {

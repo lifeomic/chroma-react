@@ -35,6 +35,14 @@ return (
 );
 ```
 
+### aria-label (required)
+
+A descriptive label for the SearchField input.
+
+```jsx
+<SearchField aria-label="Search field" />
+```
+
 ### Keyboard Support
 
 This component mimics a default `<input type="search" />` component:
@@ -113,6 +121,7 @@ Applies the color to the element.
 ### Accessibility
 
 - The component has `type="search"`.
+- The component has `aria-label` set to the provided label.
 - The component uses a uniqueId to link the input to the help message via
   `aria-describedby`. This allows screenreaders to read the help message.
 - The icon button cannot be tabbed into - keyboard support of Escape to clear
