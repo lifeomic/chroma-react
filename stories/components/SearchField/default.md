@@ -35,11 +35,13 @@ return (
 );
 ```
 
-### aria-label (_required_)
+### aria-label (required)
 
-Why is this required? For screen readers! To ensure we are a11y-friendly, we
-require this on SearchField. This label should be a description for the search,
-as it is read from the screen reader, so the more context, the better!
+A descriptive label for the SearchField input.
+
+```jsx
+<SearchField aria-label="Search field" />
+```
 
 ### Keyboard Support
 
