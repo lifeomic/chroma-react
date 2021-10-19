@@ -251,7 +251,7 @@ export const SearchField = React.forwardRef<HTMLInputElement, SearchFieldProps>(
 
     if (!ariaLabel && process.env.NODE_ENV === 'development') {
       console.warn(
-        'Please provide an aria-label to SearchField. This will be required in the future which will be a breaking change if not provided.'
+        'Please provide an aria-label to SearchField. This will be a required property in a future major release.'
       );
     }
 
