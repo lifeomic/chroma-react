@@ -317,7 +317,7 @@ export const SearchField = React.forwardRef<HTMLInputElement, SearchFieldProps>(
             hasHelpMessage: !!helpMessage,
             uniqueId,
           })}
-          aria-label={ariaLabel || 'Search'}
+          aria-label={ariaLabel || 'Search field'}
           className={clsx(
             classes.input,
             {

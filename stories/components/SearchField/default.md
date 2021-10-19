@@ -35,6 +35,12 @@ return (
 );
 ```
 
+### aria-label (_required_)
+
+Why is this required? For screen readers! To ensure we are a11y-friendly, we
+require this on SearchField. This label should be a description for the search,
+as it is read from the screen reader, so the more context, the better!
+
 ### Keyboard Support
 
 This component mimics a default `<input type="search" />` component:
@@ -113,6 +119,7 @@ Applies the color to the element.
 ### Accessibility
 
 - The component has `type="search"`.
+- The component has `aria-label` set to the provided label.
 - The component uses a uniqueId to link the input to the help message via
   `aria-describedby`. This allows screenreaders to read the help message.
 - The icon button cannot be tabbed into - keyboard support of Escape to clear
