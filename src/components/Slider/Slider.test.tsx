@@ -39,6 +39,20 @@ test('it renders label when provided', async () => {
   expect(label).toBeInTheDocument();
 });
 
+test('it applies labelBottom className to label when labelPosition is bottom', async () => {
+  const { findByText } = renderWithTheme(
+    <Slider
+      data-testid={testId}
+      label="label-text"
+      labelPosition="bottom"
+      {...props}
+    />
+  );
+
+  const label = await findByText(/label-text/);
+  expect(label).toHaveClass('ChromaSlider-labelBottom');
+});
+
 test('it renders aria-label when provided', async () => {
   const { findByLabelText } = renderWithTheme(
     <Slider aria-label="aria-label-text" data-testid={testId} {...props} />
@@ -157,6 +171,34 @@ test('it renders the provided help message', async () => {
   expect(help).toBeInTheDocument();
 });
 
+test('it applies trailerMessage className to helpMessage when labelPosition is top', async () => {
+  const { findByText } = renderWithTheme(
+    <Slider
+      data-testid={testId}
+      helpMessage="Helpful text"
+      labelPosition="top"
+      {...props}
+    />
+  );
+
+  const help = await findByText(/Helpful text/);
+  expect(help).toHaveClass('ChromaSlider-trailerMessage');
+});
+
+test('it applies labelBottomTrailerMessage className to helpMessage when labelPosition is bottom', async () => {
+  const { findByText } = renderWithTheme(
+    <Slider
+      data-testid={testId}
+      helpMessage="Helpful text"
+      labelPosition="bottom"
+      {...props}
+    />
+  );
+
+  const help = await findByText(/Helpful text/);
+  expect(help).toHaveClass('ChromaSlider-labelBottomTrailerMessage');
+});
+
 test('it renders an error-state Slider', async () => {
   const { findByTestId } = renderWithTheme(
     <Slider data-testid={testId} hasError {...props} />
@@ -178,6 +220,36 @@ test('it renders an error-state Slider with the provided errorMessage', async ()
 
   const error = await findByText(/Slider error message/);
   expect(error).toBeInTheDocument();
+});
+
+test('it applies trailerMessage className to errorMessage when labelPosition is top', async () => {
+  const { findByText } = renderWithTheme(
+    <Slider
+      data-testid={testId}
+      errorMessage="Slider error message"
+      hasError
+      labelPosition="top"
+      {...props}
+    />
+  );
+
+  const error = await findByText(/Slider error message/);
+  expect(error).toHaveClass('ChromaSlider-trailerMessage');
+});
+
+test('it applies labelBottomTrailerMessage className to errorMessage when labelPosition is bottom', async () => {
+  const { findByText } = renderWithTheme(
+    <Slider
+      data-testid={testId}
+      errorMessage="Slider error message"
+      hasError
+      labelPosition="bottom"
+      {...props}
+    />
+  );
+
+  const error = await findByText(/Slider error message/);
+  expect(error).toHaveClass('ChromaSlider-labelBottomTrailerMessage');
 });
 
 // For accessibility audit

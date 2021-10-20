@@ -54,7 +54,7 @@ const SliderRangeStory: React.FC = () => {
 };
 
 const SliderLabelTop: React.FC = () => {
-  const [point, setPoint] = React.useState([2]);
+  const [point, setPoint] = React.useState([20]);
   const onPointChange = (v: number[]) => setPoint(v);
 
   return (
@@ -97,7 +97,7 @@ const SliderLabelTop: React.FC = () => {
 
       <div style={{ marginBottom: '24px' }}>
         <Slider
-          formatValue={(value: number[] | undefined) => `${value}cm`}
+          formatValue={(value: number[] | undefined) => `${value} cm`}
           label="Slider (with label + show value + format)"
           onChange={onPointChange}
           showValue
@@ -137,7 +137,7 @@ const SliderLabelTop: React.FC = () => {
 };
 
 const SliderLabelBottom: React.FC = () => {
-  const [point, setPoint] = React.useState([2]);
+  const [point, setPoint] = React.useState([20]);
   const onPointChange = (v: number[]) => setPoint(v);
 
   return (
@@ -183,7 +183,7 @@ const SliderLabelBottom: React.FC = () => {
 
       <div style={{ marginBottom: '24px' }}>
         <Slider
-          formatValue={(value: number[] | undefined) => `${value}cm`}
+          formatValue={(value: number[] | undefined) => `${value} cm`}
           label="Slider (show value + format)"
           labelPosition="bottom"
           onChange={onPointChange}

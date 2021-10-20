@@ -29,6 +29,7 @@ Specifies which type of slider to render. The two options are "point" or "range"
 Point should only have one value provided and range should have two values provided.
 
 ```jsx
+<Slider type="point" value={[60]} />
 <Slider type="range" value={[0, 80]} />
 ```
 
@@ -40,9 +41,18 @@ The label to display for the Slider element.
 <Slider label="Name" />
 ```
 
+### Label Position
+
+Specifies whether to render the label/value above or below the slider.
+
+```jsx
+<Slider label="Name" labelPosition="top" />
+<Slider label="Name" labelPosition="bottom"/>
+```
+
 ### Show Value
 
-Boolean as to whether or not to show value.
+Boolean as to whether or not to render the value.
 
 ```jsx
 <Slider showValue={true} />
@@ -50,7 +60,8 @@ Boolean as to whether or not to show value.
 
 ### Format Value
 
-A function that is called when rendering the value.
+A function that is called when rendering the value. The function should return the formatted value
+you wish to have rendered.
 
 ```jsx
 <Slider formatValue={(value) => `${value[0]}cm`} showValue={true} />

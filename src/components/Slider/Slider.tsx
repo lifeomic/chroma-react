@@ -26,13 +26,7 @@ export const useStyles = makeStyles(
       touchAction: 'none',
 
       '&[data-orientation="horizontal"]': {
-        height: 20,
-      },
-
-      '&[data-orientation="vertical"]': {
-        flexDirection: 'column',
-        height: 100,
-        width: 20,
+        height: theme.pxToRem(20),
       },
     },
     track: {
@@ -43,11 +37,7 @@ export const useStyles = makeStyles(
       position: 'relative',
 
       '&[data-orientation="horizontal"]': {
-        height: 3,
-      },
-
-      '&[data-orientation="vertical"]': {
-        width: 3,
+        height: theme.pxToRem(3),
       },
     },
     range: {
@@ -66,18 +56,20 @@ export const useStyles = makeStyles(
       backgroundColor: theme.palette.common.white,
       border: `4px solid ${theme.palette.primary.main}`,
       borderRadius: '100%',
-      height: 12,
-      width: 12,
+      height: theme.pxToRem(12),
+      width: theme.pxToRem(12),
 
       '&[data-disabled]': {
         borderColor: theme.palette.graphite[600],
       },
-      // '&:hover': {
-      //   boxShadow: '0 0 0 5px' + theme.palette.common.black,
-      // },
-      // '&:focus': {
-      //   boxShadow: `0 0 0 5px ${theme.palette.common.black}`,
-      // },
+
+      '&:hover': {
+        boxShadow: '0 0 0 5px' + theme.palette.common.black,
+      },
+
+      '&:focus': {
+        boxShadow: `0 0 0 5px ${theme.palette.common.black}`,
+      },
     },
     thumbError: {
       border: `4px solid ${theme.palette.red.main}`,
@@ -147,7 +139,6 @@ export interface SliderProps {
   minStepsBetweenThumbs?: number;
   name?: string;
   onChange: (value: number[]) => void;
-  orientation?: 'horizontal' | 'vertical';
   showValue?: boolean;
   step?: number;
   value?: number[] | undefined;
@@ -165,7 +156,6 @@ export const Slider = React.forwardRef<HTMLElement, SliderProps>(
       helpMessage,
       label,
       labelPosition = 'top',
-      minStepsBetweenThumbs = 1,
       name,
       onChange,
       showValue,
@@ -181,6 +171,7 @@ export const Slider = React.forwardRef<HTMLElement, SliderProps>(
       () => name || generateUniqueId('slider-')
     );
 
+    /* istanbul ignore next */
     if (!label && !ariaLabel && process.env.NODE_ENV === 'development') {
       throw new Error(
         'If a "label" is not provided to Slider, please provide "aria-label".'
@@ -199,7 +190,7 @@ export const Slider = React.forwardRef<HTMLElement, SliderProps>(
     );
 
     const Value = () => (
-      <Text className={classes.value} id={uniqueId} size="subbody">
+      <Text className={classes.value} size="subbody">
         {!!formatValue ? formatValue(value) : value}
       </Text>
     );
@@ -226,7 +217,7 @@ export const Slider = React.forwardRef<HTMLElement, SliderProps>(
     };
 
     return (
-      <>
+      <div>
         {labelPosition === 'top' && <LabelContainer />}
 
         <SliderPrimitive.Root
@@ -238,7 +229,6 @@ export const Slider = React.forwardRef<HTMLElement, SliderProps>(
           aria-label={ariaLabel}
           className={clsx(classes.root, className)}
           id={uniqueId}
-          minStepsBetweenThumbs={minStepsBetweenThumbs}
           onValueChange={onChange}
           ref={ref}
           value={value}
@@ -286,7 +276,7 @@ export const Slider = React.forwardRef<HTMLElement, SliderProps>(
             {errorMessage}
           </FormErrorMessage>
         )}
-      </>
+      </div>
     );
   }
 );
