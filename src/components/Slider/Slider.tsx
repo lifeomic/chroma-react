@@ -30,7 +30,7 @@ export const useStyles = makeStyles(
       },
     },
     track: {
-      backgroundColor: theme.palette.graphite.main,
+      backgroundColor: 'rgba(132, 137, 166, 0.15)',
       borderRadius: 2,
       cursor: 'pointer',
       flexGrow: 1,
@@ -64,11 +64,11 @@ export const useStyles = makeStyles(
       },
 
       '&:hover': {
-        boxShadow: '0 0 0 5px' + theme.palette.common.black,
+        boxShadow: '0 0 0 5px rgba(132, 137, 166, 0.08)',
       },
 
       '&:focus': {
-        boxShadow: `0 0 0 5px ${theme.palette.common.black}`,
+        boxShadow: '0 0 0 5px rgba(132, 137, 166, 0.08)',
       },
     },
     thumbError: {
@@ -80,15 +80,14 @@ export const useStyles = makeStyles(
       display: 'flex',
       fontSize: theme.pxToRem(14),
       fontWeight: theme.typography.fontWeightBold,
+      marginBottom: theme.spacing(0.625),
     },
     labelInverse: {
       color: theme.palette.common.white,
     },
-    labelTop: {
-      marginBottom: theme.spacing(0.625),
-    },
     labelBottom: {
-      marginTop: theme.spacing(1),
+      margingBottom: 0,
+      marginTop: theme.spacing(0.625),
     },
     labelMargin: {
       marginTop: 0,
