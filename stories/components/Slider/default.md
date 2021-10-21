@@ -101,6 +101,14 @@ Applies the disabled state to the element.
 <Slider disabled />
 ```
 
+### Color
+
+When a slider needs to be rendered, but on a dark-colored background, the `color` prop can be utilized.
+
+```jsx
+<Slider color="inverse" />
+```
+
 ### Accessibility
 
 - The label and input are "connected" via a uniqueId and the `for` + `id`
