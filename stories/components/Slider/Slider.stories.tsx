@@ -19,7 +19,7 @@ const SliderPointStory: React.FC = () => {
       <Slider
         formatValue={(value: number[] | undefined) => `${value} cm`}
         label="Point Slider"
-        onChange={onPointChange}
+        onValueChange={onPointChange}
         showValue
         value={point}
       />
@@ -44,7 +44,7 @@ const SliderRangeStory: React.FC = () => {
           `${value?.[0]}-${value?.[1]} cm`
         }
         label="Range Slider"
-        onChange={onPointChange}
+        onValueChange={onPointChange}
         showValue
         value={range}
         type="range"
@@ -66,14 +66,18 @@ const SliderLabelTop: React.FC = () => {
       }}
     >
       <div style={{ marginBottom: '24px' }}>
-        <Slider aria-label="Slider" onChange={onPointChange} value={point} />
+        <Slider
+          aria-label="Slider"
+          onValueChange={onPointChange}
+          value={point}
+        />
       </div>
 
       <div style={{ marginBottom: '24px' }}>
         <Slider
           disabled
           label="Disabled slider"
-          onChange={onPointChange}
+          onValueChange={onPointChange}
           value={point}
         />
       </div>
@@ -81,7 +85,7 @@ const SliderLabelTop: React.FC = () => {
       <div style={{ marginBottom: '24px' }}>
         <Slider
           label="Slider (with label + show no value)"
-          onChange={onPointChange}
+          onValueChange={onPointChange}
           value={point}
         />
       </div>
@@ -89,7 +93,7 @@ const SliderLabelTop: React.FC = () => {
       <div style={{ marginBottom: '24px' }}>
         <Slider
           label="Slider (with label + show value)"
-          onChange={onPointChange}
+          onValueChange={onPointChange}
           showValue
           value={point}
         />
@@ -99,7 +103,7 @@ const SliderLabelTop: React.FC = () => {
         <Slider
           formatValue={(value: number[] | undefined) => `${value} cm`}
           label="Slider (with label + show value + format)"
-          onChange={onPointChange}
+          onValueChange={onPointChange}
           showValue
           value={point}
         />
@@ -108,9 +112,10 @@ const SliderLabelTop: React.FC = () => {
       <div style={{ marginBottom: '24px' }}>
         <Slider
           aria-label="Slider with no label"
-          onChange={onPointChange}
+          onValueChange={onPointChange}
           showValue
           value={point}
+          valuePlacement="center"
         />
       </div>
 
@@ -119,7 +124,7 @@ const SliderLabelTop: React.FC = () => {
           errorMessage="Field is required"
           hasError
           label="Slider with error message"
-          onChange={onPointChange}
+          onValueChange={onPointChange}
           value={point}
         />
       </div>
@@ -128,7 +133,7 @@ const SliderLabelTop: React.FC = () => {
         <Slider
           helpMessage="Select a point"
           label="Slider with help message"
-          onChange={onPointChange}
+          onValueChange={onPointChange}
           value={point}
         />
       </div>
@@ -149,15 +154,19 @@ const SliderLabelBottom: React.FC = () => {
       }}
     >
       <div style={{ marginBottom: '24px' }}>
-        <Slider aria-label="Slider" onChange={onPointChange} value={point} />
+        <Slider
+          aria-label="Slider"
+          onValueChange={onPointChange}
+          value={point}
+        />
       </div>
 
       <div style={{ marginBottom: '24px' }}>
         <Slider
           disabled
           label="Disabled slider"
-          labelPosition="bottom"
-          onChange={onPointChange}
+          labelPlacement="bottom"
+          onValueChange={onPointChange}
           value={point}
         />
       </div>
@@ -165,8 +174,8 @@ const SliderLabelBottom: React.FC = () => {
       <div style={{ marginBottom: '24px' }}>
         <Slider
           label="Slider (show no value)"
-          labelPosition="bottom"
-          onChange={onPointChange}
+          labelPlacement="bottom"
+          onValueChange={onPointChange}
           value={point}
         />
       </div>
@@ -174,8 +183,8 @@ const SliderLabelBottom: React.FC = () => {
       <div style={{ marginBottom: '24px' }}>
         <Slider
           label="Slider (show value)"
-          labelPosition="bottom"
-          onChange={onPointChange}
+          labelPlacement="bottom"
+          onValueChange={onPointChange}
           showValue
           value={point}
         />
@@ -185,8 +194,8 @@ const SliderLabelBottom: React.FC = () => {
         <Slider
           formatValue={(value: number[] | undefined) => `${value} cm`}
           label="Slider (show value + format)"
-          labelPosition="bottom"
-          onChange={onPointChange}
+          labelPlacement="bottom"
+          onValueChange={onPointChange}
           showValue
           value={point}
         />
@@ -195,10 +204,11 @@ const SliderLabelBottom: React.FC = () => {
       <div style={{ marginBottom: '24px' }}>
         <Slider
           aria-label="Slider with no label"
-          labelPosition="bottom"
-          onChange={onPointChange}
+          labelPlacement="bottom"
+          onValueChange={onPointChange}
           showValue
           value={point}
+          valuePlacement="center"
         />
       </div>
 
@@ -207,8 +217,8 @@ const SliderLabelBottom: React.FC = () => {
           errorMessage="Field is required"
           hasError
           label="Slider with error message"
-          labelPosition="bottom"
-          onChange={onPointChange}
+          labelPlacement="bottom"
+          onValueChange={onPointChange}
           value={point}
         />
       </div>
@@ -217,8 +227,8 @@ const SliderLabelBottom: React.FC = () => {
         <Slider
           helpMessage="Select a point"
           label="Slider with help message"
-          labelPosition="bottom"
-          onChange={onPointChange}
+          labelPlacement="bottom"
+          onValueChange={onPointChange}
           value={point}
         />
       </div>
