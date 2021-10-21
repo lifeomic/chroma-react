@@ -40,6 +40,9 @@ export const useStyles = makeStyles(
         height: theme.pxToRem(3),
       },
     },
+    trackInverse: {
+      backgroundColor: 'rgba(230, 231, 237, 0.1)',
+    },
     range: {
       backgroundColor: theme.palette.primary.main,
       height: '100%',
@@ -48,6 +51,10 @@ export const useStyles = makeStyles(
       '&[data-disabled]': {
         backgroundColor: theme.palette.graphite[600],
       },
+    },
+    rangeInverse: {
+      backgroundColor: theme.palette.common.white,
+      opacity: 0.5,
     },
     thumb: {
       all: 'unset',
@@ -58,17 +65,18 @@ export const useStyles = makeStyles(
       display: 'block',
       height: theme.pxToRem(12),
       width: theme.pxToRem(12),
-
       '&[data-disabled]': {
         borderColor: theme.palette.graphite[600],
       },
-
-      '&:hover': {
+      '&:hover, &:focus': {
         boxShadow: '0 0 0 5px rgba(132, 137, 166, 0.08)',
       },
-
-      '&:focus': {
-        boxShadow: '0 0 0 5px rgba(132, 137, 166, 0.08)',
+    },
+    thumbInverse: {
+      backgroundColor: theme.palette.graphite[100],
+      borderColor: theme.palette.common.white,
+      '&:hover, &:focus': {
+        boxShadow: '0 0 0 5px rgba(255, 255, 255, 0.09)',
       },
     },
     thumbError: {
@@ -104,6 +112,10 @@ export const useStyles = makeStyles(
     value: {
       color: theme.palette.text.hint,
     },
+    valueInverse: {
+      color: theme.palette.common.white,
+      opacity: 0.9,
+    },
     valueLeft: {
       textAlign: 'left',
     },
@@ -123,6 +135,11 @@ export const useStyles = makeStyles(
     },
     helpMessageInverse: {
       color: theme.palette.common.white,
+      opacity: 0.9,
+    },
+    errorMessageInverse: {
+      color: theme.palette.common.white,
+      opacity: 0.9,
     },
   }),
   { name: SliderStylesKey }
@@ -133,6 +150,7 @@ export type SliderClasses = GetClasses<typeof useStyles>;
 export interface SliderProps {
   'aria-label'?: string;
   className?: string;
+  color?: 'default' | 'inverse';
   defaultValue?: number[];
   disabled?: boolean;
   errorMessage?: string;
@@ -169,6 +187,7 @@ export const Slider = React.forwardRef<HTMLElement, SliderProps>(
     {
       ['aria-label']: ariaLabel,
       className,
+      color = 'default',
       defaultValue,
       disabled,
       errorMessage,
@@ -219,6 +238,7 @@ export const Slider = React.forwardRef<HTMLElement, SliderProps>(
       <span
         className={clsx(
           classes.label,
+          color === 'inverse' && classes.labelInverse,
           labelPlacement === 'bottom' && classes.labelBottom
         )}
       >
@@ -228,11 +248,15 @@ export const Slider = React.forwardRef<HTMLElement, SliderProps>(
 
     const Value = () => (
       <Text
-        className={clsx(classes.value, {
-          [classes.valueLeft]: valuePlacement === 'left',
-          [classes.valueCenter]: valuePlacement === 'center',
-          [classes.valueRight]: valuePlacement === 'right',
-        })}
+        className={clsx(
+          classes.value,
+          {
+            [classes.valueLeft]: valuePlacement === 'left',
+            [classes.valueCenter]: valuePlacement === 'center',
+            [classes.valueRight]: valuePlacement === 'right',
+          },
+          color === 'inverse' && classes.valueInverse
+        )}
         size="subbody"
       >
         {!!formatValue ? formatValue(value) : value}
@@ -275,12 +299,26 @@ export const Slider = React.forwardRef<HTMLElement, SliderProps>(
           {...sliderProps}
           ref={ref}
         >
-          <SliderPrimitive.Track className={classes.track}>
-            <SliderPrimitive.Range className={classes.range} />
+          <SliderPrimitive.Track
+            className={clsx(
+              classes.track,
+              color === 'inverse' && classes.trackInverse
+            )}
+          >
+            <SliderPrimitive.Range
+              className={clsx(
+                classes.range,
+                color === 'inverse' && classes.rangeInverse
+              )}
+            />
           </SliderPrimitive.Track>
           {(type === 'point' ? [''] : ['', '']).map((_: string, i: number) => (
             <SliderPrimitive.Thumb
-              className={clsx(classes.thumb, hasError && classes.thumbError)}
+              className={clsx(
+                classes.thumb,
+                hasError && classes.thumbError,
+                color === 'inverse' && classes.thumbInverse
+              )}
               key={i}
             />
           ))}
@@ -292,6 +330,7 @@ export const Slider = React.forwardRef<HTMLElement, SliderProps>(
           <FormHelpMessage
             className={clsx(
               classes.helpMessage,
+              color === 'inverse' && classes.helpMessageInverse,
               labelPlacement === 'top'
                 ? classes.trailerMessage
                 : classes.labelBottomTrailerMessage
@@ -305,6 +344,7 @@ export const Slider = React.forwardRef<HTMLElement, SliderProps>(
         {hasError && errorMessage && (
           <FormErrorMessage
             className={clsx(
+              color === 'inverse' && classes.errorMessageInverse,
               labelPlacement === 'top'
                 ? classes.trailerMessage
                 : classes.labelBottomTrailerMessage
