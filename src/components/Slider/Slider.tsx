@@ -19,11 +19,11 @@ export const SliderStylesKey = 'ChromaSlider';
 export const useStyles = makeStyles(
   (theme) => ({
     root: {
-      position: 'relative',
-      display: 'flex',
       alignItems: 'center',
-      userSelect: 'none',
+      display: 'flex',
+      position: 'relative',
       touchAction: 'none',
+      userSelect: 'none',
 
       '&[data-orientation="horizontal"]': {
         height: theme.pxToRem(20),
@@ -41,9 +41,9 @@ export const useStyles = makeStyles(
       },
     },
     range: {
-      position: 'absolute',
       backgroundColor: theme.palette.primary.main,
       height: '100%',
+      position: 'absolute',
 
       '&[data-disabled]': {
         backgroundColor: theme.palette.graphite[600],
@@ -52,10 +52,10 @@ export const useStyles = makeStyles(
     thumb: {
       all: 'unset',
       cursor: 'pointer',
-      display: 'block',
       backgroundColor: theme.palette.common.white,
       border: `4px solid ${theme.palette.primary.main}`,
       borderRadius: '100%',
+      display: 'block',
       height: theme.pxToRem(12),
       width: theme.pxToRem(12),
 
@@ -102,16 +102,16 @@ export const useStyles = makeStyles(
       },
     },
     value: {
-      color: theme.palette.black[500],
+      color: theme.palette.text.hint,
       textAlign: 'right',
     },
     trailerMessage: {
-      marginTop: theme.spacing(0.875),
       marginLeft: 0,
+      marginTop: theme.spacing(0.875),
     },
     helpMessage: {
-      fontSize: theme.typography.caption.fontSize,
       color: theme.palette.text.hint,
+      fontSize: theme.typography.caption.fontSize,
     },
     helpMessageInverse: {
       color: theme.palette.common.white,
@@ -131,17 +131,18 @@ export interface SliderProps {
   formatValue?: (value: number[] | undefined) => string;
   hasError?: boolean;
   helpMessage?: string;
+  id?: string;
   label?: string;
   labelPosition?: 'bottom' | 'top';
   max?: number;
   min?: number;
   minStepsBetweenThumbs?: number;
   name?: string;
-  onChange: (value: number[]) => void;
+  onChange?: (value: number[]) => void;
   showValue?: boolean;
   step?: number;
-  value?: number[] | undefined;
   type?: 'point' | 'range';
+  value?: number[] | undefined;
 }
 
 export const Slider = React.forwardRef<HTMLElement, SliderProps>(
@@ -149,10 +150,12 @@ export const Slider = React.forwardRef<HTMLElement, SliderProps>(
     {
       ['aria-label']: ariaLabel,
       className,
+      defaultValue,
       errorMessage,
       formatValue,
       hasError,
       helpMessage,
+      id,
       label,
       labelPosition = 'top',
       name,
@@ -167,7 +170,7 @@ export const Slider = React.forwardRef<HTMLElement, SliderProps>(
     const classes = useStyles({});
 
     const [uniqueId] = React.useState<string>(
-      () => name || generateUniqueId('slider-')
+      () => id || name || generateUniqueId('slider-')
     );
 
     /* istanbul ignore next */
