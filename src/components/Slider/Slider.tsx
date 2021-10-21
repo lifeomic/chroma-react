@@ -103,6 +103,14 @@ export const useStyles = makeStyles(
     },
     value: {
       color: theme.palette.text.hint,
+    },
+    valueLeft: {
+      textAlign: 'left',
+    },
+    valueCenter: {
+      textAlign: 'center',
+    },
+    valueRight: {
       textAlign: 'right',
     },
     trailerMessage: {
@@ -125,7 +133,7 @@ export type SliderClasses = GetClasses<typeof useStyles>;
 export interface SliderProps {
   'aria-label'?: string;
   className?: string;
-  defaultValue?: number[] | undefined;
+  defaultValue?: number[];
   disabled?: boolean;
   errorMessage?: string;
   formatValue?: (value: number[] | undefined) => string;
@@ -133,17 +141,28 @@ export interface SliderProps {
   helpMessage?: string;
   id?: string;
   label?: string;
-  labelPosition?: 'bottom' | 'top';
+  labelPlacement?: 'bottom' | 'top';
   max?: number;
   min?: number;
   minStepsBetweenThumbs?: number;
   name?: string;
-  onChange?: (value: number[]) => void;
+  onValueChange?: (value: number[]) => void;
   showValue?: boolean;
   step?: number;
   type?: 'point' | 'range';
-  value?: number[] | undefined;
+  value?: number[];
+  valuePlacement?: 'left' | 'center' | 'right';
 }
+
+const getValueAsArray = (value: undefined | number | number[]) => {
+  if (value === undefined) {
+    return undefined;
+  }
+  if (Array.isArray(value)) {
+    return value;
+  }
+  return [value];
+};
 
 export const Slider = React.forwardRef<HTMLElement, SliderProps>(
   (
@@ -151,23 +170,39 @@ export const Slider = React.forwardRef<HTMLElement, SliderProps>(
       ['aria-label']: ariaLabel,
       className,
       defaultValue,
+      disabled,
       errorMessage,
       formatValue,
       hasError,
       helpMessage,
       id,
       label,
-      labelPosition = 'top',
+      labelPlacement = 'top',
+      max,
+      min,
+      minStepsBetweenThumbs,
       name,
-      onChange,
+      onValueChange,
       showValue,
       type = 'point',
-      value,
-      ...rootProps
+      value: val,
+      valuePlacement = 'right',
     },
     ref
   ) => {
+    const sliderProps = {
+      'aria-label': ariaLabel,
+      defaultValue: getValueAsArray(defaultValue),
+      disabled,
+      max,
+      min,
+      minStepsBetweenThumbs,
+      name,
+      onValueChange,
+      value: getValueAsArray(val),
+    };
     const classes = useStyles({});
+    const value = sliderProps.value || sliderProps.defaultValue;
 
     const [uniqueId] = React.useState<string>(
       () => id || name || generateUniqueId('slider-')
@@ -184,7 +219,7 @@ export const Slider = React.forwardRef<HTMLElement, SliderProps>(
       <span
         className={clsx(
           classes.label,
-          labelPosition === 'bottom' && classes.labelBottom
+          labelPlacement === 'bottom' && classes.labelBottom
         )}
       >
         {label}
@@ -192,7 +227,14 @@ export const Slider = React.forwardRef<HTMLElement, SliderProps>(
     );
 
     const Value = () => (
-      <Text className={classes.value} size="subbody">
+      <Text
+        className={clsx(classes.value, {
+          [classes.valueLeft]: valuePlacement === 'left',
+          [classes.valueCenter]: valuePlacement === 'center',
+          [classes.valueRight]: valuePlacement === 'right',
+        })}
+        size="subbody"
+      >
         {!!formatValue ? formatValue(value) : value}
       </Text>
     );
@@ -220,42 +262,37 @@ export const Slider = React.forwardRef<HTMLElement, SliderProps>(
 
     return (
       <div>
-        {labelPosition === 'top' && <LabelContainer />}
+        {labelPlacement === 'top' && <LabelContainer />}
 
-        <SliderPrimitive.Root
+        <SliderPrimitive.Slider
           aria-describedby={buildDescribedBy({
             hasError,
             hasHelpMessage: !!helpMessage,
             uniqueId,
           })}
-          aria-label={ariaLabel}
           className={clsx(classes.root, className)}
           id={uniqueId}
-          onValueChange={onChange}
+          {...sliderProps}
           ref={ref}
-          value={value}
-          {...rootProps}
         >
           <SliderPrimitive.Track className={classes.track}>
             <SliderPrimitive.Range className={classes.range} />
           </SliderPrimitive.Track>
-
-          {(type === 'point' ? [''] : ['', '']).map((_, index) => (
+          {(type === 'point' ? [''] : ['', '']).map((_: string, i: number) => (
             <SliderPrimitive.Thumb
               className={clsx(classes.thumb, hasError && classes.thumbError)}
-              data-testid="ChromaSlider-thumb"
-              key={index}
+              key={i}
             />
           ))}
-        </SliderPrimitive.Root>
+        </SliderPrimitive.Slider>
 
-        {labelPosition === 'bottom' && <LabelContainer />}
+        {labelPlacement === 'bottom' && <LabelContainer />}
 
         {helpMessage && (
           <FormHelpMessage
             className={clsx(
               classes.helpMessage,
-              labelPosition === 'top'
+              labelPlacement === 'top'
                 ? classes.trailerMessage
                 : classes.labelBottomTrailerMessage
             )}
@@ -268,7 +305,7 @@ export const Slider = React.forwardRef<HTMLElement, SliderProps>(
         {hasError && errorMessage && (
           <FormErrorMessage
             className={clsx(
-              labelPosition === 'top'
+              labelPlacement === 'top'
                 ? classes.trailerMessage
                 : classes.labelBottomTrailerMessage
             )}
