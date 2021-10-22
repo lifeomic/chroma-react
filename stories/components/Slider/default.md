@@ -1,6 +1,6 @@
 # Slider
 
-An input component for form usage.
+An slider component for form usage.
 
 <!-- STORY -->
 
@@ -14,7 +14,7 @@ import { Slider } from '@lifeomic/chroma-react/components/Slider';
 
 ```jsx
 <Slider
-  formatValue={(value) => `${value[0]}cm`}
+  formatValue={(value) => `${value} cm`}
   label="Slider"
   onChange={(value) => setValue(value)}
   showValue
@@ -26,10 +26,11 @@ import { Slider } from '@lifeomic/chroma-react/components/Slider';
 ### Type
 
 Specifies which type of slider to render. The two options are "point" or "range".
-Point should only have one value provided and range should have two values provided.
+If type is point, the value provided should be a number.
+If type is range, the value provided should be an array of two numbers.
 
 ```jsx
-<Slider type="point" value={[60]} />
+<Slider type="point" value={60} />
 <Slider type="range" value={[0, 80]} />
 ```
 
@@ -64,7 +65,7 @@ A function that is called when rendering the value. The function should return t
 you wish to have rendered.
 
 ```jsx
-<Slider formatValue={(value) => `${value[0]}cm`} showValue={true} />
+<Slider formatValue={(value) => `${value} cm`} showValue={true} />
 ```
 
 ### Help Message
@@ -99,6 +100,14 @@ Applies the disabled state to the element.
 
 ```jsx
 <Slider disabled />
+```
+
+### Color
+
+When a slider needs to be rendered, but on a dark-colored background, the `color` prop can be utilized.
+
+```jsx
+<Slider color="inverse" />
 ```
 
 ### Accessibility
