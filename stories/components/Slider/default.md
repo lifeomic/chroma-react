@@ -31,6 +31,9 @@ If type is range, the value provided should be an array of two numbers.
 
 ```jsx
 <Slider type="point" value={60} />
+```
+
+```jsx
 <Slider type="range" value={[0, 80]} />
 ```
 
@@ -42,21 +45,40 @@ The label to display for the Slider element.
 <Slider label="Name" />
 ```
 
-### Label Position
+### Label Placement
 
-Specifies whether to render the label/value above or below the slider.
+Specifies where to place the label/value vertically, either above or below the slider.
 
 ```jsx
-<Slider label="Name" labelPosition="top" />
-<Slider label="Name" labelPosition="bottom"/>
+<Slider label="Name" labelPlacement="top" />
+```
+
+```jsx
+<Slider label="Name" labelPlacement="bottom" />
 ```
 
 ### Show Value
 
-Boolean as to whether or not to render the value.
+Boolean as to whether or not to render the raw or formatted value.
 
 ```jsx
 <Slider showValue={true} />
+```
+
+### Value Placement
+
+Specifies where to place the value horizontally. Should only be used if no label is provided.
+
+```jsx
+<Slider aria-Label="Age" showValue={true} valuePlacement="left" />
+```
+
+```jsx
+<Slider aria-Label="Age" showValue={true} valuePlacement="center" />
+```
+
+```jsx
+<Slider aria-Label="Age" showValue={true} valuePlacement="right" />
 ```
 
 ### Format Value
@@ -112,12 +134,12 @@ When a slider needs to be rendered, but on a dark-colored background, the `color
 
 ### Accessibility
 
-- The label and input are "connected" via a uniqueId and the `for` + `id`
-  attributes.
-- The label has the `aria-hidden` attribute so it cannot be focused by
-  screenreaders. Instead, the input element receives the focus, and the label is
+- The label and slider are "connected" via a uniqueId and the `aria-labelledby`
+  attribute.
+- The label is hidden so it cannot be focused by
+  screenreaders. Instead, the slider element receives the focus, and the label is
   read as part of the input.
-- The component uses a uniqueId to link the input to the help and error messages
+- The component uses a uniqueId to link the slider to the help and error messages
   via `aria-describedby`. This allows screenreaders to read the help and error
   messages.
 

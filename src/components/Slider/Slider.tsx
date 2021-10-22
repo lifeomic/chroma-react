@@ -14,11 +14,17 @@ import { GetClasses } from '../../typeUtils';
 import { makeStyles } from '../../styles';
 import { Text } from '../Text';
 
+export const testIds = {
+  root: 'slider-root',
+  slider: 'slider-slider',
+  thumb: 'slider-thumb',
+};
+
 export const SliderStylesKey = 'ChromaSlider';
 
 export const useStyles = makeStyles(
   (theme) => ({
-    root: {
+    slider: {
       alignItems: 'center',
       display: 'flex',
       position: 'relative',
@@ -172,18 +178,18 @@ export interface SliderOwnProps {
 }
 
 interface PointProps extends SliderOwnProps {
-  type: 'point';
+  type?: 'point';
   defaultValue?: number;
-  formatValue?: (value: any) => string;
-  onValueChange?: (value: any) => void;
+  formatValue?: (value: number | undefined) => string;
+  onValueChange?: (value: number) => void;
   value?: number;
 }
 
 interface RangeProps extends SliderOwnProps {
   type: 'range';
   defaultValue?: number[];
-  formatValue?: (value: any) => string;
-  onValueChange?: (value: any) => void;
+  formatValue?: (value: number[] | undefined) => string;
+  onValueChange?: (value: number[]) => void;
   value?: number[];
 }
 
@@ -200,15 +206,13 @@ const getValueAsArray = (value: undefined | number | number[]) => {
 };
 
 export const Slider = React.forwardRef<HTMLElement, SliderProps>(
-  (
-    {
+  (props, ref) => {
+    const {
       ['aria-label']: ariaLabel,
       className,
       color = 'default',
-      defaultValue,
       disabled,
       errorMessage,
-      formatValue,
       hasError,
       helpMessage,
       id,
@@ -218,24 +222,19 @@ export const Slider = React.forwardRef<HTMLElement, SliderProps>(
       min,
       minStepsBetweenThumbs,
       name,
-      onValueChange,
       showValue,
-      type = 'point',
-      value,
       valuePlacement = 'right',
-      ...rootProps
-    },
-    ref
-  ) => {
+    } = props;
+
     const sliderProps = {
       'aria-label': ariaLabel,
-      defaultValue: getValueAsArray(defaultValue),
+      defaultValue: getValueAsArray(props.defaultValue),
       disabled,
       max,
       min,
       minStepsBetweenThumbs,
       name,
-      value: getValueAsArray(value),
+      value: getValueAsArray(props.value),
     };
     const classes = useStyles({});
     const arrayValue = sliderProps.value || sliderProps.defaultValue;
@@ -254,15 +253,25 @@ export const Slider = React.forwardRef<HTMLElement, SliderProps>(
     }
 
     const onChange = (value: number[]) => {
-      let newValue;
-
-      if (type === 'range') {
-        newValue = value;
-      } else if (type === 'point') {
-        newValue = value[0];
+      // Checking the `type` prop to make sure that the props are either of type PointProp or RangeProp and not of the union type SliderProps
+      // https://github.com/microsoft/TypeScript/issues/23613
+      if (props.type === 'range') {
+        props.onValueChange?.(value);
+      } else if (props.type === 'point') {
+        props.onValueChange?.(value[0]);
       }
+    };
 
-      onValueChange?.(newValue);
+    const formatValue = () => {
+      if (!!props.formatValue) {
+        // Checking the `type` prop to make sure that the props are either of type PointProp or RangeProp and not of the union type SliderProps
+        // https://github.com/microsoft/TypeScript/issues/23613
+        if (props.type === 'range') {
+          return props.formatValue(props.value);
+        } else if (props.type === 'point') {
+          return props.formatValue(props.value);
+        }
+      } else return props.value;
     };
 
     const getDescribedBy = () => {
@@ -305,7 +314,7 @@ export const Slider = React.forwardRef<HTMLElement, SliderProps>(
         id={sliderValueId}
         size="subbody"
       >
-        {formatValue?.(value) || value}
+        {formatValue()}
       </Text>
     );
 
@@ -331,14 +340,14 @@ export const Slider = React.forwardRef<HTMLElement, SliderProps>(
     };
 
     return (
-      <div {...rootProps}>
+      <div className={className} data-testid={testIds.root}>
         {labelPlacement === 'top' && <LabelContainer />}
 
         <SliderPrimitive.Slider
           aria-describedby={getDescribedBy()}
           aria-labelledby={sliderLabelId}
-          className={clsx(classes.root, className)}
-          data-testid="ChromaSlider-slider"
+          className={classes.slider}
+          data-testid={testIds.slider}
           id={uniqueId}
           onValueChange={onChange}
           tabIndex={0}
@@ -365,7 +374,7 @@ export const Slider = React.forwardRef<HTMLElement, SliderProps>(
                 hasError && classes.thumbError,
                 color === 'inverse' && classes.thumbInverse
               )}
-              data-testid="ChromaSlider-thumb"
+              data-testid={testIds.thumb}
               key={i}
             />
           ))}
@@ -406,3 +415,8 @@ export const Slider = React.forwardRef<HTMLElement, SliderProps>(
     );
   }
 );
+
+// Setting default prop here since we don't destructure these props
+Slider.defaultProps = {
+  type: 'point',
+};

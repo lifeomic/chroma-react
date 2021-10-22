@@ -1,1 +1,7 @@
-export { Slider, SliderClasses, SliderProps, SliderStylesKey } from './Slider';
+export {
+  Slider,
+  SliderClasses,
+  SliderProps,
+  SliderStylesKey,
+  testIds,
+} from './Slider';

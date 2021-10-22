@@ -1,8 +1,6 @@
 import * as React from 'react';
 import { renderWithTheme } from '../../testUtils/renderWithTheme';
-import { Slider } from './';
-
-const testId = 'ChromaSlider-slider';
+import { Slider, testIds } from './';
 
 const props = {
   onValueChange: jest.fn(),
@@ -17,15 +15,15 @@ const props = {
 
 test('it renders a Slider', async () => {
   const { findByTestId } = renderWithTheme(<Slider {...props} />);
-  const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaSlider-root');
+  const slider = await findByTestId(testIds.slider);
+  expect(slider).toHaveClass('ChromaSlider-slider');
 });
 
-test('it applies the provided className', async () => {
+test('it applies the provided className to the root', async () => {
   const { findByTestId } = renderWithTheme(
     <Slider className="custom-class-name" {...props} />
   );
-  const root = await findByTestId(testId);
+  const root = await findByTestId(testIds.root);
   expect(root).toHaveClass('custom-class-name');
 });
 
@@ -84,14 +82,32 @@ test('it does not render value when showValue is not provided', () => {
   expect(value).not.toBeInTheDocument();
 });
 
-test('it calls formatValue if showValue and formatValue are provided', async () => {
+test('it calls formatValue if showValue and formatValue are provided when type is "point"', async () => {
   const formatValue = jest.fn();
   renderWithTheme(
     <Slider formatValue={formatValue} showValue value={20} {...props} />
   );
 
   expect(formatValue).toHaveBeenCalledTimes(1);
+  // Confirm the correct value gets passed in based on the type
   expect(formatValue).toHaveBeenCalledWith(20);
+});
+
+test('it calls formatValue if showValue and formatValue are provided when type is "range"', async () => {
+  const formatValue = jest.fn();
+  renderWithTheme(
+    <Slider
+      formatValue={formatValue}
+      showValue
+      value={[20, 80]}
+      {...props}
+      type="range"
+    />
+  );
+
+  expect(formatValue).toHaveBeenCalledTimes(1);
+  // Confirm the correct value gets passed in based on the type
+  expect(formatValue).toHaveBeenCalledWith([20, 80]);
 });
 
 test('it does not call formatValue if showValue is not provided', async () => {
@@ -116,7 +132,7 @@ test('it renders a single thumb if "type === point"', async () => {
     <Slider {...props} type="point" value={20} />
   );
 
-  const thumbs = await findAllByTestId('ChromaSlider-thumb');
+  const thumbs = await findAllByTestId(testIds.thumb);
   expect(thumbs).toHaveLength(1);
 });
 
@@ -125,7 +141,7 @@ test('it renders two thumbs if "type === range"', async () => {
     <Slider {...props} type="range" value={[0, 20]} />
   );
 
-  const thumbs = await findAllByTestId('ChromaSlider-thumb');
+  const thumbs = await findAllByTestId(testIds.thumb);
   expect(thumbs).toHaveLength(2);
 });
 
@@ -161,8 +177,8 @@ test('it renders an error-state Slider', async () => {
     <Slider hasError value={20} {...props} />
   );
 
-  const root = await findByTestId(testId);
-  expect(root.children[1].firstChild).toHaveClass('ChromaSlider-thumbError');
+  const thumb = await findByTestId(testIds.thumb);
+  expect(thumb).toHaveClass('ChromaSlider-thumbError');
 });
 
 test('it renders an error-state Slider with the provided errorMessage', async () => {
@@ -203,13 +219,22 @@ test('it applies labelBottomTrailingMessage className to errorMessage when label
 });
 
 // For accessibility audit
+test('it applies aria-labelledby for label', async () => {
+  const { findByTestId } = renderWithTheme(
+    <Slider errorMessage="Error!" hasError name="unique-name" {...props} />
+  );
+
+  const slider = await findByTestId(testIds.slider);
+  expect(slider).toHaveAttribute('aria-labelledBy');
+});
+
 test('it applies aria-describedby for errorMessage', async () => {
   const { findByTestId } = renderWithTheme(
     <Slider errorMessage="Error!" hasError name="unique-name" {...props} />
   );
 
-  const root = await findByTestId(testId);
-  expect(root.getAttribute('aria-describedby')).toContain(
+  const slider = await findByTestId(testIds.slider);
+  expect(slider.getAttribute('aria-describedby')).toContain(
     'error-for-unique-name'
   );
 });
@@ -219,8 +244,8 @@ test('it applies aria-describedby for helpMessage', async () => {
     <Slider helpMessage="Help Message" name="unique-name" {...props} />
   );
 
-  const root = await findByTestId(testId);
-  expect(root.getAttribute('aria-describedby')).toContain(
+  const slider = await findByTestId(testIds.slider);
+  expect(slider.getAttribute('aria-describedby')).toContain(
     'help-for-unique-name'
   );
 });
