@@ -14,17 +14,27 @@ import { GetClasses } from '../../typeUtils';
 import { makeStyles } from '../../styles';
 import { Text } from '../Text';
 
+export const testIds = {
+  root: 'slider-root',
+  slider: 'slider-slider',
+  thumb: 'slider-thumb',
+};
+
 export const SliderStylesKey = 'ChromaSlider';
 
 export const useStyles = makeStyles(
   (theme) => ({
-    root: {
+    slider: {
       alignItems: 'center',
       display: 'flex',
       position: 'relative',
       touchAction: 'none',
       userSelect: 'none',
 
+      '&:focus': {
+        boxShadow: theme.boxShadows.focusVisible,
+        outline: 'none',
+      },
       '&[data-orientation="horizontal"]': {
         height: theme.pxToRem(20),
       },
@@ -100,7 +110,7 @@ export const useStyles = makeStyles(
     labelMargin: {
       marginTop: 0,
     },
-    labelBottomTrailerMessage: {
+    labelBottomTrailingMessage: {
       marginLeft: 0,
     },
     labelValuePair: {
@@ -125,7 +135,7 @@ export const useStyles = makeStyles(
     valueRight: {
       textAlign: 'right',
     },
-    trailerMessage: {
+    trailingMessage: {
       marginLeft: 0,
       marginTop: theme.spacing(0.875),
     },
@@ -147,14 +157,12 @@ export const useStyles = makeStyles(
 
 export type SliderClasses = GetClasses<typeof useStyles>;
 
-export interface SliderProps {
+export interface SliderOwnProps {
   'aria-label'?: string;
   className?: string;
   color?: 'default' | 'inverse';
-  defaultValue?: number[];
   disabled?: boolean;
   errorMessage?: string;
-  formatValue?: (value: number[] | undefined) => string;
   hasError?: boolean;
   helpMessage?: string;
   id?: string;
@@ -164,13 +172,28 @@ export interface SliderProps {
   min?: number;
   minStepsBetweenThumbs?: number;
   name?: string;
-  onValueChange?: (value: number[]) => void;
   showValue?: boolean;
   step?: number;
-  type?: 'point' | 'range';
-  value?: number[];
   valuePlacement?: 'left' | 'center' | 'right';
 }
+
+interface PointProps extends SliderOwnProps {
+  type?: 'point';
+  defaultValue?: number;
+  formatValue?: (value: number | undefined) => string;
+  onValueChange?: (value: number) => void;
+  value?: number;
+}
+
+interface RangeProps extends SliderOwnProps {
+  type: 'range';
+  defaultValue?: number[];
+  formatValue?: (value: number[] | undefined) => string;
+  onValueChange?: (value: number[]) => void;
+  value?: number[];
+}
+
+export type SliderProps = PointProps | RangeProps;
 
 const getValueAsArray = (value: undefined | number | number[]) => {
   if (value === undefined) {
@@ -183,15 +206,13 @@ const getValueAsArray = (value: undefined | number | number[]) => {
 };
 
 export const Slider = React.forwardRef<HTMLElement, SliderProps>(
-  (
-    {
+  (props, ref) => {
+    const {
       ['aria-label']: ariaLabel,
       className,
       color = 'default',
-      defaultValue,
       disabled,
       errorMessage,
-      formatValue,
       hasError,
       helpMessage,
       id,
@@ -201,31 +222,28 @@ export const Slider = React.forwardRef<HTMLElement, SliderProps>(
       min,
       minStepsBetweenThumbs,
       name,
-      onValueChange,
       showValue,
-      type = 'point',
-      value: val,
       valuePlacement = 'right',
-    },
-    ref
-  ) => {
+    } = props;
+
     const sliderProps = {
       'aria-label': ariaLabel,
-      defaultValue: getValueAsArray(defaultValue),
+      defaultValue: getValueAsArray(props.defaultValue),
       disabled,
       max,
       min,
       minStepsBetweenThumbs,
       name,
-      onValueChange,
-      value: getValueAsArray(val),
+      value: getValueAsArray(props.value),
     };
     const classes = useStyles({});
-    const value = sliderProps.value || sliderProps.defaultValue;
+    const arrayValue = sliderProps.value || sliderProps.defaultValue;
 
     const [uniqueId] = React.useState<string>(
       () => id || name || generateUniqueId('slider-')
     );
+    const sliderLabelId = generateUniqueId('slider-label-');
+    const sliderValueId = generateUniqueId('slider-value-');
 
     /* istanbul ignore next */
     if (!label && !ariaLabel && process.env.NODE_ENV === 'development') {
@@ -234,6 +252,41 @@ export const Slider = React.forwardRef<HTMLElement, SliderProps>(
       );
     }
 
+    const onChange = (value: number[]) => {
+      // Checking the `type` prop to make sure that the props are either of type PointProp or RangeProp and not of the union type SliderProps
+      // https://github.com/microsoft/TypeScript/issues/23613
+      if (props.type === 'range') {
+        props.onValueChange?.(value);
+      } else if (props.type === 'point') {
+        props.onValueChange?.(value[0]);
+      }
+    };
+
+    const formatValue = () => {
+      if (!!props.formatValue) {
+        // Checking the `type` prop to make sure that the props are either of type PointProp or RangeProp and not of the union type SliderProps
+        // https://github.com/microsoft/TypeScript/issues/23613
+        if (props.type === 'range') {
+          return props.formatValue(props.value);
+        } else if (props.type === 'point') {
+          return props.formatValue(props.value);
+        }
+      } else return props.value;
+    };
+
+    const getDescribedBy = () => {
+      const builtDescribedBy = buildDescribedBy({
+        hasError,
+        hasHelpMessage: !!helpMessage,
+        uniqueId,
+      });
+
+      if (builtDescribedBy) {
+        return `${sliderValueId} ${builtDescribedBy}`;
+      }
+      return sliderValueId;
+    };
+
     const Label = () => (
       <span
         className={clsx(
@@ -241,6 +294,7 @@ export const Slider = React.forwardRef<HTMLElement, SliderProps>(
           color === 'inverse' && classes.labelInverse,
           labelPlacement === 'bottom' && classes.labelBottom
         )}
+        id={sliderLabelId}
       >
         {label}
       </span>
@@ -257,9 +311,10 @@ export const Slider = React.forwardRef<HTMLElement, SliderProps>(
           },
           color === 'inverse' && classes.valueInverse
         )}
+        id={sliderValueId}
         size="subbody"
       >
-        {!!formatValue ? formatValue(value) : value}
+        {formatValue()}
       </Text>
     );
 
@@ -285,17 +340,17 @@ export const Slider = React.forwardRef<HTMLElement, SliderProps>(
     };
 
     return (
-      <div>
+      <div className={className} data-testid={testIds.root}>
         {labelPlacement === 'top' && <LabelContainer />}
 
         <SliderPrimitive.Slider
-          aria-describedby={buildDescribedBy({
-            hasError,
-            hasHelpMessage: !!helpMessage,
-            uniqueId,
-          })}
-          className={clsx(classes.root, className)}
+          aria-describedby={getDescribedBy()}
+          aria-labelledby={sliderLabelId}
+          className={classes.slider}
+          data-testid={testIds.slider}
           id={uniqueId}
+          onValueChange={onChange}
+          tabIndex={0}
           {...sliderProps}
           ref={ref}
         >
@@ -312,13 +367,14 @@ export const Slider = React.forwardRef<HTMLElement, SliderProps>(
               )}
             />
           </SliderPrimitive.Track>
-          {(type === 'point' ? [''] : ['', '']).map((_: string, i: number) => (
+          {arrayValue?.map((_: number, i: number) => (
             <SliderPrimitive.Thumb
               className={clsx(
                 classes.thumb,
                 hasError && classes.thumbError,
                 color === 'inverse' && classes.thumbInverse
               )}
+              data-testid={testIds.thumb}
               key={i}
             />
           ))}
@@ -332,8 +388,8 @@ export const Slider = React.forwardRef<HTMLElement, SliderProps>(
               classes.helpMessage,
               color === 'inverse' && classes.helpMessageInverse,
               labelPlacement === 'top'
-                ? classes.trailerMessage
-                : classes.labelBottomTrailerMessage
+                ? classes.trailingMessage
+                : classes.labelBottomTrailingMessage
             )}
             describedById={helpFor(uniqueId)}
             rootElementId={uniqueId}
@@ -346,8 +402,8 @@ export const Slider = React.forwardRef<HTMLElement, SliderProps>(
             className={clsx(
               color === 'inverse' && classes.errorMessageInverse,
               labelPlacement === 'top'
-                ? classes.trailerMessage
-                : classes.labelBottomTrailerMessage
+                ? classes.trailingMessage
+                : classes.labelBottomTrailingMessage
             )}
             describedById={errorFor(uniqueId)}
             rootElementId={uniqueId}
@@ -359,3 +415,8 @@ export const Slider = React.forwardRef<HTMLElement, SliderProps>(
     );
   }
 );
+
+// Setting default prop here since we don't destructure these props
+Slider.defaultProps = {
+  type: 'point',
+};
