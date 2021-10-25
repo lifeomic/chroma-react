@@ -98,23 +98,20 @@ export const useStyles = makeStyles(
       display: 'flex',
       fontSize: theme.pxToRem(14),
       fontWeight: theme.typography.fontWeightBold,
-      marginBottom: theme.spacing(0.625),
     },
     labelInverse: {
       color: theme.palette.common.white,
     },
-    labelBottom: {
-      margingBottom: 0,
-      marginTop: theme.spacing(0.625),
+    labelTop: {
+      marginBottom: theme.spacing(0.625),
     },
-    labelMargin: {
-      marginTop: 0,
+    labelBottom: {
+      marginTop: theme.spacing(0.625),
     },
     labelBottomTrailingMessage: {
       marginLeft: 0,
     },
     labelValuePair: {
-      marginTop: theme.spacing(0.625),
       '& > *': {
         lineHeight: 1.25,
       },
@@ -292,7 +289,10 @@ export const Slider = React.forwardRef<HTMLElement, SliderProps>(
         className={clsx(
           classes.label,
           color === 'inverse' && classes.labelInverse,
-          labelPlacement === 'bottom' && classes.labelBottom
+          {
+            [classes.labelTop]: labelPlacement === 'top',
+            [classes.labelBottom]: labelPlacement === 'bottom',
+          }
         )}
         id={sliderLabelId}
       >
@@ -321,7 +321,11 @@ export const Slider = React.forwardRef<HTMLElement, SliderProps>(
     const LabelContainer = () => {
       if (label && (showValue || !!props.formatValue)) {
         return (
-          <Box className={classes.labelValuePair} justify="space-between">
+          <Box
+            align="baseline"
+            className={classes.labelValuePair}
+            justify="space-between"
+          >
             <Label />
             <Value />
           </Box>

@@ -91,6 +91,7 @@ const SliderAll: React.FC = () => {
             label="Slider with label (placement bottom)"
             labelPlacement="bottom"
             onValueChange={onPointChange}
+            showValue
             value={point}
           />
 
@@ -182,6 +183,7 @@ const SliderAll: React.FC = () => {
             label="Slider with label (placement bottom)"
             labelPlacement="bottom"
             onValueChange={onPointChange}
+            showValue
             value={point}
           />
 
@@ -277,6 +279,7 @@ const SliderAll: React.FC = () => {
             label="Slider with label (placement bottom)"
             labelPlacement="bottom"
             onValueChange={onPointChange}
+            showValue
             value={point}
           />
 
@@ -379,6 +382,7 @@ const SliderAll: React.FC = () => {
             label="Slider with label (placement bottom)"
             labelPlacement="bottom"
             onValueChange={onPointChange}
+            showValue
             value={point}
           />
 
