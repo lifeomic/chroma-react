@@ -21,7 +21,6 @@ const SliderPointStory: React.FC = () => {
         formatValue={(value: number | undefined) => `${value} cm`}
         label="Point Slider"
         onValueChange={onPointChange}
-        showValue
         value={point}
       />
     </Container>
@@ -46,7 +45,6 @@ const SliderRangeStory: React.FC = () => {
         }
         label="Range Slider"
         onValueChange={onPointChange}
-        showValue
         value={range}
         type="range"
       />
@@ -107,7 +105,6 @@ const SliderAll: React.FC = () => {
             formatValue={(value: number | undefined) => `${value} cm`}
             label="Slider with label and formatted value"
             onValueChange={onPointChange}
-            showValue
             value={point}
           />
 
@@ -199,7 +196,6 @@ const SliderAll: React.FC = () => {
             formatValue={(value: number | undefined) => `${value} cm`}
             label="Slider with label and formatted value"
             onValueChange={onPointChange}
-            showValue
             value={point}
           />
 
@@ -297,7 +293,6 @@ const SliderAll: React.FC = () => {
             formatValue={(value: number | undefined) => `${value} cm`}
             label="Slider with label and formatted value"
             onValueChange={onPointChange}
-            showValue
             value={point}
           />
 
@@ -400,7 +395,6 @@ const SliderAll: React.FC = () => {
             formatValue={(value: number | undefined) => `${value} cm`}
             label="Slider with label and formatted value"
             onValueChange={onPointChange}
-            showValue
             value={point}
           />
 

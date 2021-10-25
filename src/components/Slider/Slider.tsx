@@ -319,7 +319,7 @@ export const Slider = React.forwardRef<HTMLElement, SliderProps>(
     );
 
     const LabelContainer = () => {
-      if (label && showValue) {
+      if (label && (showValue || !!props.formatValue)) {
         return (
           <Box className={classes.labelValuePair} justify="space-between">
             <Label />
@@ -332,7 +332,7 @@ export const Slider = React.forwardRef<HTMLElement, SliderProps>(
         return <Label />;
       }
 
-      if (showValue) {
+      if (showValue || !!props.formatValue) {
         return <Value />;
       }
 

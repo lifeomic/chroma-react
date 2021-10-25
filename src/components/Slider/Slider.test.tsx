@@ -66,7 +66,7 @@ test('it renders label and value when label and showValue are provided', async (
   expect(value).toBeInTheDocument();
 });
 
-test('it renders value when showValue is provided', async () => {
+test('it renders the value when showValue is provided', async () => {
   const { findByText } = renderWithTheme(
     <Slider showValue value={20} {...props} />
   );
@@ -75,14 +75,42 @@ test('it renders value when showValue is provided', async () => {
   expect(value).toBeInTheDocument();
 });
 
-test('it does not render value when showValue is not provided', () => {
+test('it does not render the value when showValue is not provided', () => {
   const { queryByText } = renderWithTheme(<Slider value={20} {...props} />);
 
   const value = queryByText('20');
   expect(value).not.toBeInTheDocument();
 });
 
-test('it calls formatValue if showValue and formatValue are provided when type is "point"', async () => {
+test('it renders the formatted value if formatValue is provided', async () => {
+  const formatValue = (value: number | undefined) => `${value} cm`;
+  const { findByText } = renderWithTheme(
+    <Slider formatValue={formatValue} value={20} {...props} />
+  );
+
+  const formattedValue = await findByText('20 cm');
+  expect(formattedValue).toBeInTheDocument();
+});
+
+test('it does not render the value if formatValue is not provided', () => {
+  const { queryByText } = renderWithTheme(
+    <Slider formatValue={undefined} value={20} {...props} />
+  );
+
+  const formattedValue = queryByText('20');
+  expect(formattedValue).not.toBeInTheDocument();
+});
+
+test('it does not render the value if formatValue and showValue are not provided ', () => {
+  const { queryByText } = renderWithTheme(
+    <Slider formatValue={undefined} showValue={false} value={20} {...props} />
+  );
+
+  const formattedValue = queryByText('20');
+  expect(formattedValue).not.toBeInTheDocument();
+});
+
+test('it calls formatValue if formatValue is provided when type is "point"', async () => {
   const formatValue = jest.fn();
   renderWithTheme(
     <Slider formatValue={formatValue} showValue value={20} {...props} />
@@ -93,7 +121,7 @@ test('it calls formatValue if showValue and formatValue are provided when type i
   expect(formatValue).toHaveBeenCalledWith(20);
 });
 
-test('it calls formatValue if showValue and formatValue are provided when type is "range"', async () => {
+test('it calls formatValue if formatValue is provided when type is "range"', async () => {
   const formatValue = jest.fn();
   renderWithTheme(
     <Slider
@@ -108,23 +136,6 @@ test('it calls formatValue if showValue and formatValue are provided when type i
   expect(formatValue).toHaveBeenCalledTimes(1);
   // Confirm the correct value gets passed in based on the type
   expect(formatValue).toHaveBeenCalledWith([20, 80]);
-});
-
-test('it does not call formatValue if showValue is not provided', async () => {
-  const formatValue = jest.fn();
-  renderWithTheme(<Slider formatValue={formatValue} value={20} {...props} />);
-
-  expect(formatValue).not.toHaveBeenCalled();
-});
-
-test('it renders the formatted value if showValue and formatValue are provided', async () => {
-  const formatValue = (value: number | undefined) => `${value} cm`;
-  const { findByText } = renderWithTheme(
-    <Slider formatValue={formatValue} showValue value={20} {...props} />
-  );
-
-  const formattedValue = await findByText('20 cm');
-  expect(formattedValue).toBeInTheDocument();
 });
 
 test('it renders a single thumb if "type === point"', async () => {

@@ -1,6 +1,6 @@
 # Slider
 
-An slider component for form usage.
+A slider component for form usage.
 
 <!-- STORY -->
 
@@ -17,7 +17,6 @@ import { Slider } from '@lifeomic/chroma-react/components/Slider';
   formatValue={(value) => `${value} cm`}
   label="Slider"
   onChange={(value) => setValue(value)}
-  showValue
   type="point"
   value={value}
 />
@@ -60,6 +59,7 @@ Specifies where to place the label/value vertically, either above or below the s
 ### Show Value
 
 Boolean as to whether or not to render the raw or formatted value.
+If `formatValue` is provided, this doesn't need to be passed in.
 
 ```jsx
 <Slider showValue={true} />
@@ -87,7 +87,7 @@ A function that is called when rendering the value. The function should return t
 you wish to have rendered.
 
 ```jsx
-<Slider formatValue={(value) => `${value} cm`} showValue={true} />
+<Slider formatValue={(value) => `${value} cm`} />
 ```
 
 ### Help Message
