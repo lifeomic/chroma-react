@@ -79,6 +79,33 @@ export const MyModal = ({ item, disableAction, onDismiss, onEdit }) => {
             </RadioGroup>
           }
         />
+        <Controller
+          as={<Slider onValueChange={(value) => setValue('age', value)} />}
+          control={control}
+          defaultValue={50}
+          label="Age"
+          name="age"
+        />
+        <Controller
+          as={
+            <Slider
+              formatValue={(value) => {
+                if (value === undefined) {
+                  return '';
+                }
+                const minDate = moment(value[0], 'MM/DD/YYYY');
+                const maxDate = moment(value[1], 'MM/DD/YYYY');
+                return `${minDate} - ${maxDate}`;
+              }}
+              onValueChange={(value) => setValue('date', value)}
+              type="range"
+            />
+          }
+          control={control}
+          defaultValue={[972220155000, 1634908125033]}
+          label="Date Range"
+          name="date"
+        />
       </FormBox>
     </Modal>
   );
