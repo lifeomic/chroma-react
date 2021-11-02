@@ -142,7 +142,6 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
     } = useRadioGroup();
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      console.log('onchange', e);
       onChangeFromContext && onChangeFromContext(e);
     };
 
