@@ -146,8 +146,8 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
     };
 
     return (
+      // eslint-disable-next-line jsx-a11y/no-static-element-interactions
       <div
-        role="radio"
         className={clsx(classes.root, className)}
         onClick={() => inputRef?.current?.click()}
       >
