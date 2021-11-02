@@ -11,12 +11,14 @@ import {
 import { generateUniqueId } from '../_private/UniqueId';
 import { Text } from '../Text';
 import { useRadioGroup } from './useRadioGroup';
+import mergeRefs from 'react-merge-refs';
 
 export const RadioStylesKey = 'ChromaRadio';
 
 export const useStyles = makeStyles(
   (theme) => ({
     root: {
+      cursor: 'pointer',
       display: 'flex',
       '& > input[type="radio"]::after': {
         opacity: 0,
@@ -125,6 +127,7 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
     },
     ref
   ) => {
+    const inputRef = React.useRef<HTMLInputElement>(null);
     const classes = useStyles({});
 
     const [uniqueId] = React.useState<string>(
@@ -139,11 +142,16 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
     } = useRadioGroup();
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      console.log('onchange', e);
       onChangeFromContext && onChangeFromContext(e);
     };
 
     return (
-      <div className={clsx(classes.root, className)}>
+      <div
+        role="radio"
+        className={clsx(classes.root, className)}
+        onClick={() => inputRef?.current?.click()}
+      >
         <input
           aria-describedby={buildDescribedBy({
             hasHelpMessage: !!helpMessage,
@@ -153,7 +161,7 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
             [classes.inputInverse]:
               color === 'inverse' || colorFromContext === 'inverse',
           })}
-          ref={ref}
+          ref={mergeRefs([inputRef, ref])}
           role="radio"
           type="radio"
           id={uniqueId}
