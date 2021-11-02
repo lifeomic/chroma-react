@@ -118,6 +118,18 @@ test('it calls the provided onChange event on-click', async () => {
   expect(handleChange).toBeCalledTimes(1);
 });
 
+test('it passes ref to input', async () => {
+  const ref = React.createRef<HTMLInputElement>();
+  const props = getBaseProps();
+  const handleChange = jest.fn();
+  renderWithTheme(
+    <Radio {...props} onChange={handleChange} data-testid={testId} ref={ref} />
+  );
+
+  ref.current!.click();
+  expect(handleChange).toBeCalledTimes(1);
+});
+
 test('it renders children', async () => {
   const props = getBaseProps();
   const { findByTestId } = renderWithTheme(

@@ -96,6 +96,7 @@
     "framer-motion": "^1.10.3",
     "react-focus-lock": "^2.3.1",
     "react-hotkeys": "^2.0.0",
+    "react-merge-refs": "^1.1.0",
     "react-phone-number-input": "^3.1.23",
     "react-remove-scroll": "^2.3.0",
     "reakit": "1.0.0-rc.1"
