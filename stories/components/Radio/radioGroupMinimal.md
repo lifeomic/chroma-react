@@ -116,6 +116,14 @@ A direction can be applied. Valid options are `row` (default) or `column`.
 <RadioGroupMinimal direction="column" />
 ```
 
+### Full Width
+
+To set the width to take 100% of the width, use the `fullWidth` prop.
+
+```jsx
+<RadioGroupMinimal fullWidth />
+```
+
 ### Class Name
 
 A class name can be provided.
