@@ -12,14 +12,12 @@ export const useStyles = makeStyles(
   (theme) => ({
     root: {
       border: 0,
-      display: 'inline-flex',
       flexDirection: 'column',
       height: '100%',
       margin: 0,
       minWidth: 0,
       padding: 0,
       verticalAlign: 'top',
-      width: '100%',
     },
     legend: {
       color: theme.palette.black[800],
@@ -38,7 +36,7 @@ export const useStyles = makeStyles(
       background: 'rgba(132, 137, 166, 0.15)',
       borderRadius: theme.pxToRem(20),
       border: 'solid 1px transparent',
-      display: 'flex',
+      display: 'inline-flex',
       flexDirection: 'column',
       margin: 0,
       overflow: 'hidden',
@@ -121,7 +119,6 @@ export const useStyles = makeStyles(
     },
     directionRow: {
       flexDirection: 'row',
-      justifyContent: 'space-between',
       '& label': {
         whiteSpace: 'nowrap',
       },
