@@ -57,6 +57,7 @@ const getMinimalPropOptions = (): RadioGroupMinimalProps => {
       },
       'row'
     ),
+    fullWidth: boolean('fullWidth', false),
   };
 };
 
