@@ -19,6 +19,9 @@ export const useStyles = makeStyles(
       padding: 0,
       verticalAlign: 'top',
     },
+    fullWidth: {
+      display: 'inline-flex',
+    },
     legend: {
       color: theme.palette.black[800],
       fontSize: theme.pxToRem(14),
@@ -103,6 +106,11 @@ export const useStyles = makeStyles(
         },
       },
     },
+    radiosFullWidth: {
+      '& > div': {
+        flex: 1,
+      },
+    },
     radiosInverse: {
       backgroundColor: 'rgba(230, 231, 237, 0.1)',
       '& input:checked + div': {
@@ -147,6 +155,7 @@ export interface RadioGroupMinimalProps
   background?: boolean;
   className?: string;
   direction?: 'row' | 'column';
+  fullWidth?: boolean;
   title?: string;
 }
 
@@ -157,6 +166,7 @@ export const RadioGroupMinimal: React.FC<RadioGroupMinimalProps> = ({
   color = 'default',
   children,
   direction = 'row',
+  fullWidth,
   name,
   onChange,
   value,
@@ -189,7 +199,11 @@ export const RadioGroupMinimal: React.FC<RadioGroupMinimalProps> = ({
       }}
     >
       <fieldset
-        className={clsx(classes.root, className)}
+        className={clsx(
+          classes.root,
+          fullWidth && classes.fullWidth,
+          className
+        )}
         role="radiogroup"
         {...rootProps}
       >
@@ -207,6 +221,7 @@ export const RadioGroupMinimal: React.FC<RadioGroupMinimalProps> = ({
         <div
           className={clsx(
             classes.radios,
+            fullWidth && classes.radiosFullWidth,
             {
               [classes.radiosInverse]: color === 'inverse',
             },
