@@ -74,3 +74,12 @@ test('it renders an aria-label when not provided with title', async () => {
   expect(ariaLabel).toBeInTheDocument();
   expect(ariaLabel?.nodeName).toEqual('LEGEND');
 });
+
+test('it renders with the "fullWidth" prop', async () => {
+  const { findByTestId } = renderWithTheme(
+    <RadioGroupMinimal fullWidth data-testid={testId} />
+  );
+
+  const radioGroupMinimal = await findByTestId(testId);
+  expect(radioGroupMinimal).toHaveClass('ChromaRadioGroupMinimal-fullWidth');
+});

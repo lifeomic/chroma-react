@@ -12,14 +12,15 @@ export const useStyles = makeStyles(
   (theme) => ({
     root: {
       border: 0,
-      display: 'inline-flex',
       flexDirection: 'column',
       height: '100%',
       margin: 0,
       minWidth: 0,
       padding: 0,
       verticalAlign: 'top',
-      width: '100%',
+    },
+    fullWidth: {
+      display: 'inline-flex',
     },
     legend: {
       color: theme.palette.black[800],
@@ -38,7 +39,7 @@ export const useStyles = makeStyles(
       background: 'rgba(132, 137, 166, 0.15)',
       borderRadius: theme.pxToRem(20),
       border: 'solid 1px transparent',
-      display: 'flex',
+      display: 'inline-flex',
       flexDirection: 'column',
       margin: 0,
       overflow: 'hidden',
@@ -105,6 +106,11 @@ export const useStyles = makeStyles(
         },
       },
     },
+    radiosFullWidth: {
+      '& > div': {
+        flex: 1,
+      },
+    },
     radiosInverse: {
       backgroundColor: 'rgba(230, 231, 237, 0.1)',
       '& input:checked + div': {
@@ -121,7 +127,6 @@ export const useStyles = makeStyles(
     },
     directionRow: {
       flexDirection: 'row',
-      justifyContent: 'space-between',
       '& label': {
         whiteSpace: 'nowrap',
       },
@@ -150,6 +155,7 @@ export interface RadioGroupMinimalProps
   background?: boolean;
   className?: string;
   direction?: 'row' | 'column';
+  fullWidth?: boolean;
   title?: string;
 }
 
@@ -160,6 +166,7 @@ export const RadioGroupMinimal: React.FC<RadioGroupMinimalProps> = ({
   color = 'default',
   children,
   direction = 'row',
+  fullWidth,
   name,
   onChange,
   value,
@@ -192,7 +199,11 @@ export const RadioGroupMinimal: React.FC<RadioGroupMinimalProps> = ({
       }}
     >
       <fieldset
-        className={clsx(classes.root, className)}
+        className={clsx(
+          classes.root,
+          fullWidth && classes.fullWidth,
+          className
+        )}
         role="radiogroup"
         {...rootProps}
       >
@@ -210,6 +221,7 @@ export const RadioGroupMinimal: React.FC<RadioGroupMinimalProps> = ({
         <div
           className={clsx(
             classes.radios,
+            fullWidth && classes.radiosFullWidth,
             {
               [classes.radiosInverse]: color === 'inverse',
             },
