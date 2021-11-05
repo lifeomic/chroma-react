@@ -84,9 +84,11 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  textFieldNonEditable: {
-    '& input': {
+  textFieldNoManualInput: {
+    // Override the default readonly styles from TextField
+    '& input:read-only': {
       cursor: 'pointer',
+      opacity: 'unset',
     },
   },
 }));
@@ -246,6 +248,7 @@ export const DayPicker: React.FC<DayPickerProps> = ({
       <TextField
         startAdornment={<Calendar />}
         {...textFieldProps}
+        readOnly={textFieldProps.readOnly || !parseDate}
         value={
           intermediateInput ??
           (value
@@ -255,12 +258,25 @@ export const DayPicker: React.FC<DayPickerProps> = ({
               '')
         }
         className={clsx(textFieldProps.className, {
-          [classes.textFieldNonEditable]: !parseDate,
+          [classes.textFieldNoManualInput]: !parseDate,
         })}
         onChange={_onTextChange}
         onFocus={(e) => {
-          setIsCalendarOpen(true);
+          if (parseDate) {
+            setIsCalendarOpen(true);
+          }
           textFieldProps.onFocus?.(e);
+        }}
+        /**
+         * Using onClick for readonly mode makes for a better experience!
+         *
+         * Primarily, it allows for closing the "popover" by clicking on the field again.
+         */
+        onClick={(e) => {
+          if (!parseDate) {
+            setIsCalendarOpen((current) => !current);
+          }
+          textFieldProps.onClick?.(e);
         }}
       />
       {isCalendarOpen && (

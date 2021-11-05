@@ -60,9 +60,9 @@ it('calls onDayChange when clicking a day in the calendar', () => {
     onDayChange,
   });
 
-  // Open the calendar by focusing the text field.
+  // Open the calendar by clicking the text field.
   const input = view.getByRole('textbox');
-  fireEvent.focus(input);
+  fireEvent.click(input);
 
   // Expect the calendar to open.
   const calendar = view.queryByTestId(testIds.calendar);
@@ -90,9 +90,9 @@ it('moves the calendar when the chevrons get clicked', () => {
     value: new Date('2021-11-05T00:00:00.000Z'),
   });
 
-  // Open the calendar by focusing the text field.
+  // Open the calendar by clicking the text field.
   const input = view.getByRole('textbox');
-  fireEvent.focus(input);
+  fireEvent.click(input);
 
   const month = view.getByLabelText('Current month');
   const leftChevron = view.getByLabelText('Previous month');
@@ -125,10 +125,10 @@ it('calls onTextChange and eventually onDayChange when manual input is used', ()
     placeholder: 'test-placeholder',
   });
 
-  // Open the calendar by focusing the text field. (implicit test
+  // Open the calendar by clicking the text field. (implicit test
   // of placeholder pass-through)
   const input = view.getByPlaceholderText('test-placeholder');
-  fireEvent.focus(input);
+  fireEvent.click(input);
 
   fireEvent.change(input, { target: { value: 'November' } });
 
