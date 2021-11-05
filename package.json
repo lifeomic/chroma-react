@@ -22,7 +22,7 @@
     "clean": "rm -rf dist/ deploy/docs",
     "lint": "eslint --ext .ts,.tsx.js,.jsx .",
     "start": "yarn docs:start",
-    "test": "jest"
+    "test": "TZ=UTC jest"
   },
   "husky": {
     "hooks": {

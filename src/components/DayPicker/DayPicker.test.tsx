@@ -81,7 +81,7 @@ it('calls onDayChange when clicking a day in the calendar', () => {
   const date: Date = onDayChange.mock.calls[0][0];
 
   // Assert the date returned is Nov 12 👍
-  expect(date.toISOString()).toBe('2021-11-12T17:00:00.000Z');
+  expect(date.toISOString()).toBe('2021-11-12T00:00:00.000Z');
 });
 
 it('moves the calendar when the chevrons get clicked', () => {
@@ -142,7 +142,7 @@ it('calls onTextChange and eventually onDayChange when manual input is used', ()
   expect(onTextChange).toHaveBeenNthCalledWith(2, 'November 10, 2022');
   expect(onDayChange).toHaveBeenCalledTimes(1);
   expect(onDayChange.mock.calls[0][0].toISOString()).toStrictEqual(
-    '2022-11-10T05:00:00.000Z'
+    '2022-11-10T00:00:00.000Z'
   );
 });
 

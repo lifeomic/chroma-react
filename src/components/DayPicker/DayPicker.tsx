@@ -13,6 +13,13 @@ import { ButtonUnstyled } from '../ButtonUnstyled';
 export const DayPickerStylesKey = 'ChromaDayPicker';
 export type DayPickerClasses = GetClasses<typeof useStyles>;
 
+const setToMidnight = (date: Date) => {
+  date.setHours(0);
+  date.setMinutes(0);
+  date.setSeconds(0);
+  date.setMilliseconds(0);
+};
+
 /**
  * Helper hook for handling clicks outside of provided `ref` node.
  */
@@ -231,6 +238,7 @@ export const DayPicker: React.FC<DayPickerProps> = ({
       setIntermediateInput(e.target.value);
       return;
     }
+    setToMidnight(date);
 
     setIntermediateInput(undefined);
     onDayChange?.(date);
@@ -238,6 +246,7 @@ export const DayPicker: React.FC<DayPickerProps> = ({
   };
 
   const onDayClick = (day: Date) => {
+    setToMidnight(day);
     setIntermediateInput(undefined);
     onDayChange?.(day);
     onTextChange?.(formatDate(day));
