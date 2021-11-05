@@ -77,17 +77,6 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingBottom: theme.spacing(2),
-
-    // TODO: a use hack to get the navbar title to always align with the first week marker
-    // The one below doesn't work.
-
-    // This paddingLeft serves to left-align the month title with
-    // the days + weeks below
-    paddingLeft: '0.5em',
-  },
-  chevronsContainer: {
-    display: 'flex',
-    alignItems: 'center',
   },
   textFieldNonEditable: {
     '& input': {
@@ -261,17 +250,15 @@ export const DayPicker: React.FC<DayPickerProps> = ({
           }}
           navbarElement={(props) => (
             <div className={classes.navBar}>
+              <ChevronLeft
+                cursor={'pointer'}
+                onClick={() => props.onPreviousClick()}
+              />
               {formatMonthTitle(props.month)}
-              <div className={classes.chevronsContainer}>
-                <ChevronLeft
-                  cursor={'pointer'}
-                  onClick={() => props.onPreviousClick()}
-                />
-                <ChevronRight
-                  cursor={'pointer'}
-                  onClick={() => props.onNextClick()}
-                />
-              </div>
+              <ChevronRight
+                cursor={'pointer'}
+                onClick={() => props.onNextClick()}
+              />
             </div>
           )}
           // We are setting this to empty and overriding it with our
