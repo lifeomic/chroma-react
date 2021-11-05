@@ -8,9 +8,10 @@ import { Calendar, ChevronLeft, ChevronRight } from '@lifeomic/chromicons';
 import { makeStyles, useTheme } from '../../styles';
 import { TextField, TextFieldProps } from '../TextField';
 import { GetClasses } from '../../typeUtils';
+import { ButtonUnstyled } from '../ButtonUnstyled';
 
 export const DayPickerStylesKey = 'ChromaDayPicker';
-export type TextFieldClasses = GetClasses<typeof useStyles>;
+export type DayPickerClasses = GetClasses<typeof useStyles>;
 
 /**
  * Helper hook for handling clicks outside of provided `ref` node.
@@ -71,12 +72,17 @@ const useStyles = makeStyles((theme) => ({
   },
   navBar: {
     ...theme.typography.body2,
-    fontWeight: 'bold',
+    fontWeight: theme.typography.fontWeightBold,
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingBottom: theme.spacing(2),
+  },
+  chevronButtonContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   textFieldNonEditable: {
     '& input': {
@@ -140,14 +146,29 @@ export type DayPickerProps = Omit<TextFieldProps, 'value' | 'onChange'> & {
   formatWeekdayShort?: (weekday: number) => string;
 
   /**
-   * Use to customize rendering of invidual days in the grid.
+   * Use to customize rendering of individual days in the grid.
    */
   renderDay?: (day: Date) => React.ReactNode;
+
+  /**
+   * Overrides for internal aria-labels. Useful for localizing
+   * the labels.
+   */
+  ariaLabelOverrides?: {
+    monthHeader?: string;
+    leftChevron?: string;
+    rightChevron?: string;
+  };
+};
+
+export const testIds = {
+  calendar: 'chroma-day-picker-calendar',
 };
 
 export const DayPicker: React.FC<DayPickerProps> = ({
   value,
   selectedBackgroundColor,
+  ariaLabelOverrides,
   onDayChange,
   onTextChange,
   // Default is very dumb, but doesn't require a date library
@@ -238,6 +259,10 @@ export const DayPicker: React.FC<DayPickerProps> = ({
       {isCalendarOpen && (
         <ReactDayPicker
           ref={calendarRef}
+          containerProps={{
+            // @ts-ignore data-testid is a real prop, even though TS thinks it's not.
+            'data-testid': testIds.calendar,
+          }}
           className={classes.dayPicker}
           modifiers={{
             selected: value,
@@ -250,15 +275,25 @@ export const DayPicker: React.FC<DayPickerProps> = ({
           }}
           navbarElement={(props) => (
             <div className={classes.navBar}>
-              <ChevronLeft
-                cursor={'pointer'}
+              <ButtonUnstyled
+                aria-label={ariaLabelOverrides?.leftChevron ?? 'Previous month'}
+                className={classes.chevronButtonContainer}
                 onClick={() => props.onPreviousClick()}
-              />
-              {formatMonthTitle(props.month)}
-              <ChevronRight
-                cursor={'pointer'}
+              >
+                <ChevronLeft />
+              </ButtonUnstyled>
+              <span
+                aria-label={ariaLabelOverrides?.monthHeader ?? 'Current month'}
+              >
+                {formatMonthTitle(props.month)}
+              </span>
+              <ButtonUnstyled
+                aria-label={ariaLabelOverrides?.rightChevron ?? 'Next month'}
+                className={classes.chevronButtonContainer}
                 onClick={() => props.onNextClick()}
-              />
+              >
+                <ChevronRight />
+              </ButtonUnstyled>
             </div>
           )}
           // We are setting this to empty and overriding it with our

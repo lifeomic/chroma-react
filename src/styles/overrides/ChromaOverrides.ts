@@ -205,6 +205,10 @@ import {
 } from '../../components/ColorPicker';
 import { SkeletonClasses, SkeletonStylesKey } from '../../components/Skeleton';
 import { SliderClasses, SliderStylesKey } from '../../components/Slider';
+import {
+  DayPickerClasses,
+  DayPickerStylesKey,
+} from '../../components/DayPicker';
 
 export type ChromaOverrides = {
   [Name in keyof ChromaComponentNameToClassKey]?: Partial<
@@ -230,6 +234,7 @@ export interface ChromaComponentNameToClassKey {
   [CheckboxStylesKey]: CheckboxClasses;
   [ChipStylesKey]: ChipClasses;
   [ColorPickerStylesKey]: ColorPickerClasses;
+  [DayPickerStylesKey]: DayPickerClasses;
   [DividerStylesKey]: DividerClasses;
   [DotLoaderStylesKey]: DotLoaderClasses;
   [ExpansionPanelStylesKey]: ExpansionPanelClasses;
