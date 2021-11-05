@@ -234,7 +234,7 @@ export const DayPicker: React.FC<DayPickerProps> = ({
   return (
     <div ref={wrapperRef}>
       <TextField
-        endAdornment={<Calendar />}
+        startAdornment={<Calendar />}
         {...textFieldProps}
         value={intermediateInput ?? (value ? formatDate(value) : undefined)}
         className={clsx(textFieldProps.className, {
