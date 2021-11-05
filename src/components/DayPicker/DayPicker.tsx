@@ -246,7 +246,14 @@ export const DayPicker: React.FC<DayPickerProps> = ({
       <TextField
         startAdornment={<Calendar />}
         {...textFieldProps}
-        value={intermediateInput ?? (value ? formatDate(value) : undefined)}
+        value={
+          intermediateInput ??
+          (value
+            ? formatDate(value)
+            : // Use an empty string instead of undefined to silence warnings
+              // about switching b/w controlled and uncontrolled component
+              '')
+        }
         className={clsx(textFieldProps.className, {
           [classes.textFieldNonEditable]: !parseDate,
         })}
