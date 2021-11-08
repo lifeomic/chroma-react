@@ -10,6 +10,7 @@ import { TextField, TextFieldProps } from '../TextField';
 import { GetClasses } from '../../typeUtils';
 import { ButtonUnstyled } from '../ButtonUnstyled';
 import { composeEventHandlers } from '../../utils';
+import { useWindowEventListener } from '../../hooks/events/useWindowEventListener';
 
 export const DayPickerStylesKey = 'ChromaDayPicker';
 export type DayPickerClasses = GetClasses<typeof useStyles>;
@@ -19,30 +20,6 @@ const setToMidnight = (date: Date) => {
   date.setMinutes(0);
   date.setSeconds(0);
   date.setMilliseconds(0);
-};
-
-/**
- * Helper hook for handling clicks outside of provided `ref` node.
- */
-const useClickOutside = (
-  ref: React.RefObject<Node>,
-  handler: () => void,
-  dependencies: any[]
-) => {
-  React.useEffect(() => {
-    const handleClickOutside = (e: any) => {
-      if (ref.current?.contains(e.target)) {
-        return;
-      }
-      handler();
-    };
-
-    window.addEventListener('mousedown', handleClickOutside);
-
-    return () => {
-      window.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, [ref.current, ...dependencies]);
 };
 
 const useStyles = makeStyles((theme) => ({
@@ -209,7 +186,15 @@ export const DayPicker: React.FC<DayPickerProps> = ({
   const calendarRef = React.useRef<ReactDayPicker>(null);
 
   const wrapperRef = React.useRef<HTMLDivElement>(null);
-  useClickOutside(wrapperRef, () => setIsCalendarOpen(false), []);
+  useWindowEventListener(
+    'mousedown',
+    (e) => {
+      if (!wrapperRef.current?.contains(e.target as any)) {
+        setIsCalendarOpen(false);
+      }
+    },
+    [wrapperRef.current]
+  );
 
   /**
    * Holds the intermediary text input, which may not yet be a valid date

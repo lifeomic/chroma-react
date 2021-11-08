@@ -1,5 +1,6 @@
 // https://usehooks.com/useWindowSize/
 import * as React from 'react';
+import { useWindowEventListener } from '../../hooks/events/useWindowEventListener';
 
 interface Size {
   height?: number;
@@ -15,15 +16,12 @@ export function useWindowSize() {
   }
 
   const [windowSize, setWindowSize] = React.useState<Size>(getSize);
-
-  React.useEffect(() => {
-    function handleResize() {
-      setWindowSize(getSize());
-    }
-
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []); // Empty array ensures that effect is only run on mount and unmount
+  useWindowEventListener(
+    'resize',
+    () => setWindowSize(getSize()),
+    // Empty array ensures that effect is only run on mount and unmount
+    []
+  );
 
   return windowSize;
 }
