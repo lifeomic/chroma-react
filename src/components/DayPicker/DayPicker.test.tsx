@@ -161,3 +161,15 @@ it('never calls onTextChange if parseDate is not provided', () => {
 
   expect(onTextChange).not.toHaveBeenCalled();
 });
+
+it('closes the calendar on receiving ESC', () => {
+  const view = render({
+    value: new Date(),
+  });
+
+  // Open the calendar by focusing the text field.
+  const input = view.getByRole('textbox');
+  fireEvent.focus(input);
+
+  fireEvent.keyDown(input, { key: 'Escape' });
+});
