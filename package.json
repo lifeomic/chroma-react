@@ -22,7 +22,7 @@
     "clean": "rm -rf dist/ deploy/docs",
     "lint": "eslint --ext .ts,.tsx.js,.jsx .",
     "start": "yarn docs:start",
-    "test": "jest"
+    "test": "TZ=UTC jest"
   },
   "husky": {
     "hooks": {
@@ -61,6 +61,7 @@
     "@typescript-eslint/parser": "^4.0.1",
     "babel-loader": "^8.1.0",
     "conventional-changelog-conventionalcommits": "^4.6.0",
+    "dayjs": "^1.10.7",
     "eslint": "^7.8.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-jsx-a11y": "^6.3.1",
@@ -94,6 +95,7 @@
     "deepmerge": "^4.2.2",
     "focus-visible": "^5.1.0",
     "framer-motion": "^1.10.3",
+    "react-day-picker": "^7.4.10",
     "react-focus-lock": "^2.3.1",
     "react-hotkeys": "^2.0.0",
     "react-merge-refs": "^1.1.0",
