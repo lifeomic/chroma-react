@@ -61,6 +61,45 @@ it('supports custom formats via formatDate', () => {
   });
 });
 
+it('supports custom formats via formatMonthTitle', () => {
+  const view = render({
+    value: new Date(),
+    formatMonthTitle: () => 'some-random-month',
+  });
+
+  // Open the calendar by clicking the text field.
+  const input = view.getByRole('textbox');
+  fireEvent.mouseDown(input);
+
+  const month = view.getByLabelText('Current month');
+
+  expect(month.textContent).toStrictEqual('some-random-month');
+});
+
+it('supports custom formats via formatWeekdayShort', () => {
+  const view = render({
+    value: new Date(),
+    formatWeekdayShort: (num) => `weekday-${num}`,
+  });
+
+  // Open the calendar by clicking the text field.
+  const input = view.getByRole('textbox');
+  fireEvent.mouseDown(input);
+
+  for (const [num, weekday] of Object.entries([
+    'Sunday',
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
+  ])) {
+    const abbrev = view.getByTitle(weekday);
+    expect(abbrev.textContent).toBe(`weekday-${num}`);
+  }
+});
+
 it('calls onDayChange when clicking a day in the calendar', () => {
   const onDayChange = jest.fn();
   const view = render({
