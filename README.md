@@ -52,6 +52,8 @@ To include the jest configuration setup, add the following:
 setupFilesAfterEnv: ['@lifeomic/chroma-react/jest'];
 ```
 
+**Note**: Some components may require support for CSS imports (e.g. `import 'some-module/styles.css`). All major bundlers can support this behavior (example: webpack's [css-loader](https://webpack.js.org/loaders/css-loader/)).
+
 ## Theming
 
 Want to override the default theme of Chroma? No problem!
