@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 // https://usehooks.com/useWindowSize/
 import * as React from 'react';
 
@@ -6,6 +7,11 @@ interface Size {
   width?: number;
 }
 
+/**
+ * @deprecated Use `useWindowSize` from 'hooks/events/useWindowSize` instead. This function
+ * will be removed in the next major version of Chroma.
+ */
+/* istanbul ignore next */
 export function useWindowSize() {
   function getSize() {
     return {
