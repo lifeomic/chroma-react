@@ -1,5 +1,9 @@
 import * as React from 'react';
 
+/**
+ * @deprecated Use `composeEventHandlers(...)` instead.
+ */
+/* istanbul ignore next */
 export function wrapEvent(theirHandler: any, ourHandler: any) {
   return (event: any) => {
     theirHandler && theirHandler(event);

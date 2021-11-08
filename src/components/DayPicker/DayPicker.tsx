@@ -10,6 +10,7 @@ import { makeStyles, useTheme } from '../../styles';
 import { TextField, TextFieldProps } from '../TextField';
 import { GetClasses } from '../../typeUtils';
 import { ButtonUnstyled } from '../ButtonUnstyled';
+import { composeEventHandlers } from '../../utils';
 
 export const DayPickerStylesKey = 'ChromaDayPicker';
 export type DayPickerClasses = GetClasses<typeof useStyles>;
@@ -206,7 +207,7 @@ export const DayPicker: React.FC<DayPickerProps> = ({
       return;
     }
 
-    onTextChange?.(e.target.value);
+    onTextChange && onTextChange(e.target.value);
 
     const date = parseDate(e.target.value);
 
@@ -217,15 +218,15 @@ export const DayPicker: React.FC<DayPickerProps> = ({
     setToMidnight(date);
 
     setIntermediateInput(undefined);
-    onDayChange?.(date);
+    onDayChange && onDayChange(date);
     calendarRef.current?.showMonth(date);
   };
 
   const onDayClick = (day: Date) => {
     setToMidnight(day);
     setIntermediateInput(undefined);
-    onDayChange?.(day);
-    onTextChange?.(formatDate(day));
+    onDayChange && onDayChange(day);
+    onTextChange && onTextChange(formatDate(day));
   };
 
   const isInternalNode = (target: EventTarget | null) => {
@@ -257,33 +258,36 @@ export const DayPicker: React.FC<DayPickerProps> = ({
           [classes.textFieldNoManualInput]: !parseDate,
         })}
         onChange={_onTextChange}
-        onMouseDown={(e) => {
-          /**
-           * This handler allows for opening _and_ closing the popover via click in
-           * readonly mode.
-           *
-           * We need to use onMouseDown instead of onClick so we can run this _before_
-           * onFocus runs and avoid an immediate open/close.
-           */
-          if (!parseDate) {
-            setIsCalendarOpen((current) => !current);
-          }
-
-          textFieldProps.onMouseDown?.(e);
-        }}
-        onFocus={(e) => {
-          setIsCalendarOpen(true);
-          textFieldProps.onFocus?.(e);
-        }}
-        onBlur={(e) => {
-          /**
-           * This logic primarily serves to provide good keyboard navigation.
-           */
-          if (!isInternalNode(e.relatedTarget)) {
-            setIsCalendarOpen(false);
-          }
-          textFieldProps.onBlur?.(e);
-        }}
+        onMouseDown={composeEventHandlers([
+          textFieldProps.onMouseDown,
+          () => {
+            /**
+             * This handler allows for opening _and_ closing the popover via click in
+             * readonly mode.
+             *
+             * We need to use onMouseDown instead of onClick so we can run this _before_
+             * onFocus runs and avoid an immediate open/close.
+             */
+            if (!parseDate) {
+              setIsCalendarOpen((current) => !current);
+            }
+          },
+        ])}
+        onFocus={composeEventHandlers([
+          textFieldProps.onFocus,
+          () => setIsCalendarOpen(true),
+        ])}
+        onBlur={composeEventHandlers([
+          textFieldProps.onBlur,
+          (e) => {
+            /**
+             * This logic primarily serves to provide good keyboard navigation.
+             */
+            if (!isInternalNode(e.relatedTarget)) {
+              setIsCalendarOpen(false);
+            }
+          },
+        ])}
       />
       {isCalendarOpen && (
         <ReactDayPicker
