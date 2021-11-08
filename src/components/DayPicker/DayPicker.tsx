@@ -50,9 +50,9 @@ const useStyles = makeStyles((theme) => ({
     zIndex: 99999,
     marginTop: theme.spacing(1),
     padding: theme.spacing(2),
-    borderRadius: theme.spacing(1.5),
+    borderRadius: theme.spacing(1.25),
     backgroundColor: theme.palette.common.white,
-    boxShadow: `0 1px 4px ${theme.palette.grey[400]}`,
+    boxShadow: theme.boxShadows.popover,
     '& .DayPicker-wrapper': {
       paddingBottom: 0,
     },
