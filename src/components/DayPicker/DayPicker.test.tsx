@@ -4,8 +4,12 @@ import dayjs from 'dayjs';
 
 import { DayPicker, DayPickerProps, testIds } from '.';
 import { renderWithTheme } from '../../testUtils/renderWithTheme';
+import { useEventListenerMocking } from '../../testUtils/event-listeners';
+import { act } from '@testing-library/react';
 
 dayjs.extend(require('dayjs/plugin/customParseFormat'));
+
+const { sendEvent, listeners } = useEventListenerMocking();
 
 const render = (props?: DayPickerProps) =>
   renderWithTheme(<DayPicker aria-label={'test-label'} {...props} />);
@@ -160,4 +164,36 @@ it('never calls onTextChange if parseDate is not provided', () => {
   fireEvent.change(input, { target: { value: 'November' } });
 
   expect(onTextChange).not.toHaveBeenCalled();
+});
+
+it('closes the calendar on clicks outside of the component', () => {
+  const view = renderWithTheme(
+    <div>
+      <DayPicker aria-label={'test-label'} value={new Date()} />
+      <button>Click Me</button>
+    </div>
+  );
+
+  expect(listeners('mousedown')).toHaveLength(1);
+
+  // Open the calendar by focusing the text field.
+  const input = view.getByRole('textbox');
+  fireEvent.focus(input);
+
+  // Expect the calendar to open.
+  const calendar = view.queryByTestId(testIds.calendar);
+  expect(calendar).not.toBeNull();
+
+  // Simulate a click outside.
+  const button = view.getByText('Click Me');
+  act(() => {
+    sendEvent('mousedown', { target: button });
+  });
+
+  // Expect the calendar to be closed.
+  expect(view.queryByTestId(testIds.calendar)).toBeNull();
+
+  view.unmount();
+
+  expect(listeners('mousedown')).toHaveLength(0);
 });
