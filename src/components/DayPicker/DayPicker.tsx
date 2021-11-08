@@ -9,6 +9,7 @@ import { makeStyles, useTheme } from '../../styles';
 import { TextField, TextFieldProps } from '../TextField';
 import { GetClasses } from '../../typeUtils';
 import { ButtonUnstyled } from '../ButtonUnstyled';
+import useWindowSize from '../../hooks/events/useWindowSize';
 
 export const DayPickerStylesKey = 'ChromaDayPicker';
 export type DayPickerClasses = GetClasses<typeof useStyles>;
@@ -146,6 +147,58 @@ export type DayPickerProps = Omit<TextFieldProps, 'value' | 'onChange'> & {
   };
 };
 
+const useDynamicStyles = (
+  triggerRect: DOMRect | undefined,
+  tooltipRect: DOMRect | undefined,
+  spacing = 8
+): React.CSSProperties => {
+  let { width: windowWidth, height: windowHeight } = useWindowSize();
+  if (!triggerRect || !tooltipRect) {
+    return {};
+  }
+
+  let collisions = {
+    top: triggerRect.top - tooltipRect.height < 0,
+    right: windowWidth < triggerRect.left + tooltipRect.width,
+    bottom: windowHeight < triggerRect.bottom + tooltipRect.height + spacing,
+    left: triggerRect.left - tooltipRect.width < 0,
+  };
+
+  let directionRight = collisions.right && !collisions.left;
+  let directionUp = collisions.bottom && !collisions.top;
+
+  const val = {
+    left: directionRight
+      ? `${triggerRect.right - tooltipRect.width + window.pageXOffset}px`
+      : `${triggerRect.left + window.pageXOffset}px`,
+    top: directionUp
+      ? `${
+          triggerRect.top - spacing - tooltipRect.height + window.pageYOffset
+        }px`
+      : `${
+          triggerRect.top + spacing + triggerRect.height + window.pageYOffset
+        }px`,
+  };
+
+  console.log(
+    'useful: ' +
+      JSON.stringify(
+        {
+          wrapperRect: triggerRect,
+          calendarRect: tooltipRect,
+          collisions,
+          directionRight,
+          directionUp,
+          val,
+        },
+        null,
+        2
+      )
+  );
+
+  return val;
+};
+
 export const testIds = {
   calendar: 'chroma-day-picker-calendar',
 };
@@ -231,6 +284,11 @@ export const DayPicker: React.FC<DayPickerProps> = ({
     return target instanceof Node && wrapperRef.current?.contains(target);
   };
 
+  const calendarStyle = useDynamicStyles(
+    wrapperRef.current?.getBoundingClientRect(),
+    calendarRef.current?.dayPicker.getBoundingClientRect()
+  );
+
   return (
     <div
       ref={wrapperRef}
@@ -264,9 +322,20 @@ export const DayPicker: React.FC<DayPickerProps> = ({
           /**
            * This logic primarily serves to provide good keyboard navigation.
            */
-          if (!isInternalNode(e.relatedTarget)) {
+          if (
+            !isInternalNode(e.relatedTarget) &&
+            process.env.NODE_ENV !== 'development'
+          ) {
             setIsCalendarOpen(false);
           }
+
+          console.log(
+            'blur: ' +
+              JSON.stringify({
+                related: e.relatedTarget === null,
+                isSameWindow: e.nativeEvent.view === window,
+              })
+          );
           textFieldProps.onBlur?.(e);
         }}
         onClick={(e) => {
@@ -291,6 +360,7 @@ export const DayPicker: React.FC<DayPickerProps> = ({
           containerProps={{
             // @ts-ignore data-testid is a real prop, even though TS thinks it's not.
             'data-testid': testIds.calendar,
+            style: calendarStyle,
           }}
           className={classes.dayPicker}
           modifiers={{
