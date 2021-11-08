@@ -253,7 +253,14 @@ export const DayPicker: React.FC<DayPickerProps> = ({
   };
 
   return (
-    <div ref={wrapperRef}>
+    <div
+      ref={wrapperRef}
+      onKeyDown={(e) => {
+        if (e.key === 'Escape') {
+          setIsCalendarOpen(false);
+        }
+      }}
+    >
       <TextField
         startAdornment={<Calendar />}
         {...textFieldProps}
@@ -271,19 +278,30 @@ export const DayPicker: React.FC<DayPickerProps> = ({
         })}
         onChange={_onTextChange}
         onFocus={(e) => {
-          if (parseDate) {
-            setIsCalendarOpen(true);
-          }
+          setIsCalendarOpen(true);
           textFieldProps.onFocus?.(e);
         }}
-        /**
-         * Using onClick for readonly mode makes for a better experience!
-         *
-         * Primarily, it allows for closing the "popover" by clicking on the field again.
-         */
+        onBlur={(e) => {
+          /**
+           * This logic primarily serves to provide good keyboard navigation.
+           */
+          if (!wrapperRef.current?.contains(e.relatedTarget as any)) {
+            setIsCalendarOpen(false);
+          }
+          textFieldProps.onBlur?.(e);
+        }}
         onClick={(e) => {
+          /**
+           * Using onClick for readonly mode makes for a better experience!
+           *
+           * Primarily, it allows for closing the "popover" by clicking on the field again.
+           *
+           * We need to `preventDefault()` to avoid triggering the default `onFocus`
+           * behavior and re-opening the calendar.
+           */
           if (!parseDate) {
             setIsCalendarOpen((current) => !current);
+            e.preventDefault();
           }
           textFieldProps.onClick?.(e);
         }}
@@ -337,6 +355,14 @@ export const DayPicker: React.FC<DayPickerProps> = ({
             ...LocaleUtils,
             formatMonthTitle,
             formatWeekdayShort,
+          }}
+          onBlur={(e) => {
+            /**
+             * This logic primarily serves to provide good keyboard navigation.
+             */
+            if (!wrapperRef.current?.contains(e.relatedTarget as any)) {
+              setIsCalendarOpen(false);
+            }
           }}
         />
       )}
