@@ -9,6 +9,7 @@ import { makeStyles, useTheme } from '../../styles';
 import { TextField, TextFieldProps } from '../TextField';
 import { GetClasses } from '../../typeUtils';
 import { ButtonUnstyled } from '../ButtonUnstyled';
+import { composeEventHandlers } from '../../utils';
 
 export const DayPickerStylesKey = 'ChromaDayPicker';
 export type DayPickerClasses = GetClasses<typeof useStyles>;
@@ -277,34 +278,38 @@ export const DayPicker: React.FC<DayPickerProps> = ({
           [classes.textFieldNoManualInput]: !parseDate,
         })}
         onChange={_onTextChange}
-        onFocus={(e) => {
-          setIsCalendarOpen(true);
-          textFieldProps.onFocus?.(e);
-        }}
-        onBlur={(e) => {
-          /**
-           * This logic primarily serves to provide good keyboard navigation.
-           */
-          if (!wrapperRef.current?.contains(e.relatedTarget as any)) {
-            setIsCalendarOpen(false);
-          }
-          textFieldProps.onBlur?.(e);
-        }}
-        onClick={(e) => {
-          /**
-           * Using onClick for readonly mode makes for a better experience!
-           *
-           * Primarily, it allows for closing the "popover" by clicking on the field again.
-           *
-           * We need to `preventDefault()` to avoid triggering the default `onFocus`
-           * behavior and re-opening the calendar.
-           */
-          if (!parseDate) {
-            setIsCalendarOpen((current) => !current);
-            e.preventDefault();
-          }
-          textFieldProps.onClick?.(e);
-        }}
+        onFocus={composeEventHandlers([
+          textFieldProps.onFocus,
+          () => setIsCalendarOpen(true),
+        ])}
+        onBlur={composeEventHandlers([
+          textFieldProps.onBlur,
+          (e) => {
+            /**
+             * This logic primarily serves to provide good keyboard navigation.
+             */
+            if (!wrapperRef.current?.contains(e.relatedTarget as any)) {
+              setIsCalendarOpen(false);
+            }
+          },
+        ])}
+        onClick={composeEventHandlers([
+          textFieldProps.onClick,
+          (e) => {
+            /**
+             * Using onClick for readonly mode makes for a better experience!
+             *
+             * Primarily, it allows for closing the "popover" by clicking on the field again.
+             *
+             * We need to `preventDefault()` to avoid triggering the default `onFocus`
+             * behavior and re-opening the calendar.
+             */
+            if (!parseDate) {
+              setIsCalendarOpen((current) => !current);
+              e.preventDefault();
+            }
+          },
+        ])}
       />
       {isCalendarOpen && (
         <ReactDayPicker
