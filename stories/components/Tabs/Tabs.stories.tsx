@@ -42,6 +42,27 @@ const TabsPlayground: React.FC = () => (
         <TabPanel>Tab 2 selected</TabPanel>
       </Tabs>
     </Container>
+    <Container containerStyles={{ display: 'block' }}>
+      <Tabs selectedTabId="tab2">
+        <TabList aria-label="My Tabs" variant="pill">
+          <Tab stopId="tab1" onClick={() => console.log('tab1 clicked')}>
+            Tab 1
+          </Tab>
+          <Tab stopId="tab2" onClick={() => console.log('tab2 clicked')}>
+            Tab 2
+          </Tab>
+          <Tab
+            stopId="tab3"
+            onClick={() => console.log('should not work...')}
+            disabled
+          >
+            Tab 3
+          </Tab>
+        </TabList>
+        <TabPanel>Tab 1 selected</TabPanel>
+        <TabPanel>Tab 2 selected</TabPanel>
+      </Tabs>
+    </Container>
   </>
 );
 
