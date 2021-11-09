@@ -47,11 +47,14 @@ export interface KeymapHelpProps {
    */
   keyMapDocs?: KeyBindingDoc[];
   closeButtonText?: string;
+
+  keyListenerTestId?: string;
 }
 
 export const KeymapHelp: React.FC<KeymapHelpProps> = ({
   closeButtonText,
   keyMapDocs,
+  keyListenerTestId,
 }) => {
   const classes = useStyles({});
   const [isOpen, setIsOpen] = React.useState(false);
@@ -71,7 +74,7 @@ export const KeymapHelp: React.FC<KeymapHelpProps> = ({
   return (
     <>
       <GlobalHotKeys keyMap={KEY_MAP} handlers={HANDLERS}>
-        <span />
+        <span data-testid={keyListenerTestId} />
       </GlobalHotKeys>
       <Modal
         isOpen={isOpen}
