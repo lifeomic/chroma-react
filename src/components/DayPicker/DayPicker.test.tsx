@@ -4,11 +4,20 @@ import dayjs from 'dayjs';
 
 import { DayPicker, DayPickerProps, testIds } from '.';
 import { renderWithTheme } from '../../testUtils/renderWithTheme';
+import { RenderResult } from '@testing-library/react';
 
 dayjs.extend(require('dayjs/plugin/customParseFormat'));
 
+const OUTSIDE_TEXT = 'Outside Element';
+
 const render = (props?: DayPickerProps) =>
-  renderWithTheme(<DayPicker aria-label={'test-label'} {...props} />);
+  renderWithTheme(
+    <div>
+      <DayPicker aria-label={'test-label'} {...props} />
+      {/* We render this div outside the component for testing blur behavior. */}
+      <div>{OUTSIDE_TEXT}</div>
+    </div>
+  );
 
 it('renders a single input', () => {
   const view = render();
@@ -52,6 +61,45 @@ it('supports custom formats via formatDate', () => {
   });
 });
 
+it('supports custom formats via formatMonthTitle', () => {
+  const view = render({
+    value: new Date(),
+    formatMonthTitle: () => 'some-random-month',
+  });
+
+  // Open the calendar by clicking the text field.
+  const input = view.getByRole('textbox');
+  fireEvent.mouseDown(input);
+
+  const month = view.getByLabelText('Current month');
+
+  expect(month.textContent).toStrictEqual('some-random-month');
+});
+
+it('supports custom formats via formatWeekdayShort', () => {
+  const view = render({
+    value: new Date(),
+    formatWeekdayShort: (num) => `weekday-${num}`,
+  });
+
+  // Open the calendar by clicking the text field.
+  const input = view.getByRole('textbox');
+  fireEvent.mouseDown(input);
+
+  for (const [num, weekday] of Object.entries([
+    'Sunday',
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
+  ])) {
+    const abbrev = view.getByTitle(weekday);
+    expect(abbrev.textContent).toBe(`weekday-${num}`);
+  }
+});
+
 it('calls onDayChange when clicking a day in the calendar', () => {
   const onDayChange = jest.fn();
   const view = render({
@@ -62,7 +110,7 @@ it('calls onDayChange when clicking a day in the calendar', () => {
 
   // Open the calendar by clicking the text field.
   const input = view.getByRole('textbox');
-  fireEvent.click(input);
+  fireEvent.mouseDown(input);
 
   // Expect the calendar to open.
   const calendar = view.queryByTestId(testIds.calendar);
@@ -90,9 +138,9 @@ it('moves the calendar when the chevrons get clicked', () => {
     value: new Date('2021-11-05T00:00:00.000Z'),
   });
 
-  // Open the calendar by clicking the text field.
+  // Open the calendar by focusing the text field.
   const input = view.getByRole('textbox');
-  fireEvent.click(input);
+  fireEvent.focus(input);
 
   const month = view.getByLabelText('Current month');
   const leftChevron = view.getByLabelText('Previous month');
@@ -128,7 +176,7 @@ it('calls onTextChange and eventually onDayChange when manual input is used', ()
   // Open the calendar by clicking the text field. (implicit test
   // of placeholder pass-through)
   const input = view.getByPlaceholderText('test-placeholder');
-  fireEvent.click(input);
+  fireEvent.mouseDown(input);
 
   fireEvent.change(input, { target: { value: 'November' } });
 
@@ -160,4 +208,85 @@ it('never calls onTextChange if parseDate is not provided', () => {
   fireEvent.change(input, { target: { value: 'November' } });
 
   expect(onTextChange).not.toHaveBeenCalled();
+});
+
+const BLUR_SCENARIOS: {
+  name: string;
+  from: (view: RenderResult) => HTMLElement;
+  to: (view: RenderResult) => HTMLElement;
+  shouldClose: boolean;
+}[] = [
+  {
+    name: 'input -> calendar',
+    from: (view) => view.getByRole('textbox'),
+    to: (view) => view.getByLabelText('Fri Nov 12 2021'),
+    shouldClose: false,
+  },
+  {
+    name: 'calendar -> input',
+    from: (view) => view.getByLabelText('Fri Nov 12 2021'),
+    to: (view) => view.getByRole('textbox'),
+    shouldClose: false,
+  },
+  {
+    name: 'calendar -> calendar',
+    from: (view) => view.getByLabelText('Fri Nov 12 2021'),
+    to: (view) => view.getByLabelText('Sat Nov 13 2021'),
+    shouldClose: false,
+  },
+  {
+    name: 'input -> outside',
+    from: (view) => view.getByRole('textbox'),
+    to: (view) => view.getByText(OUTSIDE_TEXT),
+    shouldClose: true,
+  },
+  {
+    name: 'calendar -> outside',
+    from: (view) => view.getByLabelText('Fri Nov 12 2021'),
+    to: (view) => view.getByText(OUTSIDE_TEXT),
+    shouldClose: true,
+  },
+];
+
+BLUR_SCENARIOS.forEach(({ name, from, to, shouldClose }) => {
+  it(`${
+    shouldClose ? 'does' : 'does not'
+  } close the calendar when blurring from ${name}`, () => {
+    const view = render({
+      // Nov 5, 2021
+      value: new Date('2021-11-05T00:00:00.000Z'),
+    });
+
+    // Open the calendar by focusing the text field.
+    const input = view.getByRole('textbox');
+    fireEvent.focus(input);
+
+    // Expect the calendar to open.
+    const calendar = view.queryByTestId(testIds.calendar);
+    expect(calendar).not.toBeNull();
+
+    const fromElement = from(view);
+    const toElement = to(view);
+
+    // Blur from the specified elements
+    fireEvent.blur(fromElement, { relatedTarget: toElement });
+
+    if (shouldClose) {
+      expect(view.queryByTestId(testIds.calendar)).toBeNull();
+    } else {
+      expect(view.queryByTestId(testIds.calendar)).not.toBeNull();
+    }
+  });
+});
+
+it('closes the calendar on receiving ESC', () => {
+  const view = render({
+    value: new Date(),
+  });
+
+  // Open the calendar by focusing the text field.
+  const input = view.getByRole('textbox');
+  fireEvent.focus(input);
+
+  fireEvent.keyDown(input, { key: 'Escape' });
 });

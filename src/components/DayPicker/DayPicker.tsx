@@ -1,5 +1,6 @@
 import * as React from 'react';
 import clsx from 'clsx';
+
 import ReactDayPicker, { LocaleUtils } from 'react-day-picker';
 // Is this safe? consumers might not be using webpack w/ CSS loaders,
 import 'react-day-picker/lib/style.css';
@@ -18,30 +19,6 @@ const setToMidnight = (date: Date) => {
   date.setMinutes(0);
   date.setSeconds(0);
   date.setMilliseconds(0);
-};
-
-/**
- * Helper hook for handling clicks outside of provided `ref` node.
- */
-const useClickOutside = (
-  ref: React.RefObject<Node>,
-  handler: () => void,
-  dependencies: any[]
-) => {
-  React.useEffect(() => {
-    const handleClickOutside = (e: any) => {
-      if (ref.current?.contains(e.target)) {
-        return;
-      }
-      handler();
-    };
-
-    window.addEventListener('mousedown', handleClickOutside);
-
-    return () => {
-      window.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, [ref.current, ...dependencies]);
 };
 
 const useStyles = makeStyles((theme) => ({
@@ -208,7 +185,6 @@ export const DayPicker: React.FC<DayPickerProps> = ({
   const calendarRef = React.useRef<ReactDayPicker>(null);
 
   const wrapperRef = React.useRef<HTMLDivElement>(null);
-  useClickOutside(wrapperRef, () => setIsCalendarOpen(false), []);
 
   /**
    * Holds the intermediary text input, which may not yet be a valid date
@@ -252,8 +228,19 @@ export const DayPicker: React.FC<DayPickerProps> = ({
     onTextChange?.(formatDate(day));
   };
 
+  const isInternalNode = (target: EventTarget | null) => {
+    return target instanceof Node && wrapperRef.current?.contains(target);
+  };
+
   return (
-    <div ref={wrapperRef}>
+    <div
+      ref={wrapperRef}
+      onKeyDown={(e) => {
+        if (e.key === 'Escape') {
+          setIsCalendarOpen(false);
+        }
+      }}
+    >
       <TextField
         startAdornment={<Calendar />}
         {...textFieldProps}
@@ -270,22 +257,32 @@ export const DayPicker: React.FC<DayPickerProps> = ({
           [classes.textFieldNoManualInput]: !parseDate,
         })}
         onChange={_onTextChange}
-        onFocus={(e) => {
-          if (parseDate) {
-            setIsCalendarOpen(true);
-          }
-          textFieldProps.onFocus?.(e);
-        }}
-        /**
-         * Using onClick for readonly mode makes for a better experience!
-         *
-         * Primarily, it allows for closing the "popover" by clicking on the field again.
-         */
-        onClick={(e) => {
+        onMouseDown={(e) => {
+          /**
+           * This handler allows for opening _and_ closing the popover via click in
+           * readonly mode.
+           *
+           * We need to use onMouseDown instead of onClick so we can run this _before_
+           * onFocus runs and avoid an immediate open/close.
+           */
           if (!parseDate) {
             setIsCalendarOpen((current) => !current);
           }
-          textFieldProps.onClick?.(e);
+
+          textFieldProps.onMouseDown?.(e);
+        }}
+        onFocus={(e) => {
+          setIsCalendarOpen(true);
+          textFieldProps.onFocus?.(e);
+        }}
+        onBlur={(e) => {
+          /**
+           * This logic primarily serves to provide good keyboard navigation.
+           */
+          if (!isInternalNode(e.relatedTarget)) {
+            setIsCalendarOpen(false);
+          }
+          textFieldProps.onBlur?.(e);
         }}
       />
       {isCalendarOpen && (
@@ -337,6 +334,14 @@ export const DayPicker: React.FC<DayPickerProps> = ({
             ...LocaleUtils,
             formatMonthTitle,
             formatWeekdayShort,
+          }}
+          onBlur={(e) => {
+            /**
+             * This logic primarily serves to provide good keyboard navigation.
+             */
+            if (!isInternalNode(e.relatedTarget)) {
+              setIsCalendarOpen(false);
+            }
           }}
         />
       )}
