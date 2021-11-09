@@ -12,11 +12,12 @@ import {
 import { Portal } from 'reakit/Portal';
 import { RemoveScroll } from 'react-remove-scroll';
 import { Text } from '../Text';
-import { useForkedRef, wrapEvent } from './helpers';
+import { useForkedRef } from './helpers';
 import { X } from '@lifeomic/chromicons';
 import clsx from 'clsx';
 import FocusLock from 'react-focus-lock';
 import * as React from 'react';
+import { composeEventHandlers } from '../../utils';
 
 const ariaDescribedBy = 'modal-content';
 const ariaLabelledBy = 'modal-header';
@@ -218,21 +219,32 @@ const ModalInner = React.forwardRef<HTMLDivElement, ModalProps>(
           <motion.div
             data-testid={OVERLAY_TEST_ID}
             className={clsx(classes.overlay, overlayClassName)}
-            onClick={wrapEvent(onClick, (event: React.SyntheticEvent) => {
-              if (mouseDownTarget.current === event.target) {
-                event.stopPropagation();
-                onDismiss && !disableDismissOnClickOutside && onDismiss(event);
-              }
-            })}
-            onMouseDown={wrapEvent(onMouseDown, (event: React.MouseEvent) => {
-              mouseDownTarget.current = event.target;
-            })}
-            onKeyDown={wrapEvent(onKeyDown, (event: React.KeyboardEvent) => {
-              if (event.key === 'Escape') {
-                event.stopPropagation();
-                onDismiss && onDismiss(event);
-              }
-            })}
+            onClick={composeEventHandlers([
+              onClick,
+              (event) => {
+                if (mouseDownTarget.current === event.target) {
+                  event.stopPropagation();
+                  onDismiss &&
+                    !disableDismissOnClickOutside &&
+                    onDismiss(event);
+                }
+              },
+            ])}
+            onMouseDown={composeEventHandlers([
+              onMouseDown,
+              (event) => {
+                mouseDownTarget.current = event.target;
+              },
+            ])}
+            onKeyDown={composeEventHandlers([
+              onKeyDown,
+              (event) => {
+                if (event.key === 'Escape') {
+                  event.stopPropagation();
+                  onDismiss && onDismiss(event);
+                }
+              },
+            ])}
             ref={thisRef}
             positionTransition
             initial={{ opacity: 0 }}
@@ -312,9 +324,12 @@ const Content = React.forwardRef<HTMLDivElement, ModalProps>(
         aria-describedby={ariaDescribedBy}
         aria-labelledby={ariaLabelledBy}
         tabIndex={-1}
-        onClick={wrapEvent(onClick, (event: any) => {
-          event.stopPropagation();
-        })}
+        onClick={composeEventHandlers([
+          onClick,
+          (event) => {
+            event.stopPropagation();
+          },
+        ])}
         ref={ref}
         variants={poseVariants}
         initial={shouldReduceMotion ? {} : 'init'}
@@ -404,9 +419,12 @@ const FullScreenContent = React.forwardRef<HTMLDivElement, ModalProps>(
         aria-describedby={ariaDescribedBy}
         aria-labelledby={ariaLabelledBy}
         tabIndex={-1}
-        onClick={wrapEvent(onClick, (event: any) => {
-          event.stopPropagation();
-        })}
+        onClick={composeEventHandlers([
+          onClick,
+          (event) => {
+            event.stopPropagation();
+          },
+        ])}
         ref={ref}
         initial={{ opacity: 0 }}
         animate={{
