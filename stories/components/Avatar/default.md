@@ -32,6 +32,19 @@ import tonypicture from './tonypic.jpg';
 <Avatar src={tonypicture} name="Tony" />;
 ```
 
+#### onError
+
+An onError handler can be added to capture errors loading the `src` image. By
+default, when a `src` fails to load, the avatar will fallback to initials.
+
+```jsx
+<Avatar
+  src={someImageThatMightFail}
+  name="Tony"
+  onError={handleAvatarImageError}
+/>
+```
+
 ### Use Default Source (Masking Information)
 
 This prop is leveraged when the information about the user needs to be "masked".

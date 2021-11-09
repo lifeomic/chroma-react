@@ -53,6 +53,9 @@ const AvatarImageStory: React.FC = () => (
       onClick={console.log}
       useDefaultSrc
     />
+    <Avatar size={0} src={'/some-error-path.jpg'} name="Lego Man" />
+    <Avatar size={1} src={'/some-error-path.jpg'} name="Lego Man" />
+    <Avatar size={2} src={'/some-error-path.jpg'} name="Lego Man" />
   </Container>
 );
 

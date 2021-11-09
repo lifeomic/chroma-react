@@ -71,6 +71,7 @@ export interface AvatarProps extends React.ComponentPropsWithoutRef<'div'> {
   size?: 0 | 1 | 2;
   src?: string;
   useDefaultSrc?: boolean;
+  onError?: React.ReactEventHandler<HTMLImageElement>;
 }
 
 const getInitials = (name: string) => {
@@ -93,11 +94,23 @@ export const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
       size = 1,
       src,
       useDefaultSrc = false,
+      onError: bubbleError,
       ...rootProps
     },
     ref
   ) => {
     const classes = useStyles({});
+
+    const [error, setError] = React.useState(false);
+
+    const onError: React.ReactEventHandler<HTMLImageElement> = (error) => {
+      setError(true);
+      bubbleError && bubbleError(error);
+    };
+
+    React.useEffect(() => {
+      setError(false);
+    }, [src]);
 
     // We need to be *super* careful to not display any self identifying information
     // (name or image src) if "useDefaultSrc" is provided.  This will ensure
@@ -123,9 +136,9 @@ export const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
         tabIndex={onClick ? 0 : undefined}
         {...rootProps}
       >
-        {!src && !useDefaultSrc ? getInitials(name) : null}
-        {src && !useDefaultSrc && (
-          <img className={classes.img} src={src} alt={name} />
+        {(error || !src) && !useDefaultSrc ? getInitials(name) : null}
+        {src && !error && !useDefaultSrc && (
+          <img onError={onError} className={classes.img} src={src} alt={name} />
         )}
         {useDefaultSrc && (
           <svg
