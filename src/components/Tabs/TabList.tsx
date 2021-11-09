@@ -22,15 +22,26 @@ export const useStyles = makeStyles(
       borderBottom: `1px solid ${theme.palette.divider}`,
       width: '100%',
       overflow: 'hidden',
-      '& [aria-selected]': {
+      '& button': {
         borderBottom: 'none',
         borderRadius: '50px',
         backgroundColor: theme.palette.grey[500],
       },
-      '& [aria-selected="true"]': {
+      '& button[aria-selected="true"]': {
         borderBottom: 'none',
         borderRadius: '50px',
         backgroundColor: theme.palette.blue[500],
+      },
+      '& button:hover': {
+        color: theme.palette.red[500],
+      },
+      '& button:focus': {
+        outline: 'none',
+      },
+      '& button[aria-disabled="true"]': {
+        color: theme.palette.red[400],
+        cursor: 'initial',
+        opacity: 0.4,
       },
     },
   }),
