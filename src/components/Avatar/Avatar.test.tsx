@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { act } from 'react-dom/test-utils';
 import { renderWithTheme } from '../../testUtils/renderWithTheme';
 import { Avatar, AvatarBadge, AvatarProps } from './index';
 
@@ -52,6 +53,36 @@ test('it renders the "src"', async () => {
   const imgTag = await findByAltText(props.name);
   expect(imgTag).toBeInTheDocument();
   expect(imgTag.getAttribute('src')).toEqual('cool-tony.jpg');
+});
+
+test('it renders with initials when src fails', async () => {
+  const props = getBaseProps();
+  const onError = jest.fn();
+  const { findByAltText, queryByAltText, findByText } = renderWithTheme(
+    <Avatar
+      {...props}
+      data-testid={testId}
+      src="uncool-tony.jpg"
+      onError={onError}
+    />
+  );
+  const imgTag = await findByAltText(props.name);
+  expect(imgTag).toBeInTheDocument();
+  expect(imgTag.getAttribute('src')).toEqual('uncool-tony.jpg');
+  const error = new Event('error');
+
+  act(() => {
+    imgTag.dispatchEvent(error);
+  });
+
+  const imgTagAfterUpdate = queryByAltText(props.name);
+  expect(imgTagAfterUpdate).toBeNull();
+  // can't assert it was called with the right error due to synthetic events
+  // not being trusted
+  expect(onError).toHaveBeenCalledTimes(1);
+
+  const initials = await findByText('T'); // initial
+  expect(initials).toBeInTheDocument();
 });
 
 //#region useDefaultSrc checks
