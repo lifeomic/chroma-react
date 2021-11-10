@@ -19,3 +19,4 @@ esm/
 docs/
 deploy/docs
 build/
+bundle-analysis/
