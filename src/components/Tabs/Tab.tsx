@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import * as React from 'react';
-import { Tab as BaseTab } from 'reakit/Tab';
+import { Tab as BaseTab, TabOptions } from 'reakit/Tab';
 import { makeStyles } from '../../styles';
 import { GetClasses } from '../../typeUtils';
 import { TabsContext } from './TabsContext';
@@ -48,6 +48,27 @@ export const useStyles = makeStyles(
         opacity: 0.4,
       },
     },
+    pill: {
+      borderBottom: 'none',
+      borderRadius: '50px',
+      backgroundColor: theme.palette.grey[500],
+      '&[aria-selected="true"]': {
+        borderBottom: 'none',
+        borderRadius: '50px',
+        backgroundColor: theme.palette.blue[500],
+      },
+      '&:hover': {
+        color: theme.palette.red[500],
+      },
+      '&:focus': {
+        outline: 'none',
+      },
+      '&[aria-disabled="true"]': {
+        color: theme.palette.red[400],
+        cursor: 'initial',
+        opacity: 0.4,
+      },
+    },
   }),
   { name: TabStylesKey }
 );
@@ -57,10 +78,10 @@ export type TabClasses = GetClasses<typeof useStyles>;
 export interface TabProps extends TabStop {
   className?: string;
   disabled?: boolean;
-  onClick?: (e?: MouseEvent) => void;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
-export const Tab: React.FC<TabProps> = ({
+export const Tab: React.FC<TabProps & Partial<TabOptions>> = ({
   className,
   disabled,
   onClick,
@@ -68,11 +89,13 @@ export const Tab: React.FC<TabProps> = ({
   ...rootProps
 }) => {
   const classes = useStyles({});
-  const tab = React.useContext(TabsContext);
+  const { variant, tabState } = React.useContext(TabsContext);
   return (
     <BaseTab
-      {...tab}
-      className={clsx(classes.root, className)}
+      {...tabState}
+      className={clsx(classes.root, className, {
+        [classes.pill]: variant === 'pill',
+      })}
       disabled={disabled}
       onClick={onClick}
       id={stopId}

@@ -43,8 +43,8 @@ const TabsPlayground: React.FC = () => (
       </Tabs>
     </Container>
     <Container containerStyles={{ display: 'block' }}>
-      <Tabs selectedTabId="tab2">
-        <TabList aria-label="My Tabs" variant="pill">
+      <Tabs selectedTabId="tab2" variant="pill">
+        <TabList aria-label="My Tabs">
           <Tab stopId="tab1" onClick={() => console.log('tab1 clicked')}>
             Tab 1
           </Tab>
