@@ -185,212 +185,225 @@ export const testIds = {
   calendar: 'chroma-day-picker-calendar',
 };
 
-export const DayPicker: React.FC<DayPickerProps> = ({
-  value,
-  selectedBackgroundColor,
-  ariaLabelOverrides,
-  anchorPosition = 'bottom-left',
-  onDayChange,
-  onTextChange,
-  // Default is very dumb, but doesn't require a date library
-  formatDate = (day) =>
-    `${day.getMonth() + 1}/${day.getDate()}/${day.getFullYear()}`,
-  parseDate,
-  formatMonthTitle = LocaleUtils.formatMonthTitle,
-  formatWeekdayShort = LocaleUtils.formatWeekdayShort,
-  renderDay,
-  ...textFieldProps
-}) => {
-  if (
-    !textFieldProps.label &&
-    !textFieldProps['aria-label'] &&
-    process.env.NODE_ENV === 'development'
-  ) {
-    throw new Error(
-      'If a "label" is not provided to DayPicker, please provide "aria-label".'
+export const DayPicker = React.forwardRef<HTMLInputElement, DayPickerProps>(
+  (
+    {
+      value,
+      selectedBackgroundColor,
+      ariaLabelOverrides,
+      anchorPosition = 'bottom-left',
+      onDayChange,
+      onTextChange,
+      // Default is very dumb, but doesn't require a date library
+      formatDate = (day) =>
+        `${day.getMonth() + 1}/${day.getDate()}/${day.getFullYear()}`,
+      parseDate,
+      formatMonthTitle = LocaleUtils.formatMonthTitle,
+      formatWeekdayShort = LocaleUtils.formatWeekdayShort,
+      renderDay,
+      ...textFieldProps
+    },
+    ref
+  ) => {
+    if (
+      !textFieldProps.label &&
+      !textFieldProps['aria-label'] &&
+      process.env.NODE_ENV === 'development'
+    ) {
+      throw new Error(
+        'If a "label" is not provided to DayPicker, please provide "aria-label".'
+      );
+    }
+
+    // @ts-ignore This is throwing a bogus type error.
+    const classes = useStyles({});
+    const theme = useTheme();
+
+    const [isCalendarOpen, setIsCalendarOpen] = React.useState(false);
+
+    const calendarRef = React.useRef<ReactDayPicker>(null);
+
+    const wrapperRef = React.useRef<HTMLDivElement>(null);
+
+    /**
+     * Holds the intermediary text input, which may not yet be a valid date
+     * string.
+     *
+     * `undefined` means the value has either:
+     *   - never been set, or
+     *   - was just set via the date picker
+     *
+     * an empty string means that:
+     *   - the user has set the value to an empty string
+     */
+    const [intermediateInput, setIntermediateInput] = React.useState<
+      string | undefined
+    >(undefined);
+
+    const _onTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      if (!parseDate) {
+        return;
+      }
+
+      onTextChange && onTextChange(e.target.value);
+
+      const date = parseDate(e.target.value);
+
+      if (!date) {
+        setIntermediateInput(e.target.value);
+        return;
+      }
+      setToMidnight(date);
+
+      setIntermediateInput(undefined);
+      onDayChange && onDayChange(date);
+      calendarRef.current?.showMonth(date);
+    };
+
+    const onDayClick = (day: Date) => {
+      setToMidnight(day);
+      setIntermediateInput(undefined);
+      onDayChange && onDayChange(day);
+      onTextChange && onTextChange(formatDate(day));
+    };
+
+    const isInternalNode = (target: EventTarget | null) => {
+      return target instanceof Node && wrapperRef.current?.contains(target);
+    };
+
+    const DAY_PICKER_STYLES: Record<DayPickerAnchorPosition, string> = {
+      'bottom-left': classes.dayPickerBottomLeft,
+      'bottom-right': classes.dayPickerBottomRight,
+      'top-left': classes.dayPickerTopLeft,
+      'top-right': classes.dayPickerTopRight,
+    };
+
+    return (
+      <div
+        ref={wrapperRef}
+        className={classes.root}
+        onKeyDown={(e) => {
+          if (e.key === 'Escape') {
+            setIsCalendarOpen(false);
+          }
+        }}
+      >
+        <TextField
+          startAdornment={<Calendar />}
+          {...textFieldProps}
+          ref={ref}
+          readOnly={textFieldProps.readOnly || !parseDate}
+          value={
+            intermediateInput ??
+            (value
+              ? formatDate(value)
+              : // Use an empty string instead of undefined to silence warnings
+                // about switching b/w controlled and uncontrolled component
+                '')
+          }
+          className={clsx(textFieldProps.className, {
+            [classes.textFieldNoManualInput]: !parseDate,
+          })}
+          onChange={_onTextChange}
+          onMouseDown={composeEventHandlers([
+            textFieldProps.onMouseDown,
+            () => {
+              /**
+               * This handler allows for opening _and_ closing the popover via click in
+               * readonly mode.
+               *
+               * We need to use onMouseDown instead of onClick so we can run this _before_
+               * onFocus runs and avoid an immediate open/close.
+               */
+              if (!parseDate) {
+                setIsCalendarOpen((current) => !current);
+              }
+            },
+          ])}
+          onFocus={composeEventHandlers([
+            textFieldProps.onFocus,
+            () => setIsCalendarOpen(true),
+          ])}
+          onBlur={composeEventHandlers([
+            textFieldProps.onBlur,
+            (e) => {
+              /**
+               * This logic primarily serves to provide good keyboard navigation.
+               */
+              if (!isInternalNode(e.relatedTarget)) {
+                setIsCalendarOpen(false);
+              }
+            },
+          ])}
+        />
+        {isCalendarOpen && (
+          <ReactDayPicker
+            ref={calendarRef}
+            containerProps={{
+              // @ts-ignore data-testid is a real prop, even though TS thinks it's not.
+              'data-testid': testIds.calendar,
+            }}
+            className={clsx(
+              classes.dayPicker,
+              DAY_PICKER_STYLES[anchorPosition]
+            )}
+            modifiers={{
+              selected: value,
+            }}
+            modifiersStyles={{
+              selected: {
+                backgroundColor:
+                  selectedBackgroundColor || theme.palette.primary.main,
+              },
+            }}
+            navbarElement={(props) => (
+              <div className={classes.navBar}>
+                <ButtonUnstyled
+                  aria-label={
+                    ariaLabelOverrides?.leftChevron ?? 'Previous month'
+                  }
+                  className={classes.chevronButtonContainer}
+                  onClick={() => props.onPreviousClick()}
+                >
+                  <ChevronLeft />
+                </ButtonUnstyled>
+                <span
+                  aria-label={
+                    ariaLabelOverrides?.monthHeader ?? 'Current month'
+                  }
+                >
+                  {formatMonthTitle(props.month)}
+                </span>
+                <ButtonUnstyled
+                  aria-label={ariaLabelOverrides?.rightChevron ?? 'Next month'}
+                  className={classes.chevronButtonContainer}
+                  onClick={() => props.onNextClick()}
+                >
+                  <ChevronRight />
+                </ButtonUnstyled>
+              </div>
+            )}
+            // We are setting this to empty and overriding it with our
+            // navbarElement above.
+            captionElement={<></>}
+            onDayClick={onDayClick}
+            renderDay={renderDay}
+            localeUtils={{
+              ...LocaleUtils,
+              formatMonthTitle,
+              formatWeekdayShort,
+            }}
+            onBlur={(e) => {
+              /**
+               * This logic primarily serves to provide good keyboard navigation.
+               */
+              if (!isInternalNode(e.relatedTarget)) {
+                setIsCalendarOpen(false);
+              }
+            }}
+          />
+        )}
+      </div>
     );
   }
-
-  // @ts-ignore This is throwing a bogus type error.
-  const classes = useStyles({});
-  const theme = useTheme();
-
-  const [isCalendarOpen, setIsCalendarOpen] = React.useState(false);
-
-  const calendarRef = React.useRef<ReactDayPicker>(null);
-
-  const wrapperRef = React.useRef<HTMLDivElement>(null);
-
-  /**
-   * Holds the intermediary text input, which may not yet be a valid date
-   * string.
-   *
-   * `undefined` means the value has either:
-   *   - never been set, or
-   *   - was just set via the date picker
-   *
-   * an empty string means that:
-   *   - the user has set the value to an empty string
-   */
-  const [intermediateInput, setIntermediateInput] = React.useState<
-    string | undefined
-  >(undefined);
-
-  const _onTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (!parseDate) {
-      return;
-    }
-
-    onTextChange && onTextChange(e.target.value);
-
-    const date = parseDate(e.target.value);
-
-    if (!date) {
-      setIntermediateInput(e.target.value);
-      return;
-    }
-    setToMidnight(date);
-
-    setIntermediateInput(undefined);
-    onDayChange && onDayChange(date);
-    calendarRef.current?.showMonth(date);
-  };
-
-  const onDayClick = (day: Date) => {
-    setToMidnight(day);
-    setIntermediateInput(undefined);
-    onDayChange && onDayChange(day);
-    onTextChange && onTextChange(formatDate(day));
-  };
-
-  const isInternalNode = (target: EventTarget | null) => {
-    return target instanceof Node && wrapperRef.current?.contains(target);
-  };
-
-  const DAY_PICKER_STYLES: Record<DayPickerAnchorPosition, string> = {
-    'bottom-left': classes.dayPickerBottomLeft,
-    'bottom-right': classes.dayPickerBottomRight,
-    'top-left': classes.dayPickerTopLeft,
-    'top-right': classes.dayPickerTopRight,
-  };
-
-  return (
-    <div
-      ref={wrapperRef}
-      className={classes.root}
-      onKeyDown={(e) => {
-        if (e.key === 'Escape') {
-          setIsCalendarOpen(false);
-        }
-      }}
-    >
-      <TextField
-        startAdornment={<Calendar />}
-        {...textFieldProps}
-        readOnly={textFieldProps.readOnly || !parseDate}
-        value={
-          intermediateInput ??
-          (value
-            ? formatDate(value)
-            : // Use an empty string instead of undefined to silence warnings
-              // about switching b/w controlled and uncontrolled component
-              '')
-        }
-        className={clsx(textFieldProps.className, {
-          [classes.textFieldNoManualInput]: !parseDate,
-        })}
-        onChange={_onTextChange}
-        onMouseDown={composeEventHandlers([
-          textFieldProps.onMouseDown,
-          () => {
-            /**
-             * This handler allows for opening _and_ closing the popover via click in
-             * readonly mode.
-             *
-             * We need to use onMouseDown instead of onClick so we can run this _before_
-             * onFocus runs and avoid an immediate open/close.
-             */
-            if (!parseDate) {
-              setIsCalendarOpen((current) => !current);
-            }
-          },
-        ])}
-        onFocus={composeEventHandlers([
-          textFieldProps.onFocus,
-          () => setIsCalendarOpen(true),
-        ])}
-        onBlur={composeEventHandlers([
-          textFieldProps.onBlur,
-          (e) => {
-            /**
-             * This logic primarily serves to provide good keyboard navigation.
-             */
-            if (!isInternalNode(e.relatedTarget)) {
-              setIsCalendarOpen(false);
-            }
-          },
-        ])}
-      />
-      {isCalendarOpen && (
-        <ReactDayPicker
-          ref={calendarRef}
-          containerProps={{
-            // @ts-ignore data-testid is a real prop, even though TS thinks it's not.
-            'data-testid': testIds.calendar,
-          }}
-          className={clsx(classes.dayPicker, DAY_PICKER_STYLES[anchorPosition])}
-          modifiers={{
-            selected: value,
-          }}
-          modifiersStyles={{
-            selected: {
-              backgroundColor:
-                selectedBackgroundColor || theme.palette.primary.main,
-            },
-          }}
-          navbarElement={(props) => (
-            <div className={classes.navBar}>
-              <ButtonUnstyled
-                aria-label={ariaLabelOverrides?.leftChevron ?? 'Previous month'}
-                className={classes.chevronButtonContainer}
-                onClick={() => props.onPreviousClick()}
-              >
-                <ChevronLeft />
-              </ButtonUnstyled>
-              <span
-                aria-label={ariaLabelOverrides?.monthHeader ?? 'Current month'}
-              >
-                {formatMonthTitle(props.month)}
-              </span>
-              <ButtonUnstyled
-                aria-label={ariaLabelOverrides?.rightChevron ?? 'Next month'}
-                className={classes.chevronButtonContainer}
-                onClick={() => props.onNextClick()}
-              >
-                <ChevronRight />
-              </ButtonUnstyled>
-            </div>
-          )}
-          // We are setting this to empty and overriding it with our
-          // navbarElement above.
-          captionElement={<></>}
-          onDayClick={onDayClick}
-          renderDay={renderDay}
-          localeUtils={{
-            ...LocaleUtils,
-            formatMonthTitle,
-            formatWeekdayShort,
-          }}
-          onBlur={(e) => {
-            /**
-             * This logic primarily serves to provide good keyboard navigation.
-             */
-            if (!isInternalNode(e.relatedTarget)) {
-              setIsCalendarOpen(false);
-            }
-          }}
-        />
-      )}
-    </div>
-  );
-};
+);
