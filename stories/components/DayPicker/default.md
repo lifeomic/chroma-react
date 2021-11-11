@@ -98,6 +98,19 @@ const [errorMessage, setErrorMessage] = React.useState(false);
 />
 ```
 
+### Positioning
+
+Custom anchor positioning can be done via `anchorPosition`.
+
+```jsx
+<DayPicker
+  label="Date"
+  value={date}
+  onDayChange={setDate}
+  anchorPosition="top-right"
+/>
+```
+
 ### Calendar UI Customization
 
 The calendar UI can be customized via a number of props.

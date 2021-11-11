@@ -23,10 +23,12 @@ const setToMidnight = (date: Date) => {
 };
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    position: 'relative',
+  },
   dayPicker: {
     position: 'absolute',
     zIndex: 99999,
-    marginTop: theme.spacing(1),
     padding: theme.spacing(2),
     borderRadius: theme.spacing(1.25),
     backgroundColor: theme.palette.common.white,
@@ -55,6 +57,26 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: theme.palette.grey[300],
     },
   },
+  dayPickerBottomLeft: {
+    top: '100%',
+    left: 0,
+    marginTop: theme.spacing(1),
+  },
+  dayPickerBottomRight: {
+    top: '100%',
+    right: 0,
+    marginTop: theme.spacing(1),
+  },
+  dayPickerTopLeft: {
+    bottom: '100%',
+    left: 0,
+    marginBottom: theme.spacing(1),
+  },
+  dayPickerTopRight: {
+    bottom: '100%',
+    right: 0,
+    marginBottom: theme.spacing(1),
+  },
   navBar: {
     ...theme.typography.body2,
     fontWeight: theme.typography.fontWeightBold,
@@ -78,6 +100,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+export type DayPickerAnchorPosition =
+  | 'top-left'
+  | 'top-right'
+  | 'bottom-left'
+  | 'bottom-right';
+
 export type DayPickerProps = Omit<TextFieldProps, 'value' | 'onChange'> & {
   /**
    * The currently selected day.
@@ -90,6 +118,21 @@ export type DayPickerProps = Omit<TextFieldProps, 'value' | 'onChange'> & {
    * Default is the main primary color of the theme.
    */
   selectedBackgroundColor?: string;
+
+  /**
+   * Where to anchor the calender pop-up. Default is 'bottom-left'.
+   */
+  anchorPosition?: DayPickerAnchorPosition;
+
+  /**
+   * Overrides for internal aria-labels. Useful for localizing
+   * the labels.
+   */
+  ariaLabelOverrides?: {
+    monthHeader?: string;
+    leftChevron?: string;
+    rightChevron?: string;
+  };
 
   /**
    * Called when a day is selected in the calendar UI or a valid
@@ -136,16 +179,6 @@ export type DayPickerProps = Omit<TextFieldProps, 'value' | 'onChange'> & {
    * Use to customize rendering of individual days in the grid.
    */
   renderDay?: (day: Date) => React.ReactNode;
-
-  /**
-   * Overrides for internal aria-labels. Useful for localizing
-   * the labels.
-   */
-  ariaLabelOverrides?: {
-    monthHeader?: string;
-    leftChevron?: string;
-    rightChevron?: string;
-  };
 };
 
 export const testIds = {
@@ -156,6 +189,7 @@ export const DayPicker: React.FC<DayPickerProps> = ({
   value,
   selectedBackgroundColor,
   ariaLabelOverrides,
+  anchorPosition = 'bottom-left',
   onDayChange,
   onTextChange,
   // Default is very dumb, but doesn't require a date library
@@ -233,9 +267,17 @@ export const DayPicker: React.FC<DayPickerProps> = ({
     return target instanceof Node && wrapperRef.current?.contains(target);
   };
 
+  const DAY_PICKER_STYLES: Record<DayPickerAnchorPosition, string> = {
+    'bottom-left': classes.dayPickerBottomLeft,
+    'bottom-right': classes.dayPickerBottomRight,
+    'top-left': classes.dayPickerTopLeft,
+    'top-right': classes.dayPickerTopRight,
+  };
+
   return (
     <div
       ref={wrapperRef}
+      className={classes.root}
       onKeyDown={(e) => {
         if (e.key === 'Escape') {
           setIsCalendarOpen(false);
@@ -296,7 +338,7 @@ export const DayPicker: React.FC<DayPickerProps> = ({
             // @ts-ignore data-testid is a real prop, even though TS thinks it's not.
             'data-testid': testIds.calendar,
           }}
-          className={classes.dayPicker}
+          className={clsx(classes.dayPicker, DAY_PICKER_STYLES[anchorPosition])}
           modifiers={{
             selected: value,
           }}
