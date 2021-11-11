@@ -1,7 +1,10 @@
 import * as React from 'react';
 import clsx from 'clsx';
 
-import ReactDayPicker, { LocaleUtils } from 'react-day-picker';
+import ReactDayPicker, {
+  DayPickerProps as ReactDayPickerProps,
+  LocaleUtils,
+} from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
 import { Calendar, ChevronLeft, ChevronRight } from '@lifeomic/chromicons';
 
@@ -148,6 +151,15 @@ export type DayPickerProps = Omit<TextFieldProps, 'value' | 'onChange'> & {
   };
 
   /**
+   * Props to spread into the internal day picker.
+   *
+   * IMPORTANT: Props provided via this object take priority over internally
+   * specified props. Defining some values may cause the component to behave
+   * unusually.
+   */
+  calendarProps?: Partial<ReactDayPickerProps>;
+
+  /**
    * Called when a day is selected in the calendar UI or a valid
    * date string is entered manually.
    */
@@ -215,6 +227,7 @@ export const DayPicker = React.forwardRef<HTMLInputElement, DayPickerProps>(
       minDate,
       maxDate,
       ariaLabelOverrides,
+      calendarProps,
       onDayChange,
       onTextChange,
       disableDay,
@@ -444,6 +457,7 @@ export const DayPicker = React.forwardRef<HTMLInputElement, DayPickerProps>(
               formatWeekdayShort,
             }}
             onBlur={onBlur}
+            {...calendarProps}
           />
         )}
       </div>
