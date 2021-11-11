@@ -23,8 +23,8 @@ test('it renders Tabs', async () => {
 
 test('it renders variant pill Tabs', async () => {
   const { findByTestId } = renderWithTheme(
-    <Tabs>
-      <TabList aria-label="Test Tabs" data-testid={testId} variant="pill">
+    <Tabs variant="pill">
+      <TabList aria-label="Test Tabs" data-testid={testId}>
         <Tab stopId="tab1">Tab 1</Tab>
         <Tab stopId="tab2">Tab 2</Tab>
       </TabList>
