@@ -2,7 +2,6 @@ import * as React from 'react';
 import clsx from 'clsx';
 
 import ReactDayPicker, { LocaleUtils } from 'react-day-picker';
-// Is this safe? consumers might not be using webpack w/ CSS loaders,
 import 'react-day-picker/lib/style.css';
 import { Calendar, ChevronLeft, ChevronRight } from '@lifeomic/chromicons';
 
@@ -15,11 +14,13 @@ import { composeEventHandlers } from '../../utils';
 export const DayPickerStylesKey = 'ChromaDayPicker';
 export type DayPickerClasses = GetClasses<typeof useStyles>;
 
-const setToMidnight = (date: Date) => {
-  date.setHours(0);
-  date.setMinutes(0);
-  date.setSeconds(0);
-  date.setMilliseconds(0);
+const midnightOf = (date: Date) => {
+  const copy = new Date(date.toISOString());
+  copy.setHours(0);
+  copy.setMinutes(0);
+  copy.setSeconds(0);
+  copy.setMilliseconds(0);
+  return copy;
 };
 
 const useStyles = makeStyles((theme) => ({
@@ -125,6 +126,18 @@ export type DayPickerProps = Omit<TextFieldProps, 'value' | 'onChange'> & {
   anchorPosition?: DayPickerAnchorPosition;
 
   /**
+   * A minimum date to allow. This will prevent manual input or day
+   * selection of any day before this date.
+   */
+  minDate?: Date;
+
+  /**
+   * A maximum date to allow. This will prevent manual input or day
+   * selection of any day after this date.
+   */
+  maxDate?: Date;
+
+  /**
    * Overrides for internal aria-labels. Useful for localizing
    * the labels.
    */
@@ -147,6 +160,14 @@ export type DayPickerProps = Omit<TextFieldProps, 'value' | 'onChange'> & {
    * Will only be called when `parseDate` is provided.
    */
   onTextChange?: (text: string) => void;
+
+  /**
+   * A predicate for identifying days to disable selecting.
+   *
+   * Also will prevent manually entering dates matching this
+   * predicate (when using `parseDate`).
+   */
+  disableDay?: (day: Date) => boolean;
 
   /**
    * Used for formatting the date into the text field.
@@ -190,10 +211,13 @@ export const DayPicker = React.forwardRef<HTMLInputElement, DayPickerProps>(
     {
       value,
       selectedBackgroundColor,
-      ariaLabelOverrides,
       anchorPosition = 'bottom-left',
+      minDate,
+      maxDate,
+      ariaLabelOverrides,
       onDayChange,
       onTextChange,
+      disableDay,
       // Default is very dumb, but doesn't require a date library
       formatDate = (day) =>
         `${day.getMonth() + 1}/${day.getDate()}/${day.getFullYear()}`,
@@ -240,6 +264,17 @@ export const DayPicker = React.forwardRef<HTMLInputElement, DayPickerProps>(
       string | undefined
     >(undefined);
 
+    const isDayDisabled = (date: Date) => {
+      if (
+        (minDate && midnightOf(date) < midnightOf(minDate)) ||
+        (maxDate && midnightOf(date) > midnightOf(maxDate)) ||
+        (disableDay && disableDay(midnightOf(date)))
+      ) {
+        return true;
+      }
+      return false;
+    };
+
     const _onTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       if (!parseDate) {
         return;
@@ -247,24 +282,48 @@ export const DayPicker = React.forwardRef<HTMLInputElement, DayPickerProps>(
 
       onTextChange && onTextChange(e.target.value);
 
-      const date = parseDate(e.target.value);
+      const parsed = parseDate(e.target.value);
 
-      if (!date) {
+      if (!parsed || isDayDisabled(parsed)) {
         setIntermediateInput(e.target.value);
         return;
       }
-      setToMidnight(date);
+      const date = midnightOf(parsed);
 
       setIntermediateInput(undefined);
       onDayChange && onDayChange(date);
       calendarRef.current?.showMonth(date);
     };
 
-    const onDayClick = (day: Date) => {
-      setToMidnight(day);
+    const onDayClick = (_day: Date) => {
+      const day = midnightOf(_day);
+
+      if (isDayDisabled(day)) {
+        return;
+      }
+
       setIntermediateInput(undefined);
       onDayChange && onDayChange(day);
       onTextChange && onTextChange(formatDate(day));
+    };
+
+    const onBlur = (e: React.FocusEvent<unknown>) => {
+      /**
+       * This logic primarily serves to provide good keyboard navigation.
+       */
+      if (!isInternalNode(e.relatedTarget)) {
+        setIsCalendarOpen(false);
+      }
+
+      /**
+       * Clear any intermediate input. This minimizes confusion -- if
+       * the text field is not focused, then it contains the most recent
+       * value.
+       *
+       * Otherwise, consumers may see a value that hasn't been reported
+       * via `onDayChange`.
+       */
+      setIntermediateInput(undefined);
     };
 
     const isInternalNode = (target: EventTarget | null) => {
@@ -324,17 +383,7 @@ export const DayPicker = React.forwardRef<HTMLInputElement, DayPickerProps>(
             textFieldProps.onFocus,
             () => setIsCalendarOpen(true),
           ])}
-          onBlur={composeEventHandlers([
-            textFieldProps.onBlur,
-            (e) => {
-              /**
-               * This logic primarily serves to provide good keyboard navigation.
-               */
-              if (!isInternalNode(e.relatedTarget)) {
-                setIsCalendarOpen(false);
-              }
-            },
-          ])}
+          onBlur={composeEventHandlers([textFieldProps.onBlur, onBlur])}
         />
         {isCalendarOpen && (
           <ReactDayPicker
@@ -350,6 +399,7 @@ export const DayPicker = React.forwardRef<HTMLInputElement, DayPickerProps>(
             modifiers={{
               selected: value,
             }}
+            disabledDays={isDayDisabled}
             modifiersStyles={{
               selected: {
                 backgroundColor:
@@ -393,14 +443,7 @@ export const DayPicker = React.forwardRef<HTMLInputElement, DayPickerProps>(
               formatMonthTitle,
               formatWeekdayShort,
             }}
-            onBlur={(e) => {
-              /**
-               * This logic primarily serves to provide good keyboard navigation.
-               */
-              if (!isInternalNode(e.relatedTarget)) {
-                setIsCalendarOpen(false);
-              }
-            }}
+            onBlur={onBlur}
           />
         )}
       </div>

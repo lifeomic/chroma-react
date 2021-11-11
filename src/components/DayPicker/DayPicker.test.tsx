@@ -8,6 +8,20 @@ import { RenderResult } from '@testing-library/react';
 
 dayjs.extend(require('dayjs/plugin/customParseFormat'));
 
+const parser = (format: string) => (text: string) => {
+  const result = dayjs(text, format, true);
+  if (result.isValid()) {
+    return result.toDate();
+  }
+  return undefined;
+};
+
+/**
+ * This is the dayjs format template matching the label that
+ * react-day-picker uses for the aria-label of the day elements.
+ */
+const DAY_LABEL_FORMAT = 'ddd MMM DD YYYY';
+
 const OUTSIDE_TEXT = 'Outside Element';
 
 const render = (props?: DayPickerProps) =>
@@ -163,13 +177,7 @@ it('calls onTextChange and eventually onDayChange when manual input is used', ()
     value: undefined,
     onDayChange,
     onTextChange,
-    parseDate: (text) => {
-      const result = dayjs(text, 'MMMM D, YYYY', true);
-      if (result.isValid()) {
-        return result.toDate();
-      }
-      return undefined;
-    },
+    parseDate: parser('MMMM D, YYYY'),
     placeholder: 'test-placeholder',
   });
 
@@ -289,4 +297,121 @@ it('closes the calendar on receiving ESC', () => {
   fireEvent.focus(input);
 
   fireEvent.keyDown(input, { key: 'Escape' });
+
+  expect(view.queryByTestId(testIds.calendar)).toBeNull();
+});
+
+it('prevents dates before minDate and after maxDate', () => {
+  const onDayChange = jest.fn();
+  const onTextChange = jest.fn();
+  const view = render({
+    // Nov 5, 2021, 6AM UTC
+    value: new Date('2021-11-05T06:00:00.000Z'),
+    onDayChange,
+    onTextChange,
+    // Nov 3, 2021, 6AM UTC
+    minDate: new Date('2021-11-03T06:00:00.000Z'),
+    // Nov 7, 2021, 6AM UTC
+    maxDate: new Date('2021-11-07T06:00:00.000Z'),
+    parseDate: parser('M/D/YYYY'),
+  });
+
+  // Open the calendar by focusing the text field.
+  const input = view.getByRole('textbox');
+  fireEvent.focus(input);
+
+  // Assert valid dates are enabled.
+  for (const label of [
+    'Thu Nov 04 2021',
+    'Fri Nov 05 2021',
+    'Sat Nov 06 2021',
+    'Sun Nov 07 2021',
+  ]) {
+    const day = view.getByLabelText(label);
+    expect(day.getAttribute('aria-disabled')).toStrictEqual('false');
+
+    fireEvent.click(day);
+    expect(onDayChange).toHaveBeenCalledTimes(1);
+    expect(onDayChange.mock.calls[0][0].toISOString()).toStrictEqual(
+      // Interesting implicit assertion: assert that the returned date
+      // is at midnight, which is actually _before_ the specified
+      // `minDate` value.
+      `2021-11-${label.split(' ')[2]}T00:00:00.000Z`
+    );
+    onDayChange.mockClear();
+  }
+
+  // Assert invalid dates are disabled.
+  for (const label of [
+    'Mon Nov 01 2021',
+    'Tue Nov 02 2021',
+    'Mon Nov 08 2021',
+    'Tue Nov 09 2021',
+  ]) {
+    const day = view.getByLabelText(label);
+    expect(day.getAttribute('aria-disabled')).toStrictEqual('true');
+
+    fireEvent.click(day);
+    expect(onDayChange).not.toHaveBeenCalled();
+  }
+
+  // Try typing an invalid date
+  fireEvent.change(input, { target: { value: '11/2/2021' } });
+  expect(onTextChange).toHaveBeenCalledWith('11/2/2021');
+  expect(onDayChange).not.toHaveBeenCalled();
+  expect(input).toMatchObject({ value: '11/2/2021' });
+
+  // Blur the input and assert that the intermediate value is wiped.
+  fireEvent.blur(input);
+  expect(input.getAttribute('value')).toStrictEqual('11/5/2021');
+});
+
+it('prevents dates that match disableDay', () => {
+  const onDayChange = jest.fn();
+  const onTextChange = jest.fn();
+  const view = render({
+    // Nov 15, 2021, 6AM UTC
+    value: new Date('2021-11-15T06:00:00.000Z'),
+    onDayChange,
+    onTextChange,
+    // Disable even dates
+    disableDay: (date) => date.getDate() % 2 === 0,
+    parseDate: parser('M/D/YYYY'),
+  });
+
+  // Open the calendar by focusing the text field.
+  const input = view.getByRole('textbox');
+  fireEvent.focus(input);
+
+  for (let day = 1; day <= 30; day++) {
+    const dayEl = view.getByLabelText(
+      dayjs(`2021-11-01T00:00:00.000Z`)
+        .set('date', day)
+        .format(DAY_LABEL_FORMAT)
+    );
+
+    if (day % 2 === 0) {
+      expect(dayEl.getAttribute('aria-disabled')).toStrictEqual('true');
+      fireEvent.click(dayEl);
+      expect(onDayChange).not.toHaveBeenCalled();
+    } else {
+      expect(dayEl.getAttribute('aria-disabled')).toStrictEqual('false');
+      fireEvent.click(dayEl);
+      expect(onDayChange).toHaveBeenCalledTimes(1);
+      expect(onDayChange.mock.calls[0][0].toISOString()).toStrictEqual(
+        dayjs(`2021-11-01T00:00:00.000Z`).set('date', day).toISOString()
+      );
+    }
+    onDayChange.mockClear();
+  }
+
+  // Try typing an invalid date
+  fireEvent.change(input, { target: { value: '11/16/2021' } });
+  expect(onTextChange).toHaveBeenCalledWith('11/16/2021');
+  expect(onDayChange).not.toHaveBeenCalled();
+  expect(input).toMatchObject({ value: '11/16/2021' });
+
+  // Blur the input and assert that the intermediate value is wiped.
+  fireEvent.blur(input);
+  expect(input.getAttribute('value')).toStrictEqual('11/15/2021');
 });

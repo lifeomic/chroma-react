@@ -85,6 +85,13 @@ const DayPickerStory: React.FC = () => {
               parseDate={parser('M/D/YYYY')}
               disabled
             />
+            <PickerWithInternalState
+              fullWidth
+              label={'With Minimum Date'}
+              initialValue={new Date()}
+              parseDate={parser('M/D/YYYY')}
+              minDate={new Date()}
+            />
           </FormBox>
         </Container>
 
@@ -117,6 +124,14 @@ const DayPickerStory: React.FC = () => {
               fullWidth
               label={'With Error Message'}
               initialValue={new Date()}
+            />
+            <PickerWithErrorHandling
+              color={'inverse'}
+              fullWidth
+              label={'With Max Date'}
+              initialValue={new Date()}
+              parseDate={parser('M/D/YYYY')}
+              maxDate={new Date()}
             />
           </FormBox>
         </Container>
