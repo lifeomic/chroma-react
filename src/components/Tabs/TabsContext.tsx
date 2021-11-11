@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { TabStateReturn } from 'reakit/ts';
+
 export interface TabsState {
   tabState: TabStateReturn;
   variant: 'default' | 'pill';
