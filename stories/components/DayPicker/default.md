@@ -98,6 +98,28 @@ const [errorMessage, setErrorMessage] = React.useState(false);
 />
 ```
 
+### Min/Max Dates and Disabling
+
+Min/max dates can be set via `minDate` and `maxDate`.
+
+More customized disabling can be done via `disableDay`.
+
+```jsx
+const [errorMessage, setErrorMessage] = React.useState(false);
+
+<DayPicker
+  label="Date"
+  value={date}
+  onDayChange={setDate}
+  // Disables dates before today
+  minDate={new Date()}
+  // Disables dates after today
+  maxDate={new Date()}
+  // Disables every even-numbered day
+  disableDay={(date) => date.getDate() % 2 === 0}
+/>;
+```
+
 ### Positioning
 
 Custom anchor positioning can be done via `anchorPosition`.
