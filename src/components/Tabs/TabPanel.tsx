@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import * as React from 'react';
-import { TabPanel as BaseTabPanel, TabPanelOptions } from 'reakit/Tab';
+import { TabPanel as BaseTabPanel } from 'reakit/Tab';
 import { makeStyles } from '../../styles';
 import { GetClasses } from '../../typeUtils';
 import { TabsContext } from './TabsContext';
@@ -23,7 +23,7 @@ export interface TabPanelProps extends TabStop {
   className?: string;
 }
 
-export const TabPanel: React.FC<TabPanelProps & Partial<TabPanelOptions>> = ({
+export const TabPanel: React.FC<TabPanelProps> = ({
   className,
   // Reakit's TabPanel no longer requires a "stopId"
   // (in fact, it breaks things), so we destructure it out

@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import * as React from 'react';
-import { TabList as BaseTabList, TabListOptions } from 'reakit/Tab';
+import { TabList as BaseTabList } from 'reakit/Tab';
 import { makeStyles } from '../../styles';
 import { GetClasses } from '../../typeUtils';
 import { TabsContext } from './TabsContext';
@@ -34,7 +34,7 @@ export interface TabListProps {
   className?: string;
 }
 
-export const TabList: React.FC<TabListProps & Partial<TabListOptions>> = ({
+export const TabList: React.FC<TabListProps> = ({
   'aria-label': ariaLabel,
   className,
   ...rootProps

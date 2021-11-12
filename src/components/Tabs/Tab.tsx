@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import * as React from 'react';
-import { Tab as BaseTab, TabOptions } from 'reakit/Tab';
+import { Tab as BaseTab } from 'reakit/Tab';
 import { makeStyles } from '../../styles';
 import { GetClasses } from '../../typeUtils';
 import { TabsContext } from './TabsContext';
@@ -81,7 +81,7 @@ export interface TabProps extends TabStop {
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
-export const Tab: React.FC<TabProps & Partial<TabOptions>> = ({
+export const Tab: React.FC<TabProps> = ({
   className,
   disabled,
   onClick,
