@@ -418,6 +418,9 @@ export const DayPicker = React.forwardRef<HTMLInputElement, DayPickerProps>(
                 backgroundColor:
                   selectedBackgroundColor || theme.palette.primary.main,
               },
+              outside: {
+                backgroundColor: 'transparent',
+              },
             }}
             navbarElement={(props) => (
               <div className={classes.navBar}>
