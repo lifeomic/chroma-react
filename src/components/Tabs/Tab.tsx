@@ -51,22 +51,21 @@ export const useStyles = makeStyles(
     pill: {
       borderBottom: 'none',
       borderRadius: '50px',
-      backgroundColor: theme.palette.grey[500],
+      minHeight: theme.pxToRem(29),
+      padding: theme.spacing(0.75, 2),
       '&[aria-selected="true"]': {
         borderBottom: 'none',
         borderRadius: '50px',
-        backgroundColor: theme.palette.blue[500],
-      },
-      '&:hover': {
-        color: theme.palette.red[500],
+        backgroundColor: theme.palette.primary.main,
+        color: theme.palette.common.white,
       },
       '&:focus': {
         outline: 'none',
       },
       '&[aria-disabled="true"]': {
-        color: theme.palette.red[400],
+        background: 'none',
+        color: theme.palette.text.disabled,
         cursor: 'initial',
-        opacity: 0.4,
       },
     },
   }),
