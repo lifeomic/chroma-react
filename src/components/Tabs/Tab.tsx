@@ -104,7 +104,7 @@ export const Tab: React.FC<TabProps> = ({
       id={stopId}
       {...rootProps}
     >
-      {variant === 'pill' ? <p>{children}</p> : children}
+      {variant === 'pill' ? <span>{children}</span> : children}
     </BaseTab>
   );
 };
