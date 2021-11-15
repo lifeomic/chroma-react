@@ -67,6 +67,9 @@ export const useStyles = makeStyles(
         color: theme.palette.text.disabled,
         cursor: 'initial',
       },
+      '& p': {
+        color: theme.palette.green[400],
+      },
     },
   }),
   { name: TabStylesKey }
@@ -85,6 +88,7 @@ export const Tab: React.FC<TabProps> = ({
   disabled,
   onClick,
   stopId,
+  children,
   ...rootProps
 }) => {
   const classes = useStyles({});
@@ -99,6 +103,8 @@ export const Tab: React.FC<TabProps> = ({
       onClick={onClick}
       id={stopId}
       {...rootProps}
-    />
+    >
+      {variant === 'pill' ? <p>{children}</p> : children}
+    </BaseTab>
   );
 };
