@@ -27,6 +27,16 @@ A descriptive label for the Tab List.
 </Tabs>
 ```
 
+### Variant
+
+The tabs component takes two different variants, for different styled
+tabs.
+
+```jsx
+<Tabs variant="default">…</Tabs>
+<Tabs variant="pill">…</Tabs>
+```
+
 ### Class Name
 
 A class name can be provided.
@@ -35,6 +45,15 @@ A class name can be provided.
 <TabList className="mr-4">
   <Tab className="mr-8" />
 </TabList>
+```
+
+### Full Width
+
+To set the width of tabs to take 100% of the width, use the `fullWidth`
+prop.
+
+```jsx
+<Tabs fullWidth>…</Tabs>
 ```
 
 ### Rendering Tabs

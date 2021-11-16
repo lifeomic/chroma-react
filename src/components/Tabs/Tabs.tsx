@@ -4,14 +4,18 @@ import { TabsContext } from './TabsContext';
 
 export interface TabsProps {
   children: React.ReactNode;
+  fullWidth?: boolean;
   manualControl?: boolean;
   selectedTabId?: string;
+  variant?: 'default' | 'pill';
 }
 
 export const Tabs: React.FC<TabsProps> = ({
   children,
+  fullWidth,
   selectedTabId,
   manualControl,
+  variant = 'default',
 }) => {
   const tab = useTabState({ selectedId: selectedTabId, manual: manualControl });
   const value = React.useMemo(() => tab, [tab]);
@@ -21,5 +25,9 @@ export const Tabs: React.FC<TabsProps> = ({
     tab.select(selectedTabId);
   }
 
-  return <TabsContext.Provider value={value}>{children}</TabsContext.Provider>;
+  return (
+    <TabsContext.Provider value={{ variant, fullWidth, tabState: value }}>
+      {children}
+    </TabsContext.Provider>
+  );
 };

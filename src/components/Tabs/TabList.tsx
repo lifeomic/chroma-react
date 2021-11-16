@@ -16,6 +16,21 @@ export const useStyles = makeStyles(
       width: '100%',
       overflow: 'hidden',
     },
+    pill: {
+      background: 'rgba(132, 137, 166, 0.15)',
+      borderRadius: theme.pxToRem(20),
+      border: 'solid 1px transparent',
+      display: 'inline-flex',
+      flexDirection: 'row',
+      margin: 0,
+      maxHeight: theme.pxToRem(35),
+      overflow: 'hidden',
+      padding: theme.spacing(0.25),
+      width: 'auto',
+    },
+    fullWidth: {
+      width: '100%',
+    },
   }),
   { name: TabListStylesKey }
 );
@@ -33,12 +48,15 @@ export const TabList: React.FC<TabListProps> = ({
   ...rootProps
 }) => {
   const classes = useStyles({});
-  const tab = React.useContext(TabsContext);
+  const { variant, fullWidth, tabState } = React.useContext(TabsContext);
   return (
     <BaseTabList
-      {...tab}
+      {...tabState}
       aria-label={ariaLabel}
-      className={clsx(classes.root, className)}
+      className={clsx(classes.root, className, {
+        [classes.pill]: variant === 'pill',
+        [classes.fullWidth]: fullWidth,
+      })}
       {...rootProps}
     />
   );

@@ -48,6 +48,61 @@ export const useStyles = makeStyles(
         opacity: 0.4,
       },
     },
+    pill: {
+      borderBottom: 'none',
+      borderRadius: theme.pxToRem(20),
+      minHeight: theme.pxToRem(29),
+      padding: theme.spacing(0.75, 2),
+      position: 'relative',
+      '&:hover': {
+        color: theme.palette.text.primary,
+      },
+      '& span': {
+        zIndex: 1,
+      },
+      '&::after': {
+        backgroundColor: theme.palette.primary.main,
+        borderRadius: theme.pxToRem(16),
+        content: `''`,
+        display: 'block',
+        height: '100%',
+        left: 0,
+        opacity: 0,
+        position: 'absolute',
+        top: 0,
+        transform: 'scale3d(0.3, 0.3, 0.3)',
+        transition: '0.15s ease-in',
+        width: '100%',
+        zIndex: 0,
+      },
+      '&[aria-selected="true"]': {
+        borderBottom: 'none',
+        color: theme.palette.common.white,
+        '&::after': {
+          opacity: 1,
+          transform: 'scale3d(1, 1, 1)',
+          transition: '0.2s cubic-bezier(0.34, 1.56, 0.64, 1)',
+          transitionProperty: 'transform, opacity',
+        },
+      },
+      '&:focus': {
+        outline: 'none',
+      },
+      '&[aria-disabled="true"]': {
+        background: 'none',
+        color: theme.palette.text.disabled,
+        cursor: 'initial',
+      },
+    },
+    fullWidth: {
+      flex: 1,
+      minWidth: 0,
+      '&$pill span': {
+        overflow: 'hidden',
+        textOverflow: 'ellipsis',
+        whiteSpace: 'nowrap',
+      },
+    },
   }),
   { name: TabStylesKey }
 );
@@ -57,7 +112,7 @@ export type TabClasses = GetClasses<typeof useStyles>;
 export interface TabProps extends TabStop {
   className?: string;
   disabled?: boolean;
-  onClick?: (e?: MouseEvent) => void;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 export const Tab: React.FC<TabProps> = ({
@@ -65,18 +120,24 @@ export const Tab: React.FC<TabProps> = ({
   disabled,
   onClick,
   stopId,
+  children,
   ...rootProps
 }) => {
   const classes = useStyles({});
-  const tab = React.useContext(TabsContext);
+  const { variant, fullWidth, tabState } = React.useContext(TabsContext);
   return (
     <BaseTab
-      {...tab}
-      className={clsx(classes.root, className)}
+      {...tabState}
+      className={clsx(classes.root, className, {
+        [classes.pill]: variant === 'pill',
+        [classes.fullWidth]: fullWidth,
+      })}
       disabled={disabled}
       onClick={onClick}
       id={stopId}
       {...rootProps}
-    />
+    >
+      {variant === 'pill' ? <span>{children}</span> : children}
+    </BaseTab>
   );
 };

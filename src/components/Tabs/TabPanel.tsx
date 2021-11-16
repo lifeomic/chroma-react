@@ -32,10 +32,10 @@ export const TabPanel: React.FC<TabPanelProps> = ({
   ...rootProps
 }) => {
   const classes = useStyles({});
-  const tab = React.useContext(TabsContext);
+  const { tabState } = React.useContext(TabsContext);
   return (
     <BaseTabPanel
-      {...tab}
+      {...tabState}
       className={clsx(classes.root, className)}
       {...rootProps}
     />
