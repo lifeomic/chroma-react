@@ -68,17 +68,17 @@ const TabsPlayground: React.FC = () => (
       <Tabs selectedTabId="tab2" variant="pill">
         <TabList aria-label="My Tabs">
           <Tab stopId="tab1" onClick={() => console.log('tab1 clicked')}>
-            Tab 1
+            Tab 1 Pill
           </Tab>
           <Tab stopId="tab2" onClick={() => console.log('tab2 clicked')}>
-            Tab 2
+            Tab 2 Pill
           </Tab>
           <Tab
             stopId="tab3"
             onClick={() => console.log('should not work...')}
             disabled
           >
-            Tab 3
+            Tab 3 Pill
           </Tab>
         </TabList>
         <TabPanel>Tab 1 selected</TabPanel>
