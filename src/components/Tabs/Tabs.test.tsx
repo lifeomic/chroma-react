@@ -35,6 +35,8 @@ test('it renders variant pill Tabs', async () => {
   const options = root.querySelectorAll('[role="tab"]');
   expect(options).toBeTruthy();
   expect(options.length).toEqual(2);
+  expect(options[0]).toHaveClass('ChromaTab-pill');
+  expect(options[1]).toHaveClass('ChromaTab-pill');
 });
 
 test('it renders fullWidth Tabs', async () => {
@@ -48,6 +50,7 @@ test('it renders fullWidth Tabs', async () => {
   );
 
   const root = await findByTestId(testId);
+  expect(root).toHaveClass('ChromaTabList-fullWidth');
   const options = root.querySelectorAll('[role="tab"]');
   expect(options).toBeTruthy();
   expect(options.length).toEqual(2);
