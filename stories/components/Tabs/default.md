@@ -37,6 +37,15 @@ A class name can be provided.
 </TabList>
 ```
 
+### Full Width
+
+To set the width of tabs to take 100% of the width, use the `fullWidth`
+prop.
+
+```jsx
+<Tabs fullWidth>…</Tabs>
+```
+
 ### Rendering Tabs
 
 The following is an example of how to render tabs.
