@@ -50,7 +50,7 @@ export const useStyles = makeStyles(
     },
     pill: {
       borderBottom: 'none',
-      borderRadius: '50px',
+      borderRadius: theme.pxToRem(20),
       minHeight: theme.pxToRem(29),
       padding: theme.spacing(0.75, 2),
       position: 'relative',
