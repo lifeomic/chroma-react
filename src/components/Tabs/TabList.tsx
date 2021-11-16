@@ -28,6 +28,9 @@ export const useStyles = makeStyles(
       padding: theme.spacing(0.25),
       width: 'auto',
     },
+    fullWidth: {
+      width: '100%',
+    },
   }),
   { name: TabListStylesKey }
 );
@@ -45,13 +48,14 @@ export const TabList: React.FC<TabListProps> = ({
   ...rootProps
 }) => {
   const classes = useStyles({});
-  const { variant, tabState } = React.useContext(TabsContext);
+  const { variant, fullWidth, tabState } = React.useContext(TabsContext);
   return (
     <BaseTabList
       {...tabState}
       aria-label={ariaLabel}
       className={clsx(classes.root, className, {
         [classes.pill]: variant === 'pill',
+        [classes.fullWidth]: fullWidth,
       })}
       {...rootProps}
     />

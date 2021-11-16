@@ -4,6 +4,7 @@ import { TabStateReturn } from 'reakit/ts';
 export interface TabsState {
   tabState: TabStateReturn;
   variant: 'default' | 'pill';
+  fullWidth?: boolean;
 }
 
 export const TabsContext = React.createContext<TabsState>({

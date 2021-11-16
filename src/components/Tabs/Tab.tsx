@@ -94,6 +94,15 @@ export const useStyles = makeStyles(
         cursor: 'initial',
       },
     },
+    fullWidth: {
+      flex: 1,
+      minWidth: 0,
+      '&$pill span': {
+        overflow: 'hidden',
+        textOverflow: 'ellipsis',
+        whiteSpace: 'nowrap',
+      },
+    },
   }),
   { name: TabStylesKey }
 );
@@ -115,12 +124,13 @@ export const Tab: React.FC<TabProps> = ({
   ...rootProps
 }) => {
   const classes = useStyles({});
-  const { variant, tabState } = React.useContext(TabsContext);
+  const { variant, fullWidth, tabState } = React.useContext(TabsContext);
   return (
     <BaseTab
       {...tabState}
       className={clsx(classes.root, className, {
         [classes.pill]: variant === 'pill',
+        [classes.fullWidth]: fullWidth,
       })}
       disabled={disabled}
       onClick={onClick}

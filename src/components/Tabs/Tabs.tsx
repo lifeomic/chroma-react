@@ -4,6 +4,7 @@ import { TabsContext } from './TabsContext';
 
 export interface TabsProps {
   children: React.ReactNode;
+  fullWidth?: boolean;
   manualControl?: boolean;
   selectedTabId?: string;
   variant?: 'default' | 'pill';
@@ -11,6 +12,7 @@ export interface TabsProps {
 
 export const Tabs: React.FC<TabsProps> = ({
   children,
+  fullWidth,
   selectedTabId,
   manualControl,
   variant = 'default',
@@ -24,7 +26,7 @@ export const Tabs: React.FC<TabsProps> = ({
   }
 
   return (
-    <TabsContext.Provider value={{ variant, tabState: value }}>
+    <TabsContext.Provider value={{ variant, fullWidth, tabState: value }}>
       {children}
     </TabsContext.Provider>
   );
