@@ -27,6 +27,16 @@ A descriptive label for the Tab List.
 </Tabs>
 ```
 
+### Variant
+
+The tabs component takes two different variants, for different styled
+tabs.
+
+```jsx
+<Tabs variant="default">…</Tabs>
+<Tabs variant="pill">…</Tabs>
+```
+
 ### Class Name
 
 A class name can be provided.
