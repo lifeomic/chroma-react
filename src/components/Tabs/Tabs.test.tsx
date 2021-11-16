@@ -37,6 +37,22 @@ test('it renders variant pill Tabs', async () => {
   expect(options.length).toEqual(2);
 });
 
+test('it renders fullWidth Tabs', async () => {
+  const { findByTestId } = renderWithTheme(
+    <Tabs fullWidth>
+      <TabList aria-label="Test Tabs" data-testid={testId}>
+        <Tab stopId="tab1">Tab 1</Tab>
+        <Tab stopId="tab2">Tab 2</Tab>
+      </TabList>
+    </Tabs>
+  );
+
+  const root = await findByTestId(testId);
+  const options = root.querySelectorAll('[role="tab"]');
+  expect(options).toBeTruthy();
+  expect(options.length).toEqual(2);
+});
+
 test('it renders Tabs with the selectedTabId', async () => {
   const { findByTestId } = renderWithTheme(
     <Tabs selectedTabId="tab2">
