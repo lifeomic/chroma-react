@@ -252,7 +252,7 @@ export const SearchField = React.forwardRef<HTMLInputElement, SearchFieldProps>(
       defaultValue?.toString() ?? ''
     );
     const isControlled = valueProp !== undefined;
-    const value = isControlled ? valueProp.toString() : searchText;
+    const value = isControlled ? valueProp!.toString() : searchText;
 
     if (!ariaLabel && process.env.NODE_ENV === 'development') {
       console.warn(
