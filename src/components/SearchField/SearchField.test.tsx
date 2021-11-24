@@ -247,3 +247,35 @@ test('it calls the provided onClear and onChange after clicking the clear button
   expect(onChange).toHaveNthReturnedWith(1, 'this should be cleared...');
   expect(onChange).toHaveNthReturnedWith(2, '');
 });
+
+test('it can be controlled', async () => {
+  const value = 'chroma';
+  const mockFn = jest.fn();
+  const onChange = jest.fn((event) => event.target.value);
+
+  const props = getBaseProps();
+  const { findByTestId } = renderWithTheme(
+    <SearchField
+      {...props}
+      onSearch={mockFn}
+      data-testid={testId}
+      value={value}
+      onChange={onChange}
+    />
+  );
+
+  const input: any = await findByTestId(testId);
+  expect(input.value).toBe(value);
+
+  const addedValue = ' is controlled';
+  fireEvent.change(input, { target: { value: addedValue } });
+  expect(onChange).toHaveNthReturnedWith(1, addedValue);
+
+  // Value shouldn't change since prop didn't change
+  expect(input.value).toBe(value);
+
+  // Value should be passed when submitting
+  fireEvent.keyPress(input, { key: 'Enter', code: 13, charCode: 13 });
+  expect(mockFn).toHaveBeenCalledTimes(1);
+  expect(mockFn).toBeCalledWith(value);
+});
