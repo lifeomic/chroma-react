@@ -2,7 +2,11 @@ import { storiesOf } from '@storybook/react';
 import * as React from 'react';
 import { Checkbox } from '../../../src/components/Checkbox';
 import { FormBox } from '../../../src/components/FormBox';
-import { Radio, RadioGroup, RadioGroupMinimal } from '../../../src/components/Radio';
+import {
+  Radio,
+  RadioGroup,
+  RadioGroupMinimal,
+} from '../../../src/components/Radio';
 import { SearchField } from '../../../src/components/SearchField';
 import { Select, SelectOption } from '../../../src/components/Select';
 import { TextArea } from '../../../src/components/TextArea';
@@ -83,33 +87,39 @@ const FormBoxStory: React.FC = () => {
             title=""
             name="radioGroupMinimal1"
             value="opt1"
+            fullWidth
           >
             <Radio value="opt1" label="Option 1" />
             <Radio value="opt2" label="Option 2" />
             <Radio value="opt3" label="Option 3" />
           </RadioGroupMinimal>
           <Box>
-            <RadioGroup
-              aria-label="Select an option"
-              title="Select an option"
-              name="radioGroup2"
-              value="opt4"
+            <Box style={{ flex: 1 }}>
+              <RadioGroup
+                aria-label="Select an option"
+                title="Select an option"
+                name="radioGroup2"
+                value="opt4"
               >
-              <Radio value="opt4" label="Option 4" />
-              <Radio value="opt5" label="Option 5" />
-              <Radio value="opt6" label="Option 6" />
-            </RadioGroup>
-            <RadioGroupMinimal
-              aria-label="Select an option"
-              title="Select an option"
-              direction="column"
-              name="radioGroupMinimal3"
-              value="opt7"
-            >
-              <Radio value="opt7" label="Option 7" />
-              <Radio value="opt8" label="Option 8" />
-              <Radio value="opt9" label="Option 9" />
-            </RadioGroupMinimal>
+                <Radio value="opt4" label="Option 4" />
+                <Radio value="opt5" label="Option 5" />
+                <Radio value="opt6" label="Option 6" />
+              </RadioGroup>
+            </Box>
+            <Box style={{ flex: 1 }}>
+              <RadioGroupMinimal
+                aria-label="Select an option"
+                title="Select an option"
+                direction="column"
+                name="radioGroupMinimal3"
+                value="opt7"
+                fullWidth
+              >
+                <Radio value="opt7" label="Option 7" />
+                <Radio value="opt8" label="Option 8" />
+                <Radio value="opt9" label="Option 9" />
+              </RadioGroupMinimal>
+            </Box>
           </Box>
         </FormBox>
       </Container>
@@ -158,33 +168,38 @@ const FormBoxStory: React.FC = () => {
             title=""
             name="radioGroupMinimal4"
             value="opt10"
+            fullWidth
           >
             <Radio value="opt10" label="Option 10" />
             <Radio value="opt11" label="Option 11" />
             <Radio value="opt12" label="Option 12" />
           </RadioGroupMinimal>
           <Box>
-            <RadioGroup
-              aria-label="Select an option"
-              title="Select an option"
-              name="radioGroup5"
-              value="opt13"
+            <Box style={{ flex: 1 }}>
+              <RadioGroup
+                aria-label="Select an option"
+                title="Select an option"
+                name="radioGroup5"
+                value="opt13"
               >
-              <Radio value="opt13" label="Option 13" />
-              <Radio value="opt14" label="Option 14" />
-              <Radio value="opt15" label="Option 15" />
-            </RadioGroup>
-            <RadioGroupMinimal
-              aria-label="Select an option"
-              title="Select an option"
-              direction="column"
-              name="radioGroupMinimal6"
-              value="opt16"
-            >
-              <Radio value="opt16" label="Option 16" />
-              <Radio value="opt17" label="Option 17" />
-              <Radio value="opt18" label="Option 18" />
-            </RadioGroupMinimal>
+                <Radio value="opt13" label="Option 13" />
+                <Radio value="opt14" label="Option 14" />
+                <Radio value="opt15" label="Option 15" />
+              </RadioGroup>
+            </Box>
+            <Box style={{ flex: 1 }}>
+              <RadioGroupMinimal
+                aria-label="Select an option"
+                title="Select an option"
+                direction="column"
+                name="radioGroupMinimal6"
+                value="opt16"
+              >
+                <Radio value="opt16" label="Option 16" />
+                <Radio value="opt17" label="Option 17" />
+                <Radio value="opt18" label="Option 18" />
+              </RadioGroupMinimal>
+            </Box>
           </Box>
         </FormBox>
       </Container>
@@ -243,35 +258,40 @@ const FormBoxStory: React.FC = () => {
             color="inverse"
             name="radioGroupMinimal7"
             value="opt19"
+            fullWidth
           >
             <Radio value="opt19" label="Option 19" />
             <Radio value="opt20" label="Option 20" />
             <Radio value="opt21" label="Option 21" />
           </RadioGroupMinimal>
           <Box>
-            <RadioGroup
-              aria-label="Select an option"
-              title="Select an option"
-              name="radioGroup8"
-              value="opt22"
-              color="inverse"
+            <Box style={{ flex: 1 }}>
+              <RadioGroup
+                aria-label="Select an option"
+                title="Select an option"
+                name="radioGroup8"
+                value="opt22"
+                color="inverse"
               >
-              <Radio value="opt22" label="Option 22" />
-              <Radio value="opt23" label="Option 23" />
-              <Radio value="opt24" label="Option 24" />
-            </RadioGroup>
-            <RadioGroupMinimal
-              aria-label="Select an option"
-              title="Select an option"
-              direction="column"
-              color="inverse"
-              name="radioGroupMinimal9"
-              value="opt25"
-            >
-              <Radio value="opt25" label="Option 25" />
-              <Radio value="opt26" label="Option 26" />
-              <Radio value="opt27" label="Option 27" />
-            </RadioGroupMinimal>
+                <Radio value="opt22" label="Option 22" />
+                <Radio value="opt23" label="Option 23" />
+                <Radio value="opt24" label="Option 24" />
+              </RadioGroup>
+            </Box>
+            <Box style={{ flex: 1 }}>
+              <RadioGroupMinimal
+                aria-label="Select an option"
+                title="Select an option"
+                direction="column"
+                color="inverse"
+                name="radioGroupMinimal9"
+                value="opt25"
+              >
+                <Radio value="opt25" label="Option 25" />
+                <Radio value="opt26" label="Option 26" />
+                <Radio value="opt27" label="Option 27" />
+              </RadioGroupMinimal>
+            </Box>
           </Box>
         </FormBox>
       </Container>
@@ -330,35 +350,40 @@ const FormBoxStory: React.FC = () => {
             color="inverse"
             name="radioGroupMinimal10"
             value="opt28"
+            fullWidth
           >
             <Radio value="opt28" label="Option 28" />
             <Radio value="opt29" label="Option 29" />
             <Radio value="opt30" label="Option 30" />
           </RadioGroupMinimal>
           <Box>
-            <RadioGroup
-              aria-label="Select an option"
-              title="Select an option"
-              name="radioGroup11"
-              value="opt31"
-              color="inverse"
+            <Box style={{ flex: 1 }}>
+              <RadioGroup
+                aria-label="Select an option"
+                title="Select an option"
+                name="radioGroup11"
+                value="opt31"
+                color="inverse"
               >
-              <Radio value="opt31" label="Option 31" />
-              <Radio value="opt32" label="Option 32" />
-              <Radio value="opt33" label="Option 33" />
-            </RadioGroup>
-            <RadioGroupMinimal
-              aria-label="Select an option"
-              title="Select an option"
-              direction="column"
-              color="inverse"
-              name="radioGroupMinimal12"
-              value="opt34"
-            >
-              <Radio value="opt34" label="Option 34" />
-              <Radio value="opt35" label="Option 35" />
-              <Radio value="opt36" label="Option 36" />
-            </RadioGroupMinimal>
+                <Radio value="opt31" label="Option 31" />
+                <Radio value="opt32" label="Option 32" />
+                <Radio value="opt33" label="Option 33" />
+              </RadioGroup>
+            </Box>
+            <Box style={{ flex: 1 }}>
+              <RadioGroupMinimal
+                aria-label="Select an option"
+                title="Select an option"
+                direction="column"
+                color="inverse"
+                name="radioGroupMinimal12"
+                value="opt34"
+              >
+                <Radio value="opt34" label="Option 34" />
+                <Radio value="opt35" label="Option 35" />
+                <Radio value="opt36" label="Option 36" />
+              </RadioGroupMinimal>
+            </Box>
           </Box>
         </FormBox>
       </Container>
