@@ -33,6 +33,7 @@ export const useStyles = makeStyles(
       paddingTop: theme.pxToRem(7),
       position: 'relative',
       textAlign: 'center',
+      textOverflow: 'ellipsis',
       transition:
         'background-color 0.25s ease, color 0.25s ease, opacity 0.25s ease',
       userSelect: 'none',
