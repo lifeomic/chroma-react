@@ -10,7 +10,7 @@ export const useStyles = makeStyles(
   (theme) => ({
     root: {
       background: theme.palette.primary.main,
-      border: '0',
+      border: `1px solid transparent`,
       borderRadius: theme.pxToRem(4),
       color: theme.palette.common.white,
       cursor: 'pointer',
@@ -20,16 +20,15 @@ export const useStyles = makeStyles(
       fontSize: theme.typography.button.fontSize,
       fontWeight: theme.typography.fontWeightBold,
       letterSpacing: theme.pxToRem(0.5),
-      lineHeight: 1.6,
+      lineHeight: theme.pxToRem(19),
       margin: 0,
-      height: theme.pxToRem(35),
       minWidth: theme.pxToRem(64),
       outline: 'none',
       overflow: 'hidden',
-      paddingBottom: theme.pxToRem(5),
+      paddingBottom: theme.pxToRem(7),
       paddingLeft: theme.pxToRem(11),
       paddingRight: theme.pxToRem(11),
-      paddingTop: theme.pxToRem(5),
+      paddingTop: theme.pxToRem(7),
       position: 'relative',
       transition:
         'background-color 0.25s ease, color 0.25s ease, opacity 0.25s ease',
@@ -77,17 +76,17 @@ export const useStyles = makeStyles(
     },
     outlined: {
       backgroundColor: 'transparent',
-      border: `1px solid ${theme.palette.primary.main}`,
+      borderColor: theme.palette.primary.main,
       color: theme.palette.primary.main,
       transition: 'border 0.25s ease, color 0.25s ease',
       '&:hover': {
         backgroundColor: 'transparent',
-        border: `1px solid ${theme.palette.primary[900]}`,
+        borderColor: theme.palette.primary[900],
         color: theme.palette.primary[900],
       },
       '&:disabled': {
         backgroundColor: 'transparent',
-        border: `1px solid ${theme.palette.primary.main}`,
+        borderColor: theme.palette.primary.main,
         color: theme.palette.primary.main,
         opacity: 0.44,
       },
@@ -111,7 +110,6 @@ export const useStyles = makeStyles(
     },
     text: {
       backgroundColor: 'transparent',
-      border: 'unset',
       color: theme.palette.primary.main,
       transition: 'color 0.25s ease',
       '&:hover': {
