@@ -412,6 +412,7 @@ export const DayPicker = React.forwardRef<HTMLInputElement, DayPickerProps>(
             modifiers={{
               selected: value,
             }}
+            initialMonth={value}
             disabledDays={isDayDisabled}
             modifiersStyles={{
               selected: {
