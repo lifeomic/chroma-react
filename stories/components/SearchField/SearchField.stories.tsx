@@ -10,6 +10,8 @@ const SearchFieldStory: React.FC = () => {
     console.log(`Search entered with ${value}`);
   };
 
+  const [controlledValue, setControlledValue] = React.useState<string>('');
+
   return (
     <Container
       containerStyles={{ display: 'flex', flexFlow: 'wrap', padding: 0 }}
@@ -63,6 +65,14 @@ const SearchFieldStory: React.FC = () => {
             helpMessage="disableClearOnSearch enabled"
             disableClearOnSearch
           />
+          <SearchField
+            aria-label="Search"
+            helpMessage="Controlled component"
+            value={controlledValue}
+            onChange={(e) => setControlledValue(e.target.value)}
+            onSearch={handleSearchEnter}
+            onClear={() => console.log('cleared')}
+          />
         </FormBox>
       </Container>
 
@@ -100,6 +110,13 @@ const SearchFieldStory: React.FC = () => {
             onSearch={handleSearchEnter}
             helpMessage="disableClearOnSearch enabled"
             disableClearOnSearch
+          />
+          <SearchField
+            aria-label="Search"
+            helpMessage="Controlled component"
+            value={controlledValue}
+            onChange={(e) => setControlledValue(e.target.value)}
+            onSearch={handleSearchEnter}
           />
         </FormBox>
       </Container>
@@ -159,6 +176,14 @@ const SearchFieldStory: React.FC = () => {
             helpMessage="disableClearOnSearch enabled"
             disableClearOnSearch
           />
+          <SearchField
+            aria-label="Search"
+            color="inverse"
+            helpMessage="Controlled component"
+            value={controlledValue}
+            onChange={(e) => setControlledValue(e.target.value)}
+            onSearch={handleSearchEnter}
+          />
         </FormBox>
       </Container>
 
@@ -216,6 +241,14 @@ const SearchFieldStory: React.FC = () => {
             onSearch={handleSearchEnter}
             helpMessage="disableClearOnSearch enabled"
             disableClearOnSearch
+          />
+          <SearchField
+            aria-label="Search"
+            color="inverse"
+            helpMessage="Controlled component"
+            value={controlledValue}
+            onChange={(e) => setControlledValue(e.target.value)}
+            onSearch={handleSearchEnter}
           />
         </FormBox>
       </Container>

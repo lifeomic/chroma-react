@@ -235,7 +235,8 @@ export const SearchField = React.forwardRef<HTMLInputElement, SearchFieldProps>(
       onChange,
       onSearch,
       onClear,
-      value,
+      value: valueProp,
+      defaultValue,
       ...rootProps
     },
     ref
@@ -247,7 +248,11 @@ export const SearchField = React.forwardRef<HTMLInputElement, SearchFieldProps>(
     );
 
     const [showClear, setShowClear] = React.useState<boolean>(false);
-    const [searchText, setSearchText] = React.useState<string>('');
+    const [searchText, setSearchText] = React.useState<string>(
+      defaultValue?.toString() ?? ''
+    );
+    const isControlled = valueProp !== undefined;
+    const value = isControlled ? valueProp!.toString() : searchText;
 
     if (!ariaLabel && process.env.NODE_ENV === 'development') {
       console.warn(
@@ -262,13 +267,15 @@ export const SearchField = React.forwardRef<HTMLInputElement, SearchFieldProps>(
     };
 
     const handleBlur = () => {
-      if (searchText.length === 0) {
+      if (value.length === 0) {
         setShowClear(false);
       }
     };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      setSearchText(e.target.value);
+      if (!isControlled) {
+        setSearchText(e.target.value);
+      }
 
       if (showClear && e.target.value.length === 0) {
         setShowClear(false);
@@ -284,12 +291,12 @@ export const SearchField = React.forwardRef<HTMLInputElement, SearchFieldProps>(
     const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
       if (e.key === 'Enter' && !disableClearOnSearch) {
         setShowClear(false);
-        onSearch && onSearch(searchText);
+        onSearch && onSearch(value);
         setSearchText('');
       }
 
       if (e.key === 'Enter' && disableClearOnSearch) {
-        onSearch && onSearch(searchText);
+        onSearch && onSearch(value);
       }
     };
 
@@ -336,7 +343,7 @@ export const SearchField = React.forwardRef<HTMLInputElement, SearchFieldProps>(
           onKeyPress={handleKeyPress}
           onFocus={handleFocus}
           onBlur={handleBlur}
-          value={searchText}
+          value={value}
           {...rootProps}
         />
         <button
