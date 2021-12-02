@@ -22,6 +22,7 @@ export const useStyles = makeStyles(
       letterSpacing: theme.pxToRem(0.5),
       lineHeight: theme.pxToRem(19),
       margin: 0,
+      maxHeight: theme.pxToRem(35),
       minWidth: theme.pxToRem(64),
       outline: 'none',
       overflow: 'hidden',
