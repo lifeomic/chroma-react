@@ -11,6 +11,9 @@ export const useStyles = makeStyles(
       width: theme.spacing(2),
       height: theme.spacing(2),
       marginLeft: theme.spacing(1),
+      verticalAlign: 'middle',
+      position: 'relative',
+      top: theme.pxToRem(-1),
     },
   }),
   { name: MenuButtonStylesKey }
