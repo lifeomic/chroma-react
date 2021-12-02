@@ -145,12 +145,12 @@ export const useStyles = makeStyles(
       width: '100%',
     },
     icon: {
-      width: theme.spacing(2),
       height: theme.spacing(2),
       marginRight: theme.spacing(1),
-      verticalAlign: 'middle',
       position: 'relative',
       top: theme.pxToRem(-1),
+      verticalAlign: 'middle',
+      width: theme.spacing(2),
     },
     trailingIcon: {
       marginRight: 0,
