@@ -34,6 +34,7 @@ export const useStyles = makeStyles(
       paddingRight: theme.pxToRem(11),
       paddingTop: theme.pxToRem(7),
       position: 'relative',
+      textAlign: 'center',
       textDecoration: 'none',
       textOverflow: 'ellipsis',
       transition:
