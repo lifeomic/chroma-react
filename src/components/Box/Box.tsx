@@ -83,6 +83,7 @@ export const useStyles = makeStyles<BoxProps>(
       alignBaseline: { alignItems: 'baseline' },
       alignCenter: { alignItems: 'center' },
       alignStart: { alignItems: 'start' },
+      flexWrap: { flexWrap: ({ flexWrap }) => (flexWrap ? 'wrap' : 'nowrap') },
       alignFlexStart: { alignItems: 'flex-start' },
       alignEnd: { alignItems: 'end' },
       alignFlexEnd: { alignItems: 'flex-end' },
@@ -155,6 +156,7 @@ export const Box = React.forwardRef<HTMLDivElement, BoxProps>((props, ref) => {
     children,
     align,
     direction,
+    flexWrap,
     justify,
     height,
     width,
@@ -188,6 +190,9 @@ export const Box = React.forwardRef<HTMLDivElement, BoxProps>((props, ref) => {
       ref={ref}
       className={clsx(
         classes.root,
+        {
+          [classes.flexWrap]: flexWrap,
+        },
         {
           [classes.directionRow]: direction === 'row',
           [classes.directionColumn]: direction === 'column',
