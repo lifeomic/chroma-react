@@ -138,6 +138,14 @@ test('it renders a Box with "fullHeight"', async () => {
   expect(root).toHaveClass('ChromaBox-fullHeight');
 });
 
+test('it renders a Box with flexWrap', async () => {
+  const { findByTestId } = renderWithTheme(
+    <Box flexWrap data-testid={testId} />
+  );
+  const root = await findByTestId(testId);
+  expect(root).toHaveClass('ChromaBox-flexWrap');
+});
+
 test('it renders a Box with combined props', async () => {
   const { findByTestId } = renderWithTheme(
     <Box
@@ -180,6 +188,7 @@ test('it renders a Box with combined CSS props', async () => {
       color="#fff"
       bgColor="primary.main"
       data-testid={testId}
+      flexWrap
     />
   );
   const root = await findByTestId(testId);
@@ -202,4 +211,5 @@ test('it renders a Box with combined CSS props', async () => {
   expect(root).toHaveClass('ChromaBox-borderRadius');
   expect(root).toHaveClass('ChromaBox-color');
   expect(root).toHaveClass('ChromaBox-bgColor');
+  expect(root).toHaveClass('ChromaBox-flexWrap');
 });
