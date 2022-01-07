@@ -83,7 +83,7 @@ export const useStyles = makeStyles<BoxProps>(
       alignBaseline: { alignItems: 'baseline' },
       alignCenter: { alignItems: 'center' },
       alignStart: { alignItems: 'start' },
-      flexWrap: { flexWrap: ({ flexWrap }) => (flexWrap ? 'wrap' : 'nowrap') },
+      flexWrap: { flexWrap: 'wrap' },
       alignFlexStart: { alignItems: 'flex-start' },
       alignEnd: { alignItems: 'end' },
       alignFlexEnd: { alignItems: 'flex-end' },
