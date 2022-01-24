@@ -54,7 +54,8 @@ const BoxStory: React.FC = () => {
   const fullWidth = boolean('fullWidth', true, containerGroup);
 
   const margin = selectSpacing('margin', containerGroup);
-  const padding = selectSpacing('padding', containerGroup, 2);
+  const padding = selectSpacing('padding', containerGroup, 4);
+  const gap = selectSpacing('gap', containerGroup, 2);
 
   const borderRadius = boolean('borderRadius', true, containerGroup);
 
@@ -85,6 +86,7 @@ const BoxStory: React.FC = () => {
           width={width}
           fullHeight={fullHeight}
           fullWidth={fullWidth}
+          gap={gap}
           margin={margin}
           padding={padding}
           color={color}
