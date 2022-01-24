@@ -36,6 +36,7 @@ export interface BoxProps
   width?: number | string;
   fullHeight?: boolean;
   fullWidth?: boolean;
+  gap?: number | string;
   margin?: number | string;
   marginTop?: number | string;
   marginBottom?: number | string;
@@ -141,6 +142,11 @@ export const useStyles = makeStyles<BoxProps>(
         paddingTop: ({ paddingY }) => stringOrThemeSpacing(paddingY),
         paddingBottom: ({ paddingY }) => stringOrThemeSpacing(paddingY),
       },
+      gap: {
+        gap: ({ gap }) => {
+          return `${stringOrThemeSpacing(gap)}px`;
+        },
+      },
       borderRadius: { borderRadius: theme.shape.borderRadius },
       color: { color: ({ color }) => stringOrThemeColor(color) },
       bgColor: {
@@ -157,6 +163,7 @@ export const Box = React.forwardRef<HTMLDivElement, BoxProps>((props, ref) => {
     align,
     direction,
     flexWrap,
+    gap,
     justify,
     height,
     width,
@@ -216,6 +223,7 @@ export const Box = React.forwardRef<HTMLDivElement, BoxProps>((props, ref) => {
         width && classes.width,
         fullWidth && classes.fullWidth,
         fullHeight && classes.fullHeight,
+        gap && classes.gap,
         margin && classes.margin,
         marginTop && classes.marginTop,
         marginBottom && classes.marginBottom,
