@@ -168,6 +168,7 @@ test('it renders a Box with combined props', async () => {
 test('it renders a Box with combined CSS props', async () => {
   const { findByTestId } = renderWithTheme(
     <Box
+      gap={2}
       margin="20px"
       marginTop={1}
       marginBottom={1}
@@ -194,6 +195,7 @@ test('it renders a Box with combined CSS props', async () => {
   const root = await findByTestId(testId);
   expect(root).toHaveClass('ChromaBox-height');
   expect(root).toHaveClass('ChromaBox-width');
+  expect(root).toHaveClass('ChromaBox-gap');
   expect(root).toHaveClass('ChromaBox-margin');
   expect(root).toHaveClass('ChromaBox-marginTop');
   expect(root).toHaveClass('ChromaBox-marginBottom');
