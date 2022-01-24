@@ -6,6 +6,7 @@ import md from './default.md';
 import { boolean, select } from '@storybook/addon-knobs';
 import { ItemBox } from './ItemBox';
 import selectSpacing from './selectSpacing';
+import selectGap from './selectGap';
 import selectColor from './selectColor';
 
 const containerGroup = 'Container Box';
@@ -55,7 +56,7 @@ const BoxStory: React.FC = () => {
 
   const margin = selectSpacing('margin', containerGroup);
   const padding = selectSpacing('padding', containerGroup, 4);
-  const gap = selectSpacing('gap', containerGroup, 2);
+  const gap = selectGap('gap', containerGroup, 2);
 
   const borderRadius = boolean('borderRadius', true, containerGroup);
 
