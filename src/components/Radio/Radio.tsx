@@ -12,6 +12,7 @@ import { generateUniqueId } from '../_private/UniqueId';
 import { Text } from '../Text';
 import { useRadioGroup } from './useRadioGroup';
 import mergeRefs from 'react-merge-refs';
+import { Tooltip } from '../Tooltip';
 
 export const RadioStylesKey = 'ChromaRadio';
 
@@ -104,22 +105,40 @@ export const useStyles = makeStyles(
     labelInverse: {
       color: theme.palette.common.white,
     },
+    icon: {
+      height: theme.pxToRem(16),
+      width: theme.pxToRem(16),
+    },
+    iconWithLabel: {
+      marginRight: theme.spacing(0.5),
+    },
+    tooltipContainer: {
+      display: 'flex',
+      outline: 'none',
+    },
+    tooltipContent: {
+      height: theme.pxToRem(16),
+    },
   }),
   { name: RadioStylesKey }
 );
 
 export type RadioClasses = GetClasses<typeof useStyles>;
 
-export interface RadioProps extends BaseFormElement {}
+export interface RadioProps extends BaseFormElement {
+  icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+}
 
 export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
   (
     {
+      ['aria-label']: ariaLabel,
       className,
       children,
       checked = false,
       color,
       helpMessage,
+      icon: Icon,
       id,
       label,
       value,
@@ -145,6 +164,19 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
       onChangeFromContext && onChangeFromContext(e);
     };
 
+    const renderIcon = () =>
+      Icon && (
+        <Icon
+          className={clsx(
+            classes.icon,
+            label && classes.iconWithLabel,
+            color === 'inverse' || colorFromContext === 'inverse'
+              ? classes.labelInverse
+              : undefined
+          )}
+        />
+      );
+
     return (
       // eslint-disable-next-line jsx-a11y/no-static-element-interactions
       <div
@@ -156,6 +188,7 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
             hasHelpMessage: !!helpMessage,
             uniqueId,
           })}
+          aria-label={ariaLabel}
           className={clsx(classes.input, {
             [classes.inputInverse]:
               color === 'inverse' || colorFromContext === 'inverse',
@@ -176,6 +209,18 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
           {...rootProps}
         />
         <div className={classes.labelContainer}>
+          {Icon && (
+            <>
+              {label ? (
+                renderIcon()
+              ) : (
+                <Tooltip className={classes.tooltipContainer} title={ariaLabel}>
+                  <span className={classes.tooltipContent}>{renderIcon()}</span>
+                </Tooltip>
+              )}
+            </>
+          )}
+
           <label className={classes.label} htmlFor={uniqueId}>
             <Text
               size="subbody"

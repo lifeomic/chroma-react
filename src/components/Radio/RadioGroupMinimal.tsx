@@ -64,7 +64,7 @@ export const useStyles = makeStyles(
             width: '100%',
             zIndex: 1,
           },
-          '& label > p': {
+          '& label > p, & svg': {
             position: 'relative',
             transition: 'color 0.15s ease-in',
             zIndex: 2,
@@ -86,7 +86,7 @@ export const useStyles = makeStyles(
             transitionProperty: 'transform, opacity',
             background: theme.palette.primary.main,
           },
-          '& label > p': {
+          '& label > p, & svg': {
             color: theme.palette.common.white,
             transition: 'color 0.25s ease-out',
           },
@@ -117,7 +117,7 @@ export const useStyles = makeStyles(
         '&::before': {
           background: 'rgba(255, 255, 255, 0.5)',
         },
-        '& label > p': {
+        '& label > p, & svg': {
           color: 'unset',
         },
       },

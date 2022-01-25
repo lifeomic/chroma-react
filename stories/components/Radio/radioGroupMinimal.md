@@ -92,6 +92,16 @@ return <RadioGroupMinimal onChange={handleChange} />;
 Use this event to determine which value is selected. The `e.target.value`
 argument will provide the "value" of the Radio selected.
 
+### Icon
+
+An icon can be provided. If a label is not provided, but an aria-label is, that label
+will be used as the tooltip message.
+
+```jsx
+<RadioGroupMinimal aria-label="Option 1" icon={User} label="" />
+<RadioGroupMinimal icon={User} label="Option 1" />
+```
+
 ### Background
 
 The background can be turned off.

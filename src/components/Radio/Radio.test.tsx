@@ -1,3 +1,4 @@
+import { User } from '@lifeomic/chromicons';
 import { fireEvent } from '@testing-library/dom';
 import * as React from 'react';
 import { renderWithTheme } from '../../testUtils/renderWithTheme';
@@ -166,4 +167,44 @@ test('it applies aria-describedby for helpMessage', async () => {
 
   const input = await findByTestId(testId);
   expect(input.getAttribute('aria-describedby')).toEqual('help-for-unique-id');
+});
+
+test('it renders icon', () => {
+  const props = getBaseProps();
+  renderWithTheme(<Radio {...props} icon={User} data-testid={testId} />);
+
+  const icon = document.querySelector('svg[data-icon=SvgUser]');
+  expect(icon).toBeInTheDocument();
+});
+
+test('it renders icon tooltip', async () => {
+  const props = getBaseProps();
+  const { findByText } = renderWithTheme(
+    <Radio
+      {...props}
+      icon={User}
+      data-testid={testId}
+      label=""
+      aria-label="My Icon"
+    />
+  );
+
+  const tooltip = await findByText('My Icon');
+  expect(tooltip).toBeInTheDocument();
+});
+
+test('it does not render icon tooltip if label is provided', () => {
+  const props = getBaseProps();
+  const { queryByText } = renderWithTheme(
+    <Radio
+      {...props}
+      icon={User}
+      data-testid={testId}
+      label="My Label"
+      aria-label="My Icon"
+    />
+  );
+
+  const tooltip = queryByText('My Icon');
+  expect(tooltip).not.toBeInTheDocument();
 });
