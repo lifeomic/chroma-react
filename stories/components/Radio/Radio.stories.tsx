@@ -14,6 +14,7 @@ import { Container } from '../../storyComponents/Container';
 import radioMd from './radio.md';
 import radioGroupMd from './radioGroup.md';
 import radioGroupMinimalMd from './radioGroupMinimal.md';
+import { RectangleH, RectangleV } from '@lifeomic/chromicons';
 
 const getPropOptions = (): RadioGroupProps => {
   return {
@@ -294,13 +295,51 @@ const RadioMinimalStory: React.FC = () => {
           <RadioGroupMinimal
             title="Select an option"
             aria-label="Select an option"
-            name="chroma1"
-            value="opt2"
+            name="chroma"
+            value="opt1"
             onChange={handleChange}
             {...getMinimalPropOptions()}
           >
-            <Radio value="opt1" label="Option 1" />
-            <Radio value="opt2" label="Option 2" />
+            <Radio
+              value="opt0"
+              label=""
+              icon={RectangleH}
+              aria-label="Option"
+            />
+            <Radio
+              value="opt1"
+              label=""
+              icon={RectangleV}
+              aria-label="Option 1"
+            />
+          </RadioGroupMinimal>
+
+          <Divider style={{ marginBottom: '1.5rem' }} />
+
+          <RadioGroupMinimal
+            title="Select an option"
+            aria-label="Select an option"
+            name="chroma0"
+            value="opt3"
+            onChange={handleChange}
+            {...getMinimalPropOptions()}
+          >
+            <Radio value="opt2" label="Option 2" icon={RectangleH} />
+            <Radio value="opt3" label="Option 3" icon={RectangleV} />
+          </RadioGroupMinimal>
+
+          <Divider style={{ marginBottom: '1.5rem' }} />
+
+          <RadioGroupMinimal
+            title="Select an option"
+            aria-label="Select an option"
+            name="chroma1"
+            value="opt5"
+            onChange={handleChange}
+            {...getMinimalPropOptions()}
+          >
+            <Radio value="opt4" label="Option 4" />
+            <Radio value="opt5" label="Option 5" />
           </RadioGroupMinimal>
 
           <Divider style={{ marginBottom: '1.5rem' }} />
@@ -309,13 +348,13 @@ const RadioMinimalStory: React.FC = () => {
             aria-label="RadioGroup with no title"
             title=""
             name="chroma2"
-            value="opt5"
+            value="opt8"
             onChange={handleChange}
             {...getMinimalPropOptions()}
           >
-            <Radio value="opt3" label="Option 3" />
-            <Radio value="opt4" label="Option 4" />
-            <Radio value="opt5" label="Option 5" />
+            <Radio value="opt6" label="Option 6" />
+            <Radio value="opt7" label="Option 7" />
+            <Radio value="opt8" label="Option 8" />
           </RadioGroupMinimal>
         </FormBox>
       </Container>
@@ -329,29 +368,68 @@ const RadioMinimalStory: React.FC = () => {
       >
         <FormBox padding={2}>
           <RadioGroupMinimal
-            aria-label="Select an option"
             title="Select an option"
+            aria-label="Select an option"
             name="chroma3"
-            value="opt7"
-            onChange={handleChange}
-            {...getMinimalPropOptions()}
-          >
-            <Radio value="opt6" label="Option 6" />
-            <Radio value="opt7" label="Option 7" />
-          </RadioGroupMinimal>
-
-          <Divider style={{ marginBottom: '1.5rem' }} />
-          <RadioGroupMinimal
-            aria-label="RadioGroup with no title"
-            title=""
-            name="chroma4"
             value="opt10"
             onChange={handleChange}
             {...getMinimalPropOptions()}
           >
-            <Radio value="opt8" label="Option 8" />
-            <Radio value="opt9" label="Option 9" />
-            <Radio value="opt10" label="Option 10" />
+            <Radio
+              value="opt9"
+              label=""
+              icon={RectangleH}
+              aria-label="Option 9"
+            />
+            <Radio
+              value="opt10"
+              label=""
+              icon={RectangleV}
+              aria-label="Option 10"
+            />
+          </RadioGroupMinimal>
+
+          <Divider style={{ marginBottom: '1.5rem' }} />
+
+          <RadioGroupMinimal
+            title="Select an option"
+            aria-label="Select an option"
+            name="chroma4"
+            value="opt12"
+            onChange={handleChange}
+            {...getMinimalPropOptions()}
+          >
+            <Radio value="opt11" label="Option 11" icon={RectangleH} />
+            <Radio value="opt12" label="Option 12" icon={RectangleV} />
+          </RadioGroupMinimal>
+
+          <Divider style={{ marginBottom: '1.5rem' }} />
+
+          <RadioGroupMinimal
+            aria-label="Select an option"
+            title="Select an option"
+            name="chroma5"
+            value="opt14"
+            onChange={handleChange}
+            {...getMinimalPropOptions()}
+          >
+            <Radio value="opt13" label="Option 13" />
+            <Radio value="opt14" label="Option 14" />
+          </RadioGroupMinimal>
+
+          <Divider style={{ marginBottom: '1.5rem' }} />
+
+          <RadioGroupMinimal
+            aria-label="RadioGroup with no title"
+            title=""
+            name="chroma6"
+            value="opt17"
+            onChange={handleChange}
+            {...getMinimalPropOptions()}
+          >
+            <Radio value="opt15" label="Option 15" />
+            <Radio value="opt16" label="Option 16" />
+            <Radio value="opt17" label="Option 17" />
           </RadioGroupMinimal>
         </FormBox>
       </Container>
@@ -368,13 +446,53 @@ const RadioMinimalStory: React.FC = () => {
             aria-label="Select an option"
             title="Select an option"
             color="inverse"
-            name="chroma5"
-            value="opt11"
+            name="chroma7"
+            value="opt19"
             onChange={handleChange}
             {...getMinimalPropOptions()}
           >
-            <Radio value="opt11" label="Option 11" />
-            <Radio value="opt12" label="Option 12" />
+            <Radio
+              value="opt18"
+              label=""
+              icon={RectangleH}
+              aria-label="Option 18"
+            />
+            <Radio
+              value="opt19"
+              label=""
+              icon={RectangleV}
+              aria-label="Option 19"
+            />
+          </RadioGroupMinimal>
+
+          <Divider style={{ marginBottom: '1.5rem' }} />
+
+          <RadioGroupMinimal
+            aria-label="Select an option"
+            title="Select an option"
+            color="inverse"
+            name="chroma8"
+            value="opt21"
+            onChange={handleChange}
+            {...getMinimalPropOptions()}
+          >
+            <Radio value="opt20" label="Option 20" icon={RectangleH} />
+            <Radio value="opt21" label="Option 21" icon={RectangleV} />
+          </RadioGroupMinimal>
+
+          <Divider style={{ marginBottom: '1.5rem' }} />
+
+          <RadioGroupMinimal
+            aria-label="Select an option"
+            title="Select an option"
+            color="inverse"
+            name="chroma9"
+            value="opt23"
+            onChange={handleChange}
+            {...getMinimalPropOptions()}
+          >
+            <Radio value="opt22" label="Option 22" />
+            <Radio value="opt23" label="Option 23" />
           </RadioGroupMinimal>
 
           <Divider style={{ marginBottom: '1.5rem' }} />
@@ -383,14 +501,14 @@ const RadioMinimalStory: React.FC = () => {
             aria-label="RadioGroup with no title"
             title=""
             color="inverse"
-            name="chroma6"
-            value="opt13"
+            name="chroma10"
+            value="opt26"
             onChange={handleChange}
             {...getMinimalPropOptions()}
           >
-            <Radio value="opt13" label="Option 13" />
-            <Radio value="opt14" label="Option 14" />
-            <Radio value="opt15" label="Option 15" />
+            <Radio value="opt24" label="Option 24" />
+            <Radio value="opt25" label="Option 25" />
+            <Radio value="opt26" label="Option 26" />
           </RadioGroupMinimal>
         </FormBox>
       </Container>
@@ -407,13 +525,53 @@ const RadioMinimalStory: React.FC = () => {
             aria-label="Select an option"
             title="Select an option"
             color="inverse"
-            name="chroma7"
-            value="opt16"
+            name="chroma11"
+            value="opt28"
             onChange={handleChange}
             {...getMinimalPropOptions()}
           >
-            <Radio value="opt16" label="Option 16" />
-            <Radio value="opt17" label="Option 17" />
+            <Radio
+              value="opt27"
+              label=""
+              icon={RectangleH}
+              aria-label="Option 27"
+            />
+            <Radio
+              value="opt28"
+              label=""
+              icon={RectangleV}
+              aria-label="Option 28"
+            />
+          </RadioGroupMinimal>
+
+          <Divider style={{ marginBottom: '1.5rem' }} />
+
+          <RadioGroupMinimal
+            aria-label="Select an option"
+            title="Select an option"
+            color="inverse"
+            name="chroma12"
+            value="opt30"
+            onChange={handleChange}
+            {...getMinimalPropOptions()}
+          >
+            <Radio value="opt29" label="Option 29" icon={RectangleH} />
+            <Radio value="opt30" label="Option 30" icon={RectangleV} />
+          </RadioGroupMinimal>
+
+          <Divider style={{ marginBottom: '1.5rem' }} />
+
+          <RadioGroupMinimal
+            aria-label="Select an option"
+            title="Select an option"
+            color="inverse"
+            name="chroma13"
+            value="opt32"
+            onChange={handleChange}
+            {...getMinimalPropOptions()}
+          >
+            <Radio value="opt31" label="Option 31" />
+            <Radio value="opt32" label="Option 32" />
           </RadioGroupMinimal>
 
           <Divider style={{ marginBottom: '1.5rem' }} />
@@ -422,14 +580,14 @@ const RadioMinimalStory: React.FC = () => {
             aria-label="RadioGroup with no title"
             title=""
             color="inverse"
-            name="chroma8"
-            value="opt22"
+            name="chroma14"
+            value="opt35"
             onChange={handleChange}
             {...getMinimalPropOptions()}
           >
-            <Radio value="opt18" label="Option 18" />
-            <Radio value="opt19" label="Option 19" />
-            <Radio value="opt20" label="Option 20" />
+            <Radio value="opt33" label="Option 33" />
+            <Radio value="opt34" label="Option 34" />
+            <Radio value="opt35" label="Option 35" />
           </RadioGroupMinimal>
         </FormBox>
       </Container>
