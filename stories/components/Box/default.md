@@ -75,7 +75,8 @@ An justify prop can be applied, which sets `justifyContent`. Valid options are
 
 Numbers are multiplied by the default theme spacing. Strings are are used as raw
 CSS. As well as `margin` and `padding`, the top, bottom, left, right, x and y
-versions of each are supported.
+versions of each are supported. For a more modern, straightforward approach to handle spacing
+between children, use the `gap` prop.
 
 ```jsx
 <Box margin={2} padding="1px">
@@ -84,6 +85,21 @@ versions of each are supported.
 
 <Box marginTop={4} marginX="auto" paddingY={1}>
   <p>Top margin 32px, centered, with left and right padding at 8px</p>
+</Box>
+```
+
+---
+
+### Gap
+
+Numbers are multiplied by the default theme spacing. Strings are used as raw
+CSS.
+
+```jsx
+<Box gap={2}>
+  <p>Gap between paragraphs is 16px</p>
+  <p>Gap between paragraphs is 16px</p>
+  <p>Gap between paragraphs is 16px</p>
 </Box>
 ```
 

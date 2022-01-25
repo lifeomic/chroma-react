@@ -24,7 +24,7 @@ const options = {
   '"25%"': '25%',
   '"50%"': '50%',
   '"75%"': '75%',
-  '"auto"': 'auto',
+  '"normal"': 'normal',
 };
 
 export default (

@@ -13,7 +13,7 @@ export const ItemBox = ({ count }: { count: number }) => {
   const fullHeight = boolean('fullHeight', false, knobGroup);
   const fullWidth = boolean('fullWidth', false, knobGroup);
 
-  const margin = selectSpacing('margin', knobGroup, 2);
+  const margin = selectSpacing('margin', knobGroup);
   const marginTop = selectSpacing('marginTop', knobGroup);
   const marginBottom = selectSpacing('marginBottom', knobGroup);
   const marginLeft = selectSpacing('marginLeft', knobGroup);
@@ -21,7 +21,7 @@ export const ItemBox = ({ count }: { count: number }) => {
   const marginX = selectSpacing('marginX', knobGroup);
   const marginY = selectSpacing('marginY', knobGroup);
 
-  const padding = selectSpacing('padding', knobGroup, 5);
+  const padding = selectSpacing('padding', knobGroup, 4);
   const paddingTop = selectSpacing('paddingTop', knobGroup);
   const paddingBottom = selectSpacing('paddingBottom', knobGroup);
   const paddingLeft = selectSpacing('paddingLeft', knobGroup);
