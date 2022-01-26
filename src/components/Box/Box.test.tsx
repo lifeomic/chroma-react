@@ -146,6 +146,14 @@ test('it renders a Box with flexWrap', async () => {
   expect(root).toHaveClass('ChromaBox-flexWrap');
 });
 
+test('it renders a Box with flexChildren', async () => {
+  const { findByTestId } = renderWithTheme(
+    <Box flexChildren data-testid={testId} />
+  );
+  const root = await findByTestId(testId);
+  expect(root).toHaveClass('ChromaBox-flexChildren');
+});
+
 test('it renders a Box with combined props', async () => {
   const { findByTestId } = renderWithTheme(
     <Box
@@ -190,6 +198,7 @@ test('it renders a Box with combined CSS props', async () => {
       bgColor="primary.main"
       data-testid={testId}
       flexWrap
+      flexChildren
     />
   );
   const root = await findByTestId(testId);
@@ -214,4 +223,5 @@ test('it renders a Box with combined CSS props', async () => {
   expect(root).toHaveClass('ChromaBox-color');
   expect(root).toHaveClass('ChromaBox-bgColor');
   expect(root).toHaveClass('ChromaBox-flexWrap');
+  expect(root).toHaveClass('ChromaBox-flexChildren');
 });
