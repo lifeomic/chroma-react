@@ -122,6 +122,22 @@ CSS.
 
 ---
 
+### Flex Children
+
+All direct children of `<Box` will flex to fill the height and width of parent.
+This provides a quick way to fill parent container with child content without
+the need to manipulate any child props.
+
+```jsx
+<Box fullHeight fullWidth flexChildren>
+  <p>Flex to fill height and width of parent</p>
+  <p>Flex to fill height and width of parent</p>
+  <p>Flex to fill height and width of parent</p>
+</Box>
+```
+
+---
+
 ### Color
 
 Color props take a string dot notation to the theme palette properties, or are

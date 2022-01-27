@@ -14,6 +14,8 @@ const containerGroup = 'Container Box';
 const BoxStory: React.FC = () => {
   const [itemBoxes, setItemBoxes] = React.useState([null, null, null]);
 
+  const flexChildren = boolean('flexChildren', false, containerGroup);
+
   const direction = select(
     'direction',
     { undefined: undefined, 'row (default)': 'row', column: 'column' },
@@ -83,6 +85,7 @@ const BoxStory: React.FC = () => {
           direction={direction}
           align={align}
           justify={justify}
+          flexChildren={flexChildren}
           height={height}
           width={width}
           fullHeight={fullHeight}

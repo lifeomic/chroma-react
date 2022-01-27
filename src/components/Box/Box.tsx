@@ -16,6 +16,7 @@ export interface BoxProps
   > {
   ref?: React.Ref<HTMLDivElement>;
   className?: string;
+  flexChildren?: boolean;
   flexWrap?: boolean;
   align?:
     | 'stretch'
@@ -89,6 +90,11 @@ export const useStyles = makeStyles<BoxProps>(
       alignBaseline: { alignItems: 'baseline' },
       alignCenter: { alignItems: 'center' },
       alignStart: { alignItems: 'start' },
+      flexChildren: {
+        '& > *': {
+          flex: 1,
+        },
+      },
       flexWrap: { flexWrap: 'wrap' },
       alignFlexStart: { alignItems: 'flex-start' },
       alignEnd: { alignItems: 'end' },
@@ -165,6 +171,7 @@ export const Box = React.forwardRef<HTMLDivElement, BoxProps>((props, ref) => {
     children,
     align,
     direction,
+    flexChildren,
     flexWrap,
     gap,
     justify,
@@ -200,6 +207,9 @@ export const Box = React.forwardRef<HTMLDivElement, BoxProps>((props, ref) => {
       ref={ref}
       className={clsx(
         classes.root,
+        {
+          [classes.flexChildren]: flexChildren,
+        },
         {
           [classes.flexWrap]: flexWrap,
         },
