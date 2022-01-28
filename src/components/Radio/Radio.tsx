@@ -117,6 +117,7 @@ export const useStyles = makeStyles(
       outline: 'none',
     },
     tooltipContent: {
+      display: 'flex',
       height: theme.pxToRem(16),
     },
   }),
