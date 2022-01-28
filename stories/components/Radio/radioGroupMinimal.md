@@ -98,8 +98,10 @@ An icon can be provided. If a label is not provided, but an aria-label is, that 
 will be used as the tooltip message.
 
 ```jsx
-<RadioGroupMinimal aria-label="Option 1" icon={User} label="" />
-<RadioGroupMinimal icon={User} label="Option 1" />
+<RadioGroupMinimal>
+  <Radio aria-label="Option 1" icon={User} label="" />
+  <Radio icon={User} label="Option 1" />
+</RadioGroupMinimal>
 ```
 
 ### Background
