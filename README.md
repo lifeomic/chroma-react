@@ -115,4 +115,5 @@ Want to override the default theme of Chroma? No problem!
       const classes = useStyles({});
       return <button className={classes.root}>Custom Button</button>;
     };
+    
     ```
