@@ -135,6 +135,7 @@ export const Tab: React.FC<TabProps> = ({
       disabled={disabled}
       onClick={onClick}
       id={stopId}
+      type="button"
       {...rootProps}
     >
       {variant === 'pill' ? <span>{children}</span> : children}
