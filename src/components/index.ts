@@ -4,12 +4,12 @@ import * as BoxComponents from './Box';
 import * as BreadcrumbComponents from './Breadcrumbs';
 import * as ButtonComponents from './Button';
 import * as ButtonFilePickerComponents from './ButtonFilePicker';
-import * as ButtonFloatComponennts from './ButtonFloat';
+import * as ButtonFloatComponents from './ButtonFloat';
 import * as ButtonLinkComponents from './ButtonLink';
 import * as ButtonUnstyledComponents from './ButtonUnstyled';
 import * as CheckboxComponents from './Checkbox';
 import * as ChipComponents from './Chip';
-import * as ColorPicker from './ColorPicker';
+import * as ColorPickerComponents from './ColorPicker';
 import * as DayPickerComponents from './DayPicker';
 import * as DividerComponents from './Divider';
 import * as DotLoaderComponents from './DotLoader';
@@ -59,12 +59,12 @@ export default {
   BreadcrumbComponents,
   ButtonComponents,
   ButtonFilePickerComponents,
-  ButtonFloatComponennts,
+  ButtonFloatComponents,
   ButtonLinkComponents,
   ButtonUnstyledComponents,
   CheckboxComponents,
   ChipComponents,
-  ColorPicker,
+  ColorPickerComponents,
   DayPickerComponents,
   DividerComponents,
   DotLoaderComponents,
