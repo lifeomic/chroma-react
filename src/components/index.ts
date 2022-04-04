@@ -52,7 +52,7 @@ import * as TextFieldComponents from './TextField';
 import * as ToggleComponents from './Toggle';
 import * as TooltipComponents from './Tooltip';
 
-export default {
+export {
   AlertComponents,
   AvatarComponents,
   BoxComponents,
