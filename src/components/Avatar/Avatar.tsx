@@ -67,6 +67,7 @@ export const useStyles = makeStyles(
 export type AvatarClasses = GetClasses<typeof useStyles>;
 
 export interface AvatarProps extends React.ComponentPropsWithoutRef<'div'> {
+  children?: React.ReactNode;
   name: string;
   size?: 0 | 1 | 2;
   src?: string;

@@ -40,6 +40,7 @@ export type MenuItemClasses = GetClasses<typeof useStyles>;
 
 export interface MenuItemProps
   extends React.ComponentPropsWithoutRef<'button'> {
+  children?: React.ReactNode;
   icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   text?: string;
 }

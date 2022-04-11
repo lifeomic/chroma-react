@@ -158,6 +158,7 @@ export const useStyles = makeStyles(
 export type ButtonLinkClasses = GetClasses<typeof useStyles>;
 
 export interface ButtonLinkProps extends LinkProps {
+  children?: React.ReactNode;
   color?: ButtonProps['color'];
   disabled?: ButtonProps['disabled'];
   fullWidth?: ButtonProps['fullWidth'];

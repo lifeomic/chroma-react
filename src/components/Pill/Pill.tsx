@@ -51,8 +51,9 @@ export interface PillOwnProps
       'onAnimationStart' | 'onDrag' | 'onDragEnd' | 'onDragStart' | 'style'
     >,
     MotionProps {
-  label?: string;
   color?: 'primary' | 'default';
+  children?: React.ReactNode;
+  label?: string;
   variant?: 'default' | 'highlight';
 }
 

@@ -60,6 +60,7 @@ export interface BreadcrumbProps
     React.HTMLAttributes<HTMLLIElement>,
     HTMLLIElement
   > {
+  children?: React.ReactNode;
   color?: 'inverse' | 'default';
   isCurrentPage?: boolean;
   text: string;

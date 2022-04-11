@@ -153,6 +153,7 @@ export interface RadioGroupMinimalProps
     'aria-label' | 'color' | 'name' | 'onChange' | 'value'
   > {
   background?: boolean;
+  children?: React.ReactNode;
   className?: string;
   direction?: 'row' | 'column';
   fullWidth?: boolean;

@@ -33,6 +33,7 @@ export type ModalActionsClasses = GetClasses<typeof useStyles>;
 
 export interface ModalActionsProps
   extends React.ComponentPropsWithoutRef<'div'> {
+  children?: React.ReactNode;
   justify?: 'space-between' | 'flex-end';
 }
 

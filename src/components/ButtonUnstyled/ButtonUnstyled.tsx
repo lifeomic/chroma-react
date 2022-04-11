@@ -36,6 +36,7 @@ export type ButtonUnstyledClasses = GetClasses<typeof useStyles>;
 
 export interface ButtonUnstyledProps
   extends React.ComponentPropsWithoutRef<'button'> {
+  children?: React.ReactNode;
   disabled?: boolean;
   fullWidth?: boolean;
 }

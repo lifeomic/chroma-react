@@ -148,6 +148,7 @@ export interface PrimaryNavigationExpansionItemProps
     >,
     Pick<NavLinkProps, 'exact' | 'to'>,
     MotionProps {
+  children?: React.ReactNode;
   rootParentPath?: string;
   label?: string;
   beta?: boolean;

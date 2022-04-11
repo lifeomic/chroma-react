@@ -55,6 +55,7 @@ export const useStyles = makeStyles(
 export type AlertBodyClasses = GetClasses<typeof useStyles>;
 
 export interface AlertBodyProps {
+  children?: React.ReactNode;
   className?: string;
   spaceBetween?: boolean;
 }

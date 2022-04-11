@@ -62,6 +62,7 @@ export type PopoverItemClasses = GetClasses<typeof useStyles>;
 
 export interface PopoverItemOwnProps
   extends StandardProps<HTMLLIElement, PopoverItemClasses> {
+  children?: React.ReactNode;
   clipText?: boolean;
   icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   text?: string;

@@ -33,6 +33,7 @@ export interface PopoverActionsOwnProps
     React.HTMLAttributes<HTMLDivElement>,
     HTMLDivElement
   > {
+  children?: React.ReactNode;
   className?: string;
   justify?: 'flex-start' | 'center' | 'flex-end';
 }

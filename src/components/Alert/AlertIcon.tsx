@@ -23,6 +23,7 @@ export const useStyles = makeStyles(
 export type AlertIconClasses = GetClasses<typeof useStyles>;
 
 export interface AlertIconProps {
+  children?: React.ReactNode;
   className?: string;
   icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
 }

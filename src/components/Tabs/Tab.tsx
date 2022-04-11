@@ -110,6 +110,7 @@ export const useStyles = makeStyles(
 export type TabClasses = GetClasses<typeof useStyles>;
 
 export interface TabProps extends TabStop {
+  children?: React.ReactNode;
   className?: string;
   disabled?: boolean;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;

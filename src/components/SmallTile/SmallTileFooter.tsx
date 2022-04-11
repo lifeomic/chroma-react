@@ -39,6 +39,7 @@ export interface SmallTileFooterOwnProps
     React.HTMLAttributes<HTMLDivElement>,
     HTMLDivElement
   > {
+  children?: React.ReactNode;
   text?: string;
   justify?: 'flex-start' | 'center' | 'flex-end' | 'space-between';
 }

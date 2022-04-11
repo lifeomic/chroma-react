@@ -35,7 +35,9 @@ export interface SmallTileOwnProps
   extends React.DetailedHTMLProps<
     React.HTMLAttributes<HTMLDivElement>,
     HTMLDivElement
-  > {}
+  > {
+  children?: React.ReactNode;
+}
 
 export type SmallTileClasses = GetClasses<typeof useStyles>;
 

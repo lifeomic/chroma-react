@@ -19,7 +19,9 @@ export interface PopoverContentProps
   extends React.DetailedHTMLProps<
     React.HTMLAttributes<HTMLDivElement>,
     HTMLDivElement
-  > {}
+  > {
+  children?: React.ReactNode;
+}
 
 export const PopoverContent = React.forwardRef<
   HTMLDivElement,

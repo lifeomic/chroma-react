@@ -317,6 +317,7 @@ export interface SelectProps
       'className' | 'id' | 'value'
     > {
   ['aria-label']?: string;
+  children?: React.ReactNode;
   secondaryLabel?: string;
   fullWidth?: boolean;
   icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;

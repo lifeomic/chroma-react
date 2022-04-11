@@ -39,9 +39,10 @@ export interface LinkProps
       HTMLAnchorElement
     >
   > {
+  children?: React.ReactNode;
+  color?: 'default' | 'inverse';
   ['data-testid']?: string;
   newTab?: boolean;
-  color?: 'default' | 'inverse';
 }
 
 export const Link: React.FC<LinkProps> = ({

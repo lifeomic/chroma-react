@@ -39,7 +39,9 @@ export interface IconTileOwnProps
   extends React.DetailedHTMLProps<
     React.HTMLAttributes<HTMLDivElement>,
     HTMLDivElement
-  > {}
+  > {
+  children?: React.ReactNode;
+}
 
 export type IconTileClasses = GetClasses<typeof useStyles>;
 

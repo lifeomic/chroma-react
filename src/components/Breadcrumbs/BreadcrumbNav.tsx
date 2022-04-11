@@ -23,7 +23,9 @@ export interface BreadcrumbNavProps
   extends React.DetailedHTMLProps<
     React.HTMLAttributes<HTMLElement>,
     HTMLElement
-  > {}
+  > {
+  children?: React.ReactNode;
+}
 
 export const BreadcrumbNav: React.FC<BreadcrumbNavProps> = ({
   className,

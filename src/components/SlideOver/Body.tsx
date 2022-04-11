@@ -22,6 +22,7 @@ export type BodyClasses = GetClasses<typeof useStyles>;
 export interface BodyProps {
   as?: React.ElementType<any>;
   className?: string;
+  children?: React.ReactNode;
   [key: string]: any;
 }
 export const Body: React.FC<BodyProps> = ({
