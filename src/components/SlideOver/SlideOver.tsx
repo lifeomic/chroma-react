@@ -97,6 +97,7 @@ export interface SlideOverProps {
     inner?: string;
     content?: string;
   };
+  children?: React.ReactNode;
   isOpen?: boolean;
 }
 

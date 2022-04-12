@@ -70,6 +70,7 @@ export type PageLayoutClasses = GetClasses<typeof useStyles>;
 export interface PageLayoutProps
   extends StandardProps<HTMLDivElement, PageLayoutClasses> {
   backgroundImage?: string;
+  children?: React.ReactNode;
   disclaimer?: React.ReactNode;
   headerActions?: PageHeaderProps['actions'];
   headerAlign?: PageHeaderProps['align'];

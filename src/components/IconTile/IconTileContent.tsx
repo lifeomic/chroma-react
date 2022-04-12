@@ -36,8 +36,9 @@ export interface IconTileContentOwnProps
     React.HTMLAttributes<HTMLDivElement>,
     HTMLDivElement
   > {
-  text?: string;
   caption?: string;
+  children?: React.ReactNode;
+  text?: string;
 }
 
 export type IconTileContentClasses = GetClasses<typeof useStyles>;

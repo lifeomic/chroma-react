@@ -66,6 +66,7 @@ export type SnackbarClasses = GetClasses<typeof useStyles>;
 
 export interface SnackbarProps {
   duration?: number;
+  children?: React.ReactNode;
   className?: string;
   icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   isOpen?: boolean;

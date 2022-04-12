@@ -66,6 +66,7 @@ export interface LayoutManagerProps
     React.HTMLAttributes<HTMLDivElement>,
     HTMLDivElement
   > {
+  children?: React.ReactNode;
   header?: React.ReactNode;
   initialIsSidebarCollapsed?: boolean;
   isSidebarCollapseDisabled?: boolean;

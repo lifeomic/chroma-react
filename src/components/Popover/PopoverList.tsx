@@ -28,7 +28,9 @@ export interface PopoverListProps
   extends React.DetailedHTMLProps<
     React.HTMLAttributes<HTMLUListElement>,
     HTMLUListElement
-  > {}
+  > {
+  children?: React.ReactNode;
+}
 
 export const PopoverList = React.forwardRef<HTMLUListElement, PopoverListProps>(
   ({ children, ...rootProps }, ref) => {

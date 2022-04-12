@@ -36,7 +36,9 @@ export interface TableModuleActionsProps
   extends React.DetailedHTMLProps<
     React.HTMLAttributes<HTMLDivElement>,
     HTMLDivElement
-  > {}
+  > {
+  children?: React.ReactNode;
+}
 
 export const TableModuleActions: React.FC<TableModuleActionsProps> = ({
   children,

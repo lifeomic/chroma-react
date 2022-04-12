@@ -53,6 +53,7 @@ export type SecondaryNavigationClasses = GetClasses<typeof useStyles>;
 
 export interface SecondaryNavigationProps
   extends StandardProps<HTMLElement, SecondaryNavigationClasses> {
+  children?: React.ReactNode;
   variant?: 'vertical' | 'horizontal';
 }
 

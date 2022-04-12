@@ -87,6 +87,7 @@ export interface ExpansionPanelProps
     HTMLDivElement
   > {
   ariaOwnsId?: string;
+  children?: React.ReactNode;
   contentClassName?: string;
   innerContentClassName?: string;
   title: string;

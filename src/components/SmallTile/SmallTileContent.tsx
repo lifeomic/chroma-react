@@ -36,6 +36,7 @@ export interface SmallTileContentOwnProps
     React.HTMLAttributes<HTMLDivElement>,
     HTMLDivElement
   > {
+  children?: React.ReactNode;
   text?: string;
   fullHeight?: boolean;
 }

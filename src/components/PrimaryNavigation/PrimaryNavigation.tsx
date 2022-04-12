@@ -155,6 +155,7 @@ export interface PrimaryNavigationProps
     React.HTMLAttributes<HTMLElement>,
     HTMLElement
   > {
+  children?: React.ReactNode;
   header?: React.ReactNode;
   headerMin?: React.ReactNode;
   footer?: React.ReactNode;

@@ -41,6 +41,7 @@ export const useStyles = makeStyles(
 export type AlertClasses = GetClasses<typeof useStyles>;
 
 export interface AlertProps {
+  children?: React.ReactNode;
   className?: string;
   statusType?: NotificationStatusType;
   fullWidth?: boolean;

@@ -56,6 +56,7 @@ export type SelectOptionClasses = GetClasses<typeof useStyles>;
 
 export interface SelectOptionProps {
   className?: string;
+  children?: React.ReactNode;
   disabled?: boolean;
   isChecked?: boolean;
   meta?: any;

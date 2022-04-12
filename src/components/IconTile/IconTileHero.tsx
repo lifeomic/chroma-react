@@ -35,6 +35,7 @@ export type IconTileHeroClasses = GetClasses<typeof useStyles>;
 export interface IconTileHeroOwnProps {
   backgroundColor?: string;
   backgroundUrl?: string;
+  children?: React.ReactNode;
 }
 
 export interface IconTileHeroProps

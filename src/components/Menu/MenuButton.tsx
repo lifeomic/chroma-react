@@ -22,6 +22,7 @@ export const useStyles = makeStyles(
 export type MenuButtonClasses = GetClasses<typeof useStyles>;
 
 export interface MenuButtonProps extends ButtonProps {
+  children?: React.ReactNode;
   trailingIcon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
 }
 

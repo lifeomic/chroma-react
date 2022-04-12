@@ -26,6 +26,7 @@ export type HeaderClasses = GetClasses<typeof useStyles>;
 
 export interface HeaderProps {
   className?: string;
+  children?: React.ReactNode;
   onClose: () => any;
   title?: string;
   classes?: {

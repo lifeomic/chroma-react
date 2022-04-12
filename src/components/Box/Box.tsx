@@ -15,6 +15,7 @@ export interface BoxProps
     HTMLDivElement
   > {
   ref?: React.Ref<HTMLDivElement>;
+  children?: React.ReactNode;
   className?: string;
   flexChildren?: boolean;
   flexWrap?: boolean;

@@ -33,6 +33,7 @@ export interface IconTileBadgeOwnProps
     React.HTMLAttributes<HTMLDivElement>,
     HTMLDivElement
   > {
+  children?: React.ReactNode;
   icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
 }
 

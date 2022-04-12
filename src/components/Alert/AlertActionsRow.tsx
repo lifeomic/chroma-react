@@ -24,6 +24,7 @@ export const useStyles = makeStyles(
 export type AlertActionsRowClasses = GetClasses<typeof useStyles>;
 
 export interface AlertActionsRowProps {
+  children?: React.ReactNode;
   className?: string;
 }
 

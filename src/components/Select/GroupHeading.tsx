@@ -28,6 +28,7 @@ export type GroupHeadingClasses = GetClasses<typeof useStyles>;
 
 export interface GroupHeadingProps {
   className?: string;
+  children?: React.ReactNode;
   ['data-select-role']: 'heading';
 }
 

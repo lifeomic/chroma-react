@@ -24,6 +24,7 @@ export interface BaseFormElement extends BaseFormElementWithNodeLabel {
  * or error messages.
  */
 export interface BaseFormMessage {
+  children?: React.ReactNode;
   className?: string;
   color?: 'default' | 'inverse';
   /**

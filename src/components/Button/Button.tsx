@@ -163,6 +163,7 @@ export const useStyles = makeStyles(
 export type ButtonClasses = GetClasses<typeof useStyles>;
 
 export interface ButtonProps extends React.ComponentPropsWithoutRef<'button'> {
+  children?: React.ReactNode;
   color?: 'default' | 'inverse';
   disabled?: boolean;
   fullWidth?: boolean;

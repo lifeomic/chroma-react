@@ -120,6 +120,7 @@ export type ButtonFloatClasses = GetClasses<typeof useStyles>;
 export interface ButtonFloatProps
   extends React.ComponentPropsWithoutRef<'button'> {
   align?: 'top' | 'center' | 'bottom';
+  children?: React.ReactNode;
   icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   fullWidth?: boolean;
   justify?: 'left' | 'center' | 'right';

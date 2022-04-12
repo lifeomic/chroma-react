@@ -85,6 +85,7 @@ export const useStyles = makeStyles(
 
 export interface TextOwnProps extends React.HTMLAttributes<HTMLElement> {
   align?: 'center' | 'justify' | 'left' | 'right';
+  children?: React.ReactNode;
   size?:
     | 'headline'
     | 'body'

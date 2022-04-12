@@ -76,6 +76,7 @@ export interface ChipOwnProps
     React.HTMLAttributes<HTMLDivElement>,
     HTMLDivElement
   > {
+  children?: React.ReactNode;
   label?: string;
   onDelete?(): void;
   disableDelete?: boolean;

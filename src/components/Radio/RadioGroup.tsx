@@ -73,8 +73,9 @@ export interface RadioGroupProps
     RadioProps,
     'aria-label' | 'color' | 'name' | 'onChange' | 'value'
   > {
-  className?: string;
   align?: 'center' | 'flex-start';
+  children?: React.ReactNode;
+  className?: string;
   direction?: 'row' | 'column';
   justify?: 'center' | 'flex-start' | 'space-between' | 'space-evenly';
   title?: string;
