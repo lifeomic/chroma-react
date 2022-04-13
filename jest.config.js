@@ -1,4 +1,5 @@
 module.exports = {
+  testEnvironment: 'jsdom',
   transform: {
     '^.+\\.tsx?$': 'ts-jest',
   },
@@ -14,6 +15,9 @@ module.exports = {
     '<rootDir>/src/hooks/**/*.{ts,tsx,js,jsx}',
     '<rootDir>/src/styles/**/*.{ts,tsx,js,jsx}',
     '!<rootDir>/src/styles/overrides/*.{ts,tsx,js,jsx}',
+    '!<rootDir>/src/components/index.ts',
+    '!<rootDir>/src/styles/index.ts',
+    '!<rootDir>/src/components/**/index.ts',
   ],
   testPathIgnorePatterns: ['/node_modules/', '<rootDir>/dist/'],
   setupFilesAfterEnv: [
