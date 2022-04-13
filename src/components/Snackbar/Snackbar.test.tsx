@@ -136,12 +136,15 @@ it('renders a Snackbar with the default isOpen', () => {
   expect(root).toBeNull();
 });
 
-test('it does not schedule the Snacbar to close if it is not already open', () => {
+test('it does not schedule the Snackbar to close if it is not already open', () => {
+  const setTimeoutSpy = jest.spyOn(window, 'setTimeout');
   jest.useFakeTimers();
+
   renderWithTheme(<Snackbar duration={1500} isOpen={false} />);
-  // We can't assert setTimeout wasn't called at all, because the testing
-  // library calls it
-  expect(setTimeout).not.toHaveBeenCalledWith(expect.any(Function), 1500);
+
+  jest.runAllTimers();
+
+  expect(setTimeoutSpy).toBeCalledTimes(0);
   jest.useRealTimers();
 });
 
