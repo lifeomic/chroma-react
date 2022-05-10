@@ -343,9 +343,35 @@ export const Slider = React.forwardRef<HTMLElement, SliderProps>(
       return null;
     };
 
+    const HelpMessage = () => {
+      if (!helpMessage) {
+        return null;
+      }
+      return (
+        <FormHelpMessage
+          className={clsx(
+            classes.helpMessage,
+            color === 'inverse' && classes.helpMessageInverse,
+            labelPlacement === 'top'
+              ? classes.labelTop
+              : classes.labelBottomTrailingMessage
+          )}
+          describedById={helpFor(uniqueId)}
+          rootElementId={uniqueId}
+        >
+          {helpMessage}
+        </FormHelpMessage>
+      );
+    };
+
     return (
       <div className={className} data-testid={testIds.root}>
-        {labelPlacement === 'top' && <LabelContainer />}
+        {labelPlacement === 'top' && (
+          <>
+            <LabelContainer />
+            <HelpMessage />
+          </>
+        )}
 
         <SliderPrimitive.Slider
           aria-describedby={getDescribedBy()}
@@ -384,23 +410,13 @@ export const Slider = React.forwardRef<HTMLElement, SliderProps>(
           ))}
         </SliderPrimitive.Slider>
 
-        {labelPlacement === 'bottom' && <LabelContainer />}
-
-        {helpMessage && (
-          <FormHelpMessage
-            className={clsx(
-              classes.helpMessage,
-              color === 'inverse' && classes.helpMessageInverse,
-              labelPlacement === 'top'
-                ? classes.trailingMessage
-                : classes.labelBottomTrailingMessage
-            )}
-            describedById={helpFor(uniqueId)}
-            rootElementId={uniqueId}
-          >
-            {helpMessage}
-          </FormHelpMessage>
+        {labelPlacement === 'bottom' && (
+          <>
+            <LabelContainer />
+            <HelpMessage />
+          </>
         )}
+
         {hasError && errorMessage && (
           <FormErrorMessage
             className={clsx(

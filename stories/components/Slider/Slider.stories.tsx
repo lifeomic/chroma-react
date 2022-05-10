@@ -147,6 +147,14 @@ const SliderAll: React.FC = () => {
             onValueChange={onPointChange}
             value={point}
           />
+
+          <Slider
+            helpMessage="Select a point"
+            labelPlacement="bottom"
+            label="Slider with label (placement bottom) and help message"
+            onValueChange={onPointChange}
+            value={point}
+          />
         </FormBox>
       </Container>
 
@@ -236,6 +244,13 @@ const SliderAll: React.FC = () => {
           <Slider
             helpMessage="Select a point"
             label="Slider with help message"
+            onValueChange={onPointChange}
+            value={point}
+          />
+          <Slider
+            helpMessage="Select a point"
+            labelPlacement="bottom"
+            label="Slider with label (placement bottom) and help message"
             onValueChange={onPointChange}
             value={point}
           />
@@ -342,6 +357,15 @@ const SliderAll: React.FC = () => {
             onValueChange={onPointChange}
             value={point}
           />
+
+          <Slider
+            color="inverse"
+            helpMessage="Select a point"
+            labelPlacement="bottom"
+            label="Slider with label (placement bottom) and help message"
+            onValueChange={onPointChange}
+            value={point}
+          />
         </FormBox>
       </Container>
 
@@ -442,6 +466,15 @@ const SliderAll: React.FC = () => {
             color="inverse"
             helpMessage="Select a point"
             label="Slider with help message"
+            onValueChange={onPointChange}
+            value={point}
+          />
+
+          <Slider
+            color="inverse"
+            helpMessage="Select a point"
+            labelPlacement="bottom"
+            label="Slider with label (placement bottom) and help message"
             onValueChange={onPointChange}
             value={point}
           />
