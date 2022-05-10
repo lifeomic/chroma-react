@@ -165,13 +165,13 @@ test('it renders the provided help message', async () => {
   expect(help).toBeInTheDocument();
 });
 
-test('it applies trailingMessage className to helpMessage when labelPlacement is top', async () => {
+test('it applies labelTop className to helpMessage when labelPlacement is top', async () => {
   const { findByText } = renderWithTheme(
     <Slider helpMessage="Helpful text" labelPlacement="top" {...props} />
   );
 
   const help = await findByText(/Helpful text/);
-  expect(help).toHaveClass('ChromaSlider-trailingMessage');
+  expect(help).toHaveClass('ChromaSlider-labelTop');
 });
 
 test('it applies labelBottomTrailingMessage className to helpMessage when labelPlacement is bottom', async () => {
