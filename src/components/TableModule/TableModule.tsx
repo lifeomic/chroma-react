@@ -166,6 +166,8 @@ export const useStyles = makeStyles(
       paddingBottom: '0.2rem',
       position: 'relative',
       '& > button': {
+        alignItems: 'center',
+        justifyContent: 'center',
         minHeight: 0,
         // Add negative horizontal margins when there is
         // only one button so container appears as circle
