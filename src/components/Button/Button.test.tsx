@@ -163,6 +163,46 @@ test('it renders with `variant="text" color="negative"`', async () => {
 });
 // #endregion
 
+// #region positive tests
+test('it renders with `variant="contained" color="positive"`', async () => {
+  const props = getBaseProps();
+  const { findByTestId } = renderWithTheme(
+    <Button
+      {...props}
+      data-testid={testId}
+      variant="contained"
+      color="positive"
+    >
+      Button
+    </Button>
+  );
+  const button = await findByTestId(testId);
+  expect(button).toHaveClass('ChromaButton-containedPositive');
+});
+
+test('it renders with `variant="outlined" color="positive"`', async () => {
+  const props = getBaseProps();
+  const { findByTestId } = renderWithTheme(
+    <Button {...props} data-testid={testId} variant="outlined" color="positive">
+      Button
+    </Button>
+  );
+  const button = await findByTestId(testId);
+  expect(button).toHaveClass('ChromaButton-outlinedPositive');
+});
+
+test('it renders with `variant="text" color="positive"`', async () => {
+  const props = getBaseProps();
+  const { findByTestId } = renderWithTheme(
+    <Button {...props} data-testid={testId} variant="text" color="positive">
+      Button
+    </Button>
+  );
+  const button = await findByTestId(testId);
+  expect(button).toHaveClass('ChromaButton-textPositive');
+});
+// #endregion
+
 // #region trailing icon tests
 test('it renders a trailing icon', async () => {
   const props = getBaseProps();
