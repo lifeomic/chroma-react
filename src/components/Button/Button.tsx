@@ -10,7 +10,7 @@ export const useStyles = makeStyles(
   (theme) => ({
     root: {
       background: theme.palette.primary.main,
-      border: `1px solid transparent`,
+      border: `${theme.pxToRem(1)} solid transparent`,
       borderRadius: theme.pxToRem(4),
       color: theme.palette.common.white,
       cursor: 'pointer',
@@ -141,6 +141,70 @@ export const useStyles = makeStyles(
         opacity: 0.44,
       },
     },
+    containedNegative: {
+      backgroundColor: theme.palette.error.main,
+      color: theme.palette.common.white,
+      '&:hover': {
+        backgroundColor: theme.palette.error[900],
+      },
+      '&:disabled, &[disabled]': {
+        backgroundColor: theme.palette.error.main,
+        color: theme.palette.common.white,
+      },
+    },
+    containedPositive: {
+      backgroundColor: theme.palette.green.main,
+      color: theme.palette.common.white,
+      '&:hover': {
+        backgroundColor: theme.palette.green[900],
+      },
+      '&:disabled, &[disabled]': {
+        backgroundColor: theme.palette.green.main,
+        color: theme.palette.common.white,
+      },
+    },
+    outlinedNegative: {
+      borderColor: theme.palette.error.main,
+      color: theme.palette.error.main,
+      '&:hover': {
+        borderColor: theme.palette.error[900],
+        color: theme.palette.error[900],
+      },
+      '&:disabled, &[disabled]': {
+        borderColor: theme.palette.error.main,
+        color: theme.palette.error.main,
+      },
+    },
+    outlinedPositive: {
+      borderColor: theme.palette.green.main,
+      color: theme.palette.green.main,
+      '&:hover': {
+        borderColor: theme.palette.green[900],
+        color: theme.palette.green[900],
+      },
+      '&:disabled, &[disabled]': {
+        borderColor: theme.palette.green.main,
+        color: theme.palette.green.main,
+      },
+    },
+    textNegative: {
+      color: theme.palette.error.main,
+      '&:hover': {
+        color: theme.palette.error[900],
+      },
+      '&:disabled': {
+        color: theme.palette.error.main,
+      },
+    },
+    textPositive: {
+      color: theme.palette.green.main,
+      '&:hover': {
+        color: theme.palette.green[900],
+      },
+      '&:disabled': {
+        color: theme.palette.green.main,
+      },
+    },
     fullWidth: {
       width: '100%',
     },
@@ -164,7 +228,7 @@ export type ButtonClasses = GetClasses<typeof useStyles>;
 
 export interface ButtonProps extends React.ComponentPropsWithoutRef<'button'> {
   children?: React.ReactNode;
-  color?: 'default' | 'inverse';
+  color?: 'default' | 'inverse' | 'negative' | 'positive';
   disabled?: boolean;
   fullWidth?: boolean;
   icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
@@ -203,6 +267,16 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             [classes.outlinedInverse]:
               variant === 'outlined' && color === 'inverse',
             [classes.textInverse]: variant === 'text' && color === 'inverse',
+            [classes.containedNegative]:
+              variant === 'contained' && color === 'negative',
+            [classes.outlinedNegative]:
+              variant === 'outlined' && color === 'negative',
+            [classes.textNegative]: variant === 'text' && color === 'negative',
+            [classes.containedPositive]:
+              variant === 'contained' && color === 'positive',
+            [classes.outlinedPositive]:
+              variant === 'outlined' && color === 'positive',
+            [classes.textPositive]: variant === 'text' && color === 'positive',
           },
           fullWidth && classes.fullWidth,
           className
