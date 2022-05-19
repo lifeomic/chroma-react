@@ -121,7 +121,49 @@ test('it renders with `variant="text" color="inverse"`', async () => {
   const button = await findByTestId(testId);
   expect(button).toHaveClass('ChromaButton-textInverse');
 });
+// #endregion
 
+// #region negative tests
+test('it renders with `variant="contained" color="negative"`', async () => {
+  const props = getBaseProps();
+  const { findByTestId } = renderWithTheme(
+    <Button
+      {...props}
+      data-testid={testId}
+      variant="contained"
+      color="negative"
+    >
+      Button
+    </Button>
+  );
+  const button = await findByTestId(testId);
+  expect(button).toHaveClass('ChromaButton-containedNegative');
+});
+
+test('it renders with `variant="outlined" color="negative"`', async () => {
+  const props = getBaseProps();
+  const { findByTestId } = renderWithTheme(
+    <Button {...props} data-testid={testId} variant="outlined" color="negative">
+      Button
+    </Button>
+  );
+  const button = await findByTestId(testId);
+  expect(button).toHaveClass('ChromaButton-outlinedNegative');
+});
+
+test('it renders with `variant="text" color="negative"`', async () => {
+  const props = getBaseProps();
+  const { findByTestId } = renderWithTheme(
+    <Button {...props} data-testid={testId} variant="text" color="negative">
+      Button
+    </Button>
+  );
+  const button = await findByTestId(testId);
+  expect(button).toHaveClass('ChromaButton-textNegative');
+});
+// #endregion
+
+// #region trailing icon tests
 test('it renders a trailing icon', async () => {
   const props = getBaseProps();
   const { findByTestId } = renderWithTheme(
