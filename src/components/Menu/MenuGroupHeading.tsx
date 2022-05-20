@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import * as React from 'react';
 import { makeStyles } from '../../styles';
 import { GetClasses } from '../../typeUtils';
@@ -31,8 +32,9 @@ export type MenuGroupHeadingProps = {
 };
 
 export const MenuGroupHeading: React.FC<MenuGroupHeadingProps> = ({
+  className,
   children,
 }) => {
   const classes = useStyles({});
-  return <div className={classes.root}>{children}</div>;
+  return <div className={clsx(classes.root, className)}>{children}</div>;
 };

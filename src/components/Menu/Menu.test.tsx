@@ -2,7 +2,7 @@ import { act, fireEvent } from '@testing-library/react';
 import * as React from 'react';
 import { IconComponent } from '../../testUtils/IconComponent';
 import { renderWithTheme } from '../../testUtils/renderWithTheme';
-import { Menu, MenuItem } from './index';
+import { Menu, MenuGroupHeading, MenuItem } from './index';
 
 const testId = 'Menu';
 const anchorTestId = 'anchor';
@@ -220,4 +220,35 @@ test('it spreads anchorElement props properly', async () => {
     'aria-controls',
     'aria-haspopup',
   ]);
+});
+
+it('renders a menu with group headings correctly', async () => {
+  const { findByTestId, queryByText } = renderWithTheme(
+    <Menu
+      aria-label="Menu"
+      anchorElement={<button data-testid={anchorTestId}>Open</button>}
+      data-testid={testId}
+      items={[
+        <MenuGroupHeading>First Section</MenuGroupHeading>,
+        <MenuItem key={0} text="option1" />,
+        <MenuItem key={1} text="option2" />,
+        // Testing non-string headers
+        <MenuGroupHeading>
+          <button>Test Button</button>
+        </MenuGroupHeading>,
+        <MenuItem key={0} text="option3" />,
+        <MenuItem key={1} text="option4" />,
+      ]}
+    />
+  );
+
+  // Click anchor to open
+  const button = await findByTestId(anchorTestId);
+  fireEvent.click(button);
+
+  const root = await findByTestId(testId);
+  expect(root.hidden).toBeFalsy();
+
+  expect(queryByText('First Section')).not.toBeNull();
+  expect(queryByText('Test Button')).not.toBeNull();
 });
