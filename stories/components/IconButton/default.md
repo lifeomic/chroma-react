@@ -31,11 +31,15 @@ The Icon Button component requires an `icon` prop. It's recommended to use the
 
 ### Color
 
-When a button needs to be rendered, but on a dark-colored background, the
-`color` prop can be utilized.
+The icon button component takes multiple different colors, for different styled
+icon buttons. Typically, the `inverse` color is used when an icon button needs to be
+on a dark-colored background. When the action of the icon button will have a
+negative or positive impact, `negative` or `positive` color are used.
 
 ```jsx
 <IconButton icon={Edit} color="inverse" />
+<IconButton icon={Edit} color="negative" />
+<IconButton icon={Edit} color="positive" />
 ```
 
 ### Size
