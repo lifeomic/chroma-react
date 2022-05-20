@@ -51,6 +51,32 @@ test('it renders with `color="inverse"`', async () => {
   expect(root).toHaveClass('ChromaLink-inverse');
 });
 
+test('it renders with `color="negative"`', async () => {
+  const props = getBaseProps();
+  const { findByTestId } = renderWithTheme(
+    <MemoryRouter initialEntries={['/']}>
+      <Link data-testid={testId} {...props} color="negative">
+        Link
+      </Link>
+    </MemoryRouter>
+  );
+  const root = await findByTestId(testId);
+  expect(root).toHaveClass('ChromaLink-negative');
+});
+
+test('it renders with `color="positive"`', async () => {
+  const props = getBaseProps();
+  const { findByTestId } = renderWithTheme(
+    <MemoryRouter initialEntries={['/']}>
+      <Link data-testid={testId} {...props} color="positive">
+        Link
+      </Link>
+    </MemoryRouter>
+  );
+  const root = await findByTestId(testId);
+  expect(root).toHaveClass('ChromaLink-positive');
+});
+
 test('it applies the provided className', async () => {
   const props = getBaseProps();
   const { findByTestId } = renderWithTheme(
