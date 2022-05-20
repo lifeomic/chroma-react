@@ -142,67 +142,67 @@ export const useStyles = makeStyles(
       },
     },
     containedNegative: {
-      backgroundColor: theme.palette.error.main,
+      backgroundColor: theme.palette.negative.main,
       color: theme.palette.common.white,
       '&:hover': {
-        backgroundColor: theme.palette.error[900],
+        backgroundColor: theme.palette.negative.dark,
       },
       '&:disabled, &[disabled]': {
-        backgroundColor: theme.palette.error.main,
+        backgroundColor: theme.palette.negative.main,
         color: theme.palette.common.white,
       },
     },
     containedPositive: {
-      backgroundColor: theme.palette.green.main,
+      backgroundColor: theme.palette.positive.main,
       color: theme.palette.common.white,
       '&:hover': {
-        backgroundColor: theme.palette.green[900],
+        backgroundColor: theme.palette.positive.dark,
       },
       '&:disabled, &[disabled]': {
-        backgroundColor: theme.palette.green.main,
+        backgroundColor: theme.palette.positive.main,
         color: theme.palette.common.white,
       },
     },
     outlinedNegative: {
-      borderColor: theme.palette.error.main,
-      color: theme.palette.error.main,
+      borderColor: theme.palette.negative.main,
+      color: theme.palette.negative.main,
       '&:hover': {
-        borderColor: theme.palette.error[900],
-        color: theme.palette.error[900],
+        borderColor: theme.palette.negative.dark,
+        color: theme.palette.negative.dark,
       },
       '&:disabled, &[disabled]': {
-        borderColor: theme.palette.error.main,
-        color: theme.palette.error.main,
+        borderColor: theme.palette.negative.main,
+        color: theme.palette.negative.main,
       },
     },
     outlinedPositive: {
-      borderColor: theme.palette.green.main,
-      color: theme.palette.green.main,
+      borderColor: theme.palette.positive.main,
+      color: theme.palette.positive.main,
       '&:hover': {
-        borderColor: theme.palette.green[900],
-        color: theme.palette.green[900],
+        borderColor: theme.palette.positive.dark,
+        color: theme.palette.positive.dark,
       },
       '&:disabled, &[disabled]': {
-        borderColor: theme.palette.green.main,
-        color: theme.palette.green.main,
+        borderColor: theme.palette.positive.main,
+        color: theme.palette.positive.main,
       },
     },
     textNegative: {
-      color: theme.palette.error.main,
+      color: theme.palette.negative.main,
       '&:hover': {
-        color: theme.palette.error[900],
+        color: theme.palette.negative.dark,
       },
       '&:disabled': {
-        color: theme.palette.error.main,
+        color: theme.palette.negative.main,
       },
     },
     textPositive: {
-      color: theme.palette.green.main,
+      color: theme.palette.positive.main,
       '&:hover': {
-        color: theme.palette.green[900],
+        color: theme.palette.positive.dark,
       },
       '&:disabled': {
-        color: theme.palette.green.main,
+        color: theme.palette.positive.main,
       },
     },
     fullWidth: {

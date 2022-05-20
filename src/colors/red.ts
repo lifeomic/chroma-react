@@ -18,6 +18,7 @@ const red: SimplePaletteColorOptions & Color = {
   ...shades,
   main: shades[800],
   light: shades[600],
+  dark: shades[900],
   contrastText: text.contrast,
 };
 
