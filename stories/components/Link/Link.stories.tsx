@@ -30,6 +30,12 @@ const LinkStory: React.FC = () => (
           Link
         </Link>
       </div>
+      <Link to="#" color="negative">
+        Link
+      </Link>
+      <Link to="#" color="positive">
+        Link
+      </Link>
     </Container>
   </BrowserRouter>
 );

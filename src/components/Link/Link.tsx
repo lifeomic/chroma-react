@@ -26,6 +26,18 @@ export const useStyles = makeStyles(
         color: theme.palette.common.white,
       },
     },
+    negative: {
+      color: theme.palette.negative.main,
+      '&:hover': {
+        color: theme.palette.negative.dark,
+      },
+    },
+    positive: {
+      color: theme.palette.positive.main,
+      '&:hover': {
+        color: theme.palette.positive.dark,
+      },
+    },
   }),
   { name: LinkStylesKey }
 );
@@ -40,7 +52,7 @@ export interface LinkProps
     >
   > {
   children?: React.ReactNode;
-  color?: 'default' | 'inverse';
+  color?: 'default' | 'inverse' | 'negative' | 'positive';
   ['data-testid']?: string;
   newTab?: boolean;
 }
@@ -64,7 +76,11 @@ export const Link: React.FC<LinkProps> = ({
         href={to as string}
         className={clsx(
           classes.root,
-          { [classes.inverse]: color === 'inverse' },
+          {
+            [classes.inverse]: color === 'inverse',
+            [classes.negative]: color === 'negative',
+            [classes.positive]: color === 'positive',
+          },
           className
         )}
         data-testid={dataTestId}
@@ -88,7 +104,11 @@ export const Link: React.FC<LinkProps> = ({
       to={to}
       className={clsx(
         classes.root,
-        { [classes.inverse]: color === 'inverse' },
+        {
+          [classes.inverse]: color === 'inverse',
+          [classes.negative]: color === 'negative',
+          [classes.positive]: color === 'positive',
+        },
         className
       )}
       data-testid={dataTestId}
