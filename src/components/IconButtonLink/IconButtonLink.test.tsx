@@ -108,6 +108,28 @@ test('it renders with `color="inverse"`', async () => {
   expect(root).toHaveClass('ChromaIconButtonLink-inverse');
 });
 
+test('it renders with `color="negative"`', async () => {
+  const props = getBaseProps();
+  const { findByTestId } = renderWithTheme(
+    <RenderContainer>
+      <IconButtonLink {...props} data-testid={testId} color="negative" />
+    </RenderContainer>
+  );
+  const root = await findByTestId(testId);
+  expect(root).toHaveClass('ChromaIconButtonLink-negative');
+});
+
+test('it renders with `color="positive"`', async () => {
+  const props = getBaseProps();
+  const { findByTestId } = renderWithTheme(
+    <RenderContainer>
+      <IconButtonLink {...props} data-testid={testId} color="positive" />
+    </RenderContainer>
+  );
+  const root = await findByTestId(testId);
+  expect(root).toHaveClass('ChromaIconButtonLink-positive');
+});
+
 test('it allows combining the "padding" props', async () => {
   const props = getBaseProps();
   const { findByTestId } = renderWithTheme(

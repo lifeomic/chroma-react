@@ -54,6 +54,26 @@ export const useStyles = makeStyles(
         },
       },
     },
+    negative: {
+      color: theme.palette.negative.main,
+      '&:hover, &:focus': {
+        color: theme.palette.negative.dark,
+      },
+      '&:disabled': {
+        color: theme.palette.negative.main,
+        opacity: 0.44,
+      },
+    },
+    positive: {
+      color: theme.palette.positive.main,
+      '&:hover, &:focus': {
+        color: theme.palette.positive.dark,
+      },
+      '&:disabled': {
+        color: theme.palette.positive.main,
+        opacity: 0.44,
+      },
+    },
     size0: {
       '& > svg': {
         width: 18,
@@ -166,6 +186,8 @@ export const IconButtonLink = React.forwardRef<
           { [classes.size0]: size === 0 },
           {
             [classes.inverse]: color === 'inverse',
+            [classes.negative]: color === 'negative',
+            [classes.positive]: color === 'positive',
           },
           {
             [classes.paddingTop0]: paddingTop === 0,
