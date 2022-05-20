@@ -146,7 +146,77 @@ const InversedButtonStory: React.FunctionComponent = () => (
           Contained Button
         </Button>
       </Container>
+      <Container>
+        <Button
+          variant="contained"
+          color="inverse"
+          icon={Grid}
+          {...getPropOptions()}
+        >
+          Button w/ Icon
+        </Button>
+      </Container>
     </div>
+  </React.Fragment>
+);
+
+const NegativeButtonStory: React.FunctionComponent = () => (
+  <React.Fragment>
+    <Container containerStyles={{ display: 'flex' }}>
+      <Button variant="text" color="negative" {...getPropOptions()}>
+        Text Button
+      </Button>
+    </Container>
+    <Container containerStyles={{ display: 'flex' }}>
+      <Button variant="outlined" color="negative" {...getPropOptions()}>
+        Outlined Button
+      </Button>
+    </Container>
+    <Container>
+      <Button variant="contained" color="negative" {...getPropOptions()}>
+        Contained Button
+      </Button>
+    </Container>
+    <Container>
+      <Button
+        variant="contained"
+        color="negative"
+        icon={Grid}
+        {...getPropOptions()}
+      >
+        Button w/ Icon
+      </Button>
+    </Container>
+  </React.Fragment>
+);
+
+const PositiveButtonStory: React.FunctionComponent = () => (
+  <React.Fragment>
+    <Container containerStyles={{ display: 'flex' }}>
+      <Button variant="text" color="positive" {...getPropOptions()}>
+        Text Button
+      </Button>
+    </Container>
+    <Container containerStyles={{ display: 'flex' }}>
+      <Button variant="outlined" color="positive" {...getPropOptions()}>
+        Outlined Button
+      </Button>
+    </Container>
+    <Container>
+      <Button variant="contained" color="positive" {...getPropOptions()}>
+        Contained Button
+      </Button>
+    </Container>
+    <Container>
+      <Button
+        variant="contained"
+        color="positive"
+        icon={Grid}
+        {...getPropOptions()}
+      >
+        Button w/ Icon
+      </Button>
+    </Container>
   </React.Fragment>
 );
 
@@ -164,5 +234,11 @@ storiesOf('Components/Button', module)
     readme: { content: defaultMd },
   })
   .add('Inverse Color', () => <InversedButtonStory />, {
+    readme: { content: defaultMd },
+  })
+  .add('Negative Color', () => <NegativeButtonStory />, {
+    readme: { content: defaultMd },
+  })
+  .add('Positive Color', () => <PositiveButtonStory />, {
     readme: { content: defaultMd },
   });

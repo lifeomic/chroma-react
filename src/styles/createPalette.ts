@@ -31,6 +31,14 @@ const baseMuiPalette = {
     paper: grey[50],
     default: '#f5f8fa',
   },
+  negative: {
+    main: red.main,
+    dark: red.dark,
+  },
+  positive: {
+    main: green.main,
+    dark: green.dark,
+  },
 };
 
 const basePalette = {

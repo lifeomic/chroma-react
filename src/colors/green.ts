@@ -18,6 +18,7 @@ const green: SimplePaletteColorOptions & Color = {
   ...shades,
   main: shades[800],
   light: shades[500],
+  dark: shades[900],
   contrastText: text.contrast,
 };
 

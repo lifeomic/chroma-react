@@ -51,11 +51,15 @@ rendered after the text. It's recommended to use the Chromicons icon set.
 
 ### Color
 
-When a button needs to be rendered, but on a dark-colored background, the
-`color` prop can be utilized.
+The button component takes multiple different colors, for different styled
+buttons. Typically, the `inverse` color is used when a button needs to be
+on a dark-colored background. When the action of the button will have a
+negative or positive impact, `negative` or `positive` color are used.
 
 ```jsx
 <Button color="inverse">Button</Button>
+<Button color="negative">Button</Button>
+<Button color="positive">Button</Button>
 ```
 
 ### Full Width
