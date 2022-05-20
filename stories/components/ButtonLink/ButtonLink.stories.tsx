@@ -131,6 +131,46 @@ const InversedButtonLinkStory: React.FunctionComponent = () => (
   </BrowserRouter>
 );
 
+const NegativeButtonLinkStory: React.FunctionComponent = () => (
+  <BrowserRouter>
+    <Container containerStyles={{ display: 'flex' }}>
+      <ButtonLink variant="text" color="negative" to="/foo">
+        Text ButtonLink
+      </ButtonLink>
+    </Container>
+    <Container containerStyles={{ display: 'flex' }}>
+      <ButtonLink variant="outlined" color="negative" to="/foo">
+        Outlined ButtonLink
+      </ButtonLink>
+    </Container>
+    <Container>
+      <ButtonLink variant="contained" color="negative" to="/foo">
+        Contained ButtonLink
+      </ButtonLink>
+    </Container>
+  </BrowserRouter>
+);
+
+const PositiveButtonLinkStory: React.FunctionComponent = () => (
+  <BrowserRouter>
+    <Container containerStyles={{ display: 'flex' }}>
+      <ButtonLink variant="text" color="positive" to="/foo">
+        Text ButtonLink
+      </ButtonLink>
+    </Container>
+    <Container containerStyles={{ display: 'flex' }}>
+      <ButtonLink variant="outlined" color="positive" to="/foo">
+        Outlined ButtonLink
+      </ButtonLink>
+    </Container>
+    <Container>
+      <ButtonLink variant="contained" color="positive" to="/foo">
+        Contained ButtonLink
+      </ButtonLink>
+    </Container>
+  </BrowserRouter>
+);
+
 const DisabledButtonLinkStory: React.FunctionComponent = () => (
   <BrowserRouter>
     <Container containerStyles={{ display: 'flex' }}>
@@ -180,6 +220,60 @@ const DisabledButtonLinkStory: React.FunctionComponent = () => (
           </ButtonLink>
         </Container>
       </Container>
+      <Container containerStyles={{ flex: 1, flexFlow: 'column' }}>
+        <Container>
+          <ButtonLink variant="text" color="negative" to="/foo" disabled={true}>
+            Text ButtonLink
+          </ButtonLink>
+        </Container>
+        <Container>
+          <ButtonLink
+            variant="outlined"
+            color="negative"
+            to="/bar"
+            disabled={true}
+          >
+            Outlined ButtonLink
+          </ButtonLink>
+        </Container>
+        <Container>
+          <ButtonLink
+            variant="contained"
+            color="negative"
+            to="/baz"
+            disabled={true}
+          >
+            Contained ButtonLink
+          </ButtonLink>
+        </Container>
+      </Container>
+      <Container containerStyles={{ flex: 1, flexFlow: 'column' }}>
+        <Container>
+          <ButtonLink variant="text" color="positive" to="/foo" disabled={true}>
+            Text ButtonLink
+          </ButtonLink>
+        </Container>
+        <Container>
+          <ButtonLink
+            variant="outlined"
+            color="positive"
+            to="/bar"
+            disabled={true}
+          >
+            Outlined ButtonLink
+          </ButtonLink>
+        </Container>
+        <Container>
+          <ButtonLink
+            variant="contained"
+            color="positive"
+            to="/baz"
+            disabled={true}
+          >
+            Contained ButtonLink
+          </ButtonLink>
+        </Container>
+      </Container>
     </Container>
   </BrowserRouter>
 );
@@ -198,6 +292,12 @@ storiesOf('Components/ButtonLink', module)
     readme: { content: defaultMd },
   })
   .add('Inverse Color', () => <InversedButtonLinkStory />, {
+    readme: { content: defaultMd },
+  })
+  .add('Negative Color', () => <NegativeButtonLinkStory />, {
+    readme: { content: defaultMd },
+  })
+  .add('Positive Color', () => <PositiveButtonLinkStory />, {
     readme: { content: defaultMd },
   })
   .add('Disabled', () => <DisabledButtonLinkStory />, {

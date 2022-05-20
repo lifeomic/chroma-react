@@ -13,7 +13,7 @@ export const useStyles = makeStyles(
   (theme) => ({
     root: {
       background: theme.palette.primary.main,
-      border: `1px solid transparent`,
+      border: `${theme.pxToRem(1)} solid transparent`,
       borderRadius: theme.pxToRem(4),
       color: theme.palette.common.white,
       cursor: 'pointer',
@@ -119,6 +119,70 @@ export const useStyles = makeStyles(
         boxShadow: theme.boxShadows.focusVisibleInverse,
       },
     },
+    containedNegative: {
+      backgroundColor: theme.palette.negative.main,
+      color: theme.palette.common.white,
+      '&:hover': {
+        backgroundColor: theme.palette.negative.dark,
+      },
+      '&:disabled, &[disabled]': {
+        backgroundColor: theme.palette.negative.main,
+        color: theme.palette.common.white,
+      },
+    },
+    containedPositive: {
+      backgroundColor: theme.palette.positive.main,
+      color: theme.palette.common.white,
+      '&:hover': {
+        backgroundColor: theme.palette.positive.dark,
+      },
+      '&:disabled, &[disabled]': {
+        backgroundColor: theme.palette.positive.main,
+        color: theme.palette.common.white,
+      },
+    },
+    outlinedNegative: {
+      borderColor: theme.palette.negative.main,
+      color: theme.palette.negative.main,
+      '&:hover': {
+        borderColor: theme.palette.negative.dark,
+        color: theme.palette.negative.dark,
+      },
+      '&:disabled, &[disabled]': {
+        borderColor: theme.palette.negative.main,
+        color: theme.palette.negative.main,
+      },
+    },
+    outlinedPositive: {
+      borderColor: theme.palette.positive.main,
+      color: theme.palette.positive.main,
+      '&:hover': {
+        borderColor: theme.palette.positive.dark,
+        color: theme.palette.positive.dark,
+      },
+      '&:disabled, &[disabled]': {
+        borderColor: theme.palette.positive.main,
+        color: theme.palette.positive.main,
+      },
+    },
+    textNegative: {
+      color: theme.palette.negative.main,
+      '&:hover': {
+        color: theme.palette.negative.dark,
+      },
+      '&:disabled': {
+        color: theme.palette.negative.main,
+      },
+    },
+    textPositive: {
+      color: theme.palette.positive.main,
+      '&:hover': {
+        color: theme.palette.positive.dark,
+      },
+      '&:disabled': {
+        color: theme.palette.positive.main,
+      },
+    },
     fullWidth: {
       width: '100%',
     },
@@ -207,6 +271,16 @@ export const ButtonLink = React.forwardRef<HTMLAnchorElement, ButtonLinkProps>(
             [classes.outlinedInverse]:
               variant === 'outlined' && color === 'inverse',
             [classes.textInverse]: variant === 'text' && color === 'inverse',
+            [classes.containedNegative]:
+              variant === 'contained' && color === 'negative',
+            [classes.outlinedNegative]:
+              variant === 'outlined' && color === 'negative',
+            [classes.textNegative]: variant === 'text' && color === 'negative',
+            [classes.containedPositive]:
+              variant === 'contained' && color === 'positive',
+            [classes.outlinedPositive]:
+              variant === 'outlined' && color === 'positive',
+            [classes.textPositive]: variant === 'text' && color === 'positive',
           },
           fullWidth && classes.fullWidth,
           disabled &&
