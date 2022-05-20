@@ -13,3 +13,10 @@ export {
   MenuItemProps,
   MenuItemStylesKey,
 } from './MenuItem';
+
+export {
+  MenuGroupHeading,
+  MenuGroupHeadingClasses,
+  MenuGroupHeadingProps,
+  MenuGroupHeadingStylesKey,
+} from './MenuGroupHeading';
