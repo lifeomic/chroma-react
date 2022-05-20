@@ -169,6 +169,26 @@ test('it applies the inverse class when `color="inverse"`', async () => {
   expect(root).toHaveClass('ChromaText-inverseColor');
 });
 
+test('it applies the negative class when `color="negative"`', async () => {
+  const { findByTestId } = renderWithTheme(
+    <Text data-testid={testId} color="negative">
+      test
+    </Text>
+  );
+  const root = await findByTestId(testId);
+  expect(root).toHaveClass('ChromaText-negativeColor');
+});
+
+test('it applies the positive class when `color="positive"`', async () => {
+  const { findByTestId } = renderWithTheme(
+    <Text data-testid={testId} color="positive">
+      test
+    </Text>
+  );
+  const root = await findByTestId(testId);
+  expect(root).toHaveClass('ChromaText-positiveColor');
+});
+
 test('it applies the marginBottom class when "marginBottom"', async () => {
   const { findByTestId } = renderWithTheme(
     <Text data-testid={testId} marginBottom>

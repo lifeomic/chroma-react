@@ -15,6 +15,12 @@ export const useStyles = makeStyles(
     inverseColor: {
       color: theme.palette.common.white,
     },
+    negativeColor: {
+      color: theme.palette.negative.main,
+    },
+    positiveColor: {
+      color: theme.palette.positive.main,
+    },
     headline: {
       fontSize: theme.pxToRem(20),
       letterSpacing: theme.pxToRem(0.5),
@@ -99,7 +105,7 @@ export interface TextOwnProps extends React.HTMLAttributes<HTMLElement> {
   weight?: 'light' | 'regular' | 'bold';
   marginBottom?: boolean;
   useH1?: boolean;
-  color?: 'default' | 'inverse';
+  color?: 'default' | 'inverse' | 'negative' | 'positive';
 }
 
 export type TextClasses = GetClasses<typeof useStyles>;
@@ -150,6 +156,8 @@ export const Text = React.forwardRef<HTMLParagraphElement, TextProps>(
           },
           {
             [classes.inverseColor]: color === 'inverse',
+            [classes.negativeColor]: color === 'negative',
+            [classes.positiveColor]: color === 'positive',
           },
           marginBottom && classes.marginBottom,
           {

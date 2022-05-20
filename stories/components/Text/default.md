@@ -38,6 +38,8 @@ The sizing options are listed above in the story.
 
 ```jsx
 <Text color="inverse">body text</Text>
+<Text color="negative">body text</Text>
+<Text color="positive">body text</Text>
 ```
 
 ### Align

@@ -31,6 +31,8 @@ Applies the color to the element.
 
 ```jsx
 <Link to="/bar" color="inverse" />
+<Link to="/bar" color="negative" />
+<Link to="/bar" color="positive" />
 ```
 
 ### Class Name

@@ -198,6 +198,119 @@ test('it renders with `variant="text" color="inverse"`', async () => {
 });
 // #endregion
 
+// #region negative tests
+test('it renders with `variant="contained" color="negative"`', async () => {
+  const props = getBaseProps();
+  const { findByTestId } = renderWithTheme(
+    <RenderContainer>
+      <ButtonLink
+        {...props}
+        data-testid={testId}
+        variant="contained"
+        color="negative"
+      >
+        ButtonLink
+      </ButtonLink>
+    </RenderContainer>
+  );
+  const root = await findByTestId(testId);
+  expect(root).toHaveClass('ChromaButtonLink-containedNegative');
+});
+
+test('it renders with `variant="outlined" color="negative"`', async () => {
+  const props = getBaseProps();
+  const { findByTestId } = renderWithTheme(
+    <RenderContainer>
+      <ButtonLink
+        {...props}
+        data-testid={testId}
+        variant="outlined"
+        color="negative"
+      >
+        ButtonLink
+      </ButtonLink>
+    </RenderContainer>
+  );
+  const root = await findByTestId(testId);
+  expect(root).toHaveClass('ChromaButtonLink-outlinedNegative');
+});
+
+test('it renders with `variant="text" color="negative"`', async () => {
+  const props = getBaseProps();
+  const { findByTestId } = renderWithTheme(
+    <RenderContainer>
+      <ButtonLink
+        {...props}
+        data-testid={testId}
+        variant="text"
+        color="negative"
+      >
+        ButtonLink
+      </ButtonLink>
+    </RenderContainer>
+  );
+  const root = await findByTestId(testId);
+  expect(root).toHaveClass('ChromaButtonLink-textNegative');
+});
+// #endregion
+
+// #region positive tests
+test('it renders with `variant="contained" color="positive"`', async () => {
+  const props = getBaseProps();
+  const { findByTestId } = renderWithTheme(
+    <RenderContainer>
+      <ButtonLink
+        {...props}
+        data-testid={testId}
+        variant="contained"
+        color="positive"
+      >
+        ButtonLink
+      </ButtonLink>
+    </RenderContainer>
+  );
+  const root = await findByTestId(testId);
+  expect(root).toHaveClass('ChromaButtonLink-containedPositive');
+});
+
+test('it renders with `variant="outlined" color="positive"`', async () => {
+  const props = getBaseProps();
+  const { findByTestId } = renderWithTheme(
+    <RenderContainer>
+      <ButtonLink
+        {...props}
+        data-testid={testId}
+        variant="outlined"
+        color="positive"
+      >
+        ButtonLink
+      </ButtonLink>
+    </RenderContainer>
+  );
+  const root = await findByTestId(testId);
+  expect(root).toHaveClass('ChromaButtonLink-outlinedPositive');
+});
+
+test('it renders with `variant="text" color="positive"`', async () => {
+  const props = getBaseProps();
+  const { findByTestId } = renderWithTheme(
+    <RenderContainer>
+      <ButtonLink
+        {...props}
+        data-testid={testId}
+        variant="text"
+        color="positive"
+      >
+        ButtonLink
+      </ButtonLink>
+    </RenderContainer>
+  );
+  const root = await findByTestId(testId);
+  expect(root).toHaveClass('ChromaButtonLink-textPositive');
+});
+// #endregion
+
+// #region disabled tests
 test('it renders a disabled link when disabled', async () => {
   const props = getBaseProps();
   const { findByTestId } = renderWithTheme(
@@ -238,6 +351,53 @@ test('it renders a disabled inverse link when disabled', async () => {
   expect(root.getAttribute('role')).toBe('button');
   expect(root).toHaveClass('ChromaButtonLink-containedInverse');
 });
+
+test('it renders a disabled negative link when disabled', async () => {
+  const props = getBaseProps();
+  const { findByTestId } = renderWithTheme(
+    <RenderContainer>
+      <ButtonLink
+        {...props}
+        disabled={true}
+        color="negative"
+        data-testid={testId}
+      >
+        ButtonLink
+      </ButtonLink>
+    </RenderContainer>
+  );
+
+  const root = await findByTestId(testId);
+
+  expect(root.getAttribute('href')).toBe(null);
+  expect(root.getAttribute('aria-disabled')).toBe('true');
+  expect(root.getAttribute('role')).toBe('button');
+  expect(root).toHaveClass('ChromaButtonLink-containedNegative');
+});
+
+test('it renders a disabled positive link when disabled', async () => {
+  const props = getBaseProps();
+  const { findByTestId } = renderWithTheme(
+    <RenderContainer>
+      <ButtonLink
+        {...props}
+        disabled={true}
+        color="positive"
+        data-testid={testId}
+      >
+        ButtonLink
+      </ButtonLink>
+    </RenderContainer>
+  );
+
+  const root = await findByTestId(testId);
+
+  expect(root.getAttribute('href')).toBe(null);
+  expect(root.getAttribute('aria-disabled')).toBe('true');
+  expect(root.getAttribute('role')).toBe('button');
+  expect(root).toHaveClass('ChromaButtonLink-containedPositive');
+});
+// #endregion
 
 test('it renders a trailing icon', async () => {
   const props = getBaseProps();
