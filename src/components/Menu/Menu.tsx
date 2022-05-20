@@ -1,7 +1,7 @@
 import { ConditionalWrapper } from '../_private/ConditionalWrapper';
 import { GetClasses } from '../../typeUtils';
 import { makeStyles } from '../../styles';
-import { MenuItemProps } from './MenuItem';
+import { MenuItem, MenuItemProps } from './MenuItem';
 import { motion, useReducedMotion } from 'framer-motion';
 import { Portal } from 'reakit/Portal';
 import { Text } from '../Text';
@@ -15,6 +15,7 @@ import {
 import clsx from 'clsx';
 import * as React from 'react';
 import 'focus-visible';
+import { MenuGroupHeadingProps } from './MenuGroupHeading';
 
 export const MenuStylesKey = 'ChromaMenu';
 
@@ -27,8 +28,8 @@ export const useStyles = makeStyles(
       maxHeight: theme.pxToRem(432),
       minWidth: theme.pxToRem(224),
       overflowY: 'auto',
-      paddingBottom: theme.spacing(2),
-      paddingTop: theme.spacing(2),
+      paddingBottom: theme.spacing(1),
+      paddingTop: theme.spacing(1),
       zIndex: 40,
       '&:focus': {
         outline: 'none',
@@ -54,10 +55,19 @@ export interface MenuProps
   anchorElement?: any;
   children?: React.ReactNode;
   className?: string;
-  items?: Array<React.ReactElement<MenuItemProps>>;
+  items?: Array<
+    | React.ReactElement<MenuItemProps>
+    | React.ReactElement<MenuGroupHeadingProps>
+  >;
   title?: string;
   usePortal?: boolean;
 }
+
+const isMenuItemElement = (
+  el:
+    | React.ReactElement<MenuItemProps>
+    | React.ReactElement<MenuGroupHeadingProps>
+): el is React.ReactElement<MenuItemProps> => el.type === MenuItem;
 
 export const Menu: React.FC<MenuProps> = ({
   'aria-label': ariaLabel,
@@ -126,21 +136,25 @@ export const Menu: React.FC<MenuProps> = ({
             </Text>
           )}
           {items &&
-            items.map((item, i) => (
-              <ReakitMenuItem
-                {...menu}
-                {...item.props}
-                key={i}
-                onClick={(e: any) => {
-                  menu.hide();
-                  item.props.onClick && item.props.onClick(e);
-                }}
-              >
-                {(itemProps) =>
-                  React.cloneElement(React.Children.only(item), itemProps)
-                }
-              </ReakitMenuItem>
-            ))}
+            items.map((item, i) =>
+              isMenuItemElement(item) ? (
+                <ReakitMenuItem
+                  {...menu}
+                  {...item.props}
+                  key={`item-${i}`}
+                  onClick={(e: any) => {
+                    menu.hide();
+                    item.props.onClick && item.props.onClick(e);
+                  }}
+                >
+                  {(itemProps) =>
+                    React.cloneElement(React.Children.only(item), itemProps)
+                  }
+                </ReakitMenuItem>
+              ) : (
+                item
+              )
+            )}
         </ReakitMenu>
       </ConditionalWrapper>
     </>

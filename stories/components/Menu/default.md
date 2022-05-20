@@ -51,6 +51,28 @@ Button; however, a Menu Button component is also available.
 />
 ```
 
+### Group Headings
+
+Use the `MenuGroupHeading` component to render "section" headers for grouped menu items.
+
+```jsx
+<Menu
+  aria-label="Chroma menu options"
+  anchorElement={<button>Press Me</button>}
+  items={[
+    <MenuGroupHeading>First Section</MenuGroupHeading>,
+    <MenuItem>Option 1</MenuItem>,
+    <MenuItem>Option 2</MenuItem>,
+    // Can pass any React child as a group heading.
+    <MenuGroupHeading>
+      <p>Second Section</p>
+    </MenuGroupHeading>,
+    <MenuItem>Option 3</MenuItem>,
+    <MenuItem>Option 4</MenuItem>,
+  ]}
+/>
+```
+
 ### Placement
 
 The menu popover location can be adjusted.

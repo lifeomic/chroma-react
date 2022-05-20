@@ -14,12 +14,12 @@ export const useStyles = makeStyles(
       cursor: 'pointer',
       display: 'flex',
       fontFamily: theme.typography.fontFamily,
-      fontSize: theme.typography.body1.fontSize,
+      fontSize: theme.pxToRem(14),
       letterSpacing: '0.015625em',
       margin: 0,
       outline: 'none',
       overflow: 'hidden',
-      padding: theme.spacing(1.5, 2.5),
+      padding: theme.spacing(1, 2),
       userSelect: 'none',
       width: '100%',
       '&:hover,&:focus': {
@@ -30,7 +30,7 @@ export const useStyles = makeStyles(
       },
     },
     icon: {
-      marginRight: theme.spacing(2),
+      marginRight: theme.spacing(1),
     },
   }),
   { name: MenuItemStylesKey }
