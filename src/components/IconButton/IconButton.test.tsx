@@ -49,6 +49,24 @@ test('it renders with `color="inverse"`', async () => {
   expect(button).toHaveClass('ChromaIconButton-inverse');
 });
 
+test('it renders with `color="negative"`', async () => {
+  const props = getBaseProps();
+  const { findByTestId } = renderWithTheme(
+    <IconButton {...props} data-testid={testId} color="negative" />
+  );
+  const button = await findByTestId(testId);
+  expect(button).toHaveClass('ChromaIconButton-negative');
+});
+
+test('it renders with `color="positive"`', async () => {
+  const props = getBaseProps();
+  const { findByTestId } = renderWithTheme(
+    <IconButton {...props} data-testid={testId} color="positive" />
+  );
+  const button = await findByTestId(testId);
+  expect(button).toHaveClass('ChromaIconButton-positive');
+});
+
 test('it renders a disabled IconButton', async () => {
   const props = getBaseProps();
   const { findByTestId } = renderWithTheme(

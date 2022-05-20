@@ -58,6 +58,26 @@ export const useStyles = makeStyles(
         color: `rgba(255, 255, 255, 0.45)`,
       },
     },
+    negative: {
+      color: theme.palette.negative.main,
+      '&:hover, &:focus': {
+        color: theme.palette.negative.dark,
+      },
+      '&:disabled': {
+        color: theme.palette.negative.main,
+        opacity: 0.44,
+      },
+    },
+    positive: {
+      color: theme.palette.positive.main,
+      '&:hover, &:focus': {
+        color: theme.palette.positive.dark,
+      },
+      '&:disabled': {
+        color: theme.palette.positive.main,
+        opacity: 0.44,
+      },
+    },
     size0: {
       '& > svg': {
         width: 18,
@@ -127,7 +147,7 @@ export type IconButtonClasses = GetClasses<typeof useStyles>;
 export interface IconButtonProps
   extends React.ComponentPropsWithoutRef<'button'> {
   ['aria-label']: string;
-  color?: 'default' | 'inverse';
+  color?: 'default' | 'inverse' | 'negative' | 'positive';
   icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   size?: 0 | 1;
   paddingTop?: 0 | 1 | 2 | 3;
@@ -164,6 +184,8 @@ export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
           { [classes.size0]: size === 0 },
           {
             [classes.inverse]: color === 'inverse',
+            [classes.negative]: color === 'negative',
+            [classes.positive]: color === 'positive',
           },
           {
             [classes.paddingTop0]: paddingTop === 0,

@@ -57,6 +57,52 @@ const InversedColorStory: React.FunctionComponent = () => (
     </div>
   </WrappedContainer>
 );
+const NegativeColorStory: React.FunctionComponent = () => (
+  <WrappedContainer>
+    <div style={{ marginRight: spacing[4] }}>
+      <IconButton
+        aria-label="Edit"
+        icon={Edit}
+        color="negative"
+        disabled={boolean('disabled', false)}
+      />
+      <Text size="caption">Default</Text>
+    </div>
+    <div>
+      <IconButton
+        aria-label="Edit"
+        icon={Edit}
+        size={0}
+        color="negative"
+        disabled={boolean('disabled', false)}
+      />
+      <Text size="caption">Small</Text>
+    </div>
+  </WrappedContainer>
+);
+const PositiveColorStory: React.FunctionComponent = () => (
+  <WrappedContainer>
+    <div style={{ marginRight: spacing[4] }}>
+      <IconButton
+        aria-label="Edit"
+        icon={Edit}
+        color="positive"
+        disabled={boolean('disabled', false)}
+      />
+      <Text size="caption">Default</Text>
+    </div>
+    <div>
+      <IconButton
+        aria-label="Edit"
+        icon={Edit}
+        size={0}
+        color="positive"
+        disabled={boolean('disabled', false)}
+      />
+      <Text size="caption">Small</Text>
+    </div>
+  </WrappedContainer>
+);
 
 const AllIconsButtonStory: React.FunctionComponent = () => (
   <WrappedContainer>
@@ -85,5 +131,11 @@ storiesOf('Components/IconButton', module)
     readme: { content: defaultMd },
   })
   .add('Inverse Color', () => <InversedColorStory />, {
+    readme: { content: defaultMd },
+  })
+  .add('Negative Color', () => <NegativeColorStory />, {
+    readme: { content: defaultMd },
+  })
+  .add('Positive Color', () => <PositiveColorStory />, {
     readme: { content: defaultMd },
   });
