@@ -28,8 +28,8 @@ export const useStyles = makeStyles(
       maxHeight: theme.pxToRem(432),
       minWidth: theme.pxToRem(224),
       overflowY: 'auto',
-      paddingBottom: theme.spacing(2),
-      paddingTop: theme.spacing(2),
+      paddingBottom: theme.spacing(1),
+      paddingTop: theme.spacing(1),
       zIndex: 40,
       '&:focus': {
         outline: 'none',
