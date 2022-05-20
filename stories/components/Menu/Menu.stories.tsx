@@ -122,6 +122,49 @@ const MenuStory: React.FC = () => {
             ]}
           />
         </Container>
+        <Container>
+          <Menu
+            aria-label="Chroma menu options children"
+            anchorElement={
+              <IconButton
+                aria-label="Click to open children only menu"
+                icon={MoreHorizontal}
+              />
+            }
+            items={[
+              <MenuGroupHeading>First Section</MenuGroupHeading>,
+              <MenuItem
+                onClick={() => console.log('Option1')}
+                key={0}
+                icon={Edit}
+              >
+                Option1
+              </MenuItem>,
+              <MenuItem
+                onClick={() => console.log('Option2')}
+                key={1}
+                icon={HelpCircle}
+              >
+                Option2
+              </MenuItem>,
+              <MenuGroupHeading>Second Section</MenuGroupHeading>,
+              <MenuItem
+                onClick={() => console.log('Option1')}
+                key={0}
+                icon={Trash}
+              >
+                Option1
+              </MenuItem>,
+              <MenuItem
+                onClick={() => console.log('Option2')}
+                key={1}
+                icon={HelpCircle}
+              >
+                Option2
+              </MenuItem>,
+            ]}
+          />
+        </Container>
       </Container>
     </>
   );
