@@ -2,7 +2,30 @@ import { storiesOf } from '@storybook/react';
 import * as React from 'react';
 import { Text } from '../../../src/components/Text';
 import { Container } from '../../storyComponents/Container';
+import { spacing } from '../../storyStyles';
 import md from './default.md';
+
+interface WrappedContainerProps {
+  additionalStyles?: React.CSSProperties;
+  children: React.ReactNode;
+}
+
+const WrappedContainer: React.FC<WrappedContainerProps> = ({
+  additionalStyles,
+  children,
+}) => (
+  <Container
+    containerStyles={{
+      display: 'flex',
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'center',
+      ...additionalStyles,
+    }}
+  >
+    {children}
+  </Container>
+);
 
 const TextStory: React.FunctionComponent = () => {
   return (
@@ -54,6 +77,20 @@ const TextStory: React.FunctionComponent = () => {
       <Text align="left">align left</Text>
       <Text align="right">align right</Text>
       <Text align="justify">align justify</Text>
+      <WrappedContainer additionalStyles={{ gap: spacing[4] }}>
+        <Text
+          color="inverse"
+          style={{
+            background: '#384049',
+            paddingLeft: spacing[2],
+            paddingRight: spacing[2],
+          }}
+        >
+          Inverse
+        </Text>
+        <Text color="negative">Negative</Text>
+        <Text color="positive">Positive</Text>
+      </WrappedContainer>
     </Container>
   );
 };
