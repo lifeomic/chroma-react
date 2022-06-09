@@ -48,6 +48,12 @@ export const useStyles = makeStyles(
       color: theme.palette.text.secondary,
       fontSize: theme.pxToRem(12),
     },
+    negative: {
+      color: theme.palette.negative.main,
+    },
+    positive: {
+      color: theme.palette.positive.main,
+    },
   }),
   { name: MenuItemStylesKey }
 );
@@ -57,6 +63,7 @@ export type MenuItemClasses = GetClasses<typeof useStyles>;
 export interface MenuItemProps
   extends React.ComponentPropsWithoutRef<'button'> {
   children?: React.ReactNode;
+  color?: 'default' | 'negative' | 'positive' | undefined;
   icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   text?: string;
   secondaryText?: string;
@@ -67,6 +74,7 @@ export const MenuItem = React.forwardRef<HTMLButtonElement, MenuItemProps>(
     {
       className,
       children,
+      color = 'default',
       icon: Icon,
       onClick,
       text,
@@ -86,7 +94,14 @@ export const MenuItem = React.forwardRef<HTMLButtonElement, MenuItemProps>(
     return (
       <button
         ref={ref}
-        className={clsx(classes.root, className)}
+        className={clsx(
+          classes.root,
+          {
+            [classes.negative]: color === 'negative',
+            [classes.positive]: color === 'positive',
+          },
+          className
+        )}
         onClick={handleStopPropagation}
         {...rootProps}
       >
