@@ -118,6 +118,26 @@ A Menu Item can contain just text.
 />
 ```
 
+#### Secondary Text
+
+A Menu Item can contain secondary text.
+
+```jsx
+<Menu
+  aria-label="Chroma menu options"
+  anchorElement={
+    <IconButton aria-label="Click to open menu" icon={MoreHorizontal} />
+  }
+  items={[
+    <MenuItem
+      text="Request Download Link"
+      secondaryText="This is secondary text"
+      onClick={() => console.log('Request Download Link')}
+    />,
+  ]}
+/>
+```
+
 #### Icon
 
 An Icon can be rendered for the Menu Item. It's recommended to use the
