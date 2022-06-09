@@ -30,6 +30,7 @@ const MenuStory: React.FC = () => {
           items={[
             <MenuItem
               text="Request Download Link"
+              secondaryText="This is secondary text"
               icon={HelpCircle}
               onClick={() => console.log('Request Download Link')}
               key={0}
@@ -46,6 +47,14 @@ const MenuStory: React.FC = () => {
               onClick={() => console.log('Delete')}
               key={2}
             />,
+            <MenuItem
+              text="Disabled Option"
+              secondaryText="This is secondary text"
+              icon={HelpCircle}
+              onClick={() => console.log('Request Download Link')}
+              disabled
+              key={0}
+            />,
           ]}
         />
         <Container>
@@ -60,6 +69,7 @@ const MenuStory: React.FC = () => {
             items={[
               <MenuItem
                 text="Request Download Link"
+                secondaryText="This is secondary text"
                 onClick={() => console.log('Request Download Link')}
                 key={0}
               />,
@@ -106,9 +116,12 @@ const MenuStory: React.FC = () => {
             }
             items={[
               <MenuGroupHeading>First Section</MenuGroupHeading>,
-              <MenuItem onClick={() => console.log('Option1')} key={0}>
-                Option1
-              </MenuItem>,
+              <MenuItem
+                onClick={() => console.log('Option1')}
+                key={0}
+                text="Option1"
+                secondaryText="This is secondary text"
+              />,
               <MenuItem onClick={() => console.log('Option2')} key={1}>
                 Option2
               </MenuItem>,
@@ -141,12 +154,12 @@ const MenuStory: React.FC = () => {
                 Option1
               </MenuItem>,
               <MenuItem
+                text="Option2"
+                secondaryText="This is secondary text"
                 onClick={() => console.log('Option2')}
                 key={1}
                 icon={HelpCircle}
-              >
-                Option2
-              </MenuItem>,
+              />,
               <MenuGroupHeading>Second Section</MenuGroupHeading>,
               <MenuItem
                 onClick={() => console.log('Option1')}
