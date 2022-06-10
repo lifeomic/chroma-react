@@ -19,12 +19,28 @@ test('it renders a Pill with a label', async () => {
   expect(root).toBeInTheDocument();
 });
 
-test('it renders a Pill with the provided "color"', async () => {
+test('it renders a Pill with primary "color"', async () => {
   const { findByTestId } = renderWithTheme(
     <Pill data-testid={testId} color="primary" />
   );
   const root = await findByTestId(testId);
   expect(root).toHaveClass('ChromaPill-primaryColor');
+});
+
+test('it renders a Pill with negative "color"', async () => {
+  const { findByTestId } = renderWithTheme(
+    <Pill data-testid={testId} color="negative" />
+  );
+  const root = await findByTestId(testId);
+  expect(root).toHaveClass('ChromaPill-negative');
+});
+
+test('it renders a Pill with positive "color"', async () => {
+  const { findByTestId } = renderWithTheme(
+    <Pill data-testid={testId} color="positive" />
+  );
+  const root = await findByTestId(testId);
+  expect(root).toHaveClass('ChromaPill-positive');
 });
 
 test('it renders a Pill with the highlight variant', async () => {
