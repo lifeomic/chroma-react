@@ -253,6 +253,32 @@ it('renders a menu with group headings correctly', async () => {
   expect(queryByText('Test Button')).not.toBeNull();
 });
 
+test('renders a menu item with secondary text', async () => {
+  const { findByTestId } = renderWithTheme(
+    <Menu
+      aria-label="Menu"
+      anchorElement={<button data-testid={anchorTestId}>Open</button>}
+      data-testid={testId}
+      items={[
+        <MenuItem
+          disabled={true}
+          key={0}
+          text="option1"
+          secondaryText="secondary text"
+          data-testid="option"
+        />,
+      ]}
+    />
+  );
+
+  // Click anchor to open
+  const button = await findByTestId(anchorTestId);
+  fireEvent.click(button);
+
+  const option = await findByTestId('option');
+  expect(option).toHaveTextContent('secondary text');
+});
+
 test('renders with color="negative"', async () => {
   const { findByTestId } = renderWithTheme(
     <Menu
