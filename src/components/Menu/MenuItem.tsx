@@ -2,6 +2,7 @@ import clsx from 'clsx';
 import * as React from 'react';
 import { makeStyles } from '../../styles';
 import { GetClasses } from '../../typeUtils';
+import { Box } from '../Box';
 
 export const MenuItemStylesKey = 'ChromaMenuItem';
 
@@ -20,6 +21,7 @@ export const useStyles = makeStyles(
       outline: 'none',
       overflow: 'hidden',
       padding: theme.spacing(1, 2),
+      textAlign: 'left',
       userSelect: 'none',
       width: '100%',
       '&:hover,&:focus': {
@@ -28,9 +30,23 @@ export const useStyles = makeStyles(
       '&:focus': {
         outline: 'none',
       },
+      '&:disabled, &[disabled]': {
+        '&, & *': {
+          color: theme.palette.text.disabled,
+        },
+      },
     },
     icon: {
+      alignSelf: 'flex-start',
       marginRight: theme.spacing(1),
+      minWidth: theme.pxToRem(18),
+    },
+    text: {
+      lineHeight: 1.35,
+    },
+    secondaryText: {
+      color: theme.palette.text.secondary,
+      fontSize: theme.pxToRem(12),
     },
   }),
   { name: MenuItemStylesKey }
@@ -43,10 +59,22 @@ export interface MenuItemProps
   children?: React.ReactNode;
   icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   text?: string;
+  secondaryText?: string;
 }
 
 export const MenuItem = React.forwardRef<HTMLButtonElement, MenuItemProps>(
-  ({ className, children, icon: Icon, onClick, text, ...rootProps }, ref) => {
+  (
+    {
+      className,
+      children,
+      icon: Icon,
+      onClick,
+      text,
+      secondaryText,
+      ...rootProps
+    },
+    ref
+  ) => {
     const classes = useStyles({});
     const handleStopPropagation = (
       e: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -71,7 +99,12 @@ export const MenuItem = React.forwardRef<HTMLButtonElement, MenuItemProps>(
             height={18}
           />
         )}
-        {!!text && text}
+        <Box direction="column" align="flex-start" gap={0.25}>
+          <Box className={classes.text}>{!!text && text}</Box>
+          {!!secondaryText && (
+            <Box className={classes.secondaryText}>{secondaryText}</Box>
+          )}
+        </Box>
         {children}
       </button>
     );
