@@ -32,6 +32,8 @@ Pill allows for a `color` prop to be defined.
 
 ```jsx
 <Pill label="My Pill" color="primary" />
+<Pill label="My Pill" color="negative" />
+<Pill label="My Pill" color="positive" />
 ```
 
 ### Class Name
