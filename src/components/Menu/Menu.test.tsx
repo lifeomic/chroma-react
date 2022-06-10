@@ -253,7 +253,7 @@ it('renders a menu with group headings correctly', async () => {
   expect(queryByText('Test Button')).not.toBeNull();
 });
 
-test('it spreads menu item props properly', async () => {
+test('renders a menu item with secondary text', async () => {
   const { findByTestId } = renderWithTheme(
     <Menu
       aria-label="Menu"
