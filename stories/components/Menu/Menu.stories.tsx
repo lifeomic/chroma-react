@@ -76,6 +76,7 @@ const MenuStory: React.FC = () => {
               />,
               <MenuItem
                 text="Edit"
+                color="positive"
                 onClick={() => console.log('Edit')}
                 key={1}
               />,
