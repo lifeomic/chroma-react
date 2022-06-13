@@ -24,6 +24,12 @@ export const useStyles = makeStyles(
     primaryColor: {
       background: theme.palette.primary.main,
     },
+    negative: {
+      background: theme.palette.negative.main,
+    },
+    positive: {
+      background: theme.palette.positive.main,
+    },
     highlight: {
       background: `linear-gradient(135deg, ${theme.palette.primary.light} 0%, ${theme.palette.primary.main} 40%, rgb(166, 66, 254) 92%)`,
       boxShadow: theme.boxShadows.table,
@@ -51,7 +57,7 @@ export interface PillOwnProps
       'onAnimationStart' | 'onDrag' | 'onDragEnd' | 'onDragStart' | 'style'
     >,
     MotionProps {
-  color?: 'primary' | 'default';
+  color?: 'default' | 'primary' | 'negative' | 'positive';
   children?: React.ReactNode;
   label?: string;
   variant?: 'default' | 'highlight';
@@ -79,6 +85,8 @@ export const Pill = React.forwardRef<HTMLSpanElement, PillProps>(
           },
           {
             [classes.primaryColor]: color === 'primary',
+            [classes.negative]: color === 'negative',
+            [classes.positive]: color === 'positive',
           },
           className
         )}
