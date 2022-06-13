@@ -159,6 +159,20 @@ An Icon can be rendered for the Menu Item. It's recommended to use the
 />
 ```
 
+#### Color
+
+A Menu Item can be assigned a `negative` or `positive` color.
+
+```jsx
+<MenuItem
+  color="negative"
+  text="Delete"
+  icon={Trash}
+  onClick={() => console.log('Delete')}
+  key={2}
+/>
+```
+
 #### Children Content
 
 Your own content can be rendered inside of a Menu Item as well.

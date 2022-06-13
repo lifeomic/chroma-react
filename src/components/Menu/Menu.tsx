@@ -147,7 +147,7 @@ export const Menu: React.FC<MenuProps> = ({
                     item.props.onClick && item.props.onClick(e);
                   }}
                 >
-                  {(itemProps) =>
+                  {(itemProps: MenuItemProps | MenuGroupHeadingProps) =>
                     React.cloneElement(React.Children.only(item), itemProps)
                   }
                 </ReakitMenuItem>

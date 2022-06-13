@@ -42,6 +42,7 @@ const MenuStory: React.FC = () => {
               key={1}
             />,
             <MenuItem
+              color="negative"
               text="Delete"
               icon={Trash}
               onClick={() => console.log('Delete')}
@@ -75,6 +76,7 @@ const MenuStory: React.FC = () => {
               />,
               <MenuItem
                 text="Edit"
+                color="positive"
                 onClick={() => console.log('Edit')}
                 key={1}
               />,

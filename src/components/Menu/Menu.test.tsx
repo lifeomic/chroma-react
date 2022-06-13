@@ -278,3 +278,53 @@ test('renders a menu item with secondary text', async () => {
   const option = await findByTestId('option');
   expect(option).toHaveTextContent('secondary text');
 });
+
+test('renders with color="negative"', async () => {
+  const { findByTestId } = renderWithTheme(
+    <Menu
+      aria-label="Menu"
+      anchorElement={<button data-testid={anchorTestId}>Open</button>}
+      data-testid={testId}
+      items={[
+        <MenuItem
+          text="option1"
+          data-testid="option"
+          color="negative"
+          key={0}
+        />,
+      ]}
+    />
+  );
+
+  // Click anchor to open
+  const button = await findByTestId(anchorTestId);
+  fireEvent.click(button);
+
+  const option = await findByTestId('option');
+  expect(option).toHaveClass('ChromaMenuItem-negative');
+});
+
+test('renders with color="positive"', async () => {
+  const { findByTestId } = renderWithTheme(
+    <Menu
+      aria-label="Menu"
+      anchorElement={<button data-testid={anchorTestId}>Open</button>}
+      data-testid={testId}
+      items={[
+        <MenuItem
+          text="option1"
+          data-testid="option"
+          color="positive"
+          key={0}
+        />,
+      ]}
+    />
+  );
+
+  // Click anchor to open
+  const button = await findByTestId(anchorTestId);
+  fireEvent.click(button);
+
+  const option = await findByTestId('option');
+  expect(option).toHaveClass('ChromaMenuItem-positive');
+});
