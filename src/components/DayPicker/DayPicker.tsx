@@ -37,6 +37,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: theme.spacing(1.25),
     backgroundColor: theme.palette.common.white,
     boxShadow: theme.boxShadows.popover,
+    width: theme.pxToRem(277),
     '& .DayPicker-wrapper': {
       paddingBottom: 0,
     },
