@@ -63,7 +63,7 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: theme.palette.grey[300],
     },
     '&.DayPicker:not(.DayPicker--interactionDisabled) .DayPicker-Day:not(.DayPicker-Day--disabled):not(.DayPicker-Day--selected):not(.DayPicker-Day--outside):hover': {
-      backgroundColor: fade(theme.palette.primary[50], 0.65),
+      backgroundColor: fade(theme.palette.primary[50], 0.5),
     },
   },
   dayPickerBottomLeft: {
