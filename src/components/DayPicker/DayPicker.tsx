@@ -13,6 +13,7 @@ import { TextField, TextFieldProps } from '../TextField';
 import { GetClasses } from '../../typeUtils';
 import { ButtonUnstyled } from '../ButtonUnstyled';
 import { composeEventHandlers } from '../../utils';
+import { fade } from '@material-ui/core/styles/colorManipulator';
 
 export const DayPickerStylesKey = 'ChromaDayPicker';
 export type DayPickerClasses = GetClasses<typeof useStyles>;
@@ -60,6 +61,9 @@ const useStyles = makeStyles((theme) => ({
     '& .DayPicker-Day--today': {
       color: theme.palette.common.black,
       backgroundColor: theme.palette.grey[300],
+    },
+    '&.DayPicker:not(.DayPicker--interactionDisabled) .DayPicker-Day:not(.DayPicker-Day--disabled):not(.DayPicker-Day--selected):not(.DayPicker-Day--outside):hover': {
+      backgroundColor: fade(theme.palette.primary[50], 0.5),
     },
   },
   dayPickerBottomLeft: {
