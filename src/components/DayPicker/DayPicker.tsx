@@ -325,28 +325,28 @@ export const DayPicker = React.forwardRef<HTMLInputElement, DayPickerProps>(
       onTextChange && onTextChange(formatDate(day));
     };
 
-    // const onBlur = (e: React.FocusEvent<unknown>) => {
-    //   /**
-    //    * This logic primarily serves to provide good keyboard navigation.
-    //    */
-    //   if (!isInternalNode(e.relatedTarget)) {
-    //     setIsCalendarOpen(false);
-    //   }
+    const onBlur = (e: React.FocusEvent<unknown>) => {
+      /**
+       * This logic primarily serves to provide good keyboard navigation.
+       */
+      if (!isInternalNode(e.relatedTarget)) {
+        setIsCalendarOpen(false);
+      }
 
-    //   /**
-    //    * Clear any intermediate input. This minimizes confusion -- if
-    //    * the text field is not focused, then it contains the most recent
-    //    * value.
-    //    *
-    //    * Otherwise, consumers may see a value that hasn't been reported
-    //    * via `onDayChange`.
-    //    */
-    //   setIntermediateInput(undefined);
-    // };
+      /**
+       * Clear any intermediate input. This minimizes confusion -- if
+       * the text field is not focused, then it contains the most recent
+       * value.
+       *
+       * Otherwise, consumers may see a value that hasn't been reported
+       * via `onDayChange`.
+       */
+      setIntermediateInput(undefined);
+    };
 
-    // const isInternalNode = (target: EventTarget | null) => {
-    //   return target instanceof Node && wrapperRef.current?.contains(target);
-    // };
+    const isInternalNode = (target: EventTarget | null) => {
+      return target instanceof Node && wrapperRef.current?.contains(target);
+    };
 
     const DAY_PICKER_STYLES: Record<DayPickerAnchorPosition, string> = {
       'bottom-left': classes.dayPickerBottomLeft,
@@ -401,7 +401,7 @@ export const DayPicker = React.forwardRef<HTMLInputElement, DayPickerProps>(
             textFieldProps.onFocus,
             () => setIsCalendarOpen(true),
           ])}
-          // onBlur={composeEventHandlers([textFieldProps.onBlur, onBlur])}
+          onBlur={composeEventHandlers([textFieldProps.onBlur, onBlur])}
         />
         {isCalendarOpen && (
           <ReactDayPicker
@@ -465,7 +465,7 @@ export const DayPicker = React.forwardRef<HTMLInputElement, DayPickerProps>(
               formatMonthTitle,
               formatWeekdayShort,
             }}
-            // onBlur={onBlur}
+            onBlur={onBlur}
             {...calendarProps}
           />
         )}
