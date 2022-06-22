@@ -147,6 +147,9 @@ const [errorMessage, setErrorMessage] = React.useState(false);
   // A color string to use for the background of the "selected" day
   // in the calendar.
   selectedBackgroundColor={...}
+  // A color string to use for the text color of the "selected" day
+  // in the calendar.
+  selectedTextColor={...}
   // A function for formatting the month + year title.
   // Useful to override for localization.
   formatMonthTitle={...}
