@@ -124,7 +124,7 @@ export type DayPickerProps = Omit<TextFieldProps, 'value' | 'onChange'> & {
   /**
    * A background color to use for the currently selected month.
    *
-   * Default is the main primary color of the theme.
+   * Default is 'primary'.
    */
   pickerColor?: 'primary' | 'secondary';
 
