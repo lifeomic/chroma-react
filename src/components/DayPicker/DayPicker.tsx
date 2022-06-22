@@ -227,7 +227,7 @@ export const DayPicker = React.forwardRef<HTMLInputElement, DayPickerProps>(
   (
     {
       value,
-      pickerColor,
+      pickerColor = 'primary',
       anchorPosition = 'bottom-left',
       minDate,
       maxDate,
