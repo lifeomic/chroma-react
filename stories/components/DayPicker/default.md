@@ -144,9 +144,8 @@ const [errorMessage, setErrorMessage] = React.useState(false);
   label="Date"
   value={date}
   setDate={setDate}
-  // A color string to use for the background of the "selected" day
-  // in the calendar.
-  selectedBackgroundColor={...}
+  // The main theme color used for styling the calendar.
+  pickerColor="secondary"
   // A function for formatting the month + year title.
   // Useful to override for localization.
   formatMonthTitle={...}

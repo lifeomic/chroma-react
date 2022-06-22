@@ -124,9 +124,9 @@ export type DayPickerProps = Omit<TextFieldProps, 'value' | 'onChange'> & {
   /**
    * A background color to use for the currently selected month.
    *
-   * Default is the main primary color of the theme.
+   * Default is 'primary'.
    */
-  selectedBackgroundColor?: string;
+  pickerColor?: 'primary' | 'secondary';
 
   /**
    * Where to anchor the calender pop-up. Default is 'bottom-left'.
@@ -227,7 +227,7 @@ export const DayPicker = React.forwardRef<HTMLInputElement, DayPickerProps>(
   (
     {
       value,
-      selectedBackgroundColor,
+      pickerColor = 'primary',
       anchorPosition = 'bottom-left',
       minDate,
       maxDate,
@@ -422,7 +422,15 @@ export const DayPicker = React.forwardRef<HTMLInputElement, DayPickerProps>(
             modifiersStyles={{
               selected: {
                 backgroundColor:
-                  selectedBackgroundColor || theme.palette.primary.main,
+                  pickerColor === 'secondary'
+                    ? theme.palette.secondary.main
+                    : theme.palette.primary.main,
+                color:
+                  pickerColor === 'secondary'
+                    ? theme.palette.getContrastText(
+                        theme.palette.secondary.main
+                      )
+                    : theme.palette.getContrastText(theme.palette.primary.main),
               },
               outside: {
                 backgroundColor: 'transparent',
