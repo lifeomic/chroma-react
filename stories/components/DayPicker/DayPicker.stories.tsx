@@ -71,6 +71,7 @@ const DayPickerStory: React.FC = () => {
               fullWidth
               label={'Default'}
               initialValue={new Date()}
+              color="secondary"
             />
             <PickerWithInternalState
               fullWidth

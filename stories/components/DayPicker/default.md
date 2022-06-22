@@ -146,7 +146,7 @@ const [errorMessage, setErrorMessage] = React.useState(false);
   setDate={setDate}
   // The secondary color can be used for the background
   // color of the "selected" day in the calendar.
-  selectedBackgroundColor="secondary"
+  color="secondary"
   // A function for formatting the month + year title.
   // Useful to override for localization.
   formatMonthTitle={...}
