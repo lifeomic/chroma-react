@@ -190,6 +190,7 @@ Your own content can be rendered inside of a Menu Item as well.
 ## Accessibility
 
 - The anchor element has `aria-expanded` and `aria-haspopup` set appropriately.
+- Menu Item has an optional `aria-label` property.
 - The Menu and Menu Item components have the `role="menu"` and
   `role="menuitem"`.
 - Pressing `Enter` on the focused anchor element expands the menu.

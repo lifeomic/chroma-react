@@ -67,6 +67,7 @@ export interface MenuItemProps
   icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   text?: string;
   secondaryText?: string;
+  ariaLabel?: string;
 }
 
 export const MenuItem = React.forwardRef<HTMLButtonElement, MenuItemProps>(
@@ -79,6 +80,7 @@ export const MenuItem = React.forwardRef<HTMLButtonElement, MenuItemProps>(
       onClick,
       text,
       secondaryText,
+      ariaLabel,
       ...rootProps
     },
     ref
@@ -103,6 +105,7 @@ export const MenuItem = React.forwardRef<HTMLButtonElement, MenuItemProps>(
           className
         )}
         onClick={handleStopPropagation}
+        aria-label={ariaLabel}
         {...rootProps}
       >
         {!!Icon && (

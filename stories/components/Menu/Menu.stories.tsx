@@ -34,12 +34,14 @@ const MenuStory: React.FC = () => {
               icon={HelpCircle}
               onClick={() => console.log('Request Download Link')}
               key={0}
+              ariaLabel="Download"
             />,
             <MenuItem
               text="Edit"
               icon={Edit}
               onClick={() => console.log('Edit')}
               key={1}
+              ariaLabel="Edit"
             />,
             <MenuItem
               color="negative"
@@ -47,6 +49,7 @@ const MenuStory: React.FC = () => {
               icon={Trash}
               onClick={() => console.log('Delete')}
               key={2}
+              ariaLabel="Delete"
             />,
             <MenuItem
               text="Disabled Option"
@@ -55,6 +58,7 @@ const MenuStory: React.FC = () => {
               onClick={() => console.log('Request Download Link')}
               disabled
               key={0}
+              ariaLabel="Download"
             />,
           ]}
         />

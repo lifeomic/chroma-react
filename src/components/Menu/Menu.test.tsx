@@ -159,6 +159,7 @@ test('it spreads menu item props properly', async () => {
           key={0}
           text="option1"
           data-testid="option"
+          ariaLabel="arya stark"
         />,
       ]}
     />
@@ -171,6 +172,7 @@ test('it spreads menu item props properly', async () => {
   const option = await findByTestId('option');
   expect(option).toBeDisabled();
   expect(option).toHaveClass('menu-item-1');
+  expect(option).toHaveAttribute('aria-label', 'arya stark');
 });
 
 test('it applies the provided className', async () => {
