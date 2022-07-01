@@ -5,6 +5,7 @@ import { GetClasses } from '../../typeUtils';
 import { Box } from '../Box';
 import { Pill } from '../Pill';
 import { Text } from '../Text';
+import { generateUniqueId } from '../_private/UniqueId';
 
 export const StepStylesKey = 'ChromaStep';
 
@@ -158,9 +159,26 @@ export const Step: React.FC<StepProps> = ({
   ...rootProps
 }) => {
   const classes = useStyles({});
+  const ariaLabel = `Step ${index + 1} of ${numberOfSteps}`;
+
+  const titleId = generateUniqueId('title-');
+  const subTitleId = generateUniqueId('subTitle-');
+  const subTitlePillId = generateUniqueId('subTitlePill-');
 
   const handleClick = () => {
     onClick?.(index);
+  };
+
+  const getDescribedBy = () => {
+    if (title && subTitle) {
+      return `${titleId} ${subTitleId}`;
+    }
+
+    if (title && subTitlePillLabel) {
+      return `${titleId} ${subTitlePillId}`;
+    }
+
+    return titleId;
   };
 
   const content = (
@@ -200,6 +218,7 @@ export const Step: React.FC<StepProps> = ({
       </Box>
       <Text
         className={clsx(classes.title, active && classes.activeTitle)}
+        id={titleId}
         size="subbody"
       >
         {title}
@@ -207,6 +226,7 @@ export const Step: React.FC<StepProps> = ({
       {subTitle && !subTitlePillLabel && (
         <Text
           className={clsx(classes.title, active && classes.activeTitle)}
+          id={subTitleId}
           size="caption"
         >
           {subTitle}
@@ -219,6 +239,7 @@ export const Step: React.FC<StepProps> = ({
             completed && classes.completedPillSubTitle
           )}
           color={active ? 'primary' : 'default'}
+          id={subTitlePillId}
           label={subTitlePillLabel}
         />
       )}
@@ -229,7 +250,8 @@ export const Step: React.FC<StepProps> = ({
     <li aria-current={active ? 'step' : undefined}>
       {as === 'button' ? (
         <button
-          aria-label={`Step ${index + 1} of ${numberOfSteps}`}
+          aria-describedBy={getDescribedBy()}
+          aria-label={ariaLabel}
           className={clsx(
             classes.buttonRoot,
             active && classes.activeRoot,
@@ -246,6 +268,8 @@ export const Step: React.FC<StepProps> = ({
       ) : (
         <Box
           align="center"
+          aria-describedBy={getDescribedBy()}
+          aria-label={ariaLabel}
           className={clsx(
             classes.divRoot,
             active && classes.activeRoot,

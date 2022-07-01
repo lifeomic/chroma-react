@@ -84,7 +84,12 @@ export const Stepper: React.FC<StepperProps> = ({
   });
 
   return (
-    <Box fullWidth className={clsx(classes.root, className)} {...rootProps}>
+    <Box
+      fullWidth
+      className={clsx(classes.root, className)}
+      role="group"
+      {...rootProps}
+    >
       <ol className={classes.innerRoot}>{steps}</ol>
     </Box>
   );
