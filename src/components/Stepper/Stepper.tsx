@@ -18,6 +18,7 @@ export const useStyles = makeStyles(
       justifyContent: 'space-between',
       listStyleType: 'none',
       margin: theme.spacing(4, 4, 0, 4),
+      padding: 0,
       width: '100%',
     },
   }),
