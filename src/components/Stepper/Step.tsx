@@ -25,7 +25,7 @@ export const useStyles = makeStyles(
         outline: 'none',
       },
 
-      '&:hover': {
+      '&:hover, &:focus': {
         '&>div': {
           transform: 'scale(1.1)',
           transition: '0.25s cubic-bezier(0.2, 0.8, 0.2, 1)',
@@ -35,6 +35,15 @@ export const useStyles = makeStyles(
     divRoot: {
       minWidth: theme.pxToRem(110),
       padding: theme.spacing(0, 0.875, 1.5, 0.875),
+
+      '&:focus': {
+        outline: 'none',
+
+        '&>div': {
+          transform: 'scale(1.1)',
+          transition: '0.25s cubic-bezier(0.2, 0.8, 0.2, 1)',
+        },
+      },
     },
     activeRoot: {
       borderBottom: `2px solid ${theme.palette.primary.main}`,
@@ -126,6 +135,7 @@ export interface StepProps {
   disabled?: boolean;
   icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   index?: number;
+  numberOfSteps?: number;
   onClick?: (index: number | undefined) => void;
   subTitle?: string;
   subTitlePillLabel?: string;
@@ -139,7 +149,8 @@ export const Step: React.FC<StepProps> = ({
   completed,
   disabled,
   icon: Icon,
-  index,
+  index = 0,
+  numberOfSteps,
   onClick,
   subTitle,
   subTitlePillLabel,
@@ -214,38 +225,40 @@ export const Step: React.FC<StepProps> = ({
     </>
   );
 
-  if (as === 'button') {
-    return (
-      <button
-        className={clsx(
-          classes.buttonRoot,
-          active && classes.activeRoot,
-          completed && classes.completedRoot,
-          disabled && classes.disabled,
-          className
-        )}
-        disabled={disabled}
-        onClick={handleClick}
-        {...rootProps}
-      >
-        {content}
-      </button>
-    );
-  } else {
-    return (
-      <Box
-        align="center"
-        className={clsx(
-          classes.divRoot,
-          active && classes.activeRoot,
-          completed && classes.completedRoot,
-          className
-        )}
-        direction="column"
-        {...rootProps}
-      >
-        {content}
-      </Box>
-    );
-  }
+  return (
+    <li aria-current={active ? 'step' : undefined}>
+      {as === 'button' ? (
+        <button
+          aria-label={`Step ${index + 1} of ${numberOfSteps}`}
+          className={clsx(
+            classes.buttonRoot,
+            active && classes.activeRoot,
+            completed && classes.completedRoot,
+            disabled && classes.disabled,
+            className
+          )}
+          disabled={disabled}
+          onClick={handleClick}
+          {...rootProps}
+        >
+          {content}
+        </button>
+      ) : (
+        <Box
+          align="center"
+          className={clsx(
+            classes.divRoot,
+            active && classes.activeRoot,
+            completed && classes.completedRoot,
+            className
+          )}
+          direction="column"
+          tabIndex={as === 'div' && active ? 0 : -1}
+          {...rootProps}
+        >
+          {content}
+        </Box>
+      )}
+    </li>
+  );
 };
