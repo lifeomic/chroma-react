@@ -45,7 +45,7 @@ export const useStyles = makeStyles(
       overflow: 'hidden',
       padding: theme.spacing(0.25),
       '& input': {
-        display: 'none',
+        ...screenreaderOnlyStyles,
         '& + div': {
           display: 'flex',
           justifyContent: 'center',
@@ -97,6 +97,11 @@ export const useStyles = makeStyles(
             cursor: 'not-allowed',
           },
         },
+        '&:focus + div': {
+          '&::before': {
+            boxShadow: '0 0 0 2px rgba(0, 150, 225, .3)',
+          },
+        },
       },
       '& label': {
         marginTop: 0,
@@ -119,6 +124,11 @@ export const useStyles = makeStyles(
         },
         '& label > p, & svg': {
           color: 'unset',
+        },
+      },
+      '& input:focus + div': {
+        '&::before': {
+          boxShadow: '0 0 0 2px rgba(255, 255, 255, .3)',
         },
       },
     },
