@@ -17,6 +17,18 @@ test('it throws an error for improperly formatted hex codes', () => {
   }).toThrow('Invalid hex code');
 });
 
+test('it works for capital hex codes', () => {
+  const hex = '#DDAAFF';
+  const opacity = 0.5;
+  expect(hexToRgba(hex, opacity)).toBe('(221,170,255,0.5)');
+});
+
+test('it works for mixed-case hex codes', () => {
+  const hex = '#aBCdeF';
+  const opacity = 0.5;
+  expect(hexToRgba(hex, opacity)).toBe('(171,205,239,0.5)');
+});
+
 test('it works for length 3 hex codes', () => {
   const hex = '#abc';
   const opacity = 0.5;
