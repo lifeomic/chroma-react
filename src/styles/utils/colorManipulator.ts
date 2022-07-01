@@ -7,9 +7,9 @@ export function hexToRgba(hex: string, opacity?: number): string {
     const b = decToHex(hexArr[2]);
     if (opacity) {
       const percent = opacity > 1 ? '%' : '';
-      rgba = `(${r},${g},${b},${opacity}${percent})`;
+      rgba = `rgba(${r},${g},${b},${opacity}${percent})`;
     } else {
-      rgba = `(${r},${g},${b},1)`;
+      rgba = `rgba(${r},${g},${b},1)`;
     }
   } else {
     throw new Error('Invalid hex code');
