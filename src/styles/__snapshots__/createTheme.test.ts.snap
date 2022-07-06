@@ -33,6 +33,7 @@ Object {
     "width": [Function],
   },
   "direction": "ltr",
+  "hexToRgba": [Function],
   "mixins": Object {
     "gutters": [Function],
     "toolbar": Object {

@@ -16,6 +16,7 @@ import {
   TypographyOptions,
 } from './createTypography';
 import { createOverrides, OverridesCreator } from './overrides';
+import { hexToRgba } from './utils/colorManipulator';
 
 export interface Theme extends Omit<MuiTheme, 'palette'> {
   palette: Palette;
@@ -46,6 +47,7 @@ export const createTheme = ({
     typography: createTypography(typography),
     boxShadows: createBoxShadows(boxShadows),
     pxToRem: (size: number) => `${size / 16}rem`,
+    hexToRgba: hexToRgba,
     ...muiOptions,
   } as any) as any) as Theme;
 
