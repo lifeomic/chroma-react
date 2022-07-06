@@ -5,6 +5,7 @@ import { GetClasses } from '../../typeUtils';
 import { Box } from '../Box';
 import { Pill } from '../Pill';
 import { Text } from '../Text';
+import { generateUniqueId } from '../_private/UniqueId';
 
 export const StepStylesKey = 'ChromaStep';
 
@@ -25,7 +26,7 @@ export const useStyles = makeStyles(
         outline: 'none',
       },
 
-      '&:hover': {
+      '&:hover, &:focus': {
         '&>div': {
           transform: 'scale(1.1)',
           transition: '0.25s cubic-bezier(0.2, 0.8, 0.2, 1)',
@@ -35,6 +36,15 @@ export const useStyles = makeStyles(
     divRoot: {
       minWidth: theme.pxToRem(110),
       padding: theme.spacing(0, 0.875, 1.5, 0.875),
+
+      '&:focus': {
+        outline: 'none',
+
+        '&>div': {
+          transform: 'scale(1.1)',
+          transition: '0.25s cubic-bezier(0.2, 0.8, 0.2, 1)',
+        },
+      },
     },
     activeRoot: {
       borderBottom: `2px solid ${theme.palette.primary.main}`,
@@ -126,6 +136,7 @@ export interface StepProps {
   disabled?: boolean;
   icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   index?: number;
+  numberOfSteps?: number;
   onClick?: (index: number | undefined) => void;
   subTitle?: string;
   subTitlePillLabel?: string;
@@ -139,7 +150,8 @@ export const Step: React.FC<StepProps> = ({
   completed,
   disabled,
   icon: Icon,
-  index,
+  index = 0,
+  numberOfSteps,
   onClick,
   subTitle,
   subTitlePillLabel,
@@ -147,9 +159,26 @@ export const Step: React.FC<StepProps> = ({
   ...rootProps
 }) => {
   const classes = useStyles({});
+  const ariaLabel = `Step ${index + 1} of ${numberOfSteps}`;
+
+  const titleId = generateUniqueId('title-');
+  const subTitleId = generateUniqueId('subTitle-');
+  const subTitlePillId = generateUniqueId('subTitlePill-');
 
   const handleClick = () => {
     onClick?.(index);
+  };
+
+  const getDescribedBy = () => {
+    if (title && subTitle) {
+      return `${titleId} ${subTitleId}`;
+    }
+
+    if (title && subTitlePillLabel) {
+      return `${titleId} ${subTitlePillId}`;
+    }
+
+    return titleId;
   };
 
   const content = (
@@ -189,6 +218,7 @@ export const Step: React.FC<StepProps> = ({
       </Box>
       <Text
         className={clsx(classes.title, active && classes.activeTitle)}
+        id={titleId}
         size="subbody"
       >
         {title}
@@ -196,6 +226,7 @@ export const Step: React.FC<StepProps> = ({
       {subTitle && !subTitlePillLabel && (
         <Text
           className={clsx(classes.title, active && classes.activeTitle)}
+          id={subTitleId}
           size="caption"
         >
           {subTitle}
@@ -208,44 +239,50 @@ export const Step: React.FC<StepProps> = ({
             completed && classes.completedPillSubTitle
           )}
           color={active ? 'primary' : 'default'}
+          id={subTitlePillId}
           label={subTitlePillLabel}
         />
       )}
     </>
   );
 
-  if (as === 'button') {
-    return (
-      <button
-        className={clsx(
-          classes.buttonRoot,
-          active && classes.activeRoot,
-          completed && classes.completedRoot,
-          disabled && classes.disabled,
-          className
-        )}
-        disabled={disabled}
-        onClick={handleClick}
-        {...rootProps}
-      >
-        {content}
-      </button>
-    );
-  } else {
-    return (
-      <Box
-        align="center"
-        className={clsx(
-          classes.divRoot,
-          active && classes.activeRoot,
-          completed && classes.completedRoot,
-          className
-        )}
-        direction="column"
-        {...rootProps}
-      >
-        {content}
-      </Box>
-    );
-  }
+  return (
+    <li aria-current={active ? 'step' : undefined}>
+      {as === 'button' ? (
+        <button
+          aria-describedBy={getDescribedBy()}
+          aria-label={ariaLabel}
+          className={clsx(
+            classes.buttonRoot,
+            active && classes.activeRoot,
+            completed && classes.completedRoot,
+            disabled && classes.disabled,
+            className
+          )}
+          disabled={disabled}
+          onClick={handleClick}
+          {...rootProps}
+        >
+          {content}
+        </button>
+      ) : (
+        <Box
+          align="center"
+          aria-describedBy={getDescribedBy()}
+          aria-label={ariaLabel}
+          className={clsx(
+            classes.divRoot,
+            active && classes.activeRoot,
+            completed && classes.completedRoot,
+            className
+          )}
+          direction="column"
+          tabIndex={as === 'div' && active ? 0 : -1}
+          {...rootProps}
+        >
+          {content}
+        </Box>
+      )}
+    </li>
+  );
 };

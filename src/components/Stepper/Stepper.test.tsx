@@ -116,3 +116,45 @@ test('it sets the active child based on "activeStep"', async () => {
   expect(step).toBeInTheDocument();
   expect(step).toHaveClass('ChromaStep-activeRoot');
 });
+
+test('it sets correct aria-label', async () => {
+  const testId = 'step';
+  const { findByTestId } = renderWithTheme(
+    <Stepper activeStep={1}>
+      <Step icon={IconComponent} title="not-active" />
+      <Step data-testid={testId} icon={IconComponent} title="active" />
+    </Stepper>
+  );
+
+  const step = await findByTestId(testId);
+  expect(step).toBeInTheDocument();
+  expect(step).toHaveAttribute('aria-label', 'Step 2 of 2');
+});
+
+test('it sets aria-current attribute on active step', async () => {
+  const testId = 'step';
+  const { findByTestId } = renderWithTheme(
+    <Stepper activeStep={1}>
+      <Step icon={IconComponent} title="not-active" />
+      <Step data-testid={testId} icon={IconComponent} title="active" />
+    </Stepper>
+  );
+
+  const step = await findByTestId(testId);
+  expect(step.parentElement).toBeInTheDocument();
+  expect(step.parentElement).toHaveAttribute('aria-current', 'step');
+});
+
+test('it does not set aria-current attribute on non active steps', async () => {
+  const testId = 'step';
+  const { findByTestId } = renderWithTheme(
+    <Stepper activeStep={1}>
+      <Step data-testid={testId} icon={IconComponent} title="not-active" />
+      <Step icon={IconComponent} title="active" />
+    </Stepper>
+  );
+
+  const step = await findByTestId(testId);
+  expect(step.parentElement).toBeInTheDocument();
+  expect(step.parentElement).not.toHaveAttribute('aria-current', 'step');
+});

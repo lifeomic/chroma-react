@@ -13,7 +13,13 @@ export const useStyles = makeStyles(
       backgroundColor: theme.palette.common.white,
     },
     innerRoot: {
+      alignItems: 'center',
+      display: 'flex',
+      justifyContent: 'space-between',
+      listStyleType: 'none',
       margin: theme.spacing(4, 4, 0, 4),
+      padding: 0,
+      width: '100%',
     },
   }),
   { name: StepperStylesKey }
@@ -70,20 +76,22 @@ export const Stepper: React.FC<StepperProps> = ({
           key: `connector-${index}`,
           ...childrenProps,
         }),
-      React.cloneElement(child, { key: `step-${index}`, ...childrenProps }),
+      React.cloneElement(child, {
+        key: `step-${index}`,
+        numberOfSteps: childrenArray.length,
+        ...childrenProps,
+      }),
     ];
   });
 
   return (
-    <Box fullWidth className={clsx(classes.root, className)} {...rootProps}>
-      <Box
-        align="center"
-        className={classes.innerRoot}
-        fullWidth
-        justify="space-between"
-      >
-        {steps}
-      </Box>
+    <Box
+      fullWidth
+      className={clsx(classes.root, className)}
+      role="group"
+      {...rootProps}
+    >
+      <ol className={classes.innerRoot}>{steps}</ol>
     </Box>
   );
 };
