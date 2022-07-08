@@ -20,7 +20,7 @@ export const useStyles = makeStyles(
       paddingRight: theme.spacing(2),
       transition: 'background-color 0.25s ease',
       '&:hover, &:focus': {
-        backgroundColor: 'rgba(222,244,252, 0.6)',
+        backgroundColor: theme.hexToRgba(theme.palette.primary[50], 0.6),
       },
     },
   }),

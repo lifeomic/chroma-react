@@ -36,7 +36,7 @@ export const useStyles = makeStyles(
       color: theme.palette.common.white,
     },
     radios: {
-      background: 'rgba(132, 137, 166, 0.15)',
+      background: theme.hexToRgba(theme.palette.graphite[900], 0.15),
       borderRadius: theme.pxToRem(20),
       border: 'solid 1px transparent',
       display: 'inline-flex',
@@ -99,7 +99,10 @@ export const useStyles = makeStyles(
         },
         '&:focus + div': {
           '&::before': {
-            boxShadow: '0 0 0 2px rgba(0, 150, 225, .3)',
+            boxShadow: `0 0 0 2px ${theme.hexToRgba(
+              theme.palette.primary[600],
+              0.3
+            )}`,
           },
         },
       },
@@ -117,10 +120,10 @@ export const useStyles = makeStyles(
       },
     },
     radiosInverse: {
-      backgroundColor: 'rgba(230, 231, 237, 0.1)',
+      backgroundColor: theme.hexToRgba(theme.palette.graphite[100], 0.1),
       '& input:checked + div': {
         '&::before': {
-          background: 'rgba(255, 255, 255, 0.5)',
+          background: theme.hexToRgba(theme.palette.common.white, 0.5),
         },
         '& label > p, & svg': {
           color: 'unset',
@@ -128,7 +131,10 @@ export const useStyles = makeStyles(
       },
       '& input:focus + div': {
         '&::before': {
-          boxShadow: '0 0 0 2px rgba(255, 255, 255, .3)',
+          boxShadow: `0 0 0 2px ${theme.hexToRgba(
+            theme.palette.common.white,
+            0.3
+          )}`,
         },
       },
     },

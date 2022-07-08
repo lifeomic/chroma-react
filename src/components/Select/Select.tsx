@@ -84,7 +84,7 @@ export const useStyles = makeStyles(
     },
     button: {
       alignItems: 'center',
-      backgroundColor: 'rgba(132, 137, 166, 0.15)',
+      backgroundColor: theme.hexToRgba(theme.palette.graphite[900], 0.15),
       border: 'solid 1px transparent',
       borderRadius: theme.pxToRem(4),
       color: theme.palette.text.primary,
@@ -106,7 +106,10 @@ export const useStyles = makeStyles(
         opacity: 0.625,
       },
       '&:focus': {
-        boxShadow: '0 0 0 2px rgba(0, 150, 225, .3)',
+        boxShadow: `0 0 0 2px ${theme.hexToRgba(
+          theme.palette.primary[600],
+          0.3
+        )}`,
         outline: 'none',
       },
       '&::-moz-focus-inner': {
@@ -114,13 +117,16 @@ export const useStyles = makeStyles(
       },
     },
     buttonInverse: {
-      backgroundColor: 'rgba(230, 231, 237, 0.1)',
+      backgroundColor: theme.hexToRgba(theme.palette.graphite[100], 0.1),
       color: theme.palette.common.white,
       '&:focus': {
-        boxShadow: '0 0 0 2px rgba(255, 255, 255, .3)',
+        boxShadow: `0 0 0 2px ${theme.hexToRgba(
+          theme.palette.common.white,
+          0.3
+        )}`,
       },
       '& $chip': {
-        background: 'rgba(255, 255, 255, 0.5)',
+        background: theme.hexToRgba(theme.palette.common.white, 0.5),
         color: theme.palette.text.primary,
       },
       '& $buttonText$placeholderText': {
@@ -128,7 +134,7 @@ export const useStyles = makeStyles(
       },
     },
     buttonError: {
-      backgroundColor: 'rgba(230, 231, 237, 0.1)',
+      backgroundColor: theme.hexToRgba(theme.palette.graphite[100], 0.1),
       border: `1px solid ${theme.palette.error.main}`,
       '&:focus': {
         border: `1px solid ${theme.palette.error.main}`,
@@ -199,7 +205,7 @@ export const useStyles = makeStyles(
       paddingRight: theme.spacing(2),
       transition: 'background-color 0.25s ease',
       '&:hover, &:focus': {
-        backgroundColor: 'rgba(222,244,252, 0.6)',
+        backgroundColor: theme.hexToRgba(theme.palette.primary[50], 0.6),
       },
     },
     chipList: {
