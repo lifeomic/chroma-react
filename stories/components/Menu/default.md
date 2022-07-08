@@ -14,7 +14,7 @@ import { Menu, MenuItem } from '@lifeomic/chroma-react/components/Menu';
 
 ### aria-label (required)
 
-A descriptive label for for the popover menu.
+A descriptive label for the popover menu.
 
 ```jsx
 <Menu aria-label="Chroma menu options" />
