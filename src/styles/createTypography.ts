@@ -1,8 +1,8 @@
 import {
   Typography as MUITypography,
   TypographyOptions as MUITypographyOptions,
-} from '@material-ui/core/styles/createTypography';
-import { CSSProperties } from '@material-ui/core/styles/withStyles';
+} from '@mui/material/styles/createTypography';
+import { CSSProperties } from 'react';
 import deepmerge from 'deepmerge';
 
 export interface FontFamily {

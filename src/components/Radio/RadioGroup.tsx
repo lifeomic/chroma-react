@@ -4,7 +4,7 @@ import { makeStyles } from '../../styles';
 import { GetClasses } from '../../typeUtils';
 import { RadioProps } from './Radio';
 import { RadioGroupContext } from './useRadioGroup';
-import { screenreaderOnlyStyles } from '../../styles/screenreaderOnly';
+// import { screenreaderOnlyStyles } from '../../styles/screenreaderOnly';
 
 export const RadioGroupStylesKey = 'ChromaRadioGroup';
 
@@ -60,7 +60,8 @@ export const useStyles = makeStyles(
       flexDirection: 'column',
     },
     srOnly: {
-      ...screenreaderOnlyStyles,
+      // fix this
+      // ...screenreaderOnlyStyles,
     },
   }),
   { name: RadioGroupStylesKey }

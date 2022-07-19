@@ -4,7 +4,7 @@ import { makeStyles } from '../../styles';
 import { GetClasses } from '../../typeUtils';
 import { RadioProps } from './Radio';
 import { RadioGroupContext } from './useRadioGroup';
-import { screenreaderOnlyStyles } from '../../styles/screenreaderOnly';
+// import { screenreaderOnlyStyles } from '../../styles/screenreaderOnly';
 
 export const RadioGroupMinimalStylesKey = 'ChromaRadioGroupMinimal';
 
@@ -45,7 +45,8 @@ export const useStyles = makeStyles(
       overflow: 'hidden',
       padding: theme.spacing(0.25),
       '& input': {
-        ...screenreaderOnlyStyles,
+        // fix this
+        // ...screenreaderOnlyStyles,
         '& + div': {
           display: 'flex',
           justifyContent: 'center',
@@ -149,7 +150,8 @@ export const useStyles = makeStyles(
       },
     },
     srOnly: {
-      ...screenreaderOnlyStyles,
+      // fix this
+      // ...screenreaderOnlyStyles,
     },
   }),
   { name: RadioGroupMinimalStylesKey }

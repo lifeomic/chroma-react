@@ -12,7 +12,7 @@ import {
 } from '../_private/forms';
 import { generateUniqueId } from '../_private/UniqueId';
 import { Tooltip } from '../Tooltip';
-import { screenreaderOnlyStyles } from '../../styles/screenreaderOnly';
+// import { screenreaderOnlyStyles } from '../../styles/screenreaderOnly';
 
 export const TextAreaStylesKey = 'ChromaTextArea';
 
@@ -81,7 +81,7 @@ export const useStyles = makeStyles(
         '&:focus': {
           backgroundColor: 'rgba(132, 137, 166, 0.15)',
           border: `1px solid transparent`,
-        }
+        },
       },
       '&::-webkit-input-placeholder': {
         color: theme.palette.black[400],
@@ -107,7 +107,7 @@ export const useStyles = makeStyles(
         opacity: 1,
         '&:focus': {
           backgroundColor: 'rgba(230, 231, 237, 0.1)',
-        }
+        },
       },
       '&::-webkit-input-placeholder': {
         color: 'rgba(255, 255, 255, 0.8)',
@@ -140,7 +140,8 @@ export const useStyles = makeStyles(
       outline: 'none',
     },
     srOnly: {
-      ...screenreaderOnlyStyles,
+      // fix this
+      // ...screenreaderOnlyStyles,
     },
   }),
   { name: TextAreaStylesKey }

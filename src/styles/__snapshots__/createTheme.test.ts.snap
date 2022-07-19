@@ -21,24 +21,27 @@ Object {
       "lg",
       "xl",
     ],
+    "not": [Function],
     "only": [Function],
+    "unit": "px",
     "up": [Function],
     "values": Object {
-      "lg": 1280,
-      "md": 960,
+      "lg": 1200,
+      "md": 900,
       "sm": 600,
-      "xl": 1920,
+      "xl": 1536,
       "xs": 0,
     },
-    "width": [Function],
   },
+  "components": Object {},
   "direction": "ltr",
   "hexToRgba": [Function],
   "mixins": Object {
-    "gutters": [Function],
     "toolbar": Object {
-      "@media (min-width:0px) and (orientation: landscape)": Object {
-        "minHeight": 48,
+      "@media (min-width:0px)": Object {
+        "@media (orientation: landscape)": Object {
+          "minHeight": 48,
+        },
       },
       "@media (min-width:600px)": Object {
         "minHeight": 64,
@@ -94,7 +97,7 @@ Object {
         "letterSpacing": 0.5,
         "lineHeight": 1.4,
         "minHeight": "1.875rem",
-        "minWidth": 88,
+        "minWidth": "88px",
         "padding": "11px 14px",
         "textTransform": "initial",
         "transition": "background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
@@ -106,7 +109,7 @@ Object {
         "letterSpacing": 0.5,
         "lineHeight": 1.4,
         "minHeight": "2rem",
-        "minWidth": 64,
+        "minWidth": "64px",
         "padding": "8px 11px",
         "textTransform": "initial",
       },
@@ -124,6 +127,10 @@ Object {
       },
     },
     "MuiTab": Object {
+      "iconWrapper": Object {
+        "paddingLeft": "16px",
+        "paddingRight": "16px",
+      },
       "root": Object {
         "&$selected": Object {
           "color": "#262c32",
@@ -151,10 +158,6 @@ Object {
         "color": "#262c32",
         "opacity": "initial",
       },
-      "wrapper": Object {
-        "paddingLeft": 16,
-        "paddingRight": 16,
-      },
     },
     "MuiTabs": Object {
       "indicator": Object {
@@ -179,8 +182,8 @@ Object {
         "fontSize": "0.6875rem",
         "letterSpacing": "0.021875em",
         "maxWidth": 500,
-        "paddingLeft": 8,
-        "paddingRight": 8,
+        "paddingLeft": "8px",
+        "paddingRight": "8px",
       },
     },
   },
@@ -188,6 +191,7 @@ Object {
     "action": Object {
       "activatedOpacity": 0.12,
       "active": "rgba(0, 0, 0, 0.54)",
+      "activeChannel": "0 0 0",
       "disabled": "rgba(0, 0, 0, 0.26)",
       "disabledBackground": "rgba(0, 0, 0, 0.12)",
       "disabledOpacity": 0.38,
@@ -196,6 +200,7 @@ Object {
       "hover": "rgba(0, 0, 0, 0.04)",
       "hoverOpacity": 0.04,
       "selected": "rgba(0, 0, 0, 0.08)",
+      "selectedChannel": "0 0 0",
       "selectedOpacity": 0.08,
     },
     "augmentColor": [Function],
@@ -328,19 +333,20 @@ Object {
       "700": "#595959",
       "800": "#35393d",
       "900": "#292c2f",
-      "A100": "#d5d5d5",
-      "A200": "#aaaaaa",
-      "A400": "#303030",
+      "A100": "#f5f5f5",
+      "A200": "#eeeeee",
+      "A400": "#bdbdbd",
       "A700": "#616161",
       "light": "#9c9c9c",
       "main": "#292c2f",
     },
     "info": Object {
       "contrastText": "#fff",
-      "dark": "#1976d2",
-      "light": "#64b5f6",
-      "main": "#2196f3",
+      "dark": "#01579b",
+      "light": "#03a9f4",
+      "main": "#0288d1",
     },
+    "mode": "light",
     "navy": Object {
       "100": "#d9dde1",
       "200": "#c7ccd2",
@@ -443,10 +449,10 @@ Object {
       "main": "#387f15",
     },
     "success": Object {
-      "contrastText": "rgba(0, 0, 0, 0.87)",
-      "dark": "#388e3c",
-      "light": "#81c784",
-      "main": "#4caf50",
+      "contrastText": "#fff",
+      "dark": "#1b5e20",
+      "light": "#4caf50",
+      "main": "#2e7d32",
     },
     "text": Object {
       "contrast": "#f8f8f8",
@@ -454,15 +460,17 @@ Object {
       "disabled": "#7b8996",
       "hint": "#576674",
       "primary": "#262c32",
+      "primaryChannel": "0 0 0",
       "secondary": "#47535e",
+      "secondaryChannel": "0 0 0",
     },
     "tonalOffset": 0.2,
     "type": "light",
     "warning": Object {
-      "contrastText": "rgba(0, 0, 0, 0.87)",
-      "dark": "#f57c00",
-      "light": "#ffb74d",
-      "main": "#ff9800",
+      "contrastText": "#fff",
+      "dark": "#e65100",
+      "light": "#ff9800",
+      "main": "#ed6c02",
     },
     "yellow": Object {
       "100": "#fdfad1",
@@ -480,7 +488,6 @@ Object {
       "main": "#f7bf4d",
     },
   },
-  "props": Object {},
   "pxToRem": [Function],
   "shadows": Array [
     "none",
@@ -613,7 +620,6 @@ Object {
       "textTransform": "uppercase",
     },
     "pxToRem": [Function],
-    "round": [Function],
     "subtitle1": Object {
       "fontFamily": "\\"Lato\\", Helvetica, Roboto, Arial, \\"Lucida Grande\\", sans-serif",
       "fontSize": "0.875rem",
@@ -630,6 +636,7 @@ Object {
   "zIndex": Object {
     "appBar": 1100,
     "drawer": 1200,
+    "fab": 1050,
     "mobileStepper": 1000,
     "modal": 1300,
     "snackbar": 1400,

@@ -19,7 +19,7 @@ import {
   PopoverRenderProps,
 } from '../Popover';
 import { Tooltip } from '../Tooltip';
-import { fade } from '@material-ui/core/styles/colorManipulator';
+import { alpha } from '@mui/material/styles';
 import 'focus-visible';
 
 export const ColorPickerStylesKey = 'ChromaColorPicker';
@@ -177,7 +177,7 @@ export const useStyles = makeStyles(
       justifyContent: 'center',
       position: 'relative',
       '&::after': {
-        background: fade(theme.palette.common.black, 0.25),
+        background: alpha(theme.palette.common.black, 0.25),
         bottom: 0,
         content: `''`,
         height: theme.pxToRem(1),

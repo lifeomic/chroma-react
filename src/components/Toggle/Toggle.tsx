@@ -12,7 +12,7 @@ import {
 } from '../_private/forms';
 import { generateUniqueId } from '../_private/UniqueId';
 import { Text } from '../Text';
-import { screenreaderOnlyStyles } from '../../styles/screenreaderOnly';
+// import { screenreaderOnlyStyles } from '../../styles/screenreaderOnly';
 
 export const ToggleStylesKey = 'ChromaToggle';
 
@@ -133,7 +133,8 @@ export const useStyles = makeStyles(
       display: 'flex',
     },
     srOnly: {
-      ...screenreaderOnlyStyles,
+      // fix this
+      // ...screenreaderOnlyStyles,
     },
   }),
   { name: ToggleStylesKey }

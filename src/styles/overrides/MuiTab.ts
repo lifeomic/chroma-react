@@ -1,4 +1,4 @@
-import { Overrides } from '@material-ui/core/styles/overrides';
+import { ComponentsOverrides as Overrides } from '@mui/material/styles';
 import { Theme } from '../createTheme';
 
 export const createMuiTabOverrides = (theme: Theme): Overrides['MuiTab'] => ({
@@ -29,7 +29,7 @@ export const createMuiTabOverrides = (theme: Theme): Overrides['MuiTab'] => ({
     color: theme.palette.black[900],
     opacity: 'initial',
   },
-  wrapper: {
+  iconWrapper: {
     paddingLeft: theme.spacing(2),
     paddingRight: theme.spacing(2),
   },

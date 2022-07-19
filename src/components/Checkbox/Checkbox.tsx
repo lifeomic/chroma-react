@@ -14,7 +14,7 @@ import { generateUniqueId } from '../_private/UniqueId';
 import { Text } from '../Text';
 import { motion, useMotionValue, useTransform } from 'framer-motion';
 import 'focus-visible';
-import { screenreaderOnlyStyles } from '../../styles/screenreaderOnly';
+// import { screenreaderOnlyStyles } from '../../styles/screenreaderOnly';
 
 export const CheckboxStylesKey = 'ChromaCheckbox';
 
@@ -87,7 +87,8 @@ export const useStyles = makeStyles(
     },
     box: {},
     srOnly: {
-      ...screenreaderOnlyStyles,
+      // fix this
+      // ...screenreaderOnlyStyles,
     },
   }),
   { name: CheckboxStylesKey }

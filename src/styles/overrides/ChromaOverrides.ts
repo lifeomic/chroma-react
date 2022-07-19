@@ -1,4 +1,4 @@
-import { StyleRules } from '@material-ui/core/styles/withStyles';
+import { StyleRules } from '@mui/styles';
 
 import {
   AlertClasses,
@@ -212,7 +212,7 @@ import {
 
 export type ChromaOverrides = {
   [Name in keyof ChromaComponentNameToClassKey]?: Partial<
-    StyleRules<ChromaComponentNameToClassKey[Name]>
+    StyleRules<ChromaComponentNameToClassKey>
   >;
 };
 

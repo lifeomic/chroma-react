@@ -1,9 +1,9 @@
-import createMuiTheme, {
+import {
+  createTheme as createMuiTheme,
   Theme as MuiTheme,
   ThemeOptions as MuiThemeOptions,
-} from '@material-ui/core/styles/createMuiTheme';
-import muiUseTheme from '@material-ui/styles/useTheme';
-import { Omit } from '../typeUtils';
+} from '@mui/material/styles';
+import muiUseTheme from '@mui/styles/useTheme';
 import {
   BoxShadows,
   BoxShadowsOptions,

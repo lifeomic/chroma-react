@@ -1,10 +1,9 @@
 // eslint-disable-next-line no-restricted-imports
-import { Color as MUIColor } from '@material-ui/core';
+import { Color as MUIColor } from '@mui/material';
 import {
   SimplePaletteColorOptions,
   TypeText as MuiTypeText,
-} from '@material-ui/core/styles/createPalette';
-import { Omit } from '../typeUtils';
+} from '@mui/material/styles/createPalette';
 
 export { SimplePaletteColorOptions };
 

@@ -1,4 +1,4 @@
-export { default as ThemeProvider } from '@material-ui/styles/ThemeProvider';
+export { default as ThemeProvider } from '@mui/styles/ThemeProvider';
 export { createTheme, Theme, useTheme } from './createTheme';
 export { createPalette, Palette, PaletteOptions } from './createPalette';
 export {

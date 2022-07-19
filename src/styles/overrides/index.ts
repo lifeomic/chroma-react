@@ -1,4 +1,4 @@
-import { Overrides as MuiOverrides } from '@material-ui/core/styles/overrides';
+import { ComponentsOverrides as MuiOverrides } from '@mui/material/styles';
 import deepmerge from 'deepmerge';
 import { Theme } from '../createTheme';
 import { ChromaOverrides } from './ChromaOverrides';

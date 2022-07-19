@@ -25,7 +25,7 @@ import { motion, useReducedMotion } from 'framer-motion';
 import { RoverOption } from './RoverOption';
 import { useRoverState } from 'reakit/Rover';
 import { getTestProps } from '../../testUtils/getTestProps';
-import { screenreaderOnlyStyles } from '../../styles/screenreaderOnly';
+// import { screenreaderOnlyStyles } from '../../styles/screenreaderOnly';
 import { Tooltip } from '../Tooltip';
 
 export const testIds = {
@@ -227,7 +227,8 @@ export const useStyles = makeStyles(
       marginLeft: 0,
     },
     srOnly: {
-      ...screenreaderOnlyStyles,
+      // fix this
+      // ...screenreaderOnlyStyles,
     },
   }),
   { name: SelectStylesKey }

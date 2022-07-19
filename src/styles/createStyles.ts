@@ -1,3 +1,3 @@
-import muiCreateStyles from '@material-ui/styles/createStyles';
+import muiCreateStyles from '@mui/styles/createStyles';
 
 export const createStyles = muiCreateStyles;
