@@ -12,7 +12,7 @@ import {
 } from '../_private/forms';
 import { generateUniqueId } from '../_private/UniqueId';
 import { Tooltip } from '../Tooltip';
-// import { screenreaderOnlyStyles } from '../../styles/screenreaderOnly';
+import { screenreaderOnlyStyles } from '../../styles/screenreaderOnly';
 
 export const TextAreaStylesKey = 'ChromaTextArea';
 
@@ -140,8 +140,7 @@ export const useStyles = makeStyles(
       outline: 'none',
     },
     srOnly: {
-      // fix this
-      // ...screenreaderOnlyStyles,
+      ...screenreaderOnlyStyles,
     },
   }),
   { name: TextAreaStylesKey }

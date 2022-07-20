@@ -1,5 +1,3 @@
-import { StyleRules } from '@mui/styles';
-
 import {
   AlertClasses,
   AlertStylesKey,
@@ -209,10 +207,11 @@ import {
   DayPickerClasses,
   DayPickerStylesKey,
 } from '../../components/DayPicker';
+import { OverridesStyleRules } from '@mui/material/styles/overrides';
 
-export type ChromaOverrides = {
+export type ChromaOverrides<Theme = unknown> = {
   [Name in keyof ChromaComponentNameToClassKey]?: Partial<
-    StyleRules<ChromaComponentNameToClassKey>
+    OverridesStyleRules<ChromaComponentNameToClassKey[Name], Name, Theme>
   >;
 };
 
