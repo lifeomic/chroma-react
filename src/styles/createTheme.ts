@@ -16,7 +16,7 @@ import {
   TypographyOptions,
 } from './createTypography';
 import { createOverrides, OverridesCreator } from './overrides';
-import { hexToDec, isHex, sliceHex } from './utils/colorManipulator';
+import { hexToRgba } from './utils/colorManipulator';
 export interface Theme extends Omit<MuiTheme, 'palette'> {
   palette: Palette;
   typography: Typography;
@@ -31,7 +31,6 @@ export interface ThemeOptions
   overrides?: OverridesCreator;
   boxShadows?: BoxShadowsOptions;
   pxToRem?: (size: number) => string;
-  hexToRgba?: (hex: string, opacity: number) => string;
 }
 
 export const createTheme = ({
@@ -40,7 +39,6 @@ export const createTheme = ({
   overrides,
   boxShadows,
   pxToRem,
-  hexToRgba,
   ...muiOptions
 }: ThemeOptions = {}): Theme => {
   const themeWithoutOverrides = (createMuiTheme({
@@ -48,24 +46,7 @@ export const createTheme = ({
     typography: createTypography(typography),
     boxShadows: createBoxShadows(boxShadows),
     pxToRem: (size: number) => `${size / 16}rem`,
-    hexToRgba: (hex: string, opacity?: number): string => {
-      let rgba = '';
-      if (isHex(hex)) {
-        const hexArr = sliceHex(hex);
-        const r = hexToDec(hexArr[0]);
-        const g = hexToDec(hexArr[1]);
-        const b = hexToDec(hexArr[2]);
-        if (opacity) {
-          const percent = opacity > 1 ? '%' : '';
-          rgba = `rgba(${r},${g},${b},${opacity}${percent})`;
-        } else {
-          rgba = `rgba(${r},${g},${b},1)`;
-        }
-      } else {
-        throw new Error('Invalid hex code');
-      }
-      return rgba;
-    },
+    hexToRgba,
     ...muiOptions,
   } as any) as any) as Theme;
 
