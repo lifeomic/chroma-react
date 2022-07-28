@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme) => ({
   },
   grid: {
     display: 'grid',
-    gridGap: theme.spacing(2),
+    gridGap: `${theme.spacing(2)}px`,
     gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
   },
 }));

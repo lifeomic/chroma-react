@@ -18,11 +18,20 @@ import {
 import { createOverrides, OverridesCreator } from './overrides';
 import { hexToRgba } from './utils/colorManipulator';
 
-export interface Theme extends Omit<MuiTheme, 'palette'> {
+interface Spacing {
+  (): number;
+  (value: number): number;
+  (topBottom: number, rightLeft: number): number;
+  (top: number, rightLeft: number, bottom: number): number;
+  (top: number, right: number, bottom: number, left: number): number;
+}
+
+export interface Theme extends Omit<MuiTheme, 'palette' | 'spacing'> {
   palette: Palette;
   typography: Typography;
   boxShadows: BoxShadows;
   pxToRem: (size: number) => string;
+  spacing: Spacing;
 }
 
 export interface ThemeOptions
@@ -48,6 +57,7 @@ export const createTheme = ({
     boxShadows: createBoxShadows(boxShadows),
     pxToRem: (size: number) => `${size / 16}rem`,
     hexToRgba: hexToRgba,
+    spacing: (spacing: number) => spacing * 8,
     ...muiOptions,
   } as any) as any) as Theme;
 

@@ -9,7 +9,7 @@ export {
   fontWeights,
 } from './createTypography';
 export { makeStyles } from './makeStyles';
-export { createStyles } from './createStyles';
+export { createStyles, Styles } from './createStyles';
 export { withStyles, WithStyles } from './withStyles';
 export { withTheme, WithTheme } from './withTheme';
 export { useMediaQuery } from './useMediaQuery';

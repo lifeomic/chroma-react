@@ -1,6 +1,9 @@
 // eslint-disable-next-line no-restricted-imports
-import muiMakeStyles from '@mui/styles/makeStyles';
-import { Styles, WithStylesOptions } from '@mui/styles/withStyles';
+import {
+  makeStyles as muiMakeStyles,
+  Styles,
+  WithStylesOptions,
+} from '@mui/styles';
 import { Theme } from './createTheme';
 
 export const makeStyles = <

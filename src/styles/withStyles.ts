@@ -1,1 +1,1 @@
-export { default as withStyles, WithStyles } from '@mui/styles/withStyles';
+export { withStyles, WithStyles } from '@mui/styles';
