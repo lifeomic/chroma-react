@@ -59,6 +59,7 @@ const AllTextFieldsStory: React.FC = () => {
             <TextField
               label="Name"
               hasError
+              required
               placeholder="Required"
               errorMessage="This is required!"
             />
@@ -133,6 +134,7 @@ const AllTextFieldsStory: React.FC = () => {
             <TextField
               label="Name"
               hasError
+              required
               placeholder="Required"
               errorMessage="This is required!"
             />
@@ -216,6 +218,7 @@ const AllTextFieldsStory: React.FC = () => {
             <TextField
               label="Name"
               hasError
+              required
               placeholder="Required"
               errorMessage="This is required!"
               color="inverse"
@@ -459,6 +462,7 @@ const InverseTextFieldStory: React.FC = () => {
           <TextField
             label="Name"
             hasError
+            required
             placeholder="Required"
             errorMessage="This is required!"
             color="inverse"
