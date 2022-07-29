@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
   label: {
     display: 'block',
     marginBottom: theme.spacing(2),
-    fontWeight: 'bold',
+    fontWeight: theme.typography.fontWeightBold,
     color: theme.palette.black[700],
   },
 }));
