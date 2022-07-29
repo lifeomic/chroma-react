@@ -17,30 +17,27 @@ import {
 } from './createTypography';
 import { createOverrides, OverridesCreator } from './overrides';
 import { hexToRgba } from './utils/colorManipulator';
+import { Components } from './overrides/ChromaComponents';
 
-interface Spacing {
-  (): number;
-  (value: number): number;
-  (topBottom: number, rightLeft: number): number;
-  (top: number, rightLeft: number, bottom: number): number;
-  (top: number, right: number, bottom: number, left: number): number;
-}
-
-export interface Theme extends Omit<MuiTheme, 'palette' | 'spacing'> {
+export interface Theme extends Omit<MuiTheme, 'palette' | 'components'> {
   palette: Palette;
   typography: Typography;
   boxShadows: BoxShadows;
   pxToRem: (size: number) => string;
-  spacing: Spacing;
+  components: Components;
 }
 
 export interface ThemeOptions
-  extends Omit<MuiThemeOptions, 'overrides' | 'palette' | 'typography'> {
+  extends Omit<
+    MuiThemeOptions,
+    'overrides' | 'palette' | 'typography' | 'components'
+  > {
   palette?: PaletteOptions;
   typography?: TypographyOptions;
   overrides?: OverridesCreator;
   boxShadows?: BoxShadowsOptions;
   pxToRem?: (size: number) => string;
+  components?: Components;
 }
 
 export const createTheme = ({
@@ -57,13 +54,12 @@ export const createTheme = ({
     boxShadows: createBoxShadows(boxShadows),
     pxToRem: (size: number) => `${size / 16}rem`,
     hexToRgba: hexToRgba,
-    spacing: (spacing: number) => spacing * 8,
     ...muiOptions,
   } as any) as any) as Theme;
 
   return createMuiTheme({
     ...themeWithoutOverrides,
-    overrides: createOverrides(themeWithoutOverrides, overrides),
+    components: createOverrides(themeWithoutOverrides, overrides),
   } as any) as any;
 };
 

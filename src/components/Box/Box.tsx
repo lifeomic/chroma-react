@@ -65,11 +65,6 @@ export const useStyles = makeStyles<BoxProps>(
       if (typeof value === 'number') return theme.spacing(value);
     };
 
-    const stringOrThemeSpacingGap = (value: string | number | undefined) => {
-      if (typeof value === 'string') return value;
-      if (typeof value === 'number') return theme.spacing(value) + 'px';
-    };
-
     const stringOrThemeColor = (value?: string) => {
       if (!value) return;
       const palette: any = theme.palette;
@@ -155,7 +150,7 @@ export const useStyles = makeStyles<BoxProps>(
         paddingBottom: ({ paddingY }) => stringOrThemeSpacing(paddingY),
       },
       gap: {
-        gap: ({ gap }) => stringOrThemeSpacingGap(gap),
+        gap: ({ gap }) => stringOrThemeSpacing(gap),
       },
       borderRadius: { borderRadius: theme.shape.borderRadius },
       color: { color: ({ color }) => stringOrThemeColor(color) },
