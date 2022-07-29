@@ -206,6 +206,13 @@ export const useStyles = makeStyles(
       display: 'flex',
       outline: 'none',
     },
+    required: {
+      color: theme.palette.error[500],
+      margin: theme.spacing(0, 0.5),
+    },
+    requiredInverse: {
+      color: theme.palette.common.white,
+    },
   }),
   { name: TextFieldStylesKey }
 );
@@ -247,6 +254,7 @@ export const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
       tooltipMessage,
       startAdornment,
       endAdornment,
+      required,
       ...rootProps
     },
     ref
@@ -273,6 +281,16 @@ export const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
             )}
             htmlFor={uniqueId}
           >
+            {required && (
+              <span
+                className={clsx(
+                  classes.required,
+                  color === 'inverse' && classes.requiredInverse
+                )}
+              >
+                *
+              </span>
+            )}
             {label}
             {!!Icon && tooltipMessage && (
               <Tooltip title={tooltipMessage}>
