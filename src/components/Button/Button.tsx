@@ -71,8 +71,7 @@ export const useStyles = makeStyles(
         boxShadow: theme.boxShadows.focusVisibleInverse,
       },
       '&:disabled, &[disabled]': {
-        backgroundColor: 'rgba(255, 255, 255, 0.45)',
-        opacity: 1,
+        backgroundColor: theme.hexToRgba(theme.palette.common.white, 0.45),
         color: theme.palette.text.secondary,
       },
     },
@@ -99,15 +98,15 @@ export const useStyles = makeStyles(
       '&:hover': {
         color: theme.palette.common.white,
         opacity: 0.85,
-        borderColor: 'rgba(255, 255, 255, 0.85)',
+        borderColor: theme.hexToRgba(theme.palette.common.white, 0.85),
       },
       '&:focus.focus-visible': {
         boxShadow: theme.boxShadows.focusVisibleInverse,
       },
       '&:disabled, &[disabled]': {
-        color: 'rgba(255, 255, 255, 0.45)',
+        color: theme.hexToRgba(theme.palette.common.white, 0.45),
         opacity: 1,
-        borderColor: 'rgba(255, 255, 255, 0.45)',
+        borderColor: theme.hexToRgba(theme.palette.common.white, 0.45),
       },
     },
     text: {

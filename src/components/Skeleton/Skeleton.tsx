@@ -41,8 +41,7 @@ export const useStyles = makeStyles(
 
       '&::after': {
         animation: '$shine 1.6s linear 0.5s infinite',
-        background:
-          'linear-gradient(90deg, transparent, rgba(230, 231, 237, 1), transparent)', // graphite[200] with opacity
+        background: `linear-gradient(90deg, transparent, ${theme.palette.graphite[100]}, transparent)`,
         bottom: 0,
         content: `''`,
         left: 0,

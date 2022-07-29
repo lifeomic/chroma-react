@@ -25,7 +25,7 @@ export const useStyles = makeStyles(
       userSelect: 'none',
       width: '100%',
       '&:hover,&:focus': {
-        backgroundColor: 'rgba(222,244,252, 0.6)',
+        backgroundColor: theme.hexToRgba(theme.palette.primary[50], 0.6),
       },
       '&:focus': {
         outline: 'none',
