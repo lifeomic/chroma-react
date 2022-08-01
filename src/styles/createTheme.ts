@@ -17,33 +17,27 @@ import {
 } from './createTypography';
 import { createOverrides, OverridesCreator } from './overrides';
 import { hexToRgba } from './utils/colorManipulator';
-import { Components } from './overrides/ChromaComponents';
 
-export interface Theme extends Omit<MuiTheme, 'palette' | 'components'> {
+export interface Theme extends Omit<MuiTheme, 'palette'> {
   palette: Palette;
   typography: Typography;
   boxShadows: BoxShadows;
   pxToRem: (size: number) => string;
-  components: Components;
 }
 
 export interface ThemeOptions
-  extends Omit<
-    MuiThemeOptions,
-    'overrides' | 'palette' | 'typography' | 'components'
-  > {
+  extends Omit<MuiThemeOptions, 'components' | 'palette' | 'typography'> {
   palette?: PaletteOptions;
   typography?: TypographyOptions;
-  overrides?: OverridesCreator;
+  components?: OverridesCreator;
   boxShadows?: BoxShadowsOptions;
   pxToRem?: (size: number) => string;
-  components?: Components;
 }
 
 export const createTheme = ({
   palette,
   typography,
-  overrides,
+  components,
   boxShadows,
   pxToRem,
   ...muiOptions
@@ -59,7 +53,7 @@ export const createTheme = ({
 
   return createMuiTheme({
     ...themeWithoutOverrides,
-    components: createOverrides(themeWithoutOverrides, overrides),
+    components: createOverrides(themeWithoutOverrides, components),
   } as any) as any;
 };
 

@@ -1,24 +1,26 @@
-import { createTheme } from './createTheme';
+import { createTheme, Theme } from './createTheme';
 
 test('default theme', () => {
-  expect(
-    createTheme({
-      components: {
-        MuiButton: {
-          styleOverrides: {
-            root: {
-              marginLeft: '1px',
-            },
-          },
-        },
-        ChromaAlert: {
-          styleOverrides: {
-            root: {
-              marginLeft: '1px',
-            },
-          },
+  expect(createTheme()).toMatchSnapshot();
+});
+
+test('overridden theme', () => {
+  const components = (theme: Theme) => ({
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          marginLeft: theme.spacing(1),
         },
       },
-    })
-  ).toMatchSnapshot();
+    },
+    ChromaAlert: {
+      styleOverrides: {
+        root: {
+          marginLeft: theme.spacing(1),
+        },
+      },
+    },
+  });
+
+  expect(createTheme({ components })).toMatchSnapshot();
 });
