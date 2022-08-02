@@ -81,7 +81,7 @@ export const useStyles = makeStyles(
         '&:focus': {
           backgroundColor: 'rgba(132, 137, 166, 0.15)',
           border: `1px solid transparent`,
-        }
+        },
       },
       '&::-webkit-input-placeholder': {
         color: theme.palette.black[400],
@@ -107,7 +107,7 @@ export const useStyles = makeStyles(
         opacity: 1,
         '&:focus': {
           backgroundColor: 'rgba(230, 231, 237, 0.1)',
-        }
+        },
       },
       '&::-webkit-input-placeholder': {
         color: 'rgba(255, 255, 255, 0.8)',
@@ -139,6 +139,13 @@ export const useStyles = makeStyles(
       display: 'flex',
       outline: 'none',
     },
+    required: {
+      color: theme.palette.error[500],
+      margin: theme.spacing(0, 0.5),
+    },
+    requiredInverse: {
+      color: theme.palette.common.white,
+    },
     srOnly: {
       ...screenreaderOnlyStyles,
     },
@@ -160,6 +167,8 @@ export interface TextAreaProps
   icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   tooltipMessage?: string;
   textAreaClassName?: string;
+  /** This property shows the required asterisk (*). Required validation needs to be implemented separately. */
+  showRequiredLabel?: boolean;
 }
 
 export const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
@@ -179,6 +188,7 @@ export const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
       secondaryLabel,
       textAreaClassName,
       tooltipMessage,
+      showRequiredLabel,
       ...rootProps
     },
     ref
@@ -207,6 +217,16 @@ export const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
           )}
           htmlFor={uniqueId}
         >
+          {showRequiredLabel && (
+            <span
+              className={clsx(
+                classes.required,
+                color === 'inverse' && classes.requiredInverse
+              )}
+            >
+              &#42;
+            </span>
+          )}
           {label || ariaLabel}
           {!!Icon && tooltipMessage && (
             <Tooltip title={tooltipMessage}>

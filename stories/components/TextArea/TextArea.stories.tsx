@@ -43,17 +43,20 @@ const TextAreaStory: React.FC = () => {
           <TextArea
             label="Description"
             hasError
+            showRequiredLabel
             errorMessage="This is required"
           />
           <TextArea
             label="Description"
             hasError
+            showRequiredLabel
             helpMessage="Helper text goes here"
             errorMessage="This is required"
           />
           <TextArea
             label="Description"
             hasError
+            showRequiredLabel
             helpMessage="Helper text goes here"
             errorMessage="This is required"
           />
@@ -103,17 +106,20 @@ const TextAreaStory: React.FC = () => {
           <TextArea
             label="Description"
             hasError
+            showRequiredLabel
             errorMessage="This is required"
           />
           <TextArea
             label="Description"
             hasError
+            showRequiredLabel
             helpMessage="Helper text goes here"
             errorMessage="This is required"
           />
           <TextArea
             label="Description"
             hasError
+            showRequiredLabel
             helpMessage="Helper text goes here"
             errorMessage="This is required"
           />
@@ -169,12 +175,14 @@ const TextAreaStory: React.FC = () => {
           <TextArea
             label="Description"
             hasError
+            showRequiredLabel
             errorMessage="This is required"
             color="inverse"
           />
           <TextArea
             label="Description"
             hasError
+            showRequiredLabel
             helpMessage="Helper text goes here"
             errorMessage="This is required"
             color="inverse"
@@ -182,6 +190,7 @@ const TextAreaStory: React.FC = () => {
           <TextArea
             label="Description"
             hasError
+            showRequiredLabel
             helpMessage="Helper text goes here"
             errorMessage="This is required"
             color="inverse"
@@ -240,12 +249,14 @@ const TextAreaStory: React.FC = () => {
           <TextArea
             label="Description"
             hasError
+            showRequiredLabel
             errorMessage="This is required"
             color="inverse"
           />
           <TextArea
             label="Description"
             hasError
+            showRequiredLabel
             helpMessage="Helper text goes here"
             errorMessage="This is required"
             color="inverse"
@@ -253,6 +264,7 @@ const TextAreaStory: React.FC = () => {
           <TextArea
             label="Description"
             hasError
+            showRequiredLabel
             helpMessage="Helper text goes here"
             errorMessage="This is required"
             color="inverse"
