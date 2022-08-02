@@ -234,6 +234,8 @@ export interface TextFieldProps
   // Icon, IconButton, or IconButtonLink
   startAdornment?: React.ReactNode;
   endAdornment?: React.ReactNode;
+  /** This property shows the required asterisk (*). Required validation needs to be implemented separately. */
+  showRequiredLabel?: boolean;
 }
 
 export const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
@@ -254,7 +256,7 @@ export const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
       tooltipMessage,
       startAdornment,
       endAdornment,
-      required,
+      showRequiredLabel,
       ...rootProps
     },
     ref
@@ -281,7 +283,7 @@ export const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
             )}
             htmlFor={uniqueId}
           >
-            {required && (
+            {showRequiredLabel && (
               <span
                 className={clsx(
                   classes.required,
