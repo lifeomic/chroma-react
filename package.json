@@ -103,5 +103,8 @@
     "react-phone-number-input": "^3.1.23",
     "react-remove-scroll": "^2.3.0",
     "reakit": "1.0.0-rc.1"
+  },
+  "resolutions": {
+    "jsdom": "^16.3.0"
   }
 }
