@@ -92,6 +92,14 @@ const DayPickerStory: React.FC = () => {
               parseDate={parser('M/D/YYYY')}
               minDate={new Date()}
             />
+            <PickerWithInternalState
+              fullWidth
+              label={'Required'}
+              showRequiredLabel
+              initialValue={new Date()}
+              parseDate={parser('M/D/YYYY')}
+              minDate={new Date()}
+            />
           </FormBox>
         </Container>
 
@@ -132,6 +140,15 @@ const DayPickerStory: React.FC = () => {
               initialValue={new Date()}
               parseDate={parser('M/D/YYYY')}
               maxDate={new Date()}
+            />
+            <PickerWithInternalState
+              color={'inverse'}
+              fullWidth
+              label={'Required'}
+              showRequiredLabel
+              initialValue={new Date()}
+              parseDate={parser('M/D/YYYY')}
+              minDate={new Date()}
             />
           </FormBox>
         </Container>
