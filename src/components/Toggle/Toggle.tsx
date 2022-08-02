@@ -135,6 +135,13 @@ export const useStyles = makeStyles(
     srOnly: {
       ...screenreaderOnlyStyles,
     },
+    required: {
+      color: theme.palette.error[500],
+      margin: theme.spacing(0, 0.5),
+    },
+    requiredInverse: {
+      color: theme.palette.common.white,
+    },
   }),
   { name: ToggleStylesKey }
 );
@@ -144,6 +151,8 @@ export type ToggleClasses = GetClasses<typeof useStyles>;
 export interface ToggleProps extends BaseFormElement {
   fullWidth?: boolean;
   placement?: 'left' | 'right';
+  /** This property shows the required asterisk (*). Required validation needs to be implemented separately. */
+  showRequiredLabel?: boolean;
 }
 
 export const Toggle = React.forwardRef<HTMLInputElement, ToggleProps>(
@@ -161,6 +170,7 @@ export const Toggle = React.forwardRef<HTMLInputElement, ToggleProps>(
       label,
       name,
       placement = 'left',
+      showRequiredLabel,
       ...rootProps
     },
     ref
@@ -219,6 +229,16 @@ export const Toggle = React.forwardRef<HTMLInputElement, ToggleProps>(
               className={color === 'inverse' ? classes.labelInverse : undefined}
               size="subbody"
             >
+              {showRequiredLabel && (
+                <span
+                  className={clsx(
+                    classes.required,
+                    color === 'inverse' && classes.requiredInverse
+                  )}
+                >
+                  &#42;
+                </span>
+              )}
               {label || ariaLabel}
             </Text>
           </label>
