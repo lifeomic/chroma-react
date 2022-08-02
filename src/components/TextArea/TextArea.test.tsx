@@ -243,3 +243,22 @@ test('it renders an aria-label when not provided with label', async () => {
   const ariaLabel = await findByLabelText(/aria-label-text/);
   expect(ariaLabel).toBeInTheDocument();
 });
+
+test('it renders an * when the field is required', async () => {
+  const { findByText } = renderWithTheme(
+    <TextArea label="" showRequiredLabel />
+  );
+  const asterisk = await findByText('*');
+  expect(asterisk).toBeInTheDocument();
+  expect(asterisk).toHaveClass('ChromaTextArea-required');
+});
+
+test('it renders an inverse color * when the field is required', async () => {
+  const { findByText } = renderWithTheme(
+    <TextArea label="" color="inverse" showRequiredLabel />
+  );
+  const asterisk = await findByText('*');
+  expect(asterisk).toHaveClass(
+    'ChromaTextArea-required ChromaTextArea-requiredInverse'
+  );
+});
