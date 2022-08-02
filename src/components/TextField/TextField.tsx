@@ -288,7 +288,7 @@ export const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
                   color === 'inverse' && classes.requiredInverse
                 )}
               >
-                *
+                &#42;
               </span>
             )}
             {label}
