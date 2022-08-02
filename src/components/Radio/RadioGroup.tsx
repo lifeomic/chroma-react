@@ -62,6 +62,13 @@ export const useStyles = makeStyles(
     srOnly: {
       ...screenreaderOnlyStyles,
     },
+    required: {
+      color: theme.palette.error[500],
+      margin: theme.spacing(0, 0.5),
+    },
+    requiredInverse: {
+      color: theme.palette.common.white,
+    },
   }),
   { name: RadioGroupStylesKey }
 );
@@ -79,6 +86,8 @@ export interface RadioGroupProps
   direction?: 'row' | 'column';
   justify?: 'center' | 'flex-start' | 'space-between' | 'space-evenly';
   title?: string;
+  /** This property shows the required asterisk (*). Required validation needs to be implemented separately. */
+  showRequiredLabel?: boolean;
 }
 
 export const RadioGroup: React.FC<RadioGroupProps> = ({
@@ -93,6 +102,7 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
   onChange,
   value,
   title,
+  showRequiredLabel,
   ...rootProps
 }) => {
   const classes = useStyles({});
@@ -138,6 +148,16 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
             !title && ariaLabel && classes.srOnly
           )}
         >
+          {showRequiredLabel && (
+            <span
+              className={clsx(
+                classes.required,
+                color === 'inverse' && classes.requiredInverse
+              )}
+            >
+              &#42;
+            </span>
+          )}
           {title || ariaLabel}
         </legend>
         <div

@@ -151,6 +151,13 @@ export const useStyles = makeStyles(
     srOnly: {
       ...screenreaderOnlyStyles,
     },
+    required: {
+      color: theme.palette.error[500],
+      margin: theme.spacing(0, 0.5),
+    },
+    requiredInverse: {
+      color: theme.palette.common.white,
+    },
   }),
   { name: RadioGroupMinimalStylesKey }
 );
@@ -168,6 +175,8 @@ export interface RadioGroupMinimalProps
   direction?: 'row' | 'column';
   fullWidth?: boolean;
   title?: string;
+  /** This property shows the required asterisk (*). Required validation needs to be implemented separately. */
+  showRequiredLabel?: boolean;
 }
 
 export const RadioGroupMinimal: React.FC<RadioGroupMinimalProps> = ({
@@ -182,6 +191,7 @@ export const RadioGroupMinimal: React.FC<RadioGroupMinimalProps> = ({
   onChange,
   value,
   title,
+  showRequiredLabel,
   ...rootProps
 }) => {
   const classes = useStyles({});
@@ -227,6 +237,16 @@ export const RadioGroupMinimal: React.FC<RadioGroupMinimalProps> = ({
             !title && ariaLabel && classes.srOnly
           )}
         >
+          {showRequiredLabel && (
+            <span
+              className={clsx(
+                classes.required,
+                color === 'inverse' && classes.requiredInverse
+              )}
+            >
+              &#42;
+            </span>
+          )}
           {title || ariaLabel}
         </legend>
         <div
