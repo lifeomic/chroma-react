@@ -106,6 +106,7 @@ const ComboBoxStory: React.FC = () => {
             onChange={(v: Array<string>) => setComboValue(v)}
             errorMessage="This is required!"
             hasError
+            showRequiredLabel
           >
             <SelectOption title="Option 1" value="option 1" />
             <SelectOption
@@ -279,6 +280,7 @@ const ComboBoxStory: React.FC = () => {
             onChange={(v: Array<string>) => setComboValue(v)}
             errorMessage="This is required!"
             hasError
+            showRequiredLabel
           >
             <SelectOption title="Option 1" value="option 1" />
             <SelectOption
@@ -456,6 +458,7 @@ const ComboBoxStory: React.FC = () => {
             color="inverse"
             errorMessage="This is required!"
             hasError
+            showRequiredLabel
           >
             <SelectOption title="Option 1" value="option 1" />
             <SelectOption
@@ -636,6 +639,7 @@ const ComboBoxStory: React.FC = () => {
             color="inverse"
             errorMessage="This is required!"
             hasError
+            showRequiredLabel
           >
             <SelectOption title="Option 1" value="option 1" />
             <SelectOption
