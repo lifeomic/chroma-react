@@ -89,6 +89,13 @@ export const useStyles = makeStyles(
     srOnly: {
       ...screenreaderOnlyStyles,
     },
+    required: {
+      color: theme.palette.error[500],
+      margin: theme.spacing(0, 0.5),
+    },
+    requiredInverse: {
+      color: theme.palette.common.white,
+    },
   }),
   { name: CheckboxStylesKey }
 );
@@ -303,7 +310,11 @@ const inverseHasErrorBoxVariants = {
 export type CheckboxClasses = GetClasses<typeof useStyles>;
 
 export type CheckboxProps = BaseFormElementWithNodeLabel &
-  ClassOverrides<CheckboxClasses> & { indeterminate?: boolean };
+  ClassOverrides<CheckboxClasses> & {
+    indeterminate?: boolean;
+    /** This property shows the required asterisk (*). Required validation needs to be implemented separately. */
+    showRequiredLabel?: boolean;
+  };
 
 export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
   (
@@ -321,6 +332,7 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
       id,
       label,
       name,
+      showRequiredLabel,
       ...rootProps
     },
     ref
@@ -479,6 +491,16 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
                 !label && ariaLabel && classes.srOnly
               )}
             >
+              {showRequiredLabel && (
+                <span
+                  className={clsx(
+                    classes.required,
+                    color === 'inverse' && classes.requiredInverse
+                  )}
+                >
+                  &#42;
+                </span>
+              )}
               {label || ariaLabel}
             </Text>
           </motion.label>
