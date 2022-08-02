@@ -25,6 +25,12 @@ const PhoneNumberFormatFieldStory: React.FC = () => {
         showRequiredLabel
         onChange={(value) => setText(value)}
       />
+      <PhoneNumberFormatField
+        label="Full Width"
+        value={text}
+        fullWidth
+        onChange={(value) => setText(value)}
+      />
     </Container>
   );
 };
