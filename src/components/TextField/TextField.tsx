@@ -212,6 +212,13 @@ export const useStyles = makeStyles(
       display: 'flex',
       outline: 'none',
     },
+    required: {
+      color: theme.palette.error[500],
+      margin: theme.spacing(0, 0.5),
+    },
+    requiredInverse: {
+      color: theme.palette.common.white,
+    },
   }),
   { name: TextFieldStylesKey }
 );
@@ -233,6 +240,8 @@ export interface TextFieldProps
   // Icon, IconButton, or IconButtonLink
   startAdornment?: React.ReactNode;
   endAdornment?: React.ReactNode;
+  /** This property shows the required asterisk (*). Required validation needs to be implemented separately. */
+  showRequiredLabel?: boolean;
 }
 
 export const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
@@ -253,6 +262,7 @@ export const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
       tooltipMessage,
       startAdornment,
       endAdornment,
+      showRequiredLabel,
       ...rootProps
     },
     ref
@@ -279,6 +289,16 @@ export const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
             )}
             htmlFor={uniqueId}
           >
+            {showRequiredLabel && (
+              <span
+                className={clsx(
+                  classes.required,
+                  color === 'inverse' && classes.requiredInverse
+                )}
+              >
+                &#42;
+              </span>
+            )}
             {label}
             {!!Icon && tooltipMessage && (
               <Tooltip title={tooltipMessage}>
