@@ -12,7 +12,7 @@ export const LinkStylesKey = 'ChromaLink';
 export const useStyles = makeStyles(
   (theme) => ({
     root: {
-      color: 'rgba(0, 83, 154, 0.9)',
+      color: theme.hexToRgba(theme.palette.primary[900], 0.9),
       transition: 'color 0.25s ease',
       textDecoration: 'none',
       '&:hover': {
@@ -21,7 +21,7 @@ export const useStyles = makeStyles(
       },
     },
     inverse: {
-      color: 'rgba(255, 255, 255, 0.9)',
+      color: theme.hexToRgba(theme.palette.common.white, 0.9),
       '&:hover': {
         color: theme.palette.common.white,
       },

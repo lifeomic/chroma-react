@@ -38,7 +38,7 @@ export const useStyles = makeStyles(
       },
     },
     input: {
-      background: 'rgba(132, 137, 166, 0.15)',
+      background: theme.hexToRgba(theme.palette.graphite[900], 0.15),
       border: '1px solid transparent',
       borderRadius: theme.pxToRem(11),
       cursor: 'pointer',
@@ -76,22 +76,28 @@ export const useStyles = makeStyles(
         },
       },
       '&:focus': {
-        boxShadow: '0 0 0 2px rgba(0, 150, 225, .3)',
+        boxShadow: `0 0 0 2px ${theme.hexToRgba(
+          theme.palette.primary[600],
+          0.3
+        )}`,
       },
       '&:hover:not(:disabled):not(:checked)': {
         border: `1px solid ${theme.palette.primary[700]}`,
       },
     },
     inputInverse: {
-      backgroundColor: 'rgba(230, 231, 237, 0.1)',
-      border: '1px solid rgba(255, 255, 255, 0.2)',
+      backgroundColor: theme.hexToRgba(theme.palette.graphite[100], 0.1),
+      border: `1px solid ${theme.hexToRgba(theme.palette.common.white, 0.2)}`,
       mixBlendMode: 'hard-light',
       '&:checked': {
         background: theme.palette.secondary[500],
         border: `1px solid ${theme.palette.secondary[500]}`,
       },
       '&:focus': {
-        boxShadow: '0 0 0 2px rgba(255, 255, 255, .3)',
+        boxShadow: `0 0 0 2px ${theme.hexToRgba(
+          theme.palette.common.white,
+          0.3
+        )}`,
       },
       '&:hover:not(:disabled):not(:checked)': {
         border: `1px solid ${theme.palette.common.white}`,

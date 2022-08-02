@@ -19,7 +19,7 @@ export const useStyles = makeStyles(
       position: 'relative',
     },
     input: {
-      backgroundColor: 'rgba(132, 137, 166, 0.15)',
+      backgroundColor: theme.hexToRgba(theme.palette.graphite[900], 0.15),
       border: `1px solid transparent`,
       borderRadius: theme.pxToRem(4),
       color: theme.palette.text.primary,
@@ -34,8 +34,11 @@ export const useStyles = makeStyles(
       maxWidth: theme.pxToRem(173),
       '&:focus': {
         outline: 'none',
-        backgroundColor: 'rgba(255, 255, 255, 0.5)',
-        border: `1px solid rgba(132, 137, 166, 0.45)`,
+        backgroundColor: theme.hexToRgba(theme.palette.common.white, 0.5),
+        border: `1px solid ${theme.hexToRgba(
+          theme.palette.graphite[900],
+          0.45
+        )}`,
       },
       '&:disabled': {
         cursor: 'not-allowed',
@@ -63,23 +66,26 @@ export const useStyles = makeStyles(
       },
     },
     inputInverse: {
-      backgroundColor: 'rgba(230, 231, 237, 0.1)',
+      backgroundColor: theme.hexToRgba(theme.palette.graphite[100], 0.1),
       color: theme.palette.common.white,
       '&:focus': {
-        backgroundColor: 'rgba(230, 231, 237, 0.1)',
-        border: `1px solid rgba(230, 231, 237, 0.55)`,
+        backgroundColor: theme.hexToRgba(theme.palette.graphite[100], 0.1),
+        border: `1px solid ${theme.hexToRgba(
+          theme.palette.graphite[100],
+          0.55
+        )}`,
       },
       '&::-webkit-input-placeholder': {
-        color: 'rgba(255, 255, 255, 0.8)',
+        color: theme.hexToRgba(theme.palette.common.white, 0.8),
       },
       '&::-moz-placeholder': {
-        color: 'rgba(255, 255, 255, 0.8)',
+        color: theme.hexToRgba(theme.palette.common.white, 0.8),
       },
       '&:-ms-input-placeholder': {
-        color: 'rgba(255, 255, 255, 0.8)',
+        color: theme.hexToRgba(theme.palette.common.white, 0.8),
       },
       '&:-moz-placeholder': {
-        color: 'rgba(255, 255, 255, 0.8)',
+        color: theme.hexToRgba(theme.palette.common.white, 0.8),
       },
     },
     inputHeight0: {

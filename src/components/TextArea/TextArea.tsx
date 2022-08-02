@@ -50,7 +50,7 @@ export const useStyles = makeStyles(
       },
     },
     textarea: {
-      backgroundColor: 'rgba(132, 137, 166, 0.15)',
+      backgroundColor: theme.hexToRgba(theme.palette.graphite[900], 0.15),
       border: `1px solid transparent`,
       borderRadius: theme.pxToRem(4),
       color: theme.palette.text.primary,
@@ -68,8 +68,11 @@ export const useStyles = makeStyles(
       transition: 'border 0.25s ease',
       '&:focus': {
         outline: 'none',
-        backgroundColor: 'rgba(255, 255, 255, 0.5)',
-        border: `1px solid rgba(132, 137, 166, 0.45)`,
+        backgroundColor: theme.hexToRgba(theme.palette.common.white, 0.5),
+        border: `1px solid ${theme.hexToRgba(
+          theme.palette.graphite[900],
+          0.45
+        )}`,
       },
       '&:disabled': {
         cursor: 'not-allowed',
@@ -79,7 +82,7 @@ export const useStyles = makeStyles(
         cursor: 'not-allowed',
         opacity: 0.9,
         '&:focus': {
-          backgroundColor: 'rgba(132, 137, 166, 0.15)',
+          backgroundColor: theme.hexToRgba(theme.palette.graphite[900], 0.15),
           border: `1px solid transparent`,
         },
       },
@@ -97,33 +100,36 @@ export const useStyles = makeStyles(
       },
     },
     textareaInverse: {
-      backgroundColor: 'rgba(230, 231, 237, 0.1)',
+      backgroundColor: theme.hexToRgba(theme.palette.graphite[100], 0.1),
       color: theme.palette.common.white,
       '&:focus': {
-        backgroundColor: 'rgba(230, 231, 237, 0.1)',
-        border: `1px solid rgba(230, 231, 237, 0.55)`,
+        backgroundColor: theme.hexToRgba(theme.palette.graphite[100], 0.1),
+        border: `1px solid ${theme.hexToRgba(
+          theme.palette.graphite[100],
+          0.55
+        )}`,
       },
       '&:read-only': {
         opacity: 1,
         '&:focus': {
-          backgroundColor: 'rgba(230, 231, 237, 0.1)',
+          backgroundColor: theme.hexToRgba(theme.palette.graphite[100], 0.1),
         },
       },
       '&::-webkit-input-placeholder': {
-        color: 'rgba(255, 255, 255, 0.8)',
+        color: theme.hexToRgba(theme.palette.common.white, 0.8),
       },
       '&::-moz-placeholder': {
-        color: 'rgba(255, 255, 255, 0.8)',
+        color: theme.hexToRgba(theme.palette.common.white, 0.8),
       },
       '&:-ms-input-placeholder': {
-        color: 'rgba(255, 255, 255, 0.8)',
+        color: theme.hexToRgba(theme.palette.common.white, 0.8),
       },
       '&:-moz-placeholder': {
-        color: 'rgba(255, 255, 255, 0.8)',
+        color: theme.hexToRgba(theme.palette.common.white, 0.8),
       },
     },
     textareaError: {
-      backgroundColor: 'rgba(230, 231, 237, 0.1)',
+      backgroundColor: theme.hexToRgba(theme.palette.graphite[100], 0.1),
       border: `1px solid ${theme.palette.error.main}`,
       '&:focus': {
         border: `1px solid ${theme.palette.error.main}`,

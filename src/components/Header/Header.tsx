@@ -12,7 +12,10 @@ export const useStyles = makeStyles(
     root: {
       alignItems: 'center',
       backgroundColor: theme.palette.common.white,
-      boxShadow: '0px 4px 54px rgba(0, 0, 0, 0.12);',
+      boxShadow: `0px 4px 54px ${theme.hexToRgba(
+        theme.palette.common.black,
+        0.12
+      )};`,
       display: 'flex',
       flex: 1,
       height: headerHeight,

@@ -17,14 +17,13 @@ import {
 } from './createTypography';
 import { createOverrides, OverridesCreator } from './overrides';
 import { hexToRgba } from './utils/colorManipulator';
-
 export interface Theme extends Omit<MuiTheme, 'palette'> {
   palette: Palette;
   typography: Typography;
   boxShadows: BoxShadows;
   pxToRem: (size: number) => string;
+  hexToRgba: (hex: string, opacity: number) => string;
 }
-
 export interface ThemeOptions
   extends Omit<MuiThemeOptions, 'components' | 'palette' | 'typography'> {
   palette?: PaletteOptions;
@@ -47,7 +46,7 @@ export const createTheme = ({
     typography: createTypography(typography),
     boxShadows: createBoxShadows(boxShadows),
     pxToRem: (size: number) => `${size / 16}rem`,
-    hexToRgba: hexToRgba,
+    hexToRgba,
     ...muiOptions,
   } as any) as any) as Theme;
 
