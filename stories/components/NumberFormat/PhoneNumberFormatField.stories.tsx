@@ -8,10 +8,21 @@ const PhoneNumberFormatFieldStory: React.FC = () => {
   const [text, setText] = React.useState('');
 
   return (
-    <Container>
+    <Container
+      containerStyles={{
+        display: 'flex',
+        flexDirection: 'column',
+      }}
+    >
       <PhoneNumberFormatField
         label="Phone"
         value={text}
+        onChange={(value) => setText(value)}
+      />
+      <PhoneNumberFormatField
+        label="Required"
+        value={text}
+        showRequiredLabel
         onChange={(value) => setText(value)}
       />
     </Container>

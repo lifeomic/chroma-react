@@ -58,6 +58,7 @@ const PhoneInputCompatibleChromaInput = React.forwardRef<
     <TextField
       fullWidth
       label="Phone Number"
+      showRequiredLabel={props.showRequiredLabel}
       helpMessage={props.about}
       ref={ref}
       {...textFieldProps}
@@ -75,9 +76,12 @@ export type PhoneNumberFormatFieldProps = Omit<
   onChange: (val: string) => void;
   hasError?: boolean;
   errorMessage?: string;
+  /** This property shows the required asterisk (*). Required validation needs to be implemented separately. */
+  showRequiredLabel?: boolean;
 };
 export const PhoneNumberFormatField: React.FC<PhoneNumberFormatFieldProps> = ({
   className,
+  showRequiredLabel,
   ...props
 }) => {
   const { value, onChange, errorMessage } = props;
@@ -88,6 +92,7 @@ export const PhoneNumberFormatField: React.FC<PhoneNumberFormatFieldProps> = ({
       defaultCountry="US"
       flags={flags}
       {...props}
+      showRequiredLabel={showRequiredLabel}
       // @ts-ignore defaultValue has type mismatch
       inputComponent={PhoneInputCompatibleChromaInput}
       value={value}
