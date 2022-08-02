@@ -88,6 +88,7 @@ const SelectStory: React.FC = () => {
             onChange={(v: string) => setSelectValue(v)}
             errorMessage="This is required!"
             hasError
+            showRequiredLabel
           >
             <SelectOption title="Option 1" value="option 1" />
             <SelectOption
@@ -213,6 +214,7 @@ const SelectStory: React.FC = () => {
             onChange={(v: string) => setSelectValue(v)}
             errorMessage="This is required!"
             hasError
+            showRequiredLabel
           >
             <SelectOption title="Option 1" value="option 1" />
             <SelectOption
@@ -342,6 +344,7 @@ const SelectStory: React.FC = () => {
             color="inverse"
             errorMessage="This is required!"
             hasError
+            showRequiredLabel
           >
             <SelectOption title="Option 1" value="option 1" />
             <SelectOption
@@ -479,6 +482,7 @@ const SelectStory: React.FC = () => {
             color="inverse"
             errorMessage="This is required!"
             hasError
+            showRequiredLabel
           >
             <SelectOption title="Option 1" value="option 1" />
             <SelectOption
