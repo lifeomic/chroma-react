@@ -1,6 +1,6 @@
 # Percent Format Field
 
-An input component for entering a number postfixed with a %; it extends the [Chroma TextField component](https://lifeomic.github.io/chroma-react/?path=/story/form-components-textfield--all).
+An input component for entering a number as a percent; it leverages the [Chroma Unit Input](https://lifeomic.github.io/chroma-react/?path=/story/form-components-number-format--unit-input) with '%' postfixed as the unit.
 
 <!-- STORY -->
 
@@ -14,11 +14,11 @@ import { PercentFormatField } from '@lifeomic/chroma-react/components/NumberForm
 
 ```jsx
 <PercentFormatField
+  label="Tax"
   value={someValue}
   onChange={(value) => {
     handleChange(value);
   }}
-  label="Tax"
 />
 ```
 
@@ -27,43 +27,39 @@ import { PercentFormatField } from '@lifeomic/chroma-react/components/NumberForm
 The label to display for the element.
 
 ```jsx
-<PercentFormatField label="Win Rate" />
+<PercentFormatField label="Lose Rate" />
 ```
 
-### Has Error
+### Value
 
-Sets an error style on the element.
+Required prop; sets value variable from element value.
 
 ```jsx
-<PercentFormatField label="Bonus" hasError />
+<PercentFormatField value={someValue} />
 ```
 
-### Error Message
+### onChange
 
-Caption, error text to display underneath the element when an error occurs. For
-the message to be displayed `hasError` must be set as well.
+Required prop; function that runs when the value changes.
 
 ```jsx
-<PercentFormatField label="Percent" hasError errorMessage="This is required!" />
+<PercentFormatField onChange={() => doSomething())} />
 ```
 
-### Disabled
+### Minimum Value
 
-Applies the disabled state to the element.
+Sets a min value for the element. Defaults to 0.
 
 ```jsx
-<PercentFormatField label="Population" disabled />
+<PercentFormatField min={10} />
 ```
 
-**REMINDER:** If you use `disabled`, screenreaders will not announce the text
-inside of the TextField to the user, and will completely skip over this element.
+### Maximum Value
 
-### Read Only
-
-Applies the read only state to the element.
+Sets a max value for the element. Defaults to Number.MAX_SAFE_INTEGER.
 
 ```jsx
-<PercentFormatField label="Sales Tax" readOnly />
+<PercentFormatField max={100} />
 ```
 
 ### Accessibility

@@ -32,7 +32,7 @@ const PercentFormatFieldStory: React.FC = () => {
   );
 };
 
-storiesOf('Form Components/Number Format', module).add(
+storiesOf('Form Components/Number Format Field', module).add(
   'Percent',
   () => <PercentFormatFieldStory />,
   { readme: { content: md } }
