@@ -32,7 +32,7 @@ const PriceFormatFieldStory: React.FC = () => {
   );
 };
 
-storiesOf('Form Components/Number Format', module).add(
+storiesOf('Form Components/Number Format Field', module).add(
   'Price',
   () => <PriceFormatFieldStory />,
   { readme: { content: md } }
