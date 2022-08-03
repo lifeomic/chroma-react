@@ -18,6 +18,9 @@ import { UnitNumberFormatField } from '@lifeomic/chroma-react/components/NumberF
   onChange={(value) => {
     handleChange(value);
   }}
+  onBlur={() => {
+    doSomething();
+  }}
   units="in"
   label="Length"
 />
@@ -31,40 +34,60 @@ The label to display for the element.
 <UnitNumberFormatField label="Volume" />
 ```
 
-### Has Error
+### Value
 
-Sets an error style on the element.
+Required prop; sets value variable from element value.
 
 ```jsx
-<UnitNumberFormatField label="Length" hasError />
+<UnitNumberFormatField value={someValue} />
 ```
 
-### Error Message
+### Units
 
-Caption, error text to display underneath the element when an error occurs. For
-the message to be displayed `hasError` must be set as well.
+Required prop; displays the units of the input value within the input.
 
 ```jsx
-<UnitNumberFormatField label="Speed" hasError errorMessage="Invalid speed" />
+<UnitNumberFormatField units="mL" />
 ```
 
-### Disabled
+### onChange
 
-Applies the disabled state to the element.
+Required prop; function that runs when the value changes.
 
 ```jsx
-<UnitNumberFormatField label="Pressure" disabled />
+<UnitNumberFormatField onChange={() => doSomething())} />
 ```
 
-**REMINDER:** If you use `disabled`, screenreaders will not announce the text
-inside of the TextField to the user, and will completely skip over this element.
+### Minimum Value
 
-### Read Only
-
-Applies the read only state to the element.
+Sets a min value for the element. Defaults to 0.
 
 ```jsx
-<UnitNumberFormatField label="Phone" readOnly />
+<UnitNumberFormatField min={10} />
+```
+
+### Maximum Value
+
+Sets a max value for the element. Defaults to Number.MAX_SAFE_INTEGER.
+
+```jsx
+<UnitNumberFormatField max={100} />
+```
+
+### Decimal Scale
+
+Sets the number of decimal places for the value. Defaults to 0.
+
+```jsx
+<UnitNumberFormatField decimalScale={2} />
+```
+
+### Prefix Units
+
+Boolean. When active units are prefixed instead of postfixed.
+
+```jsx
+<UnitNumberFormatField prefixUnits />
 ```
 
 ### Accessibility
