@@ -1,4 +1,3 @@
-// eslint-disable-next-line no-restricted-imports
 import { Color as MUIColor } from '@mui/material';
 import {
   SimplePaletteColorOptions,
