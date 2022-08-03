@@ -1,6 +1,6 @@
 # Price Format Field
 
-An input component for entering a number in some currency; it extends the [Chroma TextField component](https://lifeomic.github.io/chroma-react/?path=/story/form-components-textfield--all). Currently only accommodates USD (\$).
+An input component for entering a number as a monetary value in pennies; it leverages the [Chroma Unit Input](https://lifeomic.github.io/chroma-react/?path=/story/form-components-number-format--unit-input). Currently only implements \$USD, with '\$' prefixed as the unit.
 
 <!-- STORY -->
 
@@ -14,11 +14,11 @@ import { PriceFormatField } from '@lifeomic/chroma-react/components/NumberFormat
 
 ```jsx
 <PriceFormatField
+  label="Monthly Costs"
   value={someValue}
   onChange={(value) => {
     handleChange(value);
   }}
-  label="Monthly Costs"
 />
 ```
 
@@ -30,40 +30,36 @@ The label to display for the element.
 <PriceFormatField label="Groceries" />
 ```
 
-### Has Error
+### Value
 
-Sets an error style on the element.
+Required prop; sets value variable from element value.
 
 ```jsx
-<PriceFormatField label="Phone Bill" hasError />
+<PriceFormatField value={someValue} />
 ```
 
-### Error Message
+### onChange
 
-Caption, error text to display underneath the element when an error occurs. For
-the message to be displayed `hasError` must be set as well.
+Required prop; function that runs when the value changes.
 
 ```jsx
-<PriceFormatField label="Cost" hasError errorMessage="This is required!" />
+<PriceFormatField onChange={() => doSomething())} />
 ```
 
-### Disabled
+### Minimum Value
 
-Applies the disabled state to the element.
+Sets a min value for the element. Defaults to 0.
 
 ```jsx
-<PriceFormatField label="Rent" disabled />
+<PriceFormatField min={10} />
 ```
 
-**REMINDER:** If you use `disabled`, screenreaders will not announce the text
-inside of the TextField to the user, and will completely skip over this element.
+### Maximum Value
 
-### Read Only
-
-Applies the read only state to the element.
+Sets a max value for the element. Defaults to Number.MAX_SAFE_INTEGER.
 
 ```jsx
-<PriceFormatField label="Total" readOnly />
+<PriceFormatField max={100} />
 ```
 
 ### Accessibility
