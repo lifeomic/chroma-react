@@ -1,6 +1,6 @@
 # Phone Number Format Field
 
-An input component for entering a phone number, it extends the Chroma TextField component. Leverages the [react-phone-number-input](https://gitlab.com/catamphetamine/react-phone-number-input#readme).
+An input component for entering a phone number, it extends the [Chroma TextField component](https://lifeomic.github.io/chroma-react/?path=/story/form-components-textfield--all).. Leverages [react-phone-number-input](https://gitlab.com/catamphetamine/react-phone-number-input#readme).
 
 <!-- STORY -->
 
