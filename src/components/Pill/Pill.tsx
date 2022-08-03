@@ -31,11 +31,17 @@ export const useStyles = makeStyles(
       background: theme.palette.positive.main,
     },
     highlight: {
-      background: `linear-gradient(135deg, ${theme.palette.primary.light} 0%, ${theme.palette.primary.main} 40%, rgb(166, 66, 254) 92%)`,
+      background: `linear-gradient(135deg, ${theme.palette.primary.light} 0%, ${theme.palette.primary.main} 40%, ${theme.palette.purple[700]} 92%)`,
       boxShadow: theme.boxShadows.table,
       borderRadius: theme.spacing(0.25, 1),
-      borderBottom: 'solid 1px rgba(0, 83, 154, 0.75)',
-      borderRight: 'solid 1px rgba(0, 83, 154, 0.75)',
+      borderBottom: `solid 1px ${theme.hexToRgba(
+        theme.palette.primary[900],
+        0.75
+      )}`,
+      borderRight: `solid 1px ${theme.hexToRgba(
+        theme.palette.primary[900],
+        0.75
+      )}`,
       color: theme.palette.common.white,
       fontSize: theme.pxToRem(9),
       fontWeight: theme.typography.fontWeightBolder,

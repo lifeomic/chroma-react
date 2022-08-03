@@ -19,7 +19,7 @@ export const useStyles = makeStyles(
     },
     hoverPointer: {
       '&:hover, &:focus': {
-        backgroundColor: 'rgba(222,244,252, 0.6)',
+        backgroundColor: theme.hexToRgba(theme.palette.primary[50], 0.6),
         cursor: 'pointer',
       },
     },

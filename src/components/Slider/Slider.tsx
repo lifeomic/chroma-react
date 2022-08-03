@@ -40,7 +40,7 @@ export const useStyles = makeStyles(
       },
     },
     track: {
-      backgroundColor: 'rgba(132, 137, 166, 0.15)',
+      backgroundColor: theme.hexToRgba(theme.palette.graphite[900], 0.15),
       borderRadius: 2,
       cursor: 'pointer',
       flexGrow: 1,
@@ -51,7 +51,7 @@ export const useStyles = makeStyles(
       },
     },
     trackInverse: {
-      backgroundColor: 'rgba(230, 231, 237, 0.1)',
+      backgroundColor: theme.hexToRgba(theme.palette.graphite[100], 0.1),
     },
     range: {
       backgroundColor: theme.palette.primary.main,
@@ -79,14 +79,20 @@ export const useStyles = makeStyles(
         borderColor: theme.palette.graphite[600],
       },
       '&:hover, &:focus': {
-        boxShadow: '0 0 0 5px rgba(132, 137, 166, 0.08)',
+        boxShadow: `0 0 0 5px ${theme.hexToRgba(
+          theme.palette.graphite[900],
+          0.08
+        )}`,
       },
     },
     thumbInverse: {
       backgroundColor: theme.palette.graphite[100],
       borderColor: theme.palette.common.white,
       '&:hover, &:focus': {
-        boxShadow: '0 0 0 5px rgba(255, 255, 255, 0.09)',
+        boxShadow: `0 0 0 5px ${theme.hexToRgba(
+          theme.palette.common.white,
+          0.09
+        )}`,
       },
     },
     thumbError: {
