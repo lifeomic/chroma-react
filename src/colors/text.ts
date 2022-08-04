@@ -2,7 +2,7 @@ import black from './black';
 import gray from './grey';
 import { TypeText } from './types';
 
-const text: TypeText = {
+const text: TypeText & { hint: string } = {
   primary: black[900],
   secondary: black[700],
   hint: black[600],

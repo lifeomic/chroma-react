@@ -1,4 +1,4 @@
-import CssBaseline from '@material-ui/core/CssBaseline';
+import { CssBaseline } from '@mui/material';
 // Once https://github.com/storybookjs/storybook/issues/8160 gets resolved,
 // we should be able to re-add these typings
 // import { StoryDecorator } from '@storybook/react';

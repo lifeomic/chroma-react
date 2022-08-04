@@ -1,4 +1,4 @@
-import { getContrastRatio } from '@material-ui/core/styles/colorManipulator';
+import { getContrastRatio } from '@mui/material/styles';
 import * as React from 'react';
 import { makeStyles } from '../../../src/styles';
 
