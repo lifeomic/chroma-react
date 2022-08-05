@@ -90,6 +90,14 @@ return <RadioGroup onChange={handleChange} />;
 Use this event to determine which value is selected. The `e.target.value`
 argument will provide the "value" of the Radio selected.
 
+### Required Styling
+
+Shows an \* next to the group label; required validation must be handled separately.
+
+```jsx
+<RadioGroup showRequiredStyling />
+```
+
 ### Color
 
 A color can be provided.
