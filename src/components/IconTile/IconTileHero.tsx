@@ -6,7 +6,7 @@ import { GetClasses, StandardProps } from '../../typeUtils';
 export const IconTileHeroStylesKey = 'ChromaIconTileHero';
 
 export const useStyles = makeStyles(
-  () => ({
+  (theme) => ({
     root: {
       position: 'relative',
       display: 'flex',
@@ -17,7 +17,12 @@ export const useStyles = makeStyles(
     },
     background: ({
       backgroundUrl,
-      backgroundColor = 'linear-gradient(45deg, #C947FD 0%, #2B4EFB 46.4%, #02BFF1 99.89%, rgba(48,177,251,0.85) 100%, #50D8FC 100%)',
+      backgroundColor = `linear-gradient(45deg, 
+        ${theme.palette.purple[700]} 0%, 
+        ${theme.palette.primary.main} 46.4%, 
+        ${theme.palette.primary[300]} 99.9%, 
+        ${theme.hexToRgba(theme.palette.primary[400], 0.85)} 100%, 
+        ${theme.palette.primary[200]} 100%)`,
     }: IconTileHeroOwnProps) => ({
       background: `url(${backgroundUrl}), ${backgroundColor}`,
       width: '100%',

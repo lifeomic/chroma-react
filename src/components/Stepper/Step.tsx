@@ -250,7 +250,7 @@ export const Step: React.FC<StepProps> = ({
     <li aria-current={active ? 'step' : undefined}>
       {as === 'button' ? (
         <button
-          aria-describedBy={getDescribedBy()}
+          aria-describedby={getDescribedBy()}
           aria-label={ariaLabel}
           className={clsx(
             classes.buttonRoot,
@@ -268,7 +268,7 @@ export const Step: React.FC<StepProps> = ({
       ) : (
         <Box
           align="center"
-          aria-describedBy={getDescribedBy()}
+          aria-describedby={getDescribedBy()}
           aria-label={ariaLabel}
           className={clsx(
             classes.divRoot,

@@ -1,6 +1,10 @@
+import { CreateCSSProperties, PropsFunc } from '@mui/styles';
 import { CSSProperties } from 'react';
 
-export const screenreaderOnlyStyles: CSSProperties = {
+export const screenreaderOnlyStyles:
+  | CSSProperties
+  | CreateCSSProperties<{}>
+  | PropsFunc<{}, CreateCSSProperties<{}>> = {
   position: 'absolute',
   width: '1px',
   height: '1px',

@@ -29,7 +29,7 @@ export const OVERLAY_TEST_ID = 'chroma-overlay-testid';
 export const useStyles = makeStyles(
   (theme) => ({
     overlay: {
-      backgroundColor: 'rgba(0, 0, 0, 0.5)',
+      backgroundColor: theme.hexToRgba(theme.palette.common.black, 0.5),
       bottom: 0,
       display: 'flex',
       flexDirection: 'column',

@@ -1,7 +1,5 @@
-import muiWithTheme, {
-  WithTheme as MuiWithTheme,
-} from '@material-ui/styles/withTheme';
-import { ConsistentWith } from '@material-ui/types';
+import muiWithTheme, { WithTheme as MuiWithTheme } from '@mui/styles/withTheme';
+import { ConsistentWith } from '@mui/types';
 import { Theme } from './createTheme';
 
 export type WithTheme = MuiWithTheme<Theme>;
