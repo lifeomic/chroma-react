@@ -120,6 +120,14 @@ supplemental text to the label, typically an expanded description of the option.
 <TextField label="Name" helpMessage="Some helper text!" />
 ```
 
+### Required Styling
+
+Shows an \* next to the label; required validation must be handled separately.
+
+```jsx
+<TextField label="Name" showRequiredStyling />
+```
+
 ### Has Error
 
 Sets an error style on the element.

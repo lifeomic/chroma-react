@@ -92,6 +92,14 @@ return <RadioGroupMinimal onChange={handleChange} />;
 Use this event to determine which value is selected. The `e.target.value`
 argument will provide the "value" of the Radio selected.
 
+### Required Styling
+
+Shows an \* next to the group label; required validation must be handled separately.
+
+```jsx
+<RadioGroupMinimal showRequiredStyling />
+```
+
 ### Icon
 
 An icon can be provided. If a label is not provided, but an aria-label is, that label
