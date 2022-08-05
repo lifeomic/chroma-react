@@ -13,9 +13,8 @@ const removeHash = (classes = {}) => {
   );
 };
 
-jest.mock('@material-ui/styles/makeStyles', () => {
-  const makeStylesActual = jest.requireActual('@material-ui/styles/makeStyles')
-    .default;
+jest.mock('@mui/styles/makeStyles', () => {
+  const makeStylesActual = jest.requireActual('@mui/styles/makeStyles').default;
 
   const makeStyles = (styles, options) => {
     const useStyles = makeStylesActual(styles, options);
@@ -28,11 +27,9 @@ jest.mock('@material-ui/styles/makeStyles', () => {
   return makeStyles;
 });
 
-jest.mock('@material-ui/core/styles/withStyles', () => {
+jest.mock('@mui/styles/withStyles', () => {
   const React = require('react');
-  const withStylesActual = jest.requireActual(
-    '@material-ui/core/styles/withStyles'
-  ).default;
+  const withStylesActual = jest.requireActual('@mui/styles/withStyles').default;
 
   return (styles, options) => {
     const wrap = withStylesActual(styles, options);

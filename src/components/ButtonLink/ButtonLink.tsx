@@ -85,12 +85,12 @@ export const useStyles = makeStyles(
       '&:hover': {
         color: theme.palette.common.white,
         opacity: 0.85,
-        borderColor: 'rgba(255, 255, 255, 0.85)',
+        borderColor: theme.hexToRgba(theme.palette.common.white, 0.85),
       },
       '&:focus': {
         color: theme.palette.common.white,
         opacity: 0.75,
-        borderColor: 'rgba(255, 255, 255, 0.75)',
+        borderColor: theme.hexToRgba(theme.palette.common.white, 0.75),
       },
       '&:focus.focus-visible': {
         boxShadow: theme.boxShadows.focusVisibleInverse,

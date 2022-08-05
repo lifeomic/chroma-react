@@ -2,9 +2,9 @@ export function hexToRgba(hex: string, opacity?: number): string {
   let rgba = '';
   if (isHex(hex)) {
     const hexArr = sliceHex(hex);
-    const r = decToHex(hexArr[0]);
-    const g = decToHex(hexArr[1]);
-    const b = decToHex(hexArr[2]);
+    const r = hexToDec(hexArr[0]);
+    const g = hexToDec(hexArr[1]);
+    const b = hexToDec(hexArr[2]);
     if (opacity) {
       const percent = opacity > 1 ? '%' : '';
       rgba = `rgba(${r},${g},${b},${opacity}${percent})`;
@@ -17,7 +17,7 @@ export function hexToRgba(hex: string, opacity?: number): string {
   return rgba;
 }
 
-function decToHex(hex: string): number {
+export function hexToDec(hex: string): number {
   if (hex.length === 2) {
     return parseInt(hex[0], 16) * 16 + parseInt(hex[1], 16);
   } else {
@@ -25,11 +25,11 @@ function decToHex(hex: string): number {
   }
 }
 
-function isHex(hex: string): boolean {
+export function isHex(hex: string): boolean {
   return /^#([A-Fa-f0-9]{3}){1,2}$/.test(hex);
 }
 
-function sliceHex(hex: string): Array<string> {
+export function sliceHex(hex: string): Array<string> {
   const arr = [];
   hex = hex.slice(1); // remove #
   const l = hex.length;

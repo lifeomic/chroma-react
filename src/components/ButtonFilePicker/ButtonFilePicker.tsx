@@ -73,7 +73,7 @@ export const useStyles = makeStyles(
       },
     },
     containedInverseDisabled: {
-      backgroundColor: 'rgba(255, 255, 255, 0.45)',
+      backgroundColor: theme.hexToRgba(theme.palette.common.white, 0.45),
       opacity: 1,
       color: theme.palette.text.secondary,
     },
@@ -100,18 +100,18 @@ export const useStyles = makeStyles(
       '&:hover': {
         color: theme.palette.common.white,
         opacity: 0.85,
-        borderColor: 'rgba(255, 255, 255, 0.85)',
+        borderColor: theme.hexToRgba(theme.palette.common.white, 0.85),
       },
       '&:focus': {
         color: theme.palette.common.white,
         opacity: 0.75,
-        borderColor: 'rgba(255, 255, 255, 0.75)',
+        borderColor: theme.hexToRgba(theme.palette.common.white, 0.75),
       },
     },
     outlinedInverseDisabled: {
-      color: 'rgba(255, 255, 255, 0.45)',
+      color: theme.hexToRgba(theme.palette.common.white, 0.45),
       opacity: 1,
-      borderColor: 'rgba(255, 255, 255, 0.45)',
+      borderColor: theme.hexToRgba(theme.palette.common.white, 0.45),
     },
     text: {
       backgroundColor: 'transparent',

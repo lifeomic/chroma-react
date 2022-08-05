@@ -16,7 +16,10 @@ export const useStyles = makeStyles(
       left: 'calc(50% - 2.125rem)',
       backgroundColor: theme.palette.common.white,
       borderRadius: '100%',
-      boxShadow: '0px 4px 34px rgba(0, 0, 0, 0.25)',
+      boxShadow: `0px 4px 34px ${theme.hexToRgba(
+        theme.palette.common.black,
+        0.25
+      )}`,
       color: theme.palette.primary.main,
     },
     icon: {

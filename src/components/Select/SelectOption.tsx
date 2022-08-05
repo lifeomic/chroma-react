@@ -31,7 +31,7 @@ export const useStyles = makeStyles(
         background: theme.palette.primary.main,
         content: `''`,
         display: 'block',
-        height: `calc(100% + ${theme.spacing(1)}px)`,
+        height: `calc(100% + ${theme.spacing(1)})`,
         position: 'absolute',
         left: theme.spacing(-2),
         top: theme.spacing(-0.5),

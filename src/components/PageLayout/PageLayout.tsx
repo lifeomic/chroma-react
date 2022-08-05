@@ -26,8 +26,8 @@ export const useStyles = makeStyles(
       position: 'relative',
       // Negative margin so that it can stretch
       // outside of the default padding specified by `root`.
-      marginLeft: -theme.spacing(4),
-      marginRight: -theme.spacing(4),
+      marginLeft: theme.spacing(-4),
+      marginRight: theme.spacing(-4),
       background: `url(${PageLayoutDefaultHero}) ${theme.palette.primary.main}`,
       backgroundSize: 'cover',
       marginBottom: theme.spacing(2),
