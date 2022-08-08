@@ -46,6 +46,14 @@ Required prop; function that runs when the value changes.
 <PriceFormatField onChange={() => doSomething())} />
 ```
 
+### Required Styling
+
+Shows an \* next to the label; required validation must be handled separately.
+
+```jsx
+<PriceFormatField showRequiredStyling />
+```
+
 ### Minimum Value
 
 Sets a min value for the element. Defaults to 0.

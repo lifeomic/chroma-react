@@ -38,6 +38,14 @@ The placeholder text to display.
 <PhoneNumberFormatField placeholder="Enter your phone number" />
 ```
 
+### Required Styling
+
+Shows an \* next to the label; required validation must be handled separately.
+
+```jsx
+<PhoneNumberFormatField label="Phone" showRequiredStyling />
+```
+
 ### Has Error
 
 Sets an error style on the element.
