@@ -1,6 +1,6 @@
 # Phone Number Format Field
 
-An input component for entering a phone number, it extends the Chroma TextField component. Uses [react-phone-number-input](https://gitlab.com/catamphetamine/react-phone-number-input#readme).
+An input component for entering a phone number, it extends the [Chroma TextField component](https://lifeomic.github.io/chroma-react/?path=/story/form-components-textfield--all).. Leverages [react-phone-number-input](https://gitlab.com/catamphetamine/react-phone-number-input#readme).
 
 <!-- STORY -->
 
@@ -52,7 +52,11 @@ Caption, error text to display underneath the element when an error occurs. For
 the message to be displayed `hasError` must be set as well.
 
 ```jsx
-<PhoneNumberFormatField label="Phone" hasError errorMessage="This is required!" />
+<PhoneNumberFormatField
+  label="Phone"
+  hasError
+  errorMessage="This is required!"
+/>
 ```
 
 ### Disabled

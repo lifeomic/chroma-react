@@ -18,8 +18,8 @@ const PhoneNumberFormatFieldStory: React.FC = () => {
   );
 };
 
-storiesOf('Form Components/Phone Input', module).add(
-  'Default',
+storiesOf('Form Components/Number Format Field', module).add(
+  'Phone Number',
   () => <PhoneNumberFormatFieldStory />,
   { readme: { content: defaultMd } }
 );
