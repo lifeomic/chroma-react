@@ -1,4 +1,4 @@
-import { Palette as MUIPalette } from '@material-ui/core/styles/createPalette';
+import { Palette as MUIPalette } from '@mui/material/styles/createPalette';
 import deepmerge from 'deepmerge';
 import black from '../colors/black';
 import blue from '../colors/blue';

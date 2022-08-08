@@ -1,6 +1,3 @@
-// eslint-disable-next-line no-restricted-imports
-export { Omit } from '@material-ui/core';
-
 export type DeepPartial<T> = {
   [P in keyof T]?: T[P] extends Array<infer U>
     ? Array<DeepPartial<U>>

@@ -1,7 +1,7 @@
 import {
   ColorPartial,
   SimplePaletteColorOptions,
-} from '@material-ui/core/styles/createPalette';
+} from '@mui/material/styles/createPalette';
 import text from './text';
 
 const shades: ColorPartial = {

@@ -1,7 +1,6 @@
 import { Queries, render, RenderOptions } from '@testing-library/react';
 import * as React from 'react';
 import { createTheme, ThemeProvider } from '../styles';
-import { Omit } from '../typeUtils';
 
 export const theme = createTheme();
 

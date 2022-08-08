@@ -21,7 +21,9 @@ export const useStyles = makeStyles(
 
 export type ActionsClasses = GetClasses<typeof useStyles>;
 
-export const Actions: React.FC<BoxProps> = ({
+export interface ActionsProps extends BoxProps {}
+
+export const Actions: React.FC<ActionsProps> = ({
   className,
   children,
   ...rootProps

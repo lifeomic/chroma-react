@@ -1,9 +1,9 @@
-import createMuiTheme, {
+import {
+  createTheme as createMuiTheme,
   Theme as MuiTheme,
   ThemeOptions as MuiThemeOptions,
-} from '@material-ui/core/styles/createMuiTheme';
-import muiUseTheme from '@material-ui/styles/useTheme';
-import { Omit } from '../typeUtils';
+} from '@mui/material/styles';
+import muiUseTheme from '@mui/styles/useTheme';
 import {
   BoxShadows,
   BoxShadowsOptions,
@@ -25,10 +25,10 @@ export interface Theme extends Omit<MuiTheme, 'palette'> {
   hexToRgba: (hex: string, opacity: number) => string;
 }
 export interface ThemeOptions
-  extends Omit<MuiThemeOptions, 'overrides' | 'palette' | 'typography'> {
+  extends Omit<MuiThemeOptions, 'components' | 'palette' | 'typography'> {
   palette?: PaletteOptions;
   typography?: TypographyOptions;
-  overrides?: OverridesCreator;
+  components?: OverridesCreator;
   boxShadows?: BoxShadowsOptions;
   pxToRem?: (size: number) => string;
 }
@@ -36,7 +36,7 @@ export interface ThemeOptions
 export const createTheme = ({
   palette,
   typography,
-  overrides,
+  components,
   boxShadows,
   pxToRem,
   ...muiOptions
@@ -52,7 +52,7 @@ export const createTheme = ({
 
   return createMuiTheme({
     ...themeWithoutOverrides,
-    overrides: createOverrides(themeWithoutOverrides, overrides),
+    components: createOverrides(themeWithoutOverrides, components),
   } as any) as any;
 };
 

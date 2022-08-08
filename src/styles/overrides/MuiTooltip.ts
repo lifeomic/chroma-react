@@ -1,4 +1,4 @@
-import { Overrides } from '@material-ui/core/styles/overrides';
+import { ComponentsOverrides as Overrides } from '@mui/material/styles/overrides';
 import { Theme } from '../createTheme';
 import { fontSizes } from '../createTypography';
 
