@@ -37,7 +37,7 @@ const useStyles = ({
         },
       },
       phoneInput: {
-        '& > input': {
+        '& input': {
           paddingLeft: theme.spacing(6),
         },
       },
