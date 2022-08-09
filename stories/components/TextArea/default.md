@@ -93,6 +93,14 @@ supplemental text to the label, typically an expanded description of the option.
 <TextArea label="Description" helpMessage="Some helper text!" />
 ```
 
+### Required Styling
+
+Shows an \* next to the label; required validation must be handled separately.
+
+```jsx
+<TextArea label="Description" showRequiredStyling />
+```
+
 ### Has Error
 
 Sets an error style on the element.

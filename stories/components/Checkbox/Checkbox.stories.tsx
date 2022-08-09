@@ -60,6 +60,7 @@ const CheckboxStory: React.FC = () => {
               setChecked(e.target.checked);
             }}
             hasError
+            showRequiredLabel
             errorMessage="This is required!"
             label="With error + error message"
           />
@@ -142,6 +143,7 @@ const CheckboxStory: React.FC = () => {
               setChecked(e.target.checked);
             }}
             hasError
+            showRequiredLabel
             errorMessage="This is required!"
             label="With error + error message"
           />
@@ -237,6 +239,7 @@ const CheckboxStory: React.FC = () => {
             }}
             color="inverse"
             hasError
+            showRequiredLabel
             errorMessage="This is required!"
             label="With error + error message"
           />
@@ -336,6 +339,7 @@ const CheckboxStory: React.FC = () => {
             }}
             color="inverse"
             hasError
+            showRequiredLabel
             errorMessage="This is required!"
             label="With error + error message"
           />

@@ -30,6 +30,8 @@ export type UnitNumberFormatFieldProps = Omit<
   units: string;
   decimalScale?: number;
   prefixUnits?: boolean;
+  /** This property shows the required asterisk (*). Required validation needs to be implemented separately. */
+  showRequiredLabel?: boolean;
   onChange: (val: number) => void;
 };
 
@@ -46,6 +48,7 @@ export const UnitNumberFormatField: React.FC<UnitNumberFormatFieldProps> = (
     decimalScale = 0,
     prefixUnits = false,
     className,
+    showRequiredLabel,
     ...other
   } = props;
   // formatting helper. Prefixes units if specified, otherwise suffix.
@@ -176,6 +179,7 @@ export const UnitNumberFormatField: React.FC<UnitNumberFormatFieldProps> = (
       onFocus={handleFocus}
       onBlur={handleBlur}
       ref={textFieldRef}
+      showRequiredLabel={showRequiredLabel}
     />
   );
 };

@@ -141,6 +141,13 @@ export const useStyles = makeStyles(
     srOnly: {
       ...screenreaderOnlyStyles,
     },
+    required: {
+      color: theme.palette.error[500],
+      margin: theme.spacing(0, 0.5),
+    },
+    requiredInverse: {
+      color: theme.palette.common.white,
+    },
   }),
   { name: ToggleStylesKey }
 );
@@ -167,6 +174,7 @@ export const Toggle = React.forwardRef<HTMLInputElement, ToggleProps>(
       label,
       name,
       placement = 'left',
+      showRequiredLabel,
       ...rootProps
     },
     ref
@@ -225,6 +233,16 @@ export const Toggle = React.forwardRef<HTMLInputElement, ToggleProps>(
               className={color === 'inverse' ? classes.labelInverse : undefined}
               size="subbody"
             >
+              {showRequiredLabel && (
+                <span
+                  className={clsx(
+                    classes.required,
+                    color === 'inverse' && classes.requiredInverse
+                  )}
+                >
+                  &#42;
+                </span>
+              )}
               {label || ariaLabel}
             </Text>
           </label>

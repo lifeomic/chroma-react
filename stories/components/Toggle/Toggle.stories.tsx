@@ -39,6 +39,7 @@ const ToggleStory: React.FC = () => {
           <Toggle hasError label="With error" />
           <Toggle
             hasError
+            showRequiredLabel
             errorMessage="This is required!"
             label="With error + error message"
           />
@@ -91,6 +92,7 @@ const ToggleStory: React.FC = () => {
           <Toggle hasError label="With error" />
           <Toggle
             hasError
+            showRequiredLabel
             errorMessage="This is required!"
             label="With error + error message"
           />
@@ -149,6 +151,7 @@ const ToggleStory: React.FC = () => {
           <Toggle hasError label="With error" color="inverse" />
           <Toggle
             hasError
+            showRequiredLabel
             errorMessage="This is required!"
             label="With error + error message"
             color="inverse"
@@ -215,6 +218,7 @@ const ToggleStory: React.FC = () => {
           <Toggle hasError label="With error" color="inverse" />
           <Toggle
             hasError
+            showRequiredLabel
             errorMessage="This is required!"
             label="With error + error message"
             color="inverse"

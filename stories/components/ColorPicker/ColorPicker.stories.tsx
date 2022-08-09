@@ -43,6 +43,11 @@ const AllColorPickersStory: React.FC = () => {
               label="Disabled"
               placeholder="Enter hex color"
             />
+            <ColorPicker
+              showRequiredLabel
+              label="Required"
+              placeholder="Enter hex color"
+            />
           </FormBox>
         </Container>
 
@@ -76,6 +81,12 @@ const AllColorPickersStory: React.FC = () => {
               color="inverse"
               disabled
               label="Disabled"
+              placeholder="Enter hex color"
+            />
+            <ColorPicker
+              color="inverse"
+              showRequiredLabel
+              label="Required"
               placeholder="Enter hex color"
             />
           </FormBox>

@@ -127,3 +127,24 @@ test('it uses the new value when the prop value changes', async () => {
   const content = await findByText(/^Current Value:/);
   expect(content.textContent).toBe('Current Value: UPDATED');
 });
+
+test('it renders an * when the field is required', async () => {
+  const { findByText } = renderWithTheme(
+    <RadioGroup title="Select one" showRequiredLabel />
+  );
+
+  const asterisk = await findByText('*');
+  expect(asterisk).toBeInTheDocument();
+  expect(asterisk).toHaveClass('ChromaRadioGroup-required');
+});
+
+test('it renders an inverse color * when the field is required', async () => {
+  const { findByText } = renderWithTheme(
+    <RadioGroup title="Select one" color="inverse" showRequiredLabel />
+  );
+
+  const asterisk = await findByText('*');
+  expect(asterisk).toHaveClass(
+    'ChromaRadioGroup-required ChromaRadioGroup-requiredInverse'
+  );
+});

@@ -244,6 +244,13 @@ export const useStyles = makeStyles(
     colorSquare: {
       borderRadius: theme.pxToRem(4),
     },
+    required: {
+      color: theme.palette.error[500],
+      margin: theme.spacing(0, 0.5),
+    },
+    requiredInverse: {
+      color: theme.palette.common.white,
+    },
   }),
   { name: ColorPickerStylesKey }
 );
@@ -272,6 +279,8 @@ export interface ColorPickerProps
   tooltipMessage?: string;
   value?: string;
   variant?: 'square' | 'circle';
+  /** This property shows the required asterisk (*). Required validation needs to be implemented separately. */
+  showRequiredLabel?: boolean;
 }
 
 export const ColorPicker = React.forwardRef<HTMLInputElement, ColorPickerProps>(
@@ -297,6 +306,7 @@ export const ColorPicker = React.forwardRef<HTMLInputElement, ColorPickerProps>(
       tooltipMessage,
       value = '',
       variant = 'square',
+      showRequiredLabel,
       ...rootProps
     },
     ref
@@ -375,6 +385,16 @@ export const ColorPicker = React.forwardRef<HTMLInputElement, ColorPickerProps>(
             )}
             htmlFor={uniqueId}
           >
+            {showRequiredLabel && (
+              <span
+                className={clsx(
+                  classes.required,
+                  color === 'inverse' && classes.requiredInverse
+                )}
+              >
+                &#42;
+              </span>
+            )}
             {label}
             {!!Icon && tooltipMessage && (
               <Tooltip title={tooltipMessage}>

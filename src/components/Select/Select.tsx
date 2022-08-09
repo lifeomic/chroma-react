@@ -235,6 +235,13 @@ export const useStyles = makeStyles(
     srOnly: {
       ...screenreaderOnlyStyles,
     },
+    required: {
+      color: theme.palette.error[500],
+      margin: theme.spacing(0, 0.5),
+    },
+    requiredInverse: {
+      color: theme.palette.common.white,
+    },
   }),
   { name: SelectStylesKey }
 );
@@ -347,6 +354,8 @@ export interface SelectProps
     option: SelectOptionProps
   ) => string | null | undefined | React.ReactNode;
   tooltipMessage?: string;
+  /** This property shows the required asterisk (*). Required validation needs to be implemented separately. */
+  showRequiredLabel?: boolean;
 }
 
 export const Select: React.FC<SelectProps> = ({
@@ -369,6 +378,7 @@ export const Select: React.FC<SelectProps> = ({
   selectedOptionDisplay,
   tooltipMessage,
   value,
+  showRequiredLabel,
   ...rootProps
 }) => {
   const classes = useStyles({});
@@ -440,6 +450,16 @@ export const Select: React.FC<SelectProps> = ({
         )}
         htmlFor={uniqueId}
       >
+        {showRequiredLabel && (
+          <span
+            className={clsx(
+              classes.required,
+              color === 'inverse' && classes.requiredInverse
+            )}
+          >
+            &#42;
+          </span>
+        )}
         {label || ariaLabel}
         {!!Icon && tooltipMessage && (
           <Tooltip title={tooltipMessage}>

@@ -25,7 +25,6 @@ const useStyles = ({
       },
       phoneInputRoot: {
         display: 'flex',
-        width: '100%',
         position: 'relative',
         '& > .PhoneInputCountry': {
           position: 'absolute',
@@ -38,7 +37,7 @@ const useStyles = ({
         },
       },
       phoneInput: {
-        '& > input': {
+        '& input': {
           paddingLeft: theme.spacing(6),
         },
       },
@@ -56,8 +55,9 @@ const PhoneInputCompatibleChromaInput = React.forwardRef<
   const { className, ...textFieldProps } = props;
   return (
     <TextField
-      fullWidth
+      fullWidth={props.fullWidth}
       label="Phone Number"
+      showRequiredLabel={props.showRequiredLabel}
       helpMessage={props.about}
       ref={ref}
       {...textFieldProps}
@@ -75,9 +75,14 @@ export type PhoneNumberFormatFieldProps = Omit<
   onChange: (val: string) => void;
   hasError?: boolean;
   errorMessage?: string;
+  /** This property shows the required asterisk (*). Required validation needs to be implemented separately. */
+  fullWidth?: boolean;
+  showRequiredLabel?: boolean;
 };
 export const PhoneNumberFormatField: React.FC<PhoneNumberFormatFieldProps> = ({
   className,
+  fullWidth,
+  showRequiredLabel,
   ...props
 }) => {
   const { value, onChange, errorMessage } = props;
@@ -87,7 +92,9 @@ export const PhoneNumberFormatField: React.FC<PhoneNumberFormatFieldProps> = ({
       className={clsx(classes.phoneInputRoot, className)}
       defaultCountry="US"
       flags={flags}
+      fullWidth={fullWidth}
       {...props}
+      showRequiredLabel={showRequiredLabel}
       // @ts-ignore defaultValue has type mismatch
       inputComponent={PhoneInputCompatibleChromaInput}
       value={value}

@@ -96,6 +96,8 @@ export interface ComboBoxProps
     options: Array<SelectOptionProps>
   ) => string | null | undefined | React.ReactNode;
   value?: Array<string> | undefined;
+  /** This property shows the required asterisk (*). Required validation needs to be implemented separately. */
+  showRequiredLabel?: boolean;
 }
 
 export const ComboBox: React.FC<ComboBoxProps> = ({
@@ -116,6 +118,7 @@ export const ComboBox: React.FC<ComboBoxProps> = ({
   popoverAriaLabel,
   selectedOptionDisplay,
   value,
+  showRequiredLabel,
   ...rootProps
 }) => {
   const classes = useStyles({});
@@ -211,6 +214,16 @@ export const ComboBox: React.FC<ComboBoxProps> = ({
         )}
         htmlFor={uniqueId}
       >
+        {showRequiredLabel && (
+          <span
+            className={clsx(
+              classes.required,
+              color === 'inverse' && classes.requiredInverse
+            )}
+          >
+            &#42;
+          </span>
+        )}
         {label || ariaLabel}
         {secondaryLabel ? (
           <span
