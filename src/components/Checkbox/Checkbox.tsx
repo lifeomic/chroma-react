@@ -312,8 +312,6 @@ export type CheckboxClasses = GetClasses<typeof useStyles>;
 export type CheckboxProps = BaseFormElementWithNodeLabel &
   ClassOverrides<CheckboxClasses> & {
     indeterminate?: boolean;
-    /** This property shows the required asterisk (*). Required validation needs to be implemented separately. */
-    showRequiredLabel?: boolean;
   };
 
 export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(

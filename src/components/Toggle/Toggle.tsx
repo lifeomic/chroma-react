@@ -157,8 +157,6 @@ export type ToggleClasses = GetClasses<typeof useStyles>;
 export interface ToggleProps extends BaseFormElement {
   fullWidth?: boolean;
   placement?: 'left' | 'right';
-  /** This property shows the required asterisk (*). Required validation needs to be implemented separately. */
-  showRequiredLabel?: boolean;
 }
 
 export const Toggle = React.forwardRef<HTMLInputElement, ToggleProps>(
