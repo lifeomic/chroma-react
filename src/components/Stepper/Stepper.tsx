@@ -34,64 +34,71 @@ export interface StepperProps {
   className?: string;
   connectorClassName?: string;
   onClick?: (index: number) => void;
+  ref?: React.Ref<HTMLDivElement>;
 }
 
-export const Stepper: React.FC<StepperProps> = ({
-  activeStep,
-  as = 'button',
-  children,
-  className,
-  connectorClassName,
-  onClick,
-  ...rootProps
-}) => {
-  const classes = useStyles({});
-  const childrenArray = Array.isArray(children)
-    ? children
-    : React.Children.toArray(children);
-
-  const steps = childrenArray.map((child: any, index: number) => {
-    const childrenProps = {
-      active: false,
-      as,
-      completed: false,
-      index,
+export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
+  (
+    {
+      activeStep,
+      as = 'button',
+      children,
+      className,
+      connectorClassName,
       onClick,
-    };
+      ...rootProps
+    },
+    ref
+  ) => {
+    const classes = useStyles({});
+    const childrenArray = Array.isArray(children)
+      ? children
+      : React.Children.toArray(children);
 
-    if (activeStep === index) {
-      childrenProps.active = true;
-    } else if (activeStep > index) {
-      childrenProps.completed = true;
-    }
+    const steps = childrenArray.map((child: any, index: number) => {
+      const childrenProps = {
+        active: false,
+        as,
+        completed: false,
+        index,
+        onClick,
+      };
 
-    const connector = <StepConnector />;
+      if (activeStep === index) {
+        childrenProps.active = true;
+      } else if (activeStep > index) {
+        childrenProps.completed = true;
+      }
 
-    return [
-      index !== 0 &&
-        React.cloneElement(connector, {
-          className: connectorClassName,
-          hasSubTitle: child.props.subTitle,
-          hasSubTitlePill: child.props.subTitlePillLabel,
-          key: `connector-${index}`,
+      const connector = <StepConnector />;
+
+      return [
+        index !== 0 &&
+          React.cloneElement(connector, {
+            className: connectorClassName,
+            hasSubTitle: child.props.subTitle,
+            hasSubTitlePill: child.props.subTitlePillLabel,
+            key: `connector-${index}`,
+            ...childrenProps,
+          }),
+        React.cloneElement(child, {
+          key: `step-${index}`,
+          numberOfSteps: childrenArray.length,
           ...childrenProps,
         }),
-      React.cloneElement(child, {
-        key: `step-${index}`,
-        numberOfSteps: childrenArray.length,
-        ...childrenProps,
-      }),
-    ];
-  });
+      ];
+    });
 
-  return (
-    <Box
-      fullWidth
-      className={clsx(classes.root, className)}
-      role="group"
-      {...rootProps}
-    >
-      <ol className={classes.innerRoot}>{steps}</ol>
-    </Box>
-  );
-};
+    return (
+      <Box
+        fullWidth
+        className={clsx(classes.root, className)}
+        ref={ref}
+        role="group"
+        {...rootProps}
+      >
+        <ol className={classes.innerRoot}>{steps}</ol>
+      </Box>
+    );
+  }
+);

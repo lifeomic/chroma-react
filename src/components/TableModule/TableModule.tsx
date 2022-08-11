@@ -213,179 +213,188 @@ export interface TableModuleProps<Item = any>
   rowClickLabel?: string;
 }
 
-export const TableModule: React.FC<TableModuleProps> = React.memo(
-  ({
-    config = [],
-    className,
-    data,
-    onRowClick,
-    isLoading = false,
-    rowRole,
-    noResultsMessage,
-    sortState = { sortKey: null, sortDirection: null },
-    maxCellWidth,
-    rowActions,
-    rowClickLabel,
-    ...rootProps
-  }) => {
-    const classes = useStyles({});
+export const TableModule = React.memo(
+  React.forwardRef<HTMLTableElement, TableModuleProps>(
+    (
+      {
+        config = [],
+        className,
+        data,
+        onRowClick,
+        isLoading = false,
+        rowRole,
+        noResultsMessage,
+        sortState = { sortKey: null, sortDirection: null },
+        maxCellWidth,
+        rowActions,
+        rowClickLabel,
+        ...rootProps
+      },
+      ref
+    ) => {
+      const classes = useStyles({});
 
-    warning(
-      Boolean(onRowClick) &&
-        !rowClickLabel &&
-        process.env.NODE_ENV === 'development',
-      'Chroma Warning: It is recommended you provide "rowClickLabel" if specifying a "onRowClick" for the <TableModule> component. This will be a required prop in a future major version.'
-    );
+      warning(
+        Boolean(onRowClick) &&
+          !rowClickLabel &&
+          process.env.NODE_ENV === 'development',
+        'Chroma Warning: It is recommended you provide "rowClickLabel" if specifying a "onRowClick" for the <TableModule> component. This will be a required prop in a future major version.'
+      );
 
-    const [sort, setSort] = React.useState<TableSortState>(sortState);
+      const [sort, setSort] = React.useState<TableSortState>(sortState);
 
-    const [headings, setHeadings] = React.useState<Array<TableHeader>>(
-      config?.map((c) => c.header) || []
-    );
-    const [cells, setCells] = React.useState<Array<TableCell>>(
-      config?.map((c) => c.cell) || []
-    );
+      const [headings, setHeadings] = React.useState<Array<TableHeader>>(
+        config?.map((c) => c.header) || []
+      );
+      const [cells, setCells] = React.useState<Array<TableCell>>(
+        config?.map((c) => c.cell) || []
+      );
 
-    React.useEffect(() => {
-      if (config.length > 0) {
-        setHeadings(config.map((c) => c.header));
-        setCells(config.map((c) => c.cell));
-      }
-    }, [config]);
+      React.useEffect(() => {
+        if (config.length > 0) {
+          setHeadings(config.map((c) => c.header));
+          setCells(config.map((c) => c.cell));
+        }
+      }, [config]);
 
-    React.useEffect(() => {
-      if (sortState.sortKey && headings) {
-        const column = headings && headings[sortState.sortKey];
-        column.onSort &&
-          column.onSort({
-            index: sortState.sortKey,
-            sortDirection: sortState.sortDirection,
-            header: column,
-          });
-      }
-    }, [headings, sortState.sortDirection, sortState.sortKey]);
+      React.useEffect(() => {
+        if (sortState.sortKey && headings) {
+          const column = headings && headings[sortState.sortKey];
+          column.onSort &&
+            column.onSort({
+              index: sortState.sortKey,
+              sortDirection: sortState.sortDirection,
+              header: column,
+            });
+        }
+      }, [headings, sortState.sortDirection, sortState.sortKey]);
 
-    const handleSortColumnClick = ({
-      index,
-      sortDirection,
-      header,
-    }: TableSortClickProps) => {
-      // A column was clicked, and we either don't have a sort setup yet,
-      // or we are moving from one column to another
-      if (sort.sortKey !== index) {
-        setSort({ sortKey: index, sortDirection: 'asc' });
-        header.onSort && header.onSort({ index, sortDirection: 'asc', header });
-        return;
-      }
+      const handleSortColumnClick = ({
+        index,
+        sortDirection,
+        header,
+      }: TableSortClickProps) => {
+        // A column was clicked, and we either don't have a sort setup yet,
+        // or we are moving from one column to another
+        if (sort.sortKey !== index) {
+          setSort({ sortKey: index, sortDirection: 'asc' });
+          header.onSort &&
+            header.onSort({ index, sortDirection: 'asc', header });
+          return;
+        }
 
-      // The same column was clicked, so we need to figure out
-      // the sorting direction now
-      if (!sortDirection) {
-        setSort({ sortKey: index, sortDirection: 'asc' });
-        header.onSort && header.onSort({ index, sortDirection: 'asc', header });
-        return;
-      }
+        // The same column was clicked, so we need to figure out
+        // the sorting direction now
+        if (!sortDirection) {
+          setSort({ sortKey: index, sortDirection: 'asc' });
+          header.onSort &&
+            header.onSort({ index, sortDirection: 'asc', header });
+          return;
+        }
 
-      if (sortDirection === 'asc') {
-        setSort({ sortKey: index, sortDirection: 'desc' });
-        header.onSort &&
-          header.onSort({ index, sortDirection: 'desc', header });
-        return;
-      }
+        if (sortDirection === 'asc') {
+          setSort({ sortKey: index, sortDirection: 'desc' });
+          header.onSort &&
+            header.onSort({ index, sortDirection: 'desc', header });
+          return;
+        }
 
-      if (sortDirection === 'desc') {
-        setSort({ sortKey: index, sortDirection: null });
-        header.onSort && header.onSort({ index, sortDirection: null, header });
-        return;
-      }
-    };
+        if (sortDirection === 'desc') {
+          setSort({ sortKey: index, sortDirection: null });
+          header.onSort &&
+            header.onSort({ index, sortDirection: null, header });
+          return;
+        }
+      };
 
-    return (
-      <table
-        role="table"
-        className={clsx(classes.root, className)}
-        {...rootProps}
-      >
-        <thead className={classes.tableHeader}>
-          <tr
-            className={classes.tableRow}
-            role="row"
-            {...getTestProps(testIds.headerRow)}
-          >
-            {headings?.map((header, i) => (
-              <TableHeaderCell
-                index={i}
-                headingsCount={headings.length}
-                key={i}
-                header={header}
-                isSorting={sort.sortKey === i}
-                sortDirection={sort.sortDirection}
-                onClick={handleSortColumnClick}
-                {...getTestProps(testIds.headerCell)}
-              />
-            ))}
-            {(rowActions || onRowClick) && (
-              <TableHeaderCell
-                header={{
-                  label: '',
-                }}
-                index={headings?.length + 1}
-                headingsCount={headings.length}
-                isSorting={false}
-                sortDirection={sort.sortDirection}
-              />
-            )}
-          </tr>
-        </thead>
-        <tbody role="rowgroup">
-          {!isLoading && data && data.length === 0 && (
-            <tr
-              className={clsx(classes.tableRow, classes.tableDataRow)}
-              role="row"
-              {...getTestProps(testIds.noResultsRow)}
-            >
-              <motion.td
-                className={classes.tableRowCell}
-                colSpan={headings.length}
-                role="cell"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1, transition: { duration: 1.5 } }}
-              >
-                {noResultsMessage || 'No results'}
-              </motion.td>
-            </tr>
-          )}
-          {data?.map((row, rowIndex) => {
-            return (
-              <TableModuleRow
-                key={`tableRow-${rowIndex}`}
-                data={row}
-                onRowClick={onRowClick}
-                rowRole={rowRole}
-                maxCellWidth={maxCellWidth}
-                row={row}
-                headingsLength={headings?.length}
-                cells={cells}
-                rowActions={rowActions}
-                rowClickLabel={rowClickLabel}
-              />
-            );
-          })}
-          {isLoading && (
+      return (
+        <table
+          role="table"
+          className={clsx(classes.root, className)}
+          ref={ref}
+          {...rootProps}
+        >
+          <thead className={classes.tableHeader}>
             <tr
               className={classes.tableRow}
-              {...getTestProps(testIds.isLoadingRow)}
+              role="row"
+              {...getTestProps(testIds.headerRow)}
             >
-              <td
-                className={classes.tableLoadingCell}
-                colSpan={headings.length}
-              >
-                <DotLoader size={0} />
-              </td>
+              {headings?.map((header, i) => (
+                <TableHeaderCell
+                  index={i}
+                  headingsCount={headings.length}
+                  key={i}
+                  header={header}
+                  isSorting={sort.sortKey === i}
+                  sortDirection={sort.sortDirection}
+                  onClick={handleSortColumnClick}
+                  {...getTestProps(testIds.headerCell)}
+                />
+              ))}
+              {(rowActions || onRowClick) && (
+                <TableHeaderCell
+                  header={{
+                    label: '',
+                  }}
+                  index={headings?.length + 1}
+                  headingsCount={headings.length}
+                  isSorting={false}
+                  sortDirection={sort.sortDirection}
+                />
+              )}
             </tr>
-          )}
-        </tbody>
-      </table>
-    );
-  }
+          </thead>
+          <tbody role="rowgroup">
+            {!isLoading && data && data.length === 0 && (
+              <tr
+                className={clsx(classes.tableRow, classes.tableDataRow)}
+                role="row"
+                {...getTestProps(testIds.noResultsRow)}
+              >
+                <motion.td
+                  className={classes.tableRowCell}
+                  colSpan={headings.length}
+                  role="cell"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1, transition: { duration: 1.5 } }}
+                >
+                  {noResultsMessage || 'No results'}
+                </motion.td>
+              </tr>
+            )}
+            {data?.map((row, rowIndex) => {
+              return (
+                <TableModuleRow
+                  key={`tableRow-${rowIndex}`}
+                  data={row}
+                  onRowClick={onRowClick}
+                  rowRole={rowRole}
+                  maxCellWidth={maxCellWidth}
+                  row={row}
+                  headingsLength={headings?.length}
+                  cells={cells}
+                  rowActions={rowActions}
+                  rowClickLabel={rowClickLabel}
+                />
+              );
+            })}
+            {isLoading && (
+              <tr
+                className={classes.tableRow}
+                {...getTestProps(testIds.isLoadingRow)}
+              >
+                <td
+                  className={classes.tableLoadingCell}
+                  colSpan={headings.length}
+                >
+                  <DotLoader size={0} />
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      );
+    }
+  )
 );
