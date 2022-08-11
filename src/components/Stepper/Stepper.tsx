@@ -34,6 +34,7 @@ export interface StepperProps {
   className?: string;
   connectorClassName?: string;
   onClick?: (index: number) => void;
+  ref?: React.Ref<HTMLDivElement>;
 }
 
 export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(

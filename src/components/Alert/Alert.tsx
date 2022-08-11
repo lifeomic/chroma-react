@@ -45,6 +45,7 @@ export interface AlertProps {
   className?: string;
   statusType?: NotificationStatusType;
   fullWidth?: boolean;
+  ref?: React.Ref<HTMLDivElement>;
 }
 
 export const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
