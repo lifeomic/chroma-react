@@ -209,6 +209,7 @@ export interface TableModuleProps<Item = any>
   noResultsMessage?: string;
   sortState?: TableSortState;
   maxCellWidth?: 1 | 2;
+  ref?: React.Ref<HTMLTableElement>;
   rowActions?: (row: any) => React.ReactNode;
   rowClickLabel?: string;
 }
