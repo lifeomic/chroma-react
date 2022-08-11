@@ -47,26 +47,26 @@ export interface AlertProps {
   fullWidth?: boolean;
 }
 
-export const Alert: React.FC<AlertProps> = ({
-  className,
-  children,
-  fullWidth,
-  statusType = 'info',
-  ...rootProps
-}) => {
-  const classes = useStyles({});
-  return (
-    <div
-      className={clsx(
-        classes.root,
-        classes[statusType],
-        fullWidth && classes.fullWidth,
-        className
-      )}
-      role="alert"
-      {...rootProps}
-    >
-      {children}
-    </div>
-  );
-};
+export const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
+  (
+    { className, children, fullWidth, statusType = 'info', ...rootProps },
+    ref
+  ) => {
+    const classes = useStyles({});
+    return (
+      <div
+        className={clsx(
+          classes.root,
+          classes[statusType],
+          fullWidth && classes.fullWidth,
+          className
+        )}
+        ref={ref}
+        role="alert"
+        {...rootProps}
+      >
+        {children}
+      </div>
+    );
+  }
+);
