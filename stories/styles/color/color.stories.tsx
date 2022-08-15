@@ -15,7 +15,6 @@ const {
   background,
   divider,
   text,
-  type,
   ...additionalColors
 } = palette;
 

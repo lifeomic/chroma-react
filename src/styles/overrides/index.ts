@@ -15,10 +15,17 @@ export const createOverrides = (
   overridesCreator?: OverridesCreator
 ) => {
   const baseOverrides: Components = {
-    MuiButton: { styleOverrides: createMuiButtonOverrides(theme) },
+    MuiButton: {
+      defaultProps: { color: 'secondary' },
+      styleOverrides: createMuiButtonOverrides(theme),
+    },
+    MuiCheckbox: { defaultProps: { color: 'secondary' } },
+    MuiFormControl: { defaultProps: { variant: 'standard' } },
+    MuiSelect: { defaultProps: { variant: 'standard' } },
     MuiTooltip: { styleOverrides: createMuiTooltipOverrides(theme) },
     MuiTabs: { styleOverrides: createMuiTabsOverrides(theme) },
     MuiTab: { styleOverrides: createMuiTabOverrides(theme) },
+    MuiTextField: { defaultProps: { variant: 'standard' } },
   };
 
   if (!overridesCreator) {

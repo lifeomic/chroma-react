@@ -1,3 +1,4 @@
+export { StyledEngineProvider } from '@mui/material';
 export { ThemeProvider } from '@mui/material/styles';
 export { createTheme, Theme, useTheme } from './createTheme';
 export { createPalette, Palette, PaletteOptions } from './createPalette';

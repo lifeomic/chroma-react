@@ -19,7 +19,7 @@ const baseMuiPalette = {
   primary: blue,
   secondary: green,
   error: red,
-  type: 'light',
+  mode: 'light',
   common: {
     black: black.main,
     white: '#ffffff',
