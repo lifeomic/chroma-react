@@ -1,6 +1,6 @@
 import { Queries, render, RenderOptions } from '@testing-library/react';
 import * as React from 'react';
-import { createTheme, ThemeProvider } from '../styles';
+import { createTheme, StyledEngineProvider, ThemeProvider } from '../styles';
 
 export const theme = createTheme();
 
@@ -9,12 +9,18 @@ export function renderWithTheme<Q extends Queries>(
   options?: RenderOptions<Q> | Omit<RenderOptions, 'queries'>
 ) {
   const { rerender, ...result } = render(
-    <ThemeProvider theme={theme}>{ui}</ThemeProvider>,
+    <StyledEngineProvider injectFirst>
+      <ThemeProvider theme={theme}>{ui}</ThemeProvider>
+    </StyledEngineProvider>,
     options
   );
 
   const wrappedRerender = (ui: React.ReactElement<any>) =>
-    rerender(<ThemeProvider theme={theme}>{ui}</ThemeProvider>);
+    rerender(
+      <StyledEngineProvider injectFirst>
+        <ThemeProvider theme={theme}>{ui}</ThemeProvider>
+      </StyledEngineProvider>
+    );
 
   return {
     ...result,

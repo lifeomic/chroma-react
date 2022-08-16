@@ -7,7 +7,11 @@
 Chroma requires that a theme be created for each application. To accomplish this a `createTheme` utility is exported. By default, if no arguments are passed, the theme for PHC will be used. Any part of the theme can be overridden by passing different options to createTheme. Anything passed in is deeply merged with the base theme.
 
 ```tsx
-import { ThemeProvider, createTheme } from '@lifeomic/chroma-react/styles';
+import {
+  ThemeProvider,
+  createTheme,
+  StyledEngineProvider,
+} from '@lifeomic/chroma-react/styles';
 import { black } from '@lifeomic/chroma-react/colors/black';
 import connectGreen from './colors/customGreen';
 
@@ -20,7 +24,9 @@ const connectTheme = createTheme({
 });
 
 const App: React.FC = () => (
-  <ThemeProvider theme={connectTheme}>{...app}</ThemeProvider>
+  <StyledEngineProvider injectFirst>
+    <ThemeProvider theme={connectTheme}>{...app}</ThemeProvider>
+  </StyledEngineProvider>
 );
 ```
 

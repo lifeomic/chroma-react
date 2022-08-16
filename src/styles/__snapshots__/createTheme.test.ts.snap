@@ -35,6 +35,9 @@ Object {
   },
   "components": Object {
     "MuiButton": Object {
+      "defaultProps": Object {
+        "color": "secondary",
+      },
       "styleOverrides": Object {
         "containedPrimary": Object {
           "&$focusVisible": Object {
@@ -112,6 +115,21 @@ Object {
         },
       },
     },
+    "MuiCheckbox": Object {
+      "defaultProps": Object {
+        "color": "secondary",
+      },
+    },
+    "MuiFormControl": Object {
+      "defaultProps": Object {
+        "variant": "standard",
+      },
+    },
+    "MuiSelect": Object {
+      "defaultProps": Object {
+        "variant": "standard",
+      },
+    },
     "MuiTab": Object {
       "styleOverrides": Object {
         "iconWrapper": Object {
@@ -159,6 +177,11 @@ Object {
           "minHeight": "initial",
           "width": "100%",
         },
+      },
+    },
+    "MuiTextField": Object {
+      "defaultProps": Object {
+        "variant": "standard",
       },
     },
     "MuiTooltip": Object {
@@ -472,7 +495,6 @@ Object {
       "secondaryChannel": "0 0 0",
     },
     "tonalOffset": 0.2,
-    "type": "light",
     "warning": Object {
       "contrastText": "#fff",
       "dark": "#e65100",
@@ -695,6 +717,9 @@ Object {
       },
     },
     "MuiButton": Object {
+      "defaultProps": Object {
+        "color": "secondary",
+      },
       "styleOverrides": Object {
         "containedPrimary": Object {
           "&$focusVisible": Object {
@@ -773,6 +798,21 @@ Object {
         },
       },
     },
+    "MuiCheckbox": Object {
+      "defaultProps": Object {
+        "color": "secondary",
+      },
+    },
+    "MuiFormControl": Object {
+      "defaultProps": Object {
+        "variant": "standard",
+      },
+    },
+    "MuiSelect": Object {
+      "defaultProps": Object {
+        "variant": "standard",
+      },
+    },
     "MuiTab": Object {
       "styleOverrides": Object {
         "iconWrapper": Object {
@@ -820,6 +860,11 @@ Object {
           "minHeight": "initial",
           "width": "100%",
         },
+      },
+    },
+    "MuiTextField": Object {
+      "defaultProps": Object {
+        "variant": "standard",
       },
     },
     "MuiTooltip": Object {
@@ -1133,7 +1178,6 @@ Object {
       "secondaryChannel": "0 0 0",
     },
     "tonalOffset": 0.2,
-    "type": "light",
     "warning": Object {
       "contrastText": "#fff",
       "dark": "#e65100",

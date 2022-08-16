@@ -15,7 +15,11 @@ import purple from '../../../src/colors/purple';
 import red from '../../../src/colors/red';
 import yellow from '../../../src/colors/yellow';
 import { Button } from '../../../src/components/Button';
-import { createTheme, ThemeProvider } from '../../../src/styles';
+import {
+  createTheme,
+  StyledEngineProvider,
+  ThemeProvider,
+} from '../../../src/styles';
 import { Container } from '../../storyComponents/Container';
 import md from './default.md';
 
@@ -59,20 +63,22 @@ const ThemeStory: React.FC = () => {
   );
 
   return (
-    <ThemeProvider theme={theme}>
-      <Container theme="light">
-        <Button>Text Button</Button>
-        <Button>Text Button</Button>
-      </Container>
-      <Container theme="light">
-        <Button variant="outlined">Outlined Button</Button>
-        <Button variant="outlined">Outlined Button</Button>
-      </Container>
-      <Container theme="light">
-        <Button variant="contained">Contained Button</Button>
-        <Button variant="contained">Contained Button</Button>
-      </Container>
-    </ThemeProvider>
+    <StyledEngineProvider injectFirst>
+      <ThemeProvider theme={theme}>
+        <Container theme="light">
+          <Button>Text Button</Button>
+          <Button>Text Button</Button>
+        </Container>
+        <Container theme="light">
+          <Button variant="outlined">Outlined Button</Button>
+          <Button variant="outlined">Outlined Button</Button>
+        </Container>
+        <Container theme="light">
+          <Button variant="contained">Contained Button</Button>
+          <Button variant="contained">Contained Button</Button>
+        </Container>
+      </ThemeProvider>
+    </StyledEngineProvider>
   );
 };
 
