@@ -314,6 +314,9 @@ export type CheckboxProps = BaseFormElementWithNodeLabel &
     indeterminate?: boolean;
   };
 
+/**
+ * A checkbox component for form usage. Under the covers, this is an input element with `type="checkbox"`.
+ */
 export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
   (
     {
