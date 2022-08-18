@@ -29,19 +29,42 @@ const Template: ComponentStory<typeof Checkbox> = (args) => (
   <Checkbox {...args} />
 );
 
-export const Checked = Template.bind({});
-Checked.args = {
-  checked: true,
-  label: 'Checkbox',
-};
-
 export const Unchecked = Template.bind({});
+Unchecked.parameters = {
+  docs: {
+    description: {
+      story:
+        'A checkbox component for form usage. Under the covers, this is an input element with `type="checkbox"`.',
+    },
+  },
+};
 Unchecked.args = {
   checked: false,
   label: 'Checkbox',
 };
 
+export const Checked = Template.bind({});
+Checked.parameters = {
+  docs: {
+    description: {
+      story:
+        'The checked state of the checkbox. Normally this is controlled in combination with `onChange` handler.',
+    },
+  },
+};
+Checked.args = {
+  checked: true,
+  label: 'Checkbox',
+};
+
 export const DisabledChecked = Template.bind({});
+DisabledChecked.parameters = {
+  docs: {
+    description: {
+      story: 'Applies the disabled state to the element.',
+    },
+  },
+};
 DisabledChecked.args = {
   disabled: true,
   checked: true,
@@ -56,12 +79,27 @@ DisabledUnchecked.args = {
 };
 
 export const HelpMessage = Template.bind({});
+HelpMessage.parameters = {
+  docs: {
+    description: {
+      story:
+        'Caption, help text to display underneath the element. This should be supplemental text to the label, typically an expanded description of the option.',
+    },
+  },
+};
 HelpMessage.args = {
   label: 'Checkbox',
   helpMessage: 'This is some helper text.',
 };
 
 export const WithError = Template.bind({});
+WithError.parameters = {
+  docs: {
+    description: {
+      story: 'Sets an error style on the element.',
+    },
+  },
+};
 WithError.args = {
   label: 'Checkbox',
   hasError: true,
@@ -89,6 +127,14 @@ WithHelpAndErrorText.args = {
 };
 
 export const Indeterminate = Template.bind({});
+Indeterminate.parameters = {
+  docs: {
+    description: {
+      story:
+        'Applies the indeterminate state to the element. Primarily used when a parent checkbox has a mix of checked and unchecked children checkboxes.',
+    },
+  },
+};
 Indeterminate.args = {
   label: 'Checkbox',
   indeterminate: true,
