@@ -54,6 +54,7 @@ export const useStyles = makeStyles(
       border: `1px solid transparent`,
       borderRadius: theme.pxToRem(4),
       color: theme.palette.text.primary,
+      display: 'block',
       fontFamily: theme.typography.fontFamily,
       fontSize: theme.pxToRem(14),
       lineHeight: 1.25,
