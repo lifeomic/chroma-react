@@ -162,6 +162,11 @@ export const useStyles = makeStyles(
         },
       },
     },
+    modalTitle: {
+      overflow: 'hidden',
+      textOverflow: 'ellipsis',
+      whiteSpace: 'nowrap',
+    },
   }),
   { name: ModalStylesKey }
 );
@@ -345,7 +350,7 @@ const Content = React.forwardRef<HTMLDivElement, ModalProps>(
             className={clsx(classes.modalHeader, classes.verticalPadding)}
           >
             {!!title && (
-              <Text size="subbody" weight="bold">
+              <Text className={classes.modalTitle} size="subbody" weight="bold">
                 {title}
               </Text>
             )}
