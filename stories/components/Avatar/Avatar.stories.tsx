@@ -82,7 +82,7 @@ const AvatarsWithBadges: React.FC = () => (
   </Container>
 );
 
-storiesOf('Components/Avatar', module)
+storiesOf('Old Components/Avatar', module)
   .add('Letters', () => <AvatarTextStory />, {
     readme: { content: defaultMd },
   })

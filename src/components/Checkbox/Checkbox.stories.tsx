@@ -4,7 +4,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { Checkbox } from './Checkbox';
 
 export default {
-  title: 'Example/Checkbox',
+  title: 'Form Components/Checkbox',
   component: Checkbox,
   argTypes: {
     checked: {

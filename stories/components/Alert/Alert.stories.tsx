@@ -173,6 +173,6 @@ const AlertStory: React.FC = () => (
   </BrowserRouter>
 );
 
-storiesOf('Components/Alert', module).add('Default', () => <AlertStory />, {
+storiesOf('Old Components/Alert', module).add('Default', () => <AlertStory />, {
   readme: { content: defaultMd },
 });

@@ -48,6 +48,18 @@ export interface AlertProps {
   ref?: React.Ref<HTMLDivElement>;
 }
 
+/**
+  Alerts are used to communicate a state that affects a system, feature or page.
+
+  ### Accessibility
+
+  - The Alert component has the `alert` role.
+
+  ### Links
+
+  - [Component Source](https://github.com/lifeomic/chroma-react/blob/master/src/components/Alert/Alert.tsx)
+  - [Story Source](https://github.com/lifeomic/chroma-react/blob/master/stories/components/Alert/Alert.stories.tsx)
+ */
 export const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
   (
     { className, children, fullWidth, statusType = 'info', ...rootProps },

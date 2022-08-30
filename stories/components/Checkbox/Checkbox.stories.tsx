@@ -388,7 +388,7 @@ const CheckboxStory: React.FC = () => {
   );
 };
 
-storiesOf('Form Components/Checkbox', module).add(
+storiesOf('Old Form Components/Checkbox', module).add(
   'Default',
   () => <CheckboxStory />,
   { readme: { content: defaultMd } }
