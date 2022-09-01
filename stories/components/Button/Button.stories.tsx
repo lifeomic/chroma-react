@@ -220,7 +220,7 @@ const PositiveButtonStory: React.FunctionComponent = () => (
   </React.Fragment>
 );
 
-storiesOf('Components/Button', module)
+storiesOf('Old Components/Button', module)
   .add('Default', () => <AllButtonsStory />, {
     readme: { content: defaultMd },
   })

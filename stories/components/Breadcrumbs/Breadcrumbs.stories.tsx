@@ -60,7 +60,7 @@ const BreadcrumbsStoryDarkBackground: React.FC = () => (
   </BrowserRouter>
 );
 
-storiesOf('Components/Breadcrumbs', module)
+storiesOf('Old Components/Breadcrumbs', module)
   .add('Default', () => <BreadcrumbsStory />, {
     readme: { content: defaultMd },
   })

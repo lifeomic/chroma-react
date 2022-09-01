@@ -118,6 +118,6 @@ const BoxStory: React.FC = () => {
   );
 };
 
-storiesOf('Layout/Box', module).add('Default', () => <BoxStory />, {
+storiesOf('Old Layout/Box', module).add('Default', () => <BoxStory />, {
   readme: { content: md },
 });
