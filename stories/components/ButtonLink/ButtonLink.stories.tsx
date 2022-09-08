@@ -278,7 +278,7 @@ const DisabledButtonLinkStory: React.FunctionComponent = () => (
   </BrowserRouter>
 );
 
-storiesOf('Components/ButtonLink', module)
+storiesOf('Old Components/ButtonLink', module)
   .add('Default', () => <AllButtonLinksStory />, {
     readme: { content: defaultMd },
   })

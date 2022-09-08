@@ -42,7 +42,7 @@ const AllButtonFloatStory: React.FunctionComponent = () => (
   </Container>
 );
 
-storiesOf('Components/ButtonFloat', module).add(
+storiesOf('Old Components/ButtonFloat', module).add(
   'Default',
   () => <AllButtonFloatStory />,
   {

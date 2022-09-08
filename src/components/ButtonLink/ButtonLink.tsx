@@ -231,6 +231,37 @@ export interface ButtonLinkProps extends LinkProps {
   variant?: ButtonProps['variant'];
 }
 
+/**
+An element that appears as a Button component, but is a link. It has the same
+properties as Button.
+
+***Requirement:** This component has a dependency on
+react-router-dom. It must be wrapped by a `Router` of some sort.
+
+***Note:** All required props for Icon Button are also required for Icon Button
+Link.
+
+### Props
+
+The following props are available to Button Link:
+
+- className
+- color
+- disabled
+- fullWidth
+- icon
+- trailingIcon
+- variant
+
+### Accessibility
+
+- The element is an `<a>` tag.
+
+### Links
+
+- [Component Source](https://github.com/lifeomic/chroma-react/blob/master/src/components/ButtonLink/ButtonLink.tsx)
+- [Story Source](https://github.com/lifeomic/chroma-react/blob/master/stories/components/ButtonLink/ButtonLink.stories.tsx)
+ */
 export const ButtonLink = React.forwardRef<HTMLAnchorElement, ButtonLinkProps>(
   (
     {

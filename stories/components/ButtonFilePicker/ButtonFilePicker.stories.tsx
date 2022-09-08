@@ -73,7 +73,7 @@ const ButtonFilePickerStory: React.FC = () => {
   );
 };
 
-storiesOf('Components/ButtonFilePicker', module).add(
+storiesOf('Old Components/ButtonFilePicker', module).add(
   'Default',
   () => <ButtonFilePickerStory />,
   {

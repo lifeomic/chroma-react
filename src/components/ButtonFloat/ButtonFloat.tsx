@@ -128,6 +128,21 @@ export interface ButtonFloatProps
   trailingIcon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
 }
 
+/**
+A Button element that floats above other content.
+
+### Accessibility
+
+- The Button Float has `type="button"`.
+- Pressing `Tab` will set focus to the element
+- Pressing `Space` or `Enter` triggers the click action.
+
+### Links
+
+- [Component Source](https://github.com/lifeomic/chroma-react/blob/master/src/components/ButtonFloat/ButtonFloat.tsx)
+- [Story Source](https://github.com/lifeomic/chroma-react/blob/master/stories/components/ButtonFloat/ButtonFloat.stories.tsx)
+
+ */
 export const ButtonFloat = React.forwardRef<
   HTMLButtonElement,
   ButtonFloatProps
