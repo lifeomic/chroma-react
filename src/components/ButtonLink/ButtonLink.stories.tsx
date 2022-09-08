@@ -3,6 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { MemoryRouter } from 'react-router-dom';
 
 import { ButtonLink } from './ButtonLink';
+import { Edit } from '@lifeomic/chromicons';
 
 export default {
   title: 'Components/ButtonLink',
@@ -52,4 +53,32 @@ TargetSelf.parameters = {
 TargetSelf.args = {
   to: 'https://example.com',
   target: '_self',
+};
+
+export const Icon = Template.bind({});
+Icon.parameters = {
+  docs: {
+    description: {
+      story:
+        "The Button Float component takes an icon prop. It's recommended to use the [Chromicons](https://lifeomic.github.io/chromicons.com/) icon set.",
+    },
+  },
+};
+Icon.args = {
+  to: 'https://example.com',
+  icon: Edit,
+};
+
+export const TrailingIcon = Template.bind({});
+TrailingIcon.parameters = {
+  docs: {
+    description: {
+      story:
+        "The Button Float component takes a `trailingIcon` prop. This icon will be rendered after the text. It's recommended to use the Chroma icon set.",
+    },
+  },
+};
+TrailingIcon.args = {
+  to: 'https://example.com',
+  trailingIcon: Edit,
 };
