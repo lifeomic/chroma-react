@@ -283,6 +283,36 @@ export interface ColorPickerProps
   showRequiredLabel?: boolean;
 }
 
+/**
+ * An input component for selecting a color.
+ *
+ * ### Accessibility
+ *
+ * - The label and input are "connected" via a uniqueId and the `for` + `id`
+ *   attributes.
+ * - The label has the `aria-hidden` attribute so it cannot be focused by
+ *   screenreaders. Instead, the input element receives the focus, and the label is
+ *   read as part of the input.
+ * - The component has `type="text"` by default.
+ * - The component uses a uniqueId to link the input to the help and error messages
+ *   via `aria-describedby`. This allows screenreaders to read the help and error
+ *   messages.
+ * - The icon has `aria-hidden` and `role="img"` attributes.
+ *
+ * #### Disabled versus readonly
+ *
+ * Read only should be used when a screenreader should still be able to read the
+ * text inside of the element to the users. When `disabled` is used, it completely
+ * skips over the element. In most cases, you want to use `readOnly`, not
+ * `disabled`. The disabled state will **not** announce the text inside of the
+ * TextField to the user.
+ *
+ * ### Links
+ *
+ * - [Component Source](https://github.com/lifeomic/chroma-react/blob/master/src/components/ColorPicker/ColorPicker.tsx)
+ * - [Story Source](https://github.com/lifeomic/chroma-react/blob/master/stories/components/ColorPicker/ColorPicker.stories.tsx)
+ *
+ */
 export const ColorPicker = React.forwardRef<HTMLInputElement, ColorPickerProps>(
   (
     {

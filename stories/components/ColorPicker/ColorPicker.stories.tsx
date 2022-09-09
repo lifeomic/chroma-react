@@ -96,7 +96,7 @@ const AllColorPickersStory: React.FC = () => {
   );
 };
 
-storiesOf('Form Components/ColorPicker', module).add(
+storiesOf('Old Form Components/ColorPicker', module).add(
   'All',
   () => <AllColorPickersStory />,
   {

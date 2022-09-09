@@ -33,7 +33,7 @@ const ButtonUnstyledStory: React.FC = () => {
   );
 };
 
-storiesOf('Components/ButtonUnstyled', module).add(
+storiesOf('Old Components/ButtonUnstyled', module).add(
   'Default',
   () => <ButtonUnstyledStory />,
   {

@@ -44,6 +44,6 @@ const ChipStory: React.FC = () => {
   );
 };
 
-storiesOf('Components/Chip', module).add('Default', () => <ChipStory />, {
+storiesOf('Old Components/Chip', module).add('Default', () => <ChipStory />, {
   readme: { content: defaultMd },
 });
