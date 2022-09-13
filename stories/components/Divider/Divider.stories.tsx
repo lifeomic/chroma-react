@@ -139,6 +139,6 @@ const DividerStory: React.FC = () => (
   </>
 );
 
-storiesOf('Layout/Divider', module).add('Default', () => <DividerStory />, {
+storiesOf('Old Layout/Divider', module).add('Default', () => <DividerStory />, {
   readme: { content: md },
 });

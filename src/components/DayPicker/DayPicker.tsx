@@ -223,6 +223,19 @@ export const testIds = {
   calendar: 'chroma-day-picker-calendar',
 };
 
+/**
+ * An input component for selecting a day.
+ *
+ * ### Other Props
+ *
+ * `DayPicker` inherits (and forwards) most of its props on to the internal `TextField`. See
+ * the documentation on `TextField` for more detailed descriptions of those props.
+ *
+ * ### Links
+ *
+ * - [Component Source](https://github.com/lifeomic/chroma-react/blob/master/src/components/DayPicker/DayPicker.tsx)
+ * - [Story Source](https://github.com/lifeomic/chroma-react/blob/master/stories/components/DayPicker/DayPicker.stories.tsx)
+ */
 export const DayPicker = React.forwardRef<HTMLInputElement, DayPickerProps>(
   (
     {

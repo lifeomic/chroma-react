@@ -64,7 +64,7 @@ IconAndTooltipMessage.parameters = {
   docs: {
     description: {
       story:
-        'An additional icon and tooltip element can be used to provide additional context' +
+        'An additional icon and tooltip element can be used to provide additional context ' +
         'for the user on how the text entry will be used.',
     },
   },
@@ -80,7 +80,7 @@ HelpMessage.parameters = {
   docs: {
     description: {
       story:
-        'Caption, help text to display underneath the element. This should be' +
+        'Caption, help text to display underneath the element. This should be ' +
         'supplemental text to the label, typically an expanded description of the option.',
     },
   },
@@ -122,7 +122,7 @@ ErrorMessage.parameters = {
   docs: {
     description: {
       story:
-        'Caption, error text to display underneath the element when an error occurs. For' +
+        'Caption, error text to display underneath the element when an error occurs. For ' +
         'the message to be displayed `hasError` must be set as well.',
     },
   },
@@ -139,7 +139,7 @@ Disabled.parameters = {
     description: {
       story:
         'Applies the disabled state to the element.\n\n' +
-        '**REMINDER:** If you use `disabled`, screenreaders will not announce the text' +
+        '**REMINDER:** If you use `disabled`, screenreaders will not announce the text ' +
         'inside of the ColorPicker to the user, and will completely skip over this element.',
     },
   },

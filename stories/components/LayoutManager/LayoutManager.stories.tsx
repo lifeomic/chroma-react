@@ -116,7 +116,7 @@ const LayoutManagerStory: React.FunctionComponent = () => (
   </BrowserRouter>
 );
 
-storiesOf('Layout/Layout Manager', module).add(
+storiesOf('Old Layout/Layout Manager', module).add(
   'Layout Manager',
   () => <LayoutManagerStory />,
   { readme: { content: md } }

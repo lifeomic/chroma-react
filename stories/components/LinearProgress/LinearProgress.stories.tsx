@@ -49,7 +49,7 @@ const LinearProgressStory: React.FC = () => {
     </Container>
   );
 };
-storiesOf('Components/LinearProgress', module).add(
+storiesOf('Old Components/LinearProgress', module).add(
   'Default',
   () => <LinearProgressStory />,
   { readme: { content: defaultMd } }

@@ -37,7 +37,7 @@ export default {
   ],
 } as ComponentMeta<typeof Alert>;
 
-export const Basic: ComponentStory<typeof Alert> = (args) => {
+export const Default: ComponentStory<typeof Alert> = (args) => {
   return (
     <Alert {...args}>
       <AlertIcon icon={Info} />

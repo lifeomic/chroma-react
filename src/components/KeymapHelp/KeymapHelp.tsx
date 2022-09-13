@@ -51,6 +51,16 @@ export interface KeymapHelpProps {
   keyListenerTestId?: string;
 }
 
+/**
+ * The KeymapHelp component provides a modal UI for detailing a set of keyboard shortcuts.
+ *
+ * The modal is "invisible" unless raised using `Shift + ?`. To show the default experience now, press `Shift + ?`.
+ *
+ * ### Links
+ *
+ * - [Component Source](https://github.com/lifeomic/chroma-react/blob/master/src/components/KeymapHelp/KeymapHelp.tsx)
+ * - [Story Source](https://github.com/lifeomic/chroma-react/blob/master/stories/components/KeymapHelp/KeymapHelp.stories.tsx)
+ */
 export const KeymapHelp: React.FC<KeymapHelpProps> = ({
   closeButtonText,
   keyMapDocs,

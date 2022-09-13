@@ -105,6 +105,22 @@ export interface IconButtonFloatProps
   size?: 0 | 1 | 2;
 }
 
+/**
+ * A Button element with an icon only that floats above other content. Since it's
+ * only an icon that's rendered, it's required to pass the `aria-label` prop so
+ * that screen readers can give meaning to the button.
+ *
+ * ### Accessibility
+ *
+ * - The Icon Button Float has `type="button"`.
+ * - Pressing `Tab` will set focus to the element
+ * - Pressing `Space` or `Enter` triggers the click action.
+ *
+ * ### Links
+ *
+ * - [Component Source](https://github.com/lifeomic/chroma-react/blob/master/src/components/IconButtonFloat/IconButtonFloat.tsx)
+ * - [Story Source](https://github.com/lifeomic/chroma-react/blob/master/stories/components/IconButtonFloat/IconButtonFloat.stories.tsx)
+ */
 export const IconButtonFloat = React.forwardRef<
   HTMLButtonElement,
   IconButtonFloatProps

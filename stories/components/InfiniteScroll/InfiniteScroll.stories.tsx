@@ -52,7 +52,7 @@ const InfiniteScrollStory: React.FC = () => {
   );
 };
 
-storiesOf('Components/InfiniteScroll', module).add(
+storiesOf('Old Components/InfiniteScroll', module).add(
   'Default',
   () => <InfiniteScrollStory />,
   {

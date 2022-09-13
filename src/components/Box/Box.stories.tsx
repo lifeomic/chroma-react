@@ -24,8 +24,8 @@ Spacing.parameters = {
   docs: {
     description: {
       story:
-        'Numbers are multiplied by the default theme spacing for margin, padding, and gap' +
-        '. Strings are are ' +
+        'Numbers are multiplied by the default theme spacing for margin, padding, and gap. ' +
+        'Strings are are ' +
         'used as raw CSS. As well as `margin` and `padding`, the top, bottom, ' +
         'left, right, x and y versions of each are supported. For a more modern, ' +
         'straightforward approach to handle spacing between children, use the `gap` prop.',

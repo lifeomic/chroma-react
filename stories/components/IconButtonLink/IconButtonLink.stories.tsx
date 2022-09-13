@@ -114,7 +114,7 @@ const AllIconsButtonStory: React.FunctionComponent = () => (
   </WrappedContainer>
 );
 
-storiesOf('Components/IconButtonLink', module)
+storiesOf('Old Components/IconButtonLink', module)
   .add('Default', () => <AllIconsButtonStory />, {
     readme: { content: defaultMd },
   })

@@ -12,7 +12,7 @@ const ExpansionPanelStory: React.FC = () => (
   </Container>
 );
 
-storiesOf('Components/ExpansionPanel', module).add(
+storiesOf('Old Components/ExpansionPanel', module).add(
   'Default',
   () => <ExpansionPanelStory />,
   {

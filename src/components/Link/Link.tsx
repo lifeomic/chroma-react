@@ -57,6 +57,9 @@ export interface LinkProps
   newTab?: boolean;
 }
 
+/**
+ *
+ */
 export const Link: React.FC<LinkProps> = ({
   to,
   children,

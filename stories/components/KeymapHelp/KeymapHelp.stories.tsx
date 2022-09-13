@@ -12,7 +12,7 @@ const KeymapHelpStory: React.FC = () => {
   );
 };
 
-storiesOf('Components/KeymapHelp', module).add(
+storiesOf('Old Components/KeymapHelp', module).add(
   'Default',
   () => <KeymapHelpStory />,
   {

@@ -27,10 +27,10 @@ InternalExternalToHref.parameters = {
     description: {
       story:
         '#### Internal href\n' +
-        'The Button Link component requires a "to" prop for the URL it should link to. By' +
+        'The Button Link component requires a "to" prop for the URL it should link to. By ' +
         'default, the component will generate a typical link.\n' +
         '#### External href\n' +
-        'By default, the Button Link component will generate an "external" link when the' +
+        'By default, the Button Link component will generate an "external" link when the ' +
         '"to" prop begins with "https".' +
         '',
     },
@@ -45,7 +45,7 @@ TargetSelf.parameters = {
   docs: {
     description: {
       story:
-        'When an external link is detected, it will auto-add the `target` and `rel` attributes as well.' +
+        'When an external link is detected, it will auto-add the `target` and `rel` attributes as well. ' +
         'To provide a link to an external href, but without opening a new tab, provide the "target" prop.',
     },
   },

@@ -40,6 +40,6 @@ const LinkStory: React.FC = () => (
   </BrowserRouter>
 );
 
-storiesOf('Components/Link', module).add('Default', () => <LinkStory />, {
+storiesOf('Old Components/Link', module).add('Default', () => <LinkStory />, {
   readme: { content: md },
 });

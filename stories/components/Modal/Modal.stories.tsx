@@ -229,7 +229,7 @@ const CustomHeaderModalStory: React.FC = () => {
   );
 };
 
-storiesOf('Components/Modal', module)
+storiesOf('Old Components/Modal', module)
   .add('Default', () => <ModalStory />, { readme: { content: defaultMd } })
   .add('Actions', () => <ActionsModalStory />, {
     readme: { content: defaultMd },

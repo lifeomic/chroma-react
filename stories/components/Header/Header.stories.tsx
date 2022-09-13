@@ -15,7 +15,7 @@ const DefaultHeaderStory: React.FunctionComponent = () => (
   />
 );
 
-storiesOf('Components/Header', module).add(
+storiesOf('Old Components/Header', module).add(
   'Default',
   () => <DefaultHeaderStory />,
   {

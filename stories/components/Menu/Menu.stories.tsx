@@ -206,7 +206,7 @@ const MenuButtonStory: React.FC = () => (
   </Container>
 );
 
-storiesOf('Components/Menu', module)
+storiesOf('Old Components/Menu', module)
   .add('Default', () => <MenuStory />, {
     readme: { content: defaultMd },
   })

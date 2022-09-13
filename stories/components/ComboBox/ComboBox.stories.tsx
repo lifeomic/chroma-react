@@ -730,7 +730,7 @@ const ComboBoxStory: React.FC = () => {
   );
 };
 
-storiesOf('Form Components/ComboBox', module).add(
+storiesOf('Old Form Components/ComboBox', module).add(
   'Default',
   () => <ComboBoxStory />,
   {

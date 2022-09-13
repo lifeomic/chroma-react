@@ -48,7 +48,7 @@ const ComposedIconTile: React.FC = () => (
   </Container>
 );
 
-storiesOf('Components/IconTile', module)
+storiesOf('Old Components/IconTile', module)
   .add('Default', () => <ComposedIconTile />, {
     readme: { content: defaultMd },
   })

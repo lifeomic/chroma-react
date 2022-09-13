@@ -466,6 +466,26 @@ const FullScreenContent = React.forwardRef<HTMLDivElement, ModalProps>(
   }
 );
 
+/**
+ * Tab components for conditionally rendering content.
+ *
+ * ### Accessibility
+ *
+ * - The Modal has `role="dialog"`.
+ * - The Modal has `aria-modal="true"`.
+ * - The Modal has the content `aria-describedby` and title `aria-labelledby`
+ *   attributes.
+ * - The scroll body is locked, to prevent the content behind the Modal from
+ *   scrolling.
+ * - The focus is locked inside of the modal.
+ * - The focus is set to the first tabbable element when open.
+ * - Pressing `Escape` closes the modal and returns focus to the anchor element.
+ *
+ * ### Links
+ *
+ * - [Component Source](https://github.com/lifeomic/chroma-react/blob/master/src/components/Modal/Modal.tsx)
+ * - [Story Source](https://github.com/lifeomic/chroma-react/blob/master/stories/components/Modal/Modal.stories.tsx)
+ */
 export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
   (
     {

@@ -39,7 +39,7 @@ const AllIconButtonFloatStory: React.FunctionComponent = () => (
   </Container>
 );
 
-storiesOf('Components/IconButtonFloat', module).add(
+storiesOf('Old Components/IconButtonFloat', module).add(
   'Default',
   () => <AllIconButtonFloatStory />,
   {

@@ -157,7 +157,7 @@ const DayPickerStory: React.FC = () => {
   );
 };
 
-storiesOf('Form Components/DayPicker', module).add(
+storiesOf('Old Form Components/DayPicker', module).add(
   'Default',
   () => <DayPickerStory />,
   {

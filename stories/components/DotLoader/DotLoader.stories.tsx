@@ -27,7 +27,7 @@ const DotLoaderStory: React.FC = () => (
   </Container>
 );
 
-storiesOf('Components/DotLoader', module).add(
+storiesOf('Old Components/DotLoader', module).add(
   'Default',
   () => <DotLoaderStory />,
   {

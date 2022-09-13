@@ -49,9 +49,9 @@ Color.parameters = {
   docs: {
     description: {
       story:
-        'The button component takes multiple different colors, for different styled' +
-        'buttons. Typically, the `inverse` color is used when a button needs to be' +
-        'on a dark-colored background. When the action of the button will have a' +
+        'The button component takes multiple different colors, for different styled ' +
+        'buttons. Typically, the `inverse` color is used when a button needs to be ' +
+        'on a dark-colored background. When the action of the button will have a ' +
         'negative or positive impact, `negative` or `positive` color are used.',
     },
   },

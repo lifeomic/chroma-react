@@ -400,7 +400,7 @@ const FormBoxHorizontalStory: React.FC = () => (
   </FormBox>
 );
 
-storiesOf('Form Components/FormBox', module)
+storiesOf('Old Form Components/FormBox', module)
   .add('Default', () => <FormBoxStory />, { readme: { content: defaultMd } })
   .add('Row Direction', () => <FormBoxHorizontalStory />, {
     readme: { content: defaultMd },

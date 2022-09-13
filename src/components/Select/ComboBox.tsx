@@ -100,6 +100,34 @@ export interface ComboBoxProps
   showRequiredLabel?: boolean;
 }
 
+/**
+ * A multi-select component. This component leverages styles and props from Select. If you need a single-select
+ * component, see Select.
+ *
+ * ### Accessibility
+ *
+ * - The list of options has the `aria-multiselectable` attribute so that
+ *   screenreaders can announce the number of options selected.
+ * - When the select menu is open, the arrow keys on a user's keyboard can be used
+ *   to navigate between options.
+ * - The Escape key closes the open menu.
+ * - Pressing the Enter key "clicks" the option.
+ * - A checkmark is read with the selected menu option.
+ * - The label and input are "connected" via a uniqueId and the `for` + `id`
+ *   attributes.
+ * - The label has the `aria-hidden` attribute so it cannot be focused by
+ *   screenreaders. Instead, the input element receives the focus, and the label is
+ *   read as part of the input.
+ * - The component uses a uniqueId to link the input to the help and error messages
+ *   via `aria-describedby`. This allows screenreaders to read the help and error
+ *   messages.
+ * - The icon has `aria-hidden` and `role="img"` attributes.
+ *
+ * ### Links
+ *
+ * - [Component Source](https://github.com/lifeomic/chroma-react/blob/master/src/components/Select/ComboBox.tsx)
+ * - [Story Source](https://github.com/lifeomic/chroma-react/blob/master/stories/components/ComboBox/ComboBox.stories.tsx)
+ */
 export const ComboBox: React.FC<ComboBoxProps> = ({
   ['aria-label']: ariaLabel,
   children,
