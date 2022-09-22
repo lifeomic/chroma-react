@@ -1,4 +1,3 @@
-import { select } from '@storybook/addon-knobs';
 import * as React from 'react';
 import JSONTree from 'react-json-tree';
 import black from '../../../src/colors/black';
@@ -85,6 +84,7 @@ const paletteOptions = {
 const palette = createPalette();
 
 export const ThemeStory: React.FC = () => {
+  /*
   const primaryPaletteKey: keyof typeof paletteOptions = select(
     'Primary Palette',
     Object.keys(paletteOptions),
@@ -97,15 +97,19 @@ export const ThemeStory: React.FC = () => {
     'green'
   ) as any;
 
+  */
   const theme = React.useMemo(
     () =>
       createTheme({
+        /*
         palette: {
           primary: paletteOptions[primaryPaletteKey],
           secondary: paletteOptions[secondaryPaletteKey],
         },
+    */
       }),
-    [primaryPaletteKey, secondaryPaletteKey]
+    []
+    //[primaryPaletteKey, secondaryPaletteKey]
   );
 
   return (
