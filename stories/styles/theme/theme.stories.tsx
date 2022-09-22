@@ -1,3 +1,4 @@
+import { ComponentStory } from '@storybook/react';
 import * as React from 'react';
 import JSONTree from 'react-json-tree';
 import black from '../../../src/colors/black';
@@ -19,6 +20,21 @@ import {
   StyledEngineProvider,
   ThemeProvider,
 } from '../../../src/styles';
+
+const paletteOptions = {
+  black,
+  blue,
+  charcoal,
+  darkGraphite,
+  graphite,
+  green,
+  grey,
+  navy,
+  orange,
+  purple,
+  red,
+  yellow,
+};
 
 export default {
   title: 'Styles/Theme',
@@ -64,52 +80,35 @@ const App: React.FC = () => (
       },
     },
   },
-};
-
-const paletteOptions = {
-  black,
-  blue,
-  charcoal,
-  darkGraphite,
-  graphite,
-  green,
-  grey,
-  navy,
-  orange,
-  purple,
-  red,
-  yellow,
+  argTypes: {
+    'Primary Palette': {
+      control: { type: 'radio', options: Object.keys(paletteOptions) },
+    },
+    'Secondary Palette': {
+      control: { type: 'radio', options: Object.keys(paletteOptions) },
+    },
+  },
 };
 
 const palette = createPalette();
 
-export const ThemeStory: React.FC = () => {
-  /*
-  const primaryPaletteKey: keyof typeof paletteOptions = select(
-    'Primary Palette',
-    Object.keys(paletteOptions),
-    'blue'
-  ) as any;
-
-  const secondaryPaletteKey: keyof typeof paletteOptions = select(
-    'Secondary Palette',
-    Object.keys(paletteOptions),
-    'green'
-  ) as any;
-
-  */
+export const ThemeStory: ComponentStory<any> = (args) => {
+  console.log('ARGS', args);
   const theme = React.useMemo(
     () =>
       createTheme({
-        /*
         palette: {
-          primary: paletteOptions[primaryPaletteKey],
-          secondary: paletteOptions[secondaryPaletteKey],
+          primary:
+            paletteOptions[
+              args['Primary Palette'] as keyof typeof paletteOptions
+            ],
+          secondary:
+            paletteOptions[
+              args['Secondary Palette'] as keyof typeof paletteOptions
+            ],
         },
-    */
       }),
-    []
-    //[primaryPaletteKey, secondaryPaletteKey]
+    [args]
   );
 
   return (
@@ -151,6 +150,10 @@ export const ThemeStory: React.FC = () => {
       </ThemeProvider>
     </StyledEngineProvider>
   );
+};
+ThemeStory.args = {
+  'Primary Palette': 'blue',
+  'Secondary Palette': 'green',
 };
 
 export const ThemeExplorer = () => <JSONTree data={createTheme()} />;
