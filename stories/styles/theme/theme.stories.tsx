@@ -1,5 +1,4 @@
 import { select } from '@storybook/addon-knobs';
-import { storiesOf } from '@storybook/react';
 import * as React from 'react';
 import JSONTree from 'react-json-tree';
 import black from '../../../src/colors/black';
@@ -16,12 +15,57 @@ import red from '../../../src/colors/red';
 import yellow from '../../../src/colors/yellow';
 import { Button } from '../../../src/components/Button';
 import {
+  createPalette,
   createTheme,
   StyledEngineProvider,
   ThemeProvider,
 } from '../../../src/styles';
-import { Container } from '../../storyComponents/Container';
-import md from './default.md';
+
+export default {
+  title: 'Styles/Theme',
+  parameters: {
+    docs: {
+      description: {
+        component: `# createTheme
+
+## Usage
+
+Chroma requires that a theme be created for each application. To accomplish this a \`createTheme\` utility is exported. 
+By default, if no arguments are passed, the theme for PHC will be used. Any part of the theme can be overridden by 
+passing different options to createTheme. Anything passed in is deeply merged with the base theme.
+
+\`\`\`tsx
+import {
+  ThemeProvider,
+  createTheme,
+  StyledEngineProvider,
+} from '@lifeomic/chroma-react/styles';
+import { black } from '@lifeomic/chroma-react/colors/black';
+import connectGreen from './colors/customGreen';
+
+const connectTheme = createTheme({
+  palette: {
+    primary: black,
+    secondary: connectGreen,
+    green: connectGreen,
+  },
+});
+
+const App: React.FC = () => (
+  <StyledEngineProvider injectFirst>
+    <ThemeProvider theme={connectTheme}>{...app}</ThemeProvider>
+  </StyledEngineProvider>
+);
+\`\`\`
+
+## Links
+
+- [Utility Source](https://github.com/lifeomic/chroma-react/blob/master/src/styles/createTheme.ts)
+- [Story Source](https://github.com/lifeomic/chroma-react/blob/master/stories/styles/theme/theme.stories.tsx)`,
+      },
+    },
+  },
+};
 
 const paletteOptions = {
   black,
@@ -38,7 +82,9 @@ const paletteOptions = {
   yellow,
 };
 
-const ThemeStory: React.FC = () => {
+const palette = createPalette();
+
+export const ThemeStory: React.FC = () => {
   const primaryPaletteKey: keyof typeof paletteOptions = select(
     'Primary Palette',
     Object.keys(paletteOptions),
@@ -65,25 +111,42 @@ const ThemeStory: React.FC = () => {
   return (
     <StyledEngineProvider injectFirst>
       <ThemeProvider theme={theme}>
-        <Container theme="light">
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            padding: '1rem',
+            backgroundColor: palette.common.white,
+          }}
+        >
           <Button>Text Button</Button>
           <Button>Text Button</Button>
-        </Container>
-        <Container theme="light">
+        </div>
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            padding: '1rem',
+            backgroundColor: palette.common.white,
+          }}
+        >
           <Button variant="outlined">Outlined Button</Button>
           <Button variant="outlined">Outlined Button</Button>
-        </Container>
-        <Container theme="light">
+        </div>
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            padding: '1rem',
+            backgroundColor: palette.common.white,
+          }}
+        >
           <Button variant="contained">Contained Button</Button>
           <Button variant="contained">Contained Button</Button>
-        </Container>
+        </div>
       </ThemeProvider>
     </StyledEngineProvider>
   );
 };
 
-storiesOf('Styles/Theme', module)
-  .add('createTheme', () => <ThemeStory />, {
-    readme: { content: md },
-  })
-  .add('Theme Explorer', () => <JSONTree data={createTheme()} />);
+export const ThemeExplorer = () => <JSONTree data={createTheme()} />;

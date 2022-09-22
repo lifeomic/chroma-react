@@ -58,6 +58,24 @@ export interface PopoverProps
   usePortal?: boolean;
 }
 
+/**
+ * A popover element, anchored to another element. Typically provides additional or
+ * actionable information to the anchor element. Popovers with specific selection
+ * items should use `Menu` instead.
+ *
+ * ### Accessibility
+ *
+ * - The anchor element has `aria-controls` and `aria-haspopup="dialog"`.
+ * - The content contains `role="dialog"` and `data-dialog="true"`.
+ * - Pressing `Enter` on the focused anchor element expands the menu.
+ * - Pressing `Escape` closes the expanded menu and returns focus to the anchor
+ *   element.
+ *
+ * ### Links
+ *
+ * - [Component Source](https://github.com/lifeomic/chroma-react/blob/master/src/components/Popover/Popover.tsx)
+ * - [Story Source](https://github.com/lifeomic/chroma-react/blob/master/stories/components/Popover/Popover.stories.tsx)
+ */
 export const Popover: React.FC<PopoverProps> = ({
   'aria-label': ariaLabel,
   anchorElement,

@@ -185,6 +185,23 @@ export interface RadioGroupMinimalProps
   showRequiredLabel?: boolean;
 }
 
+/**
+ * The Radio Group Minimal and Radio components are styled radio inputs. They are typically
+ * used in combination; however, Radio can work on its own as well. A `title` is required
+ * to pass the `aria-label` prop so that screen readers can give meaning to the radio group.
+ * Unlike Radio Group, Radio Group Minimal does not have a `helpMessage` prop.
+ *
+ * ### Accessibility
+ *
+ * - The component renders as a fieldset.
+ * - The component has the `role="radiogroup"` attribute.
+ * - An `aria-label` is set with the `title`.
+ *
+ * ### Links
+ *
+ * - [Component Source](https://github.com/lifeomic/chroma-react/blob/master/src/components/Radio/RadioGroupMinimal.tsx)
+ * - [Story Source](https://github.com/lifeomic/chroma-react/blob/master/stories/components/Radio/Radio.stories.tsx)
+ */
 export const RadioGroupMinimal: React.FC<RadioGroupMinimalProps> = ({
   ['aria-label']: ariaLabel,
   background = 'true',

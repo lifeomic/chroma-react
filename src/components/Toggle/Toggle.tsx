@@ -159,6 +159,24 @@ export interface ToggleProps extends BaseFormElement {
   placement?: 'left' | 'right';
 }
 
+/**
+ * A toggle component for form usage. This is similar to Checkbox, but a different
+ * style. Under the covers, this is an input element with `type="checkbox"`.
+ *
+ * ### Accessibility
+ *
+ * - The label and input are "connected" via a uniqueId and the `for` + `id`
+ *   attributes.
+ * - The component has `type="checkbox"`.
+ * - The component uses a uniqueId to link the input to the help and error messages
+ *   via `aria-describedby`. This allows screenreaders to read the help and error
+ *   messages.
+ *
+ * ### Links
+ *
+ * - [Component Source](https://github.com/lifeomic/chroma-react/blob/master/src/components/Toggle/Toggle.tsx)
+ * - [Story Source](https://github.com/lifeomic/chroma-react/blob/master/stories/components/Toggle/Toggle.stories.tsx)
+ */
 export const Toggle = React.forwardRef<HTMLInputElement, ToggleProps>(
   (
     {

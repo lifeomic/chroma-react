@@ -90,6 +90,21 @@ export interface RadioGroupProps
   showRequiredLabel?: boolean;
 }
 
+/**
+ * The Radio Group and Radio components are styled radio inputs. They are typically
+ * used in combination; however, Radio can work on its own as well.
+ *
+ * ### Accessibility
+ *
+ * - The component renders as a fieldset.
+ * - The component has the `role="radiogroup"` attribute.
+ * - The title for the component renders as a legend.
+ *
+ * ### Links
+ *
+ * - [Component Source](https://github.com/lifeomic/chroma-react/blob/master/src/components/Radio/RadioGroup.tsx)
+ * - [Story Source](https://github.com/lifeomic/chroma-react/blob/master/stories/components/Radio/Radio.stories.tsx)
+ */
 export const RadioGroup: React.FC<RadioGroupProps> = ({
   ['aria-label']: ariaLabel,
   className,

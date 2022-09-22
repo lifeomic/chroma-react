@@ -1,6 +1,12 @@
+import * as React from 'react';
 import { create } from '@storybook/theming';
 import logo from './logo.svg';
-import { withTheme } from '../stories/decorators';
+import { CssBaseline } from '@mui/material';
+import {
+  createTheme,
+  StyledEngineProvider,
+  ThemeProvider,
+} from '../src/styles';
 
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
@@ -37,4 +43,15 @@ export const parameters = {
   },
 };
 
-export const decorators = [withTheme];
+export const decorators = [
+  (story) => (
+    <StyledEngineProvider injectFirst>
+      <ThemeProvider theme={createTheme()}>
+        <React.Fragment>
+          <CssBaseline />
+          {story()}
+        </React.Fragment>
+      </ThemeProvider>
+    </StyledEngineProvider>
+  ),
+];

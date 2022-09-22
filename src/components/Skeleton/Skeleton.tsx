@@ -90,6 +90,18 @@ type Width = fullWidthSkeleton | WidthSkeleton;
 
 export type SkeletonProps = Height & Width;
 
+/**
+ * The Skeleton component is used as a placeholder preview before the data gets loaded to reduce load-time frustration.
+ *
+ * ### Accessibility
+ *
+ * - The component has the [`aria-busy`](https://developer.mozilla.org/en-US/docs/Web/API/Element/ariaBusy) attribute.
+ *
+ * ### Links
+ *
+ * - [Component Source](https://github.com/lifeomic/chroma-react/blob/master/src/components/Skeleton/Skeleton.tsx)
+ * - [Story Source](https://github.com/lifeomic/chroma-react/blob/master/stories/components/Skeleton/Skeleton.stories.tsx)
+ */
 export const Skeleton: React.FC<SkeletonProps> = ({
   animation = 'pulse',
   className,

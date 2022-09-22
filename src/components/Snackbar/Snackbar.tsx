@@ -77,6 +77,22 @@ export interface SnackbarProps {
   title?: string;
 }
 
+/**
+ * The Snackbar is used to show alerts and give feedback to users after an action
+ * has happened. Currently, it only supports one Snackbar displayed at a time. For
+ * mobile users, the Snackbar will be anchored to the bottom.
+ *
+ * ### Accessibility
+ *
+ * - The Snackbar has `role` set to either `alert` or `status`.
+ * - The Snackbar has `aria-live` set to either `assertive` or `polite`.
+ * - The Snackbar icon has `role="img"` and `aria-hidden`.
+ *
+ * ### Links
+ *
+ * - [Component Source](https://github.com/lifeomic/chroma-react/blob/master/src/components/Snackbar/Snackbar.tsx)
+ * - [Story Source](https://github.com/lifeomic/chroma-react/blob/master/stories/components/Snackbar/Snackbar.stories.tsx)
+ */
 export const Snackbar: React.FC<SnackbarProps> = React.forwardRef<
   HTMLDivElement,
   SnackbarProps

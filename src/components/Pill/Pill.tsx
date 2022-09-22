@@ -73,6 +73,19 @@ export type PillClasses = GetClasses<typeof useStyles>;
 
 export interface PillProps extends PillOwnProps {}
 
+/**
+ * The Pill component is used to provide supplemental information to existing
+ * components. Example use cases:
+ *
+ * - Displaying the number of results returned from a search/filter query
+ * - Displaying the number of items/pages available
+ * - Highlighting a new feature or product announcement
+ *
+ * ### Links
+ *
+ * - [Component Source](https://github.com/lifeomic/chroma-react/blob/master/src/components/Pill/Pill.tsx)
+ * - [Story Source](https://github.com/lifeomic/chroma-react/blob/master/stories/components/Pill/Pill.stories.tsx)
+ */
 export const Pill = React.forwardRef<HTMLSpanElement, PillProps>(
   (
     { children, className, color, label, variant = 'default', ...rootProps },
