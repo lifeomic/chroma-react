@@ -56,3 +56,25 @@ PrefixUnits.args = {
   units: 'units',
   prefixUnits: true,
 };
+
+export const InverseDark = Template.bind({});
+InverseDark.parameters = {
+  backgrounds: { default: 'dark' },
+};
+InverseDark.args = {
+  label: 'Unit Number Format Field',
+  value: 50,
+  units: 'units',
+  color: 'inverse',
+};
+
+export const InverseBlue = Template.bind({});
+InverseBlue.parameters = {
+  backgrounds: { default: 'blue' },
+};
+InverseBlue.args = {
+  label: 'Unit Number Format Field',
+  value: 50,
+  units: 'units',
+  color: 'inverse',
+};

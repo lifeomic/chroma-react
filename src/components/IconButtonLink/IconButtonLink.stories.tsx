@@ -82,3 +82,25 @@ ExternalLinkSameTab.args = {
   to: 'https://www.lifeomic.com',
   target: '_self',
 };
+
+export const InverseDark = Template.bind({});
+InverseDark.parameters = {
+  backgrounds: { default: 'dark' },
+};
+InverseDark.args = {
+  'aria-label': 'IconButtonLink',
+  icon: Edit,
+  to: '/',
+  color: 'inverse',
+};
+
+export const InverseBlue = Template.bind({});
+InverseBlue.parameters = {
+  backgrounds: { default: 'blue' },
+};
+InverseBlue.args = {
+  'aria-label': 'IconButtonLink',
+  icon: Edit,
+  to: '/',
+  color: 'inverse',
+};

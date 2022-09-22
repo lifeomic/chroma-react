@@ -5,7 +5,7 @@ import { MenuItem } from './MenuItem';
 import { HelpCircle } from '@lifeomic/chromicons';
 
 export default {
-  title: 'Components/MenuItem',
+  title: 'Components/Menu/MenuItem',
   component: MenuItem,
   argTypes: {
     onClick: { action: 'clicked' },

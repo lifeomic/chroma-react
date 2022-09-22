@@ -17,3 +17,24 @@ export const Default = Template.bind({});
 Default.args = {
   'aria-label': 'Search',
 };
+
+export const WithLabel = Template.bind({});
+WithLabel.args = {};
+
+export const InverseDark = Template.bind({});
+InverseDark.parameters = {
+  backgrounds: { default: 'dark' },
+};
+InverseDark.args = {
+  'aria-label': 'Search',
+  color: 'inverse',
+};
+
+export const InverseBlue = Template.bind({});
+InverseBlue.parameters = {
+  backgrounds: { default: 'blue' },
+};
+InverseBlue.args = {
+  'aria-label': 'Search',
+  color: 'inverse',
+};

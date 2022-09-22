@@ -35,3 +35,23 @@ Disabled.args = {
   icon: Edit,
   disabled: true,
 };
+
+export const InverseDark = Template.bind({});
+InverseDark.parameters = {
+  backgrounds: { default: 'dark' },
+};
+InverseDark.args = {
+  'aria-label': 'Edit',
+  icon: Edit,
+  color: 'inverse',
+};
+
+export const InverseBlue = Template.bind({});
+InverseBlue.parameters = {
+  backgrounds: { default: 'blue' },
+};
+InverseBlue.args = {
+  'aria-label': 'Edit',
+  icon: Edit,
+  color: 'inverse',
+};

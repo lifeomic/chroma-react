@@ -82,3 +82,21 @@ TrailingIcon.args = {
   to: 'https://example.com',
   trailingIcon: Edit,
 };
+
+export const InverseDark = Template.bind({});
+InverseDark.parameters = {
+  backgrounds: { default: 'dark' },
+};
+InverseDark.args = {
+  to: '/',
+  color: 'inverse',
+};
+
+export const InverseBlue = Template.bind({});
+InverseBlue.parameters = {
+  backgrounds: { default: 'blue' },
+};
+InverseBlue.args = {
+  to: '/',
+  color: 'inverse',
+};

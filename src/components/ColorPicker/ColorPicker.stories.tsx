@@ -161,3 +161,21 @@ ReadOnly.args = {
   label: 'Color Picker',
   readOnly: true,
 };
+
+export const InverseDark = Template.bind({});
+InverseDark.parameters = {
+  backgrounds: { default: 'dark' },
+};
+InverseDark.args = {
+  label: 'Color Picker',
+  color: 'inverse',
+};
+
+export const InverseBlue = Template.bind({});
+InverseBlue.parameters = {
+  backgrounds: { default: 'blue' },
+};
+InverseBlue.args = {
+  label: 'Color Picker',
+  color: 'inverse',
+};

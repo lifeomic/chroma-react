@@ -100,3 +100,21 @@ AnchorPosition.args = {
   value: new Date(),
   anchorPosition: 'top-right',
 };
+
+export const InverseDark = Template.bind({});
+InverseDark.parameters = {
+  backgrounds: { default: 'dark' },
+};
+InverseDark.args = {
+  label: 'Day Picker',
+  color: 'inverse',
+};
+
+export const InverseBlue = Template.bind({});
+InverseBlue.parameters = {
+  backgrounds: { default: 'blue' },
+};
+InverseBlue.args = {
+  label: 'Day Picker',
+  color: 'inverse',
+};

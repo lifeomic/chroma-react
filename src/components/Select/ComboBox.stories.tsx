@@ -101,3 +101,21 @@ HelpMessage.args = {
   label: 'Combo Box',
   helpMessage: 'Help Message',
 };
+
+export const InverseDark = Template.bind({});
+InverseDark.parameters = {
+  backgrounds: { default: 'dark' },
+};
+InverseDark.args = {
+  label: 'Combo Box',
+  color: 'inverse',
+};
+
+export const InverseBlue = Template.bind({});
+InverseBlue.parameters = {
+  backgrounds: { default: 'blue' },
+};
+InverseBlue.args = {
+  label: 'Combo Box',
+  color: 'inverse',
+};

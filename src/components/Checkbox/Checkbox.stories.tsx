@@ -151,3 +151,21 @@ NoLabel.args = {
   label: '',
   'aria-label': 'Checkbox with no label',
 };
+
+export const InverseDark = Template.bind({});
+InverseDark.parameters = {
+  backgrounds: { default: 'dark' },
+};
+InverseDark.args = {
+  label: 'Checkbox',
+  color: 'inverse',
+};
+
+export const InverseBlue = Template.bind({});
+InverseBlue.parameters = {
+  backgrounds: { default: 'blue' },
+};
+InverseBlue.args = {
+  label: 'Checkbox',
+  color: 'inverse',
+};

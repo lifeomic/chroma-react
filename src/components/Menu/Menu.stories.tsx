@@ -8,7 +8,7 @@ import { MenuItem } from './MenuItem';
 import { MenuGroupHeading } from './MenuGroupHeading';
 
 export default {
-  title: 'Components/Menu',
+  title: 'Components/Menu/Menu',
   component: Menu,
   argTypes: {},
 } as ComponentMeta<typeof Menu>;

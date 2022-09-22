@@ -86,3 +86,21 @@ SecondaryLabel.args = {
   label: 'Text Field',
   secondaryLabel: 'Secondary Label',
 };
+
+export const InverseDark = Template.bind({});
+InverseDark.parameters = {
+  backgrounds: { default: 'dark' },
+};
+InverseDark.args = {
+  label: 'Text Field',
+  color: 'inverse',
+};
+
+export const InverseBlue = Template.bind({});
+InverseBlue.parameters = {
+  backgrounds: { default: 'blue' },
+};
+InverseBlue.args = {
+  label: 'Text Field',
+  color: 'inverse',
+};

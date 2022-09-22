@@ -32,3 +32,47 @@ Default.args = {
     },
   ],
 };
+
+export const InverseDark = Template.bind({});
+InverseDark.parameters = {
+  backgrounds: { default: 'dark' },
+};
+InverseDark.args = {
+  crumbs: [
+    {
+      text: 'Parent',
+      url: 'root',
+    },
+    {
+      text: 'Child',
+      url: 'root/child',
+    },
+    {
+      text: 'GrandChild',
+      url: 'root/child/grand',
+    },
+  ],
+  color: 'inverse',
+};
+
+export const InverseBlue = Template.bind({});
+InverseBlue.parameters = {
+  backgrounds: { default: 'blue' },
+};
+InverseBlue.args = {
+  crumbs: [
+    {
+      text: 'Parent',
+      url: 'root',
+    },
+    {
+      text: 'Child',
+      url: 'root/child',
+    },
+    {
+      text: 'GrandChild',
+      url: 'root/child/grand',
+    },
+  ],
+  color: 'inverse',
+};

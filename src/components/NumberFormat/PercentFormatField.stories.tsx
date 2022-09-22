@@ -37,3 +37,23 @@ Max.args = {
   value: 50,
   max: 70,
 };
+
+export const InverseDark = Template.bind({});
+InverseDark.parameters = {
+  backgrounds: { default: 'dark' },
+};
+InverseDark.args = {
+  label: 'Percent Format Field',
+  value: 50,
+  color: 'inverse',
+};
+
+export const InverseBlue = Template.bind({});
+InverseBlue.parameters = {
+  backgrounds: { default: 'blue' },
+};
+InverseBlue.args = {
+  label: 'Percent Format Field',
+  value: 50,
+  color: 'inverse',
+};

@@ -23,6 +23,9 @@ export const parameters = {
       brandImage: logo,
     }),
     isFullscreen: false,
+    storySort: {
+      method: 'alphabetical',
+    },
   },
   backgrounds: {
     default: 'white',
