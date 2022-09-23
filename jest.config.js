@@ -34,6 +34,7 @@ module.exports = {
       lines: 80,
     },
   },
+  coveragePathIgnorePatterns: ['.stories.tsx'],
   moduleNameMapper: {
     '\\.(jpg|jpeg|png|gif|svg)$': '<rootDir>/test/imageMock.js',
     '\\.(css)$': '<rootDir>/test/emptyMock.js',
