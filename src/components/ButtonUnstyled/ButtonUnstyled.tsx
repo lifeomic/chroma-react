@@ -41,6 +41,22 @@ export interface ButtonUnstyledProps
   fullWidth?: boolean;
 }
 
+/**
+ * A Button component with no button styles.
+ *
+ * ### Accessibility
+ *
+ * - The Button has `type="button"`.
+ *   - Pressing `Tab` will set focus to the element
+ *   - Pressing `Space` or `Enter` triggers the click action.
+ * - When the Button has focus, Space and Enter keys activates it.
+ * - When the Button is disabled, the tabIndex is set to `-1`.
+ *
+ * ### Links
+ *
+ * - [Component Source](https://github.com/lifeomic/chroma-react/blob/master/src/components/Button/ButtonUnstyled.tsx)
+ * - [Story Source](https://github.com/lifeomic/chroma-react/blob/master/stories/components/Button/ButtonUnstyled.stories.tsx)
+ */
 export const ButtonUnstyled = React.forwardRef<
   HTMLButtonElement,
   ButtonUnstyledProps

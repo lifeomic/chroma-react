@@ -98,6 +98,20 @@ const ConditionalWrapper: React.FC<ConditionalWrapperProps> = ({
   children,
 }) => (condition ? wrapper(children) : children);
 
+/**
+ * A layout component for content pages within any LifeOmic application. It is
+ * recommended this component is the first child of a `<main>` element. The primary
+ * goal of this component is to create consistency in an application, so that each
+ * main content area is the same from a layout-perspective. There are plenty of
+ * options that can be provided to the component, so take a look at the different
+ * stories in this section for more information.
+ *
+ * ### Links
+ *
+ * - [Component Source](https://github.com/lifeomic/chroma-react/blob/master/src/components/PageLayout/PageLayout.tsx)
+ * - [Story Source](https://github.com/lifeomic/chroma-react/blob/master/stories/components/PageLayout/PageLayout.stories.tsx)
+ *
+ */
 export const PageLayout = React.forwardRef<HTMLDivElement, PageLayoutProps>(
   (
     {

@@ -69,6 +69,9 @@ export interface MenuItemProps
   secondaryText?: string;
 }
 
+/**
+ * Menus render items and are keyboard navigable.
+ */
 export const MenuItem = React.forwardRef<HTMLButtonElement, MenuItemProps>(
   (
     {

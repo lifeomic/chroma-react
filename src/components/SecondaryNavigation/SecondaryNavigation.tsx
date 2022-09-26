@@ -57,6 +57,14 @@ export interface SecondaryNavigationProps
   variant?: 'vertical' | 'horizontal';
 }
 
+/**
+ * A component used for secondary navigation on a page.
+ *
+ * ### Links
+ *
+ * - [Component Source](https://github.com/lifeomic/chroma-react/blob/master/src/components/SecondaryNavigation/SecondaryNavigation.tsx)
+ * - [Story Source](https://github.com/lifeomic/chroma-react/blob/master/stories/components/SecondaryNavigation/SecondaryNavigation/stories.tsx)
+ */
 export const SecondaryNavigation = React.forwardRef<
   HTMLElement,
   SecondaryNavigationProps

@@ -147,6 +147,20 @@ export interface FormBoxProps extends BoxProps {
   paddingX?: 0 | 0.5 | 1 | 1.5 | 2;
 }
 
+/**
+ * The Form Box component is used as a presentational flexbox wrapper, specifically
+ * when used with forms. It provides padding and spacing between form elements.
+ *
+ * ### Box Props
+ *
+ * Under the covers, this component extends the Box component. All props available
+ * on the Box component are available here as well.
+ *
+ * ### Links
+ *
+ * - [Component Source](https://github.com/lifeomic/chroma-react/blob/master/src/components/FormBox/FormBox.tsx)
+ * - [Story Source](https://github.com/lifeomic/chroma-react/blob/master/stories/components/FormBox/FormBox.stories.tsx)
+ */
 export const FormBox = React.forwardRef<HTMLDivElement, FormBoxProps>(
   (
     {

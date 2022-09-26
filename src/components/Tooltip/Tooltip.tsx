@@ -45,6 +45,20 @@ export interface TooltipProps
   defaultVisible?: boolean;
 }
 
+/**
+ * A popup that displays information related to an element when the element
+ * receives keyboard focus or the mouse hovers over it.
+ *
+ *### Accessibility
+ *
+ * - Tooltip has `role="tooltip"`.
+ * - The child element has `aria-describedby`.
+ *
+ * ### Links
+ *
+ * - [Component Source](https://github.com/lifeomic/chroma-react/blob/master/src/components/Tooltip/Tooltip.tsx)
+ * - [Story Source](https://github.com/lifeomic/chroma-react/blob/master/stories/components/Tooltip/Tooltip.stories.tsx)
+ */
 export const Tooltip: React.FC<TooltipProps> = ({
   children,
   className,

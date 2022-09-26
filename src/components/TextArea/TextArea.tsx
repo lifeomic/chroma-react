@@ -178,6 +178,26 @@ export interface TextAreaProps
   showRequiredLabel?: boolean;
 }
 
+/**
+ * An textarea component for form usage.
+ *
+ * ### Accessibility
+ *
+ * - The label and textarea are "connected" via a uniqueId and the `for` + `id`
+ *   attributes.
+ * - The label has the `aria-hidden` attribute so it cannot be focused by
+ *   screenreaders. Instead, the textarea element receives the focus, and the label
+ *   is read as part of the textarea.
+ * - The component uses a uniqueId to link the textarea to the help and error
+ *   messages via `aria-describedby`. This allows screenreaders to read the help
+ *   and error messages.
+ * - The icon has `aria-hidden` and `role="img"` attributes.
+ *
+ * ### Links
+ *
+ * - [Component Source](https://github.com/lifeomic/chroma-react/blob/master/src/components/TextArea/TextArea.tsx)
+ * - [Story Source](https://github.com/lifeomic/chroma-react/blob/master/stories/components/TextArea/TextArea.stories.tsx)
+ */
 export const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
   (
     {

@@ -97,6 +97,23 @@ export interface ExpansionPanelProps
   contentDirection?: 'row' | 'column';
 }
 
+/**
+ * Panel component for expanding/collapsing content.
+ *
+ * ### Accessibility
+ *
+ * - The click target is a `button` element.
+ *   - Pressing `Tab` will set focus to the element
+ *   - Pressing `Space` or `Enter` triggers the click action.
+ * - It leverages `aria-expanded` on the root button element.
+ * - It leverages `aria-owns` to define the expanded content.
+ * - It leverages `aria-hidden` on the content that expands/collapses.
+ *
+ * ### Links
+ *
+ * - [Component Source](https://github.com/lifeomic/chroma-react/blob/master/src/components/ExpansionPanel/ExpansionPanel.tsx)
+ * - [Story Source](https://github.com/lifeomic/chroma-react/blob/master/stories/components/ExpansionPanel/ExpansionPanel.stories.tsx)
+ */
 export const ExpansionPanel = React.forwardRef<
   HTMLDivElement,
   ExpansionPanelProps

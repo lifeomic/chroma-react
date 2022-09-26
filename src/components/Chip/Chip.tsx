@@ -84,6 +84,22 @@ export interface ChipOwnProps
 
 export interface ChipProps extends ChipOwnProps {}
 
+/**
+ * The Chip component is used for labeling items, tracking selected items in a list, etc.
+ *
+ * ### Accessibility
+ *
+ * - The Chip has a `tabIndex` set so it can be tabbed into.
+ *   - Pressing `Tab` again, will set focus to the removal button.
+ *   - When the removal button is focused, pressing `Space` or `Enter` triggers the click action.
+ * - The Chip has `aria-label` set to the provided label.
+ *
+ * ### Links
+ *
+ * - [Component Source](https://github.com/lifeomic/chroma-react/blob/master/src/components/Chip/Chip.tsx)
+ * - [Story Source](https://github.com/lifeomic/chroma-react/blob/master/stories/components/Chip/Chip.stories.tsx)
+ *
+ */
 export const Chip = React.forwardRef<HTMLDivElement, ChipProps>(
   (
     { children, label = '', disableDelete, onDelete, className, ...rootProps },

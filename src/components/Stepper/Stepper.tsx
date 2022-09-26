@@ -37,6 +37,14 @@ export interface StepperProps {
   ref?: React.Ref<HTMLDivElement>;
 }
 
+/**
+ * A Stepper component to display progress.
+ *
+ * ### Links
+ *
+ * - [Component Source](https://github.com/lifeomic/chroma-react/blob/master/src/components/Stepper/Stepper.tsx)
+ * - [Story Source](https://github.com/lifeomic/chroma-react/blob/master/stories/components/Stepper/Stepper.stories.tsx)
+ */
 export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
   (
     {

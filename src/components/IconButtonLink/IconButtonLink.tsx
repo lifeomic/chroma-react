@@ -151,6 +151,36 @@ export interface IconButtonLinkProps extends LinkProps {
   paddingRight?: IconButtonProps['paddingRight'];
 }
 
+/**
+ * An element that appears as an Icon Button component, but is a link underneath
+ * the covers. It has the same properties as Icon Button exposed.
+ *
+ * **:exclamation:Requirement:exclamation::** This component has a dependency on
+ * react-router-dom. It must be wrapped by a `Router` of some sort.
+ *
+ * ### A Direct Icon Button Extension
+ *
+ * This component is a direct extension of the Icon Button component. The following
+ * props are also available to Icon Button Link:
+ *
+ * - className
+ * - color
+ * - aria-label
+ * - size
+ * - paddingTop
+ * - paddingBottom
+ * - paddingLeft
+ * - paddingRight
+ *
+ * ### Accessibility
+ *
+ * - The element is an `<a>` tag.
+ *
+ * ### Links
+ *
+ * - [Component Source](https://github.com/lifeomic/chroma-react/blob/master/src/components/IconButtonLink/IconButtonLink.tsx)
+ * - [Story Source](https://github.com/lifeomic/chroma-react/blob/master/stories/components/IconButtonLink/IconButtonLink.stories.tsx)
+ */
 export const IconButtonLink = React.forwardRef<
   HTMLAnchorElement,
   IconButtonLinkProps

@@ -140,6 +140,32 @@ export interface RadioProps extends BaseFormElement {
   icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
 }
 
+/**
+ * A basic Radio component. The recommended use case is to always use this with RadioGroup.
+ *
+ * ### Color
+ *
+ * If using RadioGroup, provide the `color` to the RadioGroup instead. You do not
+ * need to provide the color prop yourself.
+ *
+ * ### Children
+ *
+ * The Radio component supports children to be rendered; however, this should be
+ * used sparingly and deeply considered to not negatively affect accessibility.
+ *
+ * ### Accessibility
+ *
+ * - The label and input are "connected" via a uniqueId and the `for` + `id`
+ *   attributes.
+ * - The component has `type="radio"` and `role="radio"` attributes.
+ * - The component uses a uniqueId to link the input to the help message via
+ *   `aria-describedby`. This allows screenreaders to read the help message.
+ *
+ * ### Links
+ *
+ * - [Component Source](https://github.com/lifeomic/chroma-react/blob/master/src/components/Radio/Radio.tsx)
+ * - [Story Source](https://github.com/lifeomic/chroma-react/blob/master/stories/components/Radio/Radio.stories.tsx)
+ */
 export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
   (
     {

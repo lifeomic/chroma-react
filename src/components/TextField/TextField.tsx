@@ -244,6 +244,27 @@ export interface TextFieldProps
   showRequiredLabel?: boolean;
 }
 
+/**
+ * An input component for form usage.
+ *
+ * ### Accessibility
+ *
+ * - The label and input are "connected" via a uniqueId and the `for` + `id`
+ *   attributes.
+ * - The label has the `aria-hidden` attribute so it cannot be focused by
+ *   screenreaders. Instead, the input element receives the focus, and the label is
+ *   read as part of the input.
+ * - The component has `type="text"` by default.
+ * - The component uses a uniqueId to link the input to the help and error messages
+ *   via `aria-describedby`. This allows screenreaders to read the help and error
+ *   messages.
+ * - The icon has `aria-hidden` and `role="img"` attributes.
+ *
+ * ### Links
+ *
+ * - [Component Source](https://github.com/lifeomic/chroma-react/blob/master/src/components/TextField/TextField.tsx)
+ * - [Story Source](https://github.com/lifeomic/chroma-react/blob/master/stories/components/TextField/TextField.stories.tsx)
+ */
 export const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
   (
     {

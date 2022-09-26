@@ -188,6 +188,33 @@ export interface ButtonFilePickerProps {
   variant?: ButtonProps['variant'];
 }
 
+/**
+An element that appears as a Button component, but is used for file selection.
+
+### A Direct Button Extension
+
+This component is a direct extension of the Button component. The following
+props are also available to Button File Picker:
+
+- variant
+- children
+- icon
+- color
+- disabled
+- className
+- fullWidth
+
+### Accessibility
+
+- The label and input utilize the `for` and `id`.
+- The input can receive focus via the `Tab` key.
+- Pressing `Space` or `Enter` triggers the click action.
+
+### Links
+
+- [Component Source](https://github.com/lifeomic/chroma-react/blob/master/src/components/ButtonFilePicker/ButtonFilePicker.tsx)
+- [Story Source](https://github.com/lifeomic/chroma-react/blob/master/stories/components/ButtonFilePicker/ButtonFilePicker.stories.tsx)
+ */
 export const ButtonFilePicker = React.forwardRef<
   HTMLLabelElement,
   ButtonFilePickerProps

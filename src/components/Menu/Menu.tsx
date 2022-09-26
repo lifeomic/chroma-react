@@ -69,6 +69,25 @@ const isMenuItemElement = (
     | React.ReactElement<MenuGroupHeadingProps>
 ): el is React.ReactElement<MenuItemProps> => el.type === MenuItem;
 
+/**
+ * A component for rendering actionable options.
+ *
+ * ### Accessibility
+ *
+ * - The anchor element has `aria-expanded` and `aria-haspopup` set appropriately.
+ * - The Menu and Menu Item components have the `role="menu"` and
+ *   `role="menuitem"`.
+ * - Pressing `Enter` on the focused anchor element expands the menu.
+ * - Pressing `Escape` closes the expanded menu and returns focus to the anchor
+ *   element.
+ * - Pressing `up` or `down` arrow keys navigates between the Menu Items.
+ * - Pressing `Enter` on a Menu Item "clicks" it.
+ *
+ * ### Links
+ *
+ * - [Component Source](https://github.com/lifeomic/chroma-react/blob/master/src/components/Menu/Menu.tsx)
+ * - [Story Source](https://github.com/lifeomic/chroma-react/blob/master/stories/components/Menu/Menu.stories.tsx)
+ */
 export const Menu: React.FC<MenuProps> = ({
   'aria-label': ariaLabel,
   anchorElement,

@@ -104,6 +104,11 @@ export interface TextOwnProps extends React.HTMLAttributes<HTMLElement> {
   family?: 'default' | 'monospace';
   weight?: 'light' | 'regular' | 'bold';
   marginBottom?: boolean;
+  /**
+   * There may be cases where the text needs to be an `h1` tag. The `useH1` prop can
+   * be provided to set this. Be careful not to have too many `h1` tags for
+   * accessibility reasons.
+   */
   useH1?: boolean;
   color?: 'default' | 'inverse' | 'negative' | 'positive';
 }
@@ -112,6 +117,14 @@ export type TextClasses = GetClasses<typeof useStyles>;
 
 export interface TextProps extends TextOwnProps {}
 
+/**
+ * Component for styling text. Replaces p and h[1-6]
+ *
+ * ### Links
+ *
+ * - [Component Source](https://github.com/lifeomic/chroma-react/blob/master/src/components/Text/Text.tsx)
+ * - [Story Source](https://github.com/lifeomic/chroma-react/blob/master/stories/components/Text/Text.stories.tsx)
+ */
 export const Text = React.forwardRef<HTMLParagraphElement, TextProps>(
   (
     {

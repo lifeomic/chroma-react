@@ -101,6 +101,18 @@ export interface PrimaryNavigationItemProps
   icon?: React.ReactNode;
 }
 
+/**
+ * A component wrapping a `NavLink` from `react-router-dom`. Navigation Item to be
+ * used with the `PrimaryNavigation` and `LayoutManagerContext`.
+ *
+ * If the `to` prop's value starts with _http:_ or _https:_ it will be treated as
+ * an external link, and be opened in a new \_blank window.
+ *
+ * ### Links
+ *
+ * - [Component Source](https://github.com/lifeomic/chroma-react/blob/master/src/components/PrimaryNavigation/PrimaryNavigationItem.tsx)
+ * - [Story Source](https://github.com/lifeomic/chroma-react/blob/master/stories/components/PrimaryNavigation/PrimaryNavigation.stories.tsx)
+ */
 export const PrimaryNavigationItem = React.forwardRef<
   HTMLLIElement,
   PrimaryNavigationItemProps

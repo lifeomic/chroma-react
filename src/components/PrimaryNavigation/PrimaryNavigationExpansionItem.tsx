@@ -156,6 +156,19 @@ export interface PrimaryNavigationExpansionItemProps
   icon?: React.ReactNode;
 }
 
+/**
+ * Combining PrimaryNavigationExpansionItem and PrimaryNavigationSubItem allows for
+ * consumers to create an expansion-panel-esque component in their navigation bar.
+ * The current pattern is that clicking the root path will navigate users to the
+ * root/dashboard view. Child routes navigation items are then rendered below.
+ * Navigating away from the "rootParentPath" closes the expansion-panel route item.
+ *
+ * ### Links
+ *
+ * - [PrimaryNavigationExpansionItem Component Source](https://github.com/lifeomic/chroma-react/blob/master/src/components/PrimaryNavigation/PrimaryNavigationExpansionItem.tsx)
+ * - [PrimaryNavigationSubItem Component Source](https://github.com/lifeomic/chroma-react/blob/master/src/components/PrimaryNavigation/PrimaryNavigationSubItem.tsx)
+ * - [Story Source](https://github.com/lifeomic/chroma-react/blob/master/stories/components/PrimaryNavigation/PrimaryNavigation.stories.tsx)
+ */
 export const PrimaryNavigationExpansionItem = React.forwardRef<
   HTMLLIElement,
   PrimaryNavigationExpansionItemProps

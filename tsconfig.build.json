@@ -7,6 +7,7 @@
   "exclude": [
     "**/*.test.tsx",
     "**/*.test.ts",
+    "**/*.stories.tsx",
     "./stories/**/*",
     "./src/testUtils/**/*"
   ]

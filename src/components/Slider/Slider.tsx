@@ -208,6 +208,25 @@ const getValueAsArray = (value: undefined | number | number[]) => {
   return [value];
 };
 
+/**
+ * A slider component for form usage.
+ *
+ * ### Accessibility
+ *
+ * - The label and slider are "connected" via a uniqueId and the `aria-labelledby`
+ *   attribute.
+ * - The label is hidden so it cannot be focused by
+ *   screenreaders. Instead, the slider element receives the focus, and the label is
+ *   read as part of the input.
+ * - The component uses a uniqueId to link the slider to the help and error messages
+ *   via `aria-describedby`. This allows screenreaders to read the help and error
+ *   messages.
+ *
+ * ### Links
+ *
+ * - [Component Source](https://github.com/lifeomic/chroma-react/blob/master/src/components/Slider/Slider.tsx)
+ * - [Story Source](https://github.com/lifeomic/chroma-react/blob/master/stories/components/Slider/Slider.stories.tsx)
+ */
 export const Slider = React.forwardRef<HTMLElement, SliderProps>(
   (props, ref) => {
     const {

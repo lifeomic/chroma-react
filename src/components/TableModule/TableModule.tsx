@@ -214,6 +214,25 @@ export interface TableModuleProps<Item = any>
   rowClickLabel?: string;
 }
 
+/**
+ * A table component with an opinionated API. It relies a `config` and `data` prop
+ * for rendering. More on that below.
+ *
+ * ### Accessibility
+ *
+ * - The table leverages the proper `role` attributes.
+ * - The `aria-sort` attribute is used when sorting occurs (ascending, descending,
+ *   none).
+ * - NOTE: To test with a screenreader with VoiceOver, use
+ *   `control+option+command+t`.
+ * - Resource:
+ *   [https://inclusive-components.design/data-tables/](https://inclusive-components.design/data-tables/)
+ *
+ * ### Links
+ *
+ * - [Component Source](https://github.com/lifeomic/chroma-react/blob/master/src/components/TableModule/TableModule.tsx)
+ * - [Story Source](https://github.com/lifeomic/chroma-react/blob/master/stories/components/TableModule/TableModule.stories.tsx)
+ */
 export const TableModule = React.memo(
   React.forwardRef<HTMLTableElement, TableModuleProps>(
     (

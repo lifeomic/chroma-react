@@ -48,6 +48,14 @@ export type SmallTileFooterClasses = GetClasses<typeof useStyles>;
 
 export interface SmallTileFooterProps extends SmallTileFooterOwnProps {}
 
+/**
+ * A presentational component to be used with `SmallTile`, rendering footer content in the tile.
+ *
+ * ### Links
+ *
+ * - [Component Source](https://github.com/lifeomic/chroma-react/blob/master/src/components/SmallTile/SmallTileFooter.tsx)
+ * - [Story Source](https://github.com/lifeomic/chroma-react/blob/master/stories/components/SmallTile/SmallTile.stories.tsx)
+ */
 export const SmallTileFooter = React.forwardRef<
   HTMLDivElement,
   SmallTileFooterProps

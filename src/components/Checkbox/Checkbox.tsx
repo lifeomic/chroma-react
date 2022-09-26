@@ -314,6 +314,22 @@ export type CheckboxProps = BaseFormElementWithNodeLabel &
     indeterminate?: boolean;
   };
 
+/**
+A checkbox component for form usage. Under the covers, this is an input element with `type="checkbox"`.
+
+### Accessibility
+
+- The label and input are "connected" via a uniqueId and the `for` \+ `id` attributes.
+- The component has `type="checkbox"`.
+- The component uses a uniqueId to link the input to the help and error messages
+  via `aria-describedby`. This allows screenreaders to read the help and error
+  messages.
+
+### Links
+
+- [Component Source](https://github.com/lifeomic/chroma-react/blob/master/src/components/Checkbox/Checkbox.tsx)
+- [Story Source](https://github.com/lifeomic/chroma-react/blob/master/stories/components/Checkbox/Checkbox.stories.tsx)
+ */
 export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
   (
     {

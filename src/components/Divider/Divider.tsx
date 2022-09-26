@@ -95,6 +95,15 @@ export type DividerClasses = GetClasses<typeof useStyles>;
 
 export interface DividerProps extends DividerOwnProps {}
 
+/**
+ * A `Divider` is a thin line that groups content in lists and layouts. The divider
+ * renders as an `<hr>`.
+ *
+ * ### Links
+ *
+ * - [Component Source](https://github.com/lifeomic/chroma-react/blob/master/src/components/Divider/Divider.tsx)
+ * - [Story Source](https://github.com/lifeomic/chroma-react/blob/master/stories/components/Divider/Divider.stories.tsx)
+ */
 export const Divider = React.forwardRef<HTMLHRElement, DividerProps>(
   (
     {
