@@ -1,3 +1,4 @@
+import { Check } from '@lifeomic/chromicons';
 import { fireEvent } from '@testing-library/react';
 import * as React from 'react';
 import { renderWithTheme } from '../../testUtils/renderWithTheme';
@@ -11,6 +12,16 @@ const getBaseProps = (): ExpansionPanelProps => ({
 });
 
 test('it renders an ExpansionPanel', async () => {
+  const props = getBaseProps();
+  const { container } = renderWithTheme(
+    <ExpansionPanel {...props} data-testid={testId} leadingIcon={Check} />
+  );
+
+  const icon = container.querySelector(`[role="img"]`);
+  expect(icon).toBeInTheDocument();
+});
+
+test('it renders ExpansionPanel with leadingIcon', async () => {
   const props = getBaseProps();
   const { findByTestId } = renderWithTheme(
     <ExpansionPanel {...props} data-testid={testId} />
