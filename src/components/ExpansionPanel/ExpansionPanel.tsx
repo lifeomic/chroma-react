@@ -43,6 +43,14 @@ export const useStyles = makeStyles(
     buttonShadow: {
       boxShadow: theme.boxShadows.table,
     },
+    leadingIcon: {
+      marginRight: theme.spacing(1),
+    },
+    titleContainer: {
+      alignItems: 'center',
+      display: 'flex',
+      width: '100%',
+    },
     title: {
       color: theme.palette.text.secondary,
       letterSpacing: 'initial',
@@ -92,6 +100,7 @@ export interface ExpansionPanelProps
   contentClassName?: string;
   innerContentClassName?: string;
   title: string;
+  leadingIcon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   onToggle?: (isExpanded: boolean) => void;
   isOpen?: boolean;
   contentDirection?: 'row' | 'column';
@@ -129,6 +138,7 @@ export const ExpansionPanel = React.forwardRef<
       isOpen = false,
       contentDirection = 'column',
       title,
+      leadingIcon: LeadingIcon,
       ...rootProps
     },
     ref
@@ -191,9 +201,21 @@ export const ExpansionPanel = React.forwardRef<
           onClick={handleClick}
           tabIndex={0}
         >
-          <Text className={classes.title} size="subbody" weight="bold">
-            {title}
-          </Text>
+          <div className={classes.titleContainer}>
+            {LeadingIcon && (
+              <LeadingIcon
+                role="img"
+                aria-hidden
+                className={classes.leadingIcon}
+                width={18}
+                height={18}
+              />
+            )}
+            <Text className={classes.title} size="subbody" weight="bold">
+              {title}
+            </Text>
+          </div>
+
           <Plus
             className={clsx(classes.icon, isExpanded && classes.rotate)}
             aria-hidden="true"
