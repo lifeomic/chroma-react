@@ -11,17 +11,7 @@ const getBaseProps = (): ExpansionPanelProps => ({
   title: 'title',
 });
 
-test('it renders an ExpansionPanel', async () => {
-  const props = getBaseProps();
-  const { container } = renderWithTheme(
-    <ExpansionPanel {...props} data-testid={testId} leadingIcon={Check} />
-  );
-
-  const icon = container.querySelector(`[role="img"]`);
-  expect(icon).toBeInTheDocument();
-});
-
-test('it renders ExpansionPanel with leadingIcon', async () => {
+test('it renders ExpansionPanel', async () => {
   const props = getBaseProps();
   const { findByTestId } = renderWithTheme(
     <ExpansionPanel {...props} data-testid={testId} />
@@ -29,6 +19,16 @@ test('it renders ExpansionPanel with leadingIcon', async () => {
 
   const root = await findByTestId(testId);
   expect(root).toBeInTheDocument();
+});
+
+test('it renders an ExpansionPanel with leadingIcon', async () => {
+  const props = getBaseProps();
+  const { container } = renderWithTheme(
+    <ExpansionPanel {...props} data-testid={testId} leadingIcon={Check} />
+  );
+
+  const icon = container.querySelector(`[role="img"]`);
+  expect(icon).toBeInTheDocument();
 });
 
 test('it renders ExpansionPanel expanded content on-click', async () => {
