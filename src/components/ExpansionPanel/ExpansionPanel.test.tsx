@@ -11,7 +11,7 @@ const getBaseProps = (): ExpansionPanelProps => ({
   title: 'title',
 });
 
-test('it renders ExpansionPanel', async () => {
+test('it renders an ExpansionPanel', async () => {
   const props = getBaseProps();
   const { findByTestId } = renderWithTheme(
     <ExpansionPanel {...props} data-testid={testId} />
