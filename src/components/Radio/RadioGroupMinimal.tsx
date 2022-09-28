@@ -26,7 +26,7 @@ export const useStyles = makeStyles(
       color: theme.palette.black[800],
       fontSize: theme.pxToRem(14),
       fontWeight: theme.typography.fontWeightBold,
-      marginBottom: theme.spacing(1.5),
+      marginBottom: theme.spacing(1),
       padding: 0,
       '&:empty': {
         marginBottom: theme.spacing(0),
