@@ -8,7 +8,7 @@ export const DividerStylesKey = 'ChromaDivider';
 export const useStyles = makeStyles(
   (theme) => ({
     root: {
-      backgroundColor: 'rgba(0, 0, 0, 0.15)',
+      backgroundColor: theme.hexToRgba(theme.palette.common.black, 0.15),
       border: 'none',
       flexShrink: 0,
       margin: 0,
@@ -21,7 +21,7 @@ export const useStyles = makeStyles(
       width: 1,
     },
     inverseColor: {
-      backgroundColor: 'rgba(255, 255, 255, 0.25)',
+      backgroundColor: theme.hexToRgba(theme.palette.common.white, 0.25),
     },
     vSpacing0: {
       margin: 0,
@@ -95,6 +95,15 @@ export type DividerClasses = GetClasses<typeof useStyles>;
 
 export interface DividerProps extends DividerOwnProps {}
 
+/**
+ * A `Divider` is a thin line that groups content in lists and layouts. The divider
+ * renders as an `<hr>`.
+ *
+ * ### Links
+ *
+ * - [Component Source](https://github.com/lifeomic/chroma-react/blob/master/src/components/Divider/Divider.tsx)
+ * - [Story Source](https://github.com/lifeomic/chroma-react/blob/master/stories/components/Divider/Divider.stories.tsx)
+ */
 export const Divider = React.forwardRef<HTMLHRElement, DividerProps>(
   (
     {

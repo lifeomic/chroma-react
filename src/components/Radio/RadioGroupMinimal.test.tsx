@@ -83,3 +83,24 @@ test('it renders with the "fullWidth" prop', async () => {
   const radioGroupMinimal = await findByTestId(testId);
   expect(radioGroupMinimal).toHaveClass('ChromaRadioGroupMinimal-fullWidth');
 });
+
+test('it renders an * when the field is required', async () => {
+  const { findByText } = renderWithTheme(
+    <RadioGroupMinimal title="Select one" showRequiredLabel />
+  );
+
+  const asterisk = await findByText('*');
+  expect(asterisk).toBeInTheDocument();
+  expect(asterisk).toHaveClass('ChromaRadioGroupMinimal-required');
+});
+
+test('it renders an inverse color * when the field is required', async () => {
+  const { findByText } = renderWithTheme(
+    <RadioGroupMinimal title="Select one" color="inverse" showRequiredLabel />
+  );
+
+  const asterisk = await findByText('*');
+  expect(asterisk).toHaveClass(
+    'ChromaRadioGroupMinimal-required ChromaRadioGroupMinimal-requiredInverse'
+  );
+});

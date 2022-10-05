@@ -12,6 +12,7 @@ const useStyles = makeStyles(
     textField: {
       marginTop: theme.spacing(2),
       marginBottom: theme.spacing(1),
+      marginRight: theme.spacing(2),
     },
   }),
   { name: UnitNumberFormatFieldStylesKey }
@@ -29,9 +30,24 @@ export type UnitNumberFormatFieldProps = Omit<
   units: string;
   decimalScale?: number;
   prefixUnits?: boolean;
+  /** This property shows the required asterisk (*). Required validation needs to be implemented separately. */
+  showRequiredLabel?: boolean;
   onChange: (val: number) => void;
 };
 
+/**
+ * An input component for entering a number pre- or postfixed with a unit string; it extends the [Chroma TextField component]
+ * (https://lifeomic.github.io/chroma-react/?path=/story/form-components-textfield--all).
+ *
+ * ### Accessibility
+ *
+ * - Similar to `<TextField />`, as it extends that component
+ *
+ * ### Links
+ *
+ * - [Component Source](https://github.com/lifeomic/chroma-react/blob/master/src/components/NumberFormat/UnitNumberFormatField.tsx)
+ * - [Story Source](https://github.com/lifeomic/chroma-react/blob/master/stories/components/NumberFormat/UnitNumberFormatFieldStory.stories.tsx)
+ */
 export const UnitNumberFormatField: React.FC<UnitNumberFormatFieldProps> = (
   props
 ) => {
@@ -45,6 +61,7 @@ export const UnitNumberFormatField: React.FC<UnitNumberFormatFieldProps> = (
     decimalScale = 0,
     prefixUnits = false,
     className,
+    showRequiredLabel,
     ...other
   } = props;
   // formatting helper. Prefixes units if specified, otherwise suffix.
@@ -175,6 +192,7 @@ export const UnitNumberFormatField: React.FC<UnitNumberFormatFieldProps> = (
       onFocus={handleFocus}
       onBlur={handleBlur}
       ref={textFieldRef}
+      showRequiredLabel={showRequiredLabel}
     />
   );
 };
@@ -189,6 +207,18 @@ export type PercentFormatFieldProps = Omit<
   onChange: (val: number) => void;
 };
 
+/**
+ * An input component for entering a number as a percent; it leverages the [Chroma Unit Input](https://lifeomic.github.io/chroma-react/?path=/story/form-components-number-format--unit-input) with '%' postfixed as the unit.
+ *
+ * ### Accessibility
+ *
+ * - Similar to `<TextField />`, as it extends that component
+ *
+ * ### Links
+ *
+ * - [Component Source](https://github.com/lifeomic/chroma-react/blob/master/src/components/NumberFormat/PercentFormatField.tsx)
+ * - [Story Source](https://github.com/lifeomic/chroma-react/blob/master/stories/components/NumberFormat/PercentFormatFieldStory.stories.tsx)
+ */
 export const PercentFormatField: React.FC<PercentFormatFieldProps> = (
   props
 ) => {
@@ -200,7 +230,6 @@ export const PercentFormatField: React.FC<PercentFormatFieldProps> = (
 /**
  * @param props All currency values are expected to be an integer amount of pennies
  */
-
 export type PriceFormatFieldProps = Omit<
   TextFieldProps,
   'onChange' | 'value'
@@ -210,6 +239,20 @@ export type PriceFormatFieldProps = Omit<
   value: number;
   onChange: (val: number) => void;
 };
+
+/**
+ * An input component for entering a number as a monetary value in pennies; it leverages the [Chroma Unit Input]
+ * (https://lifeomic.github.io/chroma-react/?path=/story/form-components-number-format--unit-input). Currently only implements \$USD, with '\$' prefixed as the unit.
+ *
+ * ### Accessibility
+ *
+ * - Similar to `<TextField />`, as it extends that component
+ *
+ * ### Links
+ *
+ * - [Component Source](https://github.com/lifeomic/chroma-react/blob/master/src/components/NumberFormat/PriceFormatField.tsx)
+ * - [Story Source](https://github.com/lifeomic/chroma-react/blob/master/stories/components/NumberFormat/PriceFormatFieldStory.stories.tsx)
+ */
 export const PriceFormatField: React.FC<PriceFormatFieldProps> = (props) => {
   const { value, onChange, min, max, ...otherProps } = props;
   if (

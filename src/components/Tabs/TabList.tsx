@@ -17,7 +17,7 @@ export const useStyles = makeStyles(
       overflow: 'hidden',
     },
     pill: {
-      background: 'rgba(132, 137, 166, 0.15)',
+      background: theme.hexToRgba(theme.palette.graphite[900], 0.15),
       borderRadius: theme.pxToRem(20),
       border: 'solid 1px transparent',
       display: 'inline-flex',

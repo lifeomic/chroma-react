@@ -12,7 +12,10 @@ export const useStyles = makeStyles(
     root: {
       alignItems: 'center',
       backgroundColor: theme.palette.common.white,
-      boxShadow: '0px 4px 54px rgba(0, 0, 0, 0.12);',
+      boxShadow: `0px 4px 54px ${theme.hexToRgba(
+        theme.palette.common.black,
+        0.12
+      )};`,
       display: 'flex',
       flex: 1,
       height: headerHeight,
@@ -62,6 +65,20 @@ export interface HeaderProps extends React.ComponentPropsWithoutRef<'header'> {
   centerLogo?: boolean;
 }
 
+/**
+ * The main head-bar for the app. The component allows the following props: `logo`,
+ * `left` content, `right` content, and `centerLogo` logo boolean.
+ *
+ * ### Accessibility
+ *
+ * - The Header has `role="banner"`.
+ * - The Header Logo, if provided, has `role="presentation"`.
+ *
+ * ### Links
+ *
+ * - [Component Source](https://github.com/lifeomic/chroma-react/blob/master/src/components/Header/Header.tsx)
+ * - [Story Source](https://github.com/lifeomic/chroma-react/blob/master/stories/components/Header/Header.stories.tsx)
+ */
 export const Header = React.forwardRef<HTMLHeadingElement, HeaderProps>(
   ({ logo, left, right, className, centerLogo, ...rootProps }, ref) => {
     const classes = useStyles({});

@@ -85,6 +85,21 @@ const getInitials = (name: string) => {
   return firstName?.charAt(0)?.toUpperCase();
 };
 
+/**
+  The Avatar component is used to represent a user. It displays a profile picture, their name initials, or fallback icon.
+
+  ### Accessibility
+
+  - An `aria-label` is set with the `name`.
+  - When the Avatar is clickable, the Avatar has `role="button"`.
+  - When the Avatar is clickable, it has a `tabIndex={0}`.
+  - The Avatar source image, when provided, has an `alt` set to the `name`.
+
+  ### Links
+
+  - [Component Source](https://github.com/lifeomic/chroma-react/blob/master/src/components/Avatar/Avatar.tsx)
+  - [Story Source](https://github.com/lifeomic/chroma-react/blob/master/stories/components/Avatar/Avatar.stories.tsx)
+ */
 export const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
   (
     {

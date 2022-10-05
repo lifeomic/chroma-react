@@ -45,6 +45,14 @@ export type SmallTileContentClasses = GetClasses<typeof useStyles>;
 
 export interface SmallTileContentProps extends SmallTileContentOwnProps {}
 
+/**
+ * A presentational component to be used with `SmallTile`, rendering main content in the tile.
+ *
+ * ### Links
+ *
+ * - [Component Source](https://github.com/lifeomic/chroma-react/blob/master/src/components/SmallTile/SmallTileContent.tsx)
+ * - [Story Source](https://github.com/lifeomic/chroma-react/blob/master/stories/components/SmallTile/SmallTile.stories.tsx)
+ */
 export const SmallTileContent = React.forwardRef<
   HTMLDivElement,
   SmallTileContentProps

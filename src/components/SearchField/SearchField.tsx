@@ -19,7 +19,7 @@ export const useStyles = makeStyles(
       position: 'relative',
     },
     input: {
-      backgroundColor: 'rgba(132, 137, 166, 0.15)',
+      backgroundColor: theme.hexToRgba(theme.palette.graphite[900], 0.15),
       border: `1px solid transparent`,
       borderRadius: theme.pxToRem(4),
       color: theme.palette.text.primary,
@@ -34,8 +34,11 @@ export const useStyles = makeStyles(
       maxWidth: theme.pxToRem(173),
       '&:focus': {
         outline: 'none',
-        backgroundColor: 'rgba(255, 255, 255, 0.5)',
-        border: `1px solid rgba(132, 137, 166, 0.45)`,
+        backgroundColor: theme.hexToRgba(theme.palette.common.white, 0.5),
+        border: `1px solid ${theme.hexToRgba(
+          theme.palette.graphite[900],
+          0.45
+        )}`,
       },
       '&:disabled': {
         cursor: 'not-allowed',
@@ -63,23 +66,26 @@ export const useStyles = makeStyles(
       },
     },
     inputInverse: {
-      backgroundColor: 'rgba(230, 231, 237, 0.1)',
+      backgroundColor: theme.hexToRgba(theme.palette.graphite[100], 0.1),
       color: theme.palette.common.white,
       '&:focus': {
-        backgroundColor: 'rgba(230, 231, 237, 0.1)',
-        border: `1px solid rgba(230, 231, 237, 0.55)`,
+        backgroundColor: theme.hexToRgba(theme.palette.graphite[100], 0.1),
+        border: `1px solid ${theme.hexToRgba(
+          theme.palette.graphite[100],
+          0.55
+        )}`,
       },
       '&::-webkit-input-placeholder': {
-        color: 'rgba(255, 255, 255, 0.8)',
+        color: theme.hexToRgba(theme.palette.common.white, 0.8),
       },
       '&::-moz-placeholder': {
-        color: 'rgba(255, 255, 255, 0.8)',
+        color: theme.hexToRgba(theme.palette.common.white, 0.8),
       },
       '&:-ms-input-placeholder': {
-        color: 'rgba(255, 255, 255, 0.8)',
+        color: theme.hexToRgba(theme.palette.common.white, 0.8),
       },
       '&:-moz-placeholder': {
-        color: 'rgba(255, 255, 255, 0.8)',
+        color: theme.hexToRgba(theme.palette.common.white, 0.8),
       },
     },
     inputHeight0: {
@@ -220,6 +226,37 @@ export interface SearchFieldProps
   height?: 0 | 1;
 }
 
+/**
+ * An input for providing search functionality. The Search Field user experience is:
+ *
+ * - Input receives focus
+ * - User begins typing and the search magnifying glass becomes an "x" to clear the
+ *   input
+ * - If the user clicks the "x", the input will be cleared
+ * - To submit the search, the user presses the Enter key on their keyboard
+ * - Upon submission, the input field is cleared. The expected behavior is that the
+ *   UI will prompt the user that a search has occurred with the string of text
+ *   they have entered. This can be done with a Pill or Chip component.
+ *
+ * If you'd prefer overriding this UX, provide the `disableClearOnSearch` prop as
+ * described below.
+ *
+ * ### Accessibility
+ *
+ * - The component has `type="search"`.
+ * - The component has `aria-label` set to the provided label.
+ * - The component uses a uniqueId to link the input to the help message via
+ *   `aria-describedby`. This allows screenreaders to read the help message.
+ * - The icon button cannot be tabbed into - keyboard support of Escape to clear
+ *   and Enter to submit is supported instead. This mimics the default
+ *   `<input type="search" />` behavior.
+ * - The inner icon has `aria-hidden` and `role="img"` attributes.
+ *
+ * ### Links
+ *
+ * - [Component Source](https://github.com/lifeomic/chroma-react/blob/master/src/components/SearchField/SearchField.tsx)
+ * - [Story Source](https://github.com/lifeomic/chroma-react/blob/master/stories/components/SearchField/SearchField.stories.tsx)
+ */
 export const SearchField = React.forwardRef<HTMLInputElement, SearchFieldProps>(
   (
     {

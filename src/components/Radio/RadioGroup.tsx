@@ -62,6 +62,13 @@ export const useStyles = makeStyles(
     srOnly: {
       ...screenreaderOnlyStyles,
     },
+    required: {
+      color: theme.palette.error[500],
+      margin: theme.spacing(0, 0.5),
+    },
+    requiredInverse: {
+      color: theme.palette.common.white,
+    },
   }),
   { name: RadioGroupStylesKey }
 );
@@ -79,8 +86,25 @@ export interface RadioGroupProps
   direction?: 'row' | 'column';
   justify?: 'center' | 'flex-start' | 'space-between' | 'space-evenly';
   title?: string;
+  /** This property shows the required asterisk (*). Required validation needs to be implemented separately. */
+  showRequiredLabel?: boolean;
 }
 
+/**
+ * The Radio Group and Radio components are styled radio inputs. They are typically
+ * used in combination; however, Radio can work on its own as well.
+ *
+ * ### Accessibility
+ *
+ * - The component renders as a fieldset.
+ * - The component has the `role="radiogroup"` attribute.
+ * - The title for the component renders as a legend.
+ *
+ * ### Links
+ *
+ * - [Component Source](https://github.com/lifeomic/chroma-react/blob/master/src/components/Radio/RadioGroup.tsx)
+ * - [Story Source](https://github.com/lifeomic/chroma-react/blob/master/stories/components/Radio/Radio.stories.tsx)
+ */
 export const RadioGroup: React.FC<RadioGroupProps> = ({
   ['aria-label']: ariaLabel,
   className,
@@ -93,6 +117,7 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
   onChange,
   value,
   title,
+  showRequiredLabel,
   ...rootProps
 }) => {
   const classes = useStyles({});
@@ -138,6 +163,16 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
             !title && ariaLabel && classes.srOnly
           )}
         >
+          {showRequiredLabel && (
+            <span
+              className={clsx(
+                classes.required,
+                color === 'inverse' && classes.requiredInverse
+              )}
+            >
+              &#42;
+            </span>
+          )}
           {title || ariaLabel}
         </legend>
         <div

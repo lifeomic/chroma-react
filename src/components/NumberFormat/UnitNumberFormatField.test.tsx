@@ -398,3 +398,119 @@ test('PriceFormatField converts its min, max, and value to dollars', async () =>
   expect(textfield).toHaveAttribute('max', '2');
   expect(textfield).toHaveAttribute('value', '$10.00');
 });
+
+test('UnitNumberFormatField renders an * when the field is required', async () => {
+  let value = 0;
+  const onChange = jest.fn();
+
+  const { findByText } = renderWithTheme(
+    <UnitNumberFormatField
+      label="Required"
+      value={value}
+      units="in"
+      onChange={onChange}
+      showRequiredLabel
+    />
+  );
+
+  const asterisk = await findByText('*');
+  expect(asterisk).toBeInTheDocument();
+  expect(asterisk).toHaveClass('ChromaTextField-required');
+});
+
+test('UnitNumberFormatField renders an inverse color * when the field is required', async () => {
+  let value = 0;
+  const onChange = jest.fn();
+
+  const { findByText } = renderWithTheme(
+    <UnitNumberFormatField
+      label="Required"
+      value={value}
+      units="in"
+      onChange={onChange}
+      showRequiredLabel
+      color="inverse"
+    />
+  );
+
+  const asterisk = await findByText('*');
+  expect(asterisk).toHaveClass(
+    'ChromaTextField-required ChromaTextField-requiredInverse'
+  );
+});
+
+test('PriceFormatField renders an * when the field is required', async () => {
+  let value = 0;
+  const onChange = jest.fn();
+
+  const { findByText } = renderWithTheme(
+    <PriceFormatField
+      label="Required"
+      value={value}
+      onChange={onChange}
+      showRequiredLabel
+    />
+  );
+
+  const asterisk = await findByText('*');
+  expect(asterisk).toBeInTheDocument();
+  expect(asterisk).toHaveClass('ChromaTextField-required');
+});
+
+test('PriceFormatField renders an inverse color * when the field is required', async () => {
+  let value = 0;
+  const onChange = jest.fn();
+
+  const { findByText } = renderWithTheme(
+    <PriceFormatField
+      label="Required"
+      value={value}
+      onChange={onChange}
+      showRequiredLabel
+      color="inverse"
+    />
+  );
+
+  const asterisk = await findByText('*');
+  expect(asterisk).toHaveClass(
+    'ChromaTextField-required ChromaTextField-requiredInverse'
+  );
+});
+
+test('PercentFormatField renders an * when the field is required', async () => {
+  let value = 0;
+  const onChange = jest.fn();
+
+  const { findByText } = renderWithTheme(
+    <PercentFormatField
+      label="Required"
+      value={value}
+      onChange={onChange}
+      showRequiredLabel
+    />
+  );
+
+  const asterisk = await findByText('*');
+  expect(asterisk).toBeInTheDocument();
+  expect(asterisk).toHaveClass('ChromaTextField-required');
+});
+
+test('PercentFormatField renders an inverse color * when the field is required', async () => {
+  let value = 0;
+  const onChange = jest.fn();
+
+  const { findByText } = renderWithTheme(
+    <PercentFormatField
+      label="Required"
+      value={value}
+      onChange={onChange}
+      showRequiredLabel
+      color="inverse"
+    />
+  );
+
+  const asterisk = await findByText('*');
+  expect(asterisk).toHaveClass(
+    'ChromaTextField-required ChromaTextField-requiredInverse'
+  );
+});

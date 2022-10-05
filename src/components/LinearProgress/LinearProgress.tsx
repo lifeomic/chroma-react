@@ -64,6 +64,19 @@ export interface LinearProgressProps {
   variant?: 'determinate' | 'indeterminate';
 }
 
+/**
+ * A linear progress component for showing loading states.
+ *
+ * ### Accessibility
+ *
+ * - The component has the `progressbar` role.
+ * - The component specifices the `aria-valuenow`, `aria-valuemin`, and `aria-valuemax` attributes.
+ *
+ * ### Links
+ *
+ * - [Component Source](https://github.com/lifeomic/chroma-react/blob/master/src/components/LinearProgress/LinearProgress.tsx)
+ * - [Story Source](https://github.com/lifeomic/chroma-react/blob/master/stories/components/LinearProgress/LinearProgress.stories.tsx)
+ */
 export const LinearProgress: React.FC<LinearProgressProps> = ({
   className,
   variant = 'determinate',

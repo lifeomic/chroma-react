@@ -248,7 +248,6 @@ test('it renders an aria-label when not provided with label', async () => {
   const { findByLabelText } = renderWithTheme(
     <TextField label="" aria-label="aria-label-text" data-testid={testId} />
   );
-
   const ariaLabel = await findByLabelText(/aria-label-text/);
   expect(ariaLabel).toBeInTheDocument();
 });
@@ -293,4 +292,23 @@ test('it renders startAdornment and endAdornment', async () => {
   expect(startAdornment).toBeInTheDocument();
   const endAdornment = await findByTestId('end-adornment');
   expect(endAdornment).toBeInTheDocument();
+});
+
+test('it renders an * when the field is required', async () => {
+  const { findByText } = renderWithTheme(
+    <TextField label="Required" showRequiredLabel />
+  );
+  const asterisk = await findByText('*');
+  expect(asterisk).toBeInTheDocument();
+  expect(asterisk).toHaveClass('ChromaTextField-required');
+});
+
+test('it renders an inverse color * when the field is required', async () => {
+  const { findByText } = renderWithTheme(
+    <TextField label="Required" color="inverse" showRequiredLabel />
+  );
+  const asterisk = await findByText('*');
+  expect(asterisk).toHaveClass(
+    'ChromaTextField-required ChromaTextField-requiredInverse'
+  );
 });

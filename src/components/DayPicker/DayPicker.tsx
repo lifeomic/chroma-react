@@ -13,7 +13,7 @@ import { TextField, TextFieldProps } from '../TextField';
 import { GetClasses } from '../../typeUtils';
 import { ButtonUnstyled } from '../ButtonUnstyled';
 import { composeEventHandlers } from '../../utils';
-import { fade } from '@material-ui/core/styles/colorManipulator';
+import { alpha } from '@mui/material/styles';
 
 export const DayPickerStylesKey = 'ChromaDayPicker';
 export type DayPickerClasses = GetClasses<typeof useStyles>;
@@ -63,7 +63,7 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: theme.palette.grey[300],
     },
     '&.DayPicker:not(.DayPicker--interactionDisabled) .DayPicker-Day:not(.DayPicker-Day--disabled):not(.DayPicker-Day--selected):not(.DayPicker-Day--outside):hover': {
-      backgroundColor: fade(theme.palette.primary[50], 0.5),
+      backgroundColor: alpha(theme.palette.primary[50], 0.5),
     },
   },
   dayPickerBottomLeft: {
@@ -223,6 +223,19 @@ export const testIds = {
   calendar: 'chroma-day-picker-calendar',
 };
 
+/**
+ * An input component for selecting a day.
+ *
+ * ### Other Props
+ *
+ * `DayPicker` inherits (and forwards) most of its props on to the internal `TextField`. See
+ * the documentation on `TextField` for more detailed descriptions of those props.
+ *
+ * ### Links
+ *
+ * - [Component Source](https://github.com/lifeomic/chroma-react/blob/master/src/components/DayPicker/DayPicker.tsx)
+ * - [Story Source](https://github.com/lifeomic/chroma-react/blob/master/stories/components/DayPicker/DayPicker.stories.tsx)
+ */
 export const DayPicker = React.forwardRef<HTMLInputElement, DayPickerProps>(
   (
     {

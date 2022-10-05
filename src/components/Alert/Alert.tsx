@@ -45,28 +45,41 @@ export interface AlertProps {
   className?: string;
   statusType?: NotificationStatusType;
   fullWidth?: boolean;
+  ref?: React.Ref<HTMLDivElement>;
 }
 
-export const Alert: React.FC<AlertProps> = ({
-  className,
-  children,
-  fullWidth,
-  statusType = 'info',
-  ...rootProps
-}) => {
-  const classes = useStyles({});
-  return (
-    <div
-      className={clsx(
-        classes.root,
-        classes[statusType],
-        fullWidth && classes.fullWidth,
-        className
-      )}
-      role="alert"
-      {...rootProps}
-    >
-      {children}
-    </div>
-  );
-};
+/**
+  Alerts are used to communicate a state that affects a system, feature or page.
+
+  ### Accessibility
+
+  - The Alert component has the `alert` role.
+
+  ### Links
+
+  - [Component Source](https://github.com/lifeomic/chroma-react/blob/master/src/components/Alert/Alert.tsx)
+  - [Story Source](https://github.com/lifeomic/chroma-react/blob/master/stories/components/Alert/Alert.stories.tsx)
+ */
+export const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
+  (
+    { className, children, fullWidth, statusType = 'info', ...rootProps },
+    ref
+  ) => {
+    const classes = useStyles({});
+    return (
+      <div
+        className={clsx(
+          classes.root,
+          classes[statusType],
+          fullWidth && classes.fullWidth,
+          className
+        )}
+        ref={ref}
+        role="alert"
+        {...rootProps}
+      >
+        {children}
+      </div>
+    );
+  }
+);

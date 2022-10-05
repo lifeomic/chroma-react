@@ -71,8 +71,7 @@ export const useStyles = makeStyles(
         boxShadow: theme.boxShadows.focusVisibleInverse,
       },
       '&:disabled, &[disabled]': {
-        backgroundColor: 'rgba(255, 255, 255, 0.45)',
-        opacity: 1,
+        backgroundColor: theme.hexToRgba(theme.palette.common.white, 0.45),
         color: theme.palette.text.secondary,
       },
     },
@@ -99,15 +98,15 @@ export const useStyles = makeStyles(
       '&:hover': {
         color: theme.palette.common.white,
         opacity: 0.85,
-        borderColor: 'rgba(255, 255, 255, 0.85)',
+        borderColor: theme.hexToRgba(theme.palette.common.white, 0.85),
       },
       '&:focus.focus-visible': {
         boxShadow: theme.boxShadows.focusVisibleInverse,
       },
       '&:disabled, &[disabled]': {
-        color: 'rgba(255, 255, 255, 0.45)',
+        color: theme.hexToRgba(theme.palette.common.white, 0.45),
         opacity: 1,
-        borderColor: 'rgba(255, 255, 255, 0.45)',
+        borderColor: theme.hexToRgba(theme.palette.common.white, 0.45),
       },
     },
     text: {
@@ -236,6 +235,25 @@ export interface ButtonProps extends React.ComponentPropsWithoutRef<'button'> {
   trailingIcon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
 }
 
+/**
+A typical Button component.
+
+### Accessibility
+
+- The Button has `type="button"`.
+  - Pressing `Tab` will set focus to the element
+  - Pressing `Space` or `Enter` triggers the click action.
+- When the Button has focus, Space and Enter keys activates it.
+- When the Button is disabled, the tabIndex is set to `-1`.
+- The icon of Button has `role="img"` and `aria-hidden` attributes so that it
+  does not get picked up by screen readers.
+
+### Links
+
+- [Component Source](https://github.com/lifeomic/chroma-react/blob/master/src/components/Button/Button.tsx)
+- [Story Source](https://github.com/lifeomic/chroma-react/blob/master/stories/components/Button/Button.stories.tsx)
+
+ */
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (
     {

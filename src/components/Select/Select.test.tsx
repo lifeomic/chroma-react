@@ -434,3 +434,34 @@ test('it can render a disabled option', async () => {
   const option = await findByTestId('disabled-option');
   expect(option.parentElement).toHaveAttribute('aria-disabled', 'true');
 });
+
+test('it renders an * when the field is required', async () => {
+  const props = getBaseProps();
+  const mockFn = jest.fn();
+
+  const { findByText } = renderWithTheme(
+    <Select {...props} onChange={mockFn} showRequiredLabel>
+      <SelectOption title="option1" value="option1" />
+      <SelectOption title="option2" value="option2" />
+    </Select>
+  );
+  const asterisk = await findByText('*');
+  expect(asterisk).toBeInTheDocument();
+  expect(asterisk).toHaveClass('ChromaSelect-required');
+});
+
+test('it renders an inverse color * when the field is required', async () => {
+  const props = getBaseProps();
+  const mockFn = jest.fn();
+
+  const { findByText } = renderWithTheme(
+    <Select {...props} onChange={mockFn} showRequiredLabel color="inverse">
+      <SelectOption title="option1" value="option1" />
+      <SelectOption title="option2" value="option2" />
+    </Select>
+  );
+  const asterisk = await findByText('*');
+  expect(asterisk).toHaveClass(
+    'ChromaSelect-required ChromaSelect-requiredInverse'
+  );
+});

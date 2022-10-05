@@ -55,7 +55,7 @@ export const useStyles = makeStyles(
         },
       },
       '&:disabled': {
-        color: `rgba(255, 255, 255, 0.45)`,
+        color: theme.hexToRgba(theme.palette.common.white, 0.45),
       },
     },
     negative: {
@@ -156,6 +156,22 @@ export interface IconButtonProps
   paddingRight?: 0 | 1 | 2 | 3;
 }
 
+/**
+ * A Button element with an icon only. Since it's only an icon that's rendered,
+ * it's required to pass the `aria-label` prop so that screen readers can give
+ * meaning to the button.
+ *
+ * ### Accessibility
+ *
+ * - The Icon Button has `type="button"`.
+ *   - Pressing `Tab` will set focus to the element
+ *   - Pressing `Space` or `Enter` triggers the click action.
+ *
+ * ### Links
+ *
+ * - [Component Source](https://github.com/lifeomic/chroma-react/blob/master/src/components/IconButton/IconButton.tsx)
+ * - [Story Source](https://github.com/lifeomic/chroma-react/blob/master/stories/components/IconButton/IconButton.stories.tsx)
+ */
 export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
   (
     {

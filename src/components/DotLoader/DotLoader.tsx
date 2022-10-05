@@ -63,6 +63,15 @@ export interface DotLoaderProps
   dotStyle?: ClassValue;
 }
 
+/**
+ * A Dot Loader provides a visual cue that an action is processing or page is loading.
+ *
+ * ### Links
+ *
+ * - [Component Source](https://github.com/lifeomic/chroma-react/blob/master/src/components/DotLoader/DotLoader.tsx)
+ * - [Story Source](https://github.com/lifeomic/chroma-react/blob/master/stories/components/DotLoader/DotLoader.stories.tsx)
+ */
+
 export const DotLoader: React.FunctionComponent<DotLoaderProps> = ({
   size,
   dotStyle,

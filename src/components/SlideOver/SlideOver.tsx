@@ -101,6 +101,23 @@ export interface SlideOverProps {
   isOpen?: boolean;
 }
 
+/**
+ * Slide Overs are used to display content that is hidden until toggled open.
+ *
+ * **NOTE:** The parent must have `position: relative` for this to work properly.
+ *
+ * **NOTE:** This component locks the body from scrolling by design, so that users
+ * can scroll the Slide Over panel.
+ *
+ * ### Accessibility
+ *
+ * - The SlideOver locks scroll when open.
+ *
+ * ### Links
+ *
+ * - [Component Source](https://github.com/lifeomic/chroma-react/blob/master/src/components/SlideOver/SlideOver.tsx)
+ * - [Story Source](https://github.com/lifeomic/chroma-react/blob/master/stories/components/SlideOver/SlideOver.stories.tsx)
+ */
 export const SlideOver: React.FC<SlideOverProps> = ({
   classes: additionalClasses,
   className,

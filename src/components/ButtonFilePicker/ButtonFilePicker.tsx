@@ -73,7 +73,7 @@ export const useStyles = makeStyles(
       },
     },
     containedInverseDisabled: {
-      backgroundColor: 'rgba(255, 255, 255, 0.45)',
+      backgroundColor: theme.hexToRgba(theme.palette.common.white, 0.45),
       opacity: 1,
       color: theme.palette.text.secondary,
     },
@@ -100,18 +100,18 @@ export const useStyles = makeStyles(
       '&:hover': {
         color: theme.palette.common.white,
         opacity: 0.85,
-        borderColor: 'rgba(255, 255, 255, 0.85)',
+        borderColor: theme.hexToRgba(theme.palette.common.white, 0.85),
       },
       '&:focus': {
         color: theme.palette.common.white,
         opacity: 0.75,
-        borderColor: 'rgba(255, 255, 255, 0.75)',
+        borderColor: theme.hexToRgba(theme.palette.common.white, 0.75),
       },
     },
     outlinedInverseDisabled: {
-      color: 'rgba(255, 255, 255, 0.45)',
+      color: theme.hexToRgba(theme.palette.common.white, 0.45),
       opacity: 1,
-      borderColor: 'rgba(255, 255, 255, 0.45)',
+      borderColor: theme.hexToRgba(theme.palette.common.white, 0.45),
     },
     text: {
       backgroundColor: 'transparent',
@@ -188,6 +188,33 @@ export interface ButtonFilePickerProps {
   variant?: ButtonProps['variant'];
 }
 
+/**
+An element that appears as a Button component, but is used for file selection.
+
+### A Direct Button Extension
+
+This component is a direct extension of the Button component. The following
+props are also available to Button File Picker:
+
+- variant
+- children
+- icon
+- color
+- disabled
+- className
+- fullWidth
+
+### Accessibility
+
+- The label and input utilize the `for` and `id`.
+- The input can receive focus via the `Tab` key.
+- Pressing `Space` or `Enter` triggers the click action.
+
+### Links
+
+- [Component Source](https://github.com/lifeomic/chroma-react/blob/master/src/components/ButtonFilePicker/ButtonFilePicker.tsx)
+- [Story Source](https://github.com/lifeomic/chroma-react/blob/master/stories/components/ButtonFilePicker/ButtonFilePicker.stories.tsx)
+ */
 export const ButtonFilePicker = React.forwardRef<
   HTMLLabelElement,
   ButtonFilePickerProps

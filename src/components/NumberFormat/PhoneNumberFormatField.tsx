@@ -25,7 +25,6 @@ const useStyles = ({
       },
       phoneInputRoot: {
         display: 'flex',
-        width: '100%',
         position: 'relative',
         '& > .PhoneInputCountry': {
           position: 'absolute',
@@ -38,7 +37,7 @@ const useStyles = ({
         },
       },
       phoneInput: {
-        '& > input': {
+        '& input': {
           paddingLeft: theme.spacing(6),
         },
       },
@@ -56,8 +55,9 @@ const PhoneInputCompatibleChromaInput = React.forwardRef<
   const { className, ...textFieldProps } = props;
   return (
     <TextField
-      fullWidth
+      fullWidth={props.fullWidth}
       label="Phone Number"
+      showRequiredLabel={props.showRequiredLabel}
       helpMessage={props.about}
       ref={ref}
       {...textFieldProps}
@@ -75,9 +75,28 @@ export type PhoneNumberFormatFieldProps = Omit<
   onChange: (val: string) => void;
   hasError?: boolean;
   errorMessage?: string;
+  /** This property shows the required asterisk (*). Required validation needs to be implemented separately. */
+  fullWidth?: boolean;
+  showRequiredLabel?: boolean;
 };
+
+/**
+ * An input component for entering a phone number, it extends the [Chroma TextField component](https://lifeomic.github.io/chroma-react/?path=/story/form-components-textfield--all).. Leverages [react-phone-number-input](https://gitlab.com/catamphetamine/react-phone-number-input#readme).
+ *
+ * ### Accessibility
+ *
+ * - Similar to `<TextField />`, as it extends that component
+ * - Uses a native `<select>` element for the flag input
+ *
+ * ### Links
+ *
+ * - [Component Source](https://github.com/lifeomic/chroma-react/blob/master/src/components/NumberFormat/PhoneNumberFormatField.tsx)
+ * - [Story Source](https://github.com/lifeomic/chroma-react/blob/master/stories/components/NumberFormat/PhoneNumberFormatFieldStory.stories.tsx)
+ */
 export const PhoneNumberFormatField: React.FC<PhoneNumberFormatFieldProps> = ({
   className,
+  fullWidth,
+  showRequiredLabel,
   ...props
 }) => {
   const { value, onChange, errorMessage } = props;
@@ -87,7 +106,9 @@ export const PhoneNumberFormatField: React.FC<PhoneNumberFormatFieldProps> = ({
       className={clsx(classes.phoneInputRoot, className)}
       defaultCountry="US"
       flags={flags}
+      fullWidth={fullWidth}
       {...props}
+      showRequiredLabel={showRequiredLabel}
       // @ts-ignore defaultValue has type mismatch
       inputComponent={PhoneInputCompatibleChromaInput}
       value={value}

@@ -34,6 +34,14 @@ export type PaperClasses = GetClasses<typeof useStyles>;
 
 export interface PaperProps extends PaperOwnProps {}
 
+/**
+ * The Paper component is used as a general content wrapper.
+ *
+ * ### Links
+ *
+ * - [Component Source](https://github.com/lifeomic/chroma-react/blob/master/src/components/Paper/Paper.tsx)
+ * - [Story Source](https://github.com/lifeomic/chroma-react/blob/master/stories/components/Paper/Paper.stories.tsx)
+ */
 export const Paper = React.forwardRef<HTMLDivElement, PaperProps>(
   ({ children, className, padding = 2, ...rootProps }, ref) => {
     const classes = useStyles({});

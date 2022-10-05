@@ -40,7 +40,7 @@ export const useStyles = makeStyles(
       },
     },
     track: {
-      backgroundColor: 'rgba(132, 137, 166, 0.15)',
+      backgroundColor: theme.hexToRgba(theme.palette.graphite[900], 0.15),
       borderRadius: 2,
       cursor: 'pointer',
       flexGrow: 1,
@@ -51,7 +51,7 @@ export const useStyles = makeStyles(
       },
     },
     trackInverse: {
-      backgroundColor: 'rgba(230, 231, 237, 0.1)',
+      backgroundColor: theme.hexToRgba(theme.palette.graphite[100], 0.1),
     },
     range: {
       backgroundColor: theme.palette.primary.main,
@@ -79,14 +79,20 @@ export const useStyles = makeStyles(
         borderColor: theme.palette.graphite[600],
       },
       '&:hover, &:focus': {
-        boxShadow: '0 0 0 5px rgba(132, 137, 166, 0.08)',
+        boxShadow: `0 0 0 5px ${theme.hexToRgba(
+          theme.palette.graphite[900],
+          0.08
+        )}`,
       },
     },
     thumbInverse: {
       backgroundColor: theme.palette.graphite[100],
       borderColor: theme.palette.common.white,
       '&:hover, &:focus': {
-        boxShadow: '0 0 0 5px rgba(255, 255, 255, 0.09)',
+        boxShadow: `0 0 0 5px ${theme.hexToRgba(
+          theme.palette.common.white,
+          0.09
+        )}`,
       },
     },
     thumbError: {
@@ -202,6 +208,25 @@ const getValueAsArray = (value: undefined | number | number[]) => {
   return [value];
 };
 
+/**
+ * A slider component for form usage.
+ *
+ * ### Accessibility
+ *
+ * - The label and slider are "connected" via a uniqueId and the `aria-labelledby`
+ *   attribute.
+ * - The label is hidden so it cannot be focused by
+ *   screenreaders. Instead, the slider element receives the focus, and the label is
+ *   read as part of the input.
+ * - The component uses a uniqueId to link the slider to the help and error messages
+ *   via `aria-describedby`. This allows screenreaders to read the help and error
+ *   messages.
+ *
+ * ### Links
+ *
+ * - [Component Source](https://github.com/lifeomic/chroma-react/blob/master/src/components/Slider/Slider.tsx)
+ * - [Story Source](https://github.com/lifeomic/chroma-react/blob/master/stories/components/Slider/Slider.stories.tsx)
+ */
 export const Slider = React.forwardRef<HTMLElement, SliderProps>(
   (props, ref) => {
     const {

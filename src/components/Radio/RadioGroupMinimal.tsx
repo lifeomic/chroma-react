@@ -26,7 +26,7 @@ export const useStyles = makeStyles(
       color: theme.palette.black[800],
       fontSize: theme.pxToRem(14),
       fontWeight: theme.typography.fontWeightBold,
-      marginBottom: theme.spacing(1.5),
+      marginBottom: theme.spacing(1),
       padding: 0,
       '&:empty': {
         marginBottom: theme.spacing(0),
@@ -36,7 +36,7 @@ export const useStyles = makeStyles(
       color: theme.palette.common.white,
     },
     radios: {
-      background: 'rgba(132, 137, 166, 0.15)',
+      background: theme.hexToRgba(theme.palette.graphite[900], 0.15),
       borderRadius: theme.pxToRem(20),
       border: 'solid 1px transparent',
       display: 'inline-flex',
@@ -99,7 +99,10 @@ export const useStyles = makeStyles(
         },
         '&:focus + div': {
           '&::before': {
-            boxShadow: '0 0 0 2px rgba(0, 150, 225, .3)',
+            boxShadow: `0 0 0 2px ${theme.hexToRgba(
+              theme.palette.primary[600],
+              0.3
+            )}`,
           },
         },
       },
@@ -117,10 +120,10 @@ export const useStyles = makeStyles(
       },
     },
     radiosInverse: {
-      backgroundColor: 'rgba(230, 231, 237, 0.1)',
+      backgroundColor: theme.hexToRgba(theme.palette.graphite[100], 0.1),
       '& input:checked + div': {
         '&::before': {
-          background: 'rgba(255, 255, 255, 0.5)',
+          background: theme.hexToRgba(theme.palette.common.white, 0.5),
         },
         '& label > p, & svg': {
           color: 'unset',
@@ -128,7 +131,10 @@ export const useStyles = makeStyles(
       },
       '& input:focus + div': {
         '&::before': {
-          boxShadow: '0 0 0 2px rgba(255, 255, 255, .3)',
+          boxShadow: `0 0 0 2px ${theme.hexToRgba(
+            theme.palette.common.white,
+            0.3
+          )}`,
         },
       },
     },
@@ -151,6 +157,13 @@ export const useStyles = makeStyles(
     srOnly: {
       ...screenreaderOnlyStyles,
     },
+    required: {
+      color: theme.palette.error[500],
+      margin: theme.spacing(0, 0.5),
+    },
+    requiredInverse: {
+      color: theme.palette.common.white,
+    },
   }),
   { name: RadioGroupMinimalStylesKey }
 );
@@ -168,8 +181,27 @@ export interface RadioGroupMinimalProps
   direction?: 'row' | 'column';
   fullWidth?: boolean;
   title?: string;
+  /** This property shows the required asterisk (*). Required validation needs to be implemented separately. */
+  showRequiredLabel?: boolean;
 }
 
+/**
+ * The Radio Group Minimal and Radio components are styled radio inputs. They are typically
+ * used in combination; however, Radio can work on its own as well. A `title` is required
+ * to pass the `aria-label` prop so that screen readers can give meaning to the radio group.
+ * Unlike Radio Group, Radio Group Minimal does not have a `helpMessage` prop.
+ *
+ * ### Accessibility
+ *
+ * - The component renders as a fieldset.
+ * - The component has the `role="radiogroup"` attribute.
+ * - An `aria-label` is set with the `title`.
+ *
+ * ### Links
+ *
+ * - [Component Source](https://github.com/lifeomic/chroma-react/blob/master/src/components/Radio/RadioGroupMinimal.tsx)
+ * - [Story Source](https://github.com/lifeomic/chroma-react/blob/master/stories/components/Radio/Radio.stories.tsx)
+ */
 export const RadioGroupMinimal: React.FC<RadioGroupMinimalProps> = ({
   ['aria-label']: ariaLabel,
   background = 'true',
@@ -182,6 +214,7 @@ export const RadioGroupMinimal: React.FC<RadioGroupMinimalProps> = ({
   onChange,
   value,
   title,
+  showRequiredLabel,
   ...rootProps
 }) => {
   const classes = useStyles({});
@@ -227,6 +260,16 @@ export const RadioGroupMinimal: React.FC<RadioGroupMinimalProps> = ({
             !title && ariaLabel && classes.srOnly
           )}
         >
+          {showRequiredLabel && (
+            <span
+              className={clsx(
+                classes.required,
+                color === 'inverse' && classes.requiredInverse
+              )}
+            >
+              &#42;
+            </span>
+          )}
           {title || ariaLabel}
         </legend>
         <div

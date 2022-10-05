@@ -24,14 +24,14 @@ export const useStyles = makeStyles(
       '& > input[type="radio"]::after': {
         opacity: 0,
         transition:
-          'transform .3s cubic-bezier(.2, .85, .32, 1.2), opacity .2s',
+          'transform 0.3s cubic-bezier(0.2, 0.85, 0.32, 1.2), opacity 0.2s',
       },
       '& > input[type="radio"]:checked::after': {
         opacity: 1,
       },
     },
     input: {
-      background: 'rgba(132, 137, 166, 0.15)',
+      background: theme.hexToRgba(theme.palette.graphite[900], 0.15),
       border: '1px solid transparent',
       borderRadius: '50%',
       cursor: 'pointer',
@@ -41,7 +41,7 @@ export const useStyles = makeStyles(
       MozAppearance: 'none',
       outline: 'none',
       position: 'relative',
-      transition: 'background .3s, border-color .3s, box-shadow .2s',
+      transition: 'background 0.3s, border-color 0.3s, box-shadow 0.2s',
       verticalAlign: 'top',
       WebkitAppearance: 'none',
       width: theme.pxToRem(21),
@@ -69,20 +69,29 @@ export const useStyles = makeStyles(
         },
       },
       '&:focus': {
-        boxShadow: '0 0 0 2px rgba(0, 150, 225, .3)',
+        boxShadow: `0 0 0 2px ${theme.hexToRgba(
+          theme.palette.primary[600],
+          0.3
+        )}`,
       },
       '&:hover:not(:disabled):not(:checked)': {
         border: `1px solid ${theme.palette.primary[700]}`,
       },
     },
     inputInverse: {
-      backgroundColor: 'rgba(230, 231, 237, 0.1)',
+      backgroundColor: theme.hexToRgba(theme.palette.graphite[100], 0.1),
       '&:checked': {
-        backgroundColor: 'rgba(230, 231, 237, 0.1)',
-        border: `1px solid rgba(230, 231, 237, 0.55)`,
+        backgroundColor: theme.hexToRgba(theme.palette.graphite[100], 0.1),
+        border: `1px solid ${theme.hexToRgba(
+          theme.palette.graphite[100],
+          0.55
+        )}`,
       },
       '&:focus': {
-        boxShadow: '0 0 0 2px rgba(255, 255, 255, .3)',
+        boxShadow: `0 0 0 2px ${theme.hexToRgba(
+          theme.palette.common.white,
+          0.3
+        )}`,
       },
       '&:hover:not(:disabled):not(:checked)': {
         border: `1px solid ${theme.palette.common.white}`,
@@ -131,6 +140,32 @@ export interface RadioProps extends BaseFormElement {
   icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
 }
 
+/**
+ * A basic Radio component. The recommended use case is to always use this with RadioGroup.
+ *
+ * ### Color
+ *
+ * If using RadioGroup, provide the `color` to the RadioGroup instead. You do not
+ * need to provide the color prop yourself.
+ *
+ * ### Children
+ *
+ * The Radio component supports children to be rendered; however, this should be
+ * used sparingly and deeply considered to not negatively affect accessibility.
+ *
+ * ### Accessibility
+ *
+ * - The label and input are "connected" via a uniqueId and the `for` + `id`
+ *   attributes.
+ * - The component has `type="radio"` and `role="radio"` attributes.
+ * - The component uses a uniqueId to link the input to the help message via
+ *   `aria-describedby`. This allows screenreaders to read the help message.
+ *
+ * ### Links
+ *
+ * - [Component Source](https://github.com/lifeomic/chroma-react/blob/master/src/components/Radio/Radio.tsx)
+ * - [Story Source](https://github.com/lifeomic/chroma-react/blob/master/stories/components/Radio/Radio.stories.tsx)
+ */
 export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
   (
     {

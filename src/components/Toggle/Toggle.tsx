@@ -38,7 +38,7 @@ export const useStyles = makeStyles(
       },
     },
     input: {
-      background: 'rgba(132, 137, 166, 0.15)',
+      background: theme.hexToRgba(theme.palette.graphite[900], 0.15),
       border: '1px solid transparent',
       borderRadius: theme.pxToRem(11),
       cursor: 'pointer',
@@ -76,22 +76,28 @@ export const useStyles = makeStyles(
         },
       },
       '&:focus': {
-        boxShadow: '0 0 0 2px rgba(0, 150, 225, .3)',
+        boxShadow: `0 0 0 2px ${theme.hexToRgba(
+          theme.palette.primary[600],
+          0.3
+        )}`,
       },
       '&:hover:not(:disabled):not(:checked)': {
         border: `1px solid ${theme.palette.primary[700]}`,
       },
     },
     inputInverse: {
-      backgroundColor: 'rgba(230, 231, 237, 0.1)',
-      border: '1px solid rgba(255, 255, 255, 0.2)',
+      backgroundColor: theme.hexToRgba(theme.palette.graphite[100], 0.1),
+      border: `1px solid ${theme.hexToRgba(theme.palette.common.white, 0.2)}`,
       mixBlendMode: 'hard-light',
       '&:checked': {
         background: theme.palette.secondary[500],
         border: `1px solid ${theme.palette.secondary[500]}`,
       },
       '&:focus': {
-        boxShadow: '0 0 0 2px rgba(255, 255, 255, .3)',
+        boxShadow: `0 0 0 2px ${theme.hexToRgba(
+          theme.palette.common.white,
+          0.3
+        )}`,
       },
       '&:hover:not(:disabled):not(:checked)': {
         border: `1px solid ${theme.palette.common.white}`,
@@ -135,6 +141,13 @@ export const useStyles = makeStyles(
     srOnly: {
       ...screenreaderOnlyStyles,
     },
+    required: {
+      color: theme.palette.error[500],
+      margin: theme.spacing(0, 0.5),
+    },
+    requiredInverse: {
+      color: theme.palette.common.white,
+    },
   }),
   { name: ToggleStylesKey }
 );
@@ -146,6 +159,24 @@ export interface ToggleProps extends BaseFormElement {
   placement?: 'left' | 'right';
 }
 
+/**
+ * A toggle component for form usage. This is similar to Checkbox, but a different
+ * style. Under the covers, this is an input element with `type="checkbox"`.
+ *
+ * ### Accessibility
+ *
+ * - The label and input are "connected" via a uniqueId and the `for` + `id`
+ *   attributes.
+ * - The component has `type="checkbox"`.
+ * - The component uses a uniqueId to link the input to the help and error messages
+ *   via `aria-describedby`. This allows screenreaders to read the help and error
+ *   messages.
+ *
+ * ### Links
+ *
+ * - [Component Source](https://github.com/lifeomic/chroma-react/blob/master/src/components/Toggle/Toggle.tsx)
+ * - [Story Source](https://github.com/lifeomic/chroma-react/blob/master/stories/components/Toggle/Toggle.stories.tsx)
+ */
 export const Toggle = React.forwardRef<HTMLInputElement, ToggleProps>(
   (
     {
@@ -161,6 +192,7 @@ export const Toggle = React.forwardRef<HTMLInputElement, ToggleProps>(
       label,
       name,
       placement = 'left',
+      showRequiredLabel,
       ...rootProps
     },
     ref
@@ -219,6 +251,16 @@ export const Toggle = React.forwardRef<HTMLInputElement, ToggleProps>(
               className={color === 'inverse' ? classes.labelInverse : undefined}
               size="subbody"
             >
+              {showRequiredLabel && (
+                <span
+                  className={clsx(
+                    classes.required,
+                    color === 'inverse' && classes.requiredInverse
+                  )}
+                >
+                  &#42;
+                </span>
+              )}
               {label || ariaLabel}
             </Text>
           </label>

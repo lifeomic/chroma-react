@@ -5,6 +5,8 @@
 export interface BaseFormElementWithNodeLabel
   extends React.ComponentPropsWithoutRef<'input'> {
   color?: 'default' | 'inverse';
+  /** This property shows the required asterisk (*). Required validation needs to be implemented separately. */
+  showRequiredLabel?: boolean;
   hasError?: boolean;
   errorMessage?: string;
   helpMessage?: string;

@@ -1,27 +1,31 @@
-import { Overrides as MuiOverrides } from '@material-ui/core/styles/overrides';
 import deepmerge from 'deepmerge';
 import { Theme } from '../createTheme';
-import { ChromaOverrides } from './ChromaOverrides';
+import { Components } from './ChromaComponents';
 import { createMuiButtonOverrides } from './MuiButton';
 import { createMuiTabOverrides } from './MuiTab';
 import { createMuiTabsOverrides } from './MuiTabs';
 import { createMuiTooltipOverrides } from './MuiTooltip';
 
-export interface Overrides extends MuiOverrides, ChromaOverrides {}
-
 export interface OverridesCreator {
-  (theme: Theme): Overrides;
+  (theme: Theme): Components;
 }
 
 export const createOverrides = (
   theme: Theme,
   overridesCreator?: OverridesCreator
 ) => {
-  const baseOverrides: Overrides = {
-    MuiButton: createMuiButtonOverrides(theme),
-    MuiTooltip: createMuiTooltipOverrides(theme),
-    MuiTabs: createMuiTabsOverrides(theme),
-    MuiTab: createMuiTabOverrides(theme),
+  const baseOverrides: Components = {
+    MuiButton: {
+      defaultProps: { color: 'secondary' },
+      styleOverrides: createMuiButtonOverrides(theme),
+    },
+    MuiCheckbox: { defaultProps: { color: 'secondary' } },
+    MuiFormControl: { defaultProps: { variant: 'standard' } },
+    MuiSelect: { defaultProps: { variant: 'standard' } },
+    MuiTooltip: { styleOverrides: createMuiTooltipOverrides(theme) },
+    MuiTabs: { styleOverrides: createMuiTabsOverrides(theme) },
+    MuiTab: { styleOverrides: createMuiTabOverrides(theme) },
+    MuiTextField: { defaultProps: { variant: 'standard' } },
   };
 
   if (!overridesCreator) {

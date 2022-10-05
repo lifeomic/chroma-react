@@ -396,3 +396,22 @@ test('it calls onChange when clicking a suggested color', async () => {
 
   expect(onChangeMock).toHaveBeenCalledWith('#f7bf4d');
 });
+
+test('it renders an * when the field is required', async () => {
+  const { findByText } = renderWithTheme(
+    <ColorPicker label="Required" showRequiredLabel />
+  );
+  const asterisk = await findByText('*');
+  expect(asterisk).toBeInTheDocument();
+  expect(asterisk).toHaveClass('ChromaColorPicker-required');
+});
+
+test('it renders an inverse color * when the field is required', async () => {
+  const { findByText } = renderWithTheme(
+    <ColorPicker label="Required" color="inverse" showRequiredLabel />
+  );
+  const asterisk = await findByText('*');
+  expect(asterisk).toHaveClass(
+    'ChromaColorPicker-required ChromaColorPicker-requiredInverse'
+  );
+});

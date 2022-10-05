@@ -26,13 +26,20 @@ To get started with Chroma, follow these steps:
 
    Chroma leverages `@material-ui/styles` for CSS-in-JS and `react-router-dom` for link-related components.
 
-2. Wrap your application with the `ThemeProvider` provided by Chroma.
+2. Wrap your application with the `StyledEngineProvider` and `ThemeProvider` provided by Chroma.
 
    ```jsx
-   import { ThemeProvider } from '@lifeomic/chroma-react/styles';
+   import {
+     StyledEngineProvider,
+     ThemeProvider,
+   } from '@lifeomic/chroma-react/styles';
 
    function App({ children }) {
-     return <ThemeProvider>{children}</ThemeProvider>;
+     return (
+       <StyledEngineProvider injectFirst>
+         <ThemeProvider theme={theme}>{children}</ThemeProvider>
+       </StyledEngineProvider>
+     );
    }
    ```
 
@@ -100,7 +107,11 @@ Want to override the default theme of Chroma? No problem!
    import { theme } from './theme';
 
    function App({ children }) {
-     return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
+     return (
+       <StyledEngineProvider injectFirst>
+         <ThemeProvider theme={theme}>{children}</ThemeProvider>
+       </StyledEngineProvider>
+     );
    }
    ```
 

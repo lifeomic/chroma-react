@@ -50,10 +50,11 @@ export const useStyles = makeStyles(
       },
     },
     textarea: {
-      backgroundColor: 'rgba(132, 137, 166, 0.15)',
+      backgroundColor: theme.hexToRgba(theme.palette.graphite[900], 0.15),
       border: `1px solid transparent`,
       borderRadius: theme.pxToRem(4),
       color: theme.palette.text.primary,
+      display: 'block',
       fontFamily: theme.typography.fontFamily,
       fontSize: theme.pxToRem(14),
       lineHeight: 1.25,
@@ -68,8 +69,11 @@ export const useStyles = makeStyles(
       transition: 'border 0.25s ease',
       '&:focus': {
         outline: 'none',
-        backgroundColor: 'rgba(255, 255, 255, 0.5)',
-        border: `1px solid rgba(132, 137, 166, 0.45)`,
+        backgroundColor: theme.hexToRgba(theme.palette.common.white, 0.5),
+        border: `1px solid ${theme.hexToRgba(
+          theme.palette.graphite[900],
+          0.45
+        )}`,
       },
       '&:disabled': {
         cursor: 'not-allowed',
@@ -79,9 +83,9 @@ export const useStyles = makeStyles(
         cursor: 'not-allowed',
         opacity: 0.9,
         '&:focus': {
-          backgroundColor: 'rgba(132, 137, 166, 0.15)',
+          backgroundColor: theme.hexToRgba(theme.palette.graphite[900], 0.15),
           border: `1px solid transparent`,
-        }
+        },
       },
       '&::-webkit-input-placeholder': {
         color: theme.palette.black[400],
@@ -97,33 +101,36 @@ export const useStyles = makeStyles(
       },
     },
     textareaInverse: {
-      backgroundColor: 'rgba(230, 231, 237, 0.1)',
+      backgroundColor: theme.hexToRgba(theme.palette.graphite[100], 0.1),
       color: theme.palette.common.white,
       '&:focus': {
-        backgroundColor: 'rgba(230, 231, 237, 0.1)',
-        border: `1px solid rgba(230, 231, 237, 0.55)`,
+        backgroundColor: theme.hexToRgba(theme.palette.graphite[100], 0.1),
+        border: `1px solid ${theme.hexToRgba(
+          theme.palette.graphite[100],
+          0.55
+        )}`,
       },
       '&:read-only': {
         opacity: 1,
         '&:focus': {
-          backgroundColor: 'rgba(230, 231, 237, 0.1)',
-        }
+          backgroundColor: theme.hexToRgba(theme.palette.graphite[100], 0.1),
+        },
       },
       '&::-webkit-input-placeholder': {
-        color: 'rgba(255, 255, 255, 0.8)',
+        color: theme.hexToRgba(theme.palette.common.white, 0.8),
       },
       '&::-moz-placeholder': {
-        color: 'rgba(255, 255, 255, 0.8)',
+        color: theme.hexToRgba(theme.palette.common.white, 0.8),
       },
       '&:-ms-input-placeholder': {
-        color: 'rgba(255, 255, 255, 0.8)',
+        color: theme.hexToRgba(theme.palette.common.white, 0.8),
       },
       '&:-moz-placeholder': {
-        color: 'rgba(255, 255, 255, 0.8)',
+        color: theme.hexToRgba(theme.palette.common.white, 0.8),
       },
     },
     textareaError: {
-      backgroundColor: 'rgba(230, 231, 237, 0.1)',
+      backgroundColor: theme.hexToRgba(theme.palette.graphite[100], 0.1),
       border: `1px solid ${theme.palette.error.main}`,
       '&:focus': {
         border: `1px solid ${theme.palette.error.main}`,
@@ -138,6 +145,13 @@ export const useStyles = makeStyles(
     tooltipContainer: {
       display: 'flex',
       outline: 'none',
+    },
+    required: {
+      color: theme.palette.error[500],
+      margin: theme.spacing(0, 0.5),
+    },
+    requiredInverse: {
+      color: theme.palette.common.white,
     },
     srOnly: {
       ...screenreaderOnlyStyles,
@@ -160,8 +174,30 @@ export interface TextAreaProps
   icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   tooltipMessage?: string;
   textAreaClassName?: string;
+  /** This property shows the required asterisk (*). Required validation needs to be implemented separately. */
+  showRequiredLabel?: boolean;
 }
 
+/**
+ * An textarea component for form usage.
+ *
+ * ### Accessibility
+ *
+ * - The label and textarea are "connected" via a uniqueId and the `for` + `id`
+ *   attributes.
+ * - The label has the `aria-hidden` attribute so it cannot be focused by
+ *   screenreaders. Instead, the textarea element receives the focus, and the label
+ *   is read as part of the textarea.
+ * - The component uses a uniqueId to link the textarea to the help and error
+ *   messages via `aria-describedby`. This allows screenreaders to read the help
+ *   and error messages.
+ * - The icon has `aria-hidden` and `role="img"` attributes.
+ *
+ * ### Links
+ *
+ * - [Component Source](https://github.com/lifeomic/chroma-react/blob/master/src/components/TextArea/TextArea.tsx)
+ * - [Story Source](https://github.com/lifeomic/chroma-react/blob/master/stories/components/TextArea/TextArea.stories.tsx)
+ */
 export const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
   (
     {
@@ -179,6 +215,7 @@ export const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
       secondaryLabel,
       textAreaClassName,
       tooltipMessage,
+      showRequiredLabel,
       ...rootProps
     },
     ref
@@ -207,6 +244,16 @@ export const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
           )}
           htmlFor={uniqueId}
         >
+          {showRequiredLabel && (
+            <span
+              className={clsx(
+                classes.required,
+                color === 'inverse' && classes.requiredInverse
+              )}
+            >
+              &#42;
+            </span>
+          )}
           {label || ariaLabel}
           {!!Icon && tooltipMessage && (
             <Tooltip title={tooltipMessage}>

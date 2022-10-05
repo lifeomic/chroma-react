@@ -19,7 +19,7 @@ import {
   PopoverRenderProps,
 } from '../Popover';
 import { Tooltip } from '../Tooltip';
-import { fade } from '@material-ui/core/styles/colorManipulator';
+import { alpha } from '@mui/material/styles';
 import 'focus-visible';
 
 export const ColorPickerStylesKey = 'ChromaColorPicker';
@@ -58,7 +58,7 @@ export const useStyles = makeStyles(
       },
     },
     input: {
-      backgroundColor: 'rgba(132, 137, 166, 0.15)',
+      backgroundColor: theme.hexToRgba(theme.palette.graphite[900], 0.15),
       border: `1px solid transparent`,
       borderRadius: theme.pxToRem(4),
       color: theme.palette.text.primary,
@@ -73,8 +73,11 @@ export const useStyles = makeStyles(
       transition: 'border 0.25s ease',
       '&:focus': {
         outline: 'none',
-        backgroundColor: 'rgba(255, 255, 255, 0.5)',
-        border: `1px solid rgba(132, 137, 166, 0.45)`,
+        backgroundColor: theme.hexToRgba(theme.palette.common.white, 0.5),
+        border: `1px solid ${theme.hexToRgba(
+          theme.palette.graphite[900],
+          0.45
+        )}`,
       },
       '&:disabled': {
         cursor: 'not-allowed',
@@ -84,7 +87,7 @@ export const useStyles = makeStyles(
         cursor: 'not-allowed',
         opacity: 0.9,
         '&:focus': {
-          backgroundColor: 'rgba(132, 137, 166, 0.15)',
+          backgroundColor: theme.hexToRgba(theme.palette.graphite[900], 0.15),
           border: `1px solid transparent`,
         },
       },
@@ -102,29 +105,32 @@ export const useStyles = makeStyles(
       },
     },
     inputInverse: {
-      backgroundColor: 'rgba(230, 231, 237, 0.1)',
+      backgroundColor: theme.hexToRgba(theme.palette.graphite[100], 0.1),
       color: theme.palette.common.white,
       '&:focus': {
-        backgroundColor: 'rgba(230, 231, 237, 0.1)',
-        border: `1px solid rgba(230, 231, 237, 0.55)`,
+        backgroundColor: theme.hexToRgba(theme.palette.graphite[100], 0.1),
+        border: `1px solid ${theme.hexToRgba(
+          theme.palette.graphite[100],
+          0.55
+        )}`,
       },
       '&:read-only': {
         opacity: 1,
         '&:focus': {
-          backgroundColor: 'rgba(230, 231, 237, 0.1)',
+          backgroundColor: theme.hexToRgba(theme.palette.graphite[100], 0.1),
         },
       },
       '&::-webkit-input-placeholder': {
-        color: 'rgba(255, 255, 255, 0.8)',
+        color: theme.hexToRgba(theme.palette.common.white, 0.8),
       },
       '&::-moz-placeholder': {
-        color: 'rgba(255, 255, 255, 0.8)',
+        color: theme.hexToRgba(theme.palette.common.white, 0.8),
       },
       '&:-ms-input-placeholder': {
-        color: 'rgba(255, 255, 255, 0.8)',
+        color: theme.hexToRgba(theme.palette.common.white, 0.8),
       },
       '&:-moz-placeholder': {
-        color: 'rgba(255, 255, 255, 0.8)',
+        color: theme.hexToRgba(theme.palette.common.white, 0.8),
       },
     },
     hasTrailer: {
@@ -135,7 +141,7 @@ export const useStyles = makeStyles(
       width: 'fit-content',
     },
     inputError: {
-      backgroundColor: 'rgba(230, 231, 237, 0.1)',
+      backgroundColor: theme.hexToRgba(theme.palette.graphite[100], 0.1),
       border: `1px solid ${theme.palette.error.main}`,
       '&:focus': {
         border: `1px solid ${theme.palette.error.main}`,
@@ -177,7 +183,7 @@ export const useStyles = makeStyles(
       justifyContent: 'center',
       position: 'relative',
       '&::after': {
-        background: fade(theme.palette.common.black, 0.25),
+        background: alpha(theme.palette.common.black, 0.25),
         bottom: 0,
         content: `''`,
         height: theme.pxToRem(1),
@@ -238,6 +244,13 @@ export const useStyles = makeStyles(
     colorSquare: {
       borderRadius: theme.pxToRem(4),
     },
+    required: {
+      color: theme.palette.error[500],
+      margin: theme.spacing(0, 0.5),
+    },
+    requiredInverse: {
+      color: theme.palette.common.white,
+    },
   }),
   { name: ColorPickerStylesKey }
 );
@@ -266,8 +279,40 @@ export interface ColorPickerProps
   tooltipMessage?: string;
   value?: string;
   variant?: 'square' | 'circle';
+  /** This property shows the required asterisk (*). Required validation needs to be implemented separately. */
+  showRequiredLabel?: boolean;
 }
 
+/**
+ * An input component for selecting a color.
+ *
+ * ### Accessibility
+ *
+ * - The label and input are "connected" via a uniqueId and the `for` + `id`
+ *   attributes.
+ * - The label has the `aria-hidden` attribute so it cannot be focused by
+ *   screenreaders. Instead, the input element receives the focus, and the label is
+ *   read as part of the input.
+ * - The component has `type="text"` by default.
+ * - The component uses a uniqueId to link the input to the help and error messages
+ *   via `aria-describedby`. This allows screenreaders to read the help and error
+ *   messages.
+ * - The icon has `aria-hidden` and `role="img"` attributes.
+ *
+ * #### Disabled versus readonly
+ *
+ * Read only should be used when a screenreader should still be able to read the
+ * text inside of the element to the users. When `disabled` is used, it completely
+ * skips over the element. In most cases, you want to use `readOnly`, not
+ * `disabled`. The disabled state will **not** announce the text inside of the
+ * TextField to the user.
+ *
+ * ### Links
+ *
+ * - [Component Source](https://github.com/lifeomic/chroma-react/blob/master/src/components/ColorPicker/ColorPicker.tsx)
+ * - [Story Source](https://github.com/lifeomic/chroma-react/blob/master/stories/components/ColorPicker/ColorPicker.stories.tsx)
+ *
+ */
 export const ColorPicker = React.forwardRef<HTMLInputElement, ColorPickerProps>(
   (
     {
@@ -291,6 +336,7 @@ export const ColorPicker = React.forwardRef<HTMLInputElement, ColorPickerProps>(
       tooltipMessage,
       value = '',
       variant = 'square',
+      showRequiredLabel,
       ...rootProps
     },
     ref
@@ -369,6 +415,16 @@ export const ColorPicker = React.forwardRef<HTMLInputElement, ColorPickerProps>(
             )}
             htmlFor={uniqueId}
           >
+            {showRequiredLabel && (
+              <span
+                className={clsx(
+                  classes.required,
+                  color === 'inverse' && classes.requiredInverse
+                )}
+              >
+                &#42;
+              </span>
+            )}
             {label}
             {!!Icon && tooltipMessage && (
               <Tooltip title={tooltipMessage}>

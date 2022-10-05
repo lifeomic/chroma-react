@@ -73,6 +73,15 @@ export interface LayoutManagerProps
   sidebar?: React.ReactNode;
 }
 
+/**
+ * Component typically used as an application container. It accepts a `header`, a
+ * `sidebar`, and children to render.
+ *
+ * ### Links
+ *
+ * - [Component Source](https://github.com/lifeomic/chroma-react/blob/master/src/components/LayoutManager/LayoutManager.tsx)
+ * - [Story Source](https://github.com/lifeomic/chroma-react/blob/master/stories/components/LayoutManager/LayoutManager.stories.tsx)
+ */
 export const LayoutManager: React.FC<LayoutManagerProps> = ({
   children,
   header,

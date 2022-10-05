@@ -1,10 +1,10 @@
-import { Overrides } from '@material-ui/core/styles/overrides';
+import { ComponentsOverrides as Overrides } from '@mui/material/styles/overrides';
 import { Theme } from '../createTheme';
 
 export const createMuiButtonOverrides = (
   theme: Theme
 ): Overrides['MuiButton'] => {
-  const basePadding = `${theme.spacing(1.375)}px ${theme.spacing(1.75)}px`;
+  const basePadding = theme.spacing(1.375, 1.75);
 
   return {
     root: {
@@ -76,7 +76,7 @@ export const createMuiButtonOverrides = (
     },
     sizeSmall: {
       ...theme.typography.button,
-      padding: `${theme.spacing(1)}px ${theme.spacing(1.375)}px`,
+      padding: theme.spacing(1, 1.375),
       minWidth: theme.spacing(8),
       minHeight: theme.pxToRem(32),
     },

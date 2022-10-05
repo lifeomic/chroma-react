@@ -84,7 +84,7 @@ export const useStyles = makeStyles(
     },
     button: {
       alignItems: 'center',
-      backgroundColor: 'rgba(132, 137, 166, 0.15)',
+      backgroundColor: theme.hexToRgba(theme.palette.graphite[900], 0.15),
       border: 'solid 1px transparent',
       borderRadius: theme.pxToRem(4),
       color: theme.palette.text.primary,
@@ -106,7 +106,10 @@ export const useStyles = makeStyles(
         opacity: 0.625,
       },
       '&:focus': {
-        boxShadow: '0 0 0 2px rgba(0, 150, 225, .3)',
+        boxShadow: `0 0 0 2px ${theme.hexToRgba(
+          theme.palette.primary[600],
+          0.3
+        )}`,
         outline: 'none',
       },
       '&::-moz-focus-inner': {
@@ -114,13 +117,16 @@ export const useStyles = makeStyles(
       },
     },
     buttonInverse: {
-      backgroundColor: 'rgba(230, 231, 237, 0.1)',
+      backgroundColor: theme.hexToRgba(theme.palette.graphite[100], 0.1),
       color: theme.palette.common.white,
       '&:focus': {
-        boxShadow: '0 0 0 2px rgba(255, 255, 255, .3)',
+        boxShadow: `0 0 0 2px ${theme.hexToRgba(
+          theme.palette.common.white,
+          0.3
+        )}`,
       },
       '& $chip': {
-        background: 'rgba(255, 255, 255, 0.5)',
+        background: theme.hexToRgba(theme.palette.common.white, 0.5),
         color: theme.palette.text.primary,
       },
       '& $buttonText$placeholderText': {
@@ -128,7 +134,7 @@ export const useStyles = makeStyles(
       },
     },
     buttonError: {
-      backgroundColor: 'rgba(230, 231, 237, 0.1)',
+      backgroundColor: theme.hexToRgba(theme.palette.graphite[100], 0.1),
       border: `1px solid ${theme.palette.error.main}`,
       '&:focus': {
         border: `1px solid ${theme.palette.error.main}`,
@@ -199,7 +205,7 @@ export const useStyles = makeStyles(
       paddingRight: theme.spacing(2),
       transition: 'background-color 0.25s ease',
       '&:hover, &:focus': {
-        backgroundColor: 'rgba(222,244,252, 0.6)',
+        backgroundColor: theme.hexToRgba(theme.palette.primary[50], 0.6),
       },
     },
     chipList: {
@@ -228,6 +234,13 @@ export const useStyles = makeStyles(
     },
     srOnly: {
       ...screenreaderOnlyStyles,
+    },
+    required: {
+      color: theme.palette.error[500],
+      margin: theme.spacing(0, 0.5),
+    },
+    requiredInverse: {
+      color: theme.palette.common.white,
     },
   }),
   { name: SelectStylesKey }
@@ -341,8 +354,35 @@ export interface SelectProps
     option: SelectOptionProps
   ) => string | null | undefined | React.ReactNode;
   tooltipMessage?: string;
+  /** This property shows the required asterisk (*). Required validation needs to be implemented separately. */
+  showRequiredLabel?: boolean;
 }
 
+/**
+ * An accessible select component. If you need a multi-select component, see ComboBox.
+ *
+ * ### Accessibility
+ *
+ * - When the select menu is open, the arrow keys on a user's keyboard can be used
+ *   to navigate between options.
+ * - The Escape key closes the open menu.
+ * - Pressing the Enter key "clicks" the option.
+ * - A checkmark is read with the selected menu option.
+ * - The label and input are "connected" via a uniqueId and the `for` + `id`
+ *   attributes.
+ * - The label has the `aria-hidden` attribute so it cannot be focused by
+ *   screenreaders. Instead, the input element receives the focus, and the label is
+ *   read as part of the input.
+ * - The component uses a uniqueId to link the input to the help and error messages
+ *   via `aria-describedby`. This allows screenreaders to read the help and error
+ *   messages.
+ * - The icon has `aria-hidden` and `role="img"` attributes.
+ *
+ * ### Links
+ *
+ * - [Component Source](https://github.com/lifeomic/chroma-react/blob/master/src/components/Select/Select.tsx)
+ * - [Story Source](https://github.com/lifeomic/chroma-react/blob/master/stories/components/Select/Select.stories.tsx)
+ */
 export const Select: React.FC<SelectProps> = ({
   ['aria-label']: ariaLabel,
   children,
@@ -363,6 +403,7 @@ export const Select: React.FC<SelectProps> = ({
   selectedOptionDisplay,
   tooltipMessage,
   value,
+  showRequiredLabel,
   ...rootProps
 }) => {
   const classes = useStyles({});
@@ -434,6 +475,16 @@ export const Select: React.FC<SelectProps> = ({
         )}
         htmlFor={uniqueId}
       >
+        {showRequiredLabel && (
+          <span
+            className={clsx(
+              classes.required,
+              color === 'inverse' && classes.requiredInverse
+            )}
+          >
+            &#42;
+          </span>
+        )}
         {label || ariaLabel}
         {!!Icon && tooltipMessage && (
           <Tooltip title={tooltipMessage}>

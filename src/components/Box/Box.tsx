@@ -65,11 +65,6 @@ export const useStyles = makeStyles<BoxProps>(
       if (typeof value === 'number') return theme.spacing(value);
     };
 
-    const stringOrThemeSpacingGap = (value: string | number | undefined) => {
-      if (typeof value === 'string') return value;
-      if (typeof value === 'number') return theme.spacing(value) + 'px';
-    };
-
     const stringOrThemeColor = (value?: string) => {
       if (!value) return;
       const palette: any = theme.palette;
@@ -155,7 +150,7 @@ export const useStyles = makeStyles<BoxProps>(
         paddingBottom: ({ paddingY }) => stringOrThemeSpacing(paddingY),
       },
       gap: {
-        gap: ({ gap }) => stringOrThemeSpacingGap(gap),
+        gap: ({ gap }) => stringOrThemeSpacing(gap),
       },
       borderRadius: { borderRadius: theme.shape.borderRadius },
       color: { color: ({ color }) => stringOrThemeColor(color) },
@@ -167,6 +162,18 @@ export const useStyles = makeStyles<BoxProps>(
   { name: BoxStylesKey }
 );
 
+/**
+The Box component is used as a presentational wrapper. It provides a div with
+basic CSS and
+[flexbox](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox)
+options as props.
+
+### Links
+
+- [Component Source](https://github.com/lifeomic/chroma-react/blob/master/src/components/Box/Box.tsx)
+- [Story Source](https://github.com/lifeomic/chroma-react/blob/master/stories/components/Box/Box.stories.tsx)
+
+ */
 export const Box = React.forwardRef<HTMLDivElement, BoxProps>((props, ref) => {
   const {
     children,

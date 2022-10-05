@@ -43,6 +43,14 @@ export const useStyles = makeStyles(
     buttonShadow: {
       boxShadow: theme.boxShadows.table,
     },
+    leadingIcon: {
+      marginRight: theme.spacing(1),
+    },
+    titleContainer: {
+      alignItems: 'center',
+      display: 'flex',
+      width: '100%',
+    },
     title: {
       color: theme.palette.text.secondary,
       letterSpacing: 'initial',
@@ -86,113 +94,158 @@ export interface ExpansionPanelProps
     React.HTMLAttributes<HTMLDivElement>,
     HTMLDivElement
   > {
+  ref?: React.Ref<HTMLDivElement>;
   ariaOwnsId?: string;
   children?: React.ReactNode;
   contentClassName?: string;
   innerContentClassName?: string;
   title: string;
+  leadingIcon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   onToggle?: (isExpanded: boolean) => void;
   isOpen?: boolean;
   contentDirection?: 'row' | 'column';
 }
 
-export const ExpansionPanel: React.FC<ExpansionPanelProps> = ({
-  ariaOwnsId,
-  children,
-  className,
-  contentClassName,
-  innerContentClassName,
-  onToggle,
-  isOpen = false,
-  contentDirection = 'column',
-  title,
-  ...rootProps
-}) => {
-  const classes = useStyles({});
-  const [isExpanded, setIsExpanded] = React.useState(isOpen);
-
-  const ref = React.useRef<HTMLDivElement>(null);
-  const [contentHeight, setContentHeight] = React.useState<number>(0);
-
-  const [ariaId] = React.useState<string>(
-    () => ariaOwnsId || generateUniqueId('exppanel-')
-  );
-
-  // Watch for `isOpen` changes
-  React.useEffect(() => {
-    setIsExpanded(isOpen);
-  }, [isOpen]);
-
-  // TODO: Look into https://medium.com/@teh_builder/ref-objects-inside-useeffect-hooks-eb7c15198780
-  //
-  // Determine the size of our content so we can expand/collapse
-  // accordingly.  If the children are dynamically generated, we should
-  // re-evaluate our size in case additional content is added/removed
-  React.useEffect(() => {
-    if (ref && ref.current && children) {
-      setContentHeight(ref.current.scrollHeight + 25);
-    }
-  }, [children, ref?.current?.scrollHeight]);
-
-  const handleClick = React.useCallback(
-    (e: React.SyntheticEvent) => {
-      e.preventDefault();
-      e.stopPropagation();
-
-      const newState = !isExpanded;
-      if (typeof onToggle === 'function') {
-        onToggle(newState);
-      }
-
-      setIsExpanded(newState);
+/**
+ * Panel component for expanding/collapsing content.
+ *
+ * ### Accessibility
+ *
+ * - The click target is a `button` element.
+ *   - Pressing `Tab` will set focus to the element
+ *   - Pressing `Space` or `Enter` triggers the click action.
+ * - It leverages `aria-expanded` on the root button element.
+ * - It leverages `aria-owns` to define the expanded content.
+ * - It leverages `aria-hidden` on the content that expands/collapses.
+ *
+ * ### Links
+ *
+ * - [Component Source](https://github.com/lifeomic/chroma-react/blob/master/src/components/ExpansionPanel/ExpansionPanel.tsx)
+ * - [Story Source](https://github.com/lifeomic/chroma-react/blob/master/stories/components/ExpansionPanel/ExpansionPanel.stories.tsx)
+ */
+export const ExpansionPanel = React.forwardRef<
+  HTMLDivElement,
+  ExpansionPanelProps
+>(
+  (
+    {
+      ariaOwnsId,
+      children,
+      className,
+      contentClassName,
+      innerContentClassName,
+      onToggle,
+      isOpen = false,
+      contentDirection = 'column',
+      title,
+      leadingIcon: LeadingIcon,
+      ...rootProps
     },
-    [isExpanded, onToggle]
-  );
+    ref
+  ) => {
+    const classes = useStyles({});
+    const [isExpanded, setIsExpanded] = React.useState(isOpen);
 
-  return (
-    <div
-      className={clsx(classes.root, isExpanded && classes.rootOpen, className)}
-      {...rootProps}
-    >
-      <button
-        aria-expanded={isExpanded}
-        aria-owns={ariaId}
-        className={clsx(classes.button, isExpanded && classes.buttonShadow)}
-        onClick={handleClick}
-        tabIndex={0}
-      >
-        <Text className={classes.title} size="subbody" weight="bold">
-          {title}
-        </Text>
-        <Plus
-          className={clsx(classes.icon, isExpanded && classes.rotate)}
-          aria-hidden="true"
-          width={18}
-          height={18}
-        />
-      </button>
+    const innerRef = React.useRef<HTMLDivElement>(null);
+    const [contentHeight, setContentHeight] = React.useState<number>(0);
+
+    const [ariaId] = React.useState<string>(
+      () => ariaOwnsId || generateUniqueId('exppanel-')
+    );
+
+    // Watch for `isOpen` changes
+    React.useEffect(() => {
+      setIsExpanded(isOpen);
+    }, [isOpen]);
+
+    // TODO: Look into https://medium.com/@teh_builder/ref-objects-inside-useeffect-hooks-eb7c15198780
+    //
+    // Determine the size of our content so we can expand/collapse
+    // accordingly.  If the children are dynamically generated, we should
+    // re-evaluate our size in case additional content is added/removed
+    React.useEffect(() => {
+      if (innerRef && innerRef.current && children) {
+        setContentHeight(innerRef.current.scrollHeight + 25);
+      }
+    }, [children, innerRef?.current?.scrollHeight]);
+
+    const handleClick = React.useCallback(
+      (e: React.SyntheticEvent) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        const newState = !isExpanded;
+        if (typeof onToggle === 'function') {
+          onToggle(newState);
+        }
+
+        setIsExpanded(newState);
+      },
+      [isExpanded, onToggle]
+    );
+
+    return (
       <div
-        aria-hidden={!isExpanded}
-        id={ariaId}
-        className={clsx(classes.content, contentClassName)}
-        style={{ maxHeight: isExpanded ? contentHeight : 0 }}
+        className={clsx(
+          classes.root,
+          isExpanded && classes.rootOpen,
+          className
+        )}
+        ref={ref}
+        {...rootProps}
       >
-        <div
-          ref={ref}
-          className={clsx(
-            classes.inner,
-            innerContentClassName,
-            {
-              [classes.directionRow]: contentDirection === 'row',
-            },
-            !isExpanded && classes.innerHidden
-          )}
+        <button
+          aria-expanded={isExpanded}
+          aria-owns={ariaId}
+          className={clsx(classes.button, isExpanded && classes.buttonShadow)}
+          onClick={handleClick}
+          tabIndex={0}
         >
-          {children}
+          <div className={classes.titleContainer}>
+            {LeadingIcon && (
+              <LeadingIcon
+                role="img"
+                aria-hidden
+                className={classes.leadingIcon}
+                width={18}
+                height={18}
+              />
+            )}
+            <Text className={classes.title} size="subbody" weight="bold">
+              {title}
+            </Text>
+          </div>
+
+          <Plus
+            className={clsx(classes.icon, isExpanded && classes.rotate)}
+            aria-hidden="true"
+            width={18}
+            height={18}
+          />
+        </button>
+        <div
+          aria-hidden={!isExpanded}
+          id={ariaId}
+          className={clsx(classes.content, contentClassName)}
+          style={{ maxHeight: isExpanded ? contentHeight : 0 }}
+        >
+          <div
+            ref={innerRef}
+            className={clsx(
+              classes.inner,
+              innerContentClassName,
+              {
+                [classes.directionRow]: contentDirection === 'row',
+              },
+              !isExpanded && classes.innerHidden
+            )}
+          >
+            {children}
+          </div>
         </div>
       </div>
-    </div>
-  );
-};
+    );
+  }
+);
 
 export default ExpansionPanel;

@@ -47,6 +47,16 @@ export type IconTileClasses = GetClasses<typeof useStyles>;
 
 export interface IconTileProps extends IconTileOwnProps {}
 
+/**
+ * A tile component for displaying a hero background, icon badge, and minimal text
+ * content. Compose the different components together to suit the needs for your
+ * application.
+ *
+ * ### Links
+ *
+ * - [Component Source](https://github.com/lifeomic/chroma-react/blob/master/src/components/IconTile/IconTile.tsx)
+ * - [Story Source](https://github.com/lifeomic/chroma-react/blob/master/stories/components/IconTile/IconTile.stories.tsx)
+ */
 export const IconTile = React.forwardRef<HTMLDivElement, IconTileProps>(
   ({ children, className, onClick, ...rootProps }, ref) => {
     const classes = useStyles({});
