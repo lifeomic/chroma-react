@@ -1,10 +1,10 @@
+import * as React from 'react';
 import { GetClasses } from '../../typeUtils';
 import { makeStyles } from '../../styles';
 import { ListItemProps } from './ListItem';
+import { ListGroupHeadingProps } from './ListGroupHeading';
 import { Text } from '../Text';
 import clsx from 'clsx';
-import * as React from 'react';
-import { ListGroupHeadingProps } from './ListGroupHeading';
 
 export const ListStylesKey = 'ChromaList';
 
