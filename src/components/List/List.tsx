@@ -41,6 +41,19 @@ export interface ListProps {
   title?: string;
 }
 
+/**
+  Lists are used to render groups of items with consistent styling. Can be split into multiple sections with List Group Headings. 
+
+  ### Accessibility
+
+  - The \<ul\> and \<li\> hierarchy is correct.
+  - An aria-label is required.
+
+  ### Links
+
+  - [Component Source (List)](https://github.com/lifeomic/chroma-react/blob/master/src/components/List/List.tsx)
+  - [Story Source](https://github.com/lifeomic/chroma-react/blob/master/stories/components/List/List.stories.tsx)
+ */
 export const List: React.FC<ListProps> = ({
   'aria-label': ariaLabel,
   children,
