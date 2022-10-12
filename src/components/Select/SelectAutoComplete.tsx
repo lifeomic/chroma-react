@@ -9,6 +9,7 @@ import { SelectOption, useStyles as selectUseStyles } from './';
 import { Text } from '../Text';
 import { TextField } from '../TextField';
 import { useCombobox } from 'downshift';
+import { IconButton } from '../IconButton';
 
 export const SelectAutoCompleteStylesKey = 'ChromaSelectAutoComplete';
 
@@ -98,6 +99,7 @@ export const SelectAutoComplete = React.forwardRef<
       getInputProps,
       getItemProps,
       getMenuProps,
+      getToggleButtonProps,
     } = useCombobox({
       itemToString(item) {
         return item ? item.title : '';
@@ -143,11 +145,14 @@ export const SelectAutoComplete = React.forwardRef<
           <TextField
             aria-label={ariaLabel}
             endAdornment={
-              <ChevronDown
+              <IconButton
+                aria-label="toggle select options"
                 className={clsx(
                   selectClasses.arrowIcon,
                   isOpen && selectClasses.rotate
                 )}
+                icon={ChevronDown}
+                {...getToggleButtonProps()}
               />
             }
             id={uniqueId}
@@ -172,7 +177,7 @@ export const SelectAutoComplete = React.forwardRef<
                     <SelectOption
                       className={selectClasses.option}
                       key={`selectAutoComplete-option-${index}`}
-                      {...items}
+                      {...item}
                       {...getItemProps({ item, index })}
                     />
                   ))
