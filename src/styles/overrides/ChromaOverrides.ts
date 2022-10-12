@@ -143,6 +143,7 @@ import {
   SelectOptionStylesKey,
   SelectStylesKey,
   RoverOptionStylesKey,
+  SelectAutoCompleteClasses,
 } from '../../components/Select';
 import {
   SlideOverClasses,
@@ -276,7 +277,7 @@ export interface ChromaComponentNameToClassKey {
   [SecondaryNavigationItemStylesKey]: SecondaryNavigationItemClasses;
   [SecondaryNavigationStylesKey]: SecondaryNavigationClasses;
   [SelectOptionStylesKey]: SelectOptionClasses;
-  [SelectAutoCompleteStylesKey]: SelectAutoCompleteProps;
+  [SelectAutoCompleteStylesKey]: SelectAutoCompleteClasses;
   [SelectStylesKey]: SelectClasses;
   [SkeletonStylesKey]: SkeletonClasses;
   [SliderStylesKey]: SliderClasses;
