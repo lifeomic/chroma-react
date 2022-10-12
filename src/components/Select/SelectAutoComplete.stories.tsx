@@ -21,9 +21,7 @@ const items = [
 ];
 
 const Template: ComponentStory<typeof SelectAutoComplete> = (args) => (
-  <>
-    <SelectAutoComplete {...args} />
-  </>
+  <SelectAutoComplete {...args} />
 );
 
 export const Default = Template.bind({});
@@ -31,7 +29,5 @@ Default.args = {
   items,
   label: 'Auto Complete Select',
   matchFrom: 'exact',
-  onInputChange: (inputValue) => console.log('input change', inputValue),
-  onSelect: (selectedItem) => console.log('selected', selectedItem),
   placeholder: 'Search...',
 };

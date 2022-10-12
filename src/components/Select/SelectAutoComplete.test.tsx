@@ -36,6 +36,16 @@ test('it renders a SelectAutoComplete', async () => {
   expect(autoComplete).toBeInTheDocument();
 });
 
+test('it disables SelectAutoComplete', async () => {
+  const props = getBaseProps();
+  const { findByTestId } = renderWithTheme(
+    <SelectAutoComplete {...props} data-testid={testId} disabled />
+  );
+
+  const autoComplete = await findByTestId(testId);
+  expect(autoComplete).toBeDisabled();
+});
+
 test('it renders the provided label', async () => {
   const props = getBaseProps();
   const { findByText } = renderWithTheme(
@@ -131,6 +141,29 @@ test('it *does not* render errorMessage when not hasError', async () => {
       expect(queryByText('should not show up')).not.toBeInTheDocument();
     });
   });
+});
+
+test('it renders DotLoader when "isLoading"', async () => {
+  const props = getBaseProps();
+  const { findByTestId } = renderWithTheme(
+    <SelectAutoComplete {...props} data-testid={testId} isLoading />
+  );
+
+  const dotLoader = await findByTestId('select-is-loading');
+  expect(dotLoader).toBeInTheDocument();
+});
+
+test('it renders "No Result" when there are no items', async () => {
+  const props = getBaseProps();
+  const { findByText, findByLabelText } = renderWithTheme(
+    <SelectAutoComplete {...props} data-testid={testId} items={[]} />
+  );
+
+  const toggleButton = await findByLabelText('toggle select options');
+  fireEvent.click(toggleButton);
+
+  const noResultsText = await findByText('No Result');
+  expect(noResultsText).toBeInTheDocument();
 });
 
 test('it renders the provided select options', async () => {

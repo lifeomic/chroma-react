@@ -2,14 +2,15 @@ import * as React from 'react';
 import clsx from 'clsx';
 import { BaseFormElement } from '../_private/forms';
 import { ChevronDown } from '@lifeomic/chromicons';
+import { DotLoader } from '../DotLoader';
 import { generateUniqueId } from '../_private/UniqueId';
 import { GetClasses } from '../../typeUtils';
+import { IconButton } from '../IconButton';
 import { makeStyles } from '../../styles';
 import { SelectOption, useStyles as selectUseStyles } from './';
 import { Text } from '../Text';
 import { TextField } from '../TextField';
 import { useCombobox } from 'downshift';
-import { IconButton } from '../IconButton';
 
 export const SelectAutoCompleteStylesKey = 'ChromaSelectAutoComplete';
 
@@ -65,6 +66,7 @@ export interface SelectAutoCompleteProps
   ['aria-label']?: string;
   fullWidth?: boolean;
   icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  isLoading?: boolean;
   items: Item[];
   matchFrom?: 'any' | 'exact' | 'start';
   onInputChange?: (value: string | undefined) => void;
@@ -84,7 +86,9 @@ export const SelectAutoComplete = React.forwardRef<
     {
       ['aria-label']: ariaLabel,
       className,
+      disabled,
       id,
+      isLoading,
       items = [],
       label,
       matchFrom = 'any',
@@ -168,27 +172,33 @@ export const SelectAutoComplete = React.forwardRef<
           <TextField
             aria-label={ariaLabel}
             endAdornment={
-              <IconButton
-                aria-label="toggle select options"
-                className={clsx(
-                  selectClasses.arrowIcon,
-                  isOpen && selectClasses.rotate
-                )}
-                icon={ChevronDown}
-                {...getToggleButtonProps()}
-              />
+              isLoading ? (
+                <DotLoader data-testid="select-is-loading" size={0} />
+              ) : (
+                <IconButton
+                  aria-label="toggle select options"
+                  className={clsx(
+                    selectClasses.arrowIcon,
+                    isOpen && selectClasses.rotate
+                  )}
+                  disabled={disabled}
+                  icon={ChevronDown}
+                  {...getToggleButtonProps()}
+                />
+              )
             }
             label={label}
             ref={ref}
-            {...restProps}
             {...getInputProps({
+              disabled,
+              id: uniqueId,
               onFocus: () => {
                 if (!isOpen) {
                   openMenu();
                 }
               },
             })}
-            id={uniqueId}
+            {...restProps}
           />
         </div>
 
@@ -201,31 +211,39 @@ export const SelectAutoComplete = React.forwardRef<
           <ul className={selectClasses.ul} {...getMenuProps()}>
             {isOpen && (
               <>
-                {inputItems.length ? (
-                  inputItems.map((item: Item, index: number) => (
-                    <li
-                      className={clsx(
-                        selectClasses.option,
-                        highlightedIndex === index && classes.highlighted,
-                        item.disabled && classes.disabled
-                      )}
-                      key={`selectAutoComplete-item-${index}`}
-                      {...getItemProps({
-                        disabled: item.disabled,
-                        index,
-                        item,
-                      })}
-                    >
-                      <SelectOption
-                        isChecked={selectedItem === item}
-                        {...item}
-                      />
-                    </li>
-                  ))
-                ) : (
+                {isLoading ? (
                   <Text className={classes.noResult} size="subbody">
-                    No Result
+                    Loading...
                   </Text>
+                ) : (
+                  <>
+                    {inputItems.length ? (
+                      inputItems.map((item: Item, index: number) => (
+                        <li
+                          className={clsx(
+                            selectClasses.option,
+                            highlightedIndex === index && classes.highlighted,
+                            item.disabled && classes.disabled
+                          )}
+                          key={`selectAutoComplete-item-${index}`}
+                          {...getItemProps({
+                            disabled: item.disabled,
+                            index,
+                            item,
+                          })}
+                        >
+                          <SelectOption
+                            isChecked={selectedItem === item}
+                            {...item}
+                          />
+                        </li>
+                      ))
+                    ) : (
+                      <Text className={classes.noResult} size="subbody">
+                        No Result
+                      </Text>
+                    )}
+                  </>
                 )}
               </>
             )}
