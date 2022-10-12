@@ -5,7 +5,7 @@ import { ChevronDown } from '@lifeomic/chromicons';
 import { generateUniqueId } from '../_private/UniqueId';
 import { GetClasses } from '../../typeUtils';
 import { makeStyles } from '../../styles';
-import { GroupHeading, SelectOption, useStyles as selectUseStyles } from './';
+import { SelectOption, useStyles as selectUseStyles } from './';
 import { Text } from '../Text';
 import { TextField } from '../TextField';
 import { useCombobox } from 'downshift';
@@ -32,6 +32,12 @@ export const useStyles = makeStyles(
 
 export type SelectAutoCompleteClasses = GetClasses<typeof useStyles>;
 
+interface Item {
+  subtitle?: string;
+  title: string;
+  value: string;
+}
+
 export interface SelectAutoCompleteProps
   extends Pick<
       BaseFormElement,
@@ -48,11 +54,12 @@ export interface SelectAutoCompleteProps
       'className' | 'id' | 'value'
     > {
   ['aria-label']?: string;
-  items: Array<any>;
+  items: Item[];
+  matchFrom: 'any' | 'exact' | 'start';
   onInputChange: (value: string | undefined) => void;
-  onSelect: (selectedItem: any) => void;
+  onSelect: (selectedItem: string | undefined) => void;
   name?: string;
-  selectedItem: any;
+  selectedItem?: Item | null | undefined;
 }
 
 export const SelectAutoComplete = React.forwardRef<
@@ -66,6 +73,7 @@ export const SelectAutoComplete = React.forwardRef<
       id,
       items = [],
       label,
+      matchFrom = 'any',
       name,
       onInputChange,
       onSelect,
@@ -94,18 +102,31 @@ export const SelectAutoComplete = React.forwardRef<
       itemToString(item) {
         return item ? item.title : '';
       },
-      items,
+      items: inputItems,
       onInputValueChange: ({ inputValue }) => {
-        setInputItems(
-          items.filter((item) =>
-            item?.title?.toLowerCase().startsWith(inputValue?.toLowerCase())
-          )
-        );
+        const inputValueTitle = inputValue?.toLowerCase() || '';
+
+        const filteredItems = items.filter((item) => {
+          const itemTitle = item?.title?.toLowerCase();
+
+          switch (matchFrom) {
+            case 'any':
+              return itemTitle?.includes(inputValueTitle);
+            case 'start':
+              return itemTitle?.startsWith(inputValueTitle);
+            case 'exact':
+              return itemTitle === inputValueTitle;
+            default:
+              false;
+          }
+        });
+
+        setInputItems(filteredItems);
         onInputChange?.(inputValue);
       },
       onSelectedItemChange: ({ selectedItem }) => {
         setSelectedItem(selectedItem);
-        onSelect?.(selectedItem.value);
+        onSelect?.(selectedItem?.value);
       },
       selectedItem,
     });
@@ -147,24 +168,14 @@ export const SelectAutoComplete = React.forwardRef<
             {isOpen && (
               <>
                 {inputItems.length ? (
-                  items.map((item, index) =>
-                    item.role === 'heading' ? (
-                      <GroupHeading
-                        className={selectClasses.option}
-                        data-select-role="heading"
-                      >
-                        {item.title}
-                      </GroupHeading>
-                    ) : (
-                      <SelectOption
-                        className={selectClasses.option}
-                        subtitle={item.subtitle}
-                        title={item.title}
-                        value={item.value}
-                        {...getItemProps({ item, index })}
-                      />
-                    )
-                  )
+                  inputItems.map((item: Item, index: number) => (
+                    <SelectOption
+                      className={selectClasses.option}
+                      key={`selectAutoComplete-option-${index}`}
+                      {...items}
+                      {...getItemProps({ item, index })}
+                    />
+                  ))
                 ) : (
                   <Text className={classes.noResult} size="subbody">
                     No Result

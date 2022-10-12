@@ -16,7 +16,6 @@ const items = [
     title: 'Option 2',
     value: 'option 2',
   },
-  { role: 'heading', title: 'Group 1' },
   { title: 'Option 3', value: 'option 3' },
   { title: 'Option 4', value: 'option 4' },
 ];
@@ -31,6 +30,7 @@ export const Default = Template.bind({});
 Default.args = {
   items,
   label: 'Auto Complete Select',
+  matchFrom: 'exact',
   onInputChange: (inputValue) => console.log('input change', inputValue),
   onSelect: (selectedItem) => console.log('selected', selectedItem),
   selectedItem: items[1],
