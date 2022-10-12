@@ -10,6 +10,13 @@ export {
 } from './Select';
 
 export {
+  SelectAutoComplete,
+  SelectAutoCompleteClasses,
+  SelectAutoCompleteProps,
+  SelectAutoCompleteStylesKey,
+} from './SelectAutoComplete';
+
+export {
   checkSize,
   SelectOption,
   SelectOptionClasses,

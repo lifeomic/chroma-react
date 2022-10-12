@@ -1,5 +1,5 @@
 import * as React from 'react';
 import { renderWithTheme } from '../../testUtils/renderWithTheme';
-import { AutoCompleteSelect } from './index';
+import { SelectAutoComplete } from './SelectAutoComplete';
 
-const testId = 'AutoCompleteSelect';
+const testId = 'SelectAutoComplete';

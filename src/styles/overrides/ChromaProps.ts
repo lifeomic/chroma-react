@@ -131,10 +131,12 @@ import {
 } from '../../components/SecondaryNavigation';
 import {
   GroupHeadingProps,
+  SelectAutoCompleteProps,
   SelectProps,
   SelectOptionProps,
   RoverOptionProps,
   GroupHeadingStylesKey,
+  SelectAutoCompleteStylesKey,
   SelectOptionStylesKey,
   SelectStylesKey,
   RoverOptionStylesKey,
@@ -260,6 +262,7 @@ export interface ChromaComponentsPropsList {
   [SearchFieldStylesKey]: SearchFieldProps;
   [SecondaryNavigationItemStylesKey]: SecondaryNavigationItemProps;
   [SecondaryNavigationStylesKey]: SecondaryNavigationProps;
+  [SelectAutoCompleteStylesKey]: SelectAutoCompleteProps;
   [SelectOptionStylesKey]: SelectOptionProps;
   [SelectStylesKey]: SelectProps;
   [SkeletonStylesKey]: SkeletonProps;

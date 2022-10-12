@@ -134,10 +134,12 @@ import {
 } from '../../components/SecondaryNavigation';
 import {
   GroupHeadingClasses,
+  SelectAutoCompleteProps,
   SelectClasses,
   SelectOptionClasses,
   RoverOptionClasses,
   GroupHeadingStylesKey,
+  SelectAutoCompleteStylesKey,
   SelectOptionStylesKey,
   SelectStylesKey,
   RoverOptionStylesKey,
@@ -274,6 +276,7 @@ export interface ChromaComponentNameToClassKey {
   [SecondaryNavigationItemStylesKey]: SecondaryNavigationItemClasses;
   [SecondaryNavigationStylesKey]: SecondaryNavigationClasses;
   [SelectOptionStylesKey]: SelectOptionClasses;
+  [SelectAutoCompleteStylesKey]: SelectAutoCompleteProps;
   [SelectStylesKey]: SelectClasses;
   [SkeletonStylesKey]: SkeletonClasses;
   [SliderStylesKey]: SliderClasses;

@@ -5,16 +5,12 @@ import { ChevronDown } from '@lifeomic/chromicons';
 import { generateUniqueId } from '../_private/UniqueId';
 import { GetClasses } from '../../typeUtils';
 import { makeStyles } from '../../styles';
-import {
-  GroupHeading,
-  SelectOption,
-  useStyles as selectUseStyles,
-} from '../Select';
+import { GroupHeading, SelectOption, useStyles as selectUseStyles } from './';
 import { Text } from '../Text';
 import { TextField } from '../TextField';
 import { useCombobox } from 'downshift';
 
-export const AutoCompleteSelectStylesKey = 'ChromaAutoCompleteSelect';
+export const SelectAutoCompleteStylesKey = 'ChromaSelectAutoComplete';
 
 export const useStyles = makeStyles(
   (theme) => ({
@@ -31,12 +27,12 @@ export const useStyles = makeStyles(
       padding: theme.spacing(0, 2),
     },
   }),
-  { name: AutoCompleteSelectStylesKey }
+  { name: SelectAutoCompleteStylesKey }
 );
 
-export type AutoCompleteSelectClasses = GetClasses<typeof useStyles>;
+export type SelectAutoCompleteClasses = GetClasses<typeof useStyles>;
 
-export interface AutoCompleteSelectProps
+export interface SelectAutoCompleteProps
   extends Pick<
       BaseFormElement,
       | 'color'
@@ -59,9 +55,9 @@ export interface AutoCompleteSelectProps
   selectedItem: any;
 }
 
-export const AutoCompleteSelect = React.forwardRef<
+export const SelectAutoComplete = React.forwardRef<
   HTMLInputElement,
-  AutoCompleteSelectProps
+  SelectAutoCompleteProps
 >(
   (
     {
@@ -73,12 +69,13 @@ export const AutoCompleteSelect = React.forwardRef<
       name,
       onInputChange,
       onSelect,
-      selectedItem,
+      selectedItem: currentSelectedItem,
       value,
       ...restProps
     },
     ref
   ) => {
+    const [selectedItem, setSelectedItem] = React.useState(currentSelectedItem);
     const [inputItems, setInputItems] = React.useState(items);
 
     const classes = useStyles({});
@@ -95,7 +92,7 @@ export const AutoCompleteSelect = React.forwardRef<
       getMenuProps,
     } = useCombobox({
       itemToString(item) {
-        return item ? item.label : '';
+        return item ? item.title : '';
       },
       items,
       onInputValueChange: ({ inputValue }) => {
@@ -104,16 +101,18 @@ export const AutoCompleteSelect = React.forwardRef<
             item?.title?.toLowerCase().startsWith(inputValue?.toLowerCase())
           )
         );
-
-        onInputChange(inputValue);
+        onInputChange?.(inputValue);
       },
-      onSelectedItemChange: ({ selectedItem }) => onSelect(selectedItem.value),
-      selectedItem, // or should they just pass in the item?
+      onSelectedItemChange: ({ selectedItem }) => {
+        setSelectedItem(selectedItem);
+        onSelect?.(selectedItem.value);
+      },
+      selectedItem,
     });
 
     if (!label && !ariaLabel && process.env.NODE_ENV === 'development') {
       throw new Error(
-        'If a "label" is not provided to AutoCompleteSelect, please provide "aria-label".'
+        'If a "label" is not provided to SelectAutoComplete, please provide "aria-label".'
       );
     }
 

@@ -74,6 +74,7 @@ import {
   GroupHeadingStylesKey,
   SelectOptionStylesKey,
   SelectStylesKey,
+  SelectAutoCompleteStylesKey,
   RoverOptionStylesKey,
 } from '../../components/Select';
 import {
@@ -487,6 +488,13 @@ export type ChromaComponents<Theme> = {
       Theme
     >[typeof SecondaryNavigationStylesKey];
     variants?: ComponentsVariants[typeof SecondaryNavigationStylesKey];
+  };
+  [SelectAutoCompleteStylesKey]?: {
+    defaultProps?: ComponentsProps[typeof SelectAutoCompleteStylesKey];
+    styleOverrides?: ChromaComponentsOverrides<
+      Theme
+    >[typeof SelectAutoCompleteStylesKey];
+    variants?: ComponentsVariants[typeof SelectAutoCompleteStylesKey];
   };
   [SelectOptionStylesKey]?: {
     defaultProps?: ComponentsProps[typeof SelectOptionStylesKey];

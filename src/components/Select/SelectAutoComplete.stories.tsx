@@ -1,12 +1,12 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { AutoCompleteSelect } from './AutoCompleteSelect';
+import { SelectAutoComplete } from './SelectAutoComplete';
 
 export default {
-  title: 'Components/AutoCompleteSelect',
-  component: AutoCompleteSelect,
+  title: 'Components/SelectAutoComplete',
+  component: SelectAutoComplete,
   argTypes: {},
-} as ComponentMeta<typeof AutoCompleteSelect>;
+} as ComponentMeta<typeof SelectAutoComplete>;
 
 const items = [
   { title: 'Option 1', value: 'option 1' },
@@ -21,9 +21,9 @@ const items = [
   { title: 'Option 4', value: 'option 4' },
 ];
 
-const Template: ComponentStory<typeof AutoCompleteSelect> = (args) => (
+const Template: ComponentStory<typeof SelectAutoComplete> = (args) => (
   <>
-    <AutoCompleteSelect {...args} />
+    <SelectAutoComplete {...args} />
   </>
 );
 
