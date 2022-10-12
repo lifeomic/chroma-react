@@ -98,6 +98,7 @@
     "@radix-ui/react-slider": "^0.1.1",
     "clsx": "^1.1.0",
     "deepmerge": "^4.2.2",
+    "downshift": "^6.1.12",
     "focus-visible": "^5.1.0",
     "framer-motion": "^1.10.3",
     "react-day-picker": "^7.4.10",
