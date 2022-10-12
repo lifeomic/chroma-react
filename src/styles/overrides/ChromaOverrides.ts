@@ -134,7 +134,6 @@ import {
 } from '../../components/SecondaryNavigation';
 import {
   GroupHeadingClasses,
-  SelectAutoCompleteProps,
   SelectClasses,
   SelectOptionClasses,
   RoverOptionClasses,
