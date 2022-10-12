@@ -23,6 +23,13 @@ export const useStyles = makeStyles(
       marginTop: theme.spacing(1.5),
       width: theme.pxToRem(175),
     },
+    highlighted: {
+      backgroundColor: theme.hexToRgba(theme.palette.primary[50], 0.6),
+    },
+    disabled: {
+      cursor: 'not-allowed',
+      opacity: 0.625,
+    },
     noResult: {
       lineHeight: 1.3,
       padding: theme.spacing(0, 2),
@@ -34,6 +41,7 @@ export const useStyles = makeStyles(
 export type SelectAutoCompleteClasses = GetClasses<typeof useStyles>;
 
 interface Item {
+  disabled?: boolean;
   subtitle?: string;
   title: string;
   value: string;
@@ -55,12 +63,17 @@ export interface SelectAutoCompleteProps
       'className' | 'id' | 'value'
     > {
   ['aria-label']?: string;
+  fullWidth?: boolean;
+  icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   items: Item[];
-  matchFrom: 'any' | 'exact' | 'start';
-  onInputChange: (value: string | undefined) => void;
-  onSelect: (selectedItem: string | undefined) => void;
+  matchFrom?: 'any' | 'exact' | 'start';
+  onInputChange?: (value: string | undefined) => void;
+  onSelect?: (selectedItem: string | undefined) => void;
   name?: string;
+  placeholder?: string;
+  secondaryLabel?: string;
   selectedItem?: Item | null | undefined;
+  tooltipMessage?: string;
 }
 
 export const SelectAutoComplete = React.forwardRef<
@@ -78,14 +91,16 @@ export const SelectAutoComplete = React.forwardRef<
       name,
       onInputChange,
       onSelect,
-      selectedItem: currentSelectedItem,
+      selectedItem: currentSelectedItem = null,
       value,
       ...restProps
     },
     ref
   ) => {
-    const [selectedItem, setSelectedItem] = React.useState(currentSelectedItem);
-    const [inputItems, setInputItems] = React.useState(items);
+    const [selectedItem, setSelectedItem] = React.useState<
+      Item | null | undefined
+    >(currentSelectedItem);
+    const [inputItems, setInputItems] = React.useState<Item[]>(items);
 
     const classes = useStyles({});
     const selectClasses = selectUseStyles({});
@@ -94,18 +109,26 @@ export const SelectAutoComplete = React.forwardRef<
     );
 
     const {
+      highlightedIndex,
       isOpen,
       getComboboxProps,
       getInputProps,
       getItemProps,
       getMenuProps,
       getToggleButtonProps,
+      openMenu,
     } = useCombobox({
       itemToString(item) {
         return item ? item.title : '';
       },
       items: inputItems,
       onInputValueChange: ({ inputValue }) => {
+        if (!inputValue) {
+          setInputItems(items);
+          onInputChange?.(inputValue);
+          return;
+        }
+
         const inputValueTitle = inputValue?.toLowerCase() || '';
 
         const filteredItems = items.filter((item) => {
@@ -155,11 +178,17 @@ export const SelectAutoComplete = React.forwardRef<
                 {...getToggleButtonProps()}
               />
             }
-            id={uniqueId}
             label={label}
             ref={ref}
             {...restProps}
-            {...getInputProps()}
+            {...getInputProps({
+              onFocus: () => {
+                if (!isOpen) {
+                  openMenu();
+                }
+              },
+            })}
+            id={uniqueId}
           />
         </div>
 
@@ -174,12 +203,24 @@ export const SelectAutoComplete = React.forwardRef<
               <>
                 {inputItems.length ? (
                   inputItems.map((item: Item, index: number) => (
-                    <SelectOption
-                      className={selectClasses.option}
-                      key={`selectAutoComplete-option-${index}`}
-                      {...item}
-                      {...getItemProps({ item, index })}
-                    />
+                    <li
+                      className={clsx(
+                        selectClasses.option,
+                        highlightedIndex === index && classes.highlighted,
+                        item.disabled && classes.disabled
+                      )}
+                      key={`selectAutoComplete-item-${index}`}
+                      {...getItemProps({
+                        disabled: item.disabled,
+                        index,
+                        item,
+                      })}
+                    >
+                      <SelectOption
+                        isChecked={selectedItem === item}
+                        {...item}
+                      />
+                    </li>
                   ))
                 ) : (
                   <Text className={classes.noResult} size="subbody">

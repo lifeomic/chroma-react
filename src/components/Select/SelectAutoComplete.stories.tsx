@@ -16,7 +16,7 @@ const items = [
     title: 'Option 2',
     value: 'option 2',
   },
-  { title: 'Option 3', value: 'option 3' },
+  { disabled: true, title: 'Option 3', value: 'option 3' },
   { title: 'Option 4', value: 'option 4' },
 ];
 
@@ -33,5 +33,5 @@ Default.args = {
   matchFrom: 'exact',
   onInputChange: (inputValue) => console.log('input change', inputValue),
   onSelect: (selectedItem) => console.log('selected', selectedItem),
-  selectedItem: items[1],
+  placeholder: 'Search...',
 };
