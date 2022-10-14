@@ -5,6 +5,8 @@ import { ListItem } from './ListItem';
 import { ListGroupHeading } from './ListGroupHeading';
 import { Avatar } from '../Avatar';
 import { HeartCircle } from '@lifeomic/chromicons';
+import Avatar1 from '../../assets/example-avatar-1.jpg';
+import Avatar2 from '../../assets/example-avatar-2.jpg';
 
 export default {
   title: 'Components/List/List',
@@ -44,13 +46,13 @@ export const Avatars = Template.bind({});
 Avatars.args = {
   'aria-label': 'List with avatars',
   items: [
-    <ListItem key="1" avatar={<Avatar name="1" />}>
+    <ListItem key="1" avatar={<Avatar name="1" src={Avatar1} />}>
       Option 1
     </ListItem>,
-    <ListItem key="2" avatar={<Avatar name="2" />}>
+    <ListItem key="2" avatar={<Avatar name="2" src={Avatar2} />}>
       Option 2
     </ListItem>,
-    <ListItem key="3" avatar={<Avatar name="3" />}>
+    <ListItem key="3" avatar={<Avatar name="Third Person" />}>
       Option 3
     </ListItem>,
   ],
