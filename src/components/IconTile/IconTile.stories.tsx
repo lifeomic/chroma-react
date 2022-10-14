@@ -6,7 +6,7 @@ import { IconTileHero } from './IconTileHero';
 import { IconTileBadge } from './IconTileBadge';
 import { IconTileContent } from './IconTileContent';
 import { Edit2 } from '@lifeomic/chromicons';
-import sampleBackground from '../../assets/sampleBackground.svg';
+import sampleBackground from '../../../stories/assets/sampleBackground.svg';
 
 export default {
   title: 'Components/IconTile',

@@ -11,8 +11,8 @@
   },
   "scripts": {
     "build": "run-p build:*",
-    "build:esm": "tsc -p tsconfig.build.json -m es2015 --outDir ./dist/esm && cp -r ./src/assets/ ./dist/esm/assets",
-    "build:cjs": "tsc -p tsconfig.build.json -m commonjs --outDir ./dist && cp -r ./src/assets/ ./dist/assets",
+    "build:esm": "tsc -p tsconfig.build.json -m es2015 --outDir ./dist/esm && cp -r ./src/assets/*.svg ./dist/esm/assets/",
+    "build:cjs": "tsc -p tsconfig.build.json -m commonjs --outDir ./dist && cp -r ./src/assets/*.svg ./dist/assets/",
     "postbuild": "cp package.json ./dist/",
     "docs:build": "build-storybook -c .storybook -s public",
     "docs:deploy": "storybook-to-ghpages --s docs:build",
