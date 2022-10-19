@@ -11,7 +11,50 @@ import Avatar2 from '../../assets/example-avatar-2.jpg';
 export default {
   title: 'Components/List/List',
   component: List,
-  argTypes: {},
+  argTypes: {
+    margin: {
+      type: { name: 'string' },
+    },
+    marginTop: {
+      type: { name: 'string' },
+    },
+    marginRight: {
+      type: { name: 'string' },
+    },
+    marginBottom: {
+      type: { name: 'string' },
+    },
+    marginLeft: {
+      type: { name: 'string' },
+    },
+    marginX: {
+      type: { name: 'string' },
+    },
+    marginY: {
+      type: { name: 'string' },
+    },
+    padding: {
+      type: { name: 'string' },
+    },
+    paddingTop: {
+      type: { name: 'string' },
+    },
+    paddingRight: {
+      type: { name: 'string' },
+    },
+    paddingBottom: {
+      type: { name: 'string' },
+    },
+    paddingLeft: {
+      type: { name: 'string' },
+    },
+    paddingX: {
+      type: { name: 'string' },
+    },
+    paddingY: {
+      type: { name: 'string' },
+    },
+  },
 } as ComponentMeta<typeof List>;
 
 const Template: ComponentStory<typeof List> = (args) => <List {...args} />;
@@ -76,35 +119,23 @@ Sections.args = {
 export const Margin = Template.bind({});
 Margin.args = {
   'aria-label': 'List with some margin',
-  margin: '50px',
-  marginLeft: 0,
-  marginRight: 0,
-  marginTop: 0,
-  marginBottom: 0,
-  marginX: 0,
-  marginY: 0,
   items: [
     <ListGroupHeading key="section-1">Section 1</ListGroupHeading>,
     <ListItem key="item-1">Option 1</ListItem>,
     <ListItem key="item-2">Option 2</ListItem>,
     <ListItem key="item-3">Option 3</ListItem>,
   ],
+  margin: '50px',
 };
 
 export const Padding = Template.bind({});
 Padding.args = {
   'aria-label': 'List with some padding',
-  padding: 5,
-  paddingLeft: 0,
-  paddingRight: 0,
-  paddingTop: 0,
-  paddingBottom: 0,
-  paddingX: 0,
-  paddingY: 0,
   items: [
     <ListGroupHeading key="section-1">Section 1</ListGroupHeading>,
     <ListItem key="item-1">Option 1</ListItem>,
     <ListItem key="item-2">Option 2</ListItem>,
     <ListItem key="item-3">Option 3</ListItem>,
   ],
+  padding: '1rem',
 };
