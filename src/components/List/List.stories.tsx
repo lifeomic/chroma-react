@@ -72,3 +72,39 @@ Sections.args = {
     <ListItem key="item-6">Option 6</ListItem>,
   ],
 };
+
+export const Margin = Template.bind({});
+Margin.args = {
+  'aria-label': 'List with some margin',
+  margin: '50px',
+  marginLeft: 0,
+  marginRight: 0,
+  marginTop: 0,
+  marginBottom: 0,
+  marginX: 0,
+  marginY: 0,
+  items: [
+    <ListGroupHeading key="section-1">Section 1</ListGroupHeading>,
+    <ListItem key="item-1">Option 1</ListItem>,
+    <ListItem key="item-2">Option 2</ListItem>,
+    <ListItem key="item-3">Option 3</ListItem>,
+  ],
+};
+
+export const Padding = Template.bind({});
+Padding.args = {
+  'aria-label': 'List with some padding',
+  padding: 5,
+  paddingLeft: 0,
+  paddingRight: 0,
+  paddingTop: 0,
+  paddingBottom: 0,
+  paddingX: 0,
+  paddingY: 0,
+  items: [
+    <ListGroupHeading key="section-1">Section 1</ListGroupHeading>,
+    <ListItem key="item-1">Option 1</ListItem>,
+    <ListItem key="item-2">Option 2</ListItem>,
+    <ListItem key="item-3">Option 3</ListItem>,
+  ],
+};
