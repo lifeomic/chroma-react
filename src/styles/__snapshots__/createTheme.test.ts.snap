@@ -26,10 +26,10 @@ Object {
     "unit": "px",
     "up": [Function],
     "values": Object {
-      "lg": 1200,
-      "md": 900,
+      "lg": 1280,
+      "md": 960,
       "sm": 600,
-      "xl": 1536,
+      "xl": 1920,
       "xs": 0,
     },
   },
@@ -701,11 +701,11 @@ Object {
     "unit": "px",
     "up": [Function],
     "values": Object {
-      "lg": 1200,
-      "md": 900,
-      "sm": 600,
-      "xl": 1536,
-      "xs": 0,
+      "lg": 1500,
+      "md": 1000,
+      "sm": 800,
+      "xl": 2000,
+      "xs": 100,
     },
   },
   "components": Object {
@@ -832,7 +832,7 @@ Object {
           "&:hover": Object {
             "color": "#637585",
           },
-          "@media (min-width:600px)": Object {
+          "@media (min-width:800px)": Object {
             "fontSize": "0.875rem",
           },
           "fontSize": "0.875rem",
@@ -889,12 +889,12 @@ Object {
   "hexToRgba": [Function],
   "mixins": Object {
     "toolbar": Object {
-      "@media (min-width:0px)": Object {
+      "@media (min-width:100px)": Object {
         "@media (orientation: landscape)": Object {
           "minHeight": 48,
         },
       },
-      "@media (min-width:600px)": Object {
+      "@media (min-width:800px)": Object {
         "minHeight": 64,
       },
       "minHeight": 56,

@@ -25,7 +25,11 @@ export interface Theme extends Omit<MuiTheme, 'palette'> {
   hexToRgba: (hex: string, opacity: number) => string;
 }
 export interface ThemeOptions
-  extends Omit<MuiThemeOptions, 'components' | 'palette' | 'typography'> {
+  extends Omit<
+    MuiThemeOptions,
+    'components' | 'palette' | 'typography' | 'breakpoints'
+  > {
+  breakpoints?: MuiTheme['breakpoints']['values'];
   palette?: PaletteOptions;
   typography?: TypographyOptions;
   components?: OverridesCreator;
@@ -34,6 +38,7 @@ export interface ThemeOptions
 }
 
 export const createTheme = ({
+  breakpoints,
   palette,
   typography,
   components,
@@ -42,6 +47,9 @@ export const createTheme = ({
   ...muiOptions
 }: ThemeOptions = {}): Theme => {
   const themeWithoutOverrides = (createMuiTheme({
+    breakpoints: {
+      values: { xs: 0, sm: 600, md: 960, lg: 1280, xl: 1920, ...breakpoints },
+    },
     palette: createPalette(palette),
     typography: createTypography(typography),
     boxShadows: createBoxShadows(boxShadows),
