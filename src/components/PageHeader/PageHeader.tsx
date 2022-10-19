@@ -17,7 +17,7 @@ export const useStyles = makeStyles(
       marginBottom: 0,
       minHeight: theme.pxToRem(82),
       paddingTop: theme.spacing(3),
-      [theme.breakpoints.down('sm')]: {
+      [theme.breakpoints.down('md')]: {
         flexWrap: 'wrap',
       },
     },
@@ -33,13 +33,13 @@ export const useStyles = makeStyles(
     },
     title: {
       flex: 1,
-      [theme.breakpoints.down('sm')]: {
+      [theme.breakpoints.down('md')]: {
         flexBasis: 'auto',
       },
     },
     left: {
       flex: 1,
-      [theme.breakpoints.down('sm')]: {
+      [theme.breakpoints.down('md')]: {
         flexBasis: 'auto',
       },
     },
@@ -50,7 +50,7 @@ export const useStyles = makeStyles(
       display: 'flex',
       justifyContent: 'center',
       flex: 1,
-      [theme.breakpoints.down('sm')]: {
+      [theme.breakpoints.down('md')]: {
         justifyContent: 'flex-start',
         flexBasis: '100%',
         margin: theme.spacing(2, 0, 4),
@@ -61,7 +61,7 @@ export const useStyles = makeStyles(
       display: 'flex',
       justifyContent: 'flex-end',
       flex: 1,
-      [theme.breakpoints.down('sm')]: {
+      [theme.breakpoints.down('md')]: {
         flexBasis: 'auto',
       },
     },
