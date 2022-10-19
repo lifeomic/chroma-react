@@ -2,7 +2,7 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import { Avatar } from './Avatar';
-import legoman from '../../assets/legoman.jpg';
+import legoman from '../../../stories/assets/legoman.jpg';
 
 export default {
   title: 'Components/Avatar',
