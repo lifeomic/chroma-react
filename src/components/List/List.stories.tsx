@@ -116,6 +116,29 @@ Sections.args = {
   ],
 };
 
+export const SecondaryText = Template.bind({});
+SecondaryText.args = {
+  'aria-label': 'List with some items with secondary text',
+  items: [
+    <ListGroupHeading key="section-1">Section 1</ListGroupHeading>,
+    <ListItem
+      key="item-1"
+      text="Option 1"
+      secondaryText="This is secondary text"
+    />,
+    <ListItem key="item-2">Option 2</ListItem>,
+    <ListItem key="item-3">Option 3</ListItem>,
+    <ListGroupHeading key="section-2">Section 2</ListGroupHeading>,
+    <ListItem key="item-4">Option 4</ListItem>,
+    <ListItem key="item-5">Option 5</ListItem>,
+    <ListItem
+      key="item-6"
+      text="Option 6"
+      secondaryText="This is secondary text"
+    />,
+  ],
+};
+
 export const Margin = Template.bind({});
 Margin.args = {
   'aria-label': 'List with some margin',

@@ -43,3 +43,9 @@ Avatars.args = {
   text: 'Option 1',
   avatar: <Avatar name="Avatar" />,
 };
+
+export const SecondaryText = Template.bind({});
+SecondaryText.args = {
+  text: 'Option 1',
+  secondaryText: 'This is secondary text',
+};
