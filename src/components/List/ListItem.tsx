@@ -130,12 +130,12 @@ export const ListItem = React.forwardRef<HTMLLIElement, ListItemProps>(
             })}
 
           <Box direction="column" align="flex-start" gap={0.25}>
-            <Box className={classes.text}>{!!text && text}</Box>
+            {!!text && <Box className={classes.text}>{text}</Box>}
+            <Box className={classes.text}>{children}</Box>
             {!!secondaryText && (
               <Box className={classes.secondaryText}>{secondaryText}</Box>
             )}
           </Box>
-          {children}
         </Tag>
       </li>
     );
