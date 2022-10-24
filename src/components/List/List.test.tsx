@@ -24,7 +24,7 @@ test('it renders the List title', async () => {
   expect(title.textContent).toEqual('List Title');
 });
 
-test('it renders the List items', async () => {
+test('it renders the List items through text prop', async () => {
   const { findByTestId } = renderWithTheme(
     <List
       aria-label="List"
@@ -40,6 +40,26 @@ test('it renders the List items', async () => {
   const options = root.querySelectorAll('li');
   expect(options).toBeTruthy();
   expect(options.length).toEqual(2);
+  expect(options[0].textContent).toEqual('option1');
+});
+
+test('it renders the List items through children', async () => {
+  const { findByTestId } = renderWithTheme(
+    <List
+      aria-label="List"
+      data-testid={testId}
+      items={[
+        <ListItem key={0}>Option 1</ListItem>,
+        <ListItem key={1}>Option 2</ListItem>,
+      ]}
+    />
+  );
+
+  const root = await findByTestId(testId);
+  const options = root.querySelectorAll('li');
+  expect(options).toBeTruthy();
+  expect(options.length).toEqual(2);
+  expect(options[0].textContent).toEqual('Option 1');
 });
 
 test('it calls the provided "onClick" of a ListItem', async () => {
