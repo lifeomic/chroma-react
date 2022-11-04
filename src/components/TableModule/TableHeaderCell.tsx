@@ -80,6 +80,11 @@ export const useStyles = makeStyles(
     rotatedIcon: {
       transform: 'rotate(180deg)',
     },
+    isSticky: {
+      position: 'sticky',
+      left: 0,
+      zIndex: 4,
+    },
   }),
   { name: TableHeaderCellStylesKey }
 );
@@ -130,7 +135,8 @@ export const TableHeaderCell: React.FC<TableHeaderCellProps> = ({
         ((!header.align && headingsCount > 1 && index === headingsCount - 1) ||
           header?.align === 'right') &&
           classes.rootAlignRight,
-        header.className
+        header.className,
+        header.isSticky && classes.isSticky
       )}
       onClick={canSort ? handleClick : undefined}
       role="columnheader"

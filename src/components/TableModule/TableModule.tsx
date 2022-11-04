@@ -16,6 +16,7 @@ import {
 } from './types';
 import * as React from 'react';
 import clsx from 'clsx';
+import { lighten } from '@mui/material/styles';
 
 export const testIds = {
   bodyCell: 'tableModule-bodyCell',
@@ -73,7 +74,7 @@ export const useStyles = makeStyles(
         },
       },
       '&:hover': {
-        background: `rgb(222, 244, 252, 0.25)`,
+        background: lighten(theme.palette.primary[50], 0.5),
         '& $tableModuleActions': {
           left: theme.pxToRem(8),
           opacity: 1,
@@ -82,7 +83,7 @@ export const useStyles = makeStyles(
         },
       },
       '&:focus.focus-visible, &:focus-within': {
-        background: `rgb(222, 244, 252, 0.25)`,
+        background: lighten(theme.palette.primary[50], 0.5),
         '& $tableModuleActions': {
           left: theme.pxToRem(8),
           opacity: 1,
@@ -189,6 +190,12 @@ export const useStyles = makeStyles(
       '&:hover': {
         cursor: 'pointer',
       },
+    },
+    isSticky: {
+      background: 'inherit',
+      left: 0,
+      position: 'sticky',
+      zIndex: 4,
     },
   }),
   { name: TableModuleStylesKey }

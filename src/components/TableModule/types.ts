@@ -31,12 +31,14 @@ export interface TableHeader extends TableAlignOptions {
   content?(header: TableHeader): any;
   onSort?(sort: TableSortClickProps): any;
   className?: string;
+  isSticky?: boolean;
 }
 
 export interface TableCell<Item = any> extends TableAlignOptions {
   valuePath?: string;
   content?(cell: Item): any;
   className?: string;
+  isSticky?: boolean;
 }
 
 export interface TableConfiguration<Item = any> {

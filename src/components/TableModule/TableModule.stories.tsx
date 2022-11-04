@@ -23,29 +23,35 @@ const data = [
     calories: '159',
     fat: '6.0',
     carbs: '24',
+    category: 'yogurt',
   },
   {
     description: 'Ice cream sandwich',
     calories: '237',
     fat: '9.0',
     carbs: '37',
+    category: 'ice cream',
   },
   {
     description: 'Eclair',
     calories: '262',
     fat: '16.0',
     carbs: '24',
+    category: 'dessert',
   },
   {
     description: 'Cupcake',
     calories: '305',
     fat: '3.7',
     carbs: '67',
+    category: 'cake',
   },
 ];
 
 const Template: ComponentStory<typeof TableModule> = (args) => (
-  <TableModule {...args} />
+  <div style={{ overflow: 'auto', width: '80%' }}>
+    <TableModule {...args} />
+  </div>
 );
 
 export const Default = Template.bind({});
@@ -65,11 +71,13 @@ Default.args = {
     {
       header: {
         label: 'Calories',
+        isSticky: true,
       },
       cell: {
         content: (dataValue: any) => {
           return dataValue.calories;
         },
+        isSticky: true,
       },
     },
     {
@@ -89,6 +97,56 @@ Default.args = {
       cell: {
         content: (dataValue: any) => {
           return dataValue.carbs;
+        },
+      },
+    },
+    {
+      header: {
+        label: 'Category',
+      },
+      cell: {
+        content: (dataValue: any) => {
+          return dataValue.category;
+        },
+      },
+    },
+    {
+      header: {
+        label: 'Category',
+      },
+      cell: {
+        content: (dataValue: any) => {
+          return dataValue.category;
+        },
+      },
+    },
+    {
+      header: {
+        label: 'Category',
+      },
+      cell: {
+        content: (dataValue: any) => {
+          return dataValue.category;
+        },
+      },
+    },
+    {
+      header: {
+        label: 'Category',
+      },
+      cell: {
+        content: (dataValue: any) => {
+          return dataValue.category;
+        },
+      },
+    },
+    {
+      header: {
+        label: 'Category',
+      },
+      cell: {
+        content: (dataValue: any) => {
+          return dataValue.category;
         },
       },
     },
