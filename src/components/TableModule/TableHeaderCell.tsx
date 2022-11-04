@@ -84,6 +84,7 @@ export const useStyles = makeStyles(
       position: 'sticky',
       left: 0,
       zIndex: 4,
+      willChange: 'transform',
     },
   }),
   { name: TableHeaderCellStylesKey }

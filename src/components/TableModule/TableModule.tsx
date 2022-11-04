@@ -148,6 +148,7 @@ export const useStyles = makeStyles(
     },
     sticky: {
       position: 'sticky',
+      willChange: 'transform',
       right: 0,
     },
     tableModuleActions: {
@@ -196,6 +197,7 @@ export const useStyles = makeStyles(
       left: 0,
       position: 'sticky',
       zIndex: 4,
+      willChange: 'transform',
     },
   }),
   { name: TableModuleStylesKey }
