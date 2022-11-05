@@ -119,6 +119,15 @@ export const TableHeaderCell: React.FC<TableHeaderCellProps> = ({
 
   const Tag = !header?.content && !header.label ? 'td' : 'th';
 
+  React.useEffect(() => {
+    const allStickyCells = document.querySelectorAll('.sticky-header-hook');
+    allStickyCells.forEach((cell, index) => {
+      if (index === allStickyCells.length - 1) {
+        cell.classList.add('isStickyLast');
+      }
+    });
+  });
+
   return (
     <Tag
       className={clsx(
@@ -137,7 +146,8 @@ export const TableHeaderCell: React.FC<TableHeaderCellProps> = ({
           header?.align === 'right') &&
           classes.rootAlignRight,
         header.className,
-        header.isSticky && classes.isSticky
+        header.isSticky && classes.isSticky,
+        header.isSticky && 'sticky-header-hook'
       )}
       onClick={canSort ? handleClick : undefined}
       role="columnheader"

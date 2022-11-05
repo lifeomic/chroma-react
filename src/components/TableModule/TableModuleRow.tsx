@@ -1,5 +1,6 @@
 import clsx from 'clsx';
 import * as React from 'react';
+import { useRef } from 'react';
 import { useStyles } from './TableModule';
 import { getTestProps } from '../../testUtils/getTestProps';
 import { TableCell } from './types';
@@ -38,6 +39,7 @@ const TableModuleRow: React.FC<TableModuleRowProps> = React.memo(
     rowClickLabel,
   }) => {
     const classes = useStyles({});
+    const rowRef = useRef(null);
 
     const handleRowClick = React.useCallback(
       (e) => {
@@ -70,6 +72,18 @@ const TableModuleRow: React.FC<TableModuleRowProps> = React.memo(
       },
       [onRowClick, row]
     );
+
+    React.useEffect(() => {
+      console.log(rowRef);
+      const allStickyCells = rowRef.current!.querySelectorAll(
+        '.sticky-cell-hook'
+      );
+      allStickyCells.forEach((cell: React.ReactNode, index: number) => {
+        if (index === allStickyCells.length - 1) {
+          cell!.classList.add('isStickyLast');
+        }
+      });
+    });
 
     const rowContents = React.useMemo(
       () =>
@@ -109,6 +123,7 @@ const TableModuleRow: React.FC<TableModuleRowProps> = React.memo(
         role={rowRole || 'row'}
         tabIndex={0}
         {...getTestProps(testIds.bodyRow)}
+        ref={rowRef}
       >
         {rowContents}
         {(onRowClick || rowActions) && (

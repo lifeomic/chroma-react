@@ -17,6 +17,7 @@ import {
 import * as React from 'react';
 import clsx from 'clsx';
 import { lighten } from '@mui/material/styles';
+import './staticCss.css';
 
 export const testIds = {
   bodyCell: 'tableModule-bodyCell',

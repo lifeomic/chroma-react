@@ -40,7 +40,8 @@ export const TableModuleCell: React.FC<TableModuleCell> = React.memo(
             [classes.tableRowCellMaxWidth2]: maxCellWidth === 2,
           },
           cell.className,
-          cell.isSticky && classes.isSticky
+          cell.isSticky && classes.isSticky,
+          cell.isSticky && 'sticky-cell-hook'
         )}
         role="cell"
         {...getTestProps(testIds.bodyCell)}
