@@ -79,7 +79,7 @@ const TableModuleRow: React.FC<TableModuleRowProps> = React.memo(
       );
       allStickyCells.forEach((cell: React.ReactNode, index: number) => {
         if (index === allStickyCells.length - 1) {
-          cell!.classList.add('isStickyLast');
+          cell!.classList.add(classes.isStickyLast);
         }
       });
     });

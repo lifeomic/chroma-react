@@ -86,6 +86,9 @@ export const useStyles = makeStyles(
       zIndex: 4,
       willChange: 'transform',
     },
+    isStickyLast: {
+      borderRight: `2px solid ${theme.palette.graphite[200]}`,
+    },
   }),
   { name: TableHeaderCellStylesKey }
 );
@@ -123,7 +126,7 @@ export const TableHeaderCell: React.FC<TableHeaderCellProps> = ({
     const allStickyCells = document.querySelectorAll('.sticky-header-hook');
     allStickyCells.forEach((cell, index) => {
       if (index === allStickyCells.length - 1) {
-        cell.classList.add('isStickyLast');
+        cell.classList.add(classes.isStickyLast);
       }
     });
   });

@@ -17,7 +17,6 @@ import {
 import * as React from 'react';
 import clsx from 'clsx';
 import { lighten } from '@mui/material/styles';
-import './staticCss.css';
 
 export const testIds = {
   bodyCell: 'tableModule-bodyCell',
@@ -151,6 +150,9 @@ export const useStyles = makeStyles(
       position: 'sticky',
       willChange: 'transform',
       right: 0,
+    },
+    isStickyLast: {
+      borderRight: `2px solid ${theme.palette.graphite[200]}`,
     },
     tableModuleActions: {
       background: `linear-gradient(135deg,
