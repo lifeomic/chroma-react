@@ -43,6 +43,7 @@ export const TableModuleCell: React.FC<TableModuleCell> = React.memo(
           cell.isSticky && classes.isSticky,
           cell.isSticky && 'sticky-cell-hook'
         )}
+        style={{ left: cell.offsetLeft }}
         role="cell"
         {...getTestProps(testIds.bodyCell)}
       >

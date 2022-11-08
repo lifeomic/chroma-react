@@ -32,6 +32,7 @@ export interface TableHeader extends TableAlignOptions {
   onSort?(sort: TableSortClickProps): any;
   className?: string;
   isSticky?: boolean;
+  offsetLeft?: number;
 }
 
 export interface TableCell<Item = any> extends TableAlignOptions {
@@ -39,6 +40,7 @@ export interface TableCell<Item = any> extends TableAlignOptions {
   content?(cell: Item): any;
   className?: string;
   isSticky?: boolean;
+  offsetLeft?: number;
 }
 
 export interface TableConfiguration<Item = any> {

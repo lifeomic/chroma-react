@@ -158,6 +158,7 @@ export const TableHeaderCell: React.FC<TableHeaderCellProps> = ({
           ? 'ascending'
           : 'descending'
       }
+      style={{ left: header.offsetLeft }}
       {...rootProps}
     >
       {header.content ? header.content(header) : header.label}
