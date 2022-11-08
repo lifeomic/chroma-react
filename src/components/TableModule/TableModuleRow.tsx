@@ -74,14 +74,10 @@ const TableModuleRow: React.FC<TableModuleRowProps> = React.memo(
     );
 
     React.useEffect(() => {
-      const allStickyCells = rowRef.current!.querySelectorAll(
-        '.sticky-cell-hook'
-      );
-      allStickyCells.forEach((cell: React.ReactNode, index: number) => {
-        if (index === allStickyCells.length - 1) {
-          cell!.classList.add(classes.isStickyLast);
-        }
-      });
+      const lastStickyCell = Array.from(
+        rowRef.current!.querySelectorAll('.sticky-cell-hook')
+      ).pop();
+      lastStickyCell?.classList.add(classes.isStickyLast);
     });
 
     const rowContents = React.useMemo(

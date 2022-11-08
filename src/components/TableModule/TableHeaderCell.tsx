@@ -123,12 +123,10 @@ export const TableHeaderCell: React.FC<TableHeaderCellProps> = ({
   const Tag = !header?.content && !header.label ? 'td' : 'th';
 
   React.useEffect(() => {
-    const allStickyCells = document.querySelectorAll('.sticky-header-hook');
-    allStickyCells.forEach((cell, index) => {
-      if (index === allStickyCells.length - 1) {
-        cell.classList.add(classes.isStickyLast);
-      }
-    });
+    const lastStickyCell = Array.from(
+      document.querySelectorAll('.sticky-header-hook')
+    ).pop();
+    lastStickyCell?.classList.add(classes.isStickyLast);
   });
 
   return (
