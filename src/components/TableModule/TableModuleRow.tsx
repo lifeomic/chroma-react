@@ -39,7 +39,7 @@ const TableModuleRow: React.FC<TableModuleRowProps> = React.memo(
     rowClickLabel,
   }) => {
     const classes = useStyles({});
-    const rowRef = useRef(null);
+    const rowRef = useRef<HTMLTableRowElement | null>(null);
 
     const handleRowClick = React.useCallback(
       (e) => {
@@ -74,7 +74,6 @@ const TableModuleRow: React.FC<TableModuleRowProps> = React.memo(
     );
 
     React.useEffect(() => {
-      console.log(rowRef);
       const allStickyCells = rowRef.current!.querySelectorAll(
         '.sticky-cell-hook'
       );
