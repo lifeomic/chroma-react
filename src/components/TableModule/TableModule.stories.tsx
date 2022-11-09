@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import { TableModule } from './TableModule';
@@ -48,11 +48,14 @@ const data = [
   },
 ];
 
-const Template: ComponentStory<typeof TableModule> = (args) => (
-  <div style={{ overflow: 'auto', width: '80%' }}>
-    <TableModule {...args} />
-  </div>
-);
+const Template: ComponentStory<typeof TableModule> = (args) => {
+  const tableRef = useRef<HTMLTableElement | null>(null);
+  return (
+    <div style={{ overflow: 'auto', width: '80%' }}>
+      <TableModule {...args} ref={tableRef} rowClickLabel="row-click-label" />
+    </div>
+  );
+};
 
 export const Default = Template.bind({});
 Default.args = {
