@@ -99,6 +99,7 @@ export interface TableHeaderCellProps extends TableSortDirection {
   index: number;
   headingsCount: number;
   isSticky?: boolean;
+  left?: number;
 }
 
 export const TableHeaderCell: React.FC<TableHeaderCellProps> = ({
@@ -109,6 +110,7 @@ export const TableHeaderCell: React.FC<TableHeaderCellProps> = ({
   index,
   headingsCount,
   isSticky = false,
+  left,
   ...rootProps
 }) => {
   const classes = useStyles({});
@@ -151,7 +153,7 @@ export const TableHeaderCell: React.FC<TableHeaderCellProps> = ({
           ? 'ascending'
           : 'descending'
       }
-      // style={{ left: 0 }}
+      style={{ left: left }}
       {...rootProps}
     >
       {header.content ? header.content(header) : header.label}

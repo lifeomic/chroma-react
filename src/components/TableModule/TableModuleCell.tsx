@@ -14,10 +14,18 @@ export interface TableModuleCell
   isLastCellInRow: boolean;
   cell: TableCell;
   isSticky?: boolean;
+  left?: number;
 }
 
 export const TableModuleCell: React.FC<TableModuleCell> = React.memo(
-  ({ maxCellWidth, isLastCellInRow, cell, children, isSticky = false }) => {
+  ({
+    maxCellWidth,
+    isLastCellInRow,
+    cell,
+    children,
+    isSticky = false,
+    left,
+  }) => {
     const classes = useStyles({});
 
     return (
@@ -44,7 +52,7 @@ export const TableModuleCell: React.FC<TableModuleCell> = React.memo(
           isSticky && classes.isSticky,
           isSticky && 'sticky-cell-hook'
         )}
-        style={{ left: 0 }}
+        style={{ left: left }}
         role="cell"
         {...getTestProps(testIds.bodyCell)}
       >

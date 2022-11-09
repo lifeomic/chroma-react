@@ -283,6 +283,11 @@ export const TableModule = React.memo(
       );
 
       const [stickyCols, setstickyCols] = React.useState<Array<any>>([]);
+
+      const [stickyCellsLeft, setStickyCellsLeft] = React.useState<
+        Array<number>
+      >([]);
+
       React.useEffect(() => {
         if (config.length > 0) {
           setHeadings(config.map((c) => c.header));
@@ -298,7 +303,7 @@ export const TableModule = React.memo(
                 if (index !== undefined) {
                   return index;
                 }
-              }) || []
+              })
           );
         }
       }, [config]);
@@ -325,6 +330,20 @@ export const TableModule = React.memo(
           }
         });
       });
+
+      React.useLayoutEffect(() => {
+        let sum = 0;
+        const stickyCellsLeft: Array<number> = [];
+        const rows = ref?.current?.childNodes[1].childNodes;
+        // only need to grab column width from one row, since all rows should be the same in each column
+        rows[1].childNodes.forEach((node: any, index: number) => {
+          if (stickyCols.includes(index)) {
+            stickyCellsLeft.push(sum);
+            sum += node?.clientWidth;
+          }
+        });
+        setStickyCellsLeft(stickyCellsLeft);
+      }, [ref, stickyCols]);
 
       const handleSortColumnClick = ({
         index,
@@ -384,6 +403,11 @@ export const TableModule = React.memo(
                   key={i}
                   header={header}
                   isSticky={stickyCols.indexOf(i) >= 0}
+                  left={
+                    stickyCols.indexOf(i) >= 0
+                      ? stickyCellsLeft[i - 1]
+                      : undefined
+                  }
                   isSorting={sort.sortKey === i}
                   sortDirection={sort.sortDirection}
                   onClick={handleSortColumnClick}
@@ -399,6 +423,12 @@ export const TableModule = React.memo(
                   headingsCount={headings.length}
                   isSorting={false}
                   sortDirection={sort.sortDirection}
+                  isSticky={stickyCols.indexOf(headings?.length + 1) >= 0}
+                  left={
+                    stickyCols.indexOf(headings?.length + 1) >= 0
+                      ? stickyCellsLeft[headings?.length]
+                      : undefined
+                  }
                 />
               )}
             </tr>
@@ -435,6 +465,7 @@ export const TableModule = React.memo(
                   rowActions={rowActions}
                   rowClickLabel={rowClickLabel}
                   stickyCols={stickyCols}
+                  stickyCellsLeft={stickyCellsLeft}
                 />
               );
             })}

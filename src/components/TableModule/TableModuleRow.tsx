@@ -25,6 +25,7 @@ export interface TableModuleRowProps
   rowActions?: TableModuleProps['rowActions'];
   rowClickLabel?: TableModuleProps['rowClickLabel'];
   stickyCols?: Array<number>;
+  stickyCellsLeft?: Array<number>;
 }
 
 const TableModuleRow: React.FC<TableModuleRowProps> = React.memo(
@@ -38,6 +39,7 @@ const TableModuleRow: React.FC<TableModuleRowProps> = React.memo(
     rowActions,
     rowClickLabel,
     stickyCols = [],
+    stickyCellsLeft = [],
   }) => {
     const classes = useStyles({});
 
@@ -88,12 +90,17 @@ const TableModuleRow: React.FC<TableModuleRowProps> = React.memo(
               }
               cell={cell}
               isSticky={stickyCols.indexOf(colIndex) >= 0}
+              left={
+                stickyCols.indexOf(colIndex) >= 0
+                  ? stickyCellsLeft[colIndex - 1]
+                  : undefined
+              }
             >
               {cellContent}
             </TableModuleCell>
           );
         }),
-      [cells, headingsLength, maxCellWidth, row]
+      [cells, headingsLength, maxCellWidth, row, stickyCols, stickyCellsLeft]
     );
 
     const maybeRowActions = React.useMemo(() => rowActions?.(row), [
