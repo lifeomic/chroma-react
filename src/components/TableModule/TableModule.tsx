@@ -282,10 +282,24 @@ export const TableModule = React.memo(
         config?.map((c) => c.cell) || []
       );
 
+      const [stickyCols, setstickyCols] = React.useState<Array<any>>([]);
       React.useEffect(() => {
         if (config.length > 0) {
           setHeadings(config.map((c) => c.header));
           setCells(config.map((c) => c.cell));
+          setstickyCols(
+            config
+              .map((c, index) => {
+                if (c.isSticky) {
+                  return index;
+                }
+              })
+              .filter((index) => {
+                if (index !== undefined) {
+                  return index;
+                }
+              }) || []
+          );
         }
       }, [config]);
 
@@ -300,6 +314,17 @@ export const TableModule = React.memo(
             });
         }
       }, [headings, sortState.sortDirection, sortState.sortKey]);
+
+      React.useEffect(() => {
+        const allStickyCells = Array.from(
+          document.querySelectorAll('.sticky-cell-hook')
+        );
+        allStickyCells.forEach((cell, index) => {
+          if ((index + 1) % stickyCols.length === 0) {
+            cell?.classList.add(classes.isStickyLast);
+          }
+        });
+      });
 
       const handleSortColumnClick = ({
         index,
@@ -358,6 +383,7 @@ export const TableModule = React.memo(
                   headingsCount={headings.length}
                   key={i}
                   header={header}
+                  isSticky={stickyCols.indexOf(i) >= 0}
                   isSorting={sort.sortKey === i}
                   sortDirection={sort.sortDirection}
                   onClick={handleSortColumnClick}
@@ -408,6 +434,7 @@ export const TableModule = React.memo(
                   cells={cells}
                   rowActions={rowActions}
                   rowClickLabel={rowClickLabel}
+                  stickyCols={stickyCols}
                 />
               );
             })}

@@ -86,9 +86,6 @@ export const useStyles = makeStyles(
       zIndex: 4,
       willChange: 'transform',
     },
-    isStickyLast: {
-      borderRight: `2px solid ${theme.palette.graphite[200]}`,
-    },
   }),
   { name: TableHeaderCellStylesKey }
 );
@@ -101,6 +98,7 @@ export interface TableHeaderCellProps extends TableSortDirection {
   onClick?: (header: TableSortClickProps) => any;
   index: number;
   headingsCount: number;
+  isSticky?: boolean;
 }
 
 export const TableHeaderCell: React.FC<TableHeaderCellProps> = ({
@@ -110,6 +108,7 @@ export const TableHeaderCell: React.FC<TableHeaderCellProps> = ({
   onClick,
   index,
   headingsCount,
+  isSticky = false,
   ...rootProps
 }) => {
   const classes = useStyles({});
@@ -121,13 +120,6 @@ export const TableHeaderCell: React.FC<TableHeaderCellProps> = ({
   const canSort = onClick && header.onSort;
 
   const Tag = !header?.content && !header.label ? 'td' : 'th';
-
-  React.useEffect(() => {
-    const lastStickyCell = Array.from(
-      document.querySelectorAll('.sticky-header-hook')
-    ).pop();
-    lastStickyCell?.classList.add(classes.isStickyLast);
-  });
 
   return (
     <Tag
@@ -147,8 +139,8 @@ export const TableHeaderCell: React.FC<TableHeaderCellProps> = ({
           header?.align === 'right') &&
           classes.rootAlignRight,
         header.className,
-        header.isSticky && classes.isSticky,
-        header.isSticky && 'sticky-header-hook'
+        isSticky && classes.isSticky,
+        isSticky && 'sticky-cell-hook'
       )}
       onClick={canSort ? handleClick : undefined}
       role="columnheader"
@@ -159,7 +151,7 @@ export const TableHeaderCell: React.FC<TableHeaderCellProps> = ({
           ? 'ascending'
           : 'descending'
       }
-      style={{ left: 0 }}
+      // style={{ left: 0 }}
       {...rootProps}
     >
       {header.content ? header.content(header) : header.label}

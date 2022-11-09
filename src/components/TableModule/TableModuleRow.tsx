@@ -1,6 +1,5 @@
 import clsx from 'clsx';
 import * as React from 'react';
-import { useRef } from 'react';
 import { useStyles } from './TableModule';
 import { getTestProps } from '../../testUtils/getTestProps';
 import { TableCell } from './types';
@@ -25,6 +24,7 @@ export interface TableModuleRowProps
   cells: Array<TableCell>;
   rowActions?: TableModuleProps['rowActions'];
   rowClickLabel?: TableModuleProps['rowClickLabel'];
+  stickyCols?: Array<number>;
 }
 
 const TableModuleRow: React.FC<TableModuleRowProps> = React.memo(
@@ -37,9 +37,9 @@ const TableModuleRow: React.FC<TableModuleRowProps> = React.memo(
     cells,
     rowActions,
     rowClickLabel,
+    stickyCols = [],
   }) => {
     const classes = useStyles({});
-    const rowRef = useRef<HTMLTableRowElement | null>(null);
 
     const handleRowClick = React.useCallback(
       (e) => {
@@ -73,13 +73,6 @@ const TableModuleRow: React.FC<TableModuleRowProps> = React.memo(
       [onRowClick, row]
     );
 
-    React.useEffect(() => {
-      const lastStickyCell = Array.from(
-        rowRef.current!.querySelectorAll('.sticky-cell-hook')
-      ).pop();
-      lastStickyCell?.classList.add(classes.isStickyLast);
-    });
-
     const rowContents = React.useMemo(
       () =>
         cells?.map((cell, colIndex) => {
@@ -94,6 +87,7 @@ const TableModuleRow: React.FC<TableModuleRowProps> = React.memo(
                 headingsLength > 1 && colIndex === headingsLength - 1
               }
               cell={cell}
+              isSticky={stickyCols.indexOf(colIndex) >= 0}
             >
               {cellContent}
             </TableModuleCell>
@@ -118,7 +112,6 @@ const TableModuleRow: React.FC<TableModuleRowProps> = React.memo(
         role={rowRole || 'row'}
         tabIndex={0}
         {...getTestProps(testIds.bodyRow)}
-        ref={rowRef}
       >
         {rowContents}
         {(onRowClick || rowActions) && (

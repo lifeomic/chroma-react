@@ -71,14 +71,13 @@ Default.args = {
     {
       header: {
         label: 'Calories',
-        isSticky: true,
       },
       cell: {
         content: (dataValue: any) => {
           return dataValue.calories;
         },
-        isSticky: true,
       },
+      isSticky: true,
     },
     {
       header: {
@@ -89,6 +88,7 @@ Default.args = {
           return dataValue.fat;
         },
       },
+      isSticky: true,
     },
     {
       header: {
