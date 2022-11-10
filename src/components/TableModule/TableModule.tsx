@@ -301,7 +301,7 @@ export const TableModule = React.memo(
               })
               .filter((index) => {
                 if (index !== undefined) {
-                  return index;
+                  return true;
                 }
               })
           );
