@@ -153,7 +153,7 @@ export const useStyles = makeStyles(
       right: 0,
     },
     isStickyLast: {
-      borderRight: `2px solid ${theme.palette.graphite[200]}`,
+      borderRight: `2px solid ${theme.palette.primary.main}`,
     },
     tableModuleActions: {
       background: `linear-gradient(135deg,
@@ -197,7 +197,7 @@ export const useStyles = makeStyles(
       },
     },
     isSticky: {
-      background: 'inherit',
+      background: theme.palette.graphite[50],
       left: 0,
       position: 'sticky',
       zIndex: 4,

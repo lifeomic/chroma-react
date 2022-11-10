@@ -81,6 +81,7 @@ export const useStyles = makeStyles(
       transform: 'rotate(180deg)',
     },
     isSticky: {
+      background: theme.palette.graphite[50],
       position: 'sticky',
       left: 0,
       zIndex: 4,
