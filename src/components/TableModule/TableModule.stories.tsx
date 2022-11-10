@@ -80,6 +80,84 @@ Default.args = {
           return dataValue.calories;
         },
       },
+    },
+    {
+      header: {
+        label: 'Fat',
+      },
+      cell: {
+        content: (dataValue: any) => {
+          return dataValue.fat;
+        },
+      },
+    },
+    {
+      header: {
+        label: 'Carbs',
+      },
+      cell: {
+        content: (dataValue: any) => {
+          return dataValue.carbs;
+        },
+      },
+    },
+    {
+      header: {
+        label: 'Category',
+      },
+      cell: {
+        content: (dataValue: any) => {
+          return dataValue.category;
+        },
+      },
+    },
+    {
+      header: {
+        label: 'Category',
+      },
+      cell: {
+        content: (dataValue: any) => {
+          return dataValue.category;
+        },
+      },
+    },
+    {
+      header: {
+        label: 'Category',
+      },
+      cell: {
+        content: (dataValue: any) => {
+          return dataValue.category;
+        },
+      },
+    },
+  ] as Array<TableConfiguration>,
+};
+
+export const Sticky = Template.bind({});
+Sticky.args = {
+  data,
+  config: [
+    {
+      header: {
+        label: 'Description',
+      },
+      cell: {
+        content: (dataValue: any) => {
+          return dataValue.description;
+        },
+      },
+      isSticky: true,
+    },
+    {
+      header: {
+        label: 'Calories',
+      },
+      cell: {
+        content: (dataValue: any) => {
+          return dataValue.calories;
+        },
+      },
       isSticky: true,
     },
     {
@@ -91,7 +169,6 @@ Default.args = {
           return dataValue.fat;
         },
       },
-      isSticky: true,
     },
     {
       header: {
@@ -102,6 +179,27 @@ Default.args = {
           return dataValue.carbs;
         },
       },
+    },
+    {
+      header: {
+        label: 'Category',
+      },
+      cell: {
+        content: (dataValue: any) => {
+          return dataValue.category;
+        },
+      },
+    },
+    {
+      header: {
+        label: 'Category',
+      },
+      cell: {
+        content: (dataValue: any) => {
+          return dataValue.category;
+        },
+      },
+      isSticky: true,
     },
     {
       header: {
@@ -154,6 +252,18 @@ Default.args = {
       },
     },
   ] as Array<TableConfiguration>,
+};
+Sticky.parameters = {
+  docs: {
+    description: {
+      story: `Columns can be made "sticky" or so they don't travel off-screen when scrolling the
+      table horizontally. This helps keep track of what row one is looking at in tables with more 
+      columns than can be visible at one time in the document. \n \n Any number of columns can be made
+      sticky. They don't have to be consecutive, and can start and end at any column. However, 
+      most common use-cases will likely just involve the first one or two consecutive columns 
+      being sticky.`,
+    },
+  },
 };
 
 export const Sort: ComponentStory<typeof TableModule> = (args) => {
