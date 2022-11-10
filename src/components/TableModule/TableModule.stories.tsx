@@ -49,7 +49,7 @@ const data = [
 ];
 
 const Template: ComponentStory<typeof TableModule> = (args) => {
-  const tableRef = useRef<HTMLTableElement | null>(null);
+  const tableRef = useRef<HTMLTableElement>(null);
   return (
     <div style={{ overflow: 'auto', width: '80%' }}>
       <TableModule {...args} ref={tableRef} rowClickLabel="row-click-label" />

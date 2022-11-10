@@ -222,7 +222,6 @@ export interface TableModuleProps<Item = any>
   noResultsMessage?: string;
   sortState?: TableSortState;
   maxCellWidth?: 1 | 2;
-  ref?: React.Ref<HTMLTableElement>;
   rowActions?: (row: any) => React.ReactNode;
   rowClickLabel?: string;
 }
@@ -263,7 +262,7 @@ export const TableModule = React.memo(
         rowClickLabel,
         ...rootProps
       },
-      ref
+      forwardedRef
     ) => {
       const classes = useStyles({});
 
@@ -336,15 +335,17 @@ export const TableModule = React.memo(
         let sum = 0;
         const stickyCellsLeft: Array<number> = [];
         // only need to grab column width from one row, since all rows should be the same in each column
-        const row = ref?.current?.childNodes[1].childNodes[0];
-        row.childNodes.forEach((node: any, index: number) => {
-          if (stickyCols.includes(index)) {
-            stickyCellsLeft.push(sum);
-            sum += node?.clientWidth;
-          }
-        });
-        setStickyCellsLeft(stickyCellsLeft);
-      }, [ref, stickyCols]);
+        if (forwardedRef != null && typeof forwardedRef !== 'function') {
+          const row = forwardedRef?.current?.childNodes[1].childNodes[0];
+          row?.childNodes.forEach((node: any, index: number) => {
+            if (stickyCols.includes(index)) {
+              stickyCellsLeft.push(sum);
+              sum += node?.clientWidth;
+            }
+          });
+          setStickyCellsLeft(stickyCellsLeft);
+        }
+      }, [forwardedRef, stickyCols]);
 
       const handleSortColumnClick = ({
         index,
@@ -388,7 +389,7 @@ export const TableModule = React.memo(
         <table
           role="table"
           className={clsx(classes.root, className)}
-          ref={ref}
+          ref={forwardedRef}
           {...rootProps}
         >
           <thead className={classes.tableHeader}>
