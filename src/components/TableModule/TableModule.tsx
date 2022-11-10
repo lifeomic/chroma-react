@@ -334,9 +334,9 @@ export const TableModule = React.memo(
       React.useLayoutEffect(() => {
         let sum = 0;
         const stickyCellsLeft: Array<number> = [];
-        const rows = ref?.current?.childNodes[1].childNodes;
         // only need to grab column width from one row, since all rows should be the same in each column
-        rows[1].childNodes.forEach((node: any, index: number) => {
+        const row = ref?.current?.childNodes[1].childNodes[0];
+        row.childNodes.forEach((node: any, index: number) => {
           if (stickyCols.includes(index)) {
             stickyCellsLeft.push(sum);
             sum += node?.clientWidth;
@@ -405,7 +405,7 @@ export const TableModule = React.memo(
                   isSticky={stickyCols.indexOf(i) >= 0}
                   left={
                     stickyCols.indexOf(i) >= 0
-                      ? stickyCellsLeft[i - 1]
+                      ? stickyCellsLeft[stickyCols.indexOf(i)]
                       : undefined
                   }
                   isSorting={sort.sortKey === i}
@@ -426,7 +426,9 @@ export const TableModule = React.memo(
                   isSticky={stickyCols.indexOf(headings?.length + 1) >= 0}
                   left={
                     stickyCols.indexOf(headings?.length + 1) >= 0
-                      ? stickyCellsLeft[headings?.length]
+                      ? stickyCellsLeft[
+                          stickyCols.indexOf(headings?.length + 1)
+                        ]
                       : undefined
                   }
                 />

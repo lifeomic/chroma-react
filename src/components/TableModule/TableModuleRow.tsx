@@ -92,7 +92,7 @@ const TableModuleRow: React.FC<TableModuleRowProps> = React.memo(
               isSticky={stickyCols.indexOf(colIndex) >= 0}
               left={
                 stickyCols.indexOf(colIndex) >= 0
-                  ? stickyCellsLeft[colIndex - 1]
+                  ? stickyCellsLeft[stickyCols.indexOf(colIndex)]
                   : undefined
               }
             >
