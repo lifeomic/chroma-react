@@ -227,8 +227,16 @@ export const Sort: ComponentStory<typeof TableModule> = (args) => {
       },
     },
   ];
-
-  return <TableModule {...args} data={sortedData} config={sortConfig} />;
+  const tableRef = useRef<HTMLTableElement | null>(null);
+  return (
+    <TableModule
+      {...args}
+      data={sortedData}
+      config={sortConfig}
+      ref={tableRef}
+      rowClickLabel="row-click-label"
+    />
+  );
 };
 Sort.parameters = {
   docs: {
