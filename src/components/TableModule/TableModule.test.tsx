@@ -53,6 +53,37 @@ const configWithCellValuePath: Array<TableConfiguration> = [
   },
 ];
 
+const configWithStickyColumns = [
+  {
+    header: {
+      label: 'Description',
+    },
+    cell: {
+      valuePath: 'description',
+    },
+    isSticky: true,
+  },
+  {
+    header: {
+      label: 'Calories',
+    },
+    cell: {
+      valuePath: 'calories',
+    },
+  },
+  {
+    header: {
+      label: 'Something',
+    },
+    cell: {
+      valuePath: 'something',
+    },
+    isSticky: true,
+  },
+];
+
+const stickyColumns = 2;
+
 const data = [
   {
     description: 'Frozen yoghurt',
@@ -634,6 +665,63 @@ test('it uses the provided "sortState"', async () => {
   expect(headers?.length).toEqual(2);
   expect(headers?.[0]?.getAttribute('aria-sort')).toEqual('none');
   expect(headers?.[1]?.getAttribute('aria-sort')).toEqual('descending');
+});
+
+test('it sets isSticky class on all sticky columns', async () => {
+  const config: Array<TableConfiguration> = configWithStickyColumns;
+
+  const { findByTestId } = renderWithTheme(
+    <TableModule data-testid={testId} config={config} data={data} />
+  );
+
+  const root = await findByTestId(testId);
+  const headers = root.querySelectorAll('th');
+  const cells = root.querySelectorAll('td');
+  const stickyCells = root.querySelectorAll('.sticky-cell-hook');
+  expect(stickyCells).toHaveLength(6);
+
+  headers.forEach((header, index) => {
+    if (config[index].isSticky) {
+      expect(header).toHaveClass('sticky-cell-hook');
+    } else {
+      expect(header).not.toHaveClass('sticky-cell-hook');
+    }
+  });
+
+  cells.forEach((cell, index) => {
+    let isSticky = config[index % stickyColumns].isSticky;
+    log('index mod: ', index % stickyColumns); // 0, 2 should be sticky, 1 should be not sticky
+    log('cell classes: ', cell.getAttribute('class'));
+    log('isSticky?: ', isSticky !== undefined && isSticky);
+    //   if (typeof isSticky === 'undefined') {
+    //     isSticky = false;
+    //   }
+    //   log('isSticky check 2', isSticky);
+    //   if (isSticky) {
+    //     expect(cell).toHaveClass('sticky-cell-hook');
+    //   }
+    // else {
+    //   expect(cell).not.toHaveClass('sticky-cell-hook');
+    // }
+  });
+});
+
+test('it sets "isStickyLast" class on last sticky column', async () => {
+  const config: Array<TableConfiguration> = configWithStickyColumns;
+
+  const { findByTestId } = renderWithTheme(
+    <TableModule data-testid={testId} config={config} data={data} />
+  );
+
+  const root = await findByTestId(testId);
+  const stickyCells = root.querySelectorAll('.sticky-cell-hook');
+  stickyCells.forEach((cell, index) => {
+    if ((index + 1) % stickyColumns === 0) {
+      expect(cell.getAttribute('class')).toMatch(/isStickyLast/gi); // check for substring with regex to bypass changing MUI class IDs
+    } else {
+      expect(cell.getAttribute('class')).not.toMatch(/isStickyLast/gi);
+    }
+  });
 });
 
 //#endregion
