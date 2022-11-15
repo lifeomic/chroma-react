@@ -331,7 +331,7 @@ export const TableModule = React.memo(
         });
       });
 
-      React.useLayoutEffect(() => {
+      const setStickyCellLeftValues = React.useCallback(() => {
         let sum = 0;
         const stickyCellsLeft: Array<number> = [];
         // only need to grab column width from one row, since all rows should be the same in each column
@@ -346,6 +346,17 @@ export const TableModule = React.memo(
           setStickyCellsLeft(stickyCellsLeft);
         }
       }, [forwardedRef, stickyCols]);
+
+      React.useLayoutEffect(() => {
+        setStickyCellLeftValues();
+      }, [setStickyCellLeftValues]);
+
+      React.useEffect(() => {
+        window.addEventListener('resize', setStickyCellLeftValues);
+        return () => {
+          window.removeEventListener('resize', setStickyCellLeftValues);
+        };
+      }, [setStickyCellLeftValues]);
 
       const handleSortColumnClick = ({
         index,
