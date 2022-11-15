@@ -5,6 +5,7 @@ import { GetClasses } from '../../typeUtils';
 import { RadioProps } from './Radio';
 import { RadioGroupContext } from './useRadioGroup';
 import { screenreaderOnlyStyles } from '../../styles/screenreaderOnly';
+import zIndex from '../../styles/utils/zIndex';
 
 export const RadioGroupMinimalStylesKey = 'ChromaRadioGroupMinimal';
 
@@ -62,12 +63,12 @@ export const useStyles = makeStyles(
             left: 0,
             top: 0,
             width: '100%',
-            zIndex: 1,
+            zIndex: zIndex.byValueUpTo20[1],
           },
           '& label > p, & svg': {
             position: 'relative',
             transition: 'color 0.15s ease-in',
-            zIndex: 2,
+            zIndex: zIndex.byValueUpTo20[2],
           },
         },
         '&:not(:checked) + div::before': {

@@ -4,6 +4,7 @@ import { ChevronDown } from '@lifeomic/chromicons';
 import { makeStyles } from '../../styles/index';
 import { GetClasses } from '../../typeUtils';
 import { TableSortDirection, TableHeader, TableSortClickProps } from './types';
+import zIndex from '../../styles/utils/zIndex';
 
 export const TableHeaderCellStylesKey = 'ChromaTableHeaderCell';
 
@@ -27,7 +28,7 @@ export const useStyles = makeStyles(
       textAlign: 'left',
       top: 0,
       whiteSpace: 'nowrap',
-      zIndex: 3,
+      zIndex: zIndex.byValueUpTo20[3],
       '&::after': {
         content: `''`,
         position: 'absolute',

@@ -2,6 +2,7 @@ import clsx from 'clsx';
 import * as React from 'react';
 import { makeStyles } from '../../styles';
 import { GetClasses } from '../../typeUtils';
+import zIndex from '../../styles/utils/zIndex';
 
 export const headerHeight = '3.125rem';
 
@@ -27,7 +28,7 @@ export const useStyles = makeStyles(
       right: 0,
       top: 0,
       width: '100%',
-      zIndex: 1100,
+      zIndex: zIndex.header,
     },
     container: {
       display: 'flex',

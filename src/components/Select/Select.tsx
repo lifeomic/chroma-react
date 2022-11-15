@@ -27,6 +27,7 @@ import { useRoverState } from 'reakit/Rover';
 import { getTestProps } from '../../testUtils/getTestProps';
 import { screenreaderOnlyStyles } from '../../styles/screenreaderOnly';
 import { Tooltip } from '../Tooltip';
+import zIndex from '../../styles/utils/zIndex';
 
 export const testIds = {
   placeholderText: 'select-placeholderText',
@@ -43,7 +44,7 @@ export const useStyles = makeStyles(
       boxShadow: theme.boxShadows.popover,
       minWidth: theme.pxToRem(224),
       overflow: 'hidden',
-      zIndex: 1300, // Has to go above the Modal z-index
+      zIndex: zIndex.select,
       '&:focus': {
         outline: 'none',
       },

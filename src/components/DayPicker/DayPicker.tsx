@@ -14,6 +14,7 @@ import { GetClasses } from '../../typeUtils';
 import { ButtonUnstyled } from '../ButtonUnstyled';
 import { composeEventHandlers } from '../../utils';
 import { alpha } from '@mui/material/styles';
+import zIndex from '../../styles/utils/zIndex';
 
 export const DayPickerStylesKey = 'ChromaDayPicker';
 export type DayPickerClasses = GetClasses<typeof useStyles>;
@@ -33,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
   },
   dayPicker: {
     position: 'absolute',
-    zIndex: 99999,
+    zIndex: zIndex.dayPicker,
     padding: theme.spacing(2),
     borderRadius: theme.spacing(1.25),
     backgroundColor: theme.palette.common.white,

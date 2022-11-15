@@ -15,6 +15,7 @@ import { Text } from '../Text';
 import { motion, useMotionValue, useTransform } from 'framer-motion';
 import 'focus-visible';
 import { screenreaderOnlyStyles } from '../../styles/screenreaderOnly';
+import zIndex from '../../styles/utils/zIndex';
 
 export const CheckboxStylesKey = 'ChromaCheckbox';
 
@@ -64,7 +65,7 @@ export const useStyles = makeStyles(
     },
     labelContainer: {
       flex: 1,
-      zIndex: 2,
+      zIndex: zIndex.byValueUpTo20[2],
     },
     label: {
       cursor: 'pointer',
@@ -83,7 +84,7 @@ export const useStyles = makeStyles(
     svg: {
       minWidth: theme.pxToRem(21),
       minHeight: theme.pxToRem(21),
-      zIndex: 2,
+      zIndex: zIndex.byValueUpTo20[2],
     },
     box: {},
     srOnly: {
