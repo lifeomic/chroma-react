@@ -9,6 +9,9 @@ import {
   testIds,
 } from './index';
 
+// @ts-ignore
+import { log, error } from 'console';
+
 const testId = 'TableModule';
 
 const configWithCellContent: Array<TableConfiguration> = [
@@ -689,20 +692,15 @@ test('it sets isSticky class on all sticky columns', async () => {
   });
 
   cells.forEach((cell, index) => {
-    let isSticky = config[index % stickyColumns].isSticky;
-    log('index mod: ', index % stickyColumns); // 0, 2 should be sticky, 1 should be not sticky
-    log('cell classes: ', cell.getAttribute('class'));
-    log('isSticky?: ', isSticky !== undefined && isSticky);
-    //   if (typeof isSticky === 'undefined') {
-    //     isSticky = false;
-    //   }
-    //   log('isSticky check 2', isSticky);
-    //   if (isSticky) {
-    //     expect(cell).toHaveClass('sticky-cell-hook');
-    //   }
-    // else {
-    //   expect(cell).not.toHaveClass('sticky-cell-hook');
-    // }
+    let isSticky = config[index % config.length].isSticky;
+    if (typeof isSticky === 'undefined') {
+      isSticky = false;
+    }
+    if (isSticky) {
+      expect(cell).toHaveClass('sticky-cell-hook');
+    } else {
+      expect(cell).not.toHaveClass('sticky-cell-hook');
+    }
   });
 });
 
