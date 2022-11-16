@@ -3,7 +3,6 @@ import { makeStyles } from '../../styles';
 import { RemoveScroll } from 'react-remove-scroll';
 import * as React from 'react';
 import clsx from 'clsx';
-import zIndex from '../../styles/utils/zIndex';
 
 export const SlideOverStylesKey = 'ChromaSlideOver';
 
@@ -53,7 +52,7 @@ export const useStyles = makeStyles(
       position: 'absolute',
       right: 0,
       top: 0,
-      zIndex: zIndex.slideOver,
+      zIndex: theme.zIndex.slideOver,
       boxShadow: theme.boxShadows.elevatedContent,
       animation: '$slide-in 0.25s ease-in-out',
       transform: 'translate3d(0, 0, 0)',

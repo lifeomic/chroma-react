@@ -7,7 +7,6 @@ import * as React from 'react';
 import { IconButton } from '../IconButton';
 import { X } from '@lifeomic/chromicons';
 import { NotificationStatusType } from '../_private/notificationTypes';
-import zIndex from '../../styles/utils/zIndex';
 
 export const SnackbarStylesKey = 'ChromaSnackbar';
 
@@ -27,7 +26,7 @@ export const useStyles = makeStyles(
       boxShadow: theme.boxShadows.tooltip,
       top: 0,
       right: 0,
-      zIndex: zIndex.snackbar,
+      zIndex: theme.zIndex.snackbar,
       pointerEvents: 'auto',
       '@media screen and (max-width: 480px)': {
         top: 'unset',

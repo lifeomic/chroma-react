@@ -16,7 +16,6 @@ import clsx from 'clsx';
 import * as React from 'react';
 import 'focus-visible';
 import { MenuGroupHeadingProps } from './MenuGroupHeading';
-import zIndex from '../../styles/utils/zIndex';
 
 export const MenuStylesKey = 'ChromaMenu';
 
@@ -31,7 +30,7 @@ export const useStyles = makeStyles(
       overflowY: 'auto',
       paddingBottom: theme.spacing(1),
       paddingTop: theme.spacing(1),
-      zIndex: zIndex.menu,
+      zIndex: theme.zIndex.menu,
       '&:focus': {
         outline: 'none',
       },

@@ -12,7 +12,6 @@ import {
 } from 'reakit/Tooltip';
 import clsx from 'clsx';
 import * as React from 'react';
-import zIndex from '../../styles/utils/zIndex';
 
 export const TooltipStylesKey = 'ChromaTooltip';
 
@@ -31,7 +30,7 @@ export const useStyles = makeStyles(
       paddingRight: theme.spacing(1),
       paddingTop: theme.spacing(0.5),
       paddingBottom: theme.spacing(0.75),
-      zIndex: zIndex.tooltip,
+      zIndex: theme.zIndex.tooltip,
     },
   }),
   { name: TooltipStylesKey }

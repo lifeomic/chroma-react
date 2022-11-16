@@ -13,7 +13,6 @@ import {
 } from 'reakit/Popover';
 import clsx from 'clsx';
 import * as React from 'react';
-import zIndex from '../../styles/utils/zIndex';
 
 export const PopoverStylesKey = 'ChromaPopover';
 
@@ -26,7 +25,7 @@ export const useStyles = makeStyles(
       boxShadow: theme.boxShadows.popover,
       minWidth: theme.pxToRem(224),
       overflow: 'hidden',
-      zIndex: zIndex.popover,
+      zIndex: theme.zIndex.popover,
       '&:focus': {
         outline: 'none',
       },
