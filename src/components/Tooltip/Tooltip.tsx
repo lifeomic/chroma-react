@@ -30,7 +30,7 @@ export const useStyles = makeStyles(
       paddingRight: theme.spacing(1),
       paddingTop: theme.spacing(0.5),
       paddingBottom: theme.spacing(0.75),
-      zIndex: 1300,
+      zIndex: theme.zIndex.tooltip,
     },
   }),
   { name: TooltipStylesKey }

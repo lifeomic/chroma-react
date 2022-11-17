@@ -58,7 +58,7 @@ export const useStyles = makeStyles(
         color: theme.palette.text.primary,
       },
       '& span': {
-        zIndex: 1,
+        zIndex: theme.zIndex.byValueUpTo20[1],
       },
       '&::after': {
         backgroundColor: theme.palette.primary.main,
@@ -73,7 +73,7 @@ export const useStyles = makeStyles(
         transform: 'scale3d(0.3, 0.3, 0.3)',
         transition: '0.15s ease-in',
         width: '100%',
-        zIndex: 0,
+        zIndex: theme.zIndex.byValueUpTo20[0],
       },
       '&[aria-selected="true"]': {
         borderBottom: 'none',

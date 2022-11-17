@@ -39,7 +39,7 @@ export const useStyles = makeStyles(
       position: 'fixed',
       right: 0,
       top: 0,
-      zIndex: 1200, // Has to go above the Header z-index
+      zIndex: theme.zIndex.modal,
       '@media screen and (max-width: 480px)': {
         justifyContent: 'flex-end',
       },
@@ -94,7 +94,7 @@ export const useStyles = makeStyles(
       flexDirection: 'column',
       height: '100%',
       width: '100%',
-      zIndex: 1200, // Has to go above the Header z-index
+      zIndex: theme.zIndex.modal,
     },
     verticalPadding: {
       paddingLeft: theme.spacing(2),

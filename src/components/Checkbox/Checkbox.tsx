@@ -64,7 +64,7 @@ export const useStyles = makeStyles(
     },
     labelContainer: {
       flex: 1,
-      zIndex: 2,
+      zIndex: theme.zIndex.byValueUpTo20[2],
     },
     label: {
       cursor: 'pointer',
@@ -83,7 +83,7 @@ export const useStyles = makeStyles(
     svg: {
       minWidth: theme.pxToRem(21),
       minHeight: theme.pxToRem(21),
-      zIndex: 2,
+      zIndex: theme.zIndex.byValueUpTo20[2],
     },
     box: {},
     srOnly: {

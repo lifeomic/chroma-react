@@ -52,7 +52,7 @@ export const useStyles = makeStyles(
       position: 'absolute',
       right: 0,
       top: 0,
-      zIndex: 100,
+      zIndex: theme.zIndex.slideOver,
       boxShadow: theme.boxShadows.elevatedContent,
       animation: '$slide-in 0.25s ease-in-out',
       transform: 'translate3d(0, 0, 0)',

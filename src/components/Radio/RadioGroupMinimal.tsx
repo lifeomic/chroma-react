@@ -62,12 +62,12 @@ export const useStyles = makeStyles(
             left: 0,
             top: 0,
             width: '100%',
-            zIndex: 1,
+            zIndex: theme.zIndex.byValueUpTo20[1],
           },
           '& label > p, & svg': {
             position: 'relative',
             transition: 'color 0.15s ease-in',
-            zIndex: 2,
+            zIndex: theme.zIndex.byValueUpTo20[2],
           },
         },
         '&:not(:checked) + div::before': {
