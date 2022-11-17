@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
   },
   dayPicker: {
     position: 'absolute',
-    zIndex: 99999,
+    zIndex: theme.zIndex.dayPicker,
     padding: theme.spacing(2),
     borderRadius: theme.spacing(1.25),
     backgroundColor: theme.palette.common.white,

@@ -9,6 +9,7 @@ import {
   BoxShadowsOptions,
   createBoxShadows,
 } from './createBoxShadows';
+import { ZIndex, ZIndexOptions, createZIndex } from './createZIndex';
 import { createPalette, Palette, PaletteOptions } from './createPalette';
 import {
   createTypography,
@@ -21,6 +22,7 @@ export interface Theme extends Omit<MuiTheme, 'palette'> {
   palette: Palette;
   typography: Typography;
   boxShadows: BoxShadows;
+  zIndex: ZIndex;
   pxToRem: (size: number) => string;
   hexToRgba: (hex: string, opacity: number) => string;
 }
@@ -34,6 +36,7 @@ export interface ThemeOptions
   typography?: TypographyOptions;
   components?: OverridesCreator;
   boxShadows?: BoxShadowsOptions;
+  zIndex?: ZIndexOptions;
   pxToRem?: (size: number) => string;
 }
 
@@ -43,6 +46,7 @@ export const createTheme = ({
   typography,
   components,
   boxShadows,
+  zIndex,
   pxToRem,
   ...muiOptions
 }: ThemeOptions = {}): Theme => {
@@ -53,6 +57,7 @@ export const createTheme = ({
     palette: createPalette(palette),
     typography: createTypography(typography),
     boxShadows: createBoxShadows(boxShadows),
+    zIndex: createZIndex(zIndex),
     pxToRem: (size: number) => `${size / 16}rem`,
     hexToRgba,
     ...muiOptions,

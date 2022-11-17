@@ -43,7 +43,7 @@ export const useStyles = makeStyles(
       boxShadow: theme.boxShadows.popover,
       minWidth: theme.pxToRem(224),
       overflow: 'hidden',
-      zIndex: 1300, // Has to go above the Modal z-index
+      zIndex: theme.zIndex.select,
       '&:focus': {
         outline: 'none',
       },

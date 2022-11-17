@@ -25,7 +25,7 @@ export const useStyles = makeStyles(
       boxShadow: theme.boxShadows.popover,
       minWidth: theme.pxToRem(224),
       overflow: 'hidden',
-      zIndex: 40,
+      zIndex: theme.zIndex.popover,
       '&:focus': {
         outline: 'none',
       },

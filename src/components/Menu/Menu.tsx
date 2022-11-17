@@ -30,7 +30,7 @@ export const useStyles = makeStyles(
       overflowY: 'auto',
       paddingBottom: theme.spacing(1),
       paddingTop: theme.spacing(1),
-      zIndex: 40,
+      zIndex: theme.zIndex.menu,
       '&:focus': {
         outline: 'none',
       },

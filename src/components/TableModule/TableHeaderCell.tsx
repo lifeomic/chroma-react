@@ -27,7 +27,7 @@ export const useStyles = makeStyles(
       textAlign: 'left',
       top: 0,
       whiteSpace: 'nowrap',
-      zIndex: 3,
+      zIndex: theme.zIndex.byValueUpTo20[3],
       '&::after': {
         content: `''`,
         position: 'absolute',

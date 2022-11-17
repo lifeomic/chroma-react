@@ -26,7 +26,7 @@ export const useStyles = makeStyles(
       boxShadow: theme.boxShadows.tooltip,
       top: 0,
       right: 0,
-      zIndex: 1500,
+      zIndex: theme.zIndex.snackbar,
       pointerEvents: 'auto',
       '@media screen and (max-width: 480px)': {
         top: 'unset',
