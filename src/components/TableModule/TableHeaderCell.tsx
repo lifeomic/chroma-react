@@ -84,7 +84,7 @@ export const useStyles = makeStyles(
       background: theme.palette.graphite[50],
       position: 'sticky',
       left: 0,
-      zIndex: 4,
+      zIndex: theme.zIndex.byValueUpTo20[4],
       willChange: 'transform',
     },
   }),

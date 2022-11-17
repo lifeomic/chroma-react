@@ -133,7 +133,7 @@ export const useStyles = makeStyles(
       position: 'relative',
       textAlign: 'right',
       width: theme.pxToRem(1),
-      zIndex: 10,
+      zIndex: theme.zIndex.byValueUpTo20[10],
       // Add bottom border to table action row
       // when actions are hidden
       '&::after': {
@@ -200,7 +200,7 @@ export const useStyles = makeStyles(
       background: theme.palette.graphite[50],
       left: 0,
       position: 'sticky',
-      zIndex: 4,
+      zIndex: theme.zIndex.byValueUpTo20[4],
       willChange: 'transform',
     },
   }),
