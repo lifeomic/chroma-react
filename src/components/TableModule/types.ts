@@ -42,4 +42,5 @@ export interface TableCell<Item = any> extends TableAlignOptions {
 export interface TableConfiguration<Item = any> {
   header: TableHeader;
   cell: TableCell<Item>;
+  isSticky?: boolean;
 }

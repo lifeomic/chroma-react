@@ -16,6 +16,7 @@ import {
 } from './types';
 import * as React from 'react';
 import clsx from 'clsx';
+import { lighten } from '@mui/material/styles';
 
 export const testIds = {
   bodyCell: 'tableModule-bodyCell',
@@ -73,7 +74,7 @@ export const useStyles = makeStyles(
         },
       },
       '&:hover': {
-        background: `rgb(222, 244, 252, 0.25)`,
+        background: lighten(theme.palette.primary[50], 0.5),
         '& $tableModuleActions': {
           left: theme.pxToRem(8),
           opacity: 1,
@@ -82,7 +83,7 @@ export const useStyles = makeStyles(
         },
       },
       '&:focus.focus-visible, &:focus-within': {
-        background: `rgb(222, 244, 252, 0.25)`,
+        background: lighten(theme.palette.primary[50], 0.5),
         '& $tableModuleActions': {
           left: theme.pxToRem(8),
           opacity: 1,
@@ -132,6 +133,7 @@ export const useStyles = makeStyles(
       position: 'relative',
       textAlign: 'right',
       width: theme.pxToRem(1),
+      zIndex: theme.zIndex.byValueUpTo20[10],
       // Add bottom border to table action row
       // when actions are hidden
       '&::after': {
@@ -147,7 +149,11 @@ export const useStyles = makeStyles(
     },
     sticky: {
       position: 'sticky',
+      willChange: 'transform',
       right: 0,
+    },
+    isStickyLast: {
+      borderRight: `2px solid ${theme.palette.primary.main}`,
     },
     tableModuleActions: {
       background: `linear-gradient(135deg,
@@ -190,6 +196,13 @@ export const useStyles = makeStyles(
         cursor: 'pointer',
       },
     },
+    isSticky: {
+      background: theme.palette.graphite[50],
+      left: 0,
+      position: 'sticky',
+      zIndex: theme.zIndex.byValueUpTo20[4],
+      willChange: 'transform',
+    },
   }),
   { name: TableModuleStylesKey }
 );
@@ -209,7 +222,6 @@ export interface TableModuleProps<Item = any>
   noResultsMessage?: string;
   sortState?: TableSortState;
   maxCellWidth?: 1 | 2;
-  ref?: React.Ref<HTMLTableElement>;
   rowActions?: (row: any) => React.ReactNode;
   rowClickLabel?: string;
 }
@@ -250,7 +262,7 @@ export const TableModule = React.memo(
         rowClickLabel,
         ...rootProps
       },
-      ref
+      forwardedRef
     ) => {
       const classes = useStyles({});
 
@@ -270,10 +282,29 @@ export const TableModule = React.memo(
         config?.map((c) => c.cell) || []
       );
 
+      const [stickyCols, setstickyCols] = React.useState<Array<any>>([]);
+
+      const [stickyCellsLeft, setStickyCellsLeft] = React.useState<
+        Array<number>
+      >([]);
+
       React.useEffect(() => {
         if (config.length > 0) {
           setHeadings(config.map((c) => c.header));
           setCells(config.map((c) => c.cell));
+          setstickyCols(
+            config
+              .map((c, index) => {
+                if (c.isSticky) {
+                  return index;
+                }
+              })
+              .filter((index) => {
+                if (index !== undefined) {
+                  return true;
+                }
+              })
+          );
         }
       }, [config]);
 
@@ -288,6 +319,44 @@ export const TableModule = React.memo(
             });
         }
       }, [headings, sortState.sortDirection, sortState.sortKey]);
+
+      React.useEffect(() => {
+        const allStickyCells = Array.from(
+          document.querySelectorAll('.sticky-cell-hook')
+        );
+        allStickyCells.forEach((cell, index) => {
+          if ((index + 1) % stickyCols.length === 0) {
+            cell?.classList.add(classes.isStickyLast);
+          }
+        });
+      });
+
+      const setStickyCellLeftValues = React.useCallback(() => {
+        let sum = 0;
+        const stickyCellsLeft: Array<number> = [];
+        // only need to grab column width from one row, since all rows should be the same in each column
+        if (forwardedRef != null && typeof forwardedRef !== 'function') {
+          const row = forwardedRef?.current?.childNodes[1].childNodes[0];
+          row?.childNodes.forEach((node: any, index: number) => {
+            if (stickyCols.includes(index)) {
+              stickyCellsLeft.push(sum);
+              sum += node?.clientWidth;
+            }
+          });
+          setStickyCellsLeft(stickyCellsLeft);
+        }
+      }, [forwardedRef, stickyCols]);
+
+      React.useLayoutEffect(() => {
+        setStickyCellLeftValues();
+      }, [setStickyCellLeftValues]);
+
+      React.useEffect(() => {
+        window.addEventListener('resize', setStickyCellLeftValues);
+        return () => {
+          window.removeEventListener('resize', setStickyCellLeftValues);
+        };
+      }, [setStickyCellLeftValues]);
 
       const handleSortColumnClick = ({
         index,
@@ -331,7 +400,7 @@ export const TableModule = React.memo(
         <table
           role="table"
           className={clsx(classes.root, className)}
-          ref={ref}
+          ref={forwardedRef}
           {...rootProps}
         >
           <thead className={classes.tableHeader}>
@@ -346,6 +415,12 @@ export const TableModule = React.memo(
                   headingsCount={headings.length}
                   key={i}
                   header={header}
+                  isSticky={stickyCols.indexOf(i) >= 0}
+                  left={
+                    stickyCols.indexOf(i) >= 0
+                      ? stickyCellsLeft[stickyCols.indexOf(i)]
+                      : undefined
+                  }
                   isSorting={sort.sortKey === i}
                   sortDirection={sort.sortDirection}
                   onClick={handleSortColumnClick}
@@ -361,6 +436,14 @@ export const TableModule = React.memo(
                   headingsCount={headings.length}
                   isSorting={false}
                   sortDirection={sort.sortDirection}
+                  isSticky={stickyCols.indexOf(headings?.length + 1) >= 0}
+                  left={
+                    stickyCols.indexOf(headings?.length + 1) >= 0
+                      ? stickyCellsLeft[
+                          stickyCols.indexOf(headings?.length + 1)
+                        ]
+                      : undefined
+                  }
                 />
               )}
             </tr>
@@ -396,6 +479,8 @@ export const TableModule = React.memo(
                   cells={cells}
                   rowActions={rowActions}
                   rowClickLabel={rowClickLabel}
+                  stickyCols={stickyCols}
+                  stickyCellsLeft={stickyCellsLeft}
                 />
               );
             })}

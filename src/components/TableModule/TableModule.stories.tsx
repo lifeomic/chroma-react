@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import { TableModule } from './TableModule';
@@ -23,30 +23,39 @@ const data = [
     calories: '159',
     fat: '6.0',
     carbs: '24',
+    category: 'yogurt',
   },
   {
     description: 'Ice cream sandwich',
     calories: '237',
     fat: '9.0',
     carbs: '37',
+    category: 'ice cream',
   },
   {
     description: 'Eclair',
     calories: '262',
     fat: '16.0',
     carbs: '24',
+    category: 'dessert',
   },
   {
     description: 'Cupcake',
     calories: '305',
     fat: '3.7',
     carbs: '67',
+    category: 'cake',
   },
 ];
 
-const Template: ComponentStory<typeof TableModule> = (args) => (
-  <TableModule {...args} />
-);
+const Template: ComponentStory<typeof TableModule> = (args) => {
+  const tableRef = useRef<HTMLTableElement>(null);
+  return (
+    <div style={{ overflow: 'auto', width: '80%' }}>
+      <TableModule {...args} ref={tableRef} rowClickLabel="row-click-label" />
+    </div>
+  );
+};
 
 export const Default = Template.bind({});
 Default.args = {
@@ -92,7 +101,169 @@ Default.args = {
         },
       },
     },
+    {
+      header: {
+        label: 'Category',
+      },
+      cell: {
+        content: (dataValue: any) => {
+          return dataValue.category;
+        },
+      },
+    },
+    {
+      header: {
+        label: 'Category',
+      },
+      cell: {
+        content: (dataValue: any) => {
+          return dataValue.category;
+        },
+      },
+    },
+    {
+      header: {
+        label: 'Category',
+      },
+      cell: {
+        content: (dataValue: any) => {
+          return dataValue.category;
+        },
+      },
+    },
   ] as Array<TableConfiguration>,
+};
+
+export const Sticky = Template.bind({});
+Sticky.args = {
+  data,
+  config: [
+    {
+      header: {
+        label: 'Description',
+      },
+      cell: {
+        content: (dataValue: any) => {
+          return dataValue.description;
+        },
+      },
+      isSticky: true,
+    },
+    {
+      header: {
+        label: 'Calories',
+      },
+      cell: {
+        content: (dataValue: any) => {
+          return dataValue.calories;
+        },
+      },
+      isSticky: true,
+    },
+    {
+      header: {
+        label: 'Fat',
+      },
+      cell: {
+        content: (dataValue: any) => {
+          return dataValue.fat;
+        },
+      },
+    },
+    {
+      header: {
+        label: 'Carbs',
+      },
+      cell: {
+        content: (dataValue: any) => {
+          return dataValue.carbs;
+        },
+      },
+    },
+    {
+      header: {
+        label: 'Category',
+      },
+      cell: {
+        content: (dataValue: any) => {
+          return dataValue.category;
+        },
+      },
+    },
+    {
+      header: {
+        label: 'Category',
+      },
+      cell: {
+        content: (dataValue: any) => {
+          return dataValue.category;
+        },
+      },
+      isSticky: true,
+    },
+    {
+      header: {
+        label: 'Category',
+      },
+      cell: {
+        content: (dataValue: any) => {
+          return dataValue.category;
+        },
+      },
+    },
+    {
+      header: {
+        label: 'Category',
+      },
+      cell: {
+        content: (dataValue: any) => {
+          return dataValue.category;
+        },
+      },
+    },
+    {
+      header: {
+        label: 'Category',
+      },
+      cell: {
+        content: (dataValue: any) => {
+          return dataValue.category;
+        },
+      },
+    },
+    {
+      header: {
+        label: 'Category',
+      },
+      cell: {
+        content: (dataValue: any) => {
+          return dataValue.category;
+        },
+      },
+    },
+    {
+      header: {
+        label: 'Category',
+      },
+      cell: {
+        content: (dataValue: any) => {
+          return dataValue.category;
+        },
+      },
+    },
+  ] as Array<TableConfiguration>,
+};
+Sticky.parameters = {
+  docs: {
+    description: {
+      story: `Columns can be made "sticky" or so they don't travel off-screen when scrolling the
+      table horizontally. This helps keep track of what row one is looking at in tables with more 
+      columns than can be visible at one time in the document. \n \n Any number of columns can be made
+      sticky. They don't have to be consecutive, and can start and end at any column. However, 
+      most common use-cases will likely just involve the first one or two consecutive columns 
+      being sticky.`,
+    },
+  },
 };
 
 export const Sort: ComponentStory<typeof TableModule> = (args) => {
@@ -166,8 +337,16 @@ export const Sort: ComponentStory<typeof TableModule> = (args) => {
       },
     },
   ];
-
-  return <TableModule {...args} data={sortedData} config={sortConfig} />;
+  const tableRef = useRef<HTMLTableElement | null>(null);
+  return (
+    <TableModule
+      {...args}
+      data={sortedData}
+      config={sortConfig}
+      ref={tableRef}
+      rowClickLabel="row-click-label"
+    />
+  );
 };
 Sort.parameters = {
   docs: {

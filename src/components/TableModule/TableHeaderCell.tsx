@@ -80,6 +80,13 @@ export const useStyles = makeStyles(
     rotatedIcon: {
       transform: 'rotate(180deg)',
     },
+    isSticky: {
+      background: theme.palette.graphite[50],
+      position: 'sticky',
+      left: 0,
+      zIndex: theme.zIndex.byValueUpTo20[4],
+      willChange: 'transform',
+    },
   }),
   { name: TableHeaderCellStylesKey }
 );
@@ -92,6 +99,8 @@ export interface TableHeaderCellProps extends TableSortDirection {
   onClick?: (header: TableSortClickProps) => any;
   index: number;
   headingsCount: number;
+  isSticky?: boolean;
+  left?: number;
 }
 
 export const TableHeaderCell: React.FC<TableHeaderCellProps> = ({
@@ -101,6 +110,8 @@ export const TableHeaderCell: React.FC<TableHeaderCellProps> = ({
   onClick,
   index,
   headingsCount,
+  isSticky = false,
+  left,
   ...rootProps
 }) => {
   const classes = useStyles({});
@@ -130,7 +141,9 @@ export const TableHeaderCell: React.FC<TableHeaderCellProps> = ({
         ((!header.align && headingsCount > 1 && index === headingsCount - 1) ||
           header?.align === 'right') &&
           classes.rootAlignRight,
-        header.className
+        header.className,
+        isSticky && classes.isSticky,
+        isSticky && 'sticky-cell-hook'
       )}
       onClick={canSort ? handleClick : undefined}
       role="columnheader"
@@ -141,6 +154,7 @@ export const TableHeaderCell: React.FC<TableHeaderCellProps> = ({
           ? 'ascending'
           : 'descending'
       }
+      style={{ left: left }}
       {...rootProps}
     >
       {header.content ? header.content(header) : header.label}
