@@ -155,6 +155,9 @@ export const useStyles = makeStyles(
     isStickyLast: {
       borderRight: `2px solid ${theme.palette.primary.main}`,
     },
+    isStickyHeader: {
+      zIndex: theme.zIndex.byValueUpTo20[5],
+    },
     tableModuleActions: {
       background: `linear-gradient(135deg,
         ${theme.palette.primary.light} 0%,
@@ -325,6 +328,9 @@ export const TableModule = React.memo(
           document.querySelectorAll('.sticky-cell-hook')
         );
         allStickyCells.forEach((cell, index) => {
+          if (index < stickyCols.length) {
+            cell?.classList.add(classes.isStickyHeader);
+          }
           if ((index + 1) % stickyCols.length === 0) {
             cell?.classList.add(classes.isStickyLast);
           }
