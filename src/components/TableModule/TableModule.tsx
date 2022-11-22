@@ -147,17 +147,6 @@ export const useStyles = makeStyles(
         bottom: theme.pxToRem(-1),
       },
     },
-    sticky: {
-      position: 'sticky',
-      willChange: 'transform',
-      right: 0,
-    },
-    isStickyLast: {
-      borderRight: `2px solid ${theme.palette.primary.main}`,
-    },
-    isStickyHeader: {
-      zIndex: theme.zIndex.byValueUpTo20[5],
-    },
     tableModuleActions: {
       background: `linear-gradient(135deg,
         ${theme.palette.primary.light} 0%,
@@ -205,6 +194,12 @@ export const useStyles = makeStyles(
       position: 'sticky',
       zIndex: theme.zIndex.byValueUpTo20[4],
       willChange: 'transform',
+    },
+    isStickyLast: {
+      borderRight: `2px solid ${theme.palette.primary.main}`,
+    },
+    isStickyHeader: {
+      zIndex: theme.zIndex.byValueUpTo20[5],
     },
   }),
   { name: TableModuleStylesKey }
