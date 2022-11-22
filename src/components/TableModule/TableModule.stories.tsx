@@ -48,10 +48,12 @@ const data = [
   },
 ];
 
+const dataLong = [...data, ...data, ...data, ...data];
+
 const Template: ComponentStory<typeof TableModule> = (args) => {
   const tableRef = useRef<HTMLTableElement>(null);
   return (
-    <div style={{ overflow: 'auto', width: '80%' }}>
+    <div style={{ overflow: 'auto', width: '80%', height: '400px' }}>
       <TableModule {...args} ref={tableRef} rowClickLabel="row-click-label" />
     </div>
   );
@@ -136,7 +138,7 @@ Default.args = {
 
 export const Sticky = Template.bind({});
 Sticky.args = {
-  data,
+  data: dataLong,
   config: [
     {
       header: {

@@ -133,7 +133,7 @@ export const useStyles = makeStyles(
       position: 'relative',
       textAlign: 'right',
       width: theme.pxToRem(1),
-      zIndex: theme.zIndex.byValueUpTo20[10],
+      zIndex: theme.zIndex.byValueUpTo20[6],
       // Add bottom border to table action row
       // when actions are hidden
       '&::after': {
@@ -146,14 +146,6 @@ export const useStyles = makeStyles(
         width: '100%',
         bottom: theme.pxToRem(-1),
       },
-    },
-    sticky: {
-      position: 'sticky',
-      willChange: 'transform',
-      right: 0,
-    },
-    isStickyLast: {
-      borderRight: `2px solid ${theme.palette.primary.main}`,
     },
     tableModuleActions: {
       background: `linear-gradient(135deg,
@@ -202,6 +194,9 @@ export const useStyles = makeStyles(
       position: 'sticky',
       zIndex: theme.zIndex.byValueUpTo20[4],
       willChange: 'transform',
+    },
+    isStickyLast: {
+      boxShadow: `inset -2px 0 ${theme.palette.primary.main}`,
     },
   }),
   { name: TableModuleStylesKey }
@@ -344,6 +339,10 @@ export const TableModule = React.memo(
             }
           });
           setStickyCellsLeft(stickyCellsLeft);
+        } else {
+          console.error(
+            "Table's forwardRef is null, please set it if you want the sticky cell's left value to be set correctly"
+          );
         }
       }, [forwardedRef, stickyCols]);
 
