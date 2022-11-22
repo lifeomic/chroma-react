@@ -133,7 +133,7 @@ export const useStyles = makeStyles(
       position: 'relative',
       textAlign: 'right',
       width: theme.pxToRem(1),
-      zIndex: theme.zIndex.byValueUpTo20[10],
+      zIndex: theme.zIndex.byValueUpTo20[6],
       // Add bottom border to table action row
       // when actions are hidden
       '&::after': {
@@ -197,9 +197,6 @@ export const useStyles = makeStyles(
     },
     isStickyLast: {
       borderRight: `2px solid ${theme.palette.primary.main}`,
-    },
-    isStickyHeader: {
-      zIndex: theme.zIndex.byValueUpTo20[5],
     },
   }),
   { name: TableModuleStylesKey }
@@ -323,9 +320,6 @@ export const TableModule = React.memo(
           document.querySelectorAll('.sticky-cell-hook')
         );
         allStickyCells.forEach((cell, index) => {
-          if (index < stickyCols.length) {
-            cell?.classList.add(classes.isStickyHeader);
-          }
           if ((index + 1) % stickyCols.length === 0) {
             cell?.classList.add(classes.isStickyLast);
           }

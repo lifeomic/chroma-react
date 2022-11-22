@@ -27,7 +27,7 @@ export const useStyles = makeStyles(
       textAlign: 'left',
       top: 0,
       whiteSpace: 'nowrap',
-      zIndex: theme.zIndex.byValueUpTo20[3],
+      zIndex: theme.zIndex.byValueUpTo20[8],
       '&::after': {
         content: `''`,
         position: 'absolute',
@@ -84,7 +84,7 @@ export const useStyles = makeStyles(
       background: theme.palette.graphite[50],
       position: 'sticky',
       left: 0,
-      zIndex: theme.zIndex.byValueUpTo20[4],
+      zIndex: theme.zIndex.byValueUpTo20[10],
       willChange: 'transform',
     },
   }),
