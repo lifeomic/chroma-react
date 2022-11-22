@@ -196,7 +196,7 @@ export const useStyles = makeStyles(
       willChange: 'transform',
     },
     isStickyLast: {
-      borderRight: `2px solid ${theme.palette.primary.main}`,
+      boxShadow: `inset -2px 0 ${theme.palette.primary.main}`,
     },
   }),
   { name: TableModuleStylesKey }
