@@ -316,14 +316,16 @@ export const TableModule = React.memo(
       }, [headings, sortState.sortDirection, sortState.sortKey]);
 
       React.useEffect(() => {
-        const allStickyCells = Array.from(
-          document.querySelectorAll('.sticky-cell-hook')
-        );
-        allStickyCells.forEach((cell, index) => {
-          if ((index + 1) % stickyCols.length === 0) {
-            cell?.classList.add(classes.isStickyLast);
-          }
-        });
+        if (stickyCols.length > 0) {
+          const allStickyCells = Array.from(
+            document.querySelectorAll('.sticky-cell-hook')
+          );
+          allStickyCells.forEach((cell, index) => {
+            if ((index + 1) % stickyCols.length === 0) {
+              cell?.classList.add(classes.isStickyLast);
+            }
+          });
+        }
       });
 
       const setStickyCellLeftValues = React.useCallback(() => {
@@ -340,22 +342,26 @@ export const TableModule = React.memo(
           });
           setStickyCellsLeft(stickyCellsLeft);
         } else {
-          console.error(
+          console.warn(
             "Table's forwardRef is null, please set it if you want the sticky cell's left value to be set correctly"
           );
         }
       }, [forwardedRef, stickyCols]);
 
       React.useLayoutEffect(() => {
-        setStickyCellLeftValues();
-      }, [setStickyCellLeftValues]);
+        if (stickyCols.length > 0) {
+          setStickyCellLeftValues();
+        }
+      }, [setStickyCellLeftValues, stickyCols, config.length]);
 
       React.useEffect(() => {
-        window.addEventListener('resize', setStickyCellLeftValues);
-        return () => {
-          window.removeEventListener('resize', setStickyCellLeftValues);
-        };
-      }, [setStickyCellLeftValues]);
+        if (stickyCols.length > 0) {
+          window.addEventListener('resize', setStickyCellLeftValues);
+          return () => {
+            window.removeEventListener('resize', setStickyCellLeftValues);
+          };
+        }
+      }, [setStickyCellLeftValues, stickyCols]);
 
       const handleSortColumnClick = ({
         index,
