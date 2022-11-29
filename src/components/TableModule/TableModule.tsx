@@ -316,16 +316,17 @@ export const TableModule = React.memo(
       }, [headings, sortState.sortDirection, sortState.sortKey]);
 
       React.useEffect(() => {
-        if (stickyCols.length > 0) {
-          const allStickyCells = Array.from(
-            document.querySelectorAll('.sticky-cell-hook')
-          );
-          allStickyCells.forEach((cell, index) => {
-            if ((index + 1) % stickyCols.length === 0) {
-              cell?.classList.add(classes.isStickyLast);
-            }
-          });
+        if (stickyCols.length === 0) {
+          return;
         }
+        const allStickyCells = Array.from(
+          document.querySelectorAll('.sticky-cell-hook')
+        );
+        allStickyCells.forEach((cell, index) => {
+          if ((index + 1) % stickyCols.length === 0) {
+            cell?.classList.add(classes.isStickyLast);
+          }
+        });
       });
 
       const setStickyCellLeftValues = React.useCallback(() => {
@@ -349,18 +350,20 @@ export const TableModule = React.memo(
       }, [forwardedRef, stickyCols]);
 
       React.useLayoutEffect(() => {
-        if (stickyCols.length > 0) {
-          setStickyCellLeftValues();
+        if (stickyCols.length === 0) {
+          return;
         }
+        setStickyCellLeftValues();
       }, [setStickyCellLeftValues, stickyCols, config.length]);
 
       React.useEffect(() => {
-        if (stickyCols.length > 0) {
-          window.addEventListener('resize', setStickyCellLeftValues);
-          return () => {
-            window.removeEventListener('resize', setStickyCellLeftValues);
-          };
+        if (stickyCols.length === 0) {
+          return;
         }
+        window.addEventListener('resize', setStickyCellLeftValues);
+        return () => {
+          window.removeEventListener('resize', setStickyCellLeftValues);
+        };
       }, [setStickyCellLeftValues, stickyCols]);
 
       const handleSortColumnClick = ({
