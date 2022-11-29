@@ -1,2 +1,6 @@
 enforceSemanticCommits: true
 requestIndividualReviewersFromTeam: '@lifeomic/chroma'
+reportWorkflowFailures:
+  Release:
+    # This is #open-source
+    slackChannel: C04928K3H5Z
