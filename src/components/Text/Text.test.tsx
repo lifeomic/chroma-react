@@ -39,14 +39,24 @@ test('it renders Text as an "h1" when `useH1`', async () => {
   expect(root?.nodeName).toEqual('H1');
 });
 
-test('it renders monospace text', async () => {
+test('it renders secondary font', async () => {
   const { findByTestId } = renderWithTheme(
-    <Text data-testid={testId} family="monospace">
+    <Text data-testid={testId} family="secondary">
       test
     </Text>
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaText-familyMonospace');
+  expect(root).toHaveClass('ChromaText-familySecondary');
+});
+
+test('it renders tertiary font', async () => {
+  const { findByTestId } = renderWithTheme(
+    <Text data-testid={testId} family="tertiary">
+      test
+    </Text>
+  );
+  const root = await findByTestId(testId);
+  expect(root).toHaveClass('ChromaText-familyTertiary');
 });
 
 test('it renders light weight text', async () => {
