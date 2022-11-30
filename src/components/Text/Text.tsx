@@ -9,7 +9,7 @@ export const useStyles = makeStyles(
   (theme) => ({
     root: {
       color: theme.palette.black.main,
-      fontFamily: theme.typography.fontFamily,
+      fontFamily: theme.typography.fontFamilyPrimary,
       margin: 0,
     },
     inverseColor: {
@@ -53,13 +53,16 @@ export const useStyles = makeStyles(
       lineHeight: theme.pxToRem(18),
     },
     code: {
-      fontFamily: theme.typography.fontFamilyMonospace,
+      fontFamily: theme.typography.fontFamilyTertiary,
       fontSize: fontSizes.body,
       lineHeight: theme.pxToRem(26),
       letterSpacing: 'normal',
     },
-    familyMonospace: {
-      fontFamily: theme.typography.fontFamilyMonospace,
+    familySecondary: {
+      fontFamily: theme.typography.fontFamilySecondary,
+    },
+    familyTertiary: {
+      fontFamily: theme.typography.fontFamilyTertiary,
     },
     weightLight: {
       fontWeight: theme.typography.fontWeightLight,
@@ -101,7 +104,7 @@ export interface TextOwnProps extends React.HTMLAttributes<HTMLElement> {
     | 'button'
     | 'tooltip'
     | 'code';
-  family?: 'default' | 'monospace';
+  family?: 'primary' | 'secondary' | 'tertiary';
   weight?: 'light' | 'regular' | 'bold';
   marginBottom?: boolean;
   /**
@@ -132,7 +135,7 @@ export const Text = React.forwardRef<HTMLParagraphElement, TextProps>(
       children,
       className,
       color = 'default',
-      family = 'default',
+      family = 'primary',
       marginBottom,
       size = 'body',
       useH1 = false,
@@ -160,7 +163,8 @@ export const Text = React.forwardRef<HTMLParagraphElement, TextProps>(
             [classes.code]: size === 'code',
           },
           {
-            [classes.familyMonospace]: family === 'monospace',
+            [classes.familySecondary]: family === 'secondary',
+            [classes.familyTertiary]: family === 'tertiary',
           },
           {
             [classes.weightLight]: weight === 'light',
