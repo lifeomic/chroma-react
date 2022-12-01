@@ -188,6 +188,11 @@ export const useStyles = makeStyles(
         cursor: 'pointer',
       },
     },
+    stickyMenuButton: {
+      position: 'sticky',
+      willChange: 'transform',
+      right: 0,
+    },
     isSticky: {
       background: theme.palette.graphite[50],
       left: 0,
