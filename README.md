@@ -160,6 +160,8 @@ This will generate an output in the `dist/` directory.
 
 ### Linking
 
+#### **Yarn**
+
 Sometimes linking your local changes is helpful when developing new features or bug fixes. To do so, run the following commands.
 
 ```bash
@@ -175,3 +177,27 @@ yarn link @lifeomic/chroma-react
 ```
 
 After running the above command, your local version of Chroma is now linked and all changes locally should reflect in your application.
+
+#### **Yalc**
+
+`yarn link` not working? You may want to try `yalc`.
+
+First you need to global install `yalc` with: `yarn global add yalc`.
+
+In your local version of Chroma:
+
+```bash
+yarn build # Run a build so your changes are included
+cd dist # You must link from the `dist` directory; otherwise, this will not work
+yalc publish
+```
+
+In your application, run the following:
+
+```bash
+yalc add @lifeomic/chroma-react@0.0.0
+yarn install
+yarn start
+```
+
+At the time of this writing, `yalc update` was not working properly so anytime you make changes in Chroma (after already linking) you'll need to repeat the steps above.
