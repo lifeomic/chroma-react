@@ -8,7 +8,7 @@ import deepmerge from 'deepmerge';
 export interface FontFamily {
   primary: CSSProperties['fontFamily'];
   secondary: CSSProperties['fontFamily'];
-  tertiary: CSSProperties['fontFamily'];
+  monospace: CSSProperties['fontFamily'];
 }
 
 export interface FontWeight {
@@ -38,7 +38,7 @@ export const fontFamilies: FontFamily = {
   primary: '"Lato", Helvetica, Roboto, Arial, "Lucida Grande", sans-serif',
   secondary:
     '"Work Sans", Helvetica, Roboto, Arial, "Lucida Grande", sans-serif',
-  tertiary:
+  monospace:
     '"Ubuntu Mono", Consolas, "Lucida Console", Monaco, Courier, monospace',
 };
 
@@ -68,7 +68,7 @@ export const fontSizes: FontSize = {
 interface CustomTypographyProperties {
   fontFamilyPrimary: CSSProperties['fontFamily'];
   fontFamilySecondary: CSSProperties['fontFamily'];
-  fontFamilyTertiary: CSSProperties['fontFamily'];
+  fontFamilyMonospace: CSSProperties['fontFamily'];
   fontWeightBold: CSSProperties['fontWeight'];
   fontWeightBolder: CSSProperties['fontWeight'];
   fontWeightLighter: CSSProperties['fontWeight'];
@@ -83,7 +83,7 @@ export interface TypographyOptions
 const baseTypography: TypographyOptions = {
   fontFamilyPrimary: fontFamilies.primary,
   fontFamilySecondary: fontFamilies.secondary,
-  fontFamilyTertiary: fontFamilies.tertiary,
+  fontFamilyMonospace: fontFamilies.monospace,
   fontWeightLighter: fontWeights.lighter,
   fontWeightLight: fontWeights.light,
   fontWeightRegular: fontWeights.regular,

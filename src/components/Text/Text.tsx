@@ -53,7 +53,7 @@ export const useStyles = makeStyles(
       lineHeight: theme.pxToRem(18),
     },
     code: {
-      fontFamily: theme.typography.fontFamilyTertiary,
+      fontFamily: theme.typography.fontFamilyMonospace,
       fontSize: fontSizes.body,
       lineHeight: theme.pxToRem(26),
       letterSpacing: 'normal',
@@ -61,8 +61,8 @@ export const useStyles = makeStyles(
     familySecondary: {
       fontFamily: theme.typography.fontFamilySecondary,
     },
-    familyTertiary: {
-      fontFamily: theme.typography.fontFamilyTertiary,
+    familyMonospace: {
+      fontFamily: theme.typography.fontFamilyMonospace,
     },
     weightLight: {
       fontWeight: theme.typography.fontWeightLight,
@@ -104,7 +104,7 @@ export interface TextOwnProps extends React.HTMLAttributes<HTMLElement> {
     | 'button'
     | 'tooltip'
     | 'code';
-  family?: 'primary' | 'secondary' | 'tertiary';
+  family?: 'primary' | 'secondary' | 'monospace';
   weight?: 'light' | 'regular' | 'bold';
   marginBottom?: boolean;
   /**
@@ -164,7 +164,7 @@ export const Text = React.forwardRef<HTMLParagraphElement, TextProps>(
           },
           {
             [classes.familySecondary]: family === 'secondary',
-            [classes.familyTertiary]: family === 'tertiary',
+            [classes.familyMonospace]: family === 'monospace',
           },
           {
             [classes.weightLight]: weight === 'light',

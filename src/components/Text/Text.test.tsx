@@ -49,14 +49,14 @@ test('it renders secondary font', async () => {
   expect(root).toHaveClass('ChromaText-familySecondary');
 });
 
-test('it renders tertiary font', async () => {
+test('it renders monospace font', async () => {
   const { findByTestId } = renderWithTheme(
-    <Text data-testid={testId} family="tertiary">
+    <Text data-testid={testId} family="monospace">
       test
     </Text>
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaText-familyTertiary');
+  expect(root).toHaveClass('ChromaText-familyMonospace');
 });
 
 test('it renders light weight text', async () => {
