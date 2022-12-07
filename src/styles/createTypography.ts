@@ -66,7 +66,6 @@ export const fontSizes: FontSize = {
 };
 
 interface CustomTypographyProperties {
-  fontFamilyPrimary: CSSProperties['fontFamily'];
   fontFamilySecondary: CSSProperties['fontFamily'];
   fontFamilyMonospace: CSSProperties['fontFamily'];
   fontWeightBold: CSSProperties['fontWeight'];
@@ -81,7 +80,7 @@ export interface TypographyOptions
     MUITypographyOptions {}
 
 const baseTypography: TypographyOptions = {
-  fontFamilyPrimary: fontFamilies.primary,
+  fontFamily: fontFamilies.primary,
   fontFamilySecondary: fontFamilies.secondary,
   fontFamilyMonospace: fontFamilies.monospace,
   fontWeightLighter: fontWeights.lighter,
