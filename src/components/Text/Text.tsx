@@ -9,7 +9,7 @@ export const useStyles = makeStyles(
   (theme) => ({
     root: {
       color: theme.palette.black.main,
-      fontFamily: theme.typography.fontFamilyPrimary,
+      fontFamily: theme.typography.fontFamily,
       margin: 0,
     },
     inverseColor: {
