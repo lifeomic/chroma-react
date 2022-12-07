@@ -80,7 +80,7 @@ export interface TypographyOptions
     MUITypographyOptions {}
 
 const baseTypography: TypographyOptions = {
-  fontFamily: fontFamilies.primary,
+  fontFamily: fontFamilies.primary, // Not using fontFamilyPrimary here because we need to override MUI fontFamily
   fontFamilySecondary: fontFamilies.secondary,
   fontFamilyMonospace: fontFamilies.monospace,
   fontWeightLighter: fontWeights.lighter,
