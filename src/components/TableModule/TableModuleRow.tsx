@@ -123,7 +123,11 @@ const TableModuleRow: React.FC<TableModuleRowProps> = React.memo(
         {rowContents}
         {(onRowClick || rowActions) && (
           <td
-            className={clsx(classes.tableRowCell, classes.tableRowActionCell)}
+            className={clsx(
+              classes.tableRowCell,
+              classes.tableRowActionCell,
+              classes.stickyMenuButton
+            )}
             role="cell"
           >
             {(Boolean(maybeRowActions) || onRowClick) && (

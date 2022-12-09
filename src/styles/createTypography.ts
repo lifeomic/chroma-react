@@ -6,7 +6,8 @@ import { CSSProperties } from 'react';
 import deepmerge from 'deepmerge';
 
 export interface FontFamily {
-  sansSerif: CSSProperties['fontFamily'];
+  primary: CSSProperties['fontFamily'];
+  secondary: CSSProperties['fontFamily'];
   monospace: CSSProperties['fontFamily'];
 }
 
@@ -34,7 +35,9 @@ export interface FontSize {
 }
 
 export const fontFamilies: FontFamily = {
-  sansSerif: '"Lato", Helvetica, Roboto, Arial, "Lucida Grande", sans-serif',
+  primary: '"Lato", Helvetica, Roboto, Arial, "Lucida Grande", sans-serif',
+  secondary:
+    '"Work Sans", Helvetica, Roboto, Arial, "Lucida Grande", sans-serif',
   monospace:
     '"Ubuntu Mono", Consolas, "Lucida Console", Monaco, Courier, monospace',
 };
@@ -63,6 +66,7 @@ export const fontSizes: FontSize = {
 };
 
 interface CustomTypographyProperties {
+  fontFamilySecondary: CSSProperties['fontFamily'];
   fontFamilyMonospace: CSSProperties['fontFamily'];
   fontWeightBold: CSSProperties['fontWeight'];
   fontWeightBolder: CSSProperties['fontWeight'];
@@ -76,7 +80,8 @@ export interface TypographyOptions
     MUITypographyOptions {}
 
 const baseTypography: TypographyOptions = {
-  fontFamily: fontFamilies.sansSerif,
+  fontFamily: fontFamilies.primary, // Not using fontFamilyPrimary here because we need to override MUI fontFamily
+  fontFamilySecondary: fontFamilies.secondary,
   fontFamilyMonospace: fontFamilies.monospace,
   fontWeightLighter: fontWeights.lighter,
   fontWeightLight: fontWeights.light,
