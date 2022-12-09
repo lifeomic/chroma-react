@@ -58,6 +58,9 @@ export const useStyles = makeStyles(
       lineHeight: theme.pxToRem(26),
       letterSpacing: 'normal',
     },
+    familySecondary: {
+      fontFamily: theme.typography.fontFamilySecondary,
+    },
     familyMonospace: {
       fontFamily: theme.typography.fontFamilyMonospace,
     },
@@ -101,7 +104,7 @@ export interface TextOwnProps extends React.HTMLAttributes<HTMLElement> {
     | 'button'
     | 'tooltip'
     | 'code';
-  family?: 'default' | 'monospace';
+  family?: 'primary' | 'secondary' | 'monospace';
   weight?: 'light' | 'regular' | 'bold';
   marginBottom?: boolean;
   /**
@@ -132,7 +135,7 @@ export const Text = React.forwardRef<HTMLParagraphElement, TextProps>(
       children,
       className,
       color = 'default',
-      family = 'default',
+      family = 'primary',
       marginBottom,
       size = 'body',
       useH1 = false,
@@ -160,6 +163,7 @@ export const Text = React.forwardRef<HTMLParagraphElement, TextProps>(
             [classes.code]: size === 'code',
           },
           {
+            [classes.familySecondary]: family === 'secondary',
             [classes.familyMonospace]: family === 'monospace',
           },
           {
