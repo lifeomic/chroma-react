@@ -8,7 +8,7 @@ import {
 } from 'reakit/Popover';
 import { Portal } from 'reakit/Portal';
 import { ChevronDown } from '@lifeomic/chromicons';
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 import { GetClasses } from '../../typeUtils';
 import {
   BaseFormElement,
@@ -34,7 +34,7 @@ export const testIds = {
 
 export const SelectStylesKey = 'ChromaSelect';
 
-export const useStyles = makeStyles(
+export const useStyles = newMakeStyles(
   (theme) => ({
     root: {},
     popover: {
@@ -406,7 +406,7 @@ export const Select: React.FC<SelectProps> = ({
   showRequiredLabel,
   ...rootProps
 }) => {
-  const classes = useStyles({});
+  const { classes } = useStyles();
   const popover = usePopoverState({ placement });
   const shouldReduceMotion = useReducedMotion();
 

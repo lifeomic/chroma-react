@@ -1,13 +1,13 @@
 import clsx from 'clsx';
 import * as React from 'react';
-import { makeStyles } from '../../styles/index';
+import { newMakeStyles } from '../../styles/index';
 import { GetClasses } from '../../typeUtils';
 import { Breadcrumb, BreadcrumbProps } from './Breadcrumb';
 import { BreadcrumbNav } from './BreadcrumbNav';
 
 export const BreadcrumbsStylesKey = 'ChromaBreadcrumbs';
 
-export const useStyles = makeStyles(
+export const useStyles = newMakeStyles(
   (_theme) => ({
     root: {},
     inverse: {},
@@ -52,7 +52,7 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
   crumbs,
   ...rootProps
 }) => {
-  const classes = useStyles({});
+  const { classes } = useStyles();
   return (
     <BreadcrumbNav
       className={clsx(

@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 import { GetClasses } from '../../typeUtils';
 import clsx from 'clsx';
 
 export const AlertIconStylesKey = 'ChromaAlertIcon';
 
-export const useStyles = makeStyles(
+export const useStyles = newMakeStyles(
   () => ({
     root: {
       color: 'inherit',
@@ -34,7 +34,7 @@ export const AlertIcon: React.FC<AlertIconProps> = ({
   icon: Icon,
   ...rootProps
 }) => {
-  const classes = useStyles({});
+  const { classes } = useStyles();
   return (
     <div className={clsx(classes.root, className)} {...rootProps}>
       {Icon && <Icon role="img" aria-hidden />}

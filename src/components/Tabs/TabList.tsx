@@ -1,13 +1,13 @@
 import clsx from 'clsx';
 import * as React from 'react';
 import { TabList as BaseTabList } from 'reakit/Tab';
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 import { GetClasses } from '../../typeUtils';
 import { TabsContext } from './TabsContext';
 
 export const TabListStylesKey = 'ChromaTabList';
 
-export const useStyles = makeStyles(
+export const useStyles = newMakeStyles(
   (theme) => ({
     root: {
       display: 'flex',
@@ -47,7 +47,7 @@ export const TabList: React.FC<TabListProps> = ({
   className,
   ...rootProps
 }) => {
-  const classes = useStyles({});
+  const { classes } = useStyles();
   const { variant, fullWidth, tabState } = React.useContext(TabsContext);
   return (
     <BaseTabList

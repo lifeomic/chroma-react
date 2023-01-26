@@ -51,7 +51,7 @@ const PhoneInputCompatibleChromaInput = React.forwardRef<
   HTMLInputElement,
   Omit<TextFieldProps, 'color'>
 >((props, ref) => {
-  const classes = useStyles({});
+  const classes = useStyles();
   const { className, ...textFieldProps } = props;
   return (
     <TextField

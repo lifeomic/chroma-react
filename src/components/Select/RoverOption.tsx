@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { Rover, RoverStateReturn } from 'reakit/Rover';
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 import { GetClasses } from '../../typeUtils';
 import { SelectOptionProps } from './SelectOption';
 import { motion, Variants } from 'framer-motion';
 
 export const RoverOptionStylesKey = 'ChromaRoverOption';
 
-export const useStyles = makeStyles(
+export const useStyles = newMakeStyles(
   (theme) => ({
     option: {
       alignItems: 'center',
@@ -46,7 +46,7 @@ export const RoverOption: React.FC<RoverOptionProps> = React.memo(
     value,
     disabled,
   }) => {
-    const classes = useStyles({});
+    const { classes } = useStyles();
     const { value: optionValue, meta } = option?.props || {};
     const handleClick = React.useCallback(() => {
       handleSelectOption(optionValue, meta);

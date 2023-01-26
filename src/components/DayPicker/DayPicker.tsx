@@ -8,7 +8,7 @@ import ReactDayPicker, {
 import 'react-day-picker/lib/style.css';
 import { Calendar, ChevronLeft, ChevronRight } from '@lifeomic/chromicons';
 
-import { makeStyles, useTheme } from '../../styles';
+import { newMakeStyles, useTheme } from '../../styles';
 import { TextField, TextFieldProps } from '../TextField';
 import { GetClasses } from '../../typeUtils';
 import { ButtonUnstyled } from '../ButtonUnstyled';
@@ -27,7 +27,7 @@ const midnightOf = (date: Date) => {
   return copy;
 };
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = newMakeStyles((theme) => ({
   root: {
     position: 'relative',
   },
@@ -271,7 +271,7 @@ export const DayPicker = React.forwardRef<HTMLInputElement, DayPickerProps>(
     }
 
     // @ts-ignore This is throwing a bogus type error.
-    const classes = useStyles({});
+    const { classes } = useStyles();
     const theme = useTheme();
 
     const [isCalendarOpen, setIsCalendarOpen] = React.useState(false);

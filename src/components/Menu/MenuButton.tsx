@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 import { GetClasses } from '../../typeUtils';
 import { Button, ButtonProps } from '../Button';
 
 export const MenuButtonStylesKey = 'ChromaMenuButton';
 
-export const useStyles = makeStyles(
+export const useStyles = newMakeStyles(
   (theme) => ({
     trailingIcon: {
       width: theme.spacing(2),
@@ -29,7 +29,7 @@ export interface MenuButtonProps extends ButtonProps {
 /** @deprecated Please use `trailingIcon` from Button instead. This will be removed in a future release */
 export const MenuButton = React.forwardRef<HTMLButtonElement, MenuButtonProps>(
   ({ children, trailingIcon: TrailingIcon, ...rootProps }, ref) => {
-    const classes = useStyles({});
+    const { classes } = useStyles();
     return (
       <Button ref={ref} {...rootProps}>
         {children}

@@ -1,13 +1,13 @@
 import clsx from 'clsx';
 import * as React from 'react';
 import PageLayoutDefaultHero from '../../assets/PageLayoutDefaultHero.svg';
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 import { GetClasses, StandardProps } from '../../typeUtils';
 import { PageHeader, PageHeaderProps } from '../PageHeader';
 
 export const PageLayoutStylesKey = 'ChromaPageLayout';
 
-export const useStyles = makeStyles(
+export const useStyles = newMakeStyles(
   (theme) => ({
     root: {
       display: 'flex',
@@ -136,7 +136,9 @@ export const PageLayout = React.forwardRef<HTMLDivElement, PageLayoutProps>(
     },
     ref
   ) => {
-    const classes = useStyles({ classes: additionalClasses });
+    const { classes } = useStyles(undefined, {
+      props: { classes: additionalClasses },
+    });
 
     return (
       <div

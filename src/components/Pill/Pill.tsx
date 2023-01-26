@@ -1,12 +1,12 @@
 import clsx from 'clsx';
 import * as React from 'react';
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 import { GetClasses } from '../../typeUtils';
 import { motion, MotionProps } from 'framer-motion';
 
 export const PillStylesKey = 'ChromaPill';
 
-export const useStyles = makeStyles(
+export const useStyles = newMakeStyles(
   (theme) => ({
     root: {
       display: 'inline-flex',
@@ -91,7 +91,7 @@ export const Pill = React.forwardRef<HTMLSpanElement, PillProps>(
     { children, className, color, label, variant = 'default', ...rootProps },
     ref
   ) => {
-    const classes = useStyles({});
+    const { classes } = useStyles();
 
     return (
       <motion.span

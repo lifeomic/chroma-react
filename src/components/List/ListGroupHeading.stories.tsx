@@ -1,14 +1,14 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { ListGroupHeading } from './ListGroupHeading';
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 
 export default {
   title: 'Components/List/ListGroupHeading',
   component: ListGroupHeading,
 } as ComponentMeta<typeof ListGroupHeading>;
 
-const useStyles = makeStyles(() => ({
+const useStyles = newMakeStyles(() => ({
   storyList: {
     listStyle: 'none',
     padding: 0,
@@ -17,7 +17,7 @@ const useStyles = makeStyles(() => ({
 }));
 
 const Template: ComponentStory<typeof ListGroupHeading> = ({ ...args }) => {
-  const classes = useStyles({});
+  const { classes } = useStyles();
   return (
     <ul className={classes.storyList}>
       <ListGroupHeading {...args} />
@@ -33,7 +33,7 @@ Default.args = {
 const TopBorderTemplate: ComponentStory<typeof ListGroupHeading> = ({
   ...args
 }) => {
-  const classes = useStyles({});
+  const { classes } = useStyles();
   return (
     <ul className={classes.storyList}>
       <ListGroupHeading {...args} />

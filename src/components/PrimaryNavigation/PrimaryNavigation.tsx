@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import * as React from 'react';
 import { GlobalHotKeys } from 'react-hotkeys';
 import { Sidebar } from '@lifeomic/chromicons';
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 import { GetClasses } from '../../typeUtils';
 import { sideBarWidthCollapsed, useLayoutManager } from '../LayoutManager';
 import { inDuration, outDuration } from './_private/common';
@@ -20,7 +20,7 @@ export const testIds = {
 
 export const PrimaryNavigationStylesKey = 'ChromaPrimaryNavigation';
 
-export const useStyles = makeStyles(
+export const useStyles = newMakeStyles(
   (theme) => ({
     root: {
       '--link-color': theme.palette.black[300],
@@ -207,7 +207,7 @@ export const PrimaryNavigation = React.forwardRef<
     },
     ref
   ) => {
-    const classes = useStyles({});
+    const { classes } = useStyles();
     const {
       isSidebarCollapsed,
       toggleSidebarCollapsed,

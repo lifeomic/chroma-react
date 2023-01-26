@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { makeStyles } from '../../styles/index';
+import { newMakeStyles } from '../../styles/index';
 import { GetClasses } from '../../typeUtils';
 import clsx from 'clsx';
 
 export const TableModuleActionsStylesKey = 'ChromaTableModuleActions';
 
-export const useStyles = makeStyles(
+export const useStyles = newMakeStyles(
   (theme) => ({
     root: {
       display: 'flex',
@@ -45,7 +45,7 @@ export const TableModuleActions: React.FC<TableModuleActionsProps> = ({
   className,
   ...rootProps
 }) => {
-  const classes = useStyles({});
+  const { classes } = useStyles();
   return (
     <div
       className={clsx(classes.root, className)}

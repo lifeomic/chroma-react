@@ -1,12 +1,12 @@
 import * as React from 'react';
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 import { GetClasses } from '../../typeUtils';
 import clsx from 'clsx';
 import { NotificationStatusType } from '../_private/notificationTypes';
 
 export const AlertStylesKey = 'ChromaAlert';
 
-export const useStyles = makeStyles(
+export const useStyles = newMakeStyles(
   (theme) => ({
     root: {
       alignItems: 'flex-start',
@@ -65,7 +65,7 @@ export const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
     { className, children, fullWidth, statusType = 'info', ...rootProps },
     ref
   ) => {
-    const classes = useStyles({});
+    const { classes } = useStyles();
     return (
       <div
         className={clsx(

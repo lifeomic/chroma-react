@@ -1,12 +1,12 @@
 import clsx from 'clsx';
 import * as React from 'react';
 import { X } from '@lifeomic/chromicons';
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 import { GetClasses } from '../../typeUtils';
 
 export const ChipStylesKey = 'ChromaChip';
 
-export const useStyles = makeStyles(
+export const useStyles = newMakeStyles(
   (theme) => ({
     root: {
       margin: theme.spacing(1.25, 1.25, 0, 0),
@@ -105,7 +105,7 @@ export const Chip = React.forwardRef<HTMLDivElement, ChipProps>(
     { children, label = '', disableDelete, onDelete, className, ...rootProps },
     ref
   ) => {
-    const classes = useStyles({});
+    const { classes } = useStyles();
 
     return (
       <div

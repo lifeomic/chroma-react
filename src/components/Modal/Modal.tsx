@@ -1,7 +1,7 @@
 import { ConditionalWrapper } from '../_private/ConditionalWrapper';
 import { GetClasses } from '../../typeUtils';
 import { IconButton } from '../IconButton';
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 import { ModalActions, ModalActionsProps } from './ModalActions';
 import {
   motion,
@@ -26,7 +26,7 @@ export const ModalStylesKey = 'ChromaModal';
 
 export const OVERLAY_TEST_ID = 'chroma-overlay-testid';
 
-export const useStyles = makeStyles(
+export const useStyles = newMakeStyles(
   (theme) => ({
     overlay: {
       backgroundColor: theme.hexToRgba(theme.palette.common.black, 0.5),
@@ -211,7 +211,7 @@ const ModalInner = React.forwardRef<HTMLDivElement, ModalProps>(
     },
     ref
   ) => {
-    const classes = useStyles({});
+    const { classes } = useStyles();
     const mouseDownTarget = React.useRef<any>(null);
     const overlayNode = React.useRef(null);
     const thisRef = useForkedRef(overlayNode, ref);
@@ -309,7 +309,7 @@ const Content = React.forwardRef<HTMLDivElement, ModalProps>(
     },
     ref
   ) => {
-    const classes = useStyles({});
+    const { classes } = useStyles();
     const shouldReduceMotion = useReducedMotion();
     const poseVariants = {
       init: poses.init || { y: 50, scale: 0.3 },
@@ -414,7 +414,7 @@ const FullScreenContent = React.forwardRef<HTMLDivElement, ModalProps>(
     },
     ref
   ) => {
-    const classes = useStyles({});
+    const { classes } = useStyles();
 
     return (
       <motion.div

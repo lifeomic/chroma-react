@@ -1,6 +1,6 @@
 import { fontSizes } from '../../styles/createTypography';
 import { GetClasses } from '../../typeUtils';
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 import { motion, useReducedMotion } from 'framer-motion';
 import { Portal } from 'reakit/Portal';
 import {
@@ -15,7 +15,7 @@ import * as React from 'react';
 
 export const TooltipStylesKey = 'ChromaTooltip';
 
-export const useStyles = makeStyles(
+export const useStyles = newMakeStyles(
   (theme) => ({
     root: {
       backgroundColor: theme.palette.common.black,
@@ -68,7 +68,7 @@ export const Tooltip: React.FC<TooltipProps> = ({
   gutter,
   ...rootProps
 }) => {
-  const classes = useStyles({});
+  const { classes } = useStyles();
 
   const shouldReduceMotion = useReducedMotion();
 

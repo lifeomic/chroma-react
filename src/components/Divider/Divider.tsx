@@ -1,11 +1,11 @@
 import clsx from 'clsx';
 import * as React from 'react';
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 import { GetClasses } from '../../typeUtils';
 
 export const DividerStylesKey = 'ChromaDivider';
 
-export const useStyles = makeStyles(
+export const useStyles = newMakeStyles(
   (theme) => ({
     root: {
       backgroundColor: theme.hexToRgba(theme.palette.common.black, 0.15),
@@ -115,7 +115,7 @@ export const Divider = React.forwardRef<HTMLHRElement, DividerProps>(
     },
     ref
   ) => {
-    const classes = useStyles({});
+    const { classes } = useStyles();
 
     return (
       <hr

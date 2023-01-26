@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { makeStyles } from '../../src/styles';
+import { newMakeStyles } from '../../src/styles';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = newMakeStyles((theme) => ({
   yellow: {
     fill: theme.palette.yellow[800],
   },
@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
 export interface LogoProps extends React.SVGProps<SVGSVGElement> {}
 
 export const Logo: React.FC<LogoProps> = (props) => {
-  const classes = useStyles({});
+  const { classes } = useStyles();
   return (
     <svg
       width="24"

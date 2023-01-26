@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import * as React from 'react';
 import { NavLinkProps, useLocation } from 'react-router-dom';
 import { Plus } from '@lifeomic/chromicons';
-import { makeStyles } from '../../styles/index';
+import { newMakeStyles } from '../../styles/index';
 import { GetClasses, StandardProps } from '../../typeUtils';
 import { sideBarWidthCollapsed, useLayoutManager } from '../LayoutManager';
 import { Pill } from '../Pill';
@@ -22,7 +22,7 @@ import { motion, MotionProps, Variants } from 'framer-motion';
 export const PrimaryNavigationExpansionItemStylesKey =
   'ChromaPrimaryNavigationExpansionItem';
 
-export const useStyles = makeStyles(
+export const useStyles = newMakeStyles(
   (theme) => ({
     root: {
       listStyle: 'none',
@@ -189,7 +189,9 @@ export const PrimaryNavigationExpansionItem = React.forwardRef<
     },
     ref
   ) => {
-    const classes = useStyles({ classes: additionalClasses });
+    const { classes } = useStyles(undefined, {
+      props: { classes: additionalClasses },
+    });
     const { isSidebarCollapsed } = useLayoutManager();
     const location = useLocation();
 

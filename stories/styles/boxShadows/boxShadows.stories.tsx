@@ -20,9 +20,9 @@ const boxShadows = createBoxShadows();
 The shadows should be available via the "theme". The most common use case should be for components using the "withStyles" HOC.
 
 \`\`\`tsx
-import { useStyles } from '@lifeomic/chroma-react/styles';
+import { newMakeStyles } from '@lifeomic/chroma-react/styles';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = newMakeStyles((theme) => ({
   boxShadow: theme.boxShadows.table,
 }));
 \`\`\`

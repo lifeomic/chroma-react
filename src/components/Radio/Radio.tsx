@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import * as React from 'react';
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 import { GetClasses } from '../../typeUtils';
 import {
   BaseFormElement,
@@ -16,7 +16,7 @@ import { Tooltip } from '../Tooltip';
 
 export const RadioStylesKey = 'ChromaRadio';
 
-export const useStyles = makeStyles(
+export const useStyles = newMakeStyles(
   (theme) => ({
     root: {
       cursor: 'pointer',
@@ -184,7 +184,7 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
     ref
   ) => {
     const inputRef = React.useRef<HTMLInputElement>(null);
-    const classes = useStyles({});
+    const { classes } = useStyles();
 
     const [uniqueId] = React.useState<string>(
       () => id || generateUniqueId('radio-')

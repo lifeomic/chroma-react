@@ -1,12 +1,12 @@
 import { GetClasses } from '../../typeUtils';
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 import { Box, BoxProps } from '../Box';
 import * as React from 'react';
 import clsx from 'clsx';
 
 export const ActionsStylesKey = 'ChromaSlideOverActions';
 
-export const useStyles = makeStyles(
+export const useStyles = newMakeStyles(
   (theme) => ({
     root: {
       borderTop: `1px solid ${theme.palette.divider}`,
@@ -28,7 +28,7 @@ export const Actions: React.FC<ActionsProps> = ({
   children,
   ...rootProps
 }) => {
-  const classes = useStyles({});
+  const { classes } = useStyles();
   return (
     <Box className={clsx(classes.root, className)} {...rootProps}>
       {children}

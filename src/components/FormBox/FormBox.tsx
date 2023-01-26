@@ -1,12 +1,12 @@
 import clsx from 'clsx';
 import * as React from 'react';
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 import { GetClasses } from '../../typeUtils';
 import { Box, BoxProps } from '../Box';
 
 export const FormBoxStylesKey = 'ChromaFormBox';
 
-export const useStyles = makeStyles(
+export const useStyles = newMakeStyles(
   (theme) => ({
     root: {},
     vSpacing0: {
@@ -175,7 +175,7 @@ export const FormBox = React.forwardRef<HTMLDivElement, FormBoxProps>(
     },
     ref
   ) => {
-    const classes = useStyles({});
+    const { classes } = useStyles();
     return (
       <Box
         direction={direction}

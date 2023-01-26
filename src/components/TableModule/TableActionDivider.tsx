@@ -1,12 +1,12 @@
 import { Divider } from '../Divider';
 import { GetClasses } from '../../typeUtils';
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 import * as React from 'react';
 import clsx from 'clsx';
 
 export const TableActionDividerStylesKey = 'ChromaTableActionDivider';
 
-export const useStyles = makeStyles(
+export const useStyles = newMakeStyles(
   (theme) => ({
     root: {
       height: theme.pxToRem(19),
@@ -28,7 +28,7 @@ export const TableActionDivider: React.FC<TableActionDividerProps> = ({
   className,
   ...rootProps
 }) => {
-  const classes = useStyles({});
+  const { classes } = useStyles();
   return (
     <Divider
       className={clsx(classes.root, className)}

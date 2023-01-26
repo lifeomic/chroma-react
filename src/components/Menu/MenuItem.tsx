@@ -1,12 +1,12 @@
 import clsx from 'clsx';
 import * as React from 'react';
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 import { GetClasses } from '../../typeUtils';
 import { Box } from '../Box';
 
 export const MenuItemStylesKey = 'ChromaMenuItem';
 
-export const useStyles = makeStyles(
+export const useStyles = newMakeStyles(
   (theme) => ({
     root: {
       alignItems: 'center',
@@ -86,7 +86,7 @@ export const MenuItem = React.forwardRef<HTMLButtonElement, MenuItemProps>(
     },
     ref
   ) => {
-    const classes = useStyles({});
+    const { classes } = useStyles();
     const handleStopPropagation = (
       e: React.MouseEvent<HTMLButtonElement, MouseEvent>
     ) => {

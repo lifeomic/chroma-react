@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { GetClasses } from '../../typeUtils';
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 import clsx from 'clsx';
 
 export const ButtonUnstyledStylesKey = 'ChromaButtonUnstyled';
 
-export const useStyles = makeStyles(
+export const useStyles = newMakeStyles(
   (theme) => ({
     root: {
       backgroundColor: 'transparent',
@@ -61,7 +61,7 @@ export const ButtonUnstyled = React.forwardRef<
   HTMLButtonElement,
   ButtonUnstyledProps
 >(({ children, className, disabled, fullWidth, ...rootProps }, ref) => {
-  const classes = useStyles({});
+  const { classes } = useStyles();
 
   return (
     <button

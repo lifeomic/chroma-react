@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import * as React from 'react';
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 import { GetClasses } from '../../typeUtils';
 import { Box } from '../Box';
 import { Pill } from '../Pill';
@@ -9,7 +9,7 @@ import { generateUniqueId } from '../_private/UniqueId';
 
 export const StepStylesKey = 'ChromaStep';
 
-export const useStyles = makeStyles(
+export const useStyles = newMakeStyles(
   (theme) => ({
     buttonRoot: {
       alignItems: 'center',
@@ -158,7 +158,7 @@ export const Step: React.FC<StepProps> = ({
   title,
   ...rootProps
 }) => {
-  const classes = useStyles({});
+  const { classes } = useStyles();
   const ariaLabel = `Step ${index + 1} of ${numberOfSteps}`;
 
   const titleId = generateUniqueId('title-');

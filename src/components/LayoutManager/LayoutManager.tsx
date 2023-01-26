@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import * as React from 'react';
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 import { GetClasses } from '../../typeUtils';
 import {
   LayoutManagerContext,
@@ -20,7 +20,7 @@ const gridAreas = {
 export const sideBarWidth = '16.625rem';
 export const sideBarWidthCollapsed = '3.75rem';
 
-export const useStyles = makeStyles(
+export const useStyles = newMakeStyles(
   () => ({
     root: {
       display: 'grid',
@@ -117,7 +117,7 @@ export const LayoutManager: React.FC<LayoutManagerProps> = ({
     [isSidebarCollapsed, isSidebarCollapseDisabled]
   );
 
-  const classes = useStyles({});
+  const { classes } = useStyles();
 
   React.useEffect(() => {
     if (isSidebarCollapseDisabled) {

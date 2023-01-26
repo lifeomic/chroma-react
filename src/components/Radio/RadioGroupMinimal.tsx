@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import * as React from 'react';
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 import { GetClasses } from '../../typeUtils';
 import { RadioProps } from './Radio';
 import { RadioGroupContext } from './useRadioGroup';
@@ -8,7 +8,7 @@ import { screenreaderOnlyStyles } from '../../styles/screenreaderOnly';
 
 export const RadioGroupMinimalStylesKey = 'ChromaRadioGroupMinimal';
 
-export const useStyles = makeStyles(
+export const useStyles = newMakeStyles(
   (theme) => ({
     root: {
       border: 0,
@@ -217,7 +217,7 @@ export const RadioGroupMinimal: React.FC<RadioGroupMinimalProps> = ({
   showRequiredLabel,
   ...rootProps
 }) => {
-  const classes = useStyles({});
+  const { classes } = useStyles();
 
   const [contextValue, setContextValue] = React.useState(value);
 

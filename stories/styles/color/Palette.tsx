@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Text } from '../../../src/components/Text';
-import { makeStyles } from '../../../src/styles';
+import { newMakeStyles } from '../../../src/styles';
 import { ColorValue } from './ColorValue';
 
 export interface PaletteItem {
@@ -10,7 +10,7 @@ export interface PaletteItem {
   };
 }
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = newMakeStyles((theme) => ({
   palette: {
     borderRadius: theme.spacing(2),
     overflow: 'hidden',
@@ -22,7 +22,7 @@ interface PaletteProps {
 }
 
 export const Palette: React.FunctionComponent<PaletteProps> = ({ palette }) => {
-  const classes = useStyles({});
+  const { classes } = useStyles();
   const {
     main,
     primary,

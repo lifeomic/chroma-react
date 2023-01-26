@@ -1,11 +1,14 @@
 import clsx from 'clsx';
 import * as React from 'react';
-import { makeStyles } from '../../styles/index';
+import { newMakeStyles } from '../../styles/index';
 import { GetClasses, StandardProps } from '../../typeUtils';
 
 export const IconTileHeroStylesKey = 'ChromaIconTileHero';
 
-export const useStyles = makeStyles(
+export const useStyles = newMakeStyles<{
+  backgroundColor?: string;
+  backgroundUrl?: string;
+}>(
   (theme) => ({
     root: {
       position: 'relative',
@@ -58,7 +61,9 @@ export const IconTileHero = React.forwardRef<HTMLDivElement, IconTileHeroProps>(
       classes: additionalClasses,
       ...rootProps
     } = props;
-    const classes = useStyles(props);
+    const { classes } = useStyles(undefined, {
+      props: { backgroundColor, backgroundUrl },
+    });
 
     return (
       <div ref={ref} className={clsx(classes.root, className)} {...rootProps}>

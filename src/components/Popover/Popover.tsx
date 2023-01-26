@@ -1,6 +1,6 @@
 import { ConditionalWrapper } from '../_private/ConditionalWrapper';
 import { GetClasses } from '../../typeUtils';
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 import { motion, useReducedMotion } from 'framer-motion';
 import { Portal } from 'reakit/Portal';
 import { Text } from '../Text';
@@ -16,7 +16,7 @@ import * as React from 'react';
 
 export const PopoverStylesKey = 'ChromaPopover';
 
-export const useStyles = makeStyles(
+export const useStyles = newMakeStyles(
   (theme) => ({
     root: {
       background: theme.palette.common.white,
@@ -88,7 +88,7 @@ export const Popover: React.FC<PopoverProps> = ({
   unstable_offset,
   ...rootProps
 }) => {
-  const classes = useStyles({});
+  const { classes } = useStyles();
 
   const shouldReduceMotion = useReducedMotion();
 

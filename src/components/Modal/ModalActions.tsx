@@ -1,11 +1,11 @@
 import clsx from 'clsx';
 import * as React from 'react';
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 import { GetClasses } from '../../typeUtils';
 
 export const ModalActionsStylesKey = 'ChromaModalActions';
 
-export const useStyles = makeStyles(
+export const useStyles = newMakeStyles(
   (theme) => ({
     root: {
       display: 'flex',
@@ -43,7 +43,7 @@ export const ModalActions: React.FC<ModalActionsProps> = ({
   justify = 'flex-end',
   ...rootProps
 }) => {
-  const classes = useStyles({});
+  const { classes } = useStyles();
   return (
     <div
       className={clsx(

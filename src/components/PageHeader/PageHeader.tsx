@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import * as React from 'react';
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 import { GetClasses, StandardProps } from '../../typeUtils';
 import { Text } from '../Text';
 
@@ -9,7 +9,7 @@ export const PageHeaderStylesKey = 'ChromaPageHeader';
 const capitalize = (text: string) =>
   text.charAt(0).toUpperCase() + text.slice(1);
 
-export const useStyles = makeStyles(
+export const useStyles = newMakeStyles(
   (theme) => ({
     root: {
       display: 'flex',
@@ -104,7 +104,9 @@ export const PageHeader = React.forwardRef<HTMLElement, PageHeaderProps>(
     },
     ref
   ) => {
-    const classes = useStyles({ classes: additionalClasses });
+    const { classes } = useStyles(undefined, {
+      props: { classes: additionalClasses },
+    });
 
     return (
       <header

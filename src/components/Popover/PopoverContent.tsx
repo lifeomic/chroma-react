@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 import { GetClasses } from '../../typeUtils';
 
 export const PopoverContentStylesKey = 'ChromaPopoverContent';
 
-export const useStyles = makeStyles(
+export const useStyles = newMakeStyles(
   (theme) => ({
     root: {
       padding: theme.spacing(1.25, 2.5),
@@ -27,7 +27,7 @@ export const PopoverContent = React.forwardRef<
   HTMLDivElement,
   PopoverContentProps
 >(({ children, ...rootProps }, ref) => {
-  const classes = useStyles({});
+  const { classes } = useStyles();
 
   return (
     <div ref={ref} className={classes.root} {...rootProps}>

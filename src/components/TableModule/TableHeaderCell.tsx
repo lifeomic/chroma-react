@@ -1,13 +1,13 @@
 import clsx from 'clsx';
 import * as React from 'react';
 import { ChevronDown } from '@lifeomic/chromicons';
-import { makeStyles } from '../../styles/index';
+import { newMakeStyles } from '../../styles/index';
 import { GetClasses } from '../../typeUtils';
 import { TableSortDirection, TableHeader, TableSortClickProps } from './types';
 
 export const TableHeaderCellStylesKey = 'ChromaTableHeaderCell';
 
-export const useStyles = makeStyles(
+export const useStyles = newMakeStyles(
   (theme) => ({
     root: {
       transition: 'color 0.25s ease',
@@ -114,7 +114,7 @@ export const TableHeaderCell: React.FC<TableHeaderCellProps> = ({
   left,
   ...rootProps
 }) => {
-  const classes = useStyles({});
+  const { classes } = useStyles();
 
   const handleClick = () => {
     onClick?.({ index, sortDirection, header });

@@ -1,6 +1,6 @@
 import { GetClasses } from '../../typeUtils';
 import { IconButton } from '../IconButton';
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 import { Text } from '../Text';
 import { X } from '@lifeomic/chromicons';
 import * as React from 'react';
@@ -8,7 +8,7 @@ import clsx from 'clsx';
 
 export const HeaderStylesKey = 'ChromaSlideOverHeader';
 
-export const useStyles = makeStyles(
+export const useStyles = newMakeStyles(
   (theme) => ({
     root: {
       alignItems: 'center',
@@ -44,7 +44,7 @@ export const Header: React.FC<HeaderProps> = ({
   title,
   ...rootProps
 }) => {
-  const classes = useStyles({});
+  const { classes } = useStyles();
   return (
     <div
       className={clsx(classes.root, additionalClasses?.root, className)}

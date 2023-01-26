@@ -1,6 +1,6 @@
 import { ConditionalWrapper } from '../_private/ConditionalWrapper';
 import { GetClasses } from '../../typeUtils';
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 import { MenuItem, MenuItemProps } from './MenuItem';
 import { motion, useReducedMotion } from 'framer-motion';
 import { Portal } from 'reakit/Portal';
@@ -19,7 +19,7 @@ import { MenuGroupHeadingProps } from './MenuGroupHeading';
 
 export const MenuStylesKey = 'ChromaMenu';
 
-export const useStyles = makeStyles(
+export const useStyles = newMakeStyles(
   (theme) => ({
     root: {
       backgroundColor: theme.palette.common.white,
@@ -100,7 +100,7 @@ export const Menu: React.FC<MenuProps> = ({
   usePortal = false,
   ...rootProps
 }) => {
-  const classes = useStyles({});
+  const { classes } = useStyles();
 
   const shouldReduceMotion = useReducedMotion();
 

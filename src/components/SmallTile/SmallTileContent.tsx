@@ -1,12 +1,12 @@
 import clsx from 'clsx';
 import * as React from 'react';
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 import { GetClasses } from '../../typeUtils';
 import { Text } from '../Text';
 
 export const SmallTileContentStylesKey = 'ChromaSmallTileContent';
 
-export const useStyles = makeStyles(
+export const useStyles = newMakeStyles(
   (theme) => ({
     root: {
       display: 'flex',
@@ -57,7 +57,7 @@ export const SmallTileContent = React.forwardRef<
   HTMLDivElement,
   SmallTileContentProps
 >(({ fullHeight = false, className, children, text, ...rootProps }, ref) => {
-  const classes = useStyles({});
+  const { classes } = useStyles();
 
   return (
     <div

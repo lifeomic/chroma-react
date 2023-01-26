@@ -11,7 +11,7 @@ import {
 import { ButtonUnstyled } from '../ButtonUnstyled';
 import { generateUniqueId } from '../_private/UniqueId';
 import { GetClasses } from '../../typeUtils';
-import { makeStyles, useTheme } from '../../styles';
+import { newMakeStyles, useTheme } from '../../styles';
 import {
   Popover,
   PopoverItem,
@@ -24,7 +24,7 @@ import 'focus-visible';
 
 export const ColorPickerStylesKey = 'ChromaColorPicker';
 
-export const useStyles = makeStyles(
+export const useStyles = newMakeStyles(
   (theme) => ({
     root: {},
     label: {
@@ -343,7 +343,7 @@ export const ColorPicker = React.forwardRef<HTMLInputElement, ColorPickerProps>(
   ) => {
     const [colorValue, setColorValue] = React.useState<string>(value);
 
-    const classes = useStyles({});
+    const { classes } = useStyles();
     const { palette } = useTheme();
 
     const colors = colorSuggestions?.length

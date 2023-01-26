@@ -1,12 +1,12 @@
 import clsx from 'clsx';
 import * as React from 'react';
 import { Link } from 'react-router-dom';
-import { makeStyles } from '../../styles/index';
+import { newMakeStyles } from '../../styles/index';
 import { GetClasses } from '../../typeUtils';
 
 export const BreadcrumbStylesKey = 'ChromaBreadcrumb';
 
-export const useStyles = makeStyles(
+export const useStyles = newMakeStyles(
   (theme) => ({
     root: {
       display: 'inline',
@@ -75,7 +75,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
   url,
   ...rootProps
 }) => {
-  const classes = useStyles({});
+  const { classes } = useStyles();
 
   return (
     <li

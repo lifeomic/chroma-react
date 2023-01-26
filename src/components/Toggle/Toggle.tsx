@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import * as React from 'react';
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 import { GetClasses } from '../../typeUtils';
 import {
   BaseFormElement,
@@ -16,7 +16,7 @@ import { screenreaderOnlyStyles } from '../../styles/screenreaderOnly';
 
 export const ToggleStylesKey = 'ChromaToggle';
 
-export const useStyles = makeStyles(
+export const useStyles = newMakeStyles(
   (theme) => ({
     root: {
       display: 'flex',
@@ -197,7 +197,7 @@ export const Toggle = React.forwardRef<HTMLInputElement, ToggleProps>(
     },
     ref
   ) => {
-    const classes = useStyles({});
+    const { classes } = useStyles();
 
     const [uniqueId] = React.useState<string>(
       () => id || name || generateUniqueId('toggle-')

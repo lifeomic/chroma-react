@@ -41,7 +41,7 @@ const TableModuleRow: React.FC<TableModuleRowProps> = React.memo(
     stickyCols = [],
     stickyCellsLeft = [],
   }) => {
-    const classes = useStyles({});
+    const { classes } = useStyles();
 
     const handleRowClick = React.useCallback(
       (e) => {

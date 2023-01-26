@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import * as React from 'react';
 import { LinkProps } from 'react-router-dom';
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 import { GetClasses } from '../../typeUtils';
 import { LinkOrExternalLink } from '../_private/LinkOrExternalLink';
 import { IconButtonProps } from '../IconButton';
@@ -9,7 +9,7 @@ import 'focus-visible';
 
 export const IconButtonLinkStylesKey = 'ChromaIconButtonLink';
 
-export const useStyles = makeStyles(
+export const useStyles = newMakeStyles(
   (theme) => ({
     root: {
       alignItems: 'center',
@@ -203,7 +203,7 @@ export const IconButtonLink = React.forwardRef<
     },
     ref
   ) => {
-    const classes = useStyles({});
+    const { classes } = useStyles();
 
     return (
       <LinkOrExternalLink

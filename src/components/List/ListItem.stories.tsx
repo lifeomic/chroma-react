@@ -3,14 +3,14 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { ListItem } from './ListItem';
 import { Avatar } from '../Avatar';
 import { Check } from '@lifeomic/chromicons';
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 
 export default {
   title: 'Components/List/ListItem',
   component: ListItem,
 } as ComponentMeta<typeof ListItem>;
 
-const useStyles = makeStyles(() => ({
+const useStyles = newMakeStyles(() => ({
   storyList: {
     listStyle: 'none',
     padding: 0,
@@ -19,7 +19,7 @@ const useStyles = makeStyles(() => ({
 }));
 
 const Template: ComponentStory<typeof ListItem> = ({ ...args }) => {
-  const classes = useStyles({});
+  const { classes } = useStyles();
   return (
     <ul className={classes.storyList}>
       <ListItem {...args} />

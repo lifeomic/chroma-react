@@ -11,7 +11,7 @@ import {
 } from '../_private/forms';
 import { generateUniqueId } from '../_private/UniqueId';
 import { GetClasses } from '../../typeUtils';
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 import { Text } from '../Text';
 
 export const testIds = {
@@ -22,7 +22,7 @@ export const testIds = {
 
 export const SliderStylesKey = 'ChromaSlider';
 
-export const useStyles = makeStyles(
+export const useStyles = newMakeStyles(
   (theme) => ({
     slider: {
       alignItems: 'center',
@@ -258,7 +258,7 @@ export const Slider = React.forwardRef<HTMLElement, SliderProps>(
       name,
       value: getValueAsArray(props.value),
     };
-    const classes = useStyles({});
+    const { classes } = useStyles();
     const arrayValue = sliderProps.value || sliderProps.defaultValue;
 
     const [uniqueId] = React.useState<string>(

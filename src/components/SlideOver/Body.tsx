@@ -1,11 +1,11 @@
 import { GetClasses } from '../../typeUtils';
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 import * as React from 'react';
 import clsx from 'clsx';
 
 export const BodyStylesKey = 'ChromaSlideOverBody';
 
-export const useStyles = makeStyles(
+export const useStyles = newMakeStyles(
   (theme) => ({
     root: {
       display: 'flex',
@@ -31,7 +31,7 @@ export const Body: React.FC<BodyProps> = ({
   children,
   ...rootProps
 }) => {
-  const classes = useStyles({});
+  const { classes } = useStyles();
 
   const AsComponent = as || 'div';
 

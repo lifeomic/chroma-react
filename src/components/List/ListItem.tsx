@@ -1,13 +1,13 @@
 import clsx from 'clsx';
 import * as React from 'react';
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 import { GetClasses } from '../../typeUtils';
 import { AvatarProps } from '../Avatar';
 import { Box } from '../Box';
 
 export const ListItemStylesKey = 'ChromaListItem';
 
-export const useStyles = makeStyles(
+export const useStyles = newMakeStyles(
   (theme) => ({
     root: {
       padding: 0,
@@ -98,7 +98,7 @@ export const ListItem = React.forwardRef<HTMLLIElement, ListItemProps>(
     },
     ref
   ) => {
-    const classes = useStyles({});
+    const { classes } = useStyles();
     const Tag = !!onClick ? 'button' : 'div';
 
     return (

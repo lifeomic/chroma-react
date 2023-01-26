@@ -1,12 +1,12 @@
 import clsx from 'clsx';
 import * as React from 'react';
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 import { GetClasses } from '../../typeUtils';
 import { Box, BoxProps } from '../Box';
 
 export const PaperStylesKey = 'ChromaPaper';
 
-export const useStyles = makeStyles(
+export const useStyles = newMakeStyles(
   (theme) => ({
     root: {
       background: theme.palette.common.white,
@@ -44,7 +44,7 @@ export interface PaperProps extends PaperOwnProps {}
  */
 export const Paper = React.forwardRef<HTMLDivElement, PaperProps>(
   ({ children, className, padding = 2, ...rootProps }, ref) => {
-    const classes = useStyles({});
+    const { classes } = useStyles();
 
     return (
       <Box

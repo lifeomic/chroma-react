@@ -1,13 +1,13 @@
 import React, { ChangeEvent, useEffect } from 'react';
 import { TextFieldProps, TextField } from '../TextField';
 
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 import clsx from 'clsx';
 import { GetClasses } from '../../typeUtils';
 
 export const UnitNumberFormatFieldStylesKey = 'ChromaUnitNumberFormatField';
 
-const useStyles = makeStyles(
+const useStyles = newMakeStyles(
   (theme) => ({
     textField: {
       marginTop: theme.spacing(2),
@@ -72,7 +72,7 @@ export const UnitNumberFormatField: React.FC<UnitNumberFormatFieldProps> = (
       : `${val.toFixed(decimalScale)}${units.length > 2 ? ' ' : ''}${units}`;
   const [textFieldValue, setTextFieldValue] = React.useState(format(value));
 
-  const classes = useStyles({});
+  const { classes } = useStyles();
 
   const [rawValue, setRawValue] = React.useState(format(value));
 

@@ -1,11 +1,11 @@
 import clsx from 'clsx';
 import * as React from 'react';
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 import { GetClasses } from '../../typeUtils';
 
 export const PopoverActionsStylesKey = 'ChromaPopoverActions';
 
-export const useStyles = makeStyles(
+export const useStyles = newMakeStyles(
   (theme) => ({
     root: {
       borderTop: `1px solid ${theme.palette.divider}`,
@@ -46,7 +46,7 @@ export const PopoverActions = React.forwardRef<
   HTMLDivElement,
   PopoverActionsProps
 >(({ children, className, justify = 'flex-end', ...rootProps }, ref) => {
-  const classes = useStyles({});
+  const { classes } = useStyles();
 
   return (
     <div

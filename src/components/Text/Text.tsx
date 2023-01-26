@@ -1,11 +1,11 @@
 import clsx from 'clsx';
 import * as React from 'react';
-import { fontSizes, makeStyles } from '../../styles';
+import { fontSizes, newMakeStyles } from '../../styles';
 import { GetClasses } from '../../typeUtils';
 
 export const TextStylesKey = 'ChromaText';
 
-export const useStyles = makeStyles(
+export const useStyles = newMakeStyles(
   (theme) => ({
     root: {
       color: theme.palette.black.main,
@@ -144,7 +144,7 @@ export const Text = React.forwardRef<HTMLParagraphElement, TextProps>(
     },
     ref
   ) => {
-    const classes = useStyles({});
+    const { classes } = useStyles();
 
     const Component = useH1 ? 'h1' : size === 'headline' ? 'h6' : 'p';
 

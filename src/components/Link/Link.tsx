@@ -4,12 +4,12 @@ import {
   NavLink,
   NavLinkProps as RouterDomNavLinkProps,
 } from 'react-router-dom';
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 import { GetClasses } from '../../typeUtils';
 
 export const LinkStylesKey = 'ChromaLink';
 
-export const useStyles = makeStyles(
+export const useStyles = newMakeStyles(
   (theme) => ({
     root: {
       color: theme.hexToRgba(theme.palette.primary[900], 0.9),
@@ -69,7 +69,7 @@ export const Link: React.FC<LinkProps> = ({
   'data-testid': dataTestId,
   ...rootProps
 }) => {
-  const classes = useStyles({});
+  const { classes } = useStyles();
 
   if (newTab) {
     return (

@@ -123,7 +123,7 @@ Need to build a custom component, but want to use the styles hook of an existing
 import { useStyles } from '@lifeomic/chroma-react/components/Button/Button';
 
 const CustomButton = ({}) => {
-  const classes = useStyles({});
+  const { classes } = useStyles();
   return <button className={classes.root}>Custom Button</button>;
 };
 ```

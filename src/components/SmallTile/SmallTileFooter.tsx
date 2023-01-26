@@ -1,12 +1,12 @@
 import clsx from 'clsx';
 import * as React from 'react';
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 import { GetClasses } from '../../typeUtils';
 import { Text } from '../Text';
 
 export const SmallTileFooterStylesKey = 'ChromaSmallTileFooter';
 
-export const useStyles = makeStyles(
+export const useStyles = newMakeStyles(
   (theme) => ({
     root: {
       display: 'flex',
@@ -64,7 +64,7 @@ export const SmallTileFooter = React.forwardRef<
     { children, className, justify = 'space-between', text, ...rootProps },
     ref
   ) => {
-    const classes = useStyles({});
+    const { classes } = useStyles();
 
     return (
       <div

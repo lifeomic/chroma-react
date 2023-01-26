@@ -1,12 +1,12 @@
 import clsx from 'clsx';
 import * as React from 'react';
 import { NavLink, Route, RouteProps } from 'react-router-dom';
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 import { GetClasses, StandardProps } from '../../typeUtils';
 
 export const SecondaryNavigationItemStylesKey = 'ChromaSecondaryNavigationItem';
 
-export const useStyles = makeStyles(
+export const useStyles = newMakeStyles(
   (theme) => ({
     root: {
       paddingTop: theme.spacing(1.5),
@@ -62,7 +62,9 @@ export const SecondaryNavigationItem = React.forwardRef<
     { className, exact, label, to, classes: additionalClasses, ...rootProps },
     ref
   ) => {
-    const classes = useStyles({ classes: additionalClasses });
+    const { classes } = useStyles(undefined, {
+      props: { classes: additionalClasses },
+    });
 
     return (
       <Route exact={exact} path={to}>

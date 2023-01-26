@@ -1,12 +1,12 @@
 import clsx from 'clsx';
 import * as React from 'react';
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 import { GetClasses, StandardProps } from '../../typeUtils';
 import { Text } from '../Text';
 
 export const PopoverItemStylesKey = 'ChromaPopoverItem';
 
-export const useStyles = makeStyles(
+export const useStyles = newMakeStyles(
   (theme) => ({
     root: {
       display: 'flex',
@@ -90,7 +90,9 @@ export const PopoverItem = React.forwardRef<HTMLLIElement, PopoverItemProps>(
     },
     ref
   ) => {
-    const classes = useStyles({ classes: additionalClasses });
+    const { classes } = useStyles(undefined, {
+      props: { classes: additionalClasses },
+    });
 
     return (
       <li

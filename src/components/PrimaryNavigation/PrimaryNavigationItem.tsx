@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import * as React from 'react';
 import { NavLinkProps } from 'react-router-dom';
-import { makeStyles } from '../../styles/index';
+import { newMakeStyles } from '../../styles/index';
 import { GetClasses, StandardProps } from '../../typeUtils';
 import { sideBarWidthCollapsed, useLayoutManager } from '../LayoutManager';
 import { Pill } from '../Pill';
@@ -17,7 +17,7 @@ import { motion } from 'framer-motion';
 
 export const PrimaryNavigationItemStylesKey = 'ChromaPrimaryNavigationItem';
 
-export const useStyles = makeStyles(
+export const useStyles = newMakeStyles(
   (theme) => ({
     root: {
       listStyle: 'none',
@@ -131,7 +131,9 @@ export const PrimaryNavigationItem = React.forwardRef<
     },
     ref
   ) => {
-    const classes = useStyles({ classes: additionalClasses });
+    const { classes } = useStyles(undefined, {
+      props: { classes: additionalClasses },
+    });
     const { isSidebarCollapsed } = useLayoutManager();
 
     return (

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { GlobalHotKeys } from 'react-hotkeys';
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 import { GetClasses } from '../../typeUtils';
 import { Button } from '../Button';
 import { Chip } from '../Chip';
@@ -23,7 +23,7 @@ const BASE_KEY_MAP_DOCS: KeyBindingDoc[] = [
 
 export const KeymapHelpStylesKey = 'ChromaKeymapHelp';
 
-export const useStyles = makeStyles(
+export const useStyles = newMakeStyles(
   (theme) => ({
     root: {},
     sequence: {
@@ -66,7 +66,7 @@ export const KeymapHelp: React.FC<KeymapHelpProps> = ({
   keyMapDocs,
   keyListenerTestId,
 }) => {
-  const classes = useStyles({});
+  const { classes } = useStyles();
   const [isOpen, setIsOpen] = React.useState(false);
   const onClose = () => {
     setIsOpen(false);

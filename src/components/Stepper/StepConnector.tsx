@@ -1,11 +1,11 @@
 import clsx from 'clsx';
 import * as React from 'react';
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 import { GetClasses } from '../../typeUtils';
 
 export const StepConnectorStylesKey = 'ChromaStepConnector';
 
-export const useStyles = makeStyles(
+export const useStyles = newMakeStyles(
   (theme) => ({
     connectorRoot: {
       flex: 1,
@@ -55,7 +55,7 @@ export const StepConnector: React.FC<StepConnectorProps> = ({
   hasSubTitlePill,
   ...rootProps
 }) => {
-  const classes = useStyles({});
+  const { classes } = useStyles();
   return (
     <div
       className={clsx(

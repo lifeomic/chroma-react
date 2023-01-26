@@ -1,12 +1,12 @@
 import { GetClasses } from '../../typeUtils';
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 import { RemoveScroll } from 'react-remove-scroll';
 import * as React from 'react';
 import clsx from 'clsx';
 
 export const SlideOverStylesKey = 'ChromaSlideOver';
 
-export const useStyles = makeStyles(
+export const useStyles = newMakeStyles(
   (theme) => ({
     '@keyframes fade-in': {
       '0%': {
@@ -125,7 +125,7 @@ export const SlideOver: React.FC<SlideOverProps> = ({
   isOpen = false,
   ...rootProps
 }) => {
-  const classes = useStyles({});
+  const { classes } = useStyles();
 
   // If the two below states get more complicated, may want to move to a
   // useReducer.

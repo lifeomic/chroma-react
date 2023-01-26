@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import * as React from 'react';
 import { VisuallyHidden } from 'reakit/VisuallyHidden';
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 import { GetClasses } from '../../typeUtils';
 import { Box } from '../Box';
 import { Text } from '../Text';
@@ -10,7 +10,7 @@ export const SelectOptionStylesKey = 'ChromaSelectOption';
 
 export const checkSize = 20;
 
-export const useStyles = makeStyles(
+export const useStyles = newMakeStyles(
   (theme) => ({
     root: {
       paddingTop: theme.spacing(0.5),
@@ -74,7 +74,7 @@ export const SelectOption: React.FC<SelectOptionProps> = ({
   disabled,
   ...rootProps
 }) => {
-  const classes = useStyles({});
+  const { classes } = useStyles();
   return (
     <Box className={clsx(classes.root, className)} fullWidth {...rootProps}>
       {isChecked && (

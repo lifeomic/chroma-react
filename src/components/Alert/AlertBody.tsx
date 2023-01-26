@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 import { GetClasses } from '../../typeUtils';
 import clsx from 'clsx';
 
 export const AlertBodyStylesKey = 'ChromaAlertBody';
 
-export const useStyles = makeStyles(
+export const useStyles = newMakeStyles(
   () => ({
     root: {
       color: 'inherit',
@@ -66,7 +66,7 @@ export const AlertBody: React.FC<AlertBodyProps> = ({
   spaceBetween,
   ...rootProps
 }) => {
-  const classes = useStyles({});
+  const { classes } = useStyles();
   return (
     <div
       className={clsx(

@@ -1,14 +1,14 @@
 import clsx from 'clsx';
 import * as React from 'react';
 import { Tab as BaseTab } from 'reakit/Tab';
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 import { GetClasses } from '../../typeUtils';
 import { TabsContext } from './TabsContext';
 import { TabStop } from './types';
 
 export const TabStylesKey = 'ChromaTab';
 
-export const useStyles = makeStyles(
+export const useStyles = newMakeStyles(
   (theme) => ({
     root: {
       alignItems: 'center',
@@ -124,7 +124,7 @@ export const Tab: React.FC<TabProps> = ({
   children,
   ...rootProps
 }) => {
-  const classes = useStyles({});
+  const { classes } = useStyles();
   const { variant, fullWidth, tabState } = React.useContext(TabsContext);
   return (
     <BaseTab

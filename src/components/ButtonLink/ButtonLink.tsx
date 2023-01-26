@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import * as React from 'react';
 import { LinkProps } from 'react-router-dom';
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 import { GetClasses } from '../../typeUtils';
 import { LinkOrExternalLink } from '../_private/LinkOrExternalLink';
 import { ButtonProps } from '../Button';
@@ -9,7 +9,7 @@ import 'focus-visible';
 
 export const ButtonLinkStylesKey = 'ChromaButtonLink';
 
-export const useStyles = makeStyles(
+export const useStyles = newMakeStyles(
   (theme) => ({
     root: {
       background: theme.palette.primary.main,
@@ -280,7 +280,7 @@ export const ButtonLink = React.forwardRef<HTMLAnchorElement, ButtonLinkProps>(
     },
     ref
   ) => {
-    const classes = useStyles({});
+    const { classes } = useStyles();
 
     variant = variant || 'contained';
 

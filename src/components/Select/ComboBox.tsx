@@ -149,7 +149,7 @@ export const ComboBox: React.FC<ComboBoxProps> = ({
   showRequiredLabel,
   ...rootProps
 }) => {
-  const classes = useStyles({});
+  const { classes } = useStyles();
   const popover = usePopoverState({ placement });
   const rover = useRoverState({ loop: true, orientation: 'vertical' });
   const shouldReduceMotion = useReducedMotion();

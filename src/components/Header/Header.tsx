@@ -1,13 +1,13 @@
 import clsx from 'clsx';
 import * as React from 'react';
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 import { GetClasses } from '../../typeUtils';
 
 export const headerHeight = '3.125rem';
 
 export const HeaderStylesKey = 'ChromaHeader';
 
-export const useStyles = makeStyles(
+export const useStyles = newMakeStyles(
   (theme) => ({
     root: {
       alignItems: 'center',
@@ -81,7 +81,7 @@ export interface HeaderProps extends React.ComponentPropsWithoutRef<'header'> {
  */
 export const Header = React.forwardRef<HTMLHeadingElement, HeaderProps>(
   ({ logo, left, right, className, centerLogo, ...rootProps }, ref) => {
-    const classes = useStyles({});
+    const { classes } = useStyles();
 
     return (
       <header
