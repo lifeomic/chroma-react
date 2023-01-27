@@ -17,7 +17,7 @@ test('it renders a Checkbox', async () => {
   );
 
   const checkbox = await findByTestId(testId);
-  expect(checkbox.classList.contains('ChromaCheckbox-input')).true;
+  expect(checkbox).toHaveClass('ChromaCheckbox-input');
   expect(checkbox.getAttribute('aria-checked')).toEqual('false');
   expect(checkbox.getAttribute('type')).toEqual('checkbox');
   expect(checkbox.getAttribute('tabIndex')).toEqual('0');
@@ -37,13 +37,13 @@ test('it renders an inverse color Checkbox with help and error messages', async 
   );
 
   const checkbox = await findByTestId(testId);
-  expect(checkbox.classList.contains('ChromaCheckbox-inputInverse')).true;
+  expect(checkbox).toHaveClass('ChromaCheckbox-inputInverse');
 
   const help = await findByText(/Helpful text/);
-  expect(help.classList.contains('ChromaFormHelpMessage-inverse')).true;
+  expect(help).toHaveClass('ChromaFormHelpMessage-inverse');
 
   const error = await findByText(/Checkbox error message/);
-  expect(error.classList.contains('ChromaFormErrorMessage-inverse')).true;
+  expect(error).toHaveClass('ChromaFormErrorMessage-inverse');
 });
 
 test('it applies the provided className', async () => {
@@ -52,7 +52,7 @@ test('it applies the provided className', async () => {
     <Checkbox {...props} data-testid={testId} className="custom-class-name" />
   );
   const checkbox = await findByTestId(testId);
-  expect(checkbox?.parentElement?.classList.contains('custom-class-name')).true;
+  expect(checkbox?.parentElement).toHaveClass('custom-class-name');
 });
 
 test('it renders a checked-by-default Checkbox', async () => {
@@ -212,7 +212,7 @@ test('it renders an * when the field is required', async () => {
   );
   const asterisk = await findByText('*');
   expect(asterisk).toBeInTheDocument();
-  expect(asterisk.classList.contains('ChromaCheckbox-required')).true;
+  expect(asterisk).toHaveClass('ChromaCheckbox-required');
 });
 
 test('it renders an inverse color * when the field is required', async () => {
@@ -220,6 +220,7 @@ test('it renders an inverse color * when the field is required', async () => {
     <Checkbox label="Required" color="inverse" showRequiredLabel />
   );
   const asterisk = await findByText('*');
-  expect(asterisk.classList.contains('ChromaCheckbox-required')).true;
-  expect(asterisk.classList.contains('ChromaCheckbox-requiredInverse')).true;
+  expect(asterisk).toHaveClass(
+    'ChromaCheckbox-required ChromaCheckbox-requiredInverse'
+  );
 });

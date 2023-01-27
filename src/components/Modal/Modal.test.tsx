@@ -23,7 +23,7 @@ test('it renders a Modal', async () => {
 
   const root = await findByTestId(testId);
   expect(root).toBeInTheDocument();
-  expect(root.classList.contains('ChromaModal-content')).true;
+  expect(root).toHaveClass('ChromaModal-content');
   expect(root.getAttribute('role')).toEqual('dialog');
   expect(root.getAttribute('aria-modal')).toEqual('true');
   expect(root.getAttribute('aria-describedby')).toBeTruthy();
@@ -31,9 +31,7 @@ test('it renders a Modal', async () => {
   expect(root.getAttribute('tabIndex')).toEqual('-1');
 
   const children = await findByTestId('children');
-  expect(
-    children?.parentElement?.classList.contains('ChromaModal-contentSize0')
-  ).true;
+  expect(children?.parentElement).toHaveClass('ChromaModal-contentSize0');
 });
 
 test('it renders a Modal with the specified "title"', async () => {
@@ -47,11 +45,8 @@ test('it renders a Modal with the specified "title"', async () => {
   const title = await findByText(/Modal Title/);
   expect(title).toBeInTheDocument();
   expect(title?.parentElement?.getAttribute('id')).toBeTruthy();
-  expect(title?.parentElement?.classList.contains('ChromaModal-modalHeader'))
-    .true;
-  expect(
-    title?.parentElement?.classList.contains('ChromaModal-verticalPadding')
-  ).true;
+  expect(title?.parentElement).toHaveClass('ChromaModal-modalHeader');
+  expect(title?.parentElement).toHaveClass('ChromaModal-verticalPadding');
 });
 
 test('it renders a Modal with "size={1}"', async () => {
@@ -63,9 +58,7 @@ test('it renders a Modal with "size={1}"', async () => {
   );
 
   const children = await findByTestId(testId);
-  expect(
-    children?.parentElement?.classList.contains('ChromaModal-contentSize1')
-  ).true;
+  expect(children?.parentElement).toHaveClass('ChromaModal-contentSize1');
 });
 
 test('it applies the content class for the modal', async () => {
@@ -77,7 +70,7 @@ test('it applies the content class for the modal', async () => {
   );
 
   const children = await findByTestId(testId);
-  expect(children?.parentElement?.classList.contains('custom-class-name')).true;
+  expect(children?.parentElement).toHaveClass('custom-class-name');
 });
 
 test('it calls the provided "onDismiss" on ESC key press', async () => {
@@ -104,7 +97,7 @@ test('it applies the "fullWidth" class', async () => {
   );
 
   const root = await findByTestId(testId);
-  expect(root.classList.contains('ChromaModal-contentFullWidth')).true;
+  expect(root).toHaveClass('ChromaModal-contentFullWidth');
 });
 
 // #region modal actions
@@ -127,11 +120,8 @@ test('it renders actions', async () => {
 
   const actions = await findByTestId(testId);
   expect(actions).toBeInTheDocument();
-  expect(actions?.parentElement?.classList.contains('ChromaModal-modalActions'))
-    .true;
-  expect(
-    actions?.parentElement?.classList.contains('ChromaModal-verticalPadding')
-  ).true;
+  expect(actions?.parentElement).toHaveClass('ChromaModal-modalActions');
+  expect(actions?.parentElement).toHaveClass('ChromaModal-verticalPadding');
 });
 
 test('it renders actions with "justifyActions"', async () => {
@@ -152,11 +142,9 @@ test('it renders actions with "justifyActions"', async () => {
   );
 
   const actions = await findByTestId(testId);
-  expect(
-    actions?.parentElement?.classList.contains(
-      'ChromaModalActions-justifyBetween'
-    )
-  ).true;
+  expect(actions?.parentElement).toHaveClass(
+    'ChromaModalActions-justifyBetween'
+  );
 });
 
 // #endregion
@@ -193,7 +181,7 @@ test('it renders a fullscreen Modal', async () => {
 
   const root = await findByTestId(testId);
   expect(root).toBeInTheDocument();
-  expect(root.classList.contains('ChromaModal-contentFullScreen')).true;
+  expect(root).toHaveClass('ChromaModal-contentFullScreen');
 });
 
 test('it applies the content class for the fullscreen modal', async () => {
@@ -205,7 +193,7 @@ test('it applies the content class for the fullscreen modal', async () => {
   );
 
   const children = await findByTestId(testId);
-  expect(children?.parentElement?.classList.contains('custom-class-name')).true;
+  expect(children?.parentElement).toHaveClass('custom-class-name');
 });
 
 test('it applies the provided className', async () => {
@@ -215,7 +203,7 @@ test('it applies the provided className', async () => {
   );
 
   const root = await findByTestId(testId);
-  expect(root.classList.contains('custom-class-name')).true;
+  expect(root).toHaveClass('custom-class-name');
 });
 
 test('it applies the provided className when fullscreen', async () => {
@@ -230,7 +218,7 @@ test('it applies the provided className when fullscreen', async () => {
   );
 
   const root = await findByTestId(testId);
-  expect(root.classList.contains('custom-class-name')).true;
+  expect(root).toHaveClass('custom-class-name');
 });
 
 test('it renders the customHeader when not fullscreen', async () => {

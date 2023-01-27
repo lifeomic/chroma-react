@@ -10,7 +10,7 @@ test('it renders an Alert', async () => {
   const alert = await findByTestId(testId);
   expect(alert).toBeInTheDocument();
   expect(alert.getAttribute('role')).toBe('alert');
-  expect(alert.classList.contains('ChromaAlert-info')).true;
+  expect(alert).toHaveClass('ChromaAlert-info');
 });
 
 test('it applies the provided className', async () => {
@@ -19,7 +19,7 @@ test('it applies the provided className', async () => {
   );
 
   const alert = await findByTestId(testId);
-  expect(alert.classList.contains('custom-class-name')).true;
+  expect(alert).toHaveClass('custom-class-name');
 });
 
 test('it applies the fullWidth prop', async () => {
@@ -28,7 +28,7 @@ test('it applies the fullWidth prop', async () => {
   );
 
   const alert = await findByTestId(testId);
-  expect(alert.classList.contains('ChromaAlert-fullWidth')).true;
+  expect(alert).toHaveClass('ChromaAlert-fullWidth');
 });
 
 test('it applies the error statusType', async () => {
@@ -37,7 +37,7 @@ test('it applies the error statusType', async () => {
   );
 
   const alert = await findByTestId(testId);
-  expect(alert.classList.contains('ChromaAlert-error')).true;
+  expect(alert).toHaveClass('ChromaAlert-error');
 });
 
 test('it applies the info statusType', async () => {
@@ -46,7 +46,7 @@ test('it applies the info statusType', async () => {
   );
 
   const alert = await findByTestId(testId);
-  expect(alert.classList.contains('ChromaAlert-info')).true;
+  expect(alert).toHaveClass('ChromaAlert-info');
 });
 
 test('it applies the success statusType', async () => {
@@ -55,7 +55,7 @@ test('it applies the success statusType', async () => {
   );
 
   const alert = await findByTestId(testId);
-  expect(alert.classList.contains('ChromaAlert-success')).true;
+  expect(alert).toHaveClass('ChromaAlert-success');
 });
 
 test('it applies the warning statusType', async () => {
@@ -64,5 +64,5 @@ test('it applies the warning statusType', async () => {
   );
 
   const alert = await findByTestId(testId);
-  expect(alert.classList.contains('ChromaAlert-warning')).true;
+  expect(alert).toHaveClass('ChromaAlert-warning');
 });

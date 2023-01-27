@@ -32,7 +32,7 @@ test('it applies the provided className', async () => {
     </ButtonUnstyled>
   );
   const button = await findByTestId(testId);
-  expect(button.classList.contains('custom-class-name'));
+  expect(button).toHaveClass('custom-class-name');
 });
 
 test('it renders with the "fullWidth" prop', async () => {
@@ -43,7 +43,7 @@ test('it renders with the "fullWidth" prop', async () => {
     </ButtonUnstyled>
   );
   const button = await findByTestId(testId);
-  expect(button.classList.contains('ChromaButtonUnstyled-fullWidth'));
+  expect(button).toHaveClass('ChromaButtonUnstyled-fullWidth');
 });
 
 test('it renders a disabled button', async () => {

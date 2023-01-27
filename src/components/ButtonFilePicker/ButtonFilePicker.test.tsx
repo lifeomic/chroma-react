@@ -50,7 +50,7 @@ test('it applies the provided className', async () => {
     </ButtonFilePicker>
   );
   const root = await findByTestId(testId);
-  expect(root.classList.contains('custom-class')).true;
+  expect(root).toHaveClass('custom-class');
 });
 
 test('it renders an icon with the "icon" class name', () => {
@@ -59,7 +59,7 @@ test('it renders an icon with the "icon" class name', () => {
   );
   const icon = getByRole('img', { hidden: true });
   expect(icon).toBeInTheDocument();
-  expect(icon.classList.contains('ChromaButtonFilePicker-icon')).true;
+  expect(icon).toHaveClass('ChromaButtonFilePicker-icon');
 });
 
 test('it renders with the "fullWidth" prop', async () => {
@@ -70,7 +70,7 @@ test('it renders with the "fullWidth" prop', async () => {
     </ButtonFilePicker>
   );
   const root = await findByTestId(testId);
-  expect(root.classList.contains('ChromaButtonFilePicker-fullWidth')).true;
+  expect(root).toHaveClass('ChromaButtonFilePicker-fullWidth');
 });
 
 test('it renders with `variant="outlined"`', async () => {
@@ -81,7 +81,7 @@ test('it renders with `variant="outlined"`', async () => {
     </ButtonFilePicker>
   );
   const root = await findByTestId(testId);
-  expect(root.classList.contains('ChromaButtonFilePicker-outlined')).true;
+  expect(root).toHaveClass('ChromaButtonFilePicker-outlined');
 });
 
 test('it renders with `variant="text"`', async () => {
@@ -92,7 +92,7 @@ test('it renders with `variant="text"`', async () => {
     </ButtonFilePicker>
   );
   const root = await findByTestId(testId);
-  expect(root.classList.contains('ChromaButtonFilePicker-text')).true;
+  expect(root).toHaveClass('ChromaButtonFilePicker-text');
 });
 
 // #region disabled tests
@@ -104,10 +104,10 @@ test('it renders a disabled ButtonFilePicker', async () => {
     </ButtonFilePicker>
   );
   const root = await findByTestId(testId);
-  expect(root.classList.contains('ChromaButtonFilePicker-rootDisabled')).true;
+  expect(root).toHaveClass('ChromaButtonFilePicker-rootDisabled');
 
   const input = container.querySelector(`#${testId}`);
-  expect(input?.classList.contains('ChromaButtonFilePicker-disabled')).true;
+  expect(input).toHaveClass('ChromaButtonFilePicker-disabled');
 });
 
 test('it renders a disabled contained inverse ButtonFilePicker', async () => {
@@ -118,9 +118,7 @@ test('it renders a disabled contained inverse ButtonFilePicker', async () => {
     </ButtonFilePicker>
   );
   const root = await findByTestId(testId);
-  expect(
-    root.classList.contains('ChromaButtonFilePicker-containedInverseDisabled')
-  ).true;
+  expect(root).toHaveClass('ChromaButtonFilePicker-containedInverseDisabled');
 });
 
 test('it renders a disabled outlined ButtonFilePicker', async () => {
@@ -136,8 +134,7 @@ test('it renders a disabled outlined ButtonFilePicker', async () => {
     </ButtonFilePicker>
   );
   const root = await findByTestId(testId);
-  expect(root.classList.contains('ChromaButtonFilePicker-outlinedDisabled'))
-    .true;
+  expect(root).toHaveClass('ChromaButtonFilePicker-outlinedDisabled');
 });
 
 test('it renders a disabled outlined inverse ButtonFilePicker', async () => {
@@ -154,9 +151,7 @@ test('it renders a disabled outlined inverse ButtonFilePicker', async () => {
     </ButtonFilePicker>
   );
   const root = await findByTestId(testId);
-  expect(
-    root.classList.contains('ChromaButtonFilePicker-outlinedInverseDisabled')
-  ).true;
+  expect(root).toHaveClass('ChromaButtonFilePicker-outlinedInverseDisabled');
 });
 
 test('it renders a disabled text ButtonFilePicker', async () => {
@@ -167,7 +162,7 @@ test('it renders a disabled text ButtonFilePicker', async () => {
     </ButtonFilePicker>
   );
   const root = await findByTestId(testId);
-  expect(root.classList.contains('ChromaButtonFilePicker-textDisabled')).true;
+  expect(root).toHaveClass('ChromaButtonFilePicker-textDisabled');
 });
 
 test('it renders a disabled text inverse ButtonFilePicker', async () => {
@@ -184,8 +179,7 @@ test('it renders a disabled text inverse ButtonFilePicker', async () => {
     </ButtonFilePicker>
   );
   const root = await findByTestId(testId);
-  expect(root.classList.contains('ChromaButtonFilePicker-textInverseDisabled'))
-    .true;
+  expect(root).toHaveClass('ChromaButtonFilePicker-textInverseDisabled');
 });
 
 // #endregion
@@ -204,9 +198,8 @@ test('it renders with `variant="contained" color="inverse"`', async () => {
     </ButtonFilePicker>
   );
   const root = await findByTestId(testId);
-  expect(root.classList.contains('ChromaButtonFilePicker-inverse')).true;
-  expect(root.classList.contains('ChromaButtonFilePicker-containedInverse'))
-    .true;
+  expect(root).toHaveClass('ChromaButtonFilePicker-inverse');
+  expect(root).toHaveClass('ChromaButtonFilePicker-containedInverse');
 });
 
 test('it renders with `variant="outlined" color="inverse"`', async () => {
@@ -222,9 +215,8 @@ test('it renders with `variant="outlined" color="inverse"`', async () => {
     </ButtonFilePicker>
   );
   const root = await findByTestId(testId);
-  expect(root.classList.contains('ChromaButtonFilePicker-inverse')).true;
-  expect(root.classList.contains('ChromaButtonFilePicker-outlinedInverse'))
-    .true;
+  expect(root).toHaveClass('ChromaButtonFilePicker-inverse');
+  expect(root).toHaveClass('ChromaButtonFilePicker-outlinedInverse');
 });
 
 test('it renders with `variant="text" color="inverse"`', async () => {
@@ -240,7 +232,7 @@ test('it renders with `variant="text" color="inverse"`', async () => {
     </ButtonFilePicker>
   );
   const root = await findByTestId(testId);
-  expect(root.classList.contains('ChromaButtonFilePicker-inverse')).true;
-  expect(root.classList.contains('ChromaButtonFilePicker-textInverse')).true;
+  expect(root).toHaveClass('ChromaButtonFilePicker-inverse');
+  expect(root).toHaveClass('ChromaButtonFilePicker-textInverse');
 });
 // #endregion

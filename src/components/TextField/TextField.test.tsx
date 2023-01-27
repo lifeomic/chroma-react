@@ -19,7 +19,7 @@ test('it renders a TextField', async () => {
 
   const textfield = await findByTestId(testId);
   expect(textfield).toBeInTheDocument();
-  expect(textfield.classList.contains('ChromaTextField-input')).true;
+  expect(textfield).toHaveClass('ChromaTextField-input');
   expect(textfield.getAttribute('aria-describedby')).toBeFalsy();
   expect(textfield.getAttribute('type')).toEqual('text');
   expect(textfield.getAttribute('id')).toBeTruthy();
@@ -32,11 +32,9 @@ test('it applies the provided className', async () => {
   );
 
   const textfield = await findByTestId(testId);
-  expect(
-    textfield?.parentElement?.parentElement?.classList.contains(
-      'custom-class-name'
-    )
-  ).true;
+  expect(textfield?.parentElement?.parentElement).toHaveClass(
+    'custom-class-name'
+  );
 });
 
 test('it renders a TextField with a secondaryLabel', async () => {
@@ -66,7 +64,7 @@ test('it renders an error-state TextField', async () => {
   );
 
   const textfield = await findByTestId(testId);
-  expect(textfield.classList.contains('ChromaTextField-inputError')).true;
+  expect(textfield).toHaveClass('ChromaTextField-inputError');
 });
 
 test('it renders an error-state TextField with the provided errorMessage', async () => {
@@ -178,19 +176,17 @@ test('it renders an inverse color TextField', async () => {
   );
 
   const textfield = await findByTestId(testId);
-  expect(textfield.classList.contains('ChromaTextField-inputInverse')).true;
+  expect(textfield).toHaveClass('ChromaTextField-inputInverse');
 
   const help = await findByText(/Helpful text/);
-  expect(help.classList.contains('ChromaFormHelpMessage-inverse')).true;
+  expect(help).toHaveClass('ChromaFormHelpMessage-inverse');
 
   const error = await findByText(/TextArea error message/);
-  expect(error.classList.contains('ChromaFormErrorMessage-inverse')).true;
+  expect(error).toHaveClass('ChromaFormErrorMessage-inverse');
 
-  // expect(
-  //   textfield?.parentElement?.previousSibling?.classList.contains(
-  //     'ChromaTextField-labelInverse'
-  //   )
-  // ).true;
+  expect(textfield?.parentElement?.previousSibling).toHaveClass(
+    'ChromaTextField-labelInverse'
+  );
 });
 
 test('it renders a fullWidth TextField', async () => {
@@ -200,7 +196,7 @@ test('it renders a fullWidth TextField', async () => {
   );
 
   const textField = await findByTestId(testId);
-  expect(textField.classList.contains('ChromaTextField-inputFullWidth')).true;
+  expect(textField).toHaveClass('ChromaTextField-inputFullWidth');
 });
 
 test('it renders an icon when icon and tooltipMessage are provided', async () => {
@@ -215,7 +211,7 @@ test('it renders an icon when icon and tooltipMessage are provided', async () =>
   );
 
   const icon = await findByRole('img', { hidden: true });
-  expect(icon.classList.contains('ChromaTextField-labelIcon')).true;
+  expect(icon).toHaveClass('ChromaTextField-labelIcon');
 });
 
 test('it renders an inverse color icon when icon and tooltipMessage are provided', async () => {
@@ -231,7 +227,7 @@ test('it renders an inverse color icon when icon and tooltipMessage are provided
   );
 
   const icon = await findByRole('img', { hidden: true });
-  expect(icon.classList.contains('ChromaTextField-labelIconInverse')).true;
+  expect(icon).toHaveClass('ChromaTextField-labelIconInverse');
 });
 
 test('it renders label when provided', async () => {
@@ -304,7 +300,7 @@ test('it renders an * when the field is required', async () => {
   );
   const asterisk = await findByText('*');
   expect(asterisk).toBeInTheDocument();
-  expect(asterisk.classList.contains('ChromaTextField-required')).true;
+  expect(asterisk).toHaveClass('ChromaTextField-required');
 });
 
 test('it renders an inverse color * when the field is required', async () => {
@@ -312,6 +308,7 @@ test('it renders an inverse color * when the field is required', async () => {
     <TextField label="Required" color="inverse" showRequiredLabel />
   );
   const asterisk = await findByText('*');
-  expect(asterisk.classList.contains('ChromaTextField-required')).true;
-  expect(asterisk.classList.contains('ChromaTextField-requiredInverse')).true;
+  expect(asterisk).toHaveClass(
+    'ChromaTextField-required ChromaTextField-requiredInverse'
+  );
 });

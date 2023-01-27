@@ -29,7 +29,7 @@ test('it renders an icon with the "icon" class name', () => {
   );
   const icon = getByRole('img', { hidden: true });
   expect(icon).toBeInTheDocument();
-  expect(icon.classList.contains('ChromaButtonFloat-icon')).true;
+  expect(icon).toHaveClass('ChromaButtonFloat-icon');
 });
 
 test('it renders with the "fullWidth" prop', async () => {
@@ -40,7 +40,7 @@ test('it renders with the "fullWidth" prop', async () => {
     </ButtonFloat>
   );
   const buttonFloat = await findByTestId(testId);
-  expect(buttonFloat.classList.contains('ChromaButtonFloat-fullWidth')).true;
+  expect(buttonFloat).toHaveClass('ChromaButtonFloat-fullWidth');
 });
 
 test('it applies the provided className', async () => {
@@ -51,7 +51,7 @@ test('it applies the provided className', async () => {
     </ButtonFloat>
   );
   const buttonFloat = await findByTestId(testId);
-  expect(buttonFloat.classList.contains('custom-class-name')).true;
+  expect(buttonFloat).toHaveClass('custom-class-name');
 });
 
 test('it renders with `size={0}`', async () => {
@@ -62,7 +62,7 @@ test('it renders with `size={0}`', async () => {
     </ButtonFloat>
   );
   const buttonFloat = await findByTestId(testId);
-  expect(buttonFloat.classList.contains('ChromaButtonFloat-size0')).true;
+  expect(buttonFloat).toHaveClass('ChromaButtonFloat-size0');
 });
 
 test('it renders with `size={1}`', async () => {
@@ -73,7 +73,7 @@ test('it renders with `size={1}`', async () => {
     </ButtonFloat>
   );
   const buttonFloat = await findByTestId(testId);
-  expect(buttonFloat.classList.contains('ChromaButtonFloat-size1')).true;
+  expect(buttonFloat).toHaveClass('ChromaButtonFloat-size1');
 });
 
 test('it renders with `size={2}`', async () => {
@@ -84,7 +84,7 @@ test('it renders with `size={2}`', async () => {
     </ButtonFloat>
   );
   const buttonFloat = await findByTestId(testId);
-  expect(buttonFloat.classList.contains('ChromaButtonFloat-size2')).true;
+  expect(buttonFloat).toHaveClass('ChromaButtonFloat-size2');
 });
 
 test('it renders with `justify="left"`', async () => {
@@ -95,7 +95,7 @@ test('it renders with `justify="left"`', async () => {
     </ButtonFloat>
   );
   const buttonFloat = await findByTestId(testId);
-  expect(buttonFloat.classList.contains('ChromaButtonFloat-justifyLeft')).true;
+  expect(buttonFloat).toHaveClass('ChromaButtonFloat-justifyLeft');
 });
 
 test('it renders with `justify="center"`', async () => {
@@ -106,8 +106,7 @@ test('it renders with `justify="center"`', async () => {
     </ButtonFloat>
   );
   const buttonFloat = await findByTestId(testId);
-  expect(buttonFloat.classList.contains('ChromaButtonFloat-justifyCenter'))
-    .true;
+  expect(buttonFloat).toHaveClass('ChromaButtonFloat-justifyCenter');
 });
 
 test('it renders with `justify="right"`', async () => {
@@ -118,7 +117,7 @@ test('it renders with `justify="right"`', async () => {
     </ButtonFloat>
   );
   const buttonFloat = await findByTestId(testId);
-  expect(buttonFloat.classList.contains('ChromaButtonFloat-justifyRight')).true;
+  expect(buttonFloat).toHaveClass('ChromaButtonFloat-justifyRight');
 });
 
 test('it renders with `align="top"`', async () => {
@@ -129,7 +128,7 @@ test('it renders with `align="top"`', async () => {
     </ButtonFloat>
   );
   const buttonFloat = await findByTestId(testId);
-  expect(buttonFloat.classList.contains('ChromaButtonFloat-alignTop')).true;
+  expect(buttonFloat).toHaveClass('ChromaButtonFloat-alignTop');
 });
 
 test('it renders with `align="center"`', async () => {
@@ -140,7 +139,7 @@ test('it renders with `align="center"`', async () => {
     </ButtonFloat>
   );
   const buttonFloat = await findByTestId(testId);
-  expect(buttonFloat.classList.contains('ChromaButtonFloat-alignCenter')).true;
+  expect(buttonFloat).toHaveClass('ChromaButtonFloat-alignCenter');
 });
 
 test('it renders with `align="bottom"`', async () => {
@@ -151,7 +150,7 @@ test('it renders with `align="bottom"`', async () => {
     </ButtonFloat>
   );
   const buttonFloat = await findByTestId(testId);
-  expect(buttonFloat.classList.contains('ChromaButtonFloat-alignBottom')).true;
+  expect(buttonFloat).toHaveClass('ChromaButtonFloat-alignBottom');
 });
 
 test('it renders a trailing icon', async () => {
@@ -163,8 +162,7 @@ test('it renders a trailing icon', async () => {
   );
   const trailingIcon = await findByTestId(iconComponentTestId);
   expect(trailingIcon).toBeInTheDocument();
-  expect(trailingIcon.classList.contains('ChromaButtonFloat-trailingIcon'))
-    .true;
+  expect(trailingIcon).toHaveClass('ChromaButtonFloat-trailingIcon');
 });
 
 test('it renders a disabled ButtonFloat', async () => {

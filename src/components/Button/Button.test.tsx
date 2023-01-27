@@ -31,7 +31,7 @@ test('it applies the provided className', async () => {
     </Button>
   );
   const button = await findByTestId(testId);
-  expect(button.classList.contains('custom-class-name')).true;
+  expect(button).toHaveClass('custom-class-name');
 });
 
 test('it renders an icon with the "icon" class name', () => {
@@ -40,7 +40,7 @@ test('it renders an icon with the "icon" class name', () => {
   );
   const icon = getByRole('img', { hidden: true });
   expect(icon).toBeInTheDocument();
-  expect(icon.classList.contains('ChromaButton-icon')).true;
+  expect(icon).toHaveClass('ChromaButton-icon');
 });
 
 test('it renders with the "fullWidth" prop', async () => {
@@ -51,7 +51,7 @@ test('it renders with the "fullWidth" prop', async () => {
     </Button>
   );
   const button = await findByTestId(testId);
-  expect(button.classList.contains('ChromaButton-fullWidth')).true;
+  expect(button).toHaveClass('ChromaButton-fullWidth');
 });
 
 test('it renders with `variant="outlined"`', async () => {
@@ -62,7 +62,7 @@ test('it renders with `variant="outlined"`', async () => {
     </Button>
   );
   const button = await findByTestId(testId);
-  expect(button.classList.contains('ChromaButton-outlined')).true;
+  expect(button).toHaveClass('ChromaButton-outlined');
 });
 
 test('it renders with `variant="text"`', async () => {
@@ -73,7 +73,7 @@ test('it renders with `variant="text"`', async () => {
     </Button>
   );
   const button = await findByTestId(testId);
-  expect(button.classList.contains('ChromaButton-text')).true;
+  expect(button).toHaveClass('ChromaButton-text');
 });
 
 test('it renders a disabled button', async () => {
@@ -97,7 +97,7 @@ test('it renders with `variant="contained" color="inverse"`', async () => {
     </Button>
   );
   const button = await findByTestId(testId);
-  expect(button.classList.contains('ChromaButton-containedInverse')).true;
+  expect(button).toHaveClass('ChromaButton-containedInverse');
 });
 
 test('it renders with `variant="outlined" color="inverse"`', async () => {
@@ -108,7 +108,7 @@ test('it renders with `variant="outlined" color="inverse"`', async () => {
     </Button>
   );
   const button = await findByTestId(testId);
-  expect(button.classList.contains('ChromaButton-outlinedInverse')).true;
+  expect(button).toHaveClass('ChromaButton-outlinedInverse');
 });
 
 test('it renders with `variant="text" color="inverse"`', async () => {
@@ -119,7 +119,7 @@ test('it renders with `variant="text" color="inverse"`', async () => {
     </Button>
   );
   const button = await findByTestId(testId);
-  expect(button.classList.contains('ChromaButton-textInverse')).true;
+  expect(button).toHaveClass('ChromaButton-textInverse');
 });
 // #endregion
 
@@ -137,7 +137,7 @@ test('it renders with `variant="contained" color="negative"`', async () => {
     </Button>
   );
   const button = await findByTestId(testId);
-  expect(button.classList.contains('ChromaButton-containedNegative')).true;
+  expect(button).toHaveClass('ChromaButton-containedNegative');
 });
 
 test('it renders with `variant="outlined" color="negative"`', async () => {
@@ -148,7 +148,7 @@ test('it renders with `variant="outlined" color="negative"`', async () => {
     </Button>
   );
   const button = await findByTestId(testId);
-  expect(button.classList.contains('ChromaButton-outlinedNegative')).true;
+  expect(button).toHaveClass('ChromaButton-outlinedNegative');
 });
 
 test('it renders with `variant="text" color="negative"`', async () => {
@@ -159,7 +159,7 @@ test('it renders with `variant="text" color="negative"`', async () => {
     </Button>
   );
   const button = await findByTestId(testId);
-  expect(button.classList.contains('ChromaButton-textNegative')).true;
+  expect(button).toHaveClass('ChromaButton-textNegative');
 });
 // #endregion
 
@@ -177,7 +177,7 @@ test('it renders with `variant="contained" color="positive"`', async () => {
     </Button>
   );
   const button = await findByTestId(testId);
-  expect(button.classList.contains('ChromaButton-containedPositive')).true;
+  expect(button).toHaveClass('ChromaButton-containedPositive');
 });
 
 test('it renders with `variant="outlined" color="positive"`', async () => {
@@ -188,7 +188,7 @@ test('it renders with `variant="outlined" color="positive"`', async () => {
     </Button>
   );
   const button = await findByTestId(testId);
-  expect(button.classList.contains('ChromaButton-outlinedPositive')).true;
+  expect(button).toHaveClass('ChromaButton-outlinedPositive');
 });
 
 test('it renders with `variant="text" color="positive"`', async () => {
@@ -199,7 +199,7 @@ test('it renders with `variant="text" color="positive"`', async () => {
     </Button>
   );
   const button = await findByTestId(testId);
-  expect(button.classList.contains('ChromaButton-textPositive')).true;
+  expect(button).toHaveClass('ChromaButton-textPositive');
 });
 // #endregion
 
@@ -213,6 +213,6 @@ test('it renders a trailing icon', async () => {
   );
   const trailingIcon = await findByTestId(iconComponentTestId);
   expect(trailingIcon).toBeInTheDocument();
-  expect(trailingIcon.classList.contains('ChromaButton-trailingIcon')).true;
+  expect(trailingIcon).toHaveClass('ChromaButton-trailingIcon');
 });
 // #endregion
