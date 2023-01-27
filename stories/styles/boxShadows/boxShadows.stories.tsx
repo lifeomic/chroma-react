@@ -22,7 +22,7 @@ The shadows should be available via the "theme". The most common use case should
 \`\`\`tsx
 import { useStyles } from '@lifeomic/chroma-react/styles';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = newMakeStyles()((theme) => ({
   boxShadow: theme.boxShadows.table,
 }));
 \`\`\`

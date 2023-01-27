@@ -1,142 +1,139 @@
 import clsx from 'clsx';
 import * as React from 'react';
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 import { GetClasses } from '../../typeUtils';
 import { Box, BoxProps } from '../Box';
 
 export const FormBoxStylesKey = 'ChromaFormBox';
 
-export const useStyles = makeStyles(
-  (theme) => ({
-    root: {},
-    vSpacing0: {
-      '& > *:not(:last-child)': {
-        marginBottom: 0,
-      },
+export const useStyles = newMakeStyles({ name: FormBoxStylesKey })((theme) => ({
+  root: {},
+  vSpacing0: {
+    '& > *:not(:last-child)': {
+      marginBottom: 0,
     },
-    vSpacing05: {
-      '& > *:not(:last-child)': {
-        marginBottom: theme.spacing(0.5),
-      },
+  },
+  vSpacing05: {
+    '& > *:not(:last-child)': {
+      marginBottom: theme.spacing(0.5),
     },
-    vSpacing10: {
-      '& > *:not(:last-child)': {
-        marginBottom: theme.spacing(1),
-      },
+  },
+  vSpacing10: {
+    '& > *:not(:last-child)': {
+      marginBottom: theme.spacing(1),
     },
-    vSpacing15: {
-      '& > *:not(:last-child)': {
-        marginBottom: theme.spacing(1.5),
-      },
+  },
+  vSpacing15: {
+    '& > *:not(:last-child)': {
+      marginBottom: theme.spacing(1.5),
     },
-    vSpacing20: {
-      '& > *:not(:last-child)': {
-        marginBottom: theme.spacing(2),
-      },
+  },
+  vSpacing20: {
+    '& > *:not(:last-child)': {
+      marginBottom: theme.spacing(2),
     },
-    vSpacing25: {
-      '& > *:not(:last-child)': {
-        marginBottom: theme.spacing(2.5),
-      },
+  },
+  vSpacing25: {
+    '& > *:not(:last-child)': {
+      marginBottom: theme.spacing(2.5),
     },
-    vSpacing30: {
-      '& > *:not(:last-child)': {
-        marginBottom: theme.spacing(3),
-      },
+  },
+  vSpacing30: {
+    '& > *:not(:last-child)': {
+      marginBottom: theme.spacing(3),
     },
-    hSpacing0: {
-      '& > *:not(:last-child)': {
-        marginRight: 0,
-      },
+  },
+  hSpacing0: {
+    '& > *:not(:last-child)': {
+      marginRight: 0,
     },
-    hSpacing05: {
-      '& > *:not(:last-child)': {
-        marginRight: theme.spacing(0.5),
-      },
+  },
+  hSpacing05: {
+    '& > *:not(:last-child)': {
+      marginRight: theme.spacing(0.5),
     },
-    hSpacing10: {
-      '& > *:not(:last-child)': {
-        marginRight: theme.spacing(1),
-      },
+  },
+  hSpacing10: {
+    '& > *:not(:last-child)': {
+      marginRight: theme.spacing(1),
     },
-    hSpacing15: {
-      '& > *:not(:last-child)': {
-        marginRight: theme.spacing(1.5),
-      },
+  },
+  hSpacing15: {
+    '& > *:not(:last-child)': {
+      marginRight: theme.spacing(1.5),
     },
-    hSpacing20: {
-      '& > *:not(:last-child)': {
-        marginRight: theme.spacing(2),
-      },
+  },
+  hSpacing20: {
+    '& > *:not(:last-child)': {
+      marginRight: theme.spacing(2),
     },
-    hSpacing25: {
-      '& > *:not(:last-child)': {
-        marginRight: theme.spacing(2.5),
-      },
+  },
+  hSpacing25: {
+    '& > *:not(:last-child)': {
+      marginRight: theme.spacing(2.5),
     },
-    hSpacing30: {
-      '& > *:not(:last-child)': {
-        marginRight: theme.spacing(3),
-      },
+  },
+  hSpacing30: {
+    '& > *:not(:last-child)': {
+      marginRight: theme.spacing(3),
     },
-    padding0: {
-      padding: 0,
-    },
-    padding05: {
-      padding: theme.spacing(0.5),
-    },
-    padding10: {
-      padding: theme.spacing(1),
-    },
-    padding15: {
-      padding: theme.spacing(1.5),
-    },
-    padding20: {
-      padding: theme.spacing(2),
-    },
-    xPadding0: {
-      paddingLeft: 0,
-      paddingRight: 0,
-    },
-    xPadding05: {
-      paddingLeft: theme.spacing(0.5),
-      paddingRight: theme.spacing(0.5),
-    },
-    xPadding10: {
-      paddingLeft: theme.spacing(1),
-      paddingRight: theme.spacing(0.5),
-    },
-    xPadding15: {
-      paddingLeft: theme.spacing(1.5),
-      paddingRight: theme.spacing(0.5),
-    },
-    xPadding20: {
-      paddingLeft: theme.spacing(2),
-      paddingRight: theme.spacing(0.5),
-    },
-    yPadding0: {
-      paddingTop: 0,
-      paddingBottom: 0,
-    },
-    yPadding05: {
-      paddingTop: theme.spacing(0.5),
-      paddingBottom: theme.spacing(0.5),
-    },
-    yPadding10: {
-      paddingTop: theme.spacing(1),
-      paddingBottom: theme.spacing(0.5),
-    },
-    yPadding15: {
-      paddingTop: theme.spacing(1.5),
-      paddingBottom: theme.spacing(0.5),
-    },
-    yPadding20: {
-      paddingTop: theme.spacing(2),
-      paddingBottom: theme.spacing(0.5),
-    },
-  }),
-  { name: FormBoxStylesKey }
-);
+  },
+  padding0: {
+    padding: 0,
+  },
+  padding05: {
+    padding: theme.spacing(0.5),
+  },
+  padding10: {
+    padding: theme.spacing(1),
+  },
+  padding15: {
+    padding: theme.spacing(1.5),
+  },
+  padding20: {
+    padding: theme.spacing(2),
+  },
+  xPadding0: {
+    paddingLeft: 0,
+    paddingRight: 0,
+  },
+  xPadding05: {
+    paddingLeft: theme.spacing(0.5),
+    paddingRight: theme.spacing(0.5),
+  },
+  xPadding10: {
+    paddingLeft: theme.spacing(1),
+    paddingRight: theme.spacing(0.5),
+  },
+  xPadding15: {
+    paddingLeft: theme.spacing(1.5),
+    paddingRight: theme.spacing(0.5),
+  },
+  xPadding20: {
+    paddingLeft: theme.spacing(2),
+    paddingRight: theme.spacing(0.5),
+  },
+  yPadding0: {
+    paddingTop: 0,
+    paddingBottom: 0,
+  },
+  yPadding05: {
+    paddingTop: theme.spacing(0.5),
+    paddingBottom: theme.spacing(0.5),
+  },
+  yPadding10: {
+    paddingTop: theme.spacing(1),
+    paddingBottom: theme.spacing(0.5),
+  },
+  yPadding15: {
+    paddingTop: theme.spacing(1.5),
+    paddingBottom: theme.spacing(0.5),
+  },
+  yPadding20: {
+    paddingTop: theme.spacing(2),
+    paddingBottom: theme.spacing(0.5),
+  },
+}));
 
 export type FormBoxClasses = GetClasses<typeof useStyles>;
 
@@ -175,7 +172,7 @@ export const FormBox = React.forwardRef<HTMLDivElement, FormBoxProps>(
     },
     ref
   ) => {
-    const classes = useStyles({});
+    const { classes } = useStyles();
     return (
       <Box
         direction={direction}

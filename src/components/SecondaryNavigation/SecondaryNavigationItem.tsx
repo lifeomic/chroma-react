@@ -1,49 +1,48 @@
 import clsx from 'clsx';
 import * as React from 'react';
 import { NavLink, Route, RouteProps } from 'react-router-dom';
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 import { GetClasses, StandardProps } from '../../typeUtils';
 
 export const SecondaryNavigationItemStylesKey = 'ChromaSecondaryNavigationItem';
 
-export const useStyles = makeStyles(
-  (theme) => ({
-    root: {
-      paddingTop: theme.spacing(1.5),
-      paddingBottom: theme.spacing(1.5),
-      paddingRight: theme.spacing(3),
-      textAlign: 'right',
-      position: 'relative',
-    },
-    link: {
-      color: theme.palette.text.hint,
-      display: 'block',
+export const useStyles = newMakeStyles({
+  name: SecondaryNavigationItemStylesKey,
+})((theme) => ({
+  root: {
+    paddingTop: theme.spacing(1.5),
+    paddingBottom: theme.spacing(1.5),
+    paddingRight: theme.spacing(3),
+    textAlign: 'right',
+    position: 'relative',
+  },
+  link: {
+    color: theme.palette.text.hint,
+    display: 'block',
+    textDecoration: 'none',
+    transition: 'color 0.5s ease',
+    '&:hover': {
       textDecoration: 'none',
-      transition: 'color 0.5s ease',
-      '&:hover': {
-        textDecoration: 'none',
-        color: theme.palette.primary.main,
-      },
+      color: theme.palette.primary.main,
     },
-    linkActive: {
-      color: theme.palette.text.primary,
-    },
-    selector: {
-      position: 'absolute',
-      width: theme.pxToRem(4),
-      height: '100%',
-      top: 0,
-      right: 0,
-      background: theme.palette.primary.main,
-      transition: 'all 0.2s',
-      opacity: 0,
-    },
-    selectorActive: {
-      opacity: 100,
-    },
-  }),
-  { name: SecondaryNavigationItemStylesKey }
-);
+  },
+  linkActive: {
+    color: theme.palette.text.primary,
+  },
+  selector: {
+    position: 'absolute',
+    width: theme.pxToRem(4),
+    height: '100%',
+    top: 0,
+    right: 0,
+    background: theme.palette.primary.main,
+    transition: 'all 0.2s',
+    opacity: 0,
+  },
+  selectorActive: {
+    opacity: 100,
+  },
+}));
 
 export type SecondaryNavigationItemClasses = GetClasses<typeof useStyles>;
 
@@ -62,7 +61,9 @@ export const SecondaryNavigationItem = React.forwardRef<
     { className, exact, label, to, classes: additionalClasses, ...rootProps },
     ref
   ) => {
-    const classes = useStyles({ classes: additionalClasses });
+    const { classes } = useStyles(undefined, {
+      props: { classes: additionalClasses },
+    });
 
     return (
       <Route exact={exact} path={to}>

@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import * as React from 'react';
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 import { GetClasses } from '../../typeUtils';
 import { RadioProps } from './Radio';
 import { RadioGroupContext } from './useRadioGroup';
@@ -8,7 +8,7 @@ import { screenreaderOnlyStyles } from '../../styles/screenreaderOnly';
 
 export const RadioGroupMinimalStylesKey = 'ChromaRadioGroupMinimal';
 
-export const useStyles = makeStyles(
+export const useStyles = newMakeStyles({ name: RadioGroupMinimalStylesKey })(
   (theme) => ({
     root: {
       border: 0,
@@ -45,7 +45,7 @@ export const useStyles = makeStyles(
       overflow: 'hidden',
       padding: theme.spacing(0.25),
       '& input': {
-        ...screenreaderOnlyStyles,
+        ...(screenreaderOnlyStyles as any),
         '& + div': {
           display: 'flex',
           justifyContent: 'center',
@@ -155,7 +155,7 @@ export const useStyles = makeStyles(
       },
     },
     srOnly: {
-      ...screenreaderOnlyStyles,
+      ...(screenreaderOnlyStyles as any),
     },
     required: {
       color: theme.palette.error[500],
@@ -164,8 +164,7 @@ export const useStyles = makeStyles(
     requiredInverse: {
       color: theme.palette.common.white,
     },
-  }),
-  { name: RadioGroupMinimalStylesKey }
+  })
 );
 
 export type RadioGroupMinimalClasses = GetClasses<typeof useStyles>;
@@ -217,7 +216,7 @@ export const RadioGroupMinimal: React.FC<RadioGroupMinimalProps> = ({
   showRequiredLabel,
   ...rootProps
 }) => {
-  const classes = useStyles({});
+  const { classes } = useStyles();
 
   const [contextValue, setContextValue] = React.useState(value);
 

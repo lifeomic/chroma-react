@@ -8,7 +8,7 @@ import {
 } from 'reakit/Popover';
 import { Portal } from 'reakit/Portal';
 import { ChevronDown } from '@lifeomic/chromicons';
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 import { GetClasses } from '../../typeUtils';
 import {
   BaseFormElement,
@@ -34,217 +34,214 @@ export const testIds = {
 
 export const SelectStylesKey = 'ChromaSelect';
 
-export const useStyles = makeStyles(
-  (theme) => ({
-    root: {},
-    popover: {
-      background: theme.palette.common.white,
-      borderRadius: theme.pxToRem(10),
-      boxShadow: theme.boxShadows.popover,
-      minWidth: theme.pxToRem(224),
-      overflow: 'hidden',
-      zIndex: theme.zIndex.select,
-      '&:focus': {
-        outline: 'none',
-      },
+export const useStyles = newMakeStyles({ name: SelectStylesKey })((theme) => ({
+  root: {},
+  popover: {
+    background: theme.palette.common.white,
+    borderRadius: theme.pxToRem(10),
+    boxShadow: theme.boxShadows.popover,
+    minWidth: theme.pxToRem(224),
+    overflow: 'hidden',
+    zIndex: theme.zIndex.select,
+    '&:focus': {
+      outline: 'none',
     },
-    label: {
-      alignItems: 'center',
-      color: theme.palette.black[800],
-      display: 'flex',
-      fontSize: theme.pxToRem(14),
-      fontWeight: theme.typography.fontWeightBold,
-      marginBottom: theme.spacing(1),
-      '&:empty': {
-        marginBottom: theme.spacing(0),
-      },
+  },
+  label: {
+    alignItems: 'center',
+    color: theme.palette.black[800],
+    display: 'flex',
+    fontSize: theme.pxToRem(14),
+    fontWeight: theme.typography.fontWeightBold,
+    marginBottom: theme.spacing(1),
+    '&:empty': {
+      marginBottom: theme.spacing(0),
     },
-    labelSecondary: {
-      fontSize: theme.pxToRem(11),
-      display: 'inline-block',
-      margin: theme.spacing(0, 0.75),
+  },
+  labelSecondary: {
+    fontSize: theme.pxToRem(11),
+    display: 'inline-block',
+    margin: theme.spacing(0, 0.75),
+    color: theme.palette.text.hint,
+  },
+  labelInverse: {
+    color: theme.palette.common.white,
+    '&$labelSecondary': {
+      opacity: 0.9,
+    },
+  },
+  labelIcon: {
+    marginLeft: theme.spacing(0.75),
+    color: theme.palette.primary.main,
+  },
+  labelIconInverse: {
+    mixBlendMode: 'screen',
+  },
+  tooltipContainer: {
+    display: 'flex',
+    outline: 'none',
+  },
+  button: {
+    alignItems: 'center',
+    backgroundColor: theme.hexToRgba(theme.palette.graphite[900], 0.15),
+    border: 'solid 1px transparent',
+    borderRadius: theme.pxToRem(4),
+    color: theme.palette.text.primary,
+    cursor: 'pointer',
+    display: 'block',
+    fontFamily: theme.typography.fontFamily,
+    fontSize: theme.pxToRem(14),
+    maxHeight: theme.pxToRem(84),
+    minHeight: theme.pxToRem(35),
+    margin: 0,
+    minWidth: theme.pxToRem(175),
+    outline: 'none',
+    overflow: 'hidden',
+    padding: theme.spacing(0.5, 3.75, 0.5, 1.25),
+    position: 'relative',
+    transition: 'border 0.5s ease',
+    '&:disabled': {
+      cursor: 'not-allowed',
+      opacity: 0.625,
+    },
+    '&:focus': {
+      boxShadow: `0 0 0 2px ${theme.hexToRgba(
+        theme.palette.primary[600],
+        0.3
+      )}`,
+      outline: 'none',
+    },
+    '&::-moz-focus-inner': {
+      border: 'none',
+    },
+  },
+  buttonInverse: {
+    backgroundColor: theme.hexToRgba(theme.palette.graphite[100], 0.1),
+    color: theme.palette.common.white,
+    '&:focus': {
+      boxShadow: `0 0 0 2px ${theme.hexToRgba(
+        theme.palette.common.white,
+        0.3
+      )}`,
+    },
+    '& $chip': {
+      background: theme.hexToRgba(theme.palette.common.white, 0.5),
+      color: theme.palette.text.primary,
+    },
+    '& $buttonText$placeholderText': {
+      color: theme.palette.common.white,
+    },
+  },
+  buttonError: {
+    backgroundColor: theme.hexToRgba(theme.palette.graphite[100], 0.1),
+    border: `1px solid ${theme.palette.error.main}`,
+    '&:focus': {
+      border: `1px solid ${theme.palette.error.main}`,
+    },
+  },
+  buttonArrowContainer: {
+    alignItems: 'center',
+    display: 'flex',
+    flexFlow: 'column',
+    minHeight: theme.pxToRem(32),
+    height: theme.pxToRem(32),
+    justifyContent: 'center',
+    position: 'absolute',
+    right: theme.pxToRem(-6),
+    textAlign: 'center',
+    top: theme.pxToRem(1),
+    width: '2rem',
+  },
+  buttonText: {
+    color: 'inherit',
+    marginTop: theme.spacing(0.125),
+    overflow: 'hidden',
+    textAlign: 'left',
+    textOverflow: 'ellipsis',
+    whiteSpace: 'nowrap',
+    width: '100%',
+    '&$placeholderText': {
       color: theme.palette.text.hint,
     },
-    labelInverse: {
-      color: theme.palette.common.white,
-      '&$labelSecondary': {
-        opacity: 0.9,
-      },
+  },
+  placeholderText: {},
+  comboBoxPlaceholder: {
+    marginTop: theme.spacing(0.25),
+  },
+  comboxBoxOverflow: {
+    overflowY: 'auto',
+  },
+  buttonFullWidth: {
+    width: '100%',
+  },
+  arrowIcon: {
+    alignSelf: 'flex-start',
+    position: 'sticky',
+    transition: 'transform 0.25s ease',
+    strokeOpacity: 0.6,
+    top: theme.spacing(0.5),
+  },
+  rotate: {
+    transform: 'rotate(180deg)',
+    top: theme.spacing(0.375),
+  },
+  ul: {
+    display: 'block',
+    listStyle: 'none',
+    margin: 0,
+    maxHeight: theme.pxToRem(328),
+    overflowY: 'auto',
+    padding: theme.spacing(1, 0),
+  },
+  option: {
+    alignItems: 'center',
+    backgroundColor: theme.palette.common.white,
+    cursor: 'pointer',
+    display: 'flex',
+    minHeight: theme.pxToRem(26),
+    outline: 'none',
+    paddingLeft: theme.spacing(2),
+    paddingRight: theme.spacing(2),
+    transition: 'background-color 0.25s ease',
+    '&:hover, &:focus': {
+      backgroundColor: theme.hexToRgba(theme.palette.primary[50], 0.6),
     },
-    labelIcon: {
-      marginLeft: theme.spacing(0.75),
-      color: theme.palette.primary.main,
-    },
-    labelIconInverse: {
-      mixBlendMode: 'screen',
-    },
-    tooltipContainer: {
-      display: 'flex',
-      outline: 'none',
-    },
-    button: {
-      alignItems: 'center',
-      backgroundColor: theme.hexToRgba(theme.palette.graphite[900], 0.15),
-      border: 'solid 1px transparent',
-      borderRadius: theme.pxToRem(4),
-      color: theme.palette.text.primary,
-      cursor: 'pointer',
-      display: 'block',
-      fontFamily: theme.typography.fontFamily,
-      fontSize: theme.pxToRem(14),
-      maxHeight: theme.pxToRem(84),
-      minHeight: theme.pxToRem(35),
-      margin: 0,
-      minWidth: theme.pxToRem(175),
-      outline: 'none',
-      overflow: 'hidden',
-      padding: theme.spacing(0.5, 3.75, 0.5, 1.25),
-      position: 'relative',
-      transition: 'border 0.5s ease',
-      '&:disabled': {
-        cursor: 'not-allowed',
-        opacity: 0.625,
-      },
-      '&:focus': {
-        boxShadow: `0 0 0 2px ${theme.hexToRgba(
-          theme.palette.primary[600],
-          0.3
-        )}`,
-        outline: 'none',
-      },
-      '&::-moz-focus-inner': {
-        border: 'none',
-      },
-    },
-    buttonInverse: {
-      backgroundColor: theme.hexToRgba(theme.palette.graphite[100], 0.1),
-      color: theme.palette.common.white,
-      '&:focus': {
-        boxShadow: `0 0 0 2px ${theme.hexToRgba(
-          theme.palette.common.white,
-          0.3
-        )}`,
-      },
-      '& $chip': {
-        background: theme.hexToRgba(theme.palette.common.white, 0.5),
-        color: theme.palette.text.primary,
-      },
-      '& $buttonText$placeholderText': {
-        color: theme.palette.common.white,
-      },
-    },
-    buttonError: {
-      backgroundColor: theme.hexToRgba(theme.palette.graphite[100], 0.1),
-      border: `1px solid ${theme.palette.error.main}`,
-      '&:focus': {
-        border: `1px solid ${theme.palette.error.main}`,
-      },
-    },
-    buttonArrowContainer: {
-      alignItems: 'center',
-      display: 'flex',
-      flexFlow: 'column',
-      minHeight: theme.pxToRem(32),
-      height: theme.pxToRem(32),
-      justifyContent: 'center',
-      position: 'absolute',
-      right: theme.pxToRem(-6),
-      textAlign: 'center',
-      top: theme.pxToRem(1),
-      width: '2rem',
-    },
-    buttonText: {
-      color: 'inherit',
-      marginTop: theme.spacing(0.125),
-      overflow: 'hidden',
-      textAlign: 'left',
-      textOverflow: 'ellipsis',
-      whiteSpace: 'nowrap',
-      width: '100%',
-      '&$placeholderText': {
-        color: theme.palette.text.hint,
-      },
-    },
-    placeholderText: {},
-    comboBoxPlaceholder: {
-      marginTop: theme.spacing(0.25),
-    },
-    comboxBoxOverflow: {
-      overflowY: 'auto',
-    },
-    buttonFullWidth: {
-      width: '100%',
-    },
-    arrowIcon: {
-      alignSelf: 'flex-start',
-      position: 'sticky',
-      transition: 'transform 0.25s ease',
-      strokeOpacity: 0.6,
-      top: theme.spacing(0.5),
-    },
-    rotate: {
-      transform: 'rotate(180deg)',
-      top: theme.spacing(0.375),
-    },
-    ul: {
-      display: 'block',
-      listStyle: 'none',
-      margin: 0,
-      maxHeight: theme.pxToRem(328),
-      overflowY: 'auto',
-      padding: theme.spacing(1, 0),
-    },
-    option: {
-      alignItems: 'center',
-      backgroundColor: theme.palette.common.white,
-      cursor: 'pointer',
-      display: 'flex',
-      minHeight: theme.pxToRem(26),
-      outline: 'none',
-      paddingLeft: theme.spacing(2),
-      paddingRight: theme.spacing(2),
-      transition: 'background-color 0.25s ease',
-      '&:hover, &:focus': {
-        backgroundColor: theme.hexToRgba(theme.palette.primary[50], 0.6),
-      },
-    },
-    chipList: {
-      display: 'flex',
-      flexFlow: 'wrap',
-      margin: theme.spacing(-0.5, -0.5, 0),
-    },
-    chip: {
-      alignItems: 'center',
-      background: theme.palette.primary.main,
-      borderRadius: theme.pxToRem(3),
-      color: theme.palette.common.white,
-      display: 'inline-block',
-      height: theme.pxToRem(22),
-      fontSize: theme.pxToRem(12),
-      margin: theme.spacing(0.5, 0.25, 0),
-      overflow: 'hidden',
-      paddingLeft: theme.spacing(1),
-      paddingRight: theme.spacing(1),
-      textOverflow: 'ellipsis',
-      whiteSpace: 'nowrap',
-    },
-    message: {
-      marginTop: theme.spacing(0.875),
-      marginLeft: 0,
-    },
-    srOnly: {
-      ...screenreaderOnlyStyles,
-    },
-    required: {
-      color: theme.palette.error[500],
-      margin: theme.spacing(0, 0.5),
-    },
-    requiredInverse: {
-      color: theme.palette.common.white,
-    },
-  }),
-  { name: SelectStylesKey }
-);
+  },
+  chipList: {
+    display: 'flex',
+    flexFlow: 'wrap',
+    margin: theme.spacing(-0.5, -0.5, 0),
+  },
+  chip: {
+    alignItems: 'center',
+    background: theme.palette.primary.main,
+    borderRadius: theme.pxToRem(3),
+    color: theme.palette.common.white,
+    display: 'inline-block',
+    height: theme.pxToRem(22),
+    fontSize: theme.pxToRem(12),
+    margin: theme.spacing(0.5, 0.25, 0),
+    overflow: 'hidden',
+    paddingLeft: theme.spacing(1),
+    paddingRight: theme.spacing(1),
+    textOverflow: 'ellipsis',
+    whiteSpace: 'nowrap',
+  },
+  message: {
+    marginTop: theme.spacing(0.875),
+    marginLeft: 0,
+  },
+  srOnly: {
+    ...screenreaderOnlyStyles,
+  },
+  required: {
+    color: theme.palette.error[500],
+    margin: theme.spacing(0, 0.5),
+  },
+  requiredInverse: {
+    color: theme.palette.common.white,
+  },
+}));
 
 const popoverVariants = {
   open: {
@@ -406,7 +403,7 @@ export const Select: React.FC<SelectProps> = ({
   showRequiredLabel,
   ...rootProps
 }) => {
-  const classes = useStyles({});
+  const { classes } = useStyles();
   const popover = usePopoverState({ placement });
   const shouldReduceMotion = useReducedMotion();
 

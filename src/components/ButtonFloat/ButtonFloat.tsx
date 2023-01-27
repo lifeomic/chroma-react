@@ -1,12 +1,12 @@
 import clsx from 'clsx';
 import * as React from 'react';
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 import { GetClasses } from '../../typeUtils';
 import 'focus-visible';
 
 export const ButtonFloatStylesKey = 'ChromaButtonFloat';
 
-export const useStyles = makeStyles(
+export const useStyles = newMakeStyles({ name: ButtonFloatStylesKey })(
   (theme) => ({
     root: {
       alignItems: 'center',
@@ -111,8 +111,7 @@ export const useStyles = makeStyles(
       bottom: 'auto',
     },
     alignBottom: {},
-  }),
-  { name: ButtonFloatStylesKey }
+  })
 );
 
 export type ButtonFloatClasses = GetClasses<typeof useStyles>;
@@ -162,7 +161,7 @@ export const ButtonFloat = React.forwardRef<
     },
     ref
   ) => {
-    const classes = useStyles({});
+    const { classes } = useStyles();
     return (
       <button
         ref={ref}

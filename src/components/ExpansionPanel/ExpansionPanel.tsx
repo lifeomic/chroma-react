@@ -1,14 +1,14 @@
 import clsx from 'clsx';
 import * as React from 'react';
 import { Plus } from '@lifeomic/chromicons';
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 import { GetClasses } from '../../typeUtils';
 import { generateUniqueId } from '../_private/UniqueId';
 import { Text } from '../Text';
 
 export const ExpansionPanelStylesKey = 'ChromaExpansionPanel';
 
-export const useStyles = makeStyles(
+export const useStyles = newMakeStyles({ name: ExpansionPanelStylesKey })(
   (theme) => ({
     root: {
       width: '100%',
@@ -83,8 +83,7 @@ export const useStyles = makeStyles(
     innerHidden: {
       visibility: 'hidden',
     },
-  }),
-  { name: ExpansionPanelStylesKey }
+  })
 );
 
 export type ExpansionPanelClasses = GetClasses<typeof useStyles>;
@@ -143,7 +142,7 @@ export const ExpansionPanel = React.forwardRef<
     },
     ref
   ) => {
-    const classes = useStyles({});
+    const { classes } = useStyles();
     const [isExpanded, setIsExpanded] = React.useState(isOpen);
 
     const innerRef = React.useRef<HTMLDivElement>(null);

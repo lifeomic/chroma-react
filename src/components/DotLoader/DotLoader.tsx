@@ -1,12 +1,12 @@
 import clsx, { ClassValue } from 'clsx';
 import * as React from 'react';
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 import { GetClasses } from '../../typeUtils';
 import { AnimatePresence, motion, MotionProps } from 'framer-motion';
 
 export const DotLoaderStylesKey = 'ChromaDotLoader';
 
-export const useStyles = makeStyles(
+export const useStyles = newMakeStyles({ name: DotLoaderStylesKey })(
   (theme) => ({
     root: {
       height: theme.pxToRem(100),
@@ -47,8 +47,7 @@ export const useStyles = makeStyles(
       animation: '$bounce 1s 0.6s infinite',
       fill: theme.palette.green.light,
     },
-  }),
-  { name: DotLoaderStylesKey }
+  })
 );
 
 export type DotLoaderClasses = GetClasses<typeof useStyles>;
@@ -77,7 +76,7 @@ export const DotLoader: React.FunctionComponent<DotLoaderProps> = ({
   dotStyle,
   ...rootProps
 }) => {
-  const classes = useStyles({});
+  const { classes } = useStyles();
 
   return (
     <AnimatePresence>

@@ -1,11 +1,11 @@
 import clsx from 'clsx';
 import * as React from 'react';
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 import { GetClasses } from '../../typeUtils';
 
 export const MenuGroupHeadingStylesKey = 'ChromaMenuGroupHeading';
 
-export const useStyles = makeStyles(
+export const useStyles = newMakeStyles({ name: MenuGroupHeadingStylesKey })(
   (theme) => ({
     root: {
       fontSize: theme.pxToRem(10),
@@ -20,8 +20,7 @@ export const useStyles = makeStyles(
         borderTop: `solid 1px ${theme.palette.divider}`,
       },
     },
-  }),
-  { name: MenuGroupHeadingStylesKey }
+  })
 );
 
 export type MenuGroupHeadingClasses = GetClasses<typeof useStyles>;
@@ -35,6 +34,6 @@ export const MenuGroupHeading: React.FC<MenuGroupHeadingProps> = ({
   className,
   children,
 }) => {
-  const classes = useStyles({});
+  const { classes } = useStyles();
   return <div className={clsx(classes.root, className)}>{children}</div>;
 };

@@ -1,11 +1,11 @@
 import clsx from 'clsx';
 import * as React from 'react';
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 import { GetClasses, StandardProps } from '../../typeUtils';
 
 export const SecondaryNavigationStylesKey = 'ChromaSecondaryNavigation';
 
-export const useStyles = makeStyles(
+export const useStyles = newMakeStyles({ name: SecondaryNavigationStylesKey })(
   (theme) => ({
     root: {
       borderRight: `1px solid ${theme.palette.divider}`,
@@ -45,8 +45,7 @@ export const useStyles = makeStyles(
       overflowY: 'auto',
       padding: 0,
     },
-  }),
-  { name: SecondaryNavigationStylesKey }
+  })
 );
 
 export type SecondaryNavigationClasses = GetClasses<typeof useStyles>;
@@ -79,7 +78,9 @@ export const SecondaryNavigation = React.forwardRef<
     },
     ref
   ) => {
-    const classes = useStyles({ classes: additionalClasses });
+    const { classes } = useStyles(undefined, {
+      props: { classes: additionalClasses },
+    });
     return (
       <nav
         ref={ref}

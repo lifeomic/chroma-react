@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import * as React from 'react';
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 import { GetClasses } from '../../typeUtils';
 import { RadioProps } from './Radio';
 import { RadioGroupContext } from './useRadioGroup';
@@ -8,7 +8,7 @@ import { screenreaderOnlyStyles } from '../../styles/screenreaderOnly';
 
 export const RadioGroupStylesKey = 'ChromaRadioGroup';
 
-export const useStyles = makeStyles(
+export const useStyles = newMakeStyles({ name: RadioGroupStylesKey })(
   (theme) => ({
     root: {
       border: 0,
@@ -69,8 +69,7 @@ export const useStyles = makeStyles(
     requiredInverse: {
       color: theme.palette.common.white,
     },
-  }),
-  { name: RadioGroupStylesKey }
+  })
 );
 
 export type RadioGroupClasses = GetClasses<typeof useStyles>;
@@ -120,7 +119,7 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
   showRequiredLabel,
   ...rootProps
 }) => {
-  const classes = useStyles({});
+  const { classes } = useStyles();
 
   const [contextValue, setContextValue] = React.useState(value);
 

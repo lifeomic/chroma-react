@@ -1,7 +1,7 @@
 import { ConditionalWrapper } from '../_private/ConditionalWrapper';
 import { GetClasses } from '../../typeUtils';
 import { IconButton } from '../IconButton';
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 import { ModalActions, ModalActionsProps } from './ModalActions';
 import {
   motion,
@@ -26,150 +26,147 @@ export const ModalStylesKey = 'ChromaModal';
 
 export const OVERLAY_TEST_ID = 'chroma-overlay-testid';
 
-export const useStyles = makeStyles(
-  (theme) => ({
-    overlay: {
-      backgroundColor: theme.hexToRgba(theme.palette.common.black, 0.5),
-      bottom: 0,
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'center',
-      left: 0,
-      overflow: 'auto',
-      position: 'fixed',
-      right: 0,
-      top: 0,
-      zIndex: theme.zIndex.modal,
-      '@media screen and (max-width: 480px)': {
-        justifyContent: 'flex-end',
-      },
+export const useStyles = newMakeStyles({ name: ModalStylesKey })((theme) => ({
+  overlay: {
+    backgroundColor: theme.hexToRgba(theme.palette.common.black, 0.5),
+    bottom: 0,
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    left: 0,
+    overflow: 'auto',
+    position: 'fixed',
+    right: 0,
+    top: 0,
+    zIndex: theme.zIndex.modal,
+    '@media screen and (max-width: 480px)': {
+      justifyContent: 'flex-end',
     },
-    content: {
-      background: theme.palette.common.white,
-      borderRadius: theme.pxToRem(10),
+  },
+  content: {
+    background: theme.palette.common.white,
+    borderRadius: theme.pxToRem(10),
+    display: 'flex',
+    flexDirection: 'column',
+    margin: '10vh auto',
+    outline: 'none',
+    paddingTop: theme.spacing(0.25),
+    paddingBottom: theme.spacing(0.25),
+    width: theme.pxToRem(384),
+    maxWidth: theme.pxToRem(600),
+    overflow: 'hidden',
+    '@media screen and (max-width: 480px)': {
+      marginBottom: theme.spacing(0.75),
+      marginLeft: theme.spacing(0.75),
+      marginRight: theme.spacing(0.75),
+      maxHeight: '95%',
+      maxWidth: '480px',
+      width: 'unset',
+    },
+    '& form': {
       display: 'flex',
       flexDirection: 'column',
-      margin: '10vh auto',
-      outline: 'none',
-      paddingTop: theme.spacing(0.25),
-      paddingBottom: theme.spacing(0.25),
-      width: theme.pxToRem(384),
-      maxWidth: theme.pxToRem(600),
       overflow: 'hidden',
-      '@media screen and (max-width: 480px)': {
-        marginBottom: theme.spacing(0.75),
-        marginLeft: theme.spacing(0.75),
-        marginRight: theme.spacing(0.75),
-        maxHeight: '95%',
-        maxWidth: '480px',
-        width: 'unset',
-      },
-      '& form': {
-        display: 'flex',
-        flexDirection: 'column',
-        overflow: 'hidden',
-      },
     },
-    contentFullWidth: {
-      width: 'calc(100% - 6rem)',
-      '@media screen and (max-width: 480px)': {
-        width: 'unset',
-      },
+  },
+  contentFullWidth: {
+    width: 'calc(100% - 6rem)',
+    '@media screen and (max-width: 480px)': {
+      width: 'unset',
     },
-    contentSize0: {
-      maxHeight: theme.pxToRem(256),
-      '@media screen and (max-width: 480px)': {
-        maxHeight: 'unset',
-      },
+  },
+  contentSize0: {
+    maxHeight: theme.pxToRem(256),
+    '@media screen and (max-width: 480px)': {
+      maxHeight: 'unset',
     },
-    contentSize1: {
-      maxHeight: theme.pxToRem(480),
-      '@media screen and (max-width: 480px)': {
-        maxHeight: 'unset',
-      },
+  },
+  contentSize1: {
+    maxHeight: theme.pxToRem(480),
+    '@media screen and (max-width: 480px)': {
+      maxHeight: 'unset',
     },
-    contentFullScreen: {
-      background: theme.palette.common.white,
+  },
+  contentFullScreen: {
+    background: theme.palette.common.white,
+    display: 'flex',
+    flexDirection: 'column',
+    height: '100%',
+    width: '100%',
+    zIndex: theme.zIndex.modal,
+  },
+  verticalPadding: {
+    paddingLeft: theme.spacing(2),
+    paddingRight: theme.spacing(2),
+  },
+  modalHeader: {
+    alignItems: 'center',
+    borderBottom: `1px solid ${theme.palette.divider}`,
+    display: 'flex',
+    justifyContent: 'space-between',
+    '&:only-child': {
+      borderBottom: 'none',
+    },
+  },
+  modalHeaderFullScreen: {
+    alignItems: 'center',
+    backgroundColor: theme.palette.common.white,
+    borderBottom: `1px solid ${theme.palette.divider}`,
+    display: 'flex',
+    justifyContent: 'space-between',
+    paddingBottom: theme.spacing(0.5),
+    paddingLeft: theme.spacing(2.5),
+    paddingRight: theme.spacing(2.5),
+    paddingTop: theme.spacing(0.5),
+  },
+  modalChildrenContainer: {
+    background: theme.palette.background.default,
+    // Added padding on the bottom so that the spacing
+    // between the title and top of the text ~equals spacing
+    // between bottom of content and actions container
+    padding: theme.spacing(2, 2, 2.5),
+    overflowY: 'auto',
+    WebkitOverflowScrolling: 'touch', // Add iOS momentum scrolling.
+  },
+  modalChildrenContainerFullScreen: {
+    background: theme.palette.grey[50],
+    height: '100%',
+    overflowY: 'auto',
+    padding: theme.spacing(4, 3.75, 4, 3.75),
+    width: '100%',
+    WebkitOverflowScrolling: 'touch', // Add iOS momentum scrolling.
+  },
+  modalActions: {
+    // On mobile, we want to do the following:
+    // 1) Vertically stack the buttons
+    // 2) Reverse the order of the actions.  On mobile devices,
+    //    the negative/cancel action is normally at the *bottom*,
+    //    whereas our default behavior with standard modals is
+    //    <cancel> <save>
+    // 3) Target the buttons and set the widths to take 100%
+    // 4) Target the height of buttons and make them taller,
+    //    just so that users have a larger tap-target
+    '@media screen and (max-width: 480px)': {
       display: 'flex',
-      flexDirection: 'column',
-      height: '100%',
-      width: '100%',
-      zIndex: theme.zIndex.modal,
-    },
-    verticalPadding: {
-      paddingLeft: theme.spacing(2),
-      paddingRight: theme.spacing(2),
-    },
-    modalHeader: {
-      alignItems: 'center',
-      borderBottom: `1px solid ${theme.palette.divider}`,
-      display: 'flex',
-      justifyContent: 'space-between',
-      '&:only-child': {
-        borderBottom: 'none',
-      },
-    },
-    modalHeaderFullScreen: {
-      alignItems: 'center',
-      backgroundColor: theme.palette.common.white,
-      borderBottom: `1px solid ${theme.palette.divider}`,
-      display: 'flex',
-      justifyContent: 'space-between',
-      paddingBottom: theme.spacing(0.5),
-      paddingLeft: theme.spacing(2.5),
-      paddingRight: theme.spacing(2.5),
-      paddingTop: theme.spacing(0.5),
-    },
-    modalChildrenContainer: {
-      background: theme.palette.background.default,
-      // Added padding on the bottom so that the spacing
-      // between the title and top of the text ~equals spacing
-      // between bottom of content and actions container
-      padding: theme.spacing(2, 2, 2.5),
-      overflowY: 'auto',
-      WebkitOverflowScrolling: 'touch', // Add iOS momentum scrolling.
-    },
-    modalChildrenContainerFullScreen: {
-      background: theme.palette.grey[50],
-      height: '100%',
-      overflowY: 'auto',
-      padding: theme.spacing(4, 3.75, 4, 3.75),
-      width: '100%',
-      WebkitOverflowScrolling: 'touch', // Add iOS momentum scrolling.
-    },
-    modalActions: {
-      // On mobile, we want to do the following:
-      // 1) Vertically stack the buttons
-      // 2) Reverse the order of the actions.  On mobile devices,
-      //    the negative/cancel action is normally at the *bottom*,
-      //    whereas our default behavior with standard modals is
-      //    <cancel> <save>
-      // 3) Target the buttons and set the widths to take 100%
-      // 4) Target the height of buttons and make them taller,
-      //    just so that users have a larger tap-target
-      '@media screen and (max-width: 480px)': {
-        display: 'flex',
-        flexDirection: 'column-reverse',
-        '& > button': {
-          width: '100%',
-          height: theme.pxToRem(48),
-          // Since we are `column-reverse`, margin on the bottom is now
-          // margin top
-          marginTop: theme.spacing(1),
-          '&:last-of-type': {
-            marginTop: 0,
-          },
+      flexDirection: 'column-reverse',
+      '& > button': {
+        width: '100%',
+        height: theme.pxToRem(48),
+        // Since we are `column-reverse`, margin on the bottom is now
+        // margin top
+        marginTop: theme.spacing(1),
+        '&:last-of-type': {
+          marginTop: 0,
         },
       },
     },
-    modalTitle: {
-      overflow: 'hidden',
-      textOverflow: 'ellipsis',
-      whiteSpace: 'nowrap',
-    },
-  }),
-  { name: ModalStylesKey }
-);
+  },
+  modalTitle: {
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    whiteSpace: 'nowrap',
+  },
+}));
 
 export type ModalClasses = GetClasses<typeof useStyles>;
 
@@ -211,7 +208,7 @@ const ModalInner = React.forwardRef<HTMLDivElement, ModalProps>(
     },
     ref
   ) => {
-    const classes = useStyles({});
+    const { classes } = useStyles();
     const mouseDownTarget = React.useRef<any>(null);
     const overlayNode = React.useRef(null);
     const thisRef = useForkedRef(overlayNode, ref);
@@ -309,7 +306,7 @@ const Content = React.forwardRef<HTMLDivElement, ModalProps>(
     },
     ref
   ) => {
-    const classes = useStyles({});
+    const { classes } = useStyles();
     const shouldReduceMotion = useReducedMotion();
     const poseVariants = {
       init: poses.init || { y: 50, scale: 0.3 },
@@ -414,7 +411,7 @@ const FullScreenContent = React.forwardRef<HTMLDivElement, ModalProps>(
     },
     ref
   ) => {
-    const classes = useStyles({});
+    const { classes } = useStyles();
 
     return (
       <motion.div

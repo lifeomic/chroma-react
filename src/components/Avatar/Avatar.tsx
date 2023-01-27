@@ -1,68 +1,65 @@
 import clsx from 'clsx';
 import * as React from 'react';
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 import { GetClasses } from '../../typeUtils';
 import { AvatarSizeContext } from './AvatarSizeContext';
 
 export const AvatarStylesKey = 'ChromaAvatar';
 
-export const useStyles = makeStyles(
-  (theme) => ({
-    root: {
-      alignItems: 'center',
-      backgroundColor: theme.palette.primary.main,
-      border: `${theme.pxToRem(1)} solid ${theme.palette.black[100]}`,
-      borderRadius: 9999,
-      color: theme.palette.common.white,
-      display: 'inline-flex',
-      flexShrink: 0,
-      justifyContent: 'center',
-      outline: 'none',
-      position: 'relative',
-      transition: 'opacity 0.25s ease, border 0.25s ease',
-      userSelect: 'none',
-      '&:focus': {
-        opacity: 0.85,
-        border: `${theme.pxToRem(2)} solid ${theme.palette.black[700]}`,
-      },
+export const useStyles = newMakeStyles({ name: AvatarStylesKey })((theme) => ({
+  root: {
+    alignItems: 'center',
+    backgroundColor: theme.palette.primary.main,
+    border: `${theme.pxToRem(1)} solid ${theme.palette.black[100]}`,
+    borderRadius: 9999,
+    color: theme.palette.common.white,
+    display: 'inline-flex',
+    flexShrink: 0,
+    justifyContent: 'center',
+    outline: 'none',
+    position: 'relative',
+    transition: 'opacity 0.25s ease, border 0.25s ease',
+    userSelect: 'none',
+    '&:focus': {
+      opacity: 0.85,
+      border: `${theme.pxToRem(2)} solid ${theme.palette.black[700]}`,
     },
-    size0: {
-      fontSize: theme.typography.caption.fontSize,
-      fontWeight: theme.typography.fontWeightBold,
-      width: theme.pxToRem(22),
-      height: theme.pxToRem(22),
+  },
+  size0: {
+    fontSize: theme.typography.caption.fontSize,
+    fontWeight: theme.typography.fontWeightBold,
+    width: theme.pxToRem(22),
+    height: theme.pxToRem(22),
+  },
+  size1: {
+    fontSize: theme.typography.body1.fontSize,
+    width: theme.pxToRem(32),
+    height: theme.pxToRem(32),
+  },
+  size2: {
+    fontSize: theme.typography.h5.fontSize,
+    width: theme.pxToRem(42),
+    height: theme.pxToRem(42),
+  },
+  img: {
+    width: '100%',
+    height: '100%',
+    objectFit: 'cover',
+    maxWidth: '100%',
+    verticalAlign: 'middle',
+    borderRadius: 9999,
+  },
+  defaultSrc: {
+    fill: theme.palette.common.white,
+  },
+  clickable: {
+    cursor: 'pointer',
+    '&:hover': {
+      opacity: 0.85,
+      border: `${theme.pxToRem(1)} solid ${theme.palette.black[700]}`,
     },
-    size1: {
-      fontSize: theme.typography.body1.fontSize,
-      width: theme.pxToRem(32),
-      height: theme.pxToRem(32),
-    },
-    size2: {
-      fontSize: theme.typography.h5.fontSize,
-      width: theme.pxToRem(42),
-      height: theme.pxToRem(42),
-    },
-    img: {
-      width: '100%',
-      height: '100%',
-      objectFit: 'cover',
-      maxWidth: '100%',
-      verticalAlign: 'middle',
-      borderRadius: 9999,
-    },
-    defaultSrc: {
-      fill: theme.palette.common.white,
-    },
-    clickable: {
-      cursor: 'pointer',
-      '&:hover': {
-        opacity: 0.85,
-        border: `${theme.pxToRem(1)} solid ${theme.palette.black[700]}`,
-      },
-    },
-  }),
-  { name: AvatarStylesKey }
-);
+  },
+}));
 
 export type AvatarClasses = GetClasses<typeof useStyles>;
 
@@ -115,7 +112,7 @@ export const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
     },
     ref
   ) => {
-    const classes = useStyles({});
+    const { classes } = useStyles();
 
     const [error, setError] = React.useState(false);
 

@@ -1,73 +1,72 @@
 import clsx from 'clsx';
 import * as React from 'react';
 import { X } from '@lifeomic/chromicons';
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 import { GetClasses } from '../../typeUtils';
 
 export const ChipStylesKey = 'ChromaChip';
 
-export const useStyles = makeStyles(
-  (theme) => ({
-    root: {
-      margin: theme.spacing(1.25, 1.25, 0, 0),
-      height: theme.pxToRem(30),
-      borderRadius: theme.pxToRem(4),
-      backgroundColor: theme.palette.black[50],
-      display: 'inline-flex',
-      alignItems: 'center',
-      color: theme.palette.black[600],
-      paddingLeft: theme.spacing(1),
-      paddingRight: theme.spacing(1),
-    },
-    label: {
-      fontSize: theme.typography.caption.fontSize,
-      fontWeight: theme.typography.fontWeightBold,
-      paddingRight: theme.pxToRem(10),
-      whiteSpace: 'nowrap',
-      overflow: 'hidden',
-      textOverflow: 'ellipsis',
-      maxWidth: theme.spacing(37.5),
-      letterSpacing: '0.4px',
-    },
-    noDeleteButtonLabel: {
-      paddingRight: 0,
-    },
-    svgStyle: {
-      width: theme.pxToRem(10),
-      height: theme.pxToRem(10),
-    },
-    deleteButton: {
-      alignItems: 'center',
+export const useStyles = newMakeStyles({
+  name: ChipStylesKey,
+})((theme) => ({
+  root: {
+    margin: theme.spacing(1.25, 1.25, 0, 0),
+    height: theme.pxToRem(30),
+    borderRadius: theme.pxToRem(4),
+    backgroundColor: theme.palette.black[50],
+    display: 'inline-flex',
+    alignItems: 'center',
+    color: theme.palette.black[600],
+    paddingLeft: theme.spacing(1),
+    paddingRight: theme.spacing(1),
+  },
+  label: {
+    fontSize: theme.typography.caption.fontSize,
+    fontWeight: theme.typography.fontWeightBold,
+    paddingRight: theme.pxToRem(10),
+    whiteSpace: 'nowrap',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    maxWidth: theme.spacing(37.5),
+    letterSpacing: '0.4px',
+  },
+  noDeleteButtonLabel: {
+    paddingRight: 0,
+  },
+  svgStyle: {
+    width: theme.pxToRem(10),
+    height: theme.pxToRem(10),
+  },
+  deleteButton: {
+    alignItems: 'center',
+    background: theme.palette.black[600],
+    borderRadius: 9999,
+    border: 'none',
+    display: 'inline-flex',
+    justifyContent: 'center',
+    color: theme.palette.common.white,
+    cursor: 'pointer',
+    height: theme.pxToRem(14),
+    minHeight: theme.pxToRem(10),
+    minWidth: theme.pxToRem(10),
+    padding: 0,
+    width: theme.pxToRem(14),
+    transition: 'background 0.25s ease, opacity 0.25s ease',
+    '&:hover': {
       background: theme.palette.black[600],
-      borderRadius: 9999,
-      border: 'none',
-      display: 'inline-flex',
-      justifyContent: 'center',
-      color: theme.palette.common.white,
-      cursor: 'pointer',
-      height: theme.pxToRem(14),
-      minHeight: theme.pxToRem(10),
-      minWidth: theme.pxToRem(10),
-      padding: 0,
-      width: theme.pxToRem(14),
-      transition: 'background 0.25s ease, opacity 0.25s ease',
-      '&:hover': {
-        background: theme.palette.black[600],
-        opacity: 0.85,
-      },
-      '&:disabled': {
-        background: theme.palette.black[300],
-        color: theme.palette.common.white,
-        cursor: 'initial',
-      },
-      '&:focus': {
-        background: theme.palette.black[400],
-        outline: 'none',
-      },
+      opacity: 0.85,
     },
-  }),
-  { name: ChipStylesKey }
-);
+    '&:disabled': {
+      background: theme.palette.black[300],
+      color: theme.palette.common.white,
+      cursor: 'initial',
+    },
+    '&:focus': {
+      background: theme.palette.black[400],
+      outline: 'none',
+    },
+  },
+}));
 
 export type ChipClasses = GetClasses<typeof useStyles>;
 
@@ -105,7 +104,7 @@ export const Chip = React.forwardRef<HTMLDivElement, ChipProps>(
     { children, label = '', disableDelete, onDelete, className, ...rootProps },
     ref
   ) => {
-    const classes = useStyles({});
+    const { classes } = useStyles();
 
     return (
       <div

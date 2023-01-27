@@ -1,85 +1,82 @@
 import clsx from 'clsx';
 import * as React from 'react';
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 import { GetClasses } from '../../typeUtils';
 
 export const DividerStylesKey = 'ChromaDivider';
 
-export const useStyles = makeStyles(
-  (theme) => ({
-    root: {
-      backgroundColor: theme.hexToRgba(theme.palette.common.black, 0.15),
-      border: 'none',
-      flexShrink: 0,
-      margin: 0,
-      height: 1,
-      width: '100%',
-    },
-    default: {},
-    row: {
-      height: '100%',
-      width: 1,
-    },
-    inverseColor: {
-      backgroundColor: theme.hexToRgba(theme.palette.common.white, 0.25),
-    },
-    vSpacing0: {
-      margin: 0,
-    },
-    vSpacing05: {
-      margin: theme.spacing(0.5, 0),
-    },
-    vSpacing10: {
-      margin: theme.spacing(1, 0),
-    },
-    vSpacing15: {
-      margin: theme.spacing(1.5, 0),
-    },
-    vSpacing20: {
-      margin: theme.spacing(2, 0),
-    },
-    vSpacing25: {
-      margin: theme.spacing(2.5, 0),
-    },
-    vSpacing30: {
-      margin: theme.spacing(3, 0),
-    },
-    vSpacing35: {
-      margin: theme.spacing(3.5, 0),
-    },
-    vSpacing40: {
-      margin: theme.spacing(4, 0),
-    },
-    hSpacing0: {
-      margin: 0,
-    },
-    hSpacing05: {
-      margin: theme.spacing(0, 0.5),
-    },
-    hSpacing10: {
-      margin: theme.spacing(0, 1),
-    },
-    hSpacing15: {
-      margin: theme.spacing(0, 1.5),
-    },
-    hSpacing20: {
-      margin: theme.spacing(0, 2),
-    },
-    hSpacing25: {
-      margin: theme.spacing(0, 2.5),
-    },
-    hSpacing30: {
-      margin: theme.spacing(0, 3),
-    },
-    hSpacing35: {
-      margin: theme.spacing(0, 3.5),
-    },
-    hSpacing40: {
-      margin: theme.spacing(0, 4),
-    },
-  }),
-  { name: DividerStylesKey }
-);
+export const useStyles = newMakeStyles({ name: DividerStylesKey })((theme) => ({
+  root: {
+    backgroundColor: theme.hexToRgba(theme.palette.common.black, 0.15),
+    border: 'none',
+    flexShrink: 0,
+    margin: 0,
+    height: 1,
+    width: '100%',
+  },
+  default: {},
+  row: {
+    height: '100%',
+    width: 1,
+  },
+  inverseColor: {
+    backgroundColor: theme.hexToRgba(theme.palette.common.white, 0.25),
+  },
+  vSpacing0: {
+    margin: 0,
+  },
+  vSpacing05: {
+    margin: theme.spacing(0.5, 0),
+  },
+  vSpacing10: {
+    margin: theme.spacing(1, 0),
+  },
+  vSpacing15: {
+    margin: theme.spacing(1.5, 0),
+  },
+  vSpacing20: {
+    margin: theme.spacing(2, 0),
+  },
+  vSpacing25: {
+    margin: theme.spacing(2.5, 0),
+  },
+  vSpacing30: {
+    margin: theme.spacing(3, 0),
+  },
+  vSpacing35: {
+    margin: theme.spacing(3.5, 0),
+  },
+  vSpacing40: {
+    margin: theme.spacing(4, 0),
+  },
+  hSpacing0: {
+    margin: 0,
+  },
+  hSpacing05: {
+    margin: theme.spacing(0, 0.5),
+  },
+  hSpacing10: {
+    margin: theme.spacing(0, 1),
+  },
+  hSpacing15: {
+    margin: theme.spacing(0, 1.5),
+  },
+  hSpacing20: {
+    margin: theme.spacing(0, 2),
+  },
+  hSpacing25: {
+    margin: theme.spacing(0, 2.5),
+  },
+  hSpacing30: {
+    margin: theme.spacing(0, 3),
+  },
+  hSpacing35: {
+    margin: theme.spacing(0, 3.5),
+  },
+  hSpacing40: {
+    margin: theme.spacing(0, 4),
+  },
+}));
 
 export interface DividerOwnProps
   extends React.DetailedHTMLProps<
@@ -115,7 +112,7 @@ export const Divider = React.forwardRef<HTMLHRElement, DividerProps>(
     },
     ref
   ) => {
-    const classes = useStyles({});
+    const { classes } = useStyles();
 
     return (
       <hr

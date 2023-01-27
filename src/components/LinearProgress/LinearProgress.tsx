@@ -1,12 +1,12 @@
 import { GetClasses } from '../../typeUtils';
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 import { useReducedMotion } from 'framer-motion';
 import * as React from 'react';
 import clsx from 'clsx';
 
 export const LinearProgressStylesKey = 'ChromaLinearProgress';
 
-export const useStyles = makeStyles(
+export const useStyles = newMakeStyles({ name: LinearProgressStylesKey })(
   (theme) => ({
     root: {
       '--linear-progress-height': '0.25rem',
@@ -52,8 +52,7 @@ export const useStyles = makeStyles(
         right: '-100%',
       },
     },
-  }),
-  { name: LinearProgressStylesKey }
+  })
 );
 
 export type LinearProgressClasses = GetClasses<typeof useStyles>;
@@ -83,7 +82,7 @@ export const LinearProgress: React.FC<LinearProgressProps> = ({
   value = 0,
   ...rootProps
 }) => {
-  const classes = useStyles({});
+  const { classes } = useStyles();
 
   const shouldReduceMotion = useReducedMotion();
 

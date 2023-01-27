@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 import { GetClasses } from '../../typeUtils';
 
 export const PopoverListStylesKey = 'ChromaPopoverList';
 
-export const useStyles = makeStyles(
+export const useStyles = newMakeStyles({ name: PopoverListStylesKey })(
   (theme) => ({
     root: {
       listStyle: 'none',
@@ -18,8 +18,7 @@ export const useStyles = makeStyles(
         outline: 'none',
       },
     },
-  }),
-  { name: PopoverListStylesKey }
+  })
 );
 
 export type PopoverListClasses = GetClasses<typeof useStyles>;
@@ -34,7 +33,7 @@ export interface PopoverListProps
 
 export const PopoverList = React.forwardRef<HTMLUListElement, PopoverListProps>(
   ({ children, ...rootProps }, ref) => {
-    const classes = useStyles({});
+    const { classes } = useStyles();
 
     return (
       <ul ref={ref} className={classes.root} tabIndex={0} {...rootProps}>

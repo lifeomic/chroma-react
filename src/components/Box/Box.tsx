@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import * as React from 'react';
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 import { GetClasses } from '../../typeUtils';
 import { warning } from '../../utils';
 import colorOptions from './colorOptions';
@@ -58,8 +58,8 @@ export interface BoxProps
   bgColor?: string;
 }
 
-export const useStyles = makeStyles<BoxProps>(
-  (theme) => {
+export const useStyles = newMakeStyles<BoxProps>({ name: BoxStylesKey })(
+  (theme, props) => {
     const stringOrThemeSpacing = (value: string | number | undefined) => {
       if (typeof value === 'string') return value;
       if (typeof value === 'number') return theme.spacing(value);
@@ -102,64 +102,62 @@ export const useStyles = makeStyles<BoxProps>(
       justifyEvenly: { justifyContent: 'space-evenly' },
       justifyBetween: { justifyContent: 'space-between' },
       justifyCenter: { justifyContent: 'center' },
-      height: { height: ({ height }) => stringOrThemeSpacing(height) },
-      width: { width: ({ width }) => stringOrThemeSpacing(width) },
+      height: { height: stringOrThemeSpacing(props.height) },
+      width: { width: stringOrThemeSpacing(props.width) },
       fullWidth: { width: '100%' },
       fullHeight: { height: '100%' },
-      margin: { margin: ({ margin }) => stringOrThemeSpacing(margin) },
+      margin: { margin: stringOrThemeSpacing(props.margin) },
       marginLeft: {
-        marginLeft: ({ marginLeft }) => stringOrThemeSpacing(marginLeft),
+        marginLeft: stringOrThemeSpacing(props.marginLeft),
       },
       marginRight: {
-        marginRight: ({ marginRight }) => stringOrThemeSpacing(marginRight),
+        marginRight: stringOrThemeSpacing(props.marginRight),
       },
       marginTop: {
-        marginTop: ({ marginTop }) => stringOrThemeSpacing(marginTop),
+        marginTop: stringOrThemeSpacing(props.marginTop),
       },
       marginBottom: {
-        marginBottom: ({ marginBottom }) => stringOrThemeSpacing(marginBottom),
+        marginBottom: stringOrThemeSpacing(props.marginBottom),
       },
       marginX: {
-        marginLeft: ({ marginX }) => stringOrThemeSpacing(marginX),
-        marginRight: ({ marginX }) => stringOrThemeSpacing(marginX),
+        marginLeft: stringOrThemeSpacing(props.marginX),
+        marginRight: stringOrThemeSpacing(props.marginX),
       },
       marginY: {
-        marginTop: ({ marginY }) => stringOrThemeSpacing(marginY),
-        marginBottom: ({ marginY }) => stringOrThemeSpacing(marginY),
+        marginTop: stringOrThemeSpacing(props.marginY),
+        marginBottom: stringOrThemeSpacing(props.marginY),
       },
-      padding: { padding: ({ padding }) => stringOrThemeSpacing(padding) },
+      padding: { padding: stringOrThemeSpacing(props.padding) },
       paddingLeft: {
-        paddingLeft: ({ paddingLeft }) => stringOrThemeSpacing(paddingLeft),
+        paddingLeft: stringOrThemeSpacing(props.paddingLeft),
       },
       paddingRight: {
-        paddingRight: ({ paddingRight }) => stringOrThemeSpacing(paddingRight),
+        paddingRight: stringOrThemeSpacing(props.paddingRight),
       },
       paddingTop: {
-        paddingTop: ({ paddingTop }) => stringOrThemeSpacing(paddingTop),
+        paddingTop: stringOrThemeSpacing(props.paddingTop),
       },
       paddingBottom: {
-        paddingBottom: ({ paddingBottom }) =>
-          stringOrThemeSpacing(paddingBottom),
+        paddingBottom: stringOrThemeSpacing(props.paddingBottom),
       },
       paddingX: {
-        paddingLeft: ({ paddingX }) => stringOrThemeSpacing(paddingX),
-        paddingRight: ({ paddingX }) => stringOrThemeSpacing(paddingX),
+        paddingLeft: stringOrThemeSpacing(props.paddingX),
+        paddingRight: stringOrThemeSpacing(props.paddingX),
       },
       paddingY: {
-        paddingTop: ({ paddingY }) => stringOrThemeSpacing(paddingY),
-        paddingBottom: ({ paddingY }) => stringOrThemeSpacing(paddingY),
+        paddingTop: stringOrThemeSpacing(props.paddingY),
+        paddingBottom: stringOrThemeSpacing(props.paddingY),
       },
       gap: {
-        gap: ({ gap }) => stringOrThemeSpacing(gap),
+        gap: stringOrThemeSpacing(props.gap),
       },
       borderRadius: { borderRadius: theme.shape.borderRadius },
-      color: { color: ({ color }) => stringOrThemeColor(color) },
+      color: { color: stringOrThemeColor(props.color) },
       bgColor: {
-        backgroundColor: ({ bgColor }) => stringOrThemeColor(bgColor),
+        backgroundColor: stringOrThemeColor(props.bgColor),
       },
     };
-  },
-  { name: BoxStylesKey }
+  }
 );
 
 /**
@@ -208,7 +206,7 @@ export const Box = React.forwardRef<HTMLDivElement, BoxProps>((props, ref) => {
     ...rootProps
   } = props;
 
-  const classes = useStyles(props);
+  const { classes } = useStyles(props);
 
   return (
     <div

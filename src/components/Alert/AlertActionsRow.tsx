@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 import { GetClasses } from '../../typeUtils';
 import clsx from 'clsx';
 
 export const AlertActionsRowStylesKey = 'ChromaAlertActionsRow';
 
-export const useStyles = makeStyles(
+export const useStyles = newMakeStyles({ name: AlertActionsRowStylesKey })(
   () => ({
     root: {
       marginTop: '0.5rem',
@@ -17,8 +17,7 @@ export const useStyles = makeStyles(
         },
       },
     },
-  }),
-  { name: AlertActionsRowStylesKey }
+  })
 );
 
 export type AlertActionsRowClasses = GetClasses<typeof useStyles>;
@@ -33,7 +32,7 @@ export const AlertActionsRow: React.FC<AlertActionsRowProps> = ({
   children,
   ...rootProps
 }) => {
-  const classes = useStyles({});
+  const { classes } = useStyles();
   return (
     <div className={clsx(classes.root, className)} {...rootProps}>
       {children}

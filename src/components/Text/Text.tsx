@@ -1,96 +1,93 @@
 import clsx from 'clsx';
 import * as React from 'react';
-import { fontSizes, makeStyles } from '../../styles';
+import { fontSizes, newMakeStyles } from '../../styles';
 import { GetClasses } from '../../typeUtils';
 
 export const TextStylesKey = 'ChromaText';
 
-export const useStyles = makeStyles(
-  (theme) => ({
-    root: {
-      color: theme.palette.black.main,
-      fontFamily: theme.typography.fontFamily,
-      margin: 0,
-    },
-    inverseColor: {
-      color: theme.palette.common.white,
-    },
-    negativeColor: {
-      color: theme.palette.negative.main,
-    },
-    positiveColor: {
-      color: theme.palette.positive.main,
-    },
-    headline: {
-      fontSize: theme.pxToRem(20),
-      letterSpacing: theme.pxToRem(0.5),
-      lineHeight: theme.pxToRem(28),
-    },
-    body: {
-      fontSize: fontSizes.body,
-      lineHeight: theme.pxToRem(26),
-    },
-    subbody: {
-      fontSize: theme.pxToRem(14),
-      lineHeight: theme.pxToRem(22),
-    },
-    table: {
-      fontSize: theme.pxToRem(14),
-      lineHeight: theme.pxToRem(22),
-    },
-    caption: {
-      fontSize: fontSizes.caption,
-      letterSpacing: theme.pxToRem(0.5),
-      lineHeight: theme.pxToRem(20),
-    },
-    button: {
-      fontSize: fontSizes.button,
-      letterSpacing: theme.pxToRem(0.5),
-    },
-    tooltip: {
-      fontSize: fontSizes.tooltip,
-      letterSpacing: theme.pxToRem(0.5),
-      lineHeight: theme.pxToRem(18),
-    },
-    code: {
-      fontFamily: theme.typography.fontFamilyMonospace,
-      fontSize: fontSizes.body,
-      lineHeight: theme.pxToRem(26),
-      letterSpacing: 'normal',
-    },
-    familySecondary: {
-      fontFamily: theme.typography.fontFamilySecondary,
-    },
-    familyMonospace: {
-      fontFamily: theme.typography.fontFamilyMonospace,
-    },
-    weightLight: {
-      fontWeight: theme.typography.fontWeightLight,
-    },
-    weightRegular: {
-      fontWeight: theme.typography.fontWeightRegular,
-    },
-    weightBold: {
-      fontWeight: theme.typography.fontWeightBold,
-    },
-    marginBottom: {
-      marginBottom: theme.spacing(1),
-    },
-    alignCenter: {
-      textAlign: 'center',
-    },
-    alignJustify: {
-      textAlign: 'justify',
-    },
-    alignLeft: {
-      textAlign: 'left',
-    },
-    alignRight: {
-      textAlign: 'right',
-    },
-  }),
-  { name: TextStylesKey }
-);
+export const useStyles = newMakeStyles({ name: TextStylesKey })((theme) => ({
+  root: {
+    color: theme.palette.black.main,
+    fontFamily: theme.typography.fontFamily,
+    margin: 0,
+  },
+  inverseColor: {
+    color: theme.palette.common.white,
+  },
+  negativeColor: {
+    color: theme.palette.negative.main,
+  },
+  positiveColor: {
+    color: theme.palette.positive.main,
+  },
+  headline: {
+    fontSize: theme.pxToRem(20),
+    letterSpacing: theme.pxToRem(0.5),
+    lineHeight: theme.pxToRem(28),
+  },
+  body: {
+    fontSize: fontSizes.body,
+    lineHeight: theme.pxToRem(26),
+  },
+  subbody: {
+    fontSize: theme.pxToRem(14),
+    lineHeight: theme.pxToRem(22),
+  },
+  table: {
+    fontSize: theme.pxToRem(14),
+    lineHeight: theme.pxToRem(22),
+  },
+  caption: {
+    fontSize: fontSizes.caption,
+    letterSpacing: theme.pxToRem(0.5),
+    lineHeight: theme.pxToRem(20),
+  },
+  button: {
+    fontSize: fontSizes.button,
+    letterSpacing: theme.pxToRem(0.5),
+  },
+  tooltip: {
+    fontSize: fontSizes.tooltip,
+    letterSpacing: theme.pxToRem(0.5),
+    lineHeight: theme.pxToRem(18),
+  },
+  code: {
+    fontFamily: theme.typography.fontFamilyMonospace,
+    fontSize: fontSizes.body,
+    lineHeight: theme.pxToRem(26),
+    letterSpacing: 'normal',
+  },
+  familySecondary: {
+    fontFamily: theme.typography.fontFamilySecondary,
+  },
+  familyMonospace: {
+    fontFamily: theme.typography.fontFamilyMonospace,
+  },
+  weightLight: {
+    fontWeight: theme.typography.fontWeightLight,
+  },
+  weightRegular: {
+    fontWeight: theme.typography.fontWeightRegular,
+  },
+  weightBold: {
+    fontWeight: theme.typography.fontWeightBold,
+  },
+  marginBottom: {
+    marginBottom: theme.spacing(1),
+  },
+  alignCenter: {
+    textAlign: 'center',
+  },
+  alignJustify: {
+    textAlign: 'justify',
+  },
+  alignLeft: {
+    textAlign: 'left',
+  },
+  alignRight: {
+    textAlign: 'right',
+  },
+}));
 
 export interface TextOwnProps extends React.HTMLAttributes<HTMLElement> {
   align?: 'center' | 'justify' | 'left' | 'right';
@@ -144,7 +141,7 @@ export const Text = React.forwardRef<HTMLParagraphElement, TextProps>(
     },
     ref
   ) => {
-    const classes = useStyles({});
+    const { classes } = useStyles();
 
     const Component = useH1 ? 'h1' : size === 'headline' ? 'h6' : 'p';
 

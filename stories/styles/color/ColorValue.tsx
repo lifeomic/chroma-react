@@ -1,8 +1,8 @@
 import { getContrastRatio } from '@mui/material/styles';
 import * as React from 'react';
-import { makeStyles } from '../../../src/styles';
+import { newMakeStyles } from '../../../src/styles';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = newMakeStyles()((theme) => ({
   root: {
     display: 'flex',
     padding: theme.spacing(2),
@@ -22,7 +22,7 @@ export const ColorValue: React.FunctionComponent<PaletteProps> = ({
   value,
   isMain,
 }) => {
-  const classes = useStyles({});
+  const { classes } = useStyles();
 
   const whiteRatio = getContrastRatio('#fff', value);
   const blackRatio = getContrastRatio(value, '#000');

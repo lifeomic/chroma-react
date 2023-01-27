@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import * as React from 'react';
 import { NavLinkProps } from 'react-router-dom';
-import { makeStyles } from '../../styles/index';
+import { newMakeStyles } from '../../styles/index';
 import { GetClasses, StandardProps } from '../../typeUtils';
 import { sideBarWidthCollapsed, useLayoutManager } from '../LayoutManager';
 import { Text } from '../Text';
@@ -12,61 +12,60 @@ import { motion, MotionProps } from 'framer-motion';
 export const PrimaryNavigationSubItemStylesKey =
   'ChromaPrimaryNavigationSubItem';
 
-export const useStyles = makeStyles(
-  (theme) => ({
-    root: {
-      listStyle: 'none',
-      padding: 0,
-      margin: 0,
-    },
-    link: {
-      display: 'flex',
-      alignItems: 'center',
-      height: theme.pxToRem(32),
-      color: 'inherit',
+export const useStyles = newMakeStyles({
+  name: PrimaryNavigationSubItemStylesKey,
+})((theme) => ({
+  root: {
+    listStyle: 'none',
+    padding: 0,
+    margin: 0,
+  },
+  link: {
+    display: 'flex',
+    alignItems: 'center',
+    height: theme.pxToRem(32),
+    color: 'inherit',
+    textDecoration: 'none',
+    transition: 'color 0.5s ease, opacity 0.5s ease',
+    '&:hover': {
+      color: 'var(--link-hover)',
       textDecoration: 'none',
-      transition: 'color 0.5s ease, opacity 0.5s ease',
-      '&:hover': {
-        color: 'var(--link-hover)',
-        textDecoration: 'none',
-        fallbacks: {
-          color: 'inherit',
-        },
-      },
-    },
-    linkActive: {
-      color: 'var(--link-active)',
-      '&:hover': {
-        color: 'var(--link-active)',
-        opacity: 0.75,
-      },
       fallbacks: {
-        color: theme.palette.primary[300],
+        color: 'inherit',
       },
     },
-    spacer: {
-      width: sideBarWidthCollapsed,
-      flexShrink: 0,
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
+  },
+  linkActive: {
+    color: 'var(--link-active)',
+    '&:hover': {
+      color: 'var(--link-active)',
+      opacity: 0.75,
     },
-    label: {
-      alignSelf: 'center',
-      color: 'inherit',
-      flex: 1,
-      letterSpacing: 0.15,
-      lineHeight: 'unset',
-      overflowX: 'hidden',
-      paddingRight: theme.spacing(2.25),
-      textOverflow: 'ellipsis',
+    fallbacks: {
+      color: theme.palette.primary[300],
     },
-    tooltipPlacement: {
-      marginLeft: theme.spacing(-2),
-    },
-  }),
-  { name: PrimaryNavigationSubItemStylesKey }
-);
+  },
+  spacer: {
+    width: sideBarWidthCollapsed,
+    flexShrink: 0,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  label: {
+    alignSelf: 'center',
+    color: 'inherit',
+    flex: 1,
+    letterSpacing: 0.15,
+    lineHeight: 'unset',
+    overflowX: 'hidden',
+    paddingRight: theme.spacing(2.25),
+    textOverflow: 'ellipsis',
+  },
+  tooltipPlacement: {
+    marginLeft: theme.spacing(-2),
+  },
+}));
 
 export type PrimaryNavigationSubItemClasses = GetClasses<typeof useStyles>;
 
@@ -88,7 +87,9 @@ export const PrimaryNavigationSubItem = React.forwardRef<
     { exact, label, to, className, classes: additionalClasses, ...rootProps },
     ref
   ) => {
-    const classes = useStyles({ classes: additionalClasses });
+    const { classes } = useStyles(undefined, {
+      props: { classes: additionalClasses },
+    });
     const { isSidebarCollapsed } = useLayoutManager();
 
     if (isSidebarCollapsed) {

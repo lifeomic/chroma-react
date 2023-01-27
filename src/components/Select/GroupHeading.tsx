@@ -1,11 +1,11 @@
 import clsx from 'clsx';
 import * as React from 'react';
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 import { GetClasses } from '../../typeUtils';
 
 export const GroupHeadingStylesKey = 'ChromaSelectGroupHeading';
 
-export const useStyles = makeStyles(
+export const useStyles = newMakeStyles({ name: GroupHeadingStylesKey })(
   (theme) => ({
     root: {
       fontSize: theme.pxToRem(10),
@@ -20,8 +20,7 @@ export const useStyles = makeStyles(
         borderTop: `solid 1px ${theme.palette.divider}`,
       },
     },
-  }),
-  { name: GroupHeadingStylesKey }
+  })
 );
 
 export type GroupHeadingClasses = GetClasses<typeof useStyles>;
@@ -38,7 +37,7 @@ export const GroupHeading: React.FC<GroupHeadingProps> = ({
   ['data-select-role']: dataSelectRole,
   ...rootProps
 }) => {
-  const classes = useStyles({});
+  const { classes } = useStyles();
   return (
     <li className={clsx(classes.root, className)} role="option" {...rootProps}>
       {children}

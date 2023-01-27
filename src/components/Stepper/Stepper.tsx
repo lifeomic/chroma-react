@@ -1,29 +1,26 @@
 import clsx from 'clsx';
 import * as React from 'react';
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 import { GetClasses } from '../../typeUtils';
 import { Box } from '../Box';
 import { StepConnector } from './StepConnector';
 
 export const StepperStylesKey = 'ChromaStepper';
 
-export const useStyles = makeStyles(
-  (theme) => ({
-    root: {
-      backgroundColor: theme.palette.common.white,
-    },
-    innerRoot: {
-      alignItems: 'center',
-      display: 'flex',
-      justifyContent: 'space-between',
-      listStyleType: 'none',
-      margin: theme.spacing(4, 4, 0, 4),
-      padding: 0,
-      width: '100%',
-    },
-  }),
-  { name: StepperStylesKey }
-);
+export const useStyles = newMakeStyles({ name: StepperStylesKey })((theme) => ({
+  root: {
+    backgroundColor: theme.palette.common.white,
+  },
+  innerRoot: {
+    alignItems: 'center',
+    display: 'flex',
+    justifyContent: 'space-between',
+    listStyleType: 'none',
+    margin: theme.spacing(4, 4, 0, 4),
+    padding: 0,
+    width: '100%',
+  },
+}));
 
 export type StepperClasses = GetClasses<typeof useStyles>;
 
@@ -58,7 +55,7 @@ export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
     },
     ref
   ) => {
-    const classes = useStyles({});
+    const { classes } = useStyles();
     const childrenArray = Array.isArray(children)
       ? children
       : React.Children.toArray(children);

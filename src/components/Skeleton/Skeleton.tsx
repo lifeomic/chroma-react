@@ -1,11 +1,11 @@
 import clsx from 'clsx';
 import * as React from 'react';
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 import { GetClasses } from '../../typeUtils';
 
 export const SkeletonStylesKey = 'ChromaSkeleton';
 
-export const useStyles = makeStyles(
+export const useStyles = newMakeStyles({ name: SkeletonStylesKey })(
   (theme) => ({
     '@keyframes pulse': {
       '0%': {
@@ -53,8 +53,7 @@ export const useStyles = makeStyles(
     noAnimation: {},
     circle: { borderRadius: '50%' },
     rectangle: { borderRadius: theme.shape.borderRadius },
-  }),
-  { name: SkeletonStylesKey }
+  })
 );
 
 export type SkeletonClasses = GetClasses<typeof useStyles>;
@@ -112,7 +111,7 @@ export const Skeleton: React.FC<SkeletonProps> = ({
   width,
   ...rootProps
 }) => {
-  const classes = useStyles({});
+  const { classes } = useStyles();
 
   return (
     <span

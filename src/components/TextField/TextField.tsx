@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import * as React from 'react';
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 import { GetClasses } from '../../typeUtils';
 import {
   BaseFormElement,
@@ -15,7 +15,7 @@ import { Tooltip } from '../Tooltip';
 
 export const TextFieldStylesKey = 'ChromaTextField';
 
-export const useStyles = makeStyles(
+export const useStyles = newMakeStyles({ name: TextFieldStylesKey })(
   (theme) => ({
     root: {},
     label: {
@@ -219,8 +219,7 @@ export const useStyles = makeStyles(
     requiredInverse: {
       color: theme.palette.common.white,
     },
-  }),
-  { name: TextFieldStylesKey }
+  })
 );
 
 export type TextFieldClasses = GetClasses<typeof useStyles>;
@@ -288,7 +287,7 @@ export const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
     },
     ref
   ) => {
-    const classes = useStyles({});
+    const { classes } = useStyles();
 
     const [uniqueId] = React.useState<string>(
       () => id || name || generateUniqueId('textField-')

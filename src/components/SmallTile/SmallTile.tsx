@@ -1,11 +1,11 @@
 import clsx from 'clsx';
 import * as React from 'react';
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 import { GetClasses } from '../../typeUtils';
 
 export const SmallTileStylesKey = 'ChromaSmallTile';
 
-export const useStyles = makeStyles(
+export const useStyles = newMakeStyles({ name: SmallTileStylesKey })(
   (theme) => ({
     root: {
       width: theme.pxToRem(172),
@@ -27,8 +27,7 @@ export const useStyles = makeStyles(
         },
       },
     },
-  }),
-  { name: SmallTileStylesKey }
+  })
 );
 
 export interface SmallTileOwnProps
@@ -54,7 +53,7 @@ export interface SmallTileProps extends SmallTileOwnProps {}
  */
 export const SmallTile = React.forwardRef<HTMLDivElement, SmallTileProps>(
   ({ children, className, onClick, ...rootProps }, ref) => {
-    const classes = useStyles({});
+    const { classes } = useStyles();
 
     return (
       // We conditionally add the role if `onClick` is provided

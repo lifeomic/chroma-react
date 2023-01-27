@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import * as React from 'react';
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 import { GetClasses } from '../../typeUtils';
 import { Box } from '../Box';
 import { Pill } from '../Pill';
@@ -9,122 +9,119 @@ import { generateUniqueId } from '../_private/UniqueId';
 
 export const StepStylesKey = 'ChromaStep';
 
-export const useStyles = makeStyles(
-  (theme) => ({
-    buttonRoot: {
-      alignItems: 'center',
-      backgroundColor: 'transparent',
-      border: 'none',
-      cursor: 'pointer',
-      display: 'flex',
-      flexDirection: 'column',
-      fontFamily: theme.typography.fontFamily,
-      minWidth: theme.pxToRem(110),
-      paddingBottom: theme.spacing(1.5),
+export const useStyles = newMakeStyles({ name: StepStylesKey })((theme) => ({
+  buttonRoot: {
+    alignItems: 'center',
+    backgroundColor: 'transparent',
+    border: 'none',
+    cursor: 'pointer',
+    display: 'flex',
+    flexDirection: 'column',
+    fontFamily: theme.typography.fontFamily,
+    minWidth: theme.pxToRem(110),
+    paddingBottom: theme.spacing(1.5),
 
-      '&:focus': {
-        outline: 'none',
-      },
+    '&:focus': {
+      outline: 'none',
+    },
 
-      '&:hover, &:focus': {
-        '&>div': {
-          transform: 'scale(1.1)',
-          transition: '0.25s cubic-bezier(0.2, 0.8, 0.2, 1)',
-        },
+    '&:hover, &:focus': {
+      '&>div': {
+        transform: 'scale(1.1)',
+        transition: '0.25s cubic-bezier(0.2, 0.8, 0.2, 1)',
       },
     },
-    divRoot: {
-      minWidth: theme.pxToRem(110),
-      padding: theme.spacing(0, 0.875, 1.5, 0.875),
+  },
+  divRoot: {
+    minWidth: theme.pxToRem(110),
+    padding: theme.spacing(0, 0.875, 1.5, 0.875),
 
-      '&:focus': {
-        outline: 'none',
+    '&:focus': {
+      outline: 'none',
 
-        '&>div': {
-          transform: 'scale(1.1)',
-          transition: '0.25s cubic-bezier(0.2, 0.8, 0.2, 1)',
-        },
+      '&>div': {
+        transform: 'scale(1.1)',
+        transition: '0.25s cubic-bezier(0.2, 0.8, 0.2, 1)',
       },
     },
-    activeRoot: {
-      borderBottom: `2px solid ${theme.palette.primary.main}`,
-      paddingBottom: theme.spacing(1.25),
-    },
-    completedRoot: {},
-    iconContainer: {
-      width: theme.pxToRem(56),
-      height: theme.pxToRem(56),
-      minWidth: theme.pxToRem(56),
-      minHeight: theme.pxToRem(56),
-      borderRadius: theme.pxToRem(9999),
-      backgroundColor: theme.palette.common.white,
-      border: `2px solid ${theme.palette.black[200]}`,
-      transition:
-        'background-color .5s ease, border .5s ease, box-shadow .5s ease',
+  },
+  activeRoot: {
+    borderBottom: `2px solid ${theme.palette.primary.main}`,
+    paddingBottom: theme.spacing(1.25),
+  },
+  completedRoot: {},
+  iconContainer: {
+    width: theme.pxToRem(56),
+    height: theme.pxToRem(56),
+    minWidth: theme.pxToRem(56),
+    minHeight: theme.pxToRem(56),
+    borderRadius: theme.pxToRem(9999),
+    backgroundColor: theme.palette.common.white,
+    border: `2px solid ${theme.palette.black[200]}`,
+    transition:
+      'background-color .5s ease, border .5s ease, box-shadow .5s ease',
 
-      '@media screen and (max-width: 850px)': {
-        width: theme.pxToRem(40),
-        height: theme.pxToRem(40),
-        minWidth: theme.pxToRem(40),
-        minHeight: theme.pxToRem(40),
+    '@media screen and (max-width: 850px)': {
+      width: theme.pxToRem(40),
+      height: theme.pxToRem(40),
+      minWidth: theme.pxToRem(40),
+      minHeight: theme.pxToRem(40),
+    },
+  },
+  completed: {
+    border: `2px solid ${theme.palette.common.white}`,
+    boxShadow: theme.boxShadows.table,
+  },
+  active: {
+    backgroundColor: theme.palette.primary[50],
+    border: `2px solid ${theme.palette.primary.main}`,
+    boxShadow: theme.boxShadows.table,
+  },
+  icon: {
+    color: theme.palette.black[500],
+    transition: 'color .5s ease',
+  },
+  activeIcon: {
+    color: theme.palette.primary.main,
+  },
+  completedIcon: {
+    color: theme.palette.black[500],
+    opacity: 0.75,
+  },
+  title: {
+    color: theme.palette.black[500],
+    transition: 'color .5s ease',
+
+    '&:first-of-type': {
+      marginTop: theme.spacing(1.5),
+    },
+
+    '@media screen and (max-width: 850px)': {
+      fontSize: theme.pxToRem(12),
+    },
+  },
+  activeTitle: {
+    color: theme.palette.primary.main,
+  },
+  pillSubTitle: {
+    transition: 'background .5s ease',
+    marginTop: theme.spacing(0.5),
+  },
+  completedPillSubTitle: {
+    background: theme.palette.black[500],
+    marginTop: theme.spacing(0.5),
+    opacity: 0.75,
+  },
+  disabled: {
+    cursor: 'not-allowed',
+
+    '&:hover': {
+      '&>div': {
+        transform: 'none',
       },
     },
-    completed: {
-      border: `2px solid ${theme.palette.common.white}`,
-      boxShadow: theme.boxShadows.table,
-    },
-    active: {
-      backgroundColor: theme.palette.primary[50],
-      border: `2px solid ${theme.palette.primary.main}`,
-      boxShadow: theme.boxShadows.table,
-    },
-    icon: {
-      color: theme.palette.black[500],
-      transition: 'color .5s ease',
-    },
-    activeIcon: {
-      color: theme.palette.primary.main,
-    },
-    completedIcon: {
-      color: theme.palette.black[500],
-      opacity: 0.75,
-    },
-    title: {
-      color: theme.palette.black[500],
-      transition: 'color .5s ease',
-
-      '&:first-of-type': {
-        marginTop: theme.spacing(1.5),
-      },
-
-      '@media screen and (max-width: 850px)': {
-        fontSize: theme.pxToRem(12),
-      },
-    },
-    activeTitle: {
-      color: theme.palette.primary.main,
-    },
-    pillSubTitle: {
-      transition: 'background .5s ease',
-      marginTop: theme.spacing(0.5),
-    },
-    completedPillSubTitle: {
-      background: theme.palette.black[500],
-      marginTop: theme.spacing(0.5),
-      opacity: 0.75,
-    },
-    disabled: {
-      cursor: 'not-allowed',
-
-      '&:hover': {
-        '&>div': {
-          transform: 'none',
-        },
-      },
-    },
-  }),
-  { name: StepStylesKey }
-);
+  },
+}));
 
 export type StepClasses = GetClasses<typeof useStyles>;
 
@@ -158,7 +155,7 @@ export const Step: React.FC<StepProps> = ({
   title,
   ...rootProps
 }) => {
-  const classes = useStyles({});
+  const { classes } = useStyles();
   const ariaLabel = `Step ${index + 1} of ${numberOfSteps}`;
 
   const titleId = generateUniqueId('title-');

@@ -1,6 +1,6 @@
 import { ConditionalWrapper } from '../_private/ConditionalWrapper';
 import { GetClasses } from '../../typeUtils';
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 import { MenuItem, MenuItemProps } from './MenuItem';
 import { motion, useReducedMotion } from 'framer-motion';
 import { Portal } from 'reakit/Portal';
@@ -19,33 +19,30 @@ import { MenuGroupHeadingProps } from './MenuGroupHeading';
 
 export const MenuStylesKey = 'ChromaMenu';
 
-export const useStyles = makeStyles(
-  (theme) => ({
-    root: {
-      backgroundColor: theme.palette.common.white,
-      borderRadius: theme.pxToRem(10),
-      boxShadow: theme.boxShadows.popover,
-      maxHeight: theme.pxToRem(432),
-      minWidth: theme.pxToRem(224),
-      overflowY: 'auto',
-      paddingBottom: theme.spacing(1),
-      paddingTop: theme.spacing(1),
-      zIndex: theme.zIndex.menu,
-      '&:focus': {
-        outline: 'none',
-      },
-      '&:focus.focus-visible': {
-        boxShadow: theme.boxShadows.focusVisible,
-      },
+export const useStyles = newMakeStyles({ name: MenuStylesKey })((theme) => ({
+  root: {
+    backgroundColor: theme.palette.common.white,
+    borderRadius: theme.pxToRem(10),
+    boxShadow: theme.boxShadows.popover,
+    maxHeight: theme.pxToRem(432),
+    minWidth: theme.pxToRem(224),
+    overflowY: 'auto',
+    paddingBottom: theme.spacing(1),
+    paddingTop: theme.spacing(1),
+    zIndex: theme.zIndex.menu,
+    '&:focus': {
+      outline: 'none',
     },
-    title: {
-      paddingBottom: theme.spacing(2),
-      paddingLeft: theme.spacing(2.5),
-      paddingRight: theme.spacing(2.5),
+    '&:focus.focus-visible': {
+      boxShadow: theme.boxShadows.focusVisible,
     },
-  }),
-  { name: MenuStylesKey }
-);
+  },
+  title: {
+    paddingBottom: theme.spacing(2),
+    paddingLeft: theme.spacing(2.5),
+    paddingRight: theme.spacing(2.5),
+  },
+}));
 
 export type MenuClasses = GetClasses<typeof useStyles>;
 
@@ -100,7 +97,7 @@ export const Menu: React.FC<MenuProps> = ({
   usePortal = false,
   ...rootProps
 }) => {
-  const classes = useStyles({});
+  const { classes } = useStyles();
 
   const shouldReduceMotion = useReducedMotion();
 

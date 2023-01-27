@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import * as React from 'react';
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 import { GetClasses, ClassOverrides } from '../../typeUtils';
 import {
   BaseFormElementWithNodeLabel,
@@ -18,7 +18,7 @@ import { screenreaderOnlyStyles } from '../../styles/screenreaderOnly';
 
 export const CheckboxStylesKey = 'ChromaCheckbox';
 
-export const useStyles = makeStyles(
+export const useStyles = newMakeStyles({ name: CheckboxStylesKey })(
   (theme) => ({
     root: {
       // All values that are animated to/from need to be specified as css variables for the
@@ -96,8 +96,7 @@ export const useStyles = makeStyles(
     requiredInverse: {
       color: theme.palette.common.white,
     },
-  }),
-  { name: CheckboxStylesKey }
+  })
 );
 
 const getBoxVariants = ({
@@ -351,7 +350,9 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
     },
     ref
   ) => {
-    const classes = useStyles({ classes: additionalClasses });
+    const { classes } = useStyles(undefined, {
+      props: { classes: additionalClasses },
+    });
 
     const [uniqueId] = React.useState<string>(
       () => id || name || generateUniqueId('checkbox-')

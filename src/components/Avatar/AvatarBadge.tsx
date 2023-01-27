@@ -1,12 +1,12 @@
 import clsx from 'clsx';
 import * as React from 'react';
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 import { GetClasses } from '../../typeUtils';
 import { useAvatarSize } from './AvatarSizeContext';
 
 export const AvatarBadgeStylesKey = 'ChromaAvatarBadge';
 
-export const useStyles = makeStyles(
+export const useStyles = newMakeStyles({ name: AvatarBadgeStylesKey })(
   (theme) => ({
     root: {
       alignItems: 'center',
@@ -37,8 +37,7 @@ export const useStyles = makeStyles(
       height: theme.pxToRem(20),
       width: theme.pxToRem(20),
     },
-  }),
-  { name: AvatarBadgeStylesKey }
+  })
 );
 
 export type AvatarBadgeClasses = GetClasses<typeof useStyles>;
@@ -55,7 +54,7 @@ export const AvatarBadge: React.FC<AvatarBadgeProps> = ({
   isVisible,
   ...rootProps
 }) => {
-  const classes = useStyles({});
+  const { classes } = useStyles();
   const { size } = useAvatarSize();
 
   if (!count && !isVisible) {

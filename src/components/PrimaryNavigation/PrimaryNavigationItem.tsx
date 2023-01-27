@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import * as React from 'react';
 import { NavLinkProps } from 'react-router-dom';
-import { makeStyles } from '../../styles/index';
+import { newMakeStyles } from '../../styles/index';
 import { GetClasses, StandardProps } from '../../typeUtils';
 import { sideBarWidthCollapsed, useLayoutManager } from '../LayoutManager';
 import { Pill } from '../Pill';
@@ -17,73 +17,72 @@ import { motion } from 'framer-motion';
 
 export const PrimaryNavigationItemStylesKey = 'ChromaPrimaryNavigationItem';
 
-export const useStyles = makeStyles(
-  (theme) => ({
-    root: {
-      listStyle: 'none',
-      padding: 0,
-      margin: 0,
-      position: 'relative',
-    },
-    link: {
-      display: 'flex',
-      alignItems: 'center',
-      height: theme.pxToRem(47),
-      color: 'inherit',
+export const useStyles = newMakeStyles({
+  name: PrimaryNavigationItemStylesKey,
+})((theme) => ({
+  root: {
+    listStyle: 'none',
+    padding: 0,
+    margin: 0,
+    position: 'relative',
+  },
+  link: {
+    display: 'flex',
+    alignItems: 'center',
+    height: theme.pxToRem(47),
+    color: 'inherit',
+    textDecoration: 'none',
+    transition: 'color 0.5s ease, opacity 0.5s ease',
+    '&:hover': {
+      color: 'var(--link-hover)',
       textDecoration: 'none',
-      transition: 'color 0.5s ease, opacity 0.5s ease',
-      '&:hover': {
-        color: 'var(--link-hover)',
-        textDecoration: 'none',
-        fallbacks: {
-          color: 'inherit',
-        },
-      },
-    },
-    linkActive: {
-      backgroundColor: 'var(--link-active-bg)',
-      color: 'var(--link-active)',
-      '&:hover': {
-        color: 'var(--link-active)',
-        opacity: 0.75,
-      },
       fallbacks: {
-        backgroundColor: theme.palette.action.active,
-        color: theme.palette.primary[300],
+        color: 'inherit',
       },
     },
-    icon: {
-      width: sideBarWidthCollapsed,
-      flexShrink: 0,
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      outline: 'none',
+  },
+  linkActive: {
+    backgroundColor: 'var(--link-active-bg)',
+    color: 'var(--link-active)',
+    '&:hover': {
+      color: 'var(--link-active)',
+      opacity: 0.75,
     },
-    label: {
-      alignSelf: 'center',
-      color: 'inherit',
-      flex: 1,
-      letterSpacing: 0.15,
-      lineHeight: 'unset',
-      overflowX: 'hidden',
-      paddingRight: theme.spacing(2.25),
-      textOverflow: 'ellipsis',
-      whiteSpace: 'nowrap',
+    fallbacks: {
+      backgroundColor: theme.palette.action.active,
+      color: theme.palette.primary[300],
     },
-    labelBeta: {
-      maxWidth: 120,
-      paddingRight: 0,
-    },
-    beta: {
-      margin: theme.spacing(0.125, 1, 0),
-      position: 'absolute',
-      right: theme.spacing(4),
-      transform: 'scale(0.75)',
-    },
-  }),
-  { name: PrimaryNavigationItemStylesKey }
-);
+  },
+  icon: {
+    width: sideBarWidthCollapsed,
+    flexShrink: 0,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    outline: 'none',
+  },
+  label: {
+    alignSelf: 'center',
+    color: 'inherit',
+    flex: 1,
+    letterSpacing: 0.15,
+    lineHeight: 'unset',
+    overflowX: 'hidden',
+    paddingRight: theme.spacing(2.25),
+    textOverflow: 'ellipsis',
+    whiteSpace: 'nowrap',
+  },
+  labelBeta: {
+    maxWidth: 120,
+    paddingRight: 0,
+  },
+  beta: {
+    margin: theme.spacing(0.125, 1, 0),
+    position: 'absolute',
+    right: theme.spacing(4),
+    transform: 'scale(0.75)',
+  },
+}));
 
 const text = {
   hide: { opacity: 0, x: 16, transition: { ease: 'easeIn' } },
@@ -131,7 +130,9 @@ export const PrimaryNavigationItem = React.forwardRef<
     },
     ref
   ) => {
-    const classes = useStyles({ classes: additionalClasses });
+    const { classes } = useStyles(undefined, {
+      props: { classes: additionalClasses },
+    });
     const { isSidebarCollapsed } = useLayoutManager();
 
     return (

@@ -1,13 +1,13 @@
 import clsx from 'clsx';
 import * as React from 'react';
-import { makeStyles } from '../../../styles';
+import { newMakeStyles } from '../../../styles';
 import { GetClasses } from '../../../typeUtils';
 import { Text } from '../../Text';
 import { BaseFormMessage } from './FormElementUtils';
 
 export const FormErrorMessageStylesKey = 'ChromaFormErrorMessage';
 
-const useStyles = makeStyles(
+const useStyles = newMakeStyles({ name: FormErrorMessageStylesKey })(
   (theme) => ({
     root: {
       color: theme.palette.error.main,
@@ -17,8 +17,7 @@ const useStyles = makeStyles(
     inverse: {
       color: theme.palette.error[50],
     },
-  }),
-  { name: FormErrorMessageStylesKey }
+  })
 );
 
 export type FormErrorMessageClasses = GetClasses<typeof useStyles>;
@@ -33,7 +32,7 @@ export const FormErrorMessage: React.FC<FormErrorMessageProps> = ({
   rootElementId,
   ...rootProps
 }) => {
-  const classes = useStyles({});
+  const { classes } = useStyles();
   return (
     <Text
       size="caption"

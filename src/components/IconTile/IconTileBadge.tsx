@@ -1,11 +1,11 @@
 import clsx from 'clsx';
 import * as React from 'react';
-import { makeStyles } from '../../styles/index';
+import { newMakeStyles } from '../../styles/index';
 import { GetClasses } from '../../typeUtils';
 
 export const IconTileBadgeStylesKey = 'ChromaIconTileBadge';
 
-export const useStyles = makeStyles(
+export const useStyles = newMakeStyles({ name: IconTileBadgeStylesKey })(
   (theme) => ({
     root: {
       display: 'flex',
@@ -27,8 +27,7 @@ export const useStyles = makeStyles(
       display: 'flex',
       margin: '0 auto',
     },
-  }),
-  { name: IconTileBadgeStylesKey }
+  })
 );
 
 export interface IconTileBadgeOwnProps
@@ -48,7 +47,7 @@ export const IconTileBadge = React.forwardRef<
   HTMLDivElement,
   IconTileBadgeProps
 >(({ children, className, icon: Icon, ...rootProps }, ref) => {
-  const classes = useStyles({});
+  const { classes } = useStyles();
 
   return (
     <div ref={ref} className={clsx(classes.root, className)} {...rootProps}>

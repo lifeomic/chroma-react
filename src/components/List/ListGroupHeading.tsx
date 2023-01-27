@@ -1,11 +1,11 @@
 import clsx from 'clsx';
 import * as React from 'react';
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 import { GetClasses } from '../../typeUtils';
 
 export const ListGroupHeadingStylesKey = 'ChromaListGroupHeading';
 
-export const useStyles = makeStyles(
+export const useStyles = newMakeStyles({ name: ListGroupHeadingStylesKey })(
   (theme) => ({
     root: {
       color: theme.palette.text.hint,
@@ -20,8 +20,7 @@ export const useStyles = makeStyles(
         paddingTop: theme.spacing(1.25),
       },
     },
-  }),
-  { name: ListGroupHeadingStylesKey }
+  })
 );
 
 export type ListGroupHeadingClasses = GetClasses<typeof useStyles>;
@@ -35,6 +34,6 @@ export const ListGroupHeading: React.FC<ListGroupHeadingProps> = ({
   className,
   children,
 }) => {
-  const classes = useStyles({});
+  const { classes } = useStyles();
   return <li className={clsx(classes.root, className)}>{children}</li>;
 };

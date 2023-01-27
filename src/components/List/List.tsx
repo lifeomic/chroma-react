@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { GetClasses } from '../../typeUtils';
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 import { ListItemProps } from './ListItem';
 import { ListGroupHeadingProps } from './ListGroupHeading';
 import { Text } from '../Text';
@@ -8,8 +8,8 @@ import clsx from 'clsx';
 
 export const ListStylesKey = 'ChromaList';
 
-export const useStyles = makeStyles<ListProps>(
-  (theme) => {
+export const useStyles = newMakeStyles<ListProps>({ name: ListStylesKey })(
+  (theme, props) => {
     const stringOrThemeSpacing = (value: string | number | undefined) => {
       if (typeof value === 'string') return value;
       if (typeof value === 'number') return theme.spacing(value);
@@ -31,52 +31,50 @@ export const useStyles = makeStyles<ListProps>(
         paddingLeft: theme.spacing(2.5),
         paddingRight: theme.spacing(2.5),
       },
-      margin: { margin: ({ margin }) => stringOrThemeSpacing(margin) },
+      margin: { margin: stringOrThemeSpacing(props.margin) },
       marginLeft: {
-        marginLeft: ({ marginLeft }) => stringOrThemeSpacing(marginLeft),
+        marginLeft: stringOrThemeSpacing(props.marginLeft),
       },
       marginRight: {
-        marginRight: ({ marginRight }) => stringOrThemeSpacing(marginRight),
+        marginRight: stringOrThemeSpacing(props.marginRight),
       },
       marginTop: {
-        marginTop: ({ marginTop }) => stringOrThemeSpacing(marginTop),
+        marginTop: stringOrThemeSpacing(props.marginTop),
       },
       marginBottom: {
-        marginBottom: ({ marginBottom }) => stringOrThemeSpacing(marginBottom),
+        marginBottom: stringOrThemeSpacing(props.marginBottom),
       },
       marginX: {
-        marginLeft: ({ marginX }) => stringOrThemeSpacing(marginX),
-        marginRight: ({ marginX }) => stringOrThemeSpacing(marginX),
+        marginLeft: stringOrThemeSpacing(props.marginX),
+        marginRight: stringOrThemeSpacing(props.marginX),
       },
       marginY: {
-        marginTop: ({ marginY }) => stringOrThemeSpacing(marginY),
-        marginBottom: ({ marginY }) => stringOrThemeSpacing(marginY),
+        marginTop: stringOrThemeSpacing(props.marginY),
+        marginBottom: stringOrThemeSpacing(props.marginY),
       },
-      padding: { padding: ({ padding }) => stringOrThemeSpacing(padding) },
+      padding: { padding: stringOrThemeSpacing(props.padding) },
       paddingLeft: {
-        paddingLeft: ({ paddingLeft }) => stringOrThemeSpacing(paddingLeft),
+        paddingLeft: stringOrThemeSpacing(props.paddingLeft),
       },
       paddingRight: {
-        paddingRight: ({ paddingRight }) => stringOrThemeSpacing(paddingRight),
+        paddingRight: stringOrThemeSpacing(props.paddingRight),
       },
       paddingTop: {
-        paddingTop: ({ paddingTop }) => stringOrThemeSpacing(paddingTop),
+        paddingTop: stringOrThemeSpacing(props.paddingTop),
       },
       paddingBottom: {
-        paddingBottom: ({ paddingBottom }) =>
-          stringOrThemeSpacing(paddingBottom),
+        paddingBottom: stringOrThemeSpacing(props.paddingBottom),
       },
       paddingX: {
-        paddingLeft: ({ paddingX }) => stringOrThemeSpacing(paddingX),
-        paddingRight: ({ paddingX }) => stringOrThemeSpacing(paddingX),
+        paddingLeft: stringOrThemeSpacing(props.paddingX),
+        paddingRight: stringOrThemeSpacing(props.paddingX),
       },
       paddingY: {
-        paddingTop: ({ paddingY }) => stringOrThemeSpacing(paddingY),
-        paddingBottom: ({ paddingY }) => stringOrThemeSpacing(paddingY),
+        paddingTop: stringOrThemeSpacing(props.paddingY),
+        paddingBottom: stringOrThemeSpacing(props.paddingY),
       },
     };
-  },
-  { name: ListStylesKey }
+  }
 );
 
 export type ListClasses = GetClasses<typeof useStyles>;
@@ -143,7 +141,7 @@ export const List: React.FC<ListProps> = (props) => {
     ...rootProps
   } = props;
 
-  const classes = useStyles(props);
+  const { classes } = useStyles(props);
 
   return (
     <ul

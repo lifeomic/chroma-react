@@ -1,12 +1,12 @@
 import clsx from 'clsx';
 import * as React from 'react';
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 import { GetClasses } from '../../typeUtils';
 import 'focus-visible';
 
 export const IconButtonStylesKey = 'ChromaIconButton';
 
-export const useStyles = makeStyles(
+export const useStyles = newMakeStyles({ name: IconButtonStylesKey })(
   (theme) => ({
     root: {
       alignItems: 'center',
@@ -138,8 +138,7 @@ export const useStyles = makeStyles(
     paddingRight3: {
       paddingRight: theme.spacing(1.5),
     },
-  }),
-  { name: IconButtonStylesKey }
+  })
 );
 
 export type IconButtonClasses = GetClasses<typeof useStyles>;
@@ -189,7 +188,7 @@ export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
     },
     ref
   ) => {
-    const classes = useStyles({});
+    const { classes } = useStyles();
     return (
       <button
         ref={ref}

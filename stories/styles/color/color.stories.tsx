@@ -39,7 +39,7 @@ should be for components using the "withStyles" HOC.
 \`\`\`tsx
 import { useStyles } from '@lifeomic/chroma-react/styles';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = newMakeStyles()((theme) => ({
   backgroundColor: theme.palette.background.default,
 }));
 \`\`\`

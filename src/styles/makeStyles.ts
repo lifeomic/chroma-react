@@ -3,7 +3,8 @@ import {
   Styles,
   WithStylesOptions,
 } from '@mui/styles';
-import { Theme } from './createTheme';
+import { createMakeStyles } from 'tss-react';
+import { Theme, useTheme } from './createTheme';
 
 export const makeStyles = <
   Props extends {} = {},
@@ -14,3 +15,7 @@ export const makeStyles = <
 ) => {
   return muiMakeStyles(styles, options);
 };
+
+export const { makeStyles: newMakeStyles } = createMakeStyles({
+  useTheme: useTheme as () => Theme,
+});

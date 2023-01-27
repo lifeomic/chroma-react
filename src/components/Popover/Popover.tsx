@@ -1,6 +1,6 @@
 import { ConditionalWrapper } from '../_private/ConditionalWrapper';
 import { GetClasses } from '../../typeUtils';
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 import { motion, useReducedMotion } from 'framer-motion';
 import { Portal } from 'reakit/Portal';
 import { Text } from '../Text';
@@ -16,28 +16,25 @@ import * as React from 'react';
 
 export const PopoverStylesKey = 'ChromaPopover';
 
-export const useStyles = makeStyles(
-  (theme) => ({
-    root: {
-      background: theme.palette.common.white,
-      color: theme.palette.text.primary,
-      borderRadius: theme.pxToRem(10),
-      boxShadow: theme.boxShadows.popover,
-      minWidth: theme.pxToRem(224),
-      overflow: 'hidden',
-      zIndex: theme.zIndex.popover,
-      '&:focus': {
-        outline: 'none',
-      },
+export const useStyles = newMakeStyles({ name: PopoverStylesKey })((theme) => ({
+  root: {
+    background: theme.palette.common.white,
+    color: theme.palette.text.primary,
+    borderRadius: theme.pxToRem(10),
+    boxShadow: theme.boxShadows.popover,
+    minWidth: theme.pxToRem(224),
+    overflow: 'hidden',
+    zIndex: theme.zIndex.popover,
+    '&:focus': {
+      outline: 'none',
     },
-    title: {
-      paddingTop: theme.spacing(2),
-      paddingLeft: theme.spacing(2.5),
-      paddingRight: theme.spacing(2.5),
-    },
-  }),
-  { name: PopoverStylesKey }
-);
+  },
+  title: {
+    paddingTop: theme.spacing(2),
+    paddingLeft: theme.spacing(2.5),
+    paddingRight: theme.spacing(2.5),
+  },
+}));
 
 export type PopoverClasses = GetClasses<typeof useStyles>;
 
@@ -88,7 +85,7 @@ export const Popover: React.FC<PopoverProps> = ({
   unstable_offset,
   ...rootProps
 }) => {
-  const classes = useStyles({});
+  const { classes } = useStyles();
 
   const shouldReduceMotion = useReducedMotion();
 

@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import * as React from 'react';
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 import { GetClasses } from '../../typeUtils';
 import {
   BaseFormElement,
@@ -16,122 +16,116 @@ import { Tooltip } from '../Tooltip';
 
 export const RadioStylesKey = 'ChromaRadio';
 
-export const useStyles = makeStyles(
-  (theme) => ({
-    root: {
-      cursor: 'pointer',
-      display: 'flex',
-      '& > input[type="radio"]::after': {
-        opacity: 0,
-        transition:
-          'transform 0.3s cubic-bezier(0.2, 0.85, 0.32, 1.2), opacity 0.2s',
-      },
-      '& > input[type="radio"]:checked::after': {
-        opacity: 1,
-      },
+export const useStyles = newMakeStyles({ name: RadioStylesKey })((theme) => ({
+  root: {
+    cursor: 'pointer',
+    display: 'flex',
+    '& > input[type="radio"]::after': {
+      opacity: 0,
+      transition:
+        'transform 0.3s cubic-bezier(0.2, 0.85, 0.32, 1.2), opacity 0.2s',
     },
-    input: {
-      background: theme.hexToRgba(theme.palette.graphite[900], 0.15),
-      border: '1px solid transparent',
+    '& > input[type="radio"]:checked::after': {
+      opacity: 1,
+    },
+  },
+  input: {
+    background: theme.hexToRgba(theme.palette.graphite[900], 0.15),
+    border: '1px solid transparent',
+    borderRadius: '50%',
+    cursor: 'pointer',
+    display: 'inline-block',
+    height: theme.pxToRem(21),
+    margin: 0,
+    MozAppearance: 'none',
+    outline: 'none',
+    position: 'relative',
+    transition: 'background 0.3s, border-color 0.3s, box-shadow 0.2s',
+    verticalAlign: 'top',
+    WebkitAppearance: 'none',
+    width: theme.pxToRem(21),
+    '&:after': {
+      background: theme.palette.common.white,
       borderRadius: '50%',
-      cursor: 'pointer',
-      display: 'inline-block',
-      height: theme.pxToRem(21),
-      margin: 0,
-      MozAppearance: 'none',
-      outline: 'none',
-      position: 'relative',
-      transition: 'background 0.3s, border-color 0.3s, box-shadow 0.2s',
-      verticalAlign: 'top',
-      WebkitAppearance: 'none',
-      width: theme.pxToRem(21),
-      '&:after': {
-        background: theme.palette.common.white,
-        borderRadius: '50%',
-        content: '" "',
-        display: 'block',
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        transform: 'scale(0.5)',
-        height: theme.pxToRem(19),
-        width: theme.pxToRem(19),
-      },
-      '&:checked': {
-        background: theme.palette.primary.main,
-      },
-      '&:disabled': {
+      content: '" "',
+      display: 'block',
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      transform: 'scale(0.5)',
+      height: theme.pxToRem(19),
+      width: theme.pxToRem(19),
+    },
+    '&:checked': {
+      background: theme.palette.primary.main,
+    },
+    '&:disabled': {
+      cursor: 'not-allowed',
+      opacity: 0.625,
+      // Ensure the label sibling cannot be clicked as well
+      '& + label': {
         cursor: 'not-allowed',
-        opacity: 0.625,
-        // Ensure the label sibling cannot be clicked as well
-        '& + label': {
-          cursor: 'not-allowed',
-        },
-      },
-      '&:focus': {
-        boxShadow: `0 0 0 2px ${theme.hexToRgba(
-          theme.palette.primary[600],
-          0.3
-        )}`,
-      },
-      '&:hover:not(:disabled):not(:checked)': {
-        border: `1px solid ${theme.palette.primary[700]}`,
       },
     },
-    inputInverse: {
+    '&:focus': {
+      boxShadow: `0 0 0 2px ${theme.hexToRgba(
+        theme.palette.primary[600],
+        0.3
+      )}`,
+    },
+    '&:hover:not(:disabled):not(:checked)': {
+      border: `1px solid ${theme.palette.primary[700]}`,
+    },
+  },
+  inputInverse: {
+    backgroundColor: theme.hexToRgba(theme.palette.graphite[100], 0.1),
+    '&:checked': {
       backgroundColor: theme.hexToRgba(theme.palette.graphite[100], 0.1),
-      '&:checked': {
-        backgroundColor: theme.hexToRgba(theme.palette.graphite[100], 0.1),
-        border: `1px solid ${theme.hexToRgba(
-          theme.palette.graphite[100],
-          0.55
-        )}`,
-      },
-      '&:focus': {
-        boxShadow: `0 0 0 2px ${theme.hexToRgba(
-          theme.palette.common.white,
-          0.3
-        )}`,
-      },
-      '&:hover:not(:disabled):not(:checked)': {
-        border: `1px solid ${theme.palette.common.white}`,
-      },
+      border: `1px solid ${theme.hexToRgba(theme.palette.graphite[100], 0.55)}`,
     },
-    labelContainer: {
-      flex: 1,
-      marginLeft: theme.spacing(1),
+    '&:focus': {
+      boxShadow: `0 0 0 2px ${theme.hexToRgba(
+        theme.palette.common.white,
+        0.3
+      )}`,
     },
-    label: {
-      cursor: 'pointer',
-      display: 'inline-block',
-      marginBottom: 0,
-      marginTop: theme.spacing(0.25),
-      verticalAlign: 'top',
-      '& p': {
-        lineHeight: 1.25,
-      },
+    '&:hover:not(:disabled):not(:checked)': {
+      border: `1px solid ${theme.palette.common.white}`,
     },
-    labelInverse: {
-      color: theme.palette.common.white,
+  },
+  labelContainer: {
+    flex: 1,
+    marginLeft: theme.spacing(1),
+  },
+  label: {
+    cursor: 'pointer',
+    display: 'inline-block',
+    marginBottom: 0,
+    marginTop: theme.spacing(0.25),
+    verticalAlign: 'top',
+    '& p': {
+      lineHeight: 1.25,
     },
-    icon: {
-      height: theme.pxToRem(16),
-      width: theme.pxToRem(16),
-    },
-    iconWithLabel: {
-      marginRight: theme.spacing(0.5),
-    },
-    tooltipContainer: {
-      display: 'flex',
-      outline: 'none',
-    },
-    tooltipContent: {
-      display: 'flex',
-      height: theme.pxToRem(16),
-    },
-  }),
-  { name: RadioStylesKey }
-);
+  },
+  labelInverse: {
+    color: theme.palette.common.white,
+  },
+  icon: {
+    height: theme.pxToRem(16),
+    width: theme.pxToRem(16),
+  },
+  iconWithLabel: {
+    marginRight: theme.spacing(0.5),
+  },
+  tooltipContainer: {
+    display: 'flex',
+    outline: 'none',
+  },
+  tooltipContent: {
+    display: 'flex',
+    height: theme.pxToRem(16),
+  },
+}));
 
 export type RadioClasses = GetClasses<typeof useStyles>;
 
@@ -184,7 +178,7 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
     ref
   ) => {
     const inputRef = React.useRef<HTMLInputElement>(null);
-    const classes = useStyles({});
+    const { classes } = useStyles();
 
     const [uniqueId] = React.useState<string>(
       () => id || generateUniqueId('radio-')

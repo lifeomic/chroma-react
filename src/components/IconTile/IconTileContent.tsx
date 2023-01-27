@@ -1,12 +1,12 @@
 import clsx from 'clsx';
 import * as React from 'react';
-import { makeStyles } from '../../styles/index';
+import { newMakeStyles } from '../../styles/index';
 import { GetClasses } from '../../typeUtils';
 import { Text } from '../Text';
 
 export const IconTileContentStylesKey = 'ChromaIconTileContent';
 
-export const useStyles = makeStyles(
+export const useStyles = newMakeStyles({ name: IconTileContentStylesKey })(
   (theme) => ({
     root: {
       width: '100%',
@@ -27,8 +27,7 @@ export const useStyles = makeStyles(
       textTransform: 'uppercase',
       letterSpacing: 2,
     },
-  }),
-  { name: IconTileContentStylesKey }
+  })
 );
 
 export interface IconTileContentOwnProps
@@ -49,7 +48,7 @@ export const IconTileContent = React.forwardRef<
   HTMLDivElement,
   IconTileContentProps
 >(({ children, className, text, caption, ...rootProps }, ref) => {
-  const classes = useStyles({});
+  const { classes } = useStyles();
 
   return (
     <div ref={ref} className={clsx(classes.root, className)} {...rootProps}>

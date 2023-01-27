@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import * as React from 'react';
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 import { GetClasses } from '../../typeUtils';
 import {
   BaseFormElement,
@@ -13,7 +13,7 @@ import { clearClipPath, defaultClipPath } from './clipPaths';
 
 export const SearchFieldStylesKey = 'ChromaSearchField';
 
-export const useStyles = makeStyles(
+export const useStyles = newMakeStyles({ name: SearchFieldStylesKey })(
   (theme) => ({
     root: {
       position: 'relative',
@@ -208,8 +208,7 @@ export const useStyles = makeStyles(
       marginTop: theme.spacing(1),
       marginLeft: 0,
     },
-  }),
-  { name: SearchFieldStylesKey }
+  })
 );
 
 export type SearchFieldClasses = GetClasses<typeof useStyles>;
@@ -278,7 +277,7 @@ export const SearchField = React.forwardRef<HTMLInputElement, SearchFieldProps>(
     },
     ref
   ) => {
-    const classes = useStyles({});
+    const { classes } = useStyles();
 
     const [uniqueId] = React.useState<string>(
       () => id || name || generateUniqueId('searchField-')

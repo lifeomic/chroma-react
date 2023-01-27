@@ -1,11 +1,11 @@
 import clsx from 'clsx';
 import * as React from 'react';
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 import { GetClasses } from '../../typeUtils';
 
 export const IconTileStylesKey = 'ChromaIconTile';
 
-export const useStyles = makeStyles(
+export const useStyles = newMakeStyles({ name: IconTileStylesKey })(
   (theme) => ({
     root: {
       width: theme.pxToRem(202),
@@ -31,8 +31,7 @@ export const useStyles = makeStyles(
         },
       },
     },
-  }),
-  { name: IconTileStylesKey }
+  })
 );
 
 export interface IconTileOwnProps
@@ -59,7 +58,7 @@ export interface IconTileProps extends IconTileOwnProps {}
  */
 export const IconTile = React.forwardRef<HTMLDivElement, IconTileProps>(
   ({ children, className, onClick, ...rootProps }, ref) => {
-    const classes = useStyles({});
+    const { classes } = useStyles();
 
     return (
       // We conditionally add the role if `onClick` is provided

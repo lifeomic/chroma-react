@@ -26,7 +26,7 @@ export const TableModuleCell: React.FC<TableModuleCell> = React.memo(
     isSticky = false,
     left,
   }) => {
-    const classes = useStyles({});
+    const { classes } = useStyles();
 
     return (
       <td

@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import * as React from 'react';
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 import { GetClasses } from '../../typeUtils';
 import { generateUniqueId } from '../_private/UniqueId';
 import { ButtonProps } from '../Button';
@@ -8,7 +8,7 @@ import 'focus-visible';
 
 export const ButtonFilePickerStylesKey = 'ChromaButtonFilePicker';
 
-export const useStyles = makeStyles(
+export const useStyles = newMakeStyles({ name: ButtonFilePickerStylesKey })(
   (theme) => ({
     root: {
       background: theme.palette.primary.main,
@@ -168,8 +168,7 @@ export const useStyles = makeStyles(
     disabled: {
       cursor: 'not-allowed',
     },
-  }),
-  { name: ButtonFilePickerStylesKey }
+  })
 );
 
 export type ButtonFilePickerClasses = GetClasses<typeof useStyles>;
@@ -236,7 +235,7 @@ export const ButtonFilePicker = React.forwardRef<
     },
     ref
   ) => {
-    const classes = useStyles({});
+    const { classes } = useStyles();
     const [id] = React.useState<string>(
       () => providedId || generateUniqueId('filePicker-')
     );

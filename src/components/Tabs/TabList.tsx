@@ -1,39 +1,36 @@
 import clsx from 'clsx';
 import * as React from 'react';
 import { TabList as BaseTabList } from 'reakit/Tab';
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 import { GetClasses } from '../../typeUtils';
 import { TabsContext } from './TabsContext';
 
 export const TabListStylesKey = 'ChromaTabList';
 
-export const useStyles = makeStyles(
-  (theme) => ({
-    root: {
-      display: 'flex',
-      flexDirection: 'row',
-      borderBottom: `1px solid ${theme.palette.divider}`,
-      width: '100%',
-      overflow: 'hidden',
-    },
-    pill: {
-      background: theme.hexToRgba(theme.palette.graphite[900], 0.15),
-      borderRadius: theme.pxToRem(20),
-      border: 'solid 1px transparent',
-      display: 'inline-flex',
-      flexDirection: 'row',
-      margin: 0,
-      maxHeight: theme.pxToRem(35),
-      overflow: 'hidden',
-      padding: theme.spacing(0.25),
-      width: 'auto',
-    },
-    fullWidth: {
-      width: '100%',
-    },
-  }),
-  { name: TabListStylesKey }
-);
+export const useStyles = newMakeStyles({ name: TabListStylesKey })((theme) => ({
+  root: {
+    display: 'flex',
+    flexDirection: 'row',
+    borderBottom: `1px solid ${theme.palette.divider}`,
+    width: '100%',
+    overflow: 'hidden',
+  },
+  pill: {
+    background: theme.hexToRgba(theme.palette.graphite[900], 0.15),
+    borderRadius: theme.pxToRem(20),
+    border: 'solid 1px transparent',
+    display: 'inline-flex',
+    flexDirection: 'row',
+    margin: 0,
+    maxHeight: theme.pxToRem(35),
+    overflow: 'hidden',
+    padding: theme.spacing(0.25),
+    width: 'auto',
+  },
+  fullWidth: {
+    width: '100%',
+  },
+}));
 
 export type TabListClasses = GetClasses<typeof useStyles>;
 
@@ -47,7 +44,7 @@ export const TabList: React.FC<TabListProps> = ({
   className,
   ...rootProps
 }) => {
-  const classes = useStyles({});
+  const { classes } = useStyles();
   const { variant, fullWidth, tabState } = React.useContext(TabsContext);
   return (
     <BaseTabList

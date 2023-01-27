@@ -1,20 +1,19 @@
 import clsx from 'clsx';
 import * as React from 'react';
 import { TabPanel as BaseTabPanel } from 'reakit/Tab';
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 import { GetClasses } from '../../typeUtils';
 import { TabsContext } from './TabsContext';
 import { TabStop } from './types';
 
 export const TabPanelStylesKey = 'ChromaTabPanel';
 
-export const useStyles = makeStyles(
+export const useStyles = newMakeStyles({ name: TabPanelStylesKey })(
   (_theme) => ({
     root: {
       outline: 'none',
     },
-  }),
-  { name: TabPanelStylesKey }
+  })
 );
 
 export type TabPanelClasses = GetClasses<typeof useStyles>;
@@ -31,7 +30,7 @@ export const TabPanel: React.FC<TabPanelProps> = ({
   stopId,
   ...rootProps
 }) => {
-  const classes = useStyles({});
+  const { classes } = useStyles();
   const { tabState } = React.useContext(TabsContext);
   return (
     <BaseTabPanel

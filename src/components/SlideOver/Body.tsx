@@ -1,21 +1,18 @@
 import { GetClasses } from '../../typeUtils';
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 import * as React from 'react';
 import clsx from 'clsx';
 
 export const BodyStylesKey = 'ChromaSlideOverBody';
 
-export const useStyles = makeStyles(
-  (theme) => ({
-    root: {
-      display: 'flex',
-      padding: theme.spacing(2),
-      width: '100%',
-      height: '100%',
-    },
-  }),
-  { name: BodyStylesKey }
-);
+export const useStyles = newMakeStyles({ name: BodyStylesKey })((theme) => ({
+  root: {
+    display: 'flex',
+    padding: theme.spacing(2),
+    width: '100%',
+    height: '100%',
+  },
+}));
 
 export type BodyClasses = GetClasses<typeof useStyles>;
 
@@ -31,7 +28,7 @@ export const Body: React.FC<BodyProps> = ({
   children,
   ...rootProps
 }) => {
-  const classes = useStyles({});
+  const { classes } = useStyles();
 
   const AsComponent = as || 'div';
 

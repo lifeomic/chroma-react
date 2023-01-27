@@ -2,7 +2,7 @@ import 'focus-visible';
 import { DotLoader } from '../DotLoader/index';
 import { GetClasses } from '../../typeUtils';
 import { getTestProps } from '../../testUtils/getTestProps';
-import { makeStyles } from '../../styles/index';
+import { newMakeStyles } from '../../styles/index';
 import { motion } from 'framer-motion';
 import { TableHeaderCell } from './TableHeaderCell';
 import { TableModuleRow } from './TableModuleRow';
@@ -29,7 +29,7 @@ export const testIds = {
 
 export const TableModuleStylesKey = 'ChromaTableModule';
 
-export const useStyles = makeStyles(
+export const useStyles = newMakeStyles({ name: TableModuleStylesKey })(
   (theme) => ({
     root: {
       background: theme.palette.common.white,
@@ -203,8 +203,7 @@ export const useStyles = makeStyles(
     isStickyLast: {
       boxShadow: `inset -2px 0 ${theme.palette.primary.main}`,
     },
-  }),
-  { name: TableModuleStylesKey }
+  })
 );
 
 export type TableModuleClasses = GetClasses<typeof useStyles>;
@@ -264,7 +263,7 @@ export const TableModule = React.memo(
       },
       forwardedRef
     ) => {
-      const classes = useStyles({});
+      const { classes } = useStyles();
 
       warning(
         Boolean(onRowClick) &&

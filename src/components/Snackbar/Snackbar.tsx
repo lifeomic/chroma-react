@@ -1,5 +1,5 @@
 import { GetClasses } from '../../typeUtils';
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { Text } from '../Text';
 import clsx from 'clsx';
@@ -10,7 +10,7 @@ import { NotificationStatusType } from '../_private/notificationTypes';
 
 export const SnackbarStylesKey = 'ChromaSnackbar';
 
-export const useStyles = makeStyles(
+export const useStyles = newMakeStyles({ name: SnackbarStylesKey })(
   (theme) => ({
     root: {
       color: theme.palette.text.secondary,
@@ -58,8 +58,7 @@ export const useStyles = makeStyles(
       marginLeft: theme.spacing(2),
       borderLeft: `1px solid ${theme.palette.divider}`,
     },
-  }),
-  { name: SnackbarStylesKey }
+  })
 );
 
 export type SnackbarClasses = GetClasses<typeof useStyles>;
@@ -113,7 +112,7 @@ export const Snackbar: React.FC<SnackbarProps> = React.forwardRef<
     },
     ref
   ) => {
-    const classes = useStyles({});
+    const { classes } = useStyles();
 
     const shouldReduceMotion = useReducedMotion();
 

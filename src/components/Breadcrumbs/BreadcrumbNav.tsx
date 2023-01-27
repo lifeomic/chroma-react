@@ -1,11 +1,11 @@
 import clsx from 'clsx';
 import * as React from 'react';
-import { makeStyles } from '../../styles/index';
+import { newMakeStyles } from '../../styles/index';
 import { GetClasses } from '../../typeUtils';
 
 export const BreadcrumbNavStylesKey = 'ChromaBreadcrumbNav';
 
-export const useStyles = makeStyles(
+export const useStyles = newMakeStyles({ name: BreadcrumbNavStylesKey })(
   (theme) => ({
     root: {},
     ol: {
@@ -13,8 +13,7 @@ export const useStyles = makeStyles(
       paddingLeft: theme.spacing(0),
       listStyle: 'none',
     },
-  }),
-  { name: BreadcrumbNavStylesKey }
+  })
 );
 
 export type BreadcrumbNavClasses = GetClasses<typeof useStyles>;
@@ -32,7 +31,7 @@ export const BreadcrumbNav: React.FC<BreadcrumbNavProps> = ({
   children,
   ...rootProps
 }) => {
-  const classes = useStyles({});
+  const { classes } = useStyles();
   return (
     <nav
       aria-label="Breadcrumb"

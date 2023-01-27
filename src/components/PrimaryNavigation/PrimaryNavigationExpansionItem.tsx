@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import * as React from 'react';
 import { NavLinkProps, useLocation } from 'react-router-dom';
 import { Plus } from '@lifeomic/chromicons';
-import { makeStyles } from '../../styles/index';
+import { newMakeStyles } from '../../styles/index';
 import { GetClasses, StandardProps } from '../../typeUtils';
 import { sideBarWidthCollapsed, useLayoutManager } from '../LayoutManager';
 import { Pill } from '../Pill';
@@ -22,115 +22,114 @@ import { motion, MotionProps, Variants } from 'framer-motion';
 export const PrimaryNavigationExpansionItemStylesKey =
   'ChromaPrimaryNavigationExpansionItem';
 
-export const useStyles = makeStyles(
-  (theme) => ({
-    root: {
-      listStyle: 'none',
-      padding: 0,
-      margin: 0,
-      position: 'relative',
+export const useStyles = newMakeStyles({
+  name: PrimaryNavigationExpansionItemStylesKey,
+})((theme) => ({
+  root: {
+    listStyle: 'none',
+    padding: 0,
+    margin: 0,
+    position: 'relative',
+  },
+  rootOpen: {
+    backgroundColor: 'var(--link-active-bg)',
+    maxHeight: 'inherit',
+    paddingBottom: theme.spacing(1),
+    fallbacks: {
+      backgroundColor: theme.palette.action.active,
     },
-    rootOpen: {
-      backgroundColor: 'var(--link-active-bg)',
-      maxHeight: 'inherit',
-      paddingBottom: theme.spacing(1),
-      fallbacks: {
-        backgroundColor: theme.palette.action.active,
-      },
-    },
-    sidebarCollapsed: {
-      paddingBottom: 0,
-    },
-    link: {
-      display: 'flex',
-      alignItems: 'center',
-      height: theme.pxToRem(47),
-      color: 'inherit',
+  },
+  sidebarCollapsed: {
+    paddingBottom: 0,
+  },
+  link: {
+    display: 'flex',
+    alignItems: 'center',
+    height: theme.pxToRem(47),
+    color: 'inherit',
+    textDecoration: 'none',
+    transition: 'color 0.5s ease, opacity 0.5s ease',
+    '&:hover': {
+      color: 'var(--link-hover)',
       textDecoration: 'none',
-      transition: 'color 0.5s ease, opacity 0.5s ease',
-      '&:hover': {
-        color: 'var(--link-hover)',
-        textDecoration: 'none',
-        fallbacks: {
-          color: 'inherit',
-        },
-      },
-    },
-    linkActive: {
-      color: 'var(--link-active)',
-      '&:hover': {
-        color: 'var(--link-active)',
-        opacity: 0.75,
-      },
       fallbacks: {
-        color: theme.palette.primary[300],
+        color: 'inherit',
       },
     },
-    icon: {
-      width: sideBarWidthCollapsed,
-      flexShrink: 0,
-      display: 'flex',
-      alignItems: 'center',
-      maxWidth: 60,
-      outline: 'none',
-      justifyContent: 'center',
+  },
+  linkActive: {
+    color: 'var(--link-active)',
+    '&:hover': {
+      color: 'var(--link-active)',
+      opacity: 0.75,
     },
-    label: {
-      alignSelf: 'center',
-      color: 'inherit',
-      flex: 1,
-      letterSpacing: 0.15,
-      lineHeight: 'unset',
-      overflowX: 'hidden',
-      paddingRight: theme.spacing(2.25),
-      textOverflow: 'ellipsis',
-      whiteSpace: 'nowrap',
+    fallbacks: {
+      color: theme.palette.primary[300],
     },
-    labelBeta: {
-      justifyContent: 'flex-start',
-      maxWidth: 120,
-      paddingRight: 0,
-    },
-    plusIcon: {
-      color: 'inherit',
-      justifySelf: 'flex-end',
-      marginRight: theme.spacing(2),
-      position: 'absolute',
-      right: 0,
-    },
-    hidden: {
-      display: 'none',
-    },
-    content: {
-      maxHeight: 0,
-      overflow: 'hidden',
-      transition: 'max-height 0.25s ease-in-out',
-    },
-    inner: {
-      display: 'flex',
-      flexDirection: 'column',
-      backgroundColor: 'inherit',
-      width: '100%',
-      height: '100%',
-      visibility: 'visible',
-    },
-    innerHidden: {
-      visibility: 'hidden',
-    },
-    innerUl: {
-      margin: theme.spacing(-1, 0, 0),
-      padding: 0,
-      position: 'relative',
-    },
-    beta: {
-      margin: theme.spacing(0.125, 1, 0),
-      position: 'absolute',
-      right: theme.spacing(4),
-      transform: 'scale(0.75)',
-    },
-  }),
-  { name: PrimaryNavigationExpansionItemStylesKey }
-);
+  },
+  icon: {
+    width: sideBarWidthCollapsed,
+    flexShrink: 0,
+    display: 'flex',
+    alignItems: 'center',
+    maxWidth: 60,
+    outline: 'none',
+    justifyContent: 'center',
+  },
+  label: {
+    alignSelf: 'center',
+    color: 'inherit',
+    flex: 1,
+    letterSpacing: 0.15,
+    lineHeight: 'unset',
+    overflowX: 'hidden',
+    paddingRight: theme.spacing(2.25),
+    textOverflow: 'ellipsis',
+    whiteSpace: 'nowrap',
+  },
+  labelBeta: {
+    justifyContent: 'flex-start',
+    maxWidth: 120,
+    paddingRight: 0,
+  },
+  plusIcon: {
+    color: 'inherit',
+    justifySelf: 'flex-end',
+    marginRight: theme.spacing(2),
+    position: 'absolute',
+    right: 0,
+  },
+  hidden: {
+    display: 'none',
+  },
+  content: {
+    maxHeight: 0,
+    overflow: 'hidden',
+    transition: 'max-height 0.25s ease-in-out',
+  },
+  inner: {
+    display: 'flex',
+    flexDirection: 'column',
+    backgroundColor: 'inherit',
+    width: '100%',
+    height: '100%',
+    visibility: 'visible',
+  },
+  innerHidden: {
+    visibility: 'hidden',
+  },
+  innerUl: {
+    margin: theme.spacing(-1, 0, 0),
+    padding: 0,
+    position: 'relative',
+  },
+  beta: {
+    margin: theme.spacing(0.125, 1, 0),
+    position: 'absolute',
+    right: theme.spacing(4),
+    transform: 'scale(0.75)',
+  },
+}));
 
 const BASE_TRANSITION_VARIANTS: Variants = {
   hide: { opacity: 0, x: 16, transition: { ease: 'easeIn' } },
@@ -189,7 +188,9 @@ export const PrimaryNavigationExpansionItem = React.forwardRef<
     },
     ref
   ) => {
-    const classes = useStyles({ classes: additionalClasses });
+    const { classes } = useStyles(undefined, {
+      props: { classes: additionalClasses },
+    });
     const { isSidebarCollapsed } = useLayoutManager();
     const location = useLocation();
 

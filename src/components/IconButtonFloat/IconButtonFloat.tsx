@@ -1,12 +1,12 @@
 import clsx from 'clsx';
 import * as React from 'react';
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 import { GetClasses } from '../../typeUtils';
 import 'focus-visible';
 
 export const IconButtonFloatStylesKey = 'ChromaIconButtonFloat';
 
-export const useStyles = makeStyles(
+export const useStyles = newMakeStyles({ name: IconButtonFloatStylesKey })(
   (theme) => ({
     root: {
       alignItems: 'center',
@@ -90,8 +90,7 @@ export const useStyles = makeStyles(
       bottom: 'auto',
     },
     alignBottom: {},
-  }),
-  { name: IconButtonFloatStylesKey }
+  })
 );
 
 export type IconButtonFloatClasses = GetClasses<typeof useStyles>;
@@ -138,7 +137,7 @@ export const IconButtonFloat = React.forwardRef<
     },
     ref
   ) => {
-    const classes = useStyles({});
+    const { classes } = useStyles();
     return (
       <button
         ref={ref}

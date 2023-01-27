@@ -4,46 +4,38 @@ import { TextFieldProps, TextField } from '../TextField';
 // @ts-ignore The flags module is not typed
 import flags from 'react-phone-number-input/flags';
 import PhoneInput, { PhoneInputProps } from 'react-phone-number-input';
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 import clsx from 'clsx';
 import { GetClasses } from '../../typeUtils';
 
 export const PhoneNumberFormatFieldStylesKey = 'ChromaPhoneNumberFormatField';
 
-const useStyles = ({
-  about,
-  errorMessage,
-}: {
-  about?: string;
-  errorMessage?: string;
-}) =>
-  makeStyles(
-    (theme) => ({
-      textField: {
-        marginTop: theme.spacing(2),
-        marginBottom: theme.spacing(1),
+const useStyles = newMakeStyles<{ about?: string; errorMessage?: string }>({
+  name: PhoneNumberFormatFieldStylesKey,
+})((theme, props) => ({
+  textField: {
+    marginTop: theme.spacing(2),
+    marginBottom: theme.spacing(1),
+  },
+  phoneInputRoot: {
+    display: 'flex',
+    position: 'relative',
+    '& > .PhoneInputCountry': {
+      position: 'absolute',
+      bottom: theme.spacing(props.about || props.errorMessage ? 5.25 : 2.5),
+      left: theme.spacing(1),
+      '& .PhoneInputCountryIcon--border': {
+        boxShadow: 'unset',
+        backgroundColor: 'unset',
       },
-      phoneInputRoot: {
-        display: 'flex',
-        position: 'relative',
-        '& > .PhoneInputCountry': {
-          position: 'absolute',
-          bottom: theme.spacing(about || errorMessage ? 5.25 : 2.5),
-          left: theme.spacing(1),
-          '& .PhoneInputCountryIcon--border': {
-            boxShadow: 'unset',
-            backgroundColor: 'unset',
-          },
-        },
-      },
-      phoneInput: {
-        '& input': {
-          paddingLeft: theme.spacing(6),
-        },
-      },
-    }),
-    { name: PhoneNumberFormatFieldStylesKey }
-  )({});
+    },
+  },
+  phoneInput: {
+    '& input': {
+      paddingLeft: theme.spacing(6),
+    },
+  },
+}));
 
 export type PhoneNumberFormatFieldClasses = GetClasses<typeof useStyles>;
 
@@ -51,7 +43,7 @@ const PhoneInputCompatibleChromaInput = React.forwardRef<
   HTMLInputElement,
   Omit<TextFieldProps, 'color'>
 >((props, ref) => {
-  const classes = useStyles({});
+  const { classes } = useStyles({});
   const { className, ...textFieldProps } = props;
   return (
     <TextField
@@ -100,7 +92,7 @@ export const PhoneNumberFormatField: React.FC<PhoneNumberFormatFieldProps> = ({
   ...props
 }) => {
   const { value, onChange, errorMessage } = props;
-  const classes = useStyles(props);
+  const { classes } = useStyles(props);
   return (
     <PhoneInput
       className={clsx(classes.phoneInputRoot, className)}

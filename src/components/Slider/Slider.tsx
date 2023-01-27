@@ -11,7 +11,7 @@ import {
 } from '../_private/forms';
 import { generateUniqueId } from '../_private/UniqueId';
 import { GetClasses } from '../../typeUtils';
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 import { Text } from '../Text';
 
 export const testIds = {
@@ -22,141 +22,138 @@ export const testIds = {
 
 export const SliderStylesKey = 'ChromaSlider';
 
-export const useStyles = makeStyles(
-  (theme) => ({
-    slider: {
-      alignItems: 'center',
-      display: 'flex',
-      position: 'relative',
-      touchAction: 'none',
-      userSelect: 'none',
+export const useStyles = newMakeStyles({ name: SliderStylesKey })((theme) => ({
+  slider: {
+    alignItems: 'center',
+    display: 'flex',
+    position: 'relative',
+    touchAction: 'none',
+    userSelect: 'none',
 
-      '&:focus': {
-        boxShadow: theme.boxShadows.focusVisible,
-        outline: 'none',
-      },
-      '&[data-orientation="horizontal"]': {
-        height: theme.pxToRem(20),
-      },
+    '&:focus': {
+      boxShadow: theme.boxShadows.focusVisible,
+      outline: 'none',
     },
-    track: {
-      backgroundColor: theme.hexToRgba(theme.palette.graphite[900], 0.15),
-      borderRadius: 2,
-      cursor: 'pointer',
-      flexGrow: 1,
-      position: 'relative',
+    '&[data-orientation="horizontal"]': {
+      height: theme.pxToRem(20),
+    },
+  },
+  track: {
+    backgroundColor: theme.hexToRgba(theme.palette.graphite[900], 0.15),
+    borderRadius: 2,
+    cursor: 'pointer',
+    flexGrow: 1,
+    position: 'relative',
 
-      '&[data-orientation="horizontal"]': {
-        height: theme.pxToRem(3),
-      },
+    '&[data-orientation="horizontal"]': {
+      height: theme.pxToRem(3),
     },
-    trackInverse: {
-      backgroundColor: theme.hexToRgba(theme.palette.graphite[100], 0.1),
-    },
-    range: {
-      backgroundColor: theme.palette.primary.main,
-      height: '100%',
-      position: 'absolute',
+  },
+  trackInverse: {
+    backgroundColor: theme.hexToRgba(theme.palette.graphite[100], 0.1),
+  },
+  range: {
+    backgroundColor: theme.palette.primary.main,
+    height: '100%',
+    position: 'absolute',
 
-      '&[data-disabled]': {
-        backgroundColor: theme.palette.graphite[600],
-      },
+    '&[data-disabled]': {
+      backgroundColor: theme.palette.graphite[600],
     },
-    rangeInverse: {
-      backgroundColor: theme.palette.common.white,
-      opacity: 0.5,
+  },
+  rangeInverse: {
+    backgroundColor: theme.palette.common.white,
+    opacity: 0.5,
+  },
+  thumb: {
+    all: 'unset',
+    cursor: 'pointer',
+    backgroundColor: theme.palette.common.white,
+    border: `4px solid ${theme.palette.primary.main}`,
+    borderRadius: '100%',
+    display: 'block',
+    height: theme.pxToRem(12),
+    width: theme.pxToRem(12),
+    '&[data-disabled]': {
+      borderColor: theme.palette.graphite[600],
     },
-    thumb: {
-      all: 'unset',
-      cursor: 'pointer',
-      backgroundColor: theme.palette.common.white,
-      border: `4px solid ${theme.palette.primary.main}`,
-      borderRadius: '100%',
-      display: 'block',
-      height: theme.pxToRem(12),
-      width: theme.pxToRem(12),
-      '&[data-disabled]': {
-        borderColor: theme.palette.graphite[600],
-      },
-      '&:hover, &:focus': {
-        boxShadow: `0 0 0 5px ${theme.hexToRgba(
-          theme.palette.graphite[900],
-          0.08
-        )}`,
-      },
+    '&:hover, &:focus': {
+      boxShadow: `0 0 0 5px ${theme.hexToRgba(
+        theme.palette.graphite[900],
+        0.08
+      )}`,
     },
-    thumbInverse: {
-      backgroundColor: theme.palette.graphite[100],
-      borderColor: theme.palette.common.white,
-      '&:hover, &:focus': {
-        boxShadow: `0 0 0 5px ${theme.hexToRgba(
-          theme.palette.common.white,
-          0.09
-        )}`,
-      },
+  },
+  thumbInverse: {
+    backgroundColor: theme.palette.graphite[100],
+    borderColor: theme.palette.common.white,
+    '&:hover, &:focus': {
+      boxShadow: `0 0 0 5px ${theme.hexToRgba(
+        theme.palette.common.white,
+        0.09
+      )}`,
     },
-    thumbError: {
-      border: `4px solid ${theme.palette.red.main}`,
+  },
+  thumbError: {
+    border: `4px solid ${theme.palette.red.main}`,
+  },
+  label: {
+    alignItems: 'center',
+    color: theme.palette.black[800],
+    display: 'flex',
+    fontSize: theme.pxToRem(14),
+    fontWeight: theme.typography.fontWeightBold,
+  },
+  labelInverse: {
+    color: theme.palette.common.white,
+  },
+  labelTop: {
+    marginBottom: theme.spacing(0.625),
+  },
+  labelBottom: {
+    marginTop: theme.spacing(0.625),
+  },
+  labelBottomTrailingMessage: {
+    marginLeft: 0,
+  },
+  labelValuePair: {
+    '& > *': {
+      lineHeight: 1.25,
     },
-    label: {
-      alignItems: 'center',
-      color: theme.palette.black[800],
-      display: 'flex',
-      fontSize: theme.pxToRem(14),
-      fontWeight: theme.typography.fontWeightBold,
-    },
-    labelInverse: {
-      color: theme.palette.common.white,
-    },
-    labelTop: {
-      marginBottom: theme.spacing(0.625),
-    },
-    labelBottom: {
-      marginTop: theme.spacing(0.625),
-    },
-    labelBottomTrailingMessage: {
-      marginLeft: 0,
-    },
-    labelValuePair: {
-      '& > *': {
-        lineHeight: 1.25,
-      },
-    },
-    value: {
-      color: theme.palette.text.hint,
-    },
-    valueInverse: {
-      color: theme.palette.common.white,
-      opacity: 0.9,
-    },
-    valueLeft: {
-      textAlign: 'left',
-    },
-    valueCenter: {
-      textAlign: 'center',
-    },
-    valueRight: {
-      textAlign: 'right',
-    },
-    trailingMessage: {
-      marginLeft: 0,
-      marginTop: theme.spacing(0.875),
-    },
-    helpMessage: {
-      color: theme.palette.text.hint,
-      fontSize: theme.typography.caption.fontSize,
-    },
-    helpMessageInverse: {
-      color: theme.palette.common.white,
-      opacity: 0.9,
-    },
-    errorMessageInverse: {
-      color: theme.palette.common.white,
-      opacity: 0.9,
-    },
-  }),
-  { name: SliderStylesKey }
-);
+  },
+  value: {
+    color: theme.palette.text.hint,
+  },
+  valueInverse: {
+    color: theme.palette.common.white,
+    opacity: 0.9,
+  },
+  valueLeft: {
+    textAlign: 'left',
+  },
+  valueCenter: {
+    textAlign: 'center',
+  },
+  valueRight: {
+    textAlign: 'right',
+  },
+  trailingMessage: {
+    marginLeft: 0,
+    marginTop: theme.spacing(0.875),
+  },
+  helpMessage: {
+    color: theme.palette.text.hint,
+    fontSize: theme.typography.caption.fontSize,
+  },
+  helpMessageInverse: {
+    color: theme.palette.common.white,
+    opacity: 0.9,
+  },
+  errorMessageInverse: {
+    color: theme.palette.common.white,
+    opacity: 0.9,
+  },
+}));
 
 export type SliderClasses = GetClasses<typeof useStyles>;
 
@@ -258,7 +255,7 @@ export const Slider = React.forwardRef<HTMLElement, SliderProps>(
       name,
       value: getValueAsArray(props.value),
     };
-    const classes = useStyles({});
+    const { classes } = useStyles();
     const arrayValue = sliderProps.value || sliderProps.defaultValue;
 
     const [uniqueId] = React.useState<string>(

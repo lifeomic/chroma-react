@@ -4,43 +4,40 @@ import {
   NavLink,
   NavLinkProps as RouterDomNavLinkProps,
 } from 'react-router-dom';
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 import { GetClasses } from '../../typeUtils';
 
 export const LinkStylesKey = 'ChromaLink';
 
-export const useStyles = makeStyles(
-  (theme) => ({
-    root: {
-      color: theme.hexToRgba(theme.palette.primary[900], 0.9),
-      transition: 'color 0.25s ease',
-      textDecoration: 'none',
-      '&:hover': {
-        color: theme.palette.primary[900],
-        textDecoration: 'underline',
-      },
+export const useStyles = newMakeStyles({ name: LinkStylesKey })((theme) => ({
+  root: {
+    color: theme.hexToRgba(theme.palette.primary[900], 0.9),
+    transition: 'color 0.25s ease',
+    textDecoration: 'none',
+    '&:hover': {
+      color: theme.palette.primary[900],
+      textDecoration: 'underline',
     },
-    inverse: {
-      color: theme.hexToRgba(theme.palette.common.white, 0.9),
-      '&:hover': {
-        color: theme.palette.common.white,
-      },
+  },
+  inverse: {
+    color: theme.hexToRgba(theme.palette.common.white, 0.9),
+    '&:hover': {
+      color: theme.palette.common.white,
     },
-    negative: {
-      color: theme.palette.negative.main,
-      '&:hover': {
-        color: theme.palette.negative.dark,
-      },
+  },
+  negative: {
+    color: theme.palette.negative.main,
+    '&:hover': {
+      color: theme.palette.negative.dark,
     },
-    positive: {
-      color: theme.palette.positive.main,
-      '&:hover': {
-        color: theme.palette.positive.dark,
-      },
+  },
+  positive: {
+    color: theme.palette.positive.main,
+    '&:hover': {
+      color: theme.palette.positive.dark,
     },
-  }),
-  { name: LinkStylesKey }
-);
+  },
+}));
 
 export type LinkClasses = GetClasses<typeof useStyles>;
 
@@ -69,7 +66,7 @@ export const Link: React.FC<LinkProps> = ({
   'data-testid': dataTestId,
   ...rootProps
 }) => {
-  const classes = useStyles({});
+  const { classes } = useStyles();
 
   if (newTab) {
     return (

@@ -1,30 +1,27 @@
 import clsx from 'clsx';
 import * as React from 'react';
-import { makeStyles } from '../../styles';
+import { newMakeStyles } from '../../styles';
 import { GetClasses } from '../../typeUtils';
 import { Box, BoxProps } from '../Box';
 
 export const PaperStylesKey = 'ChromaPaper';
 
-export const useStyles = makeStyles(
-  (theme) => ({
-    root: {
-      background: theme.palette.common.white,
-      boxShadow: theme.boxShadows.table,
-      borderRadius: theme.pxToRem(3),
-    },
-    padding0: {
-      padding: 0,
-    },
-    padding1: {
-      padding: theme.spacing(1),
-    },
-    padding2: {
-      padding: theme.spacing(2),
-    },
-  }),
-  { name: PaperStylesKey }
-);
+export const useStyles = newMakeStyles({ name: PaperStylesKey })((theme) => ({
+  root: {
+    background: theme.palette.common.white,
+    boxShadow: theme.boxShadows.table,
+    borderRadius: theme.pxToRem(3),
+  },
+  padding0: {
+    padding: 0,
+  },
+  padding1: {
+    padding: theme.spacing(1),
+  },
+  padding2: {
+    padding: theme.spacing(2),
+  },
+}));
 
 export interface PaperOwnProps extends BoxProps {
   padding?: 0 | 1 | 2;
@@ -44,7 +41,7 @@ export interface PaperProps extends PaperOwnProps {}
  */
 export const Paper = React.forwardRef<HTMLDivElement, PaperProps>(
   ({ children, className, padding = 2, ...rootProps }, ref) => {
-    const classes = useStyles({});
+    const { classes } = useStyles();
 
     return (
       <Box

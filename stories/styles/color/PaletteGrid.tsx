@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { Text } from '../../../src/components/Text';
-import { makeStyles } from '../../../src/styles';
+import { newMakeStyles } from '../../../src/styles';
 import { Palette, PaletteItem } from './Palette';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = newMakeStyles()((theme) => ({
   root: {
     marginBottom: theme.spacing(4),
   },
@@ -23,7 +23,7 @@ export const PaletteGrid: React.FunctionComponent<PaletteGridProps> = ({
   title,
   palettes,
 }) => {
-  const classes = useStyles({});
+  const { classes } = useStyles();
 
   return (
     <section className={classes.root}>
