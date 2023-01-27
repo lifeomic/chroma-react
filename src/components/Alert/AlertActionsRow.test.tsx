@@ -11,7 +11,7 @@ test('it renders an AlertActionsRow', async () => {
 
   const actionRow = await findByTestId(testId);
   expect(actionRow).toBeInTheDocument();
-  expect(actionRow).toHaveClass('ChromaAlertActionsRow-root');
+  expect(actionRow.classList.contains('ChromaAlertActionsRow-root')).true;
 });
 
 test('it applies the provided className', async () => {
@@ -20,5 +20,5 @@ test('it applies the provided className', async () => {
   );
 
   const actionRow = await findByTestId(testId);
-  expect(actionRow).toHaveClass('custom-class-name');
+  expect(actionRow.classList.contains('custom-class-name')).true;
 });

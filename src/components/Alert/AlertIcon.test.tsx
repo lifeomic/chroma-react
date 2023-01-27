@@ -12,7 +12,7 @@ test('it renders an AlertIcon', async () => {
 
   const iconWrapper = await findByTestId(testId);
   expect(iconWrapper).toBeInTheDocument();
-  expect(iconWrapper).toHaveClass('ChromaAlertIcon-root');
+  expect(iconWrapper.classList.contains('ChromaAlertIcon-root')).true;
 
   const icon = await findByRole('img', { hidden: true });
   expect(icon).toBeInTheDocument();
@@ -24,5 +24,5 @@ test('it applies the provided className', async () => {
   );
 
   const body = await findByTestId(testId);
-  expect(body).toHaveClass('custom-class-name');
+  expect(body.classList.contains('custom-class-name')).true;
 });

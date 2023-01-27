@@ -72,7 +72,7 @@ test('it applies the provided className', async () => {
   );
 
   const badge = await findByTestId(testId);
-  expect(badge).toHaveClass('custom-class-name');
+  expect(badge.classList.contains('custom-class-name')).true;
 });
 
 test('it does not render count for `size={0}`', async () => {
@@ -85,7 +85,7 @@ test('it does not render count for `size={0}`', async () => {
   const badge = await findByTestId(testId);
   expect(badge).toBeInTheDocument();
   expect(badge).toHaveTextContent('');
-  expect(badge).toHaveClass('ChromaAvatarBadge-size0');
+  expect(badge.classList.contains('ChromaAvatarBadge-size0')).true;
 });
 
 test('it renders `size={1}`', async () => {
@@ -95,7 +95,7 @@ test('it renders `size={1}`', async () => {
     </AvatarSizeContext.Provider>
   );
   const badge = await findByTestId(testId);
-  expect(badge).toHaveClass('ChromaAvatarBadge-size1');
+  expect(badge.classList.contains('ChromaAvatarBadge-size1')).true;
 });
 
 test('it renders `size={2}`', async () => {
@@ -105,5 +105,5 @@ test('it renders `size={2}`', async () => {
     </AvatarSizeContext.Provider>
   );
   const badge = await findByTestId(testId);
-  expect(badge).toHaveClass('ChromaAvatarBadge-size2');
+  expect(badge.classList.contains('ChromaAvatarBadge-size2')).true;
 });

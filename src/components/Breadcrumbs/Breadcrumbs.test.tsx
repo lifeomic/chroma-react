@@ -41,7 +41,7 @@ test('it applies the provided className', async () => {
     </MemoryRouter>
   );
   const breadcrumbs = await findByTestId(testId);
-  expect(breadcrumbs).toHaveClass('custom-class-name');
+  expect(breadcrumbs.classList.contains('custom-class-name')).true;
 });
 
 test('it applies `color="inverse"`', async () => {
@@ -52,5 +52,5 @@ test('it applies `color="inverse"`', async () => {
     </MemoryRouter>
   );
   const breadcrumbs = await findByTestId(testId);
-  expect(breadcrumbs).toHaveClass(' ChromaBreadcrumbs-inverse');
+  expect(breadcrumbs.classList.contains('ChromaBreadcrumbs-inverse')).true;
 });

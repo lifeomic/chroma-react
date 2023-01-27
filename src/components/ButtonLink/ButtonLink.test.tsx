@@ -86,7 +86,7 @@ test('it applies the provided className', async () => {
     </RenderContainer>
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('custom-class');
+  expect(root.classList.contains('custom-class'));
 });
 
 test('it renders an icon with the "icon" class name', () => {
@@ -100,7 +100,7 @@ test('it renders an icon with the "icon" class name', () => {
   );
   const icon = getByRole('img', { hidden: true });
   expect(icon).toBeInTheDocument();
-  expect(icon).toHaveClass('ChromaButtonLink-icon');
+  expect(icon.classList.contains('ChromaButtonLink-icon'));
 });
 
 test('it renders with the "fullWidth" prop', async () => {
@@ -113,7 +113,7 @@ test('it renders with the "fullWidth" prop', async () => {
     </RenderContainer>
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaButtonLink-fullWidth');
+  expect(root.classList.contains('ChromaButtonLink-fullWidth'));
 });
 
 test('it renders with `variant="outlined"`', async () => {
@@ -126,7 +126,7 @@ test('it renders with `variant="outlined"`', async () => {
     </RenderContainer>
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaButtonLink-outlined');
+  expect(root.classList.contains('ChromaButtonLink-outlined'));
 });
 
 test('it renders with `variant="text"`', async () => {
@@ -139,7 +139,7 @@ test('it renders with `variant="text"`', async () => {
     </RenderContainer>
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaButtonLink-text');
+  expect(root.classList.contains('ChromaButtonLink-text'));
 });
 
 // #region inverse tests
@@ -158,7 +158,7 @@ test('it renders with `variant="contained" color="inverse"`', async () => {
     </RenderContainer>
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaButtonLink-containedInverse');
+  expect(root.classList.contains('ChromaButtonLink-containedInverse'));
 });
 
 test('it renders with `variant="outlined" color="inverse"`', async () => {
@@ -176,7 +176,7 @@ test('it renders with `variant="outlined" color="inverse"`', async () => {
     </RenderContainer>
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaButtonLink-outlinedInverse');
+  expect(root.classList.contains('ChromaButtonLink-outlinedInverse'));
 });
 
 test('it renders with `variant="text" color="inverse"`', async () => {
@@ -194,7 +194,7 @@ test('it renders with `variant="text" color="inverse"`', async () => {
     </RenderContainer>
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaButtonLink-textInverse');
+  expect(root.classList.contains('ChromaButtonLink-textInverse'));
 });
 // #endregion
 
@@ -214,7 +214,7 @@ test('it renders with `variant="contained" color="negative"`', async () => {
     </RenderContainer>
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaButtonLink-containedNegative');
+  expect(root.classList.contains('ChromaButtonLink-containedNegative'));
 });
 
 test('it renders with `variant="outlined" color="negative"`', async () => {
@@ -232,7 +232,7 @@ test('it renders with `variant="outlined" color="negative"`', async () => {
     </RenderContainer>
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaButtonLink-outlinedNegative');
+  expect(root.classList.contains('ChromaButtonLink-outlinedNegative'));
 });
 
 test('it renders with `variant="text" color="negative"`', async () => {
@@ -250,7 +250,7 @@ test('it renders with `variant="text" color="negative"`', async () => {
     </RenderContainer>
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaButtonLink-textNegative');
+  expect(root.classList.contains('ChromaButtonLink-textNegative'));
 });
 // #endregion
 
@@ -270,7 +270,7 @@ test('it renders with `variant="contained" color="positive"`', async () => {
     </RenderContainer>
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaButtonLink-containedPositive');
+  expect(root.classList.contains('ChromaButtonLink-containedPositive'));
 });
 
 test('it renders with `variant="outlined" color="positive"`', async () => {
@@ -288,7 +288,7 @@ test('it renders with `variant="outlined" color="positive"`', async () => {
     </RenderContainer>
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaButtonLink-outlinedPositive');
+  expect(root.classList.contains('ChromaButtonLink-outlinedPositive'));
 });
 
 test('it renders with `variant="text" color="positive"`', async () => {
@@ -306,7 +306,7 @@ test('it renders with `variant="text" color="positive"`', async () => {
     </RenderContainer>
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaButtonLink-textPositive');
+  expect(root.classList.contains('ChromaButtonLink-textPositive'));
 });
 // #endregion
 
@@ -326,7 +326,7 @@ test('it renders a disabled link when disabled', async () => {
   expect(root.getAttribute('href')).toBe(null);
   expect(root.getAttribute('aria-disabled')).toBe('true');
   expect(root.getAttribute('role')).toBe('button');
-  expect(root).toHaveClass('ChromaButtonLink-disabledContained');
+  expect(root.classList.contains('ChromaButtonLink-disabledContained'));
 });
 
 test('it renders a disabled inverse link when disabled', async () => {
@@ -349,7 +349,7 @@ test('it renders a disabled inverse link when disabled', async () => {
   expect(root.getAttribute('href')).toBe(null);
   expect(root.getAttribute('aria-disabled')).toBe('true');
   expect(root.getAttribute('role')).toBe('button');
-  expect(root).toHaveClass('ChromaButtonLink-containedInverse');
+  expect(root.classList.contains('ChromaButtonLink-containedInverse'));
 });
 
 test('it renders a disabled negative link when disabled', async () => {
@@ -372,7 +372,7 @@ test('it renders a disabled negative link when disabled', async () => {
   expect(root.getAttribute('href')).toBe(null);
   expect(root.getAttribute('aria-disabled')).toBe('true');
   expect(root.getAttribute('role')).toBe('button');
-  expect(root).toHaveClass('ChromaButtonLink-containedNegative');
+  expect(root.classList.contains('ChromaButtonLink-containedNegative'));
 });
 
 test('it renders a disabled positive link when disabled', async () => {
@@ -395,7 +395,7 @@ test('it renders a disabled positive link when disabled', async () => {
   expect(root.getAttribute('href')).toBe(null);
   expect(root.getAttribute('aria-disabled')).toBe('true');
   expect(root.getAttribute('role')).toBe('button');
-  expect(root).toHaveClass('ChromaButtonLink-containedPositive');
+  expect(root.classList.contains('ChromaButtonLink-containedPositive'));
 });
 // #endregion
 
@@ -410,5 +410,5 @@ test('it renders a trailing icon', async () => {
   );
   const trailingIcon = await findByTestId(iconComponentTestId);
   expect(trailingIcon).toBeInTheDocument();
-  expect(trailingIcon).toHaveClass('ChromaButtonLink-trailingIcon');
+  expect(trailingIcon.classList.contains('ChromaButtonLink-trailingIcon'));
 });

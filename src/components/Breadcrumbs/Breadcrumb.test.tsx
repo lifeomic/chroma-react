@@ -33,7 +33,7 @@ test('it applies the provided className', async () => {
     </MemoryRouter>
   );
   const breadcrumb = await findByTestId(testId);
-  expect(breadcrumb).toHaveClass('custom-class-name');
+  expect(breadcrumb.classList.contains('custom-class-name')).true;
 });
 
 test('it applies `color="inverse"`', async () => {
@@ -44,10 +44,10 @@ test('it applies `color="inverse"`', async () => {
     </MemoryRouter>
   );
   const breadcrumb = await findByTestId(testId);
-  expect(breadcrumb).toHaveClass('ChromaBreadcrumb-rootInverse');
+  expect(breadcrumb.classList.contains('ChromaBreadcrumb-rootInverse')).true;
 
   const link = await findByText(props.text);
-  expect(link).toHaveClass('ChromaBreadcrumb-linkInverse');
+  expect(link.classList.contains('ChromaBreadcrumb-linkInverse')).true;
 });
 
 test('it applies `aria-current="page"` when `isCurrentPage`', async () => {

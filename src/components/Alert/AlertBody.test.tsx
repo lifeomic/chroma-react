@@ -9,7 +9,7 @@ test('it renders an AlertBody', async () => {
 
   const body = await findByTestId(testId);
   expect(body).toBeInTheDocument();
-  expect(body).toHaveClass('ChromaAlertBody-root');
+  expect(body.classList.contains('ChromaAlertBody-root')).true;
 });
 
 test('it applies the provided className', async () => {
@@ -18,7 +18,7 @@ test('it applies the provided className', async () => {
   );
 
   const body = await findByTestId(testId);
-  expect(body).toHaveClass('custom-class-name');
+  expect(body.classList.contains('custom-class-name')).true;
 });
 
 test('it applies the space-between class', async () => {
@@ -27,5 +27,5 @@ test('it applies the space-between class', async () => {
   );
 
   const body = await findByTestId(testId);
-  expect(body).toHaveClass('ChromaAlertBody-spaceBetween');
+  expect(body.classList.contains('ChromaAlertBody-spaceBetween')).true;
 });

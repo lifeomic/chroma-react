@@ -33,7 +33,7 @@ test('it applies the provided className', async () => {
     <Avatar {...props} data-testid={testId} className="custom-class-name" />
   );
   const avatar = await findByTestId(testId);
-  expect(avatar).toHaveClass('custom-class-name');
+  expect(avatar.classList.contains('custom-class-name')).true;
 });
 
 test('it applies the clickable class when "onClick" is provided', async () => {
@@ -42,7 +42,7 @@ test('it applies the clickable class when "onClick" is provided', async () => {
     <Avatar {...props} data-testid={testId} onClick={jest.fn()} />
   );
   const avatar = await findByTestId(testId);
-  expect(avatar).toHaveClass('ChromaAvatar-clickable');
+  expect(avatar.classList.contains('ChromaAvatar-clickable')).true;
 });
 
 test('it renders the "src"', async () => {
@@ -133,7 +133,7 @@ test('it renders with `size=0`', async () => {
     <Avatar {...props} data-testid={testId} size={0} />
   );
   const avatar = await findByTestId(testId);
-  expect(avatar).toHaveClass('ChromaAvatar-size0');
+  expect(avatar.classList.contains('ChromaAvatar-size0')).true;
 });
 
 test('it renders with `size=1`', async () => {
@@ -142,7 +142,7 @@ test('it renders with `size=1`', async () => {
     <Avatar {...props} data-testid={testId} size={1} />
   );
   const avatar = await findByTestId(testId);
-  expect(avatar).toHaveClass('ChromaAvatar-size1');
+  expect(avatar.classList.contains('ChromaAvatar-size1')).true;
 });
 
 test('it renders with `size=2`', async () => {
@@ -151,7 +151,7 @@ test('it renders with `size=2`', async () => {
     <Avatar {...props} data-testid={testId} size={2} />
   );
   const avatar = await findByTestId(testId);
-  expect(avatar).toHaveClass('ChromaAvatar-size2');
+  expect(avatar.classList.contains('ChromaAvatar-size2')).true;
 });
 
 test('it renders with AvatarBadge', async () => {
