@@ -81,6 +81,9 @@ export const useStyles = makeStyles(
           transition: '0.15s ease-out',
           transitionDelay: '0.15s',
         },
+        '& $isSticky': {
+          background: lighten(theme.palette.primary[100], 0.5),
+        },
       },
       '&:focus.focus-visible, &:focus-within': {
         background: lighten(theme.palette.primary[50], 0.5),
