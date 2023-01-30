@@ -3,6 +3,7 @@ import { renderWithTheme } from '../../testUtils/renderWithTheme';
 import { TextField, TextFieldProps } from './index';
 import * as React from 'react';
 import { Text } from '../Text/Text';
+import { hasClass } from '../../testUtils/hasClass';
 
 const testId = 'TextField';
 
@@ -19,7 +20,7 @@ test('it renders a TextField', async () => {
 
   const textfield = await findByTestId(testId);
   expect(textfield).toBeInTheDocument();
-  expect(textfield).toHaveClass('ChromaTextField-input');
+  expect(hasClass(textfield, 'ChromaTextField-input')).toBe(true);
   expect(textfield.getAttribute('aria-describedby')).toBeFalsy();
   expect(textfield.getAttribute('type')).toEqual('text');
   expect(textfield.getAttribute('id')).toBeTruthy();
@@ -32,9 +33,9 @@ test('it applies the provided className', async () => {
   );
 
   const textfield = await findByTestId(testId);
-  expect(textfield?.parentElement?.parentElement).toHaveClass(
-    'custom-class-name'
-  );
+  expect(
+    hasClass(textfield?.parentElement?.parentElement, 'custom-class-name')
+  ).toBe(true);
 });
 
 test('it renders a TextField with a secondaryLabel', async () => {
@@ -64,7 +65,7 @@ test('it renders an error-state TextField', async () => {
   );
 
   const textfield = await findByTestId(testId);
-  expect(textfield).toHaveClass('ChromaTextField-inputError');
+  expect(hasClass(textfield, 'ChromaTextField-inputError')).toBe(true);
 });
 
 test('it renders an error-state TextField with the provided errorMessage', async () => {
@@ -176,17 +177,20 @@ test('it renders an inverse color TextField', async () => {
   );
 
   const textfield = await findByTestId(testId);
-  expect(textfield).toHaveClass('ChromaTextField-inputInverse');
+  expect(hasClass(textfield, 'ChromaTextField-inputInverse')).toBe(true);
 
   const help = await findByText(/Helpful text/);
-  expect(help).toHaveClass('ChromaFormHelpMessage-inverse');
+  expect(hasClass(help, 'ChromaFormHelpMessage-inverse')).toBe(true);
 
   const error = await findByText(/TextArea error message/);
-  expect(error).toHaveClass('ChromaFormErrorMessage-inverse');
+  expect(hasClass(error, 'ChromaFormErrorMessage-inverse')).toBe(true);
 
-  expect(textfield?.parentElement?.previousSibling).toHaveClass(
-    'ChromaTextField-labelInverse'
-  );
+  expect(
+    hasClass(
+      textfield?.parentElement?.previousElementSibling,
+      'ChromaTextField-labelInverse'
+    )
+  ).toBe(true);
 });
 
 test('it renders a fullWidth TextField', async () => {
@@ -196,7 +200,7 @@ test('it renders a fullWidth TextField', async () => {
   );
 
   const textField = await findByTestId(testId);
-  expect(textField).toHaveClass('ChromaTextField-inputFullWidth');
+  expect(hasClass(textField, 'ChromaTextField-inputFullWidth')).toBe(true);
 });
 
 test('it renders an icon when icon and tooltipMessage are provided', async () => {
@@ -211,7 +215,7 @@ test('it renders an icon when icon and tooltipMessage are provided', async () =>
   );
 
   const icon = await findByRole('img', { hidden: true });
-  expect(icon).toHaveClass('ChromaTextField-labelIcon');
+  expect(hasClass(icon, 'ChromaTextField-labelIcon')).toBe(true);
 });
 
 test('it renders an inverse color icon when icon and tooltipMessage are provided', async () => {
@@ -227,7 +231,7 @@ test('it renders an inverse color icon when icon and tooltipMessage are provided
   );
 
   const icon = await findByRole('img', { hidden: true });
-  expect(icon).toHaveClass('ChromaTextField-labelIconInverse');
+  expect(hasClass(icon, 'ChromaTextField-labelIconInverse')).toBe(true);
 });
 
 test('it renders label when provided', async () => {
@@ -300,7 +304,7 @@ test('it renders an * when the field is required', async () => {
   );
   const asterisk = await findByText('*');
   expect(asterisk).toBeInTheDocument();
-  expect(asterisk).toHaveClass('ChromaTextField-required');
+  expect(hasClass(asterisk, 'ChromaTextField-required')).toBe(true);
 });
 
 test('it renders an inverse color * when the field is required', async () => {
@@ -308,7 +312,6 @@ test('it renders an inverse color * when the field is required', async () => {
     <TextField label="Required" color="inverse" showRequiredLabel />
   );
   const asterisk = await findByText('*');
-  expect(asterisk).toHaveClass(
-    'ChromaTextField-required ChromaTextField-requiredInverse'
-  );
+  expect(hasClass(asterisk, 'ChromaTextField-required')).toBe(true);
+  expect(hasClass(asterisk, 'ChromaTextField-requiredInverse')).toBe(true);
 });

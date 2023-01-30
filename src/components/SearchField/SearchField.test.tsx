@@ -1,5 +1,6 @@
 import { fireEvent } from '@testing-library/react';
 import * as React from 'react';
+import { hasClass } from '../../testUtils/hasClass';
 import { renderWithTheme } from '../../testUtils/renderWithTheme';
 import { SearchField, SearchFieldProps } from './index';
 
@@ -21,7 +22,7 @@ test('it renders a SearchField', async () => {
   const searchButton = await findByLabelText('Search');
   expect(searchButton).toBeInTheDocument();
   expect(searchButton.getAttribute('tabIndex')).toEqual('-1');
-  expect(searchButton).toHaveClass('ChromaSearchField-buttonHeight1');
+  expect(hasClass(searchButton, 'ChromaSearchField-buttonHeight1')).toBe(true);
 });
 
 test('it applies the provided className', async () => {
@@ -34,7 +35,7 @@ test('it applies the provided className', async () => {
     />
   );
   const root = await findByTestId(testId);
-  expect(root?.parentElement).toHaveClass('custom-class-name');
+  expect(hasClass(root?.parentElement, 'custom-class-name')).toBe(true);
 });
 
 test('it renders the provided help message', async () => {
@@ -96,11 +97,11 @@ test('it renders an inverse color SearchField', async () => {
     />
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaSearchField-inputInverse');
+  expect(hasClass(root, 'ChromaSearchField-inputInverse')).toBe(true);
 
   const svg = await findByRole('img', { hidden: true });
   expect(svg).toBeInTheDocument();
-  expect(svg).toHaveClass('ChromaSearchField-buttonSvgInverse');
+  expect(hasClass(svg, 'ChromaSearchField-buttonSvgInverse')).toBe(true);
 });
 
 test('it renders a "height={0}" SearchField', async () => {
@@ -109,7 +110,7 @@ test('it renders a "height={0}" SearchField', async () => {
     <SearchField {...props} height={0} data-testid={testId} />
   );
   const searchButton = await findByLabelText('Search');
-  expect(searchButton).toHaveClass('ChromaSearchField-buttonHeight0');
+  expect(hasClass(searchButton, 'ChromaSearchField-buttonHeight0')).toBe(true);
 });
 
 test('it calls the provided "onSearch" upon ENTER press, returning the entered text', async () => {

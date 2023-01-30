@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { hasClass } from '../../testUtils/hasClass';
 import { renderWithTheme } from '../../testUtils/renderWithTheme';
 import { PageHeader, PageHeaderProps } from './';
 
@@ -14,7 +15,7 @@ test('it applies the provided className', async () => {
     <PageHeader {...props} data-testid={testId} className="custom-class-name" />
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaPageHeader-root');
+  expect(hasClass(root, 'ChromaPageHeader-root')).toBe(true);
 });
 
 test('margin class is not applied to root element if margin is set to none', async () => {
@@ -23,8 +24,8 @@ test('margin class is not applied to root element if margin is set to none', asy
     <PageHeader {...props} data-testid={testId} margin="none" />
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaPageHeader-root');
-  expect(root).not.toHaveClass('ChromaPageHeader-marginNormal');
+  expect(hasClass(root, 'ChromaPageHeader-root')).toBe(true);
+  expect(hasClass(root, 'ChromaPageHeader-marginNormal')).toBe(false);
 });
 
 test('marginNormal class is applied to root element if margin is set to normal', async () => {
@@ -33,7 +34,7 @@ test('marginNormal class is applied to root element if margin is set to normal',
     <PageHeader {...props} data-testid={testId} margin="normal" />
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaPageHeader-marginNormal');
+  expect(hasClass(root, 'ChromaPageHeader-marginNormal')).toBe(true);
 });
 
 test('it renders actions content', async () => {
@@ -70,7 +71,7 @@ test('it renders "center" with the provided "centerClassName"', async () => {
   );
 
   const root = await findByTestId(testId);
-  expect(root?.parentElement).toHaveClass('custom-class-name');
+  expect(hasClass(root?.parentElement, 'custom-class-name')).toBe(true);
 });
 
 test('it renders "left" with the provided "leftClassName"', async () => {
@@ -85,7 +86,7 @@ test('it renders "left" with the provided "leftClassName"', async () => {
   );
 
   const root = await findByTestId(testId);
-  expect(root?.parentElement).toHaveClass('custom-class-name');
+  expect(hasClass(root?.parentElement, 'custom-class-name')).toBe(true);
 });
 
 test('it applies `align="center"`', async () => {
@@ -96,5 +97,5 @@ test('it applies `align="center"`', async () => {
   );
 
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaPageHeader-alignCenter');
+  expect(hasClass(root, 'ChromaPageHeader-alignCenter')).toBe(true);
 });

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { hasClass } from '../../testUtils/hasClass';
 import { renderWithTheme } from '../../testUtils/renderWithTheme';
 import { Pill } from './';
 
@@ -8,7 +9,7 @@ test('it renders a Pill', async () => {
   const { findByTestId } = renderWithTheme(<Pill data-testid={testId} />);
   const root = await findByTestId(testId);
   expect(root).toBeInTheDocument();
-  expect(root).toHaveClass('ChromaPill-default');
+  expect(hasClass(root, 'ChromaPill-default')).toBe(true);
 });
 
 test('it renders a Pill with a label', async () => {
@@ -24,7 +25,7 @@ test('it renders a Pill with primary "color"', async () => {
     <Pill data-testid={testId} color="primary" />
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaPill-primaryColor');
+  expect(hasClass(root, 'ChromaPill-primaryColor')).toBe(true);
 });
 
 test('it renders a Pill with negative "color"', async () => {
@@ -32,7 +33,7 @@ test('it renders a Pill with negative "color"', async () => {
     <Pill data-testid={testId} color="negative" />
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaPill-negative');
+  expect(hasClass(root, 'ChromaPill-negative')).toBe(true);
 });
 
 test('it renders a Pill with positive "color"', async () => {
@@ -40,7 +41,7 @@ test('it renders a Pill with positive "color"', async () => {
     <Pill data-testid={testId} color="positive" />
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaPill-positive');
+  expect(hasClass(root, 'ChromaPill-positive')).toBe(true);
 });
 
 test('it renders a Pill with the highlight variant', async () => {
@@ -50,7 +51,7 @@ test('it renders a Pill with the highlight variant', async () => {
   const root = await findByTestId(testId);
 
   expect(root).toBeInTheDocument();
-  expect(root).toHaveClass('ChromaPill-highlight');
+  expect(hasClass(root, 'ChromaPill-highlight')).toBe(true);
 });
 
 test('it renders a Pill with the provided className', async () => {
@@ -58,7 +59,7 @@ test('it renders a Pill with the provided className', async () => {
     <Pill data-testid={testId} className="custom-class-name" />
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('custom-class-name');
+  expect(hasClass(root, 'custom-class-name')).toBe(true);
 });
 
 test('it renders a Pill with the provided children', async () => {

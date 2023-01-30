@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { MemoryRouter } from 'react-router-dom';
+import { hasClass } from '../../testUtils/hasClass';
 import { IconComponent } from '../../testUtils/IconComponent';
 import { renderWithTheme } from '../../testUtils/renderWithTheme';
 import { IconButtonLink, IconButtonLinkProps } from './index';
@@ -72,7 +73,7 @@ test('it applies the provided className', async () => {
     </RenderContainer>
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('custom-class');
+  expect(hasClass(root, 'custom-class')).toBe(true);
 });
 
 test('it applies the provided "rel"', async () => {
@@ -94,7 +95,7 @@ test('it renders with `size={0}`', async () => {
     </RenderContainer>
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaIconButtonLink-size0');
+  expect(hasClass(root, 'ChromaIconButtonLink-size0')).toBe(true);
 });
 
 test('it renders with `color="inverse"`', async () => {
@@ -105,7 +106,7 @@ test('it renders with `color="inverse"`', async () => {
     </RenderContainer>
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaIconButtonLink-inverse');
+  expect(hasClass(root, 'ChromaIconButtonLink-inverse')).toBe(true);
 });
 
 test('it renders with `color="negative"`', async () => {
@@ -116,7 +117,7 @@ test('it renders with `color="negative"`', async () => {
     </RenderContainer>
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaIconButtonLink-negative');
+  expect(hasClass(root, 'ChromaIconButtonLink-negative')).toBe(true);
 });
 
 test('it renders with `color="positive"`', async () => {
@@ -127,7 +128,7 @@ test('it renders with `color="positive"`', async () => {
     </RenderContainer>
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaIconButtonLink-positive');
+  expect(hasClass(root, 'ChromaIconButtonLink-positive')).toBe(true);
 });
 
 test('it allows combining the "padding" props', async () => {
@@ -145,10 +146,10 @@ test('it allows combining the "padding" props', async () => {
     </RenderContainer>
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaIconButtonLink-paddingTop0');
-  expect(root).toHaveClass('ChromaIconButtonLink-paddingBottom1');
-  expect(root).toHaveClass('ChromaIconButtonLink-paddingLeft2');
-  expect(root).toHaveClass('ChromaIconButtonLink-paddingRight1');
+  expect(hasClass(root, 'ChromaIconButtonLink-paddingTop0')).toBe(true);
+  expect(hasClass(root, 'ChromaIconButtonLink-paddingBottom1')).toBe(true);
+  expect(hasClass(root, 'ChromaIconButtonLink-paddingLeft2')).toBe(true);
+  expect(hasClass(root, 'ChromaIconButtonLink-paddingRight1')).toBe(true);
 });
 
 // #region paddingTop
@@ -161,7 +162,7 @@ test('it renders "paddingTop={0}"', async () => {
     </RenderContainer>
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaIconButtonLink-paddingTop0');
+  expect(hasClass(root, 'ChromaIconButtonLink-paddingTop0')).toBe(true);
 });
 
 test('it renders "paddingTop={1}"', async () => {
@@ -172,7 +173,7 @@ test('it renders "paddingTop={1}"', async () => {
     </RenderContainer>
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaIconButtonLink-paddingTop1');
+  expect(hasClass(root, 'ChromaIconButtonLink-paddingTop1')).toBe(true);
 });
 
 test('it renders "paddingTop={2}"', async () => {
@@ -183,7 +184,7 @@ test('it renders "paddingTop={2}"', async () => {
     </RenderContainer>
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaIconButtonLink-paddingTop2');
+  expect(hasClass(root, 'ChromaIconButtonLink-paddingTop2')).toBe(true);
 });
 
 test('it renders "paddingTop={3}"', async () => {
@@ -194,7 +195,7 @@ test('it renders "paddingTop={3}"', async () => {
     </RenderContainer>
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaIconButtonLink-paddingTop3');
+  expect(hasClass(root, 'ChromaIconButtonLink-paddingTop3')).toBe(true);
 });
 
 // #endregion
@@ -209,7 +210,7 @@ test('it renders "paddingBottom={0}"', async () => {
     </RenderContainer>
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaIconButtonLink-paddingBottom0');
+  expect(hasClass(root, 'ChromaIconButtonLink-paddingBottom0')).toBe(true);
 });
 
 test('it renders "paddingBottom={1}"', async () => {
@@ -220,7 +221,7 @@ test('it renders "paddingBottom={1}"', async () => {
     </RenderContainer>
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaIconButtonLink-paddingBottom1');
+  expect(hasClass(root, 'ChromaIconButtonLink-paddingBottom1')).toBe(true);
 });
 
 test('it renders "paddingBottom={2}"', async () => {
@@ -231,7 +232,7 @@ test('it renders "paddingBottom={2}"', async () => {
     </RenderContainer>
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaIconButtonLink-paddingBottom2');
+  expect(hasClass(root, 'ChromaIconButtonLink-paddingBottom2')).toBe(true);
 });
 
 test('it renders "paddingBottom={3}"', async () => {
@@ -242,7 +243,7 @@ test('it renders "paddingBottom={3}"', async () => {
     </RenderContainer>
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaIconButtonLink-paddingBottom3');
+  expect(hasClass(root, 'ChromaIconButtonLink-paddingBottom3')).toBe(true);
 });
 
 // #endregion
@@ -257,7 +258,7 @@ test('it renders "paddingLeft={0}"', async () => {
     </RenderContainer>
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaIconButtonLink-paddingLeft0');
+  expect(hasClass(root, 'ChromaIconButtonLink-paddingLeft0')).toBe(true);
 });
 
 test('it renders "paddingLeft={1}"', async () => {
@@ -268,7 +269,7 @@ test('it renders "paddingLeft={1}"', async () => {
     </RenderContainer>
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaIconButtonLink-paddingLeft1');
+  expect(hasClass(root, 'ChromaIconButtonLink-paddingLeft1')).toBe(true);
 });
 
 test('it renders "paddingLeft={2}"', async () => {
@@ -279,7 +280,7 @@ test('it renders "paddingLeft={2}"', async () => {
     </RenderContainer>
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaIconButtonLink-paddingLeft2');
+  expect(hasClass(root, 'ChromaIconButtonLink-paddingLeft2')).toBe(true);
 });
 
 test('it renders "paddingLeft={3}"', async () => {
@@ -290,7 +291,7 @@ test('it renders "paddingLeft={3}"', async () => {
     </RenderContainer>
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaIconButtonLink-paddingLeft3');
+  expect(hasClass(root, 'ChromaIconButtonLink-paddingLeft3')).toBe(true);
 });
 
 // #endregion
@@ -305,7 +306,7 @@ test('it renders "paddingRight={0}"', async () => {
     </RenderContainer>
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaIconButtonLink-paddingRight0');
+  expect(hasClass(root, 'ChromaIconButtonLink-paddingRight0')).toBe(true);
 });
 
 test('it renders "paddingRight={1}"', async () => {
@@ -316,7 +317,7 @@ test('it renders "paddingRight={1}"', async () => {
     </RenderContainer>
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaIconButtonLink-paddingRight1');
+  expect(hasClass(root, 'ChromaIconButtonLink-paddingRight1')).toBe(true);
 });
 
 test('it renders "paddingRight={2}"', async () => {
@@ -327,7 +328,7 @@ test('it renders "paddingRight={2}"', async () => {
     </RenderContainer>
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaIconButtonLink-paddingRight2');
+  expect(hasClass(root, 'ChromaIconButtonLink-paddingRight2')).toBe(true);
 });
 
 test('it renders "paddingRight={3}"', async () => {
@@ -338,7 +339,7 @@ test('it renders "paddingRight={3}"', async () => {
     </RenderContainer>
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaIconButtonLink-paddingRight3');
+  expect(hasClass(root, 'ChromaIconButtonLink-paddingRight3')).toBe(true);
 });
 
 // #endregion

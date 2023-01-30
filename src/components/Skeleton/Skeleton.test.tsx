@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { hasClass } from '../../testUtils/hasClass';
 import { renderWithTheme } from '../../testUtils/renderWithTheme';
 import { Skeleton, SkeletonProps } from './index';
 
@@ -17,7 +18,7 @@ test('it renders a Skeleton', async () => {
   const skeleton = await findByTestId(testId);
   expect(skeleton).toBeInTheDocument();
   expect(skeleton).toHaveAttribute('aria-busy', 'true');
-  expect(skeleton).toHaveClass('ChromaSkeleton-root');
+  expect(hasClass(skeleton, 'ChromaSkeleton-root')).toBe(true);
 });
 
 test('it applies the provided className', async () => {
@@ -26,7 +27,7 @@ test('it applies the provided className', async () => {
   );
 
   const skeleton = await findByTestId(testId);
-  expect(skeleton).toHaveClass('custom-class-name');
+  expect(hasClass(skeleton, 'custom-class-name')).toBe(true);
 });
 
 test('it adds className for pulse animation', async () => {
@@ -35,7 +36,7 @@ test('it adds className for pulse animation', async () => {
   );
 
   const skeleton = await findByTestId(testId);
-  expect(skeleton).toHaveClass('ChromaSkeleton-pulseAnimation');
+  expect(hasClass(skeleton, 'ChromaSkeleton-pulseAnimation')).toBe(true);
 });
 
 test('it adds className for shine animation', async () => {
@@ -44,7 +45,7 @@ test('it adds className for shine animation', async () => {
   );
 
   const skeleton = await findByTestId(testId);
-  expect(skeleton).toHaveClass('ChromaSkeleton-shineAnimation');
+  expect(hasClass(skeleton, 'ChromaSkeleton-shineAnimation')).toBe(true);
 });
 
 test('it adds className for no animation', async () => {
@@ -53,7 +54,7 @@ test('it adds className for no animation', async () => {
   );
 
   const skeleton = await findByTestId(testId);
-  expect(skeleton).toHaveClass('ChromaSkeleton-noAnimation');
+  expect(hasClass(skeleton, 'ChromaSkeleton-noAnimation')).toBe(true);
 });
 
 test('it adds className for circle variant', async () => {
@@ -62,7 +63,7 @@ test('it adds className for circle variant', async () => {
   );
 
   const skeleton = await findByTestId(testId);
-  expect(skeleton).toHaveClass('ChromaSkeleton-circle');
+  expect(hasClass(skeleton, 'ChromaSkeleton-circle')).toBe(true);
 });
 
 test('it adds className for rectangle variant', async () => {
@@ -71,7 +72,7 @@ test('it adds className for rectangle variant', async () => {
   );
 
   const skeleton = await findByTestId(testId);
-  expect(skeleton).toHaveClass('ChromaSkeleton-rectangle');
+  expect(hasClass(skeleton, 'ChromaSkeleton-rectangle')).toBe(true);
 });
 
 test('it adds className for fullHeight', async () => {
@@ -80,7 +81,7 @@ test('it adds className for fullHeight', async () => {
   );
 
   const skeleton = await findByTestId(testId);
-  expect(skeleton).toHaveClass('ChromaSkeleton-fullHeight');
+  expect(hasClass(skeleton, 'ChromaSkeleton-fullHeight')).toBe(true);
 });
 
 test('it sets defined height', async () => {
@@ -98,7 +99,7 @@ test('it adds className for fullWidth', async () => {
   );
 
   const skeleton = await findByTestId(testId);
-  expect(skeleton).toHaveClass('ChromaSkeleton-fullWidth');
+  expect(hasClass(skeleton, 'ChromaSkeleton-fullWidth')).toBe(true);
 });
 
 test('it sets defined width', async () => {

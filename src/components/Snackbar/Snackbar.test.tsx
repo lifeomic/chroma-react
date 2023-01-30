@@ -4,6 +4,7 @@ import { IconComponent } from '../../testUtils/IconComponent';
 import { renderWithTheme } from '../../testUtils/renderWithTheme';
 import { Snackbar, SnackbarProps } from './index';
 import { waitFor } from '@testing-library/dom';
+import { hasClass } from '../../testUtils/hasClass';
 
 const testId = 'Snackbar';
 
@@ -21,7 +22,7 @@ test('it renders a Snackbar', async () => {
 
   const root = await findByTestId(testId);
   expect(root).toBeInTheDocument();
-  expect(root).toHaveClass('ChromaSnackbar-infoModifier');
+  expect(hasClass(root, 'ChromaSnackbar-infoModifier')).toBe(true);
   expect(root.getAttribute('aria-live')).toEqual('polite');
   expect(root.getAttribute('role')).toEqual('status');
 
@@ -39,7 +40,7 @@ test('it applies the provided className', async () => {
   );
 
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('custom-class-name');
+  expect(hasClass(root, 'custom-class-name')).toBe(true);
 });
 
 test('it renders a "warning" Snackbar', async () => {
@@ -48,7 +49,7 @@ test('it renders a "warning" Snackbar', async () => {
   );
 
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaSnackbar-warningModifier');
+  expect(hasClass(root, 'ChromaSnackbar-warningModifier')).toBe(true);
 });
 
 test('it renders an "error" Snackbar', async () => {
@@ -57,7 +58,7 @@ test('it renders an "error" Snackbar', async () => {
   );
 
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaSnackbar-errorModifier');
+  expect(hasClass(root, 'ChromaSnackbar-errorModifier')).toBe(true);
 });
 
 test('it renders a "success" Snackbar', async () => {
@@ -66,7 +67,7 @@ test('it renders a "success" Snackbar', async () => {
   );
 
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaSnackbar-successModifier');
+  expect(hasClass(root, 'ChromaSnackbar-successModifier')).toBe(true);
 });
 
 test('it renders a Snackbar with `role="alert"`', async () => {
@@ -85,7 +86,7 @@ test('it renders a Snackbar with the provided "icon"', async () => {
 
   const icon = await findByRole('img', { hidden: true });
   expect(icon).toBeInTheDocument();
-  expect(icon).toHaveClass('ChromaSnackbar-icon');
+  expect(hasClass(icon, 'ChromaSnackbar-icon')).toBe(true);
 });
 
 test('it calls the provided "onClose" after the duration has passed', async () => {

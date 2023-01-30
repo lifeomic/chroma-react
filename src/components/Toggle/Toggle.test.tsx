@@ -1,5 +1,6 @@
 import { fireEvent } from '@testing-library/dom';
 import * as React from 'react';
+import { hasClass } from '../../testUtils/hasClass';
 import { renderWithTheme } from '../../testUtils/renderWithTheme';
 import { Toggle, ToggleProps } from './index';
 
@@ -17,7 +18,7 @@ test('it renders a Toggle', async () => {
   );
 
   const toggle = await findByTestId(testId);
-  expect(toggle).toHaveClass('ChromaToggle-input');
+  expect(hasClass(toggle, 'ChromaToggle-input')).toBe(true);
   expect(toggle.getAttribute('type')).toEqual('checkbox');
   expect(toggle.getAttribute('tabIndex')).toEqual('0');
 });
@@ -36,16 +37,16 @@ test('it renders an inverse color Toggle with help and error messages', async ()
   );
 
   const toggle = await findByTestId(testId);
-  expect(toggle).toHaveClass('ChromaToggle-inputInverse');
+  expect(hasClass(toggle, 'ChromaToggle-inputInverse')).toBe(true);
 
   const help = await findByText(/Helpful text/);
-  expect(help).toHaveClass('ChromaFormHelpMessage-inverse');
+  expect(hasClass(help, 'ChromaFormHelpMessage-inverse')).toBe(true);
 
   const error = await findByText(/Toggle error message/);
-  expect(error).toHaveClass('ChromaFormErrorMessage-inverse');
+  expect(hasClass(error, 'ChromaFormErrorMessage-inverse')).toBe(true);
 
   const label = await findByText(props.label);
-  expect(label).toHaveClass('ChromaToggle-labelInverse');
+  expect(hasClass(label, 'ChromaToggle-labelInverse')).toBe(true);
 });
 
 test('it applies the provided className', async () => {
@@ -55,7 +56,7 @@ test('it applies the provided className', async () => {
   );
 
   const toggle = await findByTestId(testId);
-  expect(toggle?.parentElement).toHaveClass('custom-class-name');
+  expect(hasClass(toggle?.parentElement, 'custom-class-name')).toBe(true);
 });
 
 test('it renders a checked-by-default Toggle', async () => {
@@ -86,7 +87,7 @@ test('it renders an error-state Toggle', async () => {
   );
 
   const toggle = await findByTestId(testId);
-  expect(toggle).toHaveClass('ChromaToggle-error');
+  expect(hasClass(toggle, 'ChromaToggle-error')).toBe(true);
 });
 
 test('it renders an error-state Toggle with the provided errorMessage', async () => {
@@ -198,12 +199,14 @@ test('it renders a fullWidth Toggle', async () => {
   );
 
   const toggle = await findByTestId(testId);
-  expect(toggle?.nextElementSibling).toHaveClass(
-    'ChromaToggle-labelContainerFullWidth'
-  );
+  expect(
+    hasClass(toggle?.nextElementSibling, 'ChromaToggle-labelContainerFullWidth')
+  ).toBe(true);
 
   const label = await findByText(props.label);
-  expect(label?.parentElement).toHaveClass('ChromaToggle-labelFullWidth');
+  expect(hasClass(label?.parentElement, 'ChromaToggle-labelFullWidth')).toBe(
+    true
+  );
 });
 
 test('it renders a Toggle with right placement', async () => {
@@ -213,9 +216,9 @@ test('it renders a Toggle with right placement', async () => {
   );
 
   const toggle = await findByTestId(testId);
-  expect(toggle?.nextElementSibling).toHaveClass(
-    'ChromaToggle-labelContainerRight'
-  );
+  expect(
+    hasClass(toggle?.nextElementSibling, 'ChromaToggle-labelContainerRight')
+  ).toBe(true);
 });
 
 test('it renders a Toggle with right placement and full width', async () => {
@@ -225,12 +228,12 @@ test('it renders a Toggle with right placement and full width', async () => {
   );
 
   const toggle = await findByTestId(testId);
-  expect(toggle?.nextElementSibling).toHaveClass(
-    'ChromaToggle-labelContainerRight'
-  );
-  expect(toggle?.nextElementSibling).toHaveClass(
-    'ChromaToggle-labelContainerFullWidth'
-  );
+  expect(
+    hasClass(toggle?.nextElementSibling, 'ChromaToggle-labelContainerRight')
+  ).toBe(true);
+  expect(
+    hasClass(toggle?.nextElementSibling, 'ChromaToggle-labelContainerFullWidth')
+  ).toBe(true);
 });
 
 test('it renders an aria-label when not provided with label', async () => {
@@ -248,7 +251,7 @@ test('it renders an * when the field is required', async () => {
   );
   const asterisk = await findByText('*');
   expect(asterisk).toBeInTheDocument();
-  expect(asterisk).toHaveClass('ChromaToggle-required');
+  expect(hasClass(asterisk, 'ChromaToggle-required')).toBe(true);
 });
 
 test('it renders an inverse color * when the field is required', async () => {
@@ -256,7 +259,6 @@ test('it renders an inverse color * when the field is required', async () => {
     <Toggle label="Required" color="inverse" showRequiredLabel />
   );
   const asterisk = await findByText('*');
-  expect(asterisk).toHaveClass(
-    'ChromaToggle-required ChromaToggle-requiredInverse'
-  );
+  expect(hasClass(asterisk, 'ChromaToggle-required')).toBe(true);
+  expect(hasClass(asterisk, 'ChromaToggle-requiredInverse')).toBe(true);
 });

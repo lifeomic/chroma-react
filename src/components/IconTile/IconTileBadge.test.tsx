@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { hasClass } from '../../testUtils/hasClass';
 import { IconComponent } from '../../testUtils/IconComponent';
 import { renderWithTheme } from '../../testUtils/renderWithTheme';
 import { IconTileBadge } from './index';
@@ -18,7 +19,7 @@ test('it applies the provided className', async () => {
     <IconTileBadge className="custom-class-name" data-testid={testId} />
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('custom-class-name');
+  expect(hasClass(root, 'custom-class-name')).toBe(true);
 });
 
 test('it spreads props', async () => {
@@ -37,7 +38,7 @@ test('it renders the provided icon', async () => {
   );
   const root = getByRole('img', { hidden: true });
   expect(root).toBeInTheDocument();
-  expect(root).toHaveClass('ChromaIconTileBadge-icon');
+  expect(hasClass(root, 'ChromaIconTileBadge-icon')).toBe(true);
 });
 
 test('it renders children', async () => {

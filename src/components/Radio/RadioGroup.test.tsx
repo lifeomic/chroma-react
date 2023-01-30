@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { hasClass } from '../../testUtils/hasClass';
 import { renderWithTheme } from '../../testUtils/renderWithTheme';
 import { RadioGroup } from './index';
 import { RadioGroupContext } from './useRadioGroup';
@@ -9,7 +10,7 @@ test('it renders a RadioGroup', async () => {
   const { findByTestId } = renderWithTheme(<RadioGroup data-testid={testId} />);
 
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaRadioGroup-root');
+  expect(hasClass(root, 'ChromaRadioGroup-root')).toBe(true);
   expect(root.getAttribute('role')).toEqual('radiogroup');
 });
 
@@ -29,7 +30,7 @@ test('it renders an inverse color RadioGroup', async () => {
   );
 
   const title = await findByText(/Select one/);
-  expect(title).toHaveClass('ChromaRadioGroup-legendInverse');
+  expect(hasClass(title, 'ChromaRadioGroup-legendInverse')).toBe(true);
 });
 
 test('it renders an align center RadioGroup', async () => {
@@ -40,7 +41,9 @@ test('it renders an align center RadioGroup', async () => {
   );
 
   const child = await findByTestId(testId);
-  expect(child?.parentElement).toHaveClass('ChromaRadioGroup-alignCenter');
+  expect(hasClass(child?.parentElement, 'ChromaRadioGroup-alignCenter')).toBe(
+    true
+  );
 });
 
 test('it renders a direction row RadioGroup', async () => {
@@ -51,7 +54,9 @@ test('it renders a direction row RadioGroup', async () => {
   );
 
   const child = await findByTestId(testId);
-  expect(child?.parentElement).toHaveClass('ChromaRadioGroup-directionRow');
+  expect(hasClass(child?.parentElement, 'ChromaRadioGroup-directionRow')).toBe(
+    true
+  );
 });
 
 test('it renders a justified center RadioGroup', async () => {
@@ -62,7 +67,9 @@ test('it renders a justified center RadioGroup', async () => {
   );
 
   const child = await findByTestId(testId);
-  expect(child?.parentElement).toHaveClass('ChromaRadioGroup-justifyCenter');
+  expect(hasClass(child?.parentElement, 'ChromaRadioGroup-justifyCenter')).toBe(
+    true
+  );
 });
 
 test('it renders a justified spaceBetween RadioGroup', async () => {
@@ -73,7 +80,9 @@ test('it renders a justified spaceBetween RadioGroup', async () => {
   );
 
   const child = await findByTestId(testId);
-  expect(child?.parentElement).toHaveClass('ChromaRadioGroup-justifyBetween');
+  expect(
+    hasClass(child?.parentElement, 'ChromaRadioGroup-justifyBetween')
+  ).toBe(true);
 });
 
 test('it renders a justified spaceEvenly RadioGroup', async () => {
@@ -84,7 +93,9 @@ test('it renders a justified spaceEvenly RadioGroup', async () => {
   );
 
   const child = await findByTestId(testId);
-  expect(child?.parentElement).toHaveClass('ChromaRadioGroup-justifyEvenly');
+  expect(hasClass(child?.parentElement, 'ChromaRadioGroup-justifyEvenly')).toBe(
+    true
+  );
 });
 
 test('it renders children', async () => {
@@ -135,7 +146,7 @@ test('it renders an * when the field is required', async () => {
 
   const asterisk = await findByText('*');
   expect(asterisk).toBeInTheDocument();
-  expect(asterisk).toHaveClass('ChromaRadioGroup-required');
+  expect(hasClass(asterisk, 'ChromaRadioGroup-required')).toBe(true);
 });
 
 test('it renders an inverse color * when the field is required', async () => {
@@ -144,7 +155,6 @@ test('it renders an inverse color * when the field is required', async () => {
   );
 
   const asterisk = await findByText('*');
-  expect(asterisk).toHaveClass(
-    'ChromaRadioGroup-required ChromaRadioGroup-requiredInverse'
-  );
+  expect(hasClass(asterisk, 'ChromaRadioGroup-required')).toBe(true);
+  expect(hasClass(asterisk, 'ChromaRadioGroup-requiredInverse')).toBe(true);
 });

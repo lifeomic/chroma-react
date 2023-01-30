@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { MemoryRouter } from 'react-router-dom';
+import { hasClass } from '../../testUtils/hasClass';
 import { renderWithTheme } from '../../testUtils/renderWithTheme';
 import { Breadcrumb, BreadcrumbProps } from './index';
 
@@ -33,7 +34,7 @@ test('it applies the provided className', async () => {
     </MemoryRouter>
   );
   const breadcrumb = await findByTestId(testId);
-  expect(breadcrumb).toHaveClass('custom-class-name');
+  expect(hasClass(breadcrumb, 'custom-class-name')).toBe(true);
 });
 
 test('it applies `color="inverse"`', async () => {
@@ -44,10 +45,10 @@ test('it applies `color="inverse"`', async () => {
     </MemoryRouter>
   );
   const breadcrumb = await findByTestId(testId);
-  expect(breadcrumb).toHaveClass('ChromaBreadcrumb-rootInverse');
+  expect(hasClass(breadcrumb, 'ChromaBreadcrumb-rootInverse')).toBe(true);
 
   const link = await findByText(props.text);
-  expect(link).toHaveClass('ChromaBreadcrumb-linkInverse');
+  expect(hasClass(link, 'ChromaBreadcrumb-linkInverse')).toBe(true);
 });
 
 test('it applies `aria-current="page"` when `isCurrentPage`', async () => {

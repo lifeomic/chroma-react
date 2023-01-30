@@ -1,5 +1,6 @@
 import { fireEvent, act } from '@testing-library/react';
 import * as React from 'react';
+import { hasClass } from '../../testUtils/hasClass';
 import { renderWithTheme } from '../../testUtils/renderWithTheme';
 import { Popover, PopoverRenderProps } from './index';
 
@@ -57,7 +58,7 @@ test('it applies the provided className', async () => {
   fireEvent.click(button);
 
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('custom-class-name');
+  expect(hasClass(root, 'custom-class-name')).toBe(true);
 });
 
 test('it renders the provided "title"', async () => {

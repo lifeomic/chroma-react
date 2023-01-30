@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { hasClass } from '../../testUtils/hasClass';
 import { IconComponent } from '../../testUtils/IconComponent';
 import { renderWithTheme } from '../../testUtils/renderWithTheme';
 import { IconButton, IconButtonProps } from './index';
@@ -28,7 +29,7 @@ test('it applies the provided className', async () => {
     <IconButton {...props} data-testid={testId} className="custom-class-name" />
   );
   const button = await findByTestId(testId);
-  expect(button).toHaveClass('custom-class-name');
+  expect(hasClass(button, 'custom-class-name')).toBe(true);
 });
 
 test('it renders with `size={0}`', async () => {
@@ -37,7 +38,7 @@ test('it renders with `size={0}`', async () => {
     <IconButton {...props} data-testid={testId} size={0} />
   );
   const button = await findByTestId(testId);
-  expect(button).toHaveClass('ChromaIconButton-size0');
+  expect(hasClass(button, 'ChromaIconButton-size0')).toBe(true);
 });
 
 test('it renders with `color="inverse"`', async () => {
@@ -46,7 +47,7 @@ test('it renders with `color="inverse"`', async () => {
     <IconButton {...props} data-testid={testId} color="inverse" />
   );
   const button = await findByTestId(testId);
-  expect(button).toHaveClass('ChromaIconButton-inverse');
+  expect(hasClass(button, 'ChromaIconButton-inverse')).toBe(true);
 });
 
 test('it renders with `color="negative"`', async () => {
@@ -55,7 +56,7 @@ test('it renders with `color="negative"`', async () => {
     <IconButton {...props} data-testid={testId} color="negative" />
   );
   const button = await findByTestId(testId);
-  expect(button).toHaveClass('ChromaIconButton-negative');
+  expect(hasClass(button, 'ChromaIconButton-negative')).toBe(true);
 });
 
 test('it renders with `color="positive"`', async () => {
@@ -64,7 +65,7 @@ test('it renders with `color="positive"`', async () => {
     <IconButton {...props} data-testid={testId} color="positive" />
   );
   const button = await findByTestId(testId);
-  expect(button).toHaveClass('ChromaIconButton-positive');
+  expect(hasClass(button, 'ChromaIconButton-positive')).toBe(true);
 });
 
 test('it renders a disabled IconButton', async () => {
@@ -90,10 +91,10 @@ test('it allows combining the "padding" props', async () => {
     />
   );
   const button = await findByTestId(testId);
-  expect(button).toHaveClass('ChromaIconButton-paddingTop0');
-  expect(button).toHaveClass('ChromaIconButton-paddingBottom1');
-  expect(button).toHaveClass('ChromaIconButton-paddingLeft2');
-  expect(button).toHaveClass('ChromaIconButton-paddingRight1');
+  expect(hasClass(button, 'ChromaIconButton-paddingTop0')).toBe(true);
+  expect(hasClass(button, 'ChromaIconButton-paddingBottom1')).toBe(true);
+  expect(hasClass(button, 'ChromaIconButton-paddingLeft2')).toBe(true);
+  expect(hasClass(button, 'ChromaIconButton-paddingRight1')).toBe(true);
 });
 
 // #region paddingTop
@@ -104,7 +105,7 @@ test('it renders "paddingTop={0}"', async () => {
     <IconButton {...props} data-testid={testId} paddingTop={0} />
   );
   const button = await findByTestId(testId);
-  expect(button).toHaveClass('ChromaIconButton-paddingTop0');
+  expect(hasClass(button, 'ChromaIconButton-paddingTop0')).toBe(true);
 });
 
 test('it renders "paddingTop={1}"', async () => {
@@ -113,7 +114,7 @@ test('it renders "paddingTop={1}"', async () => {
     <IconButton {...props} data-testid={testId} paddingTop={1} />
   );
   const button = await findByTestId(testId);
-  expect(button).toHaveClass('ChromaIconButton-paddingTop1');
+  expect(hasClass(button, 'ChromaIconButton-paddingTop1')).toBe(true);
 });
 
 test('it renders "paddingTop={2}"', async () => {
@@ -122,7 +123,7 @@ test('it renders "paddingTop={2}"', async () => {
     <IconButton {...props} data-testid={testId} paddingTop={2} />
   );
   const button = await findByTestId(testId);
-  expect(button).toHaveClass('ChromaIconButton-paddingTop2');
+  expect(hasClass(button, 'ChromaIconButton-paddingTop2')).toBe(true);
 });
 
 test('it renders "paddingTop={3}"', async () => {
@@ -131,7 +132,7 @@ test('it renders "paddingTop={3}"', async () => {
     <IconButton {...props} data-testid={testId} paddingTop={3} />
   );
   const button = await findByTestId(testId);
-  expect(button).toHaveClass('ChromaIconButton-paddingTop3');
+  expect(hasClass(button, 'ChromaIconButton-paddingTop3')).toBe(true);
 });
 
 // #endregion
@@ -144,7 +145,7 @@ test('it renders "paddingBottom={0}"', async () => {
     <IconButton {...props} data-testid={testId} paddingBottom={0} />
   );
   const button = await findByTestId(testId);
-  expect(button).toHaveClass('ChromaIconButton-paddingBottom0');
+  expect(hasClass(button, 'ChromaIconButton-paddingBottom0')).toBe(true);
 });
 
 test('it renders "paddingBottom={1}"', async () => {
@@ -153,7 +154,7 @@ test('it renders "paddingBottom={1}"', async () => {
     <IconButton {...props} data-testid={testId} paddingBottom={1} />
   );
   const button = await findByTestId(testId);
-  expect(button).toHaveClass('ChromaIconButton-paddingBottom1');
+  expect(hasClass(button, 'ChromaIconButton-paddingBottom1')).toBe(true);
 });
 
 test('it renders "paddingBottom={2}"', async () => {
@@ -162,7 +163,7 @@ test('it renders "paddingBottom={2}"', async () => {
     <IconButton {...props} data-testid={testId} paddingBottom={2} />
   );
   const button = await findByTestId(testId);
-  expect(button).toHaveClass('ChromaIconButton-paddingBottom2');
+  expect(hasClass(button, 'ChromaIconButton-paddingBottom2')).toBe(true);
 });
 
 test('it renders "paddingBottom={3}"', async () => {
@@ -171,7 +172,7 @@ test('it renders "paddingBottom={3}"', async () => {
     <IconButton {...props} data-testid={testId} paddingBottom={3} />
   );
   const button = await findByTestId(testId);
-  expect(button).toHaveClass('ChromaIconButton-paddingBottom3');
+  expect(hasClass(button, 'ChromaIconButton-paddingBottom3')).toBe(true);
 });
 
 // #endregion
@@ -184,7 +185,7 @@ test('it renders "paddingLeft={0}"', async () => {
     <IconButton {...props} data-testid={testId} paddingLeft={0} />
   );
   const button = await findByTestId(testId);
-  expect(button).toHaveClass('ChromaIconButton-paddingLeft0');
+  expect(hasClass(button, 'ChromaIconButton-paddingLeft0')).toBe(true);
 });
 
 test('it renders "paddingLeft={1}"', async () => {
@@ -193,7 +194,7 @@ test('it renders "paddingLeft={1}"', async () => {
     <IconButton {...props} data-testid={testId} paddingLeft={1} />
   );
   const button = await findByTestId(testId);
-  expect(button).toHaveClass('ChromaIconButton-paddingLeft1');
+  expect(hasClass(button, 'ChromaIconButton-paddingLeft1')).toBe(true);
 });
 
 test('it renders "paddingLeft={2}"', async () => {
@@ -202,7 +203,7 @@ test('it renders "paddingLeft={2}"', async () => {
     <IconButton {...props} data-testid={testId} paddingLeft={2} />
   );
   const button = await findByTestId(testId);
-  expect(button).toHaveClass('ChromaIconButton-paddingLeft2');
+  expect(hasClass(button, 'ChromaIconButton-paddingLeft2')).toBe(true);
 });
 
 test('it renders "paddingLeft={3}"', async () => {
@@ -211,7 +212,7 @@ test('it renders "paddingLeft={3}"', async () => {
     <IconButton {...props} data-testid={testId} paddingLeft={3} />
   );
   const button = await findByTestId(testId);
-  expect(button).toHaveClass('ChromaIconButton-paddingLeft3');
+  expect(hasClass(button, 'ChromaIconButton-paddingLeft3')).toBe(true);
 });
 
 // #endregion
@@ -224,7 +225,7 @@ test('it renders "paddingRight={0}"', async () => {
     <IconButton {...props} data-testid={testId} paddingRight={0} />
   );
   const button = await findByTestId(testId);
-  expect(button).toHaveClass('ChromaIconButton-paddingRight0');
+  expect(hasClass(button, 'ChromaIconButton-paddingRight0')).toBe(true);
 });
 
 test('it renders "paddingRight={1}"', async () => {
@@ -233,7 +234,7 @@ test('it renders "paddingRight={1}"', async () => {
     <IconButton {...props} data-testid={testId} paddingRight={1} />
   );
   const button = await findByTestId(testId);
-  expect(button).toHaveClass('ChromaIconButton-paddingRight1');
+  expect(hasClass(button, 'ChromaIconButton-paddingRight1')).toBe(true);
 });
 
 test('it renders "paddingRight={2}"', async () => {
@@ -242,7 +243,7 @@ test('it renders "paddingRight={2}"', async () => {
     <IconButton {...props} data-testid={testId} paddingRight={2} />
   );
   const button = await findByTestId(testId);
-  expect(button).toHaveClass('ChromaIconButton-paddingRight2');
+  expect(hasClass(button, 'ChromaIconButton-paddingRight2')).toBe(true);
 });
 
 test('it renders "paddingRight={3}"', async () => {
@@ -251,7 +252,7 @@ test('it renders "paddingRight={3}"', async () => {
     <IconButton {...props} data-testid={testId} paddingRight={3} />
   );
   const button = await findByTestId(testId);
-  expect(button).toHaveClass('ChromaIconButton-paddingRight3');
+  expect(hasClass(button, 'ChromaIconButton-paddingRight3')).toBe(true);
 });
 
 // #endregion

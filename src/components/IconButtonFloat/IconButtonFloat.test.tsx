@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { hasClass } from '../../testUtils/hasClass';
 import { IconComponent } from '../../testUtils/IconComponent';
 import { renderWithTheme } from '../../testUtils/renderWithTheme';
 import { IconButtonFloat, IconButtonFloatProps } from './index';
@@ -31,7 +32,7 @@ test('it applies the provided className', async () => {
     />
   );
   const buttonFloat = await findByTestId(testId);
-  expect(buttonFloat).toHaveClass('custom-class-name');
+  expect(hasClass(buttonFloat, 'custom-class-name')).toBe(true);
 });
 
 test('it renders with `size={0}`', async () => {
@@ -40,7 +41,7 @@ test('it renders with `size={0}`', async () => {
     <IconButtonFloat {...props} data-testid={testId} size={0} />
   );
   const buttonFloat = await findByTestId(testId);
-  expect(buttonFloat).toHaveClass('ChromaIconButtonFloat-size0');
+  expect(hasClass(buttonFloat, 'ChromaIconButtonFloat-size0')).toBe(true);
 });
 
 test('it renders with `size={1}`', async () => {
@@ -49,7 +50,7 @@ test('it renders with `size={1}`', async () => {
     <IconButtonFloat {...props} data-testid={testId} size={1} />
   );
   const buttonFloat = await findByTestId(testId);
-  expect(buttonFloat).toHaveClass('ChromaIconButtonFloat-size1');
+  expect(hasClass(buttonFloat, 'ChromaIconButtonFloat-size1')).toBe(true);
 });
 
 test('it renders with `size={2}`', async () => {
@@ -58,7 +59,7 @@ test('it renders with `size={2}`', async () => {
     <IconButtonFloat {...props} data-testid={testId} size={2} />
   );
   const buttonFloat = await findByTestId(testId);
-  expect(buttonFloat).toHaveClass('ChromaIconButtonFloat-size2');
+  expect(hasClass(buttonFloat, 'ChromaIconButtonFloat-size2')).toBe(true);
 });
 
 test('it renders with `justify="left"`', async () => {
@@ -67,7 +68,7 @@ test('it renders with `justify="left"`', async () => {
     <IconButtonFloat {...props} data-testid={testId} justify="left" />
   );
   const buttonFloat = await findByTestId(testId);
-  expect(buttonFloat).toHaveClass('ChromaIconButtonFloat-justifyLeft');
+  expect(hasClass(buttonFloat, 'ChromaIconButtonFloat-justifyLeft')).toBe(true);
 });
 
 test('it renders with `justify="center"`', async () => {
@@ -76,7 +77,9 @@ test('it renders with `justify="center"`', async () => {
     <IconButtonFloat {...props} data-testid={testId} justify="center" />
   );
   const buttonFloat = await findByTestId(testId);
-  expect(buttonFloat).toHaveClass('ChromaIconButtonFloat-justifyCenter');
+  expect(hasClass(buttonFloat, 'ChromaIconButtonFloat-justifyCenter')).toBe(
+    true
+  );
 });
 
 test('it renders with `justify="right"`', async () => {
@@ -85,7 +88,9 @@ test('it renders with `justify="right"`', async () => {
     <IconButtonFloat {...props} data-testid={testId} justify="right" />
   );
   const buttonFloat = await findByTestId(testId);
-  expect(buttonFloat).toHaveClass('ChromaIconButtonFloat-justifyRight');
+  expect(hasClass(buttonFloat, 'ChromaIconButtonFloat-justifyRight')).toBe(
+    true
+  );
 });
 
 test('it renders with `align="top"`', async () => {
@@ -94,7 +99,7 @@ test('it renders with `align="top"`', async () => {
     <IconButtonFloat {...props} data-testid={testId} align="top" />
   );
   const buttonFloat = await findByTestId(testId);
-  expect(buttonFloat).toHaveClass('ChromaIconButtonFloat-alignTop');
+  expect(hasClass(buttonFloat, 'ChromaIconButtonFloat-alignTop')).toBe(true);
 });
 
 test('it renders with `align="center"`', async () => {
@@ -103,7 +108,7 @@ test('it renders with `align="center"`', async () => {
     <IconButtonFloat {...props} data-testid={testId} align="center" />
   );
   const buttonFloat = await findByTestId(testId);
-  expect(buttonFloat).toHaveClass('ChromaIconButtonFloat-alignCenter');
+  expect(hasClass(buttonFloat, 'ChromaIconButtonFloat-alignCenter')).toBe(true);
 });
 
 test('it renders with `align="bottom"`', async () => {
@@ -112,7 +117,7 @@ test('it renders with `align="bottom"`', async () => {
     <IconButtonFloat {...props} data-testid={testId} align="bottom" />
   );
   const buttonFloat = await findByTestId(testId);
-  expect(buttonFloat).toHaveClass('ChromaIconButtonFloat-alignBottom');
+  expect(hasClass(buttonFloat, 'ChromaIconButtonFloat-alignBottom')).toBe(true);
 });
 
 test('it renders a disabled IconButtonFloat', async () => {

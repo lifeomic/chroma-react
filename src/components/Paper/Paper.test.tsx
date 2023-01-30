@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { hasClass } from '../../testUtils/hasClass';
 import { renderWithTheme } from '../../testUtils/renderWithTheme';
 import { Paper } from './';
 
@@ -7,7 +8,7 @@ const testId = 'Paper';
 test('it renders a Paper', async () => {
   const { findByTestId } = renderWithTheme(<Paper data-testid={testId} />);
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaPaper-root');
+  expect(hasClass(root, 'ChromaPaper-root')).toBe(true);
 });
 
 test('it renders a Paper with "padding=0"', async () => {
@@ -15,7 +16,7 @@ test('it renders a Paper with "padding=0"', async () => {
     <Paper data-testid={testId} padding={0} />
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaPaper-padding0');
+  expect(hasClass(root, 'ChromaPaper-padding0')).toBe(true);
 });
 
 test('it renders a Paper with "padding=1"', async () => {
@@ -23,7 +24,7 @@ test('it renders a Paper with "padding=1"', async () => {
     <Paper data-testid={testId} padding={1} />
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaPaper-padding1');
+  expect(hasClass(root, 'ChromaPaper-padding1')).toBe(true);
 });
 
 test('it renders a Paper with "padding=2"', async () => {
@@ -31,7 +32,7 @@ test('it renders a Paper with "padding=2"', async () => {
     <Paper data-testid={testId} padding={2} />
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaPaper-padding2');
+  expect(hasClass(root, 'ChromaPaper-padding2')).toBe(true);
 });
 
 test('it applies the provided className', async () => {
@@ -39,5 +40,5 @@ test('it applies the provided className', async () => {
     <Paper data-testid={testId} className="custom-class-name" />
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('custom-class-name');
+  expect(hasClass(root, 'custom-class-name')).toBe(true);
 });

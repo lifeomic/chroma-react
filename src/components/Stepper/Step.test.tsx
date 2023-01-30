@@ -1,5 +1,6 @@
 import { fireEvent } from '@testing-library/react';
 import * as React from 'react';
+import { hasClass } from '../../testUtils/hasClass';
 import { IconComponent } from '../../testUtils/IconComponent';
 import { renderWithTheme } from '../../testUtils/renderWithTheme';
 import { Step, Stepper } from './index';
@@ -16,7 +17,7 @@ test('it renders a Step', async () => {
   expect(root.nodeName).toEqual('DIV');
 
   const icon = await findByRole('img', { hidden: true });
-  expect(icon).toHaveClass('ChromaStep-icon');
+  expect(hasClass(icon, 'ChromaStep-icon')).toBe(true);
 });
 
 test('it renders a title', async () => {
@@ -26,7 +27,7 @@ test('it renders a title', async () => {
 
   const title = await findByText(/foo/);
   expect(title).toBeInTheDocument();
-  expect(title).toHaveClass('ChromaStep-title');
+  expect(hasClass(title, 'ChromaStep-title')).toBe(true);
 });
 
 test('it renders a sub title', async () => {
@@ -41,7 +42,7 @@ test('it renders a sub title', async () => {
 
   const subtitle = await findByText(/bar/);
   expect(subtitle).toBeInTheDocument();
-  expect(subtitle).toHaveClass('ChromaStep-title');
+  expect(hasClass(subtitle, 'ChromaStep-title')).toBe(true);
 });
 
 test('it renders a sub title pill', async () => {
@@ -56,7 +57,7 @@ test('it renders a sub title pill', async () => {
 
   const pill = await findByText(/300/);
   expect(pill).toBeInTheDocument();
-  expect(pill).toHaveClass('ChromaStep-pillSubTitle');
+  expect(hasClass(pill, 'ChromaStep-pillSubTitle')).toBe(true);
 });
 
 test('it calls onClick', async () => {
@@ -88,7 +89,7 @@ test('it applies the provided className', async () => {
     />
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('custom-class-name');
+  expect(hasClass(root, 'custom-class-name')).toBe(true);
 });
 
 test('it renders a disabled step', async () => {
@@ -131,16 +132,16 @@ test('it applies the correct classes for "active" as a div', async () => {
   );
 
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaStep-activeRoot');
+  expect(hasClass(root, 'ChromaStep-activeRoot')).toBe(true);
 
   const title = await findByText('title');
-  expect(title).toHaveClass('ChromaStep-activeTitle');
+  expect(hasClass(title, 'ChromaStep-activeTitle')).toBe(true);
 
   const subtitle = await findByText('subtitle');
-  expect(subtitle).toHaveClass('ChromaStep-activeTitle');
+  expect(hasClass(subtitle, 'ChromaStep-activeTitle')).toBe(true);
 
   const icon = await findByRole('img', { hidden: true });
-  expect(icon).toHaveClass('ChromaStep-activeIcon');
+  expect(hasClass(icon, 'ChromaStep-activeIcon')).toBe(true);
 });
 
 test('it applies the correct classes for "active" as a button', async () => {
@@ -156,16 +157,16 @@ test('it applies the correct classes for "active" as a button', async () => {
   );
 
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaStep-activeRoot');
+  expect(hasClass(root, 'ChromaStep-activeRoot')).toBe(true);
 
   const title = await findByText('title');
-  expect(title).toHaveClass('ChromaStep-activeTitle');
+  expect(hasClass(title, 'ChromaStep-activeTitle')).toBe(true);
 
   const subtitle = await findByText('subtitle');
-  expect(subtitle).toHaveClass('ChromaStep-activeTitle');
+  expect(hasClass(subtitle, 'ChromaStep-activeTitle')).toBe(true);
 
   const icon = await findByRole('img', { hidden: true });
-  expect(icon).toHaveClass('ChromaStep-activeIcon');
+  expect(hasClass(icon, 'ChromaStep-activeIcon')).toBe(true);
 });
 
 test('it applies the correct classes for "completed" as a div', async () => {
@@ -181,10 +182,10 @@ test('it applies the correct classes for "completed" as a div', async () => {
   );
 
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaStep-completedRoot');
+  expect(hasClass(root, 'ChromaStep-completedRoot')).toBe(true);
 
   const icon = await findByRole('img', { hidden: true });
-  expect(icon).toHaveClass('ChromaStep-completedIcon');
+  expect(hasClass(icon, 'ChromaStep-completedIcon')).toBe(true);
 });
 
 test('it applies the correct classes for "completed" as a button', async () => {
@@ -200,10 +201,10 @@ test('it applies the correct classes for "completed" as a button', async () => {
   );
 
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaStep-completedRoot');
+  expect(hasClass(root, 'ChromaStep-completedRoot')).toBe(true);
 
   const icon = await findByRole('img', { hidden: true });
-  expect(icon).toHaveClass('ChromaStep-completedIcon');
+  expect(hasClass(icon, 'ChromaStep-completedIcon')).toBe(true);
 });
 
 test('it applies the correct classes for "completed" when provided with a subTitlePillLabel', async () => {
@@ -218,5 +219,5 @@ test('it applies the correct classes for "completed" when provided with a subTit
   );
 
   const pill = await findByText(/300/);
-  expect(pill).toHaveClass('ChromaStep-completedPillSubTitle');
+  expect(hasClass(pill, 'ChromaStep-completedPillSubTitle')).toBe(true);
 });

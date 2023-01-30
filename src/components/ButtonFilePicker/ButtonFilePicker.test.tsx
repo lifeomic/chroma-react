@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { hasClass } from '../../testUtils/hasClass';
 import { IconComponent } from '../../testUtils/IconComponent';
 import { renderWithTheme } from '../../testUtils/renderWithTheme';
 import { ButtonFilePicker, ButtonFilePickerProps } from './index';
@@ -50,7 +51,7 @@ test('it applies the provided className', async () => {
     </ButtonFilePicker>
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('custom-class');
+  expect(hasClass(root, 'custom-class')).toBe(true);
 });
 
 test('it renders an icon with the "icon" class name', () => {
@@ -59,7 +60,7 @@ test('it renders an icon with the "icon" class name', () => {
   );
   const icon = getByRole('img', { hidden: true });
   expect(icon).toBeInTheDocument();
-  expect(icon).toHaveClass('ChromaButtonFilePicker-icon');
+  expect(hasClass(icon, 'ChromaButtonFilePicker-icon')).toBe(true);
 });
 
 test('it renders with the "fullWidth" prop', async () => {
@@ -70,7 +71,7 @@ test('it renders with the "fullWidth" prop', async () => {
     </ButtonFilePicker>
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaButtonFilePicker-fullWidth');
+  expect(hasClass(root, 'ChromaButtonFilePicker-fullWidth')).toBe(true);
 });
 
 test('it renders with `variant="outlined"`', async () => {
@@ -81,7 +82,7 @@ test('it renders with `variant="outlined"`', async () => {
     </ButtonFilePicker>
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaButtonFilePicker-outlined');
+  expect(hasClass(root, 'ChromaButtonFilePicker-outlined')).toBe(true);
 });
 
 test('it renders with `variant="text"`', async () => {
@@ -92,7 +93,7 @@ test('it renders with `variant="text"`', async () => {
     </ButtonFilePicker>
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaButtonFilePicker-text');
+  expect(hasClass(root, 'ChromaButtonFilePicker-text')).toBe(true);
 });
 
 // #region disabled tests
@@ -104,10 +105,10 @@ test('it renders a disabled ButtonFilePicker', async () => {
     </ButtonFilePicker>
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaButtonFilePicker-rootDisabled');
+  expect(hasClass(root, 'ChromaButtonFilePicker-rootDisabled')).toBe(true);
 
   const input = container.querySelector(`#${testId}`);
-  expect(input).toHaveClass('ChromaButtonFilePicker-disabled');
+  expect(hasClass(input, 'ChromaButtonFilePicker-disabled')).toBe(true);
 });
 
 test('it renders a disabled contained inverse ButtonFilePicker', async () => {
@@ -118,7 +119,9 @@ test('it renders a disabled contained inverse ButtonFilePicker', async () => {
     </ButtonFilePicker>
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaButtonFilePicker-containedInverseDisabled');
+  expect(
+    hasClass(root, 'ChromaButtonFilePicker-containedInverseDisabled')
+  ).toBe(true);
 });
 
 test('it renders a disabled outlined ButtonFilePicker', async () => {
@@ -134,7 +137,7 @@ test('it renders a disabled outlined ButtonFilePicker', async () => {
     </ButtonFilePicker>
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaButtonFilePicker-outlinedDisabled');
+  expect(hasClass(root, 'ChromaButtonFilePicker-outlinedDisabled')).toBe(true);
 });
 
 test('it renders a disabled outlined inverse ButtonFilePicker', async () => {
@@ -151,7 +154,9 @@ test('it renders a disabled outlined inverse ButtonFilePicker', async () => {
     </ButtonFilePicker>
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaButtonFilePicker-outlinedInverseDisabled');
+  expect(hasClass(root, 'ChromaButtonFilePicker-outlinedInverseDisabled')).toBe(
+    true
+  );
 });
 
 test('it renders a disabled text ButtonFilePicker', async () => {
@@ -162,7 +167,7 @@ test('it renders a disabled text ButtonFilePicker', async () => {
     </ButtonFilePicker>
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaButtonFilePicker-textDisabled');
+  expect(hasClass(root, 'ChromaButtonFilePicker-textDisabled')).toBe(true);
 });
 
 test('it renders a disabled text inverse ButtonFilePicker', async () => {
@@ -179,7 +184,9 @@ test('it renders a disabled text inverse ButtonFilePicker', async () => {
     </ButtonFilePicker>
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaButtonFilePicker-textInverseDisabled');
+  expect(hasClass(root, 'ChromaButtonFilePicker-textInverseDisabled')).toBe(
+    true
+  );
 });
 
 // #endregion
@@ -198,8 +205,8 @@ test('it renders with `variant="contained" color="inverse"`', async () => {
     </ButtonFilePicker>
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaButtonFilePicker-inverse');
-  expect(root).toHaveClass('ChromaButtonFilePicker-containedInverse');
+  expect(hasClass(root, 'ChromaButtonFilePicker-inverse')).toBe(true);
+  expect(hasClass(root, 'ChromaButtonFilePicker-containedInverse')).toBe(true);
 });
 
 test('it renders with `variant="outlined" color="inverse"`', async () => {
@@ -215,8 +222,8 @@ test('it renders with `variant="outlined" color="inverse"`', async () => {
     </ButtonFilePicker>
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaButtonFilePicker-inverse');
-  expect(root).toHaveClass('ChromaButtonFilePicker-outlinedInverse');
+  expect(hasClass(root, 'ChromaButtonFilePicker-inverse')).toBe(true);
+  expect(hasClass(root, 'ChromaButtonFilePicker-outlinedInverse')).toBe(true);
 });
 
 test('it renders with `variant="text" color="inverse"`', async () => {
@@ -232,7 +239,7 @@ test('it renders with `variant="text" color="inverse"`', async () => {
     </ButtonFilePicker>
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaButtonFilePicker-inverse');
-  expect(root).toHaveClass('ChromaButtonFilePicker-textInverse');
+  expect(hasClass(root, 'ChromaButtonFilePicker-inverse')).toBe(true);
+  expect(hasClass(root, 'ChromaButtonFilePicker-textInverse')).toBe(true);
 });
 // #endregion

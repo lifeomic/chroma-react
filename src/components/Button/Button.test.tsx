@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { hasClass } from '../../testUtils/hasClass';
 import {
   IconComponent,
   testId as iconComponentTestId,
@@ -31,7 +32,7 @@ test('it applies the provided className', async () => {
     </Button>
   );
   const button = await findByTestId(testId);
-  expect(button).toHaveClass('custom-class-name');
+  expect(hasClass(button, 'custom-class-name')).toBe(true);
 });
 
 test('it renders an icon with the "icon" class name', () => {
@@ -40,7 +41,7 @@ test('it renders an icon with the "icon" class name', () => {
   );
   const icon = getByRole('img', { hidden: true });
   expect(icon).toBeInTheDocument();
-  expect(icon).toHaveClass('ChromaButton-icon');
+  expect(hasClass(icon, 'ChromaButton-icon')).toBe(true);
 });
 
 test('it renders with the "fullWidth" prop', async () => {
@@ -51,7 +52,7 @@ test('it renders with the "fullWidth" prop', async () => {
     </Button>
   );
   const button = await findByTestId(testId);
-  expect(button).toHaveClass('ChromaButton-fullWidth');
+  expect(hasClass(button, 'ChromaButton-fullWidth')).toBe(true);
 });
 
 test('it renders with `variant="outlined"`', async () => {
@@ -62,7 +63,7 @@ test('it renders with `variant="outlined"`', async () => {
     </Button>
   );
   const button = await findByTestId(testId);
-  expect(button).toHaveClass('ChromaButton-outlined');
+  expect(hasClass(button, 'ChromaButton-outlined')).toBe(true);
 });
 
 test('it renders with `variant="text"`', async () => {
@@ -73,7 +74,7 @@ test('it renders with `variant="text"`', async () => {
     </Button>
   );
   const button = await findByTestId(testId);
-  expect(button).toHaveClass('ChromaButton-text');
+  expect(hasClass(button, 'ChromaButton-text')).toBe(true);
 });
 
 test('it renders a disabled button', async () => {
@@ -97,7 +98,7 @@ test('it renders with `variant="contained" color="inverse"`', async () => {
     </Button>
   );
   const button = await findByTestId(testId);
-  expect(button).toHaveClass('ChromaButton-containedInverse');
+  expect(hasClass(button, 'ChromaButton-containedInverse')).toBe(true);
 });
 
 test('it renders with `variant="outlined" color="inverse"`', async () => {
@@ -108,7 +109,7 @@ test('it renders with `variant="outlined" color="inverse"`', async () => {
     </Button>
   );
   const button = await findByTestId(testId);
-  expect(button).toHaveClass('ChromaButton-outlinedInverse');
+  expect(hasClass(button, 'ChromaButton-outlinedInverse')).toBe(true);
 });
 
 test('it renders with `variant="text" color="inverse"`', async () => {
@@ -119,7 +120,7 @@ test('it renders with `variant="text" color="inverse"`', async () => {
     </Button>
   );
   const button = await findByTestId(testId);
-  expect(button).toHaveClass('ChromaButton-textInverse');
+  expect(hasClass(button, 'ChromaButton-textInverse')).toBe(true);
 });
 // #endregion
 
@@ -137,7 +138,7 @@ test('it renders with `variant="contained" color="negative"`', async () => {
     </Button>
   );
   const button = await findByTestId(testId);
-  expect(button).toHaveClass('ChromaButton-containedNegative');
+  expect(hasClass(button, 'ChromaButton-containedNegative')).toBe(true);
 });
 
 test('it renders with `variant="outlined" color="negative"`', async () => {
@@ -148,7 +149,7 @@ test('it renders with `variant="outlined" color="negative"`', async () => {
     </Button>
   );
   const button = await findByTestId(testId);
-  expect(button).toHaveClass('ChromaButton-outlinedNegative');
+  expect(hasClass(button, 'ChromaButton-outlinedNegative')).toBe(true);
 });
 
 test('it renders with `variant="text" color="negative"`', async () => {
@@ -159,7 +160,7 @@ test('it renders with `variant="text" color="negative"`', async () => {
     </Button>
   );
   const button = await findByTestId(testId);
-  expect(button).toHaveClass('ChromaButton-textNegative');
+  expect(hasClass(button, 'ChromaButton-textNegative')).toBe(true);
 });
 // #endregion
 
@@ -177,7 +178,7 @@ test('it renders with `variant="contained" color="positive"`', async () => {
     </Button>
   );
   const button = await findByTestId(testId);
-  expect(button).toHaveClass('ChromaButton-containedPositive');
+  expect(hasClass(button, 'ChromaButton-containedPositive')).toBe(true);
 });
 
 test('it renders with `variant="outlined" color="positive"`', async () => {
@@ -188,7 +189,7 @@ test('it renders with `variant="outlined" color="positive"`', async () => {
     </Button>
   );
   const button = await findByTestId(testId);
-  expect(button).toHaveClass('ChromaButton-outlinedPositive');
+  expect(hasClass(button, 'ChromaButton-outlinedPositive')).toBe(true);
 });
 
 test('it renders with `variant="text" color="positive"`', async () => {
@@ -199,7 +200,7 @@ test('it renders with `variant="text" color="positive"`', async () => {
     </Button>
   );
   const button = await findByTestId(testId);
-  expect(button).toHaveClass('ChromaButton-textPositive');
+  expect(hasClass(button, 'ChromaButton-textPositive')).toBe(true);
 });
 // #endregion
 
@@ -213,6 +214,6 @@ test('it renders a trailing icon', async () => {
   );
   const trailingIcon = await findByTestId(iconComponentTestId);
   expect(trailingIcon).toBeInTheDocument();
-  expect(trailingIcon).toHaveClass('ChromaButton-trailingIcon');
+  expect(hasClass(trailingIcon, 'ChromaButton-trailingIcon')).toBe(true);
 });
 // #endregion

@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { MemoryRouter } from 'react-router-dom';
+import { hasClass } from '../../testUtils/hasClass';
 import { renderWithTheme } from '../../testUtils/renderWithTheme';
 import { SecondaryNavigationItem, SecondaryNavigationItemProps } from './';
 
@@ -23,16 +24,20 @@ test('it renders a SecondaryNavigationItem', async () => {
 
   const link = root.firstElementChild;
   expect(link?.nodeName).toEqual('A');
-  expect(link).toHaveClass('ChromaSecondaryNavigationItem-link');
-  expect(link).not.toHaveClass('ChromaSecondaryNavigationItem-linkActive');
+  expect(hasClass(link, 'ChromaSecondaryNavigationItem-link')).toBe(true);
+  expect(hasClass(link, 'ChromaSecondaryNavigationItem-linkActive')).toBe(
+    false
+  );
   expect(link?.getAttribute('href')).toEqual(`/${props.to}`);
 
   const selectorBar = await findByRole('presentation');
   expect(selectorBar).toBeInTheDocument();
-  expect(selectorBar).toHaveClass('ChromaSecondaryNavigationItem-selector');
-  expect(selectorBar).not.toHaveClass(
-    'ChromaSecondaryNavigationItem-selectorActive'
+  expect(hasClass(selectorBar, 'ChromaSecondaryNavigationItem-selector')).toBe(
+    true
   );
+  expect(
+    hasClass(selectorBar, 'ChromaSecondaryNavigationItem-selectorActive')
+  ).toBe(false);
 });
 
 test('it applies the provided className', async () => {
@@ -48,7 +53,7 @@ test('it applies the provided className', async () => {
   );
 
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('custom-class-name');
+  expect(hasClass(root, 'custom-class-name')).toBe(true);
 });
 
 test('it applies the active classes when the route is active', async () => {
@@ -61,10 +66,10 @@ test('it applies the active classes when the route is active', async () => {
 
   const root = await findByTestId(testId);
   const link = root.firstElementChild;
-  expect(link).toHaveClass('ChromaSecondaryNavigationItem-linkActive');
+  expect(hasClass(link, 'ChromaSecondaryNavigationItem-linkActive')).toBe(true);
 
   const selectorBar = await findByRole('presentation');
-  expect(selectorBar).toHaveClass(
-    'ChromaSecondaryNavigationItem-selectorActive'
-  );
+  expect(
+    hasClass(selectorBar, 'ChromaSecondaryNavigationItem-selectorActive')
+  ).toBe(true);
 });

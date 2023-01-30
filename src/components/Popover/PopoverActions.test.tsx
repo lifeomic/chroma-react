@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { hasClass } from '../../testUtils/hasClass';
 import { renderWithTheme } from '../../testUtils/renderWithTheme';
 import { PopoverActions } from '../Popover';
 
@@ -29,7 +30,7 @@ test('it applies the provided className', async () => {
     <PopoverActions data-testid={testId} className="custom-class-name" />
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('custom-class-name');
+  expect(hasClass(root, 'custom-class-name')).toBe(true);
 });
 
 test('it applies "justify: flex-end" by default', async () => {
@@ -38,7 +39,7 @@ test('it applies "justify: flex-end" by default', async () => {
     <PopoverActions data-testid={testId} />
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaPopoverActions-justifyEnd');
+  expect(hasClass(root, 'ChromaPopoverActions-justifyEnd')).toBe(true);
 });
 
 test('it applies "justify: center"', async () => {
@@ -47,7 +48,7 @@ test('it applies "justify: center"', async () => {
     <PopoverActions data-testid={testId} justify="center" />
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaPopoverActions-justifyCenter');
+  expect(hasClass(root, 'ChromaPopoverActions-justifyCenter')).toBe(true);
 });
 
 test('it applies "justify: flex-start"', async () => {
@@ -56,5 +57,5 @@ test('it applies "justify: flex-start"', async () => {
     <PopoverActions data-testid={testId} justify="flex-start" />
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaPopoverActions-justifyStart');
+  expect(hasClass(root, 'ChromaPopoverActions-justifyStart')).toBe(true);
 });

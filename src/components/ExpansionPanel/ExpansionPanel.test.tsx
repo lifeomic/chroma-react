@@ -1,6 +1,7 @@
 import { Check } from '@lifeomic/chromicons';
 import { fireEvent } from '@testing-library/react';
 import * as React from 'react';
+import { hasClass } from '../../testUtils/hasClass';
 import { renderWithTheme } from '../../testUtils/renderWithTheme';
 import { ExpansionPanel, ExpansionPanelProps } from './';
 
@@ -42,7 +43,7 @@ test('it renders ExpansionPanel expanded content on-click', async () => {
   fireEvent.click(button as Element);
 
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaExpansionPanel-rootOpen');
+  expect(hasClass(root, 'ChromaExpansionPanel-rootOpen')).toBe(true);
 
   expect(button?.getAttribute('aria-expanded')).toBeTruthy();
 });
@@ -53,7 +54,7 @@ test('it applies the provided className', async () => {
     <ExpansionPanel {...props} data-testid={testId} className="custom-class" />
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('custom-class');
+  expect(hasClass(root, 'custom-class')).toBe(true);
 });
 
 test('it calls the provided "onToggle" with the new expanded state', () => {
@@ -82,7 +83,7 @@ test('it defaults to open when "isOpen" is provided', async () => {
   const button = container.querySelector(`[aria-expanded="true"]`);
   const root = await findByTestId(testId);
 
-  expect(root).toHaveClass('ChromaExpansionPanel-rootOpen');
+  expect(hasClass(root, 'ChromaExpansionPanel-rootOpen')).toBe(true);
   expect(button?.getAttribute('aria-expanded')).toBeTruthy();
 });
 
@@ -100,7 +101,7 @@ test('it uses the provided "contentClassName"', () => {
 
   const content = container.querySelector(`#${testId}`);
   expect(content).toBeTruthy();
-  expect(content).toHaveClass('content-class');
+  expect(hasClass(content, 'content-class')).toBe(true);
 });
 
 test('it uses the provided "innerContentClassName"', () => {
@@ -117,7 +118,7 @@ test('it uses the provided "innerContentClassName"', () => {
 
   const innerContent = container.querySelector(`#${testId} > div`);
   expect(innerContent).toBeTruthy();
-  expect(innerContent).toHaveClass('inner-content-class');
+  expect(hasClass(innerContent, 'inner-content-class')).toBe(true);
 });
 
 test('it updates if "isOpen" changes', async () => {
@@ -139,7 +140,7 @@ test('it updates if "isOpen" changes', async () => {
   const button = container2.querySelector(`[aria-expanded="true"]`);
   const root = await findByTestId(testId);
 
-  expect(root).toHaveClass('ChromaExpansionPanel-rootOpen');
+  expect(hasClass(root, 'ChromaExpansionPanel-rootOpen')).toBe(true);
   expect(button?.getAttribute('aria-expanded')).toBeTruthy();
 });
 
@@ -153,5 +154,7 @@ test('it applies the row class when `contentDirection="row"', async () => {
 
   const innerContent = container.querySelector(`#${testId} > div`);
   expect(innerContent).toBeTruthy();
-  expect(innerContent).toHaveClass('ChromaExpansionPanel-directionRow');
+  expect(hasClass(innerContent, 'ChromaExpansionPanel-directionRow')).toBe(
+    true
+  );
 });

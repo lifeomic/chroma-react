@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { hasClass } from '../../testUtils/hasClass';
 import { renderWithTheme } from '../../testUtils/renderWithTheme';
 import { IconTile } from './index';
 
@@ -15,7 +16,7 @@ test('it applies the provided className', async () => {
     <IconTile className="custom-class-name" data-testid={testId} />
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('custom-class-name');
+  expect(hasClass(root, 'custom-class-name')).toBe(true);
 });
 
 test('it spreads props', async () => {
@@ -32,7 +33,7 @@ test('it applies the proper attributes when onClick is provided', async () => {
     <IconTile onClick={() => ({})} data-testid={testId} />
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaIconTile-cursorPointer');
+  expect(hasClass(root, 'ChromaIconTile-cursorPointer')).toBe(true);
   expect(root.getAttribute('role')).toEqual('button');
   expect(root.getAttribute('tabIndex')).toEqual('0');
 });

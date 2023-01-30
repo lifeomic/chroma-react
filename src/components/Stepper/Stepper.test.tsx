@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { hasClass } from '../../testUtils/hasClass';
 import { IconComponent } from '../../testUtils/IconComponent';
 import { renderWithTheme } from '../../testUtils/renderWithTheme';
 import { Step, Stepper } from './index';
@@ -55,7 +56,7 @@ test('it applies active class to the correct child', async () => {
   );
 
   const active = await findByTestId(testId);
-  expect(active).toHaveClass('ChromaStep-activeRoot');
+  expect(hasClass(active, 'ChromaStep-activeRoot')).toBe(true);
 });
 
 test('it applies completed class to the correct children', async () => {
@@ -70,7 +71,7 @@ test('it applies completed class to the correct children', async () => {
 
   const children = await findAllByTestId(testId);
   children.forEach((child) =>
-    expect(child).toHaveClass('ChromaStep-completedRoot')
+    expect(hasClass(child, 'ChromaStep-completedRoot')).toBe(true)
   );
 });
 
@@ -86,11 +87,10 @@ test('it does not apply active or completed class to the correct inactive childr
   );
 
   const children = await findAllByTestId(testId);
-  children.forEach((child) =>
-    expect(child).not.toHaveClass(
-      'makeStyles-activeRoot, makeStyles-completedRoot'
-    )
-  );
+  children.forEach((child) => {
+    expect(hasClass(child, 'ChromaStep-activeRoot')).toBe(false);
+    expect(hasClass(child, 'ChromaStep-completedRoot')).toBe(false);
+  });
 });
 
 test('it applies the provided className', async () => {
@@ -100,7 +100,7 @@ test('it applies the provided className', async () => {
     </Stepper>
   );
   const root = await findByTestId('stepper');
-  expect(root).toHaveClass('custom-class-name');
+  expect(hasClass(root, 'custom-class-name')).toBe(true);
 });
 
 test('it sets the active child based on "activeStep"', async () => {
@@ -114,7 +114,7 @@ test('it sets the active child based on "activeStep"', async () => {
 
   const step = await findByTestId(testId);
   expect(step).toBeInTheDocument();
-  expect(step).toHaveClass('ChromaStep-activeRoot');
+  expect(hasClass(step, 'ChromaStep-activeRoot')).toBe(true);
 });
 
 test('it sets correct aria-label', async () => {

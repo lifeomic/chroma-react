@@ -1,5 +1,6 @@
 import { fireEvent } from '@testing-library/dom';
 import * as React from 'react';
+import { hasClass } from '../../testUtils/hasClass';
 import { renderWithTheme } from '../../testUtils/renderWithTheme';
 import { TableHeaderCell, TableHeaderCellProps } from './TableHeaderCell';
 
@@ -66,7 +67,7 @@ test('it sets the th "align" attribute', async () => {
     </RenderInsideTableRow>
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaTableHeaderCell-rootAlignRight');
+  expect(hasClass(root, 'ChromaTableHeaderCell-rootAlignRight')).toBe(true);
 });
 
 test('it renders the last header with align="right"', async () => {
@@ -83,7 +84,7 @@ test('it renders the last header with align="right"', async () => {
     </RenderInsideTableRow>
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaTableHeaderCell-rootAlignRight');
+  expect(hasClass(root, 'ChromaTableHeaderCell-rootAlignRight')).toBe(true);
 });
 
 test('it renders the last header with the provided "align" override', async () => {
@@ -103,8 +104,8 @@ test('it renders the last header with the provided "align" override', async () =
     </RenderInsideTableRow>
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaTableHeaderCell-root');
-  expect(root).not.toHaveClass('ChromaTableHeaderCell-rootAlignRight');
+  expect(hasClass(root, 'ChromaTableHeaderCell-root')).toBe(true);
+  expect(hasClass(root, 'ChromaTableHeaderCell-rootAlignRight')).toBe(false);
 });
 
 test('it applies the provided className', async () => {
@@ -119,7 +120,7 @@ test('it applies the provided className', async () => {
     </RenderInsideTableRow>
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('custom-class-name');
+  expect(hasClass(root, 'custom-class-name')).toBe(true);
 });
 
 test('it renders the correct chevron direction when sortDirection is "asc" and isSorting', async () => {
@@ -137,7 +138,7 @@ test('it renders the correct chevron direction when sortDirection is "asc" and i
   const root = await findByTestId(testId);
 
   const chevron = await findByRole('img', { hidden: true });
-  expect(chevron).toHaveClass('ChromaTableHeaderCell-rotatedIcon');
+  expect(hasClass(chevron, 'ChromaTableHeaderCell-rotatedIcon')).toBe(true);
 
   // For a11y, verify aria-sort
   expect(root.getAttribute('aria-sort')).toBe('ascending');
@@ -158,7 +159,7 @@ test('it renders the correct chevron direction when sortDirection is "desc" and 
   const root = await findByTestId(testId);
 
   const chevron = await findByRole('img', { hidden: true });
-  expect(chevron).toHaveClass('ChromaTableHeaderCell-icon');
+  expect(hasClass(chevron, 'ChromaTableHeaderCell-icon')).toBe(true);
 
   // For a11y, verify aria-sort
   expect(root.getAttribute('aria-sort')).toBe('descending');

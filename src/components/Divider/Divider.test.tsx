@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { renderWithTheme } from '../../testUtils/renderWithTheme';
 import { Divider } from '.';
+import { hasClass } from '../../testUtils/hasClass';
 
 const testId = 'Divider';
 
@@ -17,7 +18,7 @@ test('it renders a Divider with the provided "color"', async () => {
   );
 
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaDivider-inverseColor');
+  expect(hasClass(root, 'ChromaDivider-inverseColor')).toBe(true);
 });
 
 test('it renders a Divider with direction="row"', async () => {
@@ -26,7 +27,7 @@ test('it renders a Divider with direction="row"', async () => {
   );
 
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaDivider-row');
+  expect(hasClass(root, 'ChromaDivider-row')).toBe(true);
 });
 
 test('it renders a Divider with the provided className', async () => {
@@ -35,7 +36,7 @@ test('it renders a Divider with the provided className', async () => {
   );
 
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('custom-class');
+  expect(hasClass(root, 'custom-class')).toBe(true);
 });
 
 test('it renders a Divider with `spacing={0}`', async () => {
@@ -44,7 +45,7 @@ test('it renders a Divider with `spacing={0}`', async () => {
   );
 
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaDivider-vSpacing0');
+  expect(hasClass(root, 'ChromaDivider-vSpacing0')).toBe(true);
 });
 
 test('it renders a Divider with `spacing={0.5}`', async () => {
@@ -53,7 +54,7 @@ test('it renders a Divider with `spacing={0.5}`', async () => {
   );
 
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaDivider-vSpacing05');
+  expect(hasClass(root, 'ChromaDivider-vSpacing05')).toBe(true);
 });
 
 test('it renders a Divider with `spacing={1}`', async () => {
@@ -62,7 +63,7 @@ test('it renders a Divider with `spacing={1}`', async () => {
   );
 
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaDivider-vSpacing10');
+  expect(hasClass(root, 'ChromaDivider-vSpacing10')).toBe(true);
 });
 
 test('it renders a Divider with `spacing={1.5}`', async () => {
@@ -71,7 +72,7 @@ test('it renders a Divider with `spacing={1.5}`', async () => {
   );
 
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaDivider-vSpacing15');
+  expect(hasClass(root, 'ChromaDivider-vSpacing15')).toBe(true);
 });
 
 test('it renders a Divider with `spacing={2}`', async () => {
@@ -80,7 +81,7 @@ test('it renders a Divider with `spacing={2}`', async () => {
   );
 
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaDivider-vSpacing20');
+  expect(hasClass(root, 'ChromaDivider-vSpacing20')).toBe(true);
 });
 
 test('it renders a Divider with `spacing={2.5}`', async () => {
@@ -89,7 +90,7 @@ test('it renders a Divider with `spacing={2.5}`', async () => {
   );
 
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaDivider-vSpacing25');
+  expect(hasClass(root, 'ChromaDivider-vSpacing25')).toBe(true);
 });
 
 test('it renders a Divider with `spacing={3}`', async () => {
@@ -98,7 +99,7 @@ test('it renders a Divider with `spacing={3}`', async () => {
   );
 
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaDivider-vSpacing30');
+  expect(hasClass(root, 'ChromaDivider-vSpacing30')).toBe(true);
 });
 
 test('it renders a Divider with `spacing={3.5}`', async () => {
@@ -107,7 +108,7 @@ test('it renders a Divider with `spacing={3.5}`', async () => {
   );
 
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaDivider-vSpacing35');
+  expect(hasClass(root, 'ChromaDivider-vSpacing35')).toBe(true);
 });
 
 test('it renders a Divider with `spacing={4}`', async () => {
@@ -116,7 +117,7 @@ test('it renders a Divider with `spacing={4}`', async () => {
   );
 
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaDivider-vSpacing40');
+  expect(hasClass(root, 'ChromaDivider-vSpacing40')).toBe(true);
 });
 
 test('it renders a Divider with `spacing={0}` and `direction="row`', async () => {
@@ -125,7 +126,7 @@ test('it renders a Divider with `spacing={0}` and `direction="row`', async () =>
   );
 
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaDivider-hSpacing0');
+  expect(hasClass(root, 'ChromaDivider-hSpacing0')).toBe(true);
 });
 
 test('it renders a Divider with `spacing={0.5}` and `direction="row`', async () => {
@@ -134,7 +135,7 @@ test('it renders a Divider with `spacing={0.5}` and `direction="row`', async () 
   );
 
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaDivider-hSpacing05');
+  expect(hasClass(root, 'ChromaDivider-hSpacing05')).toBe(true);
 });
 
 test('it renders a Divider with `spacing={1}` and `direction="row`', async () => {
@@ -143,7 +144,7 @@ test('it renders a Divider with `spacing={1}` and `direction="row`', async () =>
   );
 
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaDivider-hSpacing10');
+  expect(hasClass(root, 'ChromaDivider-hSpacing10')).toBe(true);
 });
 
 test('it renders a Divider with `spacing={1.5}` and `direction="row`', async () => {
@@ -152,7 +153,7 @@ test('it renders a Divider with `spacing={1.5}` and `direction="row`', async () 
   );
 
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaDivider-hSpacing15');
+  expect(hasClass(root, 'ChromaDivider-hSpacing15')).toBe(true);
 });
 
 test('it renders a Divider with `spacing={2}` and `direction="row`', async () => {
@@ -161,7 +162,7 @@ test('it renders a Divider with `spacing={2}` and `direction="row`', async () =>
   );
 
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaDivider-hSpacing20');
+  expect(hasClass(root, 'ChromaDivider-hSpacing20')).toBe(true);
 });
 
 test('it renders a Divider with `spacing={2.5}` and `direction="row`', async () => {
@@ -170,7 +171,7 @@ test('it renders a Divider with `spacing={2.5}` and `direction="row`', async () 
   );
 
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaDivider-hSpacing25');
+  expect(hasClass(root, 'ChromaDivider-hSpacing25')).toBe(true);
 });
 
 test('it renders a Divider with `spacing={3}` and `direction="row`', async () => {
@@ -179,7 +180,7 @@ test('it renders a Divider with `spacing={3}` and `direction="row`', async () =>
   );
 
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaDivider-hSpacing30');
+  expect(hasClass(root, 'ChromaDivider-hSpacing30')).toBe(true);
 });
 
 test('it renders a Divider with `spacing={3.5}` and `direction="row`', async () => {
@@ -188,7 +189,7 @@ test('it renders a Divider with `spacing={3.5}` and `direction="row`', async () 
   );
 
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaDivider-hSpacing35');
+  expect(hasClass(root, 'ChromaDivider-hSpacing35')).toBe(true);
 });
 
 test('it renders a Divider with `spacing={4}` and `direction="row`', async () => {
@@ -197,5 +198,5 @@ test('it renders a Divider with `spacing={4}` and `direction="row`', async () =>
   );
 
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaDivider-hSpacing40');
+  expect(hasClass(root, 'ChromaDivider-hSpacing40')).toBe(true);
 });

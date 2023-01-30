@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { hasClass } from '../../testUtils/hasClass';
 import { renderWithTheme } from '../../testUtils/renderWithTheme';
 import { AlertActionsRow } from './index';
 
@@ -11,7 +12,7 @@ test('it renders an AlertActionsRow', async () => {
 
   const actionRow = await findByTestId(testId);
   expect(actionRow).toBeInTheDocument();
-  expect(actionRow).toHaveClass('ChromaAlertActionsRow-root');
+  expect(hasClass(actionRow, 'ChromaAlertActionsRow-root')).toBe(true);
 });
 
 test('it applies the provided className', async () => {
@@ -20,5 +21,5 @@ test('it applies the provided className', async () => {
   );
 
   const actionRow = await findByTestId(testId);
-  expect(actionRow).toHaveClass('custom-class-name');
+  expect(hasClass(actionRow, 'custom-class-name')).toBe(true);
 });

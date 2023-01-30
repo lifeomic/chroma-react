@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { hasClass } from '../../testUtils/hasClass';
 import { renderWithTheme } from '../../testUtils/renderWithTheme';
 import { SecondaryNavigation } from '../SecondaryNavigation';
 
@@ -19,7 +20,7 @@ test('it applies the provided className', async () => {
     <SecondaryNavigation data-testid={testId} className="custom-class-name" />
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('custom-class-name');
+  expect(hasClass(root, 'custom-class-name')).toBe(true);
 });
 
 test('it applies the the "horizontal" variant', async () => {
@@ -27,7 +28,7 @@ test('it applies the the "horizontal" variant', async () => {
     <SecondaryNavigation data-testid={testId} variant="horizontal" />
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaSecondaryNavigation-horizontalNav');
+  expect(hasClass(root, 'ChromaSecondaryNavigation-horizontalNav')).toBe(true);
 });
 
 test('it renders children', async () => {

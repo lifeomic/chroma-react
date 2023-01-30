@@ -2,6 +2,7 @@ import * as React from 'react';
 import { ButtonUnstyled, ButtonUnstyledProps } from './index';
 import { fireEvent } from '@testing-library/react';
 import { renderWithTheme } from '../../testUtils/renderWithTheme';
+import { hasClass } from '../../testUtils/hasClass';
 
 const testId = 'ButtonUnstyled';
 
@@ -32,7 +33,7 @@ test('it applies the provided className', async () => {
     </ButtonUnstyled>
   );
   const button = await findByTestId(testId);
-  expect(button).toHaveClass('custom-class-name');
+  expect(hasClass(button, 'custom-class-name')).toBe(true);
 });
 
 test('it renders with the "fullWidth" prop', async () => {
@@ -43,7 +44,7 @@ test('it renders with the "fullWidth" prop', async () => {
     </ButtonUnstyled>
   );
   const button = await findByTestId(testId);
-  expect(button).toHaveClass('ChromaButtonUnstyled-fullWidth');
+  expect(hasClass(button, 'ChromaButtonUnstyled-fullWidth')).toBe(true);
 });
 
 test('it renders a disabled button', async () => {

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { hasClass } from '../../testUtils/hasClass';
 import { renderWithTheme } from '../../testUtils/renderWithTheme';
 import { SmallTile } from './index';
 
@@ -15,7 +16,7 @@ test('it applies the provided className', async () => {
     <SmallTile className="custom-class-name" data-testid={testId} />
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('custom-class-name');
+  expect(hasClass(root, 'custom-class-name')).toBe(true);
 });
 
 test('it spreads props', async () => {
@@ -32,7 +33,7 @@ test('it applies the proper attributes when onClick is provided', async () => {
     <SmallTile onClick={() => ({})} data-testid={testId} />
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaSmallTile-cursorPointer');
+  expect(hasClass(root, 'ChromaSmallTile-cursorPointer')).toBe(true);
   expect(root.getAttribute('role')).toEqual('button');
   expect(root.getAttribute('tabIndex')).toEqual('0');
 });

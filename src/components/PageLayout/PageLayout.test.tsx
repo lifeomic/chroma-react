@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { hasClass } from '../../testUtils/hasClass';
 import { renderWithTheme } from '../../testUtils/renderWithTheme';
 import { PageLayout, PageLayoutProps } from './';
 
@@ -13,8 +14,8 @@ test('it sets margin to none the header if a disclaimer is present', async () =>
   );
 
   const header = await findByText(props.title!);
-  expect(header?.parentElement).not.toHaveClass(
-    'ChromaPageHeader-marginNormal'
+  expect(hasClass(header?.parentElement, 'ChromaPageHeader-marginNormal')).toBe(
+    false
   );
 });
 
@@ -75,7 +76,7 @@ test('it renders "headerCenter" with the provided "headerCenterClassName"', asyn
   );
 
   const root = await findByTestId(testId);
-  expect(root?.parentElement).toHaveClass('custom-class-name');
+  expect(hasClass(root?.parentElement, 'custom-class-name')).toBe(true);
 });
 
 test('it renders "tabs"', async () => {
@@ -97,7 +98,9 @@ test('it renders "maxWidth={false}', async () => {
   );
 
   const root = await findByTestId(testId);
-  expect(root).not.toHaveClass('ChromaPageLayout-maxWidth');
+  expect(hasClass(root?.parentElement, 'ChromaPageLayout-maxWidth')).toBe(
+    false
+  );
 });
 
 test('it renders a background when `applyBackgroundCover={true}`', async () => {
@@ -108,9 +111,9 @@ test('it renders a background when `applyBackgroundCover={true}`', async () => {
   );
 
   const root = await findByTestId(testId);
-  expect(root?.firstElementChild).toHaveClass(
-    'ChromaPageLayout-backgroundCover'
-  );
+  expect(
+    hasClass(root?.firstElementChild, 'ChromaPageLayout-backgroundCover')
+  ).toBe(true);
 });
 
 test('it sets background-image with provided "backgroundImage"', async () => {

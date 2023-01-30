@@ -1,5 +1,6 @@
 import { fireEvent } from '@testing-library/react';
 import * as React from 'react';
+import { hasClass } from '../../testUtils/hasClass';
 import { renderWithTheme } from '../../testUtils/renderWithTheme';
 import { Tab, TabList, TabPanel, Tabs } from './index';
 
@@ -35,8 +36,8 @@ test('it renders variant pill Tabs', async () => {
   const options = root.querySelectorAll('[role="tab"]');
   expect(options).toBeTruthy();
   expect(options.length).toEqual(2);
-  expect(options[0]).toHaveClass('ChromaTab-pill');
-  expect(options[1]).toHaveClass('ChromaTab-pill');
+  expect(hasClass(options[0], 'ChromaTab-pill')).toBe(true);
+  expect(hasClass(options[1], 'ChromaTab-pill')).toBe(true);
 });
 
 test('it renders fullWidth Tabs', async () => {
@@ -50,7 +51,7 @@ test('it renders fullWidth Tabs', async () => {
   );
 
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaTabList-fullWidth');
+  expect(hasClass(root, 'ChromaTabList-fullWidth')).toBe(true);
   const options = root.querySelectorAll('[role="tab"]');
   expect(options).toBeTruthy();
   expect(options.length).toEqual(2);

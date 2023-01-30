@@ -1,5 +1,6 @@
 import { act, fireEvent } from '@testing-library/react';
 import * as React from 'react';
+import { hasClass } from '../../testUtils/hasClass';
 import { IconComponent } from '../../testUtils/IconComponent';
 import { renderWithTheme } from '../../testUtils/renderWithTheme';
 import { List, ListGroupHeading, ListItem } from './index';
@@ -128,7 +129,7 @@ test('it spreads List item props properly', async () => {
 
   const option = await findByTestId('option');
   expect(option.firstChild).toBeDisabled();
-  expect(option.firstChild).toHaveClass('List-item-1');
+  expect(hasClass(option.firstElementChild, 'List-item-1')).toBe(true);
 });
 
 test('it applies the provided className', async () => {

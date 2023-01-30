@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { hasClass } from '../../testUtils/hasClass';
 import { renderWithTheme } from '../../testUtils/renderWithTheme';
 import { Body } from './index';
 
@@ -17,7 +18,7 @@ test('it applies the provided className', async () => {
   );
 
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('custom-class');
+  expect(hasClass(root, 'custom-class')).toBe(true);
 });
 
 test('it renders the component using the provided "as"', async () => {

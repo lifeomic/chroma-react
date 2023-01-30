@@ -17,5 +17,5 @@ test('it applies the provided className', async () => {
     <BreadcrumbNav data-testid={testId} className="custom-class-name" />
   );
   const breadcrumbNav = await findByTestId(testId);
-  expect(breadcrumbNav).toHaveClass('custom-class-name');
+  expect(breadcrumbNav.classList.contains('custom-class-name')).true;
 });

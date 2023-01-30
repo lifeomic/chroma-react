@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { hasClass } from '../../testUtils/hasClass';
 import { renderWithTheme } from '../../testUtils/renderWithTheme';
 import { Header } from './index';
 
@@ -22,7 +23,7 @@ test('it applies the provided className', async () => {
   );
 
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('custom-class');
+  expect(hasClass(root, 'custom-class')).toBe(true);
 });
 
 test('it renders the content passed for logo', async () => {
@@ -32,8 +33,8 @@ test('it renders the content passed for logo', async () => {
 
   const logoContainer = await findByRole('presentation');
   expect(logoContainer).toBeInTheDocument();
-  expect(logoContainer).toHaveClass('ChromaHeader-container');
-  expect(logoContainer).toHaveClass('ChromaHeader-logo');
+  expect(hasClass(logoContainer, 'ChromaHeader-container')).toBe(true);
+  expect(hasClass(logoContainer, 'ChromaHeader-logo')).toBe(true);
 });
 
 test('it renders the logo as centered with "centerLogo"', async () => {
@@ -42,7 +43,7 @@ test('it renders the logo as centered with "centerLogo"', async () => {
   );
 
   const logoContainer = await findByRole('presentation');
-  expect(logoContainer).toHaveClass('ChromaHeader-centerLogo');
+  expect(hasClass(logoContainer, 'ChromaHeader-centerLogo')).toBe(true);
 });
 
 test('it renders the content passed for left', async () => {

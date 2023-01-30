@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { hasClass } from '../../testUtils/hasClass';
 import { renderWithTheme } from '../../testUtils/renderWithTheme';
 import { StepConnector } from './index';
 
@@ -11,7 +12,7 @@ test('it renders a StepConnector', async () => {
   const root = await findByTestId(testId);
   expect(root).toBeInTheDocument();
   expect(root.getAttribute('role')).toEqual('presentation');
-  expect(root).toHaveClass('ChromaStepConnector-connectorRoot');
+  expect(hasClass(root, 'ChromaStepConnector-connectorRoot')).toBe(true);
 });
 
 test('it applies the class with hasSubTitle', async () => {
@@ -19,7 +20,7 @@ test('it applies the class with hasSubTitle', async () => {
     <StepConnector data-testid={testId} hasSubTitle />
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaStepConnector-subTitle');
+  expect(hasClass(root, 'ChromaStepConnector-subTitle')).toBe(true);
 });
 
 test('it applies the class with hasSubTitlePill', async () => {
@@ -27,7 +28,7 @@ test('it applies the class with hasSubTitlePill', async () => {
     <StepConnector data-testid={testId} hasSubTitlePill />
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaStepConnector-subTitlePill');
+  expect(hasClass(root, 'ChromaStepConnector-subTitlePill')).toBe(true);
 });
 
 test('it applies the activeLine class when "active"', async () => {
@@ -35,7 +36,9 @@ test('it applies the activeLine class when "active"', async () => {
     <StepConnector data-testid={testId} active />
   );
   const root = await findByTestId(testId);
-  expect(root?.firstElementChild).toHaveClass('ChromaStepConnector-activeLine');
+  expect(
+    hasClass(root?.firstElementChild, 'ChromaStepConnector-activeLine')
+  ).toBe(true);
 });
 
 test('it applies the activeLine class when "completed"', async () => {
@@ -43,5 +46,7 @@ test('it applies the activeLine class when "completed"', async () => {
     <StepConnector data-testid={testId} completed />
   );
   const root = await findByTestId(testId);
-  expect(root?.firstElementChild).toHaveClass('ChromaStepConnector-activeLine');
+  expect(
+    hasClass(root?.firstElementChild, 'ChromaStepConnector-activeLine')
+  ).toBe(true);
 });

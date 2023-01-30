@@ -2,6 +2,7 @@ import * as React from 'react';
 import { renderWithTheme } from '../../testUtils/renderWithTheme';
 import { SelectOption, SelectOptionProps } from './index';
 import { waitFor } from '@testing-library/dom';
+import { hasClass } from '../../testUtils/hasClass';
 
 const testId = 'SelectOption';
 
@@ -72,5 +73,5 @@ test('it applies the provided className', async () => {
   );
 
   const option = await findByTestId(testId);
-  expect(option).toHaveClass('custom-class-name');
+  expect(hasClass(option, 'custom-class-name')).toBe(true);
 });

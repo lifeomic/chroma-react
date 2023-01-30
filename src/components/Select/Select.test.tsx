@@ -12,6 +12,7 @@ import {
 import { waitFor } from '@testing-library/dom';
 import { press } from 'reakit-test-utils';
 import { IconComponent } from '../../testUtils/IconComponent';
+import { hasClass } from '../../testUtils/hasClass';
 
 const headingId = 'GroupHeading';
 const testId = 'Select';
@@ -53,7 +54,7 @@ test('it renders an icon when icon and tooltipMessage are provided', async () =>
   );
 
   const icon = await findByTestId('iconComponent');
-  expect(icon).toHaveClass('ChromaSelect-labelIcon');
+  expect(hasClass(icon, 'ChromaSelect-labelIcon')).toBe(true);
 });
 
 test('it renders an inverse color icon when icon and tooltipMessage are provided', async () => {
@@ -69,7 +70,7 @@ test('it renders an inverse color icon when icon and tooltipMessage are provided
   );
 
   const icon = await findByTestId('iconComponent');
-  expect(icon).toHaveClass('ChromaSelect-labelIconInverse');
+  expect(hasClass(icon, 'ChromaSelect-labelIconInverse')).toBe(true);
 });
 
 test('it renders the provided secondaryLabel', async () => {
@@ -447,7 +448,7 @@ test('it renders an * when the field is required', async () => {
   );
   const asterisk = await findByText('*');
   expect(asterisk).toBeInTheDocument();
-  expect(asterisk).toHaveClass('ChromaSelect-required');
+  expect(hasClass(asterisk, 'ChromaSelect-required')).toBe(true);
 });
 
 test('it renders an inverse color * when the field is required', async () => {
@@ -461,7 +462,6 @@ test('it renders an inverse color * when the field is required', async () => {
     </Select>
   );
   const asterisk = await findByText('*');
-  expect(asterisk).toHaveClass(
-    'ChromaSelect-required ChromaSelect-requiredInverse'
-  );
+  expect(hasClass(asterisk, 'ChromaSelect-required')).toBe(true);
+  expect(hasClass(asterisk, 'ChromaSelect-requiredInverse')).toBe(true);
 });

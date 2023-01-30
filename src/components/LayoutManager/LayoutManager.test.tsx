@@ -1,5 +1,6 @@
 import { act, RenderResult } from '@testing-library/react';
 import * as React from 'react';
+import { hasClass } from '../../testUtils/hasClass';
 import { renderWithTheme } from '../../testUtils/renderWithTheme';
 import { LayoutManager, LayoutManagerProps } from './LayoutManager';
 import {
@@ -75,9 +76,9 @@ test('renders sidebar collapsed', async () => {
   );
 
   const sidebar = await findByTestId(testId);
-  expect(sidebar?.parentElement).toHaveClass(
-    'ChromaLayoutManager-sidebarCollapsed'
-  );
+  expect(
+    hasClass(sidebar?.parentElement, 'ChromaLayoutManager-sidebarCollapsed')
+  ).toBe(true);
 });
 
 test('toggleSidebarCollapsed toggles isSidebarCollapsed value', () => {

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { hasClass } from '../../testUtils/hasClass';
 import { renderWithTheme } from '../../testUtils/renderWithTheme';
 import { GroupHeading, GroupHeadingProps } from './index';
 
@@ -32,4 +33,5 @@ test('it applies the provided className', async () => {
 
   const heading = await findByTestId(testId);
   expect(heading).toHaveClass('custom-class-name');
+  expect(hasClass(heading, 'custom-class-name')).toBe(true);
 });

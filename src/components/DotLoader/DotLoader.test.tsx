@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { hasClass } from '../../testUtils/hasClass';
 import { renderWithTheme } from '../../testUtils/renderWithTheme';
 import { DotLoader } from './';
 
@@ -22,7 +23,7 @@ test('it renders a DotLoader with "size={0}"', async () => {
   );
 
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaDotLoader-size0');
+  expect(hasClass(root, 'ChromaDotLoader-size0')).toBe(true);
 });
 
 test('it renders a DotLoader with "size={1}"', async () => {
@@ -31,5 +32,5 @@ test('it renders a DotLoader with "size={1}"', async () => {
   );
 
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaDotLoader-size1');
+  expect(hasClass(root, 'ChromaDotLoader-size1')).toBe(true);
 });

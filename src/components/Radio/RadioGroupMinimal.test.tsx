@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { hasClass } from '../../testUtils/hasClass';
 import { renderWithTheme } from '../../testUtils/renderWithTheme';
 import { RadioGroupMinimal } from './index';
 
@@ -10,7 +11,7 @@ test('it renders a RadioGroupMinimal', async () => {
   );
 
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaRadioGroupMinimal-root');
+  expect(hasClass(root, 'ChromaRadioGroupMinimal-root')).toBe(true);
   expect(root.getAttribute('role')).toEqual('radiogroup');
 });
 
@@ -32,9 +33,9 @@ test('it renders an inverse color RadioGroupMinimal', async () => {
   );
 
   const children = await findByTestId(testId);
-  expect(children?.parentElement).toHaveClass(
-    'ChromaRadioGroupMinimal-radiosInverse'
-  );
+  expect(
+    hasClass(children?.parentElement, 'ChromaRadioGroupMinimal-radiosInverse')
+  ).toBe(true);
 });
 
 test('it renders a direction row RadioGroupMinimal', async () => {
@@ -45,9 +46,9 @@ test('it renders a direction row RadioGroupMinimal', async () => {
   );
 
   const child = await findByTestId(testId);
-  expect(child?.parentElement).toHaveClass(
-    'ChromaRadioGroupMinimal-directionRow'
-  );
+  expect(
+    hasClass(child?.parentElement, 'ChromaRadioGroupMinimal-directionRow')
+  ).toBe(true);
 });
 
 test('it renders children', async () => {
@@ -81,7 +82,9 @@ test('it renders with the "fullWidth" prop', async () => {
   );
 
   const radioGroupMinimal = await findByTestId(testId);
-  expect(radioGroupMinimal).toHaveClass('ChromaRadioGroupMinimal-fullWidth');
+  expect(hasClass(radioGroupMinimal, 'ChromaRadioGroupMinimal-fullWidth')).toBe(
+    true
+  );
 });
 
 test('it renders an * when the field is required', async () => {
@@ -91,7 +94,7 @@ test('it renders an * when the field is required', async () => {
 
   const asterisk = await findByText('*');
   expect(asterisk).toBeInTheDocument();
-  expect(asterisk).toHaveClass('ChromaRadioGroupMinimal-required');
+  expect(hasClass(asterisk, 'ChromaRadioGroupMinimal-required')).toBe(true);
 });
 
 test('it renders an inverse color * when the field is required', async () => {
@@ -100,7 +103,8 @@ test('it renders an inverse color * when the field is required', async () => {
   );
 
   const asterisk = await findByText('*');
-  expect(asterisk).toHaveClass(
-    'ChromaRadioGroupMinimal-required ChromaRadioGroupMinimal-requiredInverse'
+  expect(hasClass(asterisk, 'ChromaRadioGroupMinimal-required')).toBe(true);
+  expect(hasClass(asterisk, 'ChromaRadioGroupMinimal-requiredInverse')).toBe(
+    true
   );
 });

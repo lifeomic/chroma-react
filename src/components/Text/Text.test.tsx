@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { hasClass } from '../../testUtils/hasClass';
 import { renderWithTheme } from '../../testUtils/renderWithTheme';
 import { Text } from './index';
 
@@ -12,11 +13,11 @@ test('it renders Text', async () => {
   const root = await findByTestId(testId);
   expect(root).toBeInTheDocument();
   expect(root?.nodeName).toEqual('P');
-  expect(root).toHaveClass('ChromaText-root');
-  expect(root).toHaveClass('ChromaText-body');
-  expect(root).toHaveClass('ChromaText-weightRegular');
-  expect(root).not.toHaveClass('ChromaText-familyMonospace');
-  expect(root).not.toHaveClass('ChromaText-inverseColor');
+  expect(hasClass(root, 'ChromaText-root')).toBe(true);
+  expect(hasClass(root, 'ChromaText-body')).toBe(true);
+  expect(hasClass(root, 'ChromaText-weightRegular')).toBe(true);
+  expect(hasClass(root, 'ChromaText-familyMonospace')).toBe(false);
+  expect(hasClass(root, 'ChromaText-inverseColor')).toBe(false);
 });
 
 test('it renders Text as an "h6" when `size="headline"`', async () => {
@@ -46,7 +47,7 @@ test('it renders secondary font', async () => {
     </Text>
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaText-familySecondary');
+  expect(hasClass(root, 'ChromaText-familySecondary')).toBe(true);
 });
 
 test('it renders monospace font', async () => {
@@ -56,7 +57,7 @@ test('it renders monospace font', async () => {
     </Text>
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaText-familyMonospace');
+  expect(hasClass(root, 'ChromaText-familyMonospace')).toBe(true);
 });
 
 test('it renders light weight text', async () => {
@@ -66,7 +67,7 @@ test('it renders light weight text', async () => {
     </Text>
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaText-weightLight');
+  expect(hasClass(root, 'ChromaText-weightLight')).toBe(true);
 });
 
 test('it renders regular weight text', async () => {
@@ -76,7 +77,7 @@ test('it renders regular weight text', async () => {
     </Text>
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaText-weightRegular');
+  expect(hasClass(root, 'ChromaText-weightRegular')).toBe(true);
 });
 
 test('it renders bold weight text', async () => {
@@ -86,7 +87,7 @@ test('it renders bold weight text', async () => {
     </Text>
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaText-weightBold');
+  expect(hasClass(root, 'ChromaText-weightBold')).toBe(true);
 });
 
 test('it renders body text', async () => {
@@ -96,7 +97,7 @@ test('it renders body text', async () => {
     </Text>
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaText-body');
+  expect(hasClass(root, 'ChromaText-body')).toBe(true);
 });
 
 test('it renders subbody text', async () => {
@@ -106,7 +107,7 @@ test('it renders subbody text', async () => {
     </Text>
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaText-subbody');
+  expect(hasClass(root, 'ChromaText-subbody')).toBe(true);
 });
 
 test('it renders table text', async () => {
@@ -116,7 +117,7 @@ test('it renders table text', async () => {
     </Text>
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaText-table');
+  expect(hasClass(root, 'ChromaText-table')).toBe(true);
 });
 
 test('it renders caption text', async () => {
@@ -126,7 +127,7 @@ test('it renders caption text', async () => {
     </Text>
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaText-caption');
+  expect(hasClass(root, 'ChromaText-caption')).toBe(true);
 });
 
 test('it renders button text', async () => {
@@ -136,7 +137,7 @@ test('it renders button text', async () => {
     </Text>
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaText-button');
+  expect(hasClass(root, 'ChromaText-button')).toBe(true);
 });
 
 test('it renders tooltip text', async () => {
@@ -146,7 +147,7 @@ test('it renders tooltip text', async () => {
     </Text>
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaText-tooltip');
+  expect(hasClass(root, 'ChromaText-tooltip')).toBe(true);
 });
 
 test('it renders code text', async () => {
@@ -156,7 +157,7 @@ test('it renders code text', async () => {
     </Text>
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaText-code');
+  expect(hasClass(root, 'ChromaText-code')).toBe(true);
 });
 
 test('it applies the provided className', async () => {
@@ -166,7 +167,7 @@ test('it applies the provided className', async () => {
     </Text>
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('custom-class-name');
+  expect(hasClass(root, 'custom-class-name')).toBe(true);
 });
 
 test('it applies the inverse class when `color="inverse"`', async () => {
@@ -176,7 +177,7 @@ test('it applies the inverse class when `color="inverse"`', async () => {
     </Text>
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaText-inverseColor');
+  expect(hasClass(root, 'ChromaText-inverseColor')).toBe(true);
 });
 
 test('it applies the negative class when `color="negative"`', async () => {
@@ -186,7 +187,7 @@ test('it applies the negative class when `color="negative"`', async () => {
     </Text>
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaText-negativeColor');
+  expect(hasClass(root, 'ChromaText-negativeColor')).toBe(true);
 });
 
 test('it applies the positive class when `color="positive"`', async () => {
@@ -196,7 +197,7 @@ test('it applies the positive class when `color="positive"`', async () => {
     </Text>
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaText-positiveColor');
+  expect(hasClass(root, 'ChromaText-positiveColor')).toBe(true);
 });
 
 test('it applies the marginBottom class when "marginBottom"', async () => {
@@ -206,7 +207,7 @@ test('it applies the marginBottom class when "marginBottom"', async () => {
     </Text>
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaText-marginBottom');
+  expect(hasClass(root, 'ChromaText-marginBottom')).toBe(true);
 });
 
 test('it renders align="center"', async () => {
@@ -216,7 +217,7 @@ test('it renders align="center"', async () => {
     </Text>
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaText-alignCenter');
+  expect(hasClass(root, 'ChromaText-alignCenter')).toBe(true);
 });
 
 test('it renders align="justify"', async () => {
@@ -226,7 +227,7 @@ test('it renders align="justify"', async () => {
     </Text>
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaText-alignJustify');
+  expect(hasClass(root, 'ChromaText-alignJustify')).toBe(true);
 });
 
 test('it renders align="left"', async () => {
@@ -236,7 +237,7 @@ test('it renders align="left"', async () => {
     </Text>
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaText-alignLeft');
+  expect(hasClass(root, 'ChromaText-alignLeft')).toBe(true);
 });
 
 test('it renders align="right"', async () => {
@@ -246,5 +247,5 @@ test('it renders align="right"', async () => {
     </Text>
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaText-alignRight');
+  expect(hasClass(root, 'ChromaText-alignRight')).toBe(true);
 });

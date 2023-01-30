@@ -4,6 +4,7 @@ import { fireEvent, waitFor, within } from '@testing-library/dom';
 import { renderWithTheme } from '../../testUtils/renderWithTheme';
 import * as React from 'react';
 import { press } from 'reakit-test-utils';
+import { hasClass } from '../../testUtils/hasClass';
 
 const testId = 'ComboBox';
 const optionId = 'SelectOption';
@@ -394,7 +395,7 @@ test('it renders an * when the field is required', async () => {
 
   const asterisk = await findByText('*');
   expect(asterisk).toBeInTheDocument();
-  expect(asterisk).toHaveClass('ChromaSelect-required');
+  expect(hasClass(asterisk, 'ChromaSelect-required')).toBe(true);
 });
 
 test('it renders an inverse color * when the field is required', async () => {
@@ -409,7 +410,6 @@ test('it renders an inverse color * when the field is required', async () => {
   );
 
   const asterisk = await findByText('*');
-  expect(asterisk).toHaveClass(
-    'ChromaSelect-required ChromaSelect-requiredInverse'
-  );
+  expect(hasClass(asterisk, 'ChromaSelect-required')).toBe(true);
+  expect(hasClass(asterisk, 'ChromaSelect-requiredInverse')).toBe(true);
 });

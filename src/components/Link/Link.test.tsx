@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { MemoryRouter } from 'react-router-dom';
+import { hasClass } from '../../testUtils/hasClass';
 import { renderWithTheme } from '../../testUtils/renderWithTheme';
 import { Link, LinkProps } from './';
 
@@ -48,7 +49,7 @@ test('it renders with `color="inverse"`', async () => {
     </MemoryRouter>
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaLink-inverse');
+  expect(hasClass(root, 'ChromaLink-inverse')).toBe(true);
 });
 
 test('it renders with `color="negative"`', async () => {
@@ -61,7 +62,7 @@ test('it renders with `color="negative"`', async () => {
     </MemoryRouter>
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaLink-negative');
+  expect(hasClass(root, 'ChromaLink-negative')).toBe(true);
 });
 
 test('it renders with `color="positive"`', async () => {
@@ -74,7 +75,7 @@ test('it renders with `color="positive"`', async () => {
     </MemoryRouter>
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaLink-positive');
+  expect(hasClass(root, 'ChromaLink-positive')).toBe(true);
 });
 
 test('it applies the provided className', async () => {
@@ -87,5 +88,5 @@ test('it applies the provided className', async () => {
     </MemoryRouter>
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('custom-class-name');
+  expect(hasClass(root, 'custom-class-name')).toBe(true);
 });

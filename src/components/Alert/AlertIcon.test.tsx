@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { hasClass } from '../../testUtils/hasClass';
 import { IconComponent } from '../../testUtils/IconComponent';
 import { renderWithTheme } from '../../testUtils/renderWithTheme';
 import { AlertIcon } from './index';
@@ -12,7 +13,7 @@ test('it renders an AlertIcon', async () => {
 
   const iconWrapper = await findByTestId(testId);
   expect(iconWrapper).toBeInTheDocument();
-  expect(iconWrapper).toHaveClass('ChromaAlertIcon-root');
+  expect(hasClass(iconWrapper, 'ChromaAlertIcon-root')).toBe(true);
 
   const icon = await findByRole('img', { hidden: true });
   expect(icon).toBeInTheDocument();
@@ -24,5 +25,5 @@ test('it applies the provided className', async () => {
   );
 
   const body = await findByTestId(testId);
-  expect(body).toHaveClass('custom-class-name');
+  expect(hasClass(body, 'custom-class-name')).toBe(true);
 });

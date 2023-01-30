@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { hasClass } from '../../testUtils/hasClass';
 import { IconComponent } from '../../testUtils/IconComponent';
 import { renderWithTheme } from '../../testUtils/renderWithTheme';
 import { PopoverItem, PopoverItemProps } from '../Popover';
@@ -18,9 +19,9 @@ test('it renders a PopoverItem', async () => {
   expect(root).toBeInTheDocument();
   expect(root.getAttribute('role')).toEqual('button');
   expect(root.getAttribute('tabIndex')).toEqual('0');
-  expect(root).toHaveClass('ChromaPopoverItem-root');
-  expect(root).toHaveClass('ChromaPopoverItem-directionRow');
-  expect(root).toHaveClass('ChromaPopoverItem-justifyStart');
+  expect(hasClass(root, 'ChromaPopoverItem-root')).toBe(true);
+  expect(hasClass(root, 'ChromaPopoverItem-directionRow')).toBe(true);
+  expect(hasClass(root, 'ChromaPopoverItem-justifyStart')).toBe(true);
 });
 
 test('it renders text', async () => {
@@ -37,7 +38,7 @@ test('it applies the proper classes when `onClick` is provided', async () => {
     <PopoverItem data-testid={testId} onClick={onClick} />
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaPopoverItem-hoverPointer');
+  expect(hasClass(root, 'ChromaPopoverItem-hoverPointer')).toBe(true);
 });
 
 test('it applies "noTextWrap" to text', async () => {
@@ -45,7 +46,7 @@ test('it applies "noTextWrap" to text', async () => {
     <PopoverItem data-testid={testId} text="chroma" noTextWrap={true} />
   );
   const text = await findByText(/chroma/);
-  expect(text).toHaveClass('ChromaPopoverItem-textNoWrap');
+  expect(hasClass(text, 'ChromaPopoverItem-textNoWrap')).toBe(true);
 });
 
 test('it applies "clipText"', async () => {
@@ -53,7 +54,7 @@ test('it applies "clipText"', async () => {
     <PopoverItem data-testid={testId} text="chroma" clipText={true} />
   );
   const text = await findByText(/chroma/);
-  expect(text).toHaveClass('ChromaPopoverItem-clipText');
+  expect(hasClass(text, 'ChromaPopoverItem-clipText')).toBe(true);
 });
 
 test('it applies "justify: space-between"', async () => {
@@ -61,7 +62,7 @@ test('it applies "justify: space-between"', async () => {
     <PopoverItem data-testid={testId} justify="space-between" />
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaPopoverItem-justifyBetween');
+  expect(hasClass(root, 'ChromaPopoverItem-justifyBetween')).toBe(true);
 });
 
 test('it applies "justify: center"', async () => {
@@ -69,7 +70,7 @@ test('it applies "justify: center"', async () => {
     <PopoverItem data-testid={testId} justify="center" />
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaPopoverItem-justifyCenter');
+  expect(hasClass(root, 'ChromaPopoverItem-justifyCenter')).toBe(true);
 });
 
 test('it applies "justify: flex-end"', async () => {
@@ -77,7 +78,7 @@ test('it applies "justify: flex-end"', async () => {
     <PopoverItem data-testid={testId} justify="flex-end" />
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaPopoverItem-justifyEnd');
+  expect(hasClass(root, 'ChromaPopoverItem-justifyEnd')).toBe(true);
 });
 
 test('it applies "direction: row-reverse"', async () => {
@@ -85,7 +86,7 @@ test('it applies "direction: row-reverse"', async () => {
     <PopoverItem data-testid={testId} direction="row-reverse" />
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaPopoverItem-directionRowReverse');
+  expect(hasClass(root, 'ChromaPopoverItem-directionRowReverse')).toBe(true);
 });
 
 test('it applies the provided className', async () => {
@@ -93,5 +94,5 @@ test('it applies the provided className', async () => {
     <PopoverItem data-testid={testId} className="custom-class-name" />
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('custom-class-name');
+  expect(hasClass(root, 'custom-class-name')).toBe(true);
 });

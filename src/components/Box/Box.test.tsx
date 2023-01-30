@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { hasClass } from '../../testUtils/hasClass';
 import { renderWithTheme } from '../../testUtils/renderWithTheme';
 import { Box } from './index';
 
@@ -7,7 +8,7 @@ const testId = 'Box';
 test('it renders a Box', async () => {
   const { findByTestId } = renderWithTheme(<Box data-testid={testId} />);
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaBox-root');
+  expect(hasClass(root, 'ChromaBox-root')).toBe(true);
 });
 
 test('it renders a Box with direction="row"', async () => {
@@ -15,7 +16,7 @@ test('it renders a Box with direction="row"', async () => {
     <Box direction="row" data-testid={testId} />
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaBox-directionRow');
+  expect(hasClass(root, 'ChromaBox-directionRow')).toBe(true);
 });
 
 test('it renders a Box with direction="column"', async () => {
@@ -23,7 +24,7 @@ test('it renders a Box with direction="column"', async () => {
     <Box direction="column" data-testid={testId} />
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaBox-directionColumn');
+  expect(hasClass(root, 'ChromaBox-directionColumn')).toBe(true);
 });
 
 test('it renders a Box with align="baseline"', async () => {
@@ -31,7 +32,7 @@ test('it renders a Box with align="baseline"', async () => {
     <Box align="baseline" data-testid={testId} />
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaBox-alignBaseline');
+  expect(hasClass(root, 'ChromaBox-alignBaseline')).toBe(true);
 });
 
 test('it renders a Box with align="center"', async () => {
@@ -39,7 +40,7 @@ test('it renders a Box with align="center"', async () => {
     <Box align="center" data-testid={testId} />
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaBox-alignCenter');
+  expect(hasClass(root, 'ChromaBox-alignCenter')).toBe(true);
 });
 
 test('it renders a Box with align="start"', async () => {
@@ -47,7 +48,7 @@ test('it renders a Box with align="start"', async () => {
     <Box align="start" data-testid={testId} />
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaBox-alignStart');
+  expect(hasClass(root, 'ChromaBox-alignStart')).toBe(true);
 });
 
 test('it renders a Box with align="flex-start"', async () => {
@@ -55,7 +56,7 @@ test('it renders a Box with align="flex-start"', async () => {
     <Box align="flex-start" data-testid={testId} />
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaBox-alignFlexStart');
+  expect(hasClass(root, 'ChromaBox-alignFlexStart')).toBe(true);
 });
 
 test('it renders a Box with align="end"', async () => {
@@ -63,7 +64,7 @@ test('it renders a Box with align="end"', async () => {
     <Box align="end" data-testid={testId} />
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaBox-alignEnd');
+  expect(hasClass(root, 'ChromaBox-alignEnd')).toBe(true);
 });
 
 test('it renders a Box with align="flex-end"', async () => {
@@ -71,7 +72,7 @@ test('it renders a Box with align="flex-end"', async () => {
     <Box align="flex-end" data-testid={testId} />
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaBox-alignFlexEnd');
+  expect(hasClass(root, 'ChromaBox-alignFlexEnd')).toBe(true);
 });
 
 test('it renders a Box with justify="center"', async () => {
@@ -79,7 +80,7 @@ test('it renders a Box with justify="center"', async () => {
     <Box justify="center" data-testid={testId} />
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaBox-justifyCenter');
+  expect(hasClass(root, 'ChromaBox-justifyCenter')).toBe(true);
 });
 
 test('it renders a Box with justify="flex-start"', async () => {
@@ -87,7 +88,7 @@ test('it renders a Box with justify="flex-start"', async () => {
     <Box justify="flex-start" data-testid={testId} />
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaBox-justifyStart');
+  expect(hasClass(root, 'ChromaBox-justifyStart')).toBe(true);
 });
 
 test('it renders a Box with justify="space-between"', async () => {
@@ -95,7 +96,7 @@ test('it renders a Box with justify="space-between"', async () => {
     <Box justify="space-between" data-testid={testId} />
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaBox-justifyBetween');
+  expect(hasClass(root, 'ChromaBox-justifyBetween')).toBe(true);
 });
 
 test('it renders a Box with justify="space-evenly"', async () => {
@@ -103,7 +104,7 @@ test('it renders a Box with justify="space-evenly"', async () => {
     <Box justify="space-evenly" data-testid={testId} />
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaBox-justifyEvenly');
+  expect(hasClass(root, 'ChromaBox-justifyEvenly')).toBe(true);
 });
 
 test('it renders a Box with justify="flex-end"', async () => {
@@ -111,7 +112,7 @@ test('it renders a Box with justify="flex-end"', async () => {
     <Box justify="flex-end" data-testid={testId} />
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaBox-justifyEnd');
+  expect(hasClass(root, 'ChromaBox-justifyEnd')).toBe(true);
 });
 
 test('it renders a Box with the provided className', async () => {
@@ -119,7 +120,7 @@ test('it renders a Box with the provided className', async () => {
     <Box className="custom-class-name" data-testid={testId} />
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('custom-class-name');
+  expect(hasClass(root, 'custom-class-name')).toBe(true);
 });
 
 test('it renders a Box with "fullWidth"', async () => {
@@ -127,7 +128,7 @@ test('it renders a Box with "fullWidth"', async () => {
     <Box fullWidth data-testid={testId} />
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaBox-fullWidth');
+  expect(hasClass(root, 'ChromaBox-fullWidth')).toBe(true);
 });
 
 test('it renders a Box with "fullHeight"', async () => {
@@ -135,7 +136,7 @@ test('it renders a Box with "fullHeight"', async () => {
     <Box fullHeight data-testid={testId} />
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaBox-fullHeight');
+  expect(hasClass(root, 'ChromaBox-fullHeight')).toBe(true);
 });
 
 test('it renders a Box with flexWrap', async () => {
@@ -143,7 +144,7 @@ test('it renders a Box with flexWrap', async () => {
     <Box flexWrap data-testid={testId} />
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaBox-flexWrap');
+  expect(hasClass(root, 'ChromaBox-flexWrap')).toBe(true);
 });
 
 test('it renders a Box with flexChildren', async () => {
@@ -151,7 +152,7 @@ test('it renders a Box with flexChildren', async () => {
     <Box flexChildren data-testid={testId} />
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaBox-flexChildren');
+  expect(hasClass(root, 'ChromaBox-flexChildren')).toBe(true);
 });
 
 test('it renders a Box with combined props', async () => {
@@ -166,11 +167,11 @@ test('it renders a Box with combined props', async () => {
     />
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('custom-class-name');
-  expect(root).toHaveClass('ChromaBox-justifyCenter');
-  expect(root).toHaveClass('ChromaBox-alignCenter');
-  expect(root).toHaveClass('ChromaBox-fullWidth');
-  expect(root).toHaveClass('ChromaBox-fullHeight');
+  expect(hasClass(root, 'custom-class-name')).toBe(true);
+  expect(hasClass(root, 'ChromaBox-justifyCenter')).toBe(true);
+  expect(hasClass(root, 'ChromaBox-alignCenter')).toBe(true);
+  expect(hasClass(root, 'ChromaBox-fullWidth')).toBe(true);
+  expect(hasClass(root, 'ChromaBox-fullHeight')).toBe(true);
 });
 
 test('it renders a Box with combined CSS props', async () => {
@@ -202,26 +203,26 @@ test('it renders a Box with combined CSS props', async () => {
     />
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaBox-height');
-  expect(root).toHaveClass('ChromaBox-width');
-  expect(root).toHaveClass('ChromaBox-gap');
-  expect(root).toHaveClass('ChromaBox-margin');
-  expect(root).toHaveClass('ChromaBox-marginTop');
-  expect(root).toHaveClass('ChromaBox-marginBottom');
-  expect(root).toHaveClass('ChromaBox-marginLeft');
-  expect(root).toHaveClass('ChromaBox-marginRight');
-  expect(root).toHaveClass('ChromaBox-marginX');
-  expect(root).toHaveClass('ChromaBox-marginY');
-  expect(root).toHaveClass('ChromaBox-padding');
-  expect(root).toHaveClass('ChromaBox-paddingTop');
-  expect(root).toHaveClass('ChromaBox-paddingBottom');
-  expect(root).toHaveClass('ChromaBox-paddingLeft');
-  expect(root).toHaveClass('ChromaBox-paddingRight');
-  expect(root).toHaveClass('ChromaBox-paddingX');
-  expect(root).toHaveClass('ChromaBox-paddingY');
-  expect(root).toHaveClass('ChromaBox-borderRadius');
-  expect(root).toHaveClass('ChromaBox-color');
-  expect(root).toHaveClass('ChromaBox-bgColor');
-  expect(root).toHaveClass('ChromaBox-flexWrap');
-  expect(root).toHaveClass('ChromaBox-flexChildren');
+  expect(hasClass(root, 'ChromaBox-height')).toBe(true);
+  expect(hasClass(root, 'ChromaBox-width')).toBe(true);
+  expect(hasClass(root, 'ChromaBox-gap')).toBe(true);
+  expect(hasClass(root, 'ChromaBox-margin')).toBe(true);
+  expect(hasClass(root, 'ChromaBox-marginTop')).toBe(true);
+  expect(hasClass(root, 'ChromaBox-marginBottom')).toBe(true);
+  expect(hasClass(root, 'ChromaBox-marginLeft')).toBe(true);
+  expect(hasClass(root, 'ChromaBox-marginRight')).toBe(true);
+  expect(hasClass(root, 'ChromaBox-marginX')).toBe(true);
+  expect(hasClass(root, 'ChromaBox-marginY')).toBe(true);
+  expect(hasClass(root, 'ChromaBox-padding')).toBe(true);
+  expect(hasClass(root, 'ChromaBox-paddingTop')).toBe(true);
+  expect(hasClass(root, 'ChromaBox-paddingBottom')).toBe(true);
+  expect(hasClass(root, 'ChromaBox-paddingLeft')).toBe(true);
+  expect(hasClass(root, 'ChromaBox-paddingRight')).toBe(true);
+  expect(hasClass(root, 'ChromaBox-paddingX')).toBe(true);
+  expect(hasClass(root, 'ChromaBox-paddingY')).toBe(true);
+  expect(hasClass(root, 'ChromaBox-borderRadius')).toBe(true);
+  expect(hasClass(root, 'ChromaBox-color')).toBe(true);
+  expect(hasClass(root, 'ChromaBox-bgColor')).toBe(true);
+  expect(hasClass(root, 'ChromaBox-flexWrap')).toBe(true);
+  expect(hasClass(root, 'ChromaBox-flexChildren')).toBe(true);
 });

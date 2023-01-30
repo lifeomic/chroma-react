@@ -2,6 +2,7 @@ import * as React from 'react';
 import { renderWithTheme } from '../../testUtils/renderWithTheme';
 import { Header, HeaderProps } from './index';
 import { fireEvent } from '@testing-library/dom';
+import { hasClass } from '../../testUtils/hasClass';
 
 const testId = 'Header';
 
@@ -25,7 +26,7 @@ test('it applies the provided className', async () => {
   );
 
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('custom-class');
+  expect(hasClass(root, 'custom-class')).toBe(true);
 });
 
 test('it renders the close button', async () => {

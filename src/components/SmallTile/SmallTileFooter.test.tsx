@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { hasClass } from '../../testUtils/hasClass';
 import { renderWithTheme } from '../../testUtils/renderWithTheme';
 import { SmallTileFooter } from './index';
 
@@ -17,7 +18,7 @@ test('it applies the provided className', async () => {
     <SmallTileFooter className="custom-class-name" data-testid={testId} />
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('custom-class-name');
+  expect(hasClass(root, 'custom-class-name')).toBe(true);
 });
 
 test('it spreads props', async () => {
@@ -55,7 +56,7 @@ test('it renders with `justify="space-between"`', async () => {
     <SmallTileFooter data-testid={testId} justify="space-between" />
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaSmallTileFooter-justifyBetween');
+  expect(hasClass(root, 'ChromaSmallTileFooter-justifyBetween')).toBe(true);
 });
 
 test('it renders with `justify="center"`', async () => {
@@ -63,7 +64,7 @@ test('it renders with `justify="center"`', async () => {
     <SmallTileFooter data-testid={testId} justify="center" />
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaSmallTileFooter-justifyCenter');
+  expect(hasClass(root, 'ChromaSmallTileFooter-justifyCenter')).toBe(true);
 });
 
 test('it renders with `justify="flex-end"`', async () => {
@@ -71,7 +72,7 @@ test('it renders with `justify="flex-end"`', async () => {
     <SmallTileFooter data-testid={testId} justify="flex-end" />
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaSmallTileFooter-justifyEnd');
+  expect(hasClass(root, 'ChromaSmallTileFooter-justifyEnd')).toBe(true);
 });
 
 test('it renders with `justify="flex-start"`', async () => {
@@ -79,5 +80,5 @@ test('it renders with `justify="flex-start"`', async () => {
     <SmallTileFooter data-testid={testId} justify="flex-start" />
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaSmallTileFooter-justifyStart');
+  expect(hasClass(root, 'ChromaSmallTileFooter-justifyStart')).toBe(true);
 });

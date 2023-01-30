@@ -1,5 +1,6 @@
 import { act, fireEvent } from '@testing-library/react';
 import * as React from 'react';
+import { hasClass } from '../../testUtils/hasClass';
 import { IconComponent } from '../../testUtils/IconComponent';
 import { renderWithTheme } from '../../testUtils/renderWithTheme';
 import { Menu, MenuGroupHeading, MenuItem } from './index';
@@ -170,7 +171,7 @@ test('it spreads menu item props properly', async () => {
 
   const option = await findByTestId('option');
   expect(option).toBeDisabled();
-  expect(option).toHaveClass('menu-item-1');
+  expect(hasClass(option, 'menu-item-1')).toBe(true);
 });
 
 test('it applies the provided className', async () => {
@@ -301,7 +302,7 @@ test('renders with color="negative"', async () => {
   fireEvent.click(button);
 
   const option = await findByTestId('option');
-  expect(option).toHaveClass('ChromaMenuItem-negative');
+  expect(hasClass(option, 'ChromaMenuItem-negative')).toBe(true);
 });
 
 test('renders with color="positive"', async () => {
@@ -326,5 +327,5 @@ test('renders with color="positive"', async () => {
   fireEvent.click(button);
 
   const option = await findByTestId('option');
-  expect(option).toHaveClass('ChromaMenuItem-positive');
+  expect(hasClass(option, 'ChromaMenuItem-positive')).toBe(true);
 });

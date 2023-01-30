@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { hasClass } from '../../testUtils/hasClass';
 import { renderWithTheme } from '../../testUtils/renderWithTheme';
 import { AlertBody } from './index';
 
@@ -9,7 +10,7 @@ test('it renders an AlertBody', async () => {
 
   const body = await findByTestId(testId);
   expect(body).toBeInTheDocument();
-  expect(body).toHaveClass('ChromaAlertBody-root');
+  expect(hasClass(body, 'ChromaAlertBody-root')).toBe(true);
 });
 
 test('it applies the provided className', async () => {
@@ -18,7 +19,7 @@ test('it applies the provided className', async () => {
   );
 
   const body = await findByTestId(testId);
-  expect(body).toHaveClass('custom-class-name');
+  expect(hasClass(body, 'custom-class-name')).toBe(true);
 });
 
 test('it applies the space-between class', async () => {
@@ -27,5 +28,5 @@ test('it applies the space-between class', async () => {
   );
 
   const body = await findByTestId(testId);
-  expect(body).toHaveClass('ChromaAlertBody-spaceBetween');
+  expect(hasClass(body, 'ChromaAlertBody-spaceBetween')).toBe(true);
 });

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { hasClass } from '../../testUtils/hasClass';
 import { renderWithTheme } from '../../testUtils/renderWithTheme';
 import { Slider, testIds } from './';
 
@@ -16,7 +17,7 @@ const props = {
 test('it renders a Slider', async () => {
   const { findByTestId } = renderWithTheme(<Slider {...props} />);
   const slider = await findByTestId(testIds.slider);
-  expect(slider).toHaveClass('ChromaSlider-slider');
+  expect(hasClass(slider, 'ChromaSlider-slider')).toBe(true);
 });
 
 test('it applies the provided className to the root', async () => {
@@ -24,7 +25,7 @@ test('it applies the provided className to the root', async () => {
     <Slider className="custom-class-name" {...props} />
   );
   const root = await findByTestId(testIds.root);
-  expect(root).toHaveClass('custom-class-name');
+  expect(hasClass(root, 'custom-class-name')).toBe(true);
 });
 
 test('it renders label when provided', async () => {
@@ -42,7 +43,7 @@ test('it applies labelBottom className to label when labelPlacement is bottom', 
   );
 
   const label = await findByText(/label-text/);
-  expect(label).toHaveClass('ChromaSlider-labelBottom');
+  expect(hasClass(label, 'ChromaSlider-labelBottom')).toBe(true);
 });
 
 test('it renders aria-label when provided', async () => {
@@ -171,7 +172,7 @@ test('it applies labelTop className to helpMessage when labelPlacement is top', 
   );
 
   const help = await findByText(/Helpful text/);
-  expect(help).toHaveClass('ChromaSlider-labelTop');
+  expect(hasClass(help, 'ChromaSlider-labelTop')).toBe(true);
 });
 
 test('it applies labelBottomTrailingMessage className to helpMessage when labelPlacement is bottom', async () => {
@@ -180,7 +181,7 @@ test('it applies labelBottomTrailingMessage className to helpMessage when labelP
   );
 
   const help = await findByText(/Helpful text/);
-  expect(help).toHaveClass('ChromaSlider-labelBottomTrailingMessage');
+  expect(hasClass(help, 'ChromaSlider-labelBottomTrailingMessage')).toBe(true);
 });
 
 test('it renders an error-state Slider', async () => {
@@ -189,7 +190,7 @@ test('it renders an error-state Slider', async () => {
   );
 
   const thumb = await findByTestId(testIds.thumb);
-  expect(thumb).toHaveClass('ChromaSlider-thumbError');
+  expect(hasClass(thumb, 'ChromaSlider-thumbError')).toBe(true);
 });
 
 test('it renders an error-state Slider with the provided errorMessage', async () => {
@@ -212,7 +213,7 @@ test('it applies trailingMessage className to errorMessage when labelPlacement i
   );
 
   const error = await findByText(/Slider error message/);
-  expect(error).toHaveClass('ChromaSlider-trailingMessage');
+  expect(hasClass(error, 'ChromaSlider-trailingMessage')).toBe(true);
 });
 
 test('it applies labelBottomTrailingMessage className to errorMessage when labelPlacement is bottom', async () => {
@@ -226,7 +227,7 @@ test('it applies labelBottomTrailingMessage className to errorMessage when label
   );
 
   const error = await findByText(/Slider error message/);
-  expect(error).toHaveClass('ChromaSlider-labelBottomTrailingMessage');
+  expect(hasClass(error, 'ChromaSlider-labelBottomTrailingMessage')).toBe(true);
 });
 
 // For accessibility audit

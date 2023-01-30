@@ -1,6 +1,7 @@
 import { LinearProgress } from './index';
 import { renderWithTheme } from '../../testUtils/renderWithTheme';
 import * as React from 'react';
+import { hasClass } from '../../testUtils/hasClass';
 
 const testId = 'LinearProgress';
 
@@ -41,9 +42,9 @@ test('it applies the indeterminate class when `variant="indeterminate"`', async 
   );
 
   const progress = await findByTestId(testId);
-  expect(progress.firstElementChild).toHaveClass(
-    'ChromaLinearProgress-indeterminate'
-  );
+  expect(
+    hasClass(progress.firstElementChild, 'ChromaLinearProgress-indeterminate')
+  ).toBe(true);
 });
 
 test('it does NOT set a style transform when `variant="indeterminate"`', async () => {

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { hasClass } from '../../testUtils/hasClass';
 import { renderWithTheme } from '../../testUtils/renderWithTheme';
 import { FormBox } from './index';
 
@@ -17,7 +18,7 @@ test('it renders a FormBox with the provided className', async () => {
   );
 
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('custom-class');
+  expect(hasClass(root, 'custom-class')).toBe(true);
 });
 
 test('it renders a FormBox with spacing=0', async () => {
@@ -26,7 +27,7 @@ test('it renders a FormBox with spacing=0', async () => {
   );
 
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaFormBox-vSpacing0');
+  expect(hasClass(root, 'ChromaFormBox-vSpacing0')).toBe(true);
 });
 
 test('it renders a FormBox with spacing=0.5', async () => {
@@ -35,7 +36,7 @@ test('it renders a FormBox with spacing=0.5', async () => {
   );
 
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaFormBox-vSpacing05');
+  expect(hasClass(root, 'ChromaFormBox-vSpacing05')).toBe(true);
 });
 
 test('it renders a FormBox with spacing=1', async () => {
@@ -44,7 +45,7 @@ test('it renders a FormBox with spacing=1', async () => {
   );
 
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaFormBox-vSpacing10');
+  expect(hasClass(root, 'ChromaFormBox-vSpacing10')).toBe(true);
 });
 
 test('it renders a FormBox with spacing=1.5', async () => {
@@ -53,7 +54,7 @@ test('it renders a FormBox with spacing=1.5', async () => {
   );
 
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaFormBox-vSpacing15');
+  expect(hasClass(root, 'ChromaFormBox-vSpacing15')).toBe(true);
 });
 
 test('it renders a FormBox with spacing=2', async () => {
@@ -62,7 +63,7 @@ test('it renders a FormBox with spacing=2', async () => {
   );
 
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaFormBox-vSpacing20');
+  expect(hasClass(root, 'ChromaFormBox-vSpacing20')).toBe(true);
 });
 
 test('it renders a FormBox with spacing=2.5', async () => {
@@ -71,7 +72,7 @@ test('it renders a FormBox with spacing=2.5', async () => {
   );
 
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaFormBox-vSpacing25');
+  expect(hasClass(root, 'ChromaFormBox-vSpacing25')).toBe(true);
 });
 
 test('it renders a FormBox with spacing=3', async () => {
@@ -79,7 +80,7 @@ test('it renders a FormBox with spacing=3', async () => {
     <FormBox spacing={3} data-testid={testId} />
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaFormBox-vSpacing30');
+  expect(hasClass(root, 'ChromaFormBox-vSpacing30')).toBe(true);
 });
 
 test('it renders a FormBox with padding=0', async () => {
@@ -88,7 +89,7 @@ test('it renders a FormBox with padding=0', async () => {
   );
 
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaFormBox-padding0');
+  expect(hasClass(root, 'ChromaFormBox-padding0')).toBe(true);
 });
 
 test('it renders a FormBox with padding=0.5', async () => {
@@ -97,7 +98,7 @@ test('it renders a FormBox with padding=0.5', async () => {
   );
 
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaFormBox-padding05');
+  expect(hasClass(root, 'ChromaFormBox-padding05')).toBe(true);
 });
 
 test('it renders a FormBox with padding=1', async () => {
@@ -106,7 +107,7 @@ test('it renders a FormBox with padding=1', async () => {
   );
 
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaFormBox-padding10');
+  expect(hasClass(root, 'ChromaFormBox-padding10')).toBe(true);
 });
 
 test('it renders a FormBox with padding=1.5', async () => {
@@ -115,7 +116,7 @@ test('it renders a FormBox with padding=1.5', async () => {
   );
 
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaFormBox-padding15');
+  expect(hasClass(root, 'ChromaFormBox-padding15')).toBe(true);
 });
 
 test('it renders a FormBox with padding=2', async () => {
@@ -124,7 +125,7 @@ test('it renders a FormBox with padding=2', async () => {
   );
 
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaFormBox-padding20');
+  expect(hasClass(root, 'ChromaFormBox-padding20')).toBe(true);
 });
 
 test('it renders a horizontal FormBox with spacing=0', async () => {
@@ -133,7 +134,7 @@ test('it renders a horizontal FormBox with spacing=0', async () => {
   );
 
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaFormBox-hSpacing0');
+  expect(hasClass(root, 'ChromaFormBox-hSpacing0')).toBe(true);
 });
 
 test('it renders a horizontal FormBox with spacing=0.5', async () => {
@@ -142,7 +143,7 @@ test('it renders a horizontal FormBox with spacing=0.5', async () => {
   );
 
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaFormBox-hSpacing05');
+  expect(hasClass(root, 'ChromaFormBox-hSpacing05')).toBe(true);
 });
 
 test('it renders a horizontal FormBox with spacing=1', async () => {
@@ -151,7 +152,7 @@ test('it renders a horizontal FormBox with spacing=1', async () => {
   );
 
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaFormBox-hSpacing10');
+  expect(hasClass(root, 'ChromaFormBox-hSpacing10')).toBe(true);
 });
 
 test('it renders a horizontal FormBox with spacing=1.5', async () => {
@@ -160,7 +161,7 @@ test('it renders a horizontal FormBox with spacing=1.5', async () => {
   );
 
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaFormBox-hSpacing15');
+  expect(hasClass(root, 'ChromaFormBox-hSpacing15')).toBe(true);
 });
 
 test('it renders a horizontal FormBox with spacing=2', async () => {
@@ -169,7 +170,7 @@ test('it renders a horizontal FormBox with spacing=2', async () => {
   );
 
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaFormBox-hSpacing20');
+  expect(hasClass(root, 'ChromaFormBox-hSpacing20')).toBe(true);
 });
 
 test('it renders a horizontal FormBox with spacing=2.5', async () => {
@@ -178,7 +179,7 @@ test('it renders a horizontal FormBox with spacing=2.5', async () => {
   );
 
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaFormBox-hSpacing25');
+  expect(hasClass(root, 'ChromaFormBox-hSpacing25')).toBe(true);
 });
 
 test('it renders a horizontal FormBox with spacing=3', async () => {
@@ -187,7 +188,7 @@ test('it renders a horizontal FormBox with spacing=3', async () => {
   );
 
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaFormBox-hSpacing30');
+  expect(hasClass(root, 'ChromaFormBox-hSpacing30')).toBe(true);
 });
 
 test('it renders a FormBox with paddingX=0', async () => {
@@ -196,7 +197,7 @@ test('it renders a FormBox with paddingX=0', async () => {
   );
 
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaFormBox-xPadding0');
+  expect(hasClass(root, 'ChromaFormBox-xPadding0')).toBe(true);
 });
 
 test('it renders a FormBox with paddingX=0.5', async () => {
@@ -205,7 +206,7 @@ test('it renders a FormBox with paddingX=0.5', async () => {
   );
 
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaFormBox-xPadding05');
+  expect(hasClass(root, 'ChromaFormBox-xPadding05')).toBe(true);
 });
 
 test('it renders a FormBox with paddingX=1', async () => {
@@ -214,7 +215,7 @@ test('it renders a FormBox with paddingX=1', async () => {
   );
 
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaFormBox-xPadding10');
+  expect(hasClass(root, 'ChromaFormBox-xPadding10')).toBe(true);
 });
 
 test('it renders a FormBox with paddingX=1.5', async () => {
@@ -223,7 +224,7 @@ test('it renders a FormBox with paddingX=1.5', async () => {
   );
 
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaFormBox-xPadding15');
+  expect(hasClass(root, 'ChromaFormBox-xPadding15')).toBe(true);
 });
 
 test('it renders a FormBox with paddingX=2', async () => {
@@ -232,7 +233,7 @@ test('it renders a FormBox with paddingX=2', async () => {
   );
 
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaFormBox-xPadding20');
+  expect(hasClass(root, 'ChromaFormBox-xPadding20')).toBe(true);
 });
 
 test('it renders a FormBox with paddingY=0', async () => {
@@ -241,7 +242,7 @@ test('it renders a FormBox with paddingY=0', async () => {
   );
 
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaFormBox-yPadding0');
+  expect(hasClass(root, 'ChromaFormBox-yPadding0')).toBe(true);
 });
 
 test('it renders a FormBox with paddingY=0.5', async () => {
@@ -250,7 +251,7 @@ test('it renders a FormBox with paddingY=0.5', async () => {
   );
 
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaFormBox-yPadding05');
+  expect(hasClass(root, 'ChromaFormBox-yPadding05')).toBe(true);
 });
 
 test('it renders a FormBox with paddingY=1', async () => {
@@ -259,7 +260,7 @@ test('it renders a FormBox with paddingY=1', async () => {
   );
 
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaFormBox-yPadding10');
+  expect(hasClass(root, 'ChromaFormBox-yPadding10')).toBe(true);
 });
 
 test('it renders a FormBox with paddingY=1.5', async () => {
@@ -268,7 +269,7 @@ test('it renders a FormBox with paddingY=1.5', async () => {
   );
 
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaFormBox-yPadding15');
+  expect(hasClass(root, 'ChromaFormBox-yPadding15')).toBe(true);
 });
 
 test('it renders a FormBox with paddingY=2', async () => {
@@ -277,7 +278,7 @@ test('it renders a FormBox with paddingY=2', async () => {
   );
 
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaFormBox-yPadding20');
+  expect(hasClass(root, 'ChromaFormBox-yPadding20')).toBe(true);
 });
 
 test('it allows combining padding values', async () => {
@@ -286,6 +287,6 @@ test('it allows combining padding values', async () => {
   );
 
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaFormBox-yPadding20');
-  expect(root).toHaveClass('ChromaFormBox-xPadding10');
+  expect(hasClass(root, 'ChromaFormBox-yPadding20')).toBe(true);
+  expect(hasClass(root, 'ChromaFormBox-xPadding10')).toBe(true);
 });

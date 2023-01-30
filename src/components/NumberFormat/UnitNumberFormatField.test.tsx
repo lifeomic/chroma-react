@@ -6,6 +6,7 @@ import {
   UnitNumberFormatField,
 } from './';
 import { fireEvent } from '@testing-library/react';
+import { hasClass } from '../../testUtils/hasClass';
 
 test('UnitNumberFormatField renders a TextField with min/max and formatted value', async () => {
   const onChange = jest.fn();
@@ -415,7 +416,7 @@ test('UnitNumberFormatField renders an * when the field is required', async () =
 
   const asterisk = await findByText('*');
   expect(asterisk).toBeInTheDocument();
-  expect(asterisk).toHaveClass('ChromaTextField-required');
+  expect(hasClass(asterisk, 'ChromaTextField-required')).toBe(true);
 });
 
 test('UnitNumberFormatField renders an inverse color * when the field is required', async () => {
@@ -434,9 +435,8 @@ test('UnitNumberFormatField renders an inverse color * when the field is require
   );
 
   const asterisk = await findByText('*');
-  expect(asterisk).toHaveClass(
-    'ChromaTextField-required ChromaTextField-requiredInverse'
-  );
+  expect(hasClass(asterisk, 'ChromaTextField-required')).toBe(true);
+  expect(hasClass(asterisk, 'ChromaTextField-requiredInverse')).toBe(true);
 });
 
 test('PriceFormatField renders an * when the field is required', async () => {
@@ -454,7 +454,7 @@ test('PriceFormatField renders an * when the field is required', async () => {
 
   const asterisk = await findByText('*');
   expect(asterisk).toBeInTheDocument();
-  expect(asterisk).toHaveClass('ChromaTextField-required');
+  expect(hasClass(asterisk, 'ChromaTextField-required')).toBe(true);
 });
 
 test('PriceFormatField renders an inverse color * when the field is required', async () => {
@@ -472,9 +472,8 @@ test('PriceFormatField renders an inverse color * when the field is required', a
   );
 
   const asterisk = await findByText('*');
-  expect(asterisk).toHaveClass(
-    'ChromaTextField-required ChromaTextField-requiredInverse'
-  );
+  expect(hasClass(asterisk, 'ChromaTextField-required')).toBe(true);
+  expect(hasClass(asterisk, 'ChromaTextField-requiredInverse')).toBe(true);
 });
 
 test('PercentFormatField renders an * when the field is required', async () => {
@@ -492,7 +491,7 @@ test('PercentFormatField renders an * when the field is required', async () => {
 
   const asterisk = await findByText('*');
   expect(asterisk).toBeInTheDocument();
-  expect(asterisk).toHaveClass('ChromaTextField-required');
+  expect(hasClass(asterisk, 'ChromaTextField-required')).toBe(true);
 });
 
 test('PercentFormatField renders an inverse color * when the field is required', async () => {
@@ -510,7 +509,6 @@ test('PercentFormatField renders an inverse color * when the field is required',
   );
 
   const asterisk = await findByText('*');
-  expect(asterisk).toHaveClass(
-    'ChromaTextField-required ChromaTextField-requiredInverse'
-  );
+  expect(hasClass(asterisk, 'ChromaTextField-required')).toBe(true);
+  expect(hasClass(asterisk, 'ChromaTextField-requiredInverse')).toBe(true);
 });

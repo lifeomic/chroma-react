@@ -1,6 +1,7 @@
 import { User } from '@lifeomic/chromicons';
 import { fireEvent } from '@testing-library/dom';
 import * as React from 'react';
+import { hasClass } from '../../testUtils/hasClass';
 import { renderWithTheme } from '../../testUtils/renderWithTheme';
 import { Radio, RadioProps } from './index';
 
@@ -18,7 +19,7 @@ test('it renders a Radio', async () => {
   );
   const radio = await findByTestId(testId);
   expect(radio).toBeInTheDocument();
-  expect(radio).toHaveClass('ChromaRadio-input');
+  expect(hasClass(radio, 'ChromaRadio-input')).toBe(true);
   expect(radio.getAttribute('aria-describedby')).toBeFalsy();
   expect(radio.getAttribute('role')).toEqual('radio');
   expect(radio.getAttribute('type')).toEqual('radio');
@@ -41,14 +42,14 @@ test('it renders an inverse color Radio with a help message', async () => {
   );
 
   const radio = await findByTestId(testId);
-  expect(radio).toHaveClass('ChromaRadio-inputInverse');
+  expect(hasClass(radio, 'ChromaRadio-inputInverse')).toBe(true);
 
   const label = await findByText(props.label);
-  expect(label).toHaveClass('ChromaRadio-labelInverse');
+  expect(hasClass(label, 'ChromaRadio-labelInverse')).toBe(true);
 
   const help = await findByText(/Helpful text/);
   expect(help).toBeInTheDocument();
-  expect(help).toHaveClass('ChromaFormHelpMessage-inverse');
+  expect(hasClass(help, 'ChromaFormHelpMessage-inverse')).toBe(true);
 });
 
 test('it applies the provided className', async () => {
@@ -57,7 +58,7 @@ test('it applies the provided className', async () => {
     <Radio {...props} data-testid={testId} className="custom-class-name" />
   );
   const radio = await findByTestId(testId);
-  expect(radio?.parentElement).toHaveClass('custom-class-name');
+  expect(hasClass(radio?.parentElement, 'custom-class-name')).toBe(true);
 });
 
 test('it renders a checked-by-default Radio', async () => {

@@ -11,6 +11,7 @@ import {
 
 // @ts-ignore
 import { log, error } from 'console';
+import { hasClass } from '../../testUtils/hasClass';
 
 const testId = 'TableModule';
 
@@ -254,10 +255,10 @@ test('it applies the provided class to a cell with data using "cell.className"',
   );
 
   const cell1 = await findByText(data[0].description);
-  expect(cell1).toHaveClass('cell1-custom-class');
+  expect(hasClass(cell1, 'cell1-custom-class')).toBe(true);
 
   const cell2 = await findByText(data[0].calories);
-  expect(cell2).toHaveClass('cell2-custom-class');
+  expect(hasClass(cell2, 'cell2-custom-class')).toBe(true);
 });
 
 test('it respects the "align" properties on "config"', async () => {
@@ -290,23 +291,27 @@ test('it respects the "align" properties on "config"', async () => {
 
   const headerCells = await findAllByTestId(testIds.headerCell);
   expect(headerCells?.length).toEqual(2);
-  expect(headerCells?.[0]).toHaveClass('ChromaTableHeaderCell-rootAlignRight');
-  expect(headerCells?.[1]).toHaveClass('ChromaTableHeaderCell-rootAlignRight');
+  expect(
+    hasClass(headerCells?.[0], 'ChromaTableHeaderCell-rootAlignRight')
+  ).toBe(true);
+  expect(
+    hasClass(headerCells?.[1], 'ChromaTableHeaderCell-rootAlignRight')
+  ).toBe(true);
 
   const bodyCells = await findAllByTestId(testIds.bodyCell);
   expect(bodyCells?.length).toEqual(4);
-  expect(bodyCells?.[0]).toHaveClass(
-    'ChromaTableModule-tableRowCellAlignRight'
-  );
-  expect(bodyCells?.[1]).toHaveClass(
-    'ChromaTableModule-tableRowCellAlignRight'
-  );
-  expect(bodyCells?.[2]).toHaveClass(
-    'ChromaTableModule-tableRowCellAlignRight'
-  );
-  expect(bodyCells?.[3]).toHaveClass(
-    'ChromaTableModule-tableRowCellAlignRight'
-  );
+  expect(
+    hasClass(bodyCells?.[0], 'ChromaTableModule-tableRowCellAlignRight')
+  ).toBe(true);
+  expect(
+    hasClass(bodyCells?.[1], 'ChromaTableModule-tableRowCellAlignRight')
+  ).toBe(true);
+  expect(
+    hasClass(bodyCells?.[2], 'ChromaTableModule-tableRowCellAlignRight')
+  ).toBe(true);
+  expect(
+    hasClass(bodyCells?.[3], 'ChromaTableModule-tableRowCellAlignRight')
+  ).toBe(true);
 });
 
 test('it renders a single column table appropriately', async () => {
@@ -334,7 +339,7 @@ test('it applies the provided className', async () => {
     <TableModule data-testid={testId} className="custom-class-name" />
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('custom-class-name');
+  expect(hasClass(root, 'custom-class-name')).toBe(true);
 });
 
 test('it renders the loading indicator when "isLoading"', () => {
@@ -392,7 +397,7 @@ test('it applies "maxCellWidth=1"', async () => {
     />
   );
   const [cell] = await findAllByTestId(testIds.bodyCell);
-  expect(cell).toHaveClass('ChromaTableModule-tableRowCellMaxWidth1');
+  expect(hasClass(cell, 'ChromaTableModule-tableRowCellMaxWidth1')).toBe(true);
 });
 
 test('it applies "maxCellWidth=2"', async () => {
@@ -406,7 +411,7 @@ test('it applies "maxCellWidth=2"', async () => {
     />
   );
   const [cell] = await findAllByTestId(testIds.bodyCell);
-  expect(cell).toHaveClass('ChromaTableModule-tableRowCellMaxWidth2');
+  expect(hasClass(cell, 'ChromaTableModule-tableRowCellMaxWidth2')).toBe(true);
 });
 
 //#region sorting tests
@@ -685,9 +690,9 @@ test('it sets isSticky class on all sticky columns', async () => {
 
   headers.forEach((header, index) => {
     if (config[index].isSticky) {
-      expect(header).toHaveClass('sticky-cell-hook');
+      expect(hasClass(header, 'sticky-cell-hook')).toBe(true);
     } else {
-      expect(header).not.toHaveClass('sticky-cell-hook');
+      expect(hasClass(header, 'sticky-cell-hook')).toBe(false);
     }
   });
 
@@ -697,9 +702,9 @@ test('it sets isSticky class on all sticky columns', async () => {
       isSticky = false;
     }
     if (isSticky) {
-      expect(cell).toHaveClass('sticky-cell-hook');
+      expect(hasClass(cell, 'sticky-cell-hook')).toBe(true);
     } else {
-      expect(cell).not.toHaveClass('sticky-cell-hook');
+      expect(hasClass(cell, 'sticky-cell-hook')).toBe(false);
     }
   });
 });

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { hasClass } from '../../testUtils/hasClass';
 import { renderWithTheme } from '../../testUtils/renderWithTheme';
 import { Alert } from './index';
 
@@ -10,7 +11,7 @@ test('it renders an Alert', async () => {
   const alert = await findByTestId(testId);
   expect(alert).toBeInTheDocument();
   expect(alert.getAttribute('role')).toBe('alert');
-  expect(alert).toHaveClass('ChromaAlert-info');
+  expect(hasClass(alert, 'ChromaAlert-info')).toBe(true);
 });
 
 test('it applies the provided className', async () => {
@@ -19,7 +20,7 @@ test('it applies the provided className', async () => {
   );
 
   const alert = await findByTestId(testId);
-  expect(alert).toHaveClass('custom-class-name');
+  expect(hasClass(alert, 'custom-class-name')).toBe(true);
 });
 
 test('it applies the fullWidth prop', async () => {
@@ -28,7 +29,7 @@ test('it applies the fullWidth prop', async () => {
   );
 
   const alert = await findByTestId(testId);
-  expect(alert).toHaveClass('ChromaAlert-fullWidth');
+  expect(hasClass(alert, 'ChromaAlert-fullWidth')).toBe(true);
 });
 
 test('it applies the error statusType', async () => {
@@ -37,7 +38,7 @@ test('it applies the error statusType', async () => {
   );
 
   const alert = await findByTestId(testId);
-  expect(alert).toHaveClass('ChromaAlert-error');
+  expect(hasClass(alert, 'ChromaAlert-error')).toBe(true);
 });
 
 test('it applies the info statusType', async () => {
@@ -46,7 +47,7 @@ test('it applies the info statusType', async () => {
   );
 
   const alert = await findByTestId(testId);
-  expect(alert).toHaveClass('ChromaAlert-info');
+  expect(hasClass(alert, 'ChromaAlert-info')).toBe(true);
 });
 
 test('it applies the success statusType', async () => {
@@ -55,7 +56,7 @@ test('it applies the success statusType', async () => {
   );
 
   const alert = await findByTestId(testId);
-  expect(alert).toHaveClass('ChromaAlert-success');
+  expect(hasClass(alert, 'ChromaAlert-success')).toBe(true);
 });
 
 test('it applies the warning statusType', async () => {
@@ -64,5 +65,5 @@ test('it applies the warning statusType', async () => {
   );
 
   const alert = await findByTestId(testId);
-  expect(alert).toHaveClass('ChromaAlert-warning');
+  expect(hasClass(alert, 'ChromaAlert-warning')).toBe(true);
 });

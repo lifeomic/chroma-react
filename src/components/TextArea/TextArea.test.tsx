@@ -2,6 +2,7 @@ import { IconComponent } from '../../testUtils/IconComponent';
 import { renderWithTheme } from '../../testUtils/renderWithTheme';
 import { TextArea, TextAreaProps } from './index';
 import * as React from 'react';
+import { hasClass } from '../../testUtils/hasClass';
 
 const testId = 'TextArea';
 
@@ -18,7 +19,7 @@ test('it renders a TextArea', async () => {
 
   const textarea = await findByTestId(testId);
   expect(textarea).toBeInTheDocument();
-  expect(textarea).toHaveClass('ChromaTextArea-textarea');
+  expect(hasClass(textarea, 'ChromaTextArea-textarea')).toBe(true);
   expect(textarea.getAttribute('aria-describedby')).toBeFalsy();
   expect(textarea.getAttribute('cols')).toEqual('1');
 });
@@ -39,7 +40,7 @@ test('it applies the provided className', async () => {
     <TextArea {...props} data-testid={testId} className="custom-class-name" />
   );
   const textarea = await findByTestId(testId);
-  expect(textarea?.parentElement).toHaveClass('custom-class-name');
+  expect(hasClass(textarea?.parentElement, 'custom-class-name')).toBe(true);
 });
 
 test('it applies the provided textarea className', async () => {
@@ -52,7 +53,7 @@ test('it applies the provided textarea className', async () => {
     />
   );
   const textarea = await findByTestId(testId);
-  expect(textarea).toHaveClass('custom-textarea-class-name');
+  expect(hasClass(textarea, 'custom-textarea-class-name')).toBe(true);
 });
 
 test('it renders the provided help message', async () => {
@@ -71,7 +72,7 @@ test('it renders an error-state TextArea', async () => {
     <TextArea {...props} hasError data-testid={testId} />
   );
   const textarea = await findByTestId(testId);
-  expect(textarea).toHaveClass('ChromaTextArea-textareaError');
+  expect(hasClass(textarea, 'ChromaTextArea-textareaError')).toBe(true);
 });
 
 test('it renders an error-state TextArea with the provided errorMessage', async () => {
@@ -183,15 +184,17 @@ test('it renders an inverse color TextArea', async () => {
   );
 
   const textarea = await findByTestId(testId);
-  expect(textarea).toHaveClass('ChromaTextArea-textareaInverse');
+  expect(hasClass(textarea, 'ChromaTextArea-textareaInverse')).toBe(true);
 
   const help = await findByText(/Helpful text/);
-  expect(help).toHaveClass('ChromaFormHelpMessage-inverse');
+  expect(hasClass(help, 'ChromaFormHelpMessage-inverse')).toBe(true);
 
   const error = await findByText(/TextArea error message/);
-  expect(error).toHaveClass('ChromaFormErrorMessage-inverse');
+  expect(hasClass(error, 'ChromaFormErrorMessage-inverse')).toBe(true);
 
-  expect(textarea?.previousSibling).toHaveClass('ChromaTextArea-labelInverse');
+  expect(
+    hasClass(textarea?.previousElementSibling, 'ChromaTextArea-labelInverse')
+  ).toBe(true);
 });
 
 test('it renders a fullWidth TextArea', async () => {
@@ -201,7 +204,7 @@ test('it renders a fullWidth TextArea', async () => {
   );
 
   const textarea = await findByTestId(testId);
-  expect(textarea).toHaveClass('ChromaTextArea-fullWidth');
+  expect(hasClass(textarea, 'ChromaTextArea-fullWidth')).toBe(true);
 });
 
 test('it renders an icon when icon and tooltipMessage are provided', async () => {
@@ -216,7 +219,7 @@ test('it renders an icon when icon and tooltipMessage are provided', async () =>
   );
 
   const icon = await findByRole('img', { hidden: true });
-  expect(icon).toHaveClass('ChromaTextArea-labelIcon');
+  expect(hasClass(icon, 'ChromaTextArea-labelIcon')).toBe(true);
 });
 
 test('it renders an inverse color icon when icon and tooltipMessage are provided', async () => {
@@ -232,7 +235,7 @@ test('it renders an inverse color icon when icon and tooltipMessage are provided
   );
 
   const icon = await findByRole('img', { hidden: true });
-  expect(icon).toHaveClass('ChromaTextArea-labelIconInverse');
+  expect(hasClass(icon, 'ChromaTextArea-labelIconInverse')).toBe(true);
 });
 
 test('it renders an aria-label when not provided with label', async () => {
@@ -250,7 +253,7 @@ test('it renders an * when the field is required', async () => {
   );
   const asterisk = await findByText('*');
   expect(asterisk).toBeInTheDocument();
-  expect(asterisk).toHaveClass('ChromaTextArea-required');
+  expect(hasClass(asterisk, 'ChromaTextArea-required')).toBe(true);
 });
 
 test('it renders an inverse color * when the field is required', async () => {
@@ -258,7 +261,6 @@ test('it renders an inverse color * when the field is required', async () => {
     <TextArea label="" color="inverse" showRequiredLabel />
   );
   const asterisk = await findByText('*');
-  expect(asterisk).toHaveClass(
-    'ChromaTextArea-required ChromaTextArea-requiredInverse'
-  );
+  expect(hasClass(asterisk, 'ChromaTextArea-required')).toBe(true);
+  expect(hasClass(asterisk, 'ChromaTextArea-requiredInverse')).toBe(true);
 });
