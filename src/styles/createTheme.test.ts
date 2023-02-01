@@ -25,5 +25,6 @@ test('overridden theme', () => {
   // Allows Chroma's default values to be overridden
   const breakpoints = { xs: 100, sm: 800, md: 1000, lg: 1500, xl: 2000 };
 
+  //@ts-ignore
   expect(createTheme({ breakpoints, components })).toMatchSnapshot();
 });
