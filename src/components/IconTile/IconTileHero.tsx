@@ -17,12 +17,7 @@ export const useStyles = makeStyles(
     },
     background: ({
       backgroundUrl,
-      backgroundColor = `linear-gradient(45deg, 
-        ${theme.palette.purple[700]} 0%, 
-        ${theme.palette.primary.main} 46.4%, 
-        ${theme.palette.primary[300]} 99.9%, 
-        ${theme.hexToRgba(theme.palette.primary[400], 0.85)} 100%, 
-        ${theme.palette.primary[200]} 100%)`,
+      backgroundColor = theme.palette.graphite[100],
     }: IconTileHeroOwnProps) => ({
       background: `url(${backgroundUrl}), ${backgroundColor}`,
       width: '100%',
