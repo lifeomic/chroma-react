@@ -60,8 +60,8 @@ export interface SelectOptionProps {
   disabled?: boolean;
   isChecked?: boolean;
   meta?: any;
-  subtitle?: string;
-  title?: string;
+  subtitle?: string | React.ReactNode | React.ReactNode[];
+  title?: string | React.ReactNode | React.ReactNode[];
   value: string;
 }
 
