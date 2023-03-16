@@ -227,8 +227,9 @@ export interface TableModuleProps<Item = any>
   maxCellWidth?: 1 | 2;
   rowActions?: (row: any) => React.ReactNode;
   rowClickLabel?: string;
-  enableRowSelection?: Boolean;
+  enableRowSelection?: boolean;
   selectChangeHandler?: (data: any) => void;
+  rowSelected: (data: any) => boolean;
 }
 
 /**
@@ -267,6 +268,7 @@ export const TableModule = React.memo(
         rowClickLabel,
         enableRowSelection,
         selectChangeHandler,
+        rowSelected,
         ...rootProps
       },
       forwardedRef
@@ -503,6 +505,7 @@ export const TableModule = React.memo(
                   stickyCellsLeft={stickyCellsLeft}
                   enableRowSelection={enableRowSelection}
                   selectChangeHandler={selectChangeHandler}
+                  rowSelected={rowSelected}
                 />
               );
             })}

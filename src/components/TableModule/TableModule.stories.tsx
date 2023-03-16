@@ -445,6 +445,17 @@ actions toolbar.`,
 };
 
 export const SelectRow: ComponentStory<typeof TableModule> = (args) => {
+  const [selection, setSelection] = React.useState<string[]>([]);
+
+  const handleSelectClick = (rowData: any) => {
+    if (!selection.includes(rowData.description)) {
+      setSelection([...selection, rowData.description]);
+    } else {
+      setSelection(
+        selection.filter((selectedItem) => selectedItem !== rowData.description)
+      );
+    }
+  };
   const selectRowConfig: Array<TableConfiguration> = [
     {
       header: {
@@ -488,7 +499,12 @@ export const SelectRow: ComponentStory<typeof TableModule> = (args) => {
       ref={tableRef}
       rowClickLabel="row-click-label"
       enableRowSelection
-      selectChangeHandler={(data) => console.log('selected', data)}
+      selectChangeHandler={(rowData) => {
+        handleSelectClick(rowData);
+      }}
+      rowSelected={(rowData: any) => {
+        return selection.includes(rowData.description);
+      }}
     />
   );
 };
