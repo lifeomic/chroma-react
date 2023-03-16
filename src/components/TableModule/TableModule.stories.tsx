@@ -487,6 +487,7 @@ export const SelectRow: ComponentStory<typeof TableModule> = (args) => {
       config={selectRowConfig}
       ref={tableRef}
       rowClickLabel="row-click-label"
+      enableRowSelection
       selectChangeHandler={(data) => console.log('selected', data)}
     />
   );

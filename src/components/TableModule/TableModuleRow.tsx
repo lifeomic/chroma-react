@@ -28,6 +28,7 @@ export interface TableModuleRowProps
   rowClickLabel?: TableModuleProps['rowClickLabel'];
   stickyCols?: Array<number>;
   stickyCellsLeft?: Array<number>;
+  enableRowSelection?: Boolean;
   selectChangeHandler?: (data: any) => void;
 }
 
@@ -43,6 +44,7 @@ const TableModuleRow: React.FC<TableModuleRowProps> = React.memo(
     rowClickLabel,
     stickyCols = [],
     stickyCellsLeft = [],
+    enableRowSelection,
     selectChangeHandler,
   }) => {
     const classes = useStyles({});
@@ -134,11 +136,12 @@ const TableModuleRow: React.FC<TableModuleRowProps> = React.memo(
         tabIndex={0}
         {...getTestProps(testIds.bodyRow)}
       >
-        {true && ( // make dependent on whether table has select enabled
+        {enableRowSelection && (
           <ButtonUnstyled
             onClick={(e) => {
               selectClickHandler(e);
-              if (selectChangeHandler) selectChangeHandler(row);
+              if (enableRowSelection && selectChangeHandler)
+                selectChangeHandler(row);
             }}
             disabled={false} // make based off table row select state
           >
@@ -148,7 +151,8 @@ const TableModuleRow: React.FC<TableModuleRowProps> = React.memo(
               checked={true} // make based off table row select state
               disabled={false} // make based off table row select state
               onChange={(row) => {
-                if (selectChangeHandler) selectChangeHandler(row);
+                if (enableRowSelection && selectChangeHandler)
+                  selectChangeHandler(row);
               }}
               onClick={selectClickHandler}
             />
