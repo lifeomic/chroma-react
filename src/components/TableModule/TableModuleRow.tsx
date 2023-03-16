@@ -9,6 +9,8 @@ import { TableModuleActions } from './TableModuleActions';
 import { IconButton } from '../IconButton';
 import { ChevronRight } from '@lifeomic/chromicons';
 import { Tooltip } from '../Tooltip';
+import { ButtonUnstyled } from '../ButtonUnstyled';
+import { Checkbox } from '../Checkbox';
 
 export interface TableModuleRowProps
   extends React.DetailedHTMLProps<
@@ -26,6 +28,7 @@ export interface TableModuleRowProps
   rowClickLabel?: TableModuleProps['rowClickLabel'];
   stickyCols?: Array<number>;
   stickyCellsLeft?: Array<number>;
+  selectChangeHandler?: (data: any) => void;
 }
 
 const TableModuleRow: React.FC<TableModuleRowProps> = React.memo(
@@ -40,6 +43,7 @@ const TableModuleRow: React.FC<TableModuleRowProps> = React.memo(
     rowClickLabel,
     stickyCols = [],
     stickyCellsLeft = [],
+    selectChangeHandler,
   }) => {
     const classes = useStyles({});
 
@@ -74,6 +78,16 @@ const TableModuleRow: React.FC<TableModuleRowProps> = React.memo(
       },
       [onRowClick, row]
     );
+
+    const selectClickHandler = (
+      e:
+        | React.MouseEvent<HTMLInputElement, MouseEvent>
+        | React.MouseEvent<HTMLButtonElement, MouseEvent>
+    ) => {
+      e.stopPropagation();
+      e.currentTarget.blur();
+      e.preventDefault();
+    };
 
     const rowContents = React.useMemo(
       () =>
@@ -120,6 +134,26 @@ const TableModuleRow: React.FC<TableModuleRowProps> = React.memo(
         tabIndex={0}
         {...getTestProps(testIds.bodyRow)}
       >
+        {true && ( // make dependent on whether table has select enabled
+          <ButtonUnstyled
+            onClick={(e) => {
+              selectClickHandler(e);
+              if (selectChangeHandler) selectChangeHandler(row);
+            }}
+            disabled={false} // make based off table row select state
+          >
+            <Checkbox
+              label=""
+              aria-label={rowClickLabel || 'Select Row'}
+              checked={true} // make based off table row select state
+              disabled={false} // make based off table row select state
+              onChange={(row) => {
+                if (selectChangeHandler) selectChangeHandler(row);
+              }}
+              onClick={selectClickHandler}
+            />
+          </ButtonUnstyled>
+        )}
         {rowContents}
         {(onRowClick || rowActions) && (
           <td

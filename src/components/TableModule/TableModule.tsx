@@ -227,6 +227,7 @@ export interface TableModuleProps<Item = any>
   maxCellWidth?: 1 | 2;
   rowActions?: (row: any) => React.ReactNode;
   rowClickLabel?: string;
+  selectChangeHandler?: (data: any) => void;
 }
 
 /**
@@ -263,6 +264,7 @@ export const TableModule = React.memo(
         maxCellWidth,
         rowActions,
         rowClickLabel,
+        selectChangeHandler,
         ...rootProps
       },
       forwardedRef
@@ -497,6 +499,7 @@ export const TableModule = React.memo(
                   rowClickLabel={rowClickLabel}
                   stickyCols={stickyCols}
                   stickyCellsLeft={stickyCellsLeft}
+                  selectChangeHandler={selectChangeHandler}
                 />
               );
             })}

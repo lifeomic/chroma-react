@@ -443,3 +443,58 @@ actions toolbar.`,
     },
   },
 };
+
+export const SelectRow: ComponentStory<typeof TableModule> = (args) => {
+  const selectRowConfig: Array<TableConfiguration> = [
+    {
+      header: {
+        label: 'Description',
+      },
+      cell: {
+        valuePath: 'description',
+      },
+    },
+    {
+      header: {
+        label: 'Calories',
+      },
+      cell: {
+        valuePath: 'calories',
+      },
+    },
+    {
+      header: {
+        label: 'Fat',
+      },
+      cell: {
+        valuePath: 'fat',
+      },
+    },
+    {
+      header: {
+        label: 'Carbs',
+      },
+      cell: {
+        valuePath: 'carbs',
+      },
+    },
+  ];
+  const tableRef = useRef<HTMLTableElement | null>(null);
+  return (
+    <TableModule
+      {...args}
+      data={data}
+      config={selectRowConfig}
+      ref={tableRef}
+      rowClickLabel="row-click-label"
+      selectChangeHandler={(data) => console.log('selected', data)}
+    />
+  );
+};
+SelectRow.parameters = {
+  docs: {
+    description: {
+      story: `Allows you to select a row and complete some action with the row data`,
+    },
+  },
+};
