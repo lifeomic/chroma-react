@@ -146,26 +146,36 @@ const TableModuleRow: React.FC<TableModuleRowProps> = React.memo(
         {...getTestProps(testIds.bodyRow)}
       >
         {enableRowSelection && (
-          <ButtonUnstyled
-            onClick={(e) => {
-              selectClickHandler(e);
-              if (enableRowSelection && selectChangeHandler)
-                selectChangeHandler(row);
-            }}
-            disabled={disableSelecting}
+          <td
+            className={clsx(
+              classes.tableRowCell,
+              classes.tableRowActionCell,
+              classes.stickyMenuButton
+            )}
+            role="cell"
           >
-            <Checkbox
-              label=""
-              aria-label={rowClickLabel || 'Select Row'}
-              checked={maybeRowSelected}
-              disabled={disableSelecting}
-              onChange={(row) => {
+            <ButtonUnstyled
+              className={classes.tableRowCheckbox}
+              onClick={(e) => {
+                selectClickHandler(e);
                 if (enableRowSelection && selectChangeHandler)
                   selectChangeHandler(row);
               }}
-              onClick={selectClickHandler}
-            />
-          </ButtonUnstyled>
+              disabled={disableSelecting}
+            >
+              <Checkbox
+                label=""
+                aria-label={rowClickLabel || 'Select Row'}
+                checked={maybeRowSelected}
+                disabled={disableSelecting}
+                onChange={(row) => {
+                  if (enableRowSelection && selectChangeHandler)
+                    selectChangeHandler(row);
+                }}
+                onClick={selectClickHandler}
+              />
+            </ButtonUnstyled>
+          </td>
         )}
         {rowContents}
         {(onRowClick || rowActions) && (

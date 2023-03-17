@@ -150,6 +150,10 @@ export const useStyles = makeStyles(
         bottom: theme.pxToRem(-1),
       },
     },
+    tableRowCheckbox: {
+      padding: theme.spacing(1.5),
+      margin: `calc(-1 * ${theme.spacing(1.5)})`,
+    },
     tableModuleActions: {
       background: `linear-gradient(135deg,
         ${theme.palette.primary.light} 0%,
