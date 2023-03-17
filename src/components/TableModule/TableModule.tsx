@@ -229,7 +229,7 @@ export interface TableModuleProps<Item = any>
   rowClickLabel?: string;
   enableRowSelection?: boolean;
   selectChangeHandler?: (data: any) => void;
-  rowSelected: (data: any) => boolean;
+  rowSelected?: (data: any) => boolean;
 }
 
 /**
@@ -266,7 +266,7 @@ export const TableModule = React.memo(
         maxCellWidth,
         rowActions,
         rowClickLabel,
-        enableRowSelection,
+        enableRowSelection = false,
         selectChangeHandler,
         rowSelected,
         ...rootProps

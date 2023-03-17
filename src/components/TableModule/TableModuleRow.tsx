@@ -28,9 +28,9 @@ export interface TableModuleRowProps
   rowClickLabel?: TableModuleProps['rowClickLabel'];
   stickyCols?: Array<number>;
   stickyCellsLeft?: Array<number>;
-  enableRowSelection?: boolean;
-  selectChangeHandler?: (data: any) => void;
-  rowSelected: (data: any) => boolean;
+  enableRowSelection: boolean;
+  selectChangeHandler?: TableModuleProps['selectChangeHandler'];
+  rowSelected?: TableModuleProps['rowSelected'];
 }
 
 const TableModuleRow: React.FC<TableModuleRowProps> = React.memo(
@@ -126,6 +126,11 @@ const TableModuleRow: React.FC<TableModuleRowProps> = React.memo(
       rowActions,
     ]);
 
+    const maybeRowSelected = React.useMemo(() => rowSelected?.(row), [
+      row,
+      rowSelected,
+    ]);
+
     return (
       <tr
         className={clsx(
@@ -150,7 +155,7 @@ const TableModuleRow: React.FC<TableModuleRowProps> = React.memo(
             <Checkbox
               label=""
               aria-label={rowClickLabel || 'Select Row'}
-              checked={rowSelected(row)}
+              checked={maybeRowSelected}
               disabled={false} // make based off table row select state
               onChange={(row) => {
                 if (enableRowSelection && selectChangeHandler)
