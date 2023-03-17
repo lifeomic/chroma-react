@@ -29,6 +29,7 @@ export interface TableModuleRowProps
   stickyCols?: Array<number>;
   stickyCellsLeft?: Array<number>;
   enableRowSelection: boolean;
+  disableSelecting: boolean;
   selectChangeHandler?: TableModuleProps['selectChangeHandler'];
   rowSelected?: TableModuleProps['rowSelected'];
 }
@@ -46,6 +47,7 @@ const TableModuleRow: React.FC<TableModuleRowProps> = React.memo(
     stickyCols = [],
     stickyCellsLeft = [],
     enableRowSelection,
+    disableSelecting,
     selectChangeHandler,
     rowSelected,
   }) => {
@@ -150,13 +152,13 @@ const TableModuleRow: React.FC<TableModuleRowProps> = React.memo(
               if (enableRowSelection && selectChangeHandler)
                 selectChangeHandler(row);
             }}
-            disabled={false} // make based off table row select state
+            disabled={disableSelecting}
           >
             <Checkbox
               label=""
               aria-label={rowClickLabel || 'Select Row'}
               checked={maybeRowSelected}
-              disabled={false} // make based off table row select state
+              disabled={disableSelecting}
               onChange={(row) => {
                 if (enableRowSelection && selectChangeHandler)
                   selectChangeHandler(row);

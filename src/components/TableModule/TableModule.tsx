@@ -228,6 +228,7 @@ export interface TableModuleProps<Item = any>
   rowActions?: (row: any) => React.ReactNode;
   rowClickLabel?: string;
   enableRowSelection?: boolean;
+  disableSelecting?: boolean;
   selectChangeHandler?: (data: any) => void;
   rowSelected?: (data: any) => boolean;
 }
@@ -267,6 +268,7 @@ export const TableModule = React.memo(
         rowActions,
         rowClickLabel,
         enableRowSelection = false,
+        disableSelecting = false,
         selectChangeHandler,
         rowSelected,
         ...rootProps
@@ -296,6 +298,13 @@ export const TableModule = React.memo(
       const [stickyCellsLeft, setStickyCellsLeft] = React.useState<
         Array<number>
       >([]);
+
+      const headingsCount = React.useMemo(() => {
+        let count = headings.length;
+        if (enableRowSelection) count + 1;
+        if (rowActions) count + 1;
+        return count;
+      }, [headings.length, enableRowSelection, rowActions]);
 
       React.useEffect(() => {
         if (config.length > 0) {
@@ -431,10 +440,29 @@ export const TableModule = React.memo(
               role="row"
               {...getTestProps(testIds.headerRow)}
             >
+              {enableRowSelection && (
+                <TableHeaderCell
+                  header={{
+                    label: '',
+                  }}
+                  index={-1} // is just doing -1 an issue here? If so, can calc indicies for each column depending on enableRowSelection status
+                  headingsCount={headingsCount}
+                  isSorting={false}
+                  sortDirection={sort.sortDirection}
+                  isSticky={stickyCols.indexOf(0) >= 0}
+                  left={
+                    stickyCols.indexOf(headings?.length + 1) >= 0
+                      ? stickyCellsLeft[
+                          stickyCols.indexOf(headings?.length + 1)
+                        ]
+                      : undefined
+                  }
+                />
+              )}
               {headings?.map((header, i) => (
                 <TableHeaderCell
                   index={i}
-                  headingsCount={headings.length}
+                  headingsCount={headingsCount}
                   key={i}
                   header={header}
                   isSticky={stickyCols.indexOf(i) >= 0}
@@ -455,7 +483,7 @@ export const TableModule = React.memo(
                     label: '',
                   }}
                   index={headings?.length + 1}
-                  headingsCount={headings.length}
+                  headingsCount={headingsCount}
                   isSorting={false}
                   sortDirection={sort.sortDirection}
                   isSticky={stickyCols.indexOf(headings?.length + 1) >= 0}
@@ -504,6 +532,7 @@ export const TableModule = React.memo(
                   stickyCols={stickyCols}
                   stickyCellsLeft={stickyCellsLeft}
                   enableRowSelection={enableRowSelection}
+                  disableSelecting={disableSelecting}
                   selectChangeHandler={selectChangeHandler}
                   rowSelected={rowSelected}
                 />
