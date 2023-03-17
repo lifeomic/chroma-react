@@ -110,5 +110,8 @@
   },
   "resolutions": {
     "jsdom": "^16.3.0"
+  },
+  "optionalDependencies": {
+    "@tanstack/react-table": "^8.7.9"
   }
 }
