@@ -1,5 +1,6 @@
 import clsx from 'clsx';
 import * as React from 'react';
+import { Cell, flexRender } from '@tanstack/react-table';
 import { useStyles } from './TableModule';
 import { getTestProps } from '../../testUtils/getTestProps';
 import { TableCell } from './types';
@@ -21,7 +22,7 @@ export interface TableModuleRowProps
   maxCellWidth?: 1 | 2;
   row: any;
   headingsLength: number;
-  cells: Array<TableCell>;
+  cells: Array<TableCell> | Array<Cell>;
   rowActions?: TableModuleProps['rowActions'];
   rowClickLabel?: TableModuleProps['rowClickLabel'];
   stickyCols?: Array<number>;
@@ -78,7 +79,10 @@ const TableModuleRow: React.FC<TableModuleRowProps> = React.memo(
     const rowContents = React.useMemo(
       () =>
         cells?.map((cell, colIndex) => {
-          const cellContent = cell.content
+          // table-core API
+          const cellContent = cell.column
+            ? flexRender(cell.column.columnDef.cell, cell.getContext())
+            : cell.content // private API
             ? cell.content(row)
             : cell.valuePath && row[cell.valuePath];
           return (

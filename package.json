@@ -108,6 +108,9 @@
     "react-remove-scroll": "^2.3.0",
     "reakit": "1.0.0-rc.1"
   },
+  "optionalDependencies": {
+    "@tanstack/react-table": "^8.7.9"
+  },
   "resolutions": {
     "jsdom": "^16.3.0"
   }
