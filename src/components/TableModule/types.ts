@@ -1,3 +1,4 @@
+import { Cell, Header } from '@tanstack/react-table';
 /**
  * @description A default interface for capturing the different
  * "sortDirection" options.
@@ -26,14 +27,16 @@ export interface TableSortClickProps extends TableSortDirection {
   header: TableHeader;
 }
 
-export interface TableHeader extends TableAlignOptions {
+export interface TableHeader extends TableAlignOptions, Header<any, any> {
   label?: string;
   content?(header: TableHeader): any;
   onSort?(sort: TableSortClickProps): any;
   className?: string;
 }
 
-export interface TableCell<Item = any> extends TableAlignOptions {
+export interface TableCell<Item = any>
+  extends TableAlignOptions,
+    Cell<any, any> {
   valuePath?: string;
   content?(cell: Item): any;
   className?: string;

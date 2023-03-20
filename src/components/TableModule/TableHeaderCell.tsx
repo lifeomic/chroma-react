@@ -1,5 +1,7 @@
 import clsx from 'clsx';
 import * as React from 'react';
+
+import { flexRender } from '@tanstack/react-table';
 import { ChevronDown } from '@lifeomic/chromicons';
 import { makeStyles } from '../../styles/index';
 import { GetClasses } from '../../typeUtils';
@@ -157,7 +159,11 @@ export const TableHeaderCell: React.FC<TableHeaderCellProps> = ({
       style={{ left: left }}
       {...rootProps}
     >
-      {header.content ? header.content(header) : header.label}
+      {header.column
+        ? flexRender(header.column.columnDef.header, header.getContext())
+        : header.content
+        ? header.content(header)
+        : header.label}
       {/* We aren't actively sorting this column, but we want to display a "peek" icon so they know they can sort it */}
       {(!sortDirection || !isSorting) && canSort && (
         <ChevronDown

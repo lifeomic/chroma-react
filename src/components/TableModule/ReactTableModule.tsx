@@ -53,6 +53,8 @@ export const ReactTableModule = React.memo(
         columns = config.map(mapTableConfigToColumnDef);
       }
 
+      console.log('columns', columns);
+
       const table = useReactTable({
         data,
         columns,
@@ -62,7 +64,7 @@ export const ReactTableModule = React.memo(
         state,
       });
 
-      const headings = table.getHeaderGroups()[0].headers;
+      const headers = table.getHeaderGroups()[0].headers;
 
       return (
         <table
@@ -83,7 +85,7 @@ export const ReactTableModule = React.memo(
                   <TableHeaderCell
                     index={i}
                     key={header.id}
-                    header={{ label: header.id }}
+                    header={{ ...header, label: header.id }}
                   ></TableHeaderCell>
                 ))}
               </tr>
@@ -101,7 +103,7 @@ export const ReactTableModule = React.memo(
                     rowRole={rowRole}
                     maxCellWidth={maxCellWidth}
                     row={row}
-                    headingsLength={headings?.length}
+                    headingsLength={headers?.length}
                     cells={row.getVisibleCells()}
                     rowClickLabel={rowClickLabel}
                   />
@@ -113,7 +115,7 @@ export const ReactTableModule = React.memo(
               >
                 <td
                   className={classes.tableLoadingCell}
-                  colSpan={table.getHeaderGroups()[0].headers.length}
+                  colSpan={headers?.length}
                 >
                   <DotLoader size={0} />
                 </td>
