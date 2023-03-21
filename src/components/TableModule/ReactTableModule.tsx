@@ -1,5 +1,6 @@
 import * as React from 'react';
 import clsx from 'clsx';
+import { motion } from 'framer-motion';
 
 import {
   getCoreRowModel,
@@ -7,9 +8,6 @@ import {
   useReactTable,
   ColumnDef,
   OnChangeFn,
-  TableState,
-  Updater,
-  SortingState,
 } from '@tanstack/react-table';
 
 import {
@@ -42,6 +40,7 @@ export const ReactTableModule = React.memo(
         config,
         className,
         data,
+        onRowClick,
         enableRowSelection,
         enableSorting,
         isLoading = false,
@@ -50,8 +49,10 @@ export const ReactTableModule = React.memo(
         rowRole,
         sortState = { sortKey: null, sortDirection: null },
         maxCellWidth,
+        rowActions,
         rowClickLabel,
         state,
+        noResultsMessage,
         ...rootProps
       },
       forwardedRef
@@ -78,6 +79,7 @@ export const ReactTableModule = React.memo(
         manualSorting,
       });
 
+      // support one level of headers only
       const headers = table.getHeaderGroups()[0].headers;
 
       return (
@@ -88,28 +90,53 @@ export const ReactTableModule = React.memo(
           {...rootProps}
         >
           <thead className={classes.tableHeader}>
-            {table.getHeaderGroups().map((headerGroup) => (
-              <tr
-                key={headerGroup.id}
-                className={classes.tableRow}
-                role="row"
-                {...getTestProps(testIds.headerRow)}
-              >
-                {headerGroup.headers.map((header, i) => (
-                  <TableHeaderCell
-                    index={i}
-                    key={header.id}
-                    header={{ label: header.id }}
-                    coreHeader={header}
-                    onClick={header.column.getToggleSortingHandler()}
-                    sortDirection={null}
-                    headingsCount={headerGroup.headers.length}
-                  ></TableHeaderCell>
-                ))}
-              </tr>
-            ))}
+            <tr
+              className={classes.tableRow}
+              role="row"
+              {...getTestProps(testIds.headerRow)}
+            >
+              {headers.map((header, i) => (
+                <TableHeaderCell
+                  index={i}
+                  key={header.id}
+                  header={{ label: header.id }}
+                  coreHeader={header}
+                  onClick={header.column.getToggleSortingHandler()}
+                  sortDirection={null}
+                  headingsCount={headers.length}
+                ></TableHeaderCell>
+              ))}
+              {(rowActions || onRowClick) && (
+                <TableHeaderCell
+                  header={{
+                    label: '',
+                  }}
+                  index={headers.length + 1}
+                  headingsCount={headers.length}
+                  isSorting={false}
+                  sortDirection={null}
+                />
+              )}
+            </tr>
           </thead>
           <tbody role="rowgroup">
+            {!isLoading && data && data.length === 0 && (
+              <tr
+                className={clsx(classes.tableRow, classes.tableDataRow)}
+                role="row"
+                {...getTestProps(testIds.noResultsRow)}
+              >
+                <motion.td
+                  className={classes.tableRowCell}
+                  colSpan={headers.length}
+                  role="cell"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1, transition: { duration: 1.5 } }}
+                >
+                  {noResultsMessage || 'No results'}
+                </motion.td>
+              </tr>
+            )}
             {!isLoading &&
               data &&
               table
@@ -118,11 +145,13 @@ export const ReactTableModule = React.memo(
                   <TableModuleRow
                     key={`tableRow-${rowIndex}`}
                     data={row}
+                    onRowClick={onRowClick}
                     rowRole={rowRole}
                     maxCellWidth={maxCellWidth}
                     row={row}
                     headingsLength={headers?.length}
                     cells={row.getVisibleCells()}
+                    rowActions={rowActions}
                     rowClickLabel={rowClickLabel}
                   />
                 ))}

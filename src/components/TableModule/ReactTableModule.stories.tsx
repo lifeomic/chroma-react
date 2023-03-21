@@ -2,6 +2,12 @@ import React, { useRef } from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { createColumnHelper, SortingState } from '@tanstack/react-table';
 import { Checkbox } from '../Checkbox';
+import { TableModuleActions } from './TableModuleActions';
+import { IconButton } from '../IconButton';
+import { Share, Trash } from '@lifeomic/chromicons';
+import { Button } from '../Button';
+import { TableActionDivider } from './TableActionDivider';
+import { Tooltip } from '../Tooltip';
 
 import { ReactTableModule } from './ReactTableModule';
 
@@ -9,6 +15,7 @@ export default {
   title: 'Components/TableModule2',
   component: ReactTableModule,
   argTypes: {},
+  subcomponents: { TableModuleActions, TableActionDivider },
 } as ComponentMeta<typeof ReactTableModule>;
 
 type Food = {
@@ -161,7 +168,6 @@ export const ManualSort: ComponentStory<typeof ReactTableModule> = (args) => {
   React.useEffect(() => {
     const sort = sorting?.[0];
     const index = sort?.id.toLowerCase();
-    console.log('sorting', sort);
     if (sort && index) {
       setSortedData(
         [...data].sort((a: any, b: any) => {
@@ -212,6 +218,55 @@ export const DefaultSort: ComponentStory<typeof ReactTableModule> = (args) => {
       />
     </div>
   );
+};
+
+export const HoverActions = Template.bind({});
+HoverActions.args = {
+  data,
+  columns,
+  rowActions: (row: any) => (
+    <>
+      <Button variant="text" color="inverse" style={{ marginRight: '8px' }}>
+        Revoke
+      </Button>
+      <TableActionDivider />
+      <Tooltip title="Share">
+        <IconButton
+          aria-label="Share"
+          icon={Share}
+          color="inverse"
+          onClick={() => console.log(`search ${row}!`)}
+        />
+      </Tooltip>
+      <Tooltip title="Trash">
+        <IconButton
+          aria-label="Trash"
+          icon={Trash}
+          color="inverse"
+          onClick={() => console.log(`trash ${row}!`)}
+        />
+      </Tooltip>
+      {row.fat === '9.0' && (
+        <Tooltip title="Trash">
+          <IconButton
+            aria-label="Trash"
+            icon={Trash}
+            color="inverse"
+            onClick={() => console.log(`trash ${row}!`)}
+          />
+        </Tooltip>
+      )}
+    </>
+  ),
+};
+HoverActions.parameters = {
+  docs: {
+    description: {
+      story: `It is a common design pattern to include actionable buttons for a table row. The
+Table Module exposes a \`rowActions\` prop to help. Hover over a row to view the
+actions toolbar.`,
+    },
+  },
 };
 
 export const RowSelection = Template.bind({});
