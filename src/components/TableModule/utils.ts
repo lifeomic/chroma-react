@@ -1,7 +1,5 @@
-import { createColumnHelper, ColumnDef } from '@tanstack/react-table';
-import { TableConfiguration } from './types';
-
-const columnHelper = createColumnHelper();
+import { ColumnDef } from '@tanstack/react-table';
+import { TableConfiguration, TableCell } from './types';
 
 /**
  * returns react table ColumnDef.
@@ -11,8 +9,22 @@ export const mapTableConfigToColumnDef = (
   config: TableConfiguration<any>
 ): ColumnDef<any, any> => {
   // TODO support accessor columnFn
-  return {
+  const columnDef: ColumnDef<any, any> = {
     id: config.header.label || config.header.content(config.header),
-    accessorFn: config.cell.content,
+    accessorFn: cellContentAccessor(config.cell),
   };
+
+  return columnDef;
+};
+
+/**
+ * returns an accessorFn.
+ * @param cell
+ */
+export const cellContentAccessor = (cell: TableCell): ((row: any) => any) => {
+  return cell.content // private API
+    ? cell.content
+    : (row: any): any => {
+        return cell.valuePath && row[cell.valuePath];
+      };
 };

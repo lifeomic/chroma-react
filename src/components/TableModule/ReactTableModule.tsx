@@ -3,10 +3,13 @@ import clsx from 'clsx';
 
 import {
   getCoreRowModel,
+  getSortedRowModel,
   useReactTable,
   ColumnDef,
   OnChangeFn,
   TableState,
+  Updater,
+  SortingState,
 } from '@tanstack/react-table';
 
 import {
@@ -24,7 +27,10 @@ export interface ReactTableProps<T> extends TableModuleProps {
   data: Array<T>;
   columns?: ColumnDef<T, any>[];
   enableRowSelection?: boolean;
+  enableSorting?: boolean;
   onRowSelectionChange?: OnChangeFn<T>;
+  manualSorting?: boolean;
+  onSortingChange?: OnChangeFn<T>;
   state?: Partial<TableState>;
 }
 
@@ -37,9 +43,12 @@ export const ReactTableModule = React.memo(
         className,
         data,
         enableRowSelection,
+        enableSorting,
         isLoading = false,
         onRowSelectionChange,
+        onSortingChange,
         rowRole,
+        sortState = { sortKey: null, sortDirection: null },
         maxCellWidth,
         rowClickLabel,
         state,
@@ -49,19 +58,24 @@ export const ReactTableModule = React.memo(
     ) => {
       const classes = useStyles({});
 
-      if (columns === undefined && !!config) {
+      // use legacy when using config of TableModule
+      if (config) {
         columns = config.map(mapTableConfigToColumnDef);
       }
-
-      console.log('columns', columns);
+      // it does manual sorting in legacy mode
+      const manualSorting = !!config;
 
       const table = useReactTable({
         data,
         columns,
         enableRowSelection,
-        getCoreRowModel: getCoreRowModel(),
+        enableSorting,
         onRowSelectionChange,
+        onSortingChange,
+        getCoreRowModel: getCoreRowModel(),
+        getSortedRowModel: getSortedRowModel(),
         state,
+        manualSorting,
       });
 
       const headers = table.getHeaderGroups()[0].headers;
@@ -85,7 +99,11 @@ export const ReactTableModule = React.memo(
                   <TableHeaderCell
                     index={i}
                     key={header.id}
-                    header={{ ...header, label: header.id }}
+                    header={{ label: header.id }}
+                    coreHeader={header}
+                    onClick={header.column.getToggleSortingHandler()}
+                    sortDirection={null}
+                    headingsCount={headerGroup.headers.length}
                   ></TableHeaderCell>
                 ))}
               </tr>

@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import * as React from 'react';
-import { flexRender } from '@tanstack/react-table';
+import { Cell, flexRender } from '@tanstack/react-table';
 import { useStyles } from './TableModule';
 import { getTestProps } from '../../testUtils/getTestProps';
 import { TableCell } from './types';
@@ -10,6 +10,7 @@ import { TableModuleActions } from './TableModuleActions';
 import { IconButton } from '../IconButton';
 import { ChevronRight } from '@lifeomic/chromicons';
 import { Tooltip } from '../Tooltip';
+import { cellContentAccessor } from './utils';
 
 export interface TableModuleRowProps
   extends React.DetailedHTMLProps<
@@ -22,7 +23,7 @@ export interface TableModuleRowProps
   maxCellWidth?: 1 | 2;
   row: any;
   headingsLength: number;
-  cells: Array<TableCell>;
+  cells: Array<TableCell> | Cell[];
   rowActions?: TableModuleProps['rowActions'];
   rowClickLabel?: TableModuleProps['rowClickLabel'];
   stickyCols?: Array<number>;
@@ -82,9 +83,7 @@ const TableModuleRow: React.FC<TableModuleRowProps> = React.memo(
           // table-core API
           const cellContent = cell.column
             ? flexRender(cell.column.columnDef.cell, cell.getContext())
-            : cell.content // private API
-            ? cell.content(row)
-            : cell.valuePath && row[cell.valuePath];
+            : cellContentAccessor(cell)(row);
           return (
             <TableModuleCell
               key={`column-${colIndex}`}

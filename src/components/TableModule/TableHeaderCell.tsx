@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import * as React from 'react';
 
-import { flexRender } from '@tanstack/react-table';
+import { Header, flexRender } from '@tanstack/react-table';
 import { ChevronDown } from '@lifeomic/chromicons';
 import { makeStyles } from '../../styles/index';
 import { GetClasses } from '../../typeUtils';
@@ -98,6 +98,7 @@ export type TableHeaderCellClasses = GetClasses<typeof useStyles>;
 export interface TableHeaderCellProps extends TableSortDirection {
   isSorting?: boolean;
   header: TableHeader;
+  coreHeader?: Header<any, any>;
   onClick?: (header: TableSortClickProps) => any;
   index: number;
   headingsCount: number;
@@ -107,6 +108,7 @@ export interface TableHeaderCellProps extends TableSortDirection {
 
 export const TableHeaderCell: React.FC<TableHeaderCellProps> = ({
   header,
+  coreHeader,
   isSorting = false,
   sortDirection,
   onClick,
@@ -117,12 +119,21 @@ export const TableHeaderCell: React.FC<TableHeaderCellProps> = ({
   ...rootProps
 }) => {
   const classes = useStyles({});
+  // use column API when coreHeader is available
+  const isSorted = coreHeader ? coreHeader.column.getIsSorted() : isSorting;
+  // TODO combine these two props into one
+  const sortedDirection = coreHeader
+    ? coreHeader.column.getIsSorted()
+    : sortDirection;
 
   const handleClick = () => {
     onClick?.({ index, sortDirection, header });
   };
 
-  const canSort = onClick && header.onSort;
+  // use column API when coreHeader is available
+  const canSort = coreHeader
+    ? coreHeader.column.getCanSort()
+    : onClick && header.onSort;
 
   const Tag = !header?.content && !header.label ? 'td' : 'th';
 
@@ -130,7 +141,7 @@ export const TableHeaderCell: React.FC<TableHeaderCellProps> = ({
     <Tag
       className={clsx(
         classes.root,
-        header.onSort && classes.clickable,
+        canSort && classes.clickable,
         canSort && classes.rootPeekIconHover,
         // Rules of alignment:
         // - `header.align` wins over default behavior
@@ -150,22 +161,25 @@ export const TableHeaderCell: React.FC<TableHeaderCellProps> = ({
       onClick={canSort ? handleClick : undefined}
       role="columnheader"
       aria-sort={
-        !isSorting || !sortDirection
+        !isSorted || !sortedDirection
           ? 'none'
-          : sortDirection === 'asc'
+          : sortedDirection === 'asc'
           ? 'ascending'
           : 'descending'
       }
       style={{ left: left }}
       {...rootProps}
     >
-      {header.column
-        ? flexRender(header.column.columnDef.header, header.getContext())
+      {coreHeader
+        ? flexRender(
+            coreHeader.column.columnDef.header,
+            coreHeader.getContext()
+          )
         : header.content
         ? header.content(header)
         : header.label}
       {/* We aren't actively sorting this column, but we want to display a "peek" icon so they know they can sort it */}
-      {(!sortDirection || !isSorting) && canSort && (
+      {(!sortedDirection || !isSorted) && canSort && (
         <ChevronDown
           className={clsx(classes.icon, classes.peekIcon, classes.rotatedIcon)}
           role="img"
@@ -175,11 +189,11 @@ export const TableHeaderCell: React.FC<TableHeaderCellProps> = ({
         />
       )}
       {/* We have a sort active */}
-      {isSorting && sortDirection && (
+      {isSorted && sortedDirection && (
         <ChevronDown
           className={clsx(
             classes.icon,
-            sortDirection === 'asc' && classes.rotatedIcon
+            sortedDirection === 'asc' && classes.rotatedIcon
           )}
           role="img"
           aria-hidden

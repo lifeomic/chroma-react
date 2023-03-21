@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { createColumnHelper, Row } from '@tanstack/react-table';
+import { createColumnHelper, SortingState } from '@tanstack/react-table';
 import { Checkbox } from '../Checkbox';
 
 import { ReactTableModule } from './ReactTableModule';
@@ -148,6 +148,70 @@ export const Default = Template.bind({});
 Default.args = {
   data,
   config,
+};
+
+export const ManualSort: ComponentStory<typeof ReactTableModule> = (args) => {
+  const tableRef = useRef<HTMLTableElement>(null);
+
+  const [sorting, setSorting] = React.useState<SortingState>([]);
+  const [sortedData, setSortedData] = React.useState(data);
+
+  args.state = { sorting };
+
+  React.useEffect(() => {
+    const sort = sorting?.[0];
+    const index = sort?.id.toLowerCase();
+    console.log('sorting', sort);
+    if (sort && index) {
+      setSortedData(
+        [...data].sort((a: any, b: any) => {
+          if (!sort.desc) {
+            return a[index!] - b[index!];
+          }
+
+          if (sort.desc) {
+            return b[index!] - a[index!];
+          }
+
+          return 0;
+        })
+      );
+    }
+  }, [sorting, setSortedData]);
+
+  return (
+    <div style={{ overflow: 'auto', width: '80%', height: '400px' }}>
+      <ReactTableModule
+        {...args}
+        data={sortedData}
+        config={config}
+        onSortingChange={setSorting}
+        enableSorting={true}
+        ref={tableRef}
+      />
+    </div>
+  );
+};
+
+export const DefaultSort: ComponentStory<typeof ReactTableModule> = (args) => {
+  const tableRef = useRef<HTMLTableElement>(null);
+
+  const [sorting, setSorting] = React.useState<SortingState>([]);
+
+  args.state = { sorting };
+
+  return (
+    <div style={{ overflow: 'auto', width: '80%', height: '400px' }}>
+      <ReactTableModule
+        {...args}
+        data={data}
+        columns={columns}
+        onSortingChange={setSorting}
+        enableSorting={true}
+        ref={tableRef}
+      />
+    </div>
+  );
 };
 
 export const RowSelection = Template.bind({});
