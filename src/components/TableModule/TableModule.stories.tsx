@@ -2,8 +2,13 @@ import React, { useRef } from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import { TableModule } from './TableModule';
-import { TableConfiguration, TableSortClickProps } from './types';
+import {
+  RowSelectionState,
+  TableConfiguration,
+  TableSortClickProps,
+} from './types';
 import { TableModuleActions } from './TableModuleActions';
+import { Checkbox } from '../Checkbox';
 import { IconButton } from '../IconButton';
 import { Share, Trash } from '@lifeomic/chromicons';
 import { Button } from '../Button';
@@ -259,10 +264,10 @@ Sticky.parameters = {
   docs: {
     description: {
       story: `Columns can be made "sticky" or so they don't travel off-screen when scrolling the
-      table horizontally. This helps keep track of what row one is looking at in tables with more 
+      table horizontally. This helps keep track of what row one is looking at in tables with more
       columns than can be visible at one time in the document. \n \n Any number of columns can be made
-      sticky. They don't have to be consecutive, and can start and end at any column. However, 
-      most common use-cases will likely just involve the first one or two consecutive columns 
+      sticky. They don't have to be consecutive, and can start and end at any column. However,
+      most common use-cases will likely just involve the first one or two consecutive columns
       being sticky.`,
     },
   },
@@ -440,6 +445,78 @@ HoverActions.parameters = {
       story: `It is a common design pattern to include actionable buttons for a table row. The
 Table Module exposes a \`rowActions\` prop to help. Hover over a row to view the
 actions toolbar.`,
+    },
+  },
+};
+
+export const RowSelection: ComponentStory<typeof TableModule> = (args) => {
+  const tableRef = useRef<HTMLTableElement | null>(null);
+  const initialRowSelection: RowSelectionState = { '0': true };
+  const [rowSelection, setRowSelection] = React.useState(initialRowSelection);
+  const selectionColumn = {
+    id: 'select',
+    header: {
+      content: () => '',
+    },
+    cell: {
+      content: (rowData: any) => (
+        <Checkbox
+          label=" "
+          checked={rowData.getIsSelected()}
+          disabled={!rowData.getCanSelect()}
+          onChange={rowData.getToggleSelectedHandler()}
+        />
+      ),
+    },
+  };
+  return (
+    <TableModule
+      {...args}
+      data={data}
+      config={[
+        selectionColumn,
+        {
+          header: {
+            label: 'Description',
+          },
+          cell: {
+            valuePath: 'description',
+          },
+        },
+        {
+          header: {
+            label: 'Calories',
+          },
+          cell: {
+            valuePath: 'calories',
+          },
+        },
+        {
+          header: {
+            label: 'Fat',
+          },
+          cell: {
+            valuePath: 'fat',
+          },
+        },
+      ]}
+      ref={tableRef}
+      rowClickLabel="row-click-label"
+      enableRowSelection={true}
+      state={{ rowSelection }}
+      onRowSelectionChange={setRowSelection}
+    />
+  );
+};
+
+RowSelection.parameters = {
+  docs: {
+    description: {
+      story: `It is a common design pattern to include multi-selection for a
+      table. The TableModule exposes properties like \`enableRowSelection\` to
+      enable this capability and use \`state.rowSelection\` to initialize row
+      selection state. In order to access row selection state, use the \`onRowSelectionChange\`
+      handler.`,
     },
   },
 };
