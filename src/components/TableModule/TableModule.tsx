@@ -8,11 +8,14 @@ import { TableHeaderCell } from './TableHeaderCell';
 import { TableModuleRow } from './TableModuleRow';
 import { warning } from '../../utils';
 import {
+  RowSelectionState,
+  RowSelectionRow,
   TableSortState,
   TableHeader,
   TableCell,
   TableConfiguration,
   TableSortClickProps,
+  TableState,
 } from './types';
 import * as React from 'react';
 import clsx from 'clsx';
@@ -227,6 +230,10 @@ export interface TableModuleProps<Item = any>
   maxCellWidth?: 1 | 2;
   rowActions?: (row: any) => React.ReactNode;
   rowClickLabel?: string;
+  state?: Partial<TableState>;
+  enableRowSelection?: boolean;
+  getRowId?: (row: Item, index: number) => string;
+  onRowSelectionChange?: (state: RowSelectionState) => void;
 }
 
 /**
@@ -263,6 +270,10 @@ export const TableModule = React.memo(
         maxCellWidth,
         rowActions,
         rowClickLabel,
+        state,
+        enableRowSelection = false,
+        getRowId = (_, index) => index.toString(),
+        onRowSelectionChange,
         ...rootProps
       },
       forwardedRef
@@ -277,6 +288,10 @@ export const TableModule = React.memo(
       );
 
       const [sort, setSort] = React.useState<TableSortState>(sortState);
+
+      const [rowSelection, setRowSelection] = React.useState<RowSelectionState>(
+        state?.rowSelection || {}
+      );
 
       const [headings, setHeadings] = React.useState<Array<TableHeader>>(
         config?.map((c) => c.header) || []
@@ -412,6 +427,51 @@ export const TableModule = React.memo(
         }
       };
 
+      const isRowSelected = (row: any, index: number): boolean => {
+        return rowSelection[getRowId(row, index)] ?? false;
+      };
+
+      const createRow = React.useCallback(
+        (row: any, index: number): RowSelectionRow => ({
+          getIsSelected: () => {
+            return isRowSelected(row, index);
+          },
+          getCanSelect: () => enableRowSelection,
+          toggleSelected: (value?: boolean) => {
+            const isSelected = isRowSelected(row, index);
+            value = typeof value !== 'undefined' ? value : !isSelected;
+
+            if (isSelected === value) {
+              return;
+            }
+
+            const newRowSelection = { ...rowSelection };
+
+            if (isSelected) {
+              delete newRowSelection[getRowId(row, index)];
+            } else {
+              newRowSelection[getRowId(row, index)] = true;
+            }
+
+            setRowSelection(newRowSelection);
+
+            if (onRowSelectionChange) {
+              onRowSelectionChange(newRowSelection);
+            }
+          },
+          getToggleSelectedHandler: () => {
+            return (e: unknown) => {
+              if (enableRowSelection) {
+                row.toggleSelected(
+                  ((e as MouseEvent).target as HTMLInputElement).checked
+                );
+              }
+            };
+          },
+        }),
+        [setRowSelection, isRowSelected, onRowSelectionChange]
+      );
+
       return (
         <table
           role="table"
@@ -483,6 +543,7 @@ export const TableModule = React.memo(
               </tr>
             )}
             {data?.map((row, rowIndex) => {
+              const rowData = createRow(row, rowIndex);
               return (
                 <TableModuleRow
                   key={`tableRow-${rowIndex}`}
@@ -490,7 +551,7 @@ export const TableModule = React.memo(
                   onRowClick={onRowClick}
                   rowRole={rowRole}
                   maxCellWidth={maxCellWidth}
-                  row={row}
+                  row={Object.assign(row, rowData)}
                   headingsLength={headings?.length}
                   cells={cells}
                   rowActions={rowActions}

@@ -35,12 +35,26 @@ export interface TableHeader extends TableAlignOptions {
 
 export interface TableCell<Item = any> extends TableAlignOptions {
   valuePath?: string;
-  content?(cell: Item): any;
+  content?(row: Item): any;
   className?: string;
 }
 
-export interface TableConfiguration<Item = any> {
+export interface TableConfiguration<Item extends RowSelectionRow> {
   header: TableHeader;
   cell: TableCell<Item>;
   isSticky?: boolean;
+}
+
+// stanStack table core APIs
+export type RowSelectionState = Record<string, boolean>;
+
+export interface TableState {
+  rowSelection: RowSelectionState;
+}
+
+export interface RowSelectionRow {
+  getIsSelected?: () => boolean;
+  getCanSelect?: () => boolean;
+  toggleSelected?: (value?: boolean) => void;
+  getToggleSelectedHandler?: () => (event: unknown) => void;
 }
