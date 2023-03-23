@@ -33,10 +33,9 @@ export interface TableHeader extends TableAlignOptions {
   className?: string;
 }
 
-export interface TableCell<Row extends RowSelectionRow>
-  extends TableAlignOptions {
+export interface TableCell<Item = any> extends TableAlignOptions {
   valuePath?: string;
-  content?(row: Row): any;
+  content?(row: Item): any;
   className?: string;
 }
 
@@ -54,8 +53,8 @@ export interface TableState {
 }
 
 export interface RowSelectionRow {
-  getIsSelected: () => boolean;
-  getCanSelect: () => boolean;
-  toggleSelected: (value?: boolean) => void;
-  getToggleSelectedHandler: () => (event: unknown) => void;
+  getIsSelected?: () => boolean;
+  getCanSelect?: () => boolean;
+  toggleSelected?: (value?: boolean) => void;
+  getToggleSelectedHandler?: () => (event: unknown) => void;
 }

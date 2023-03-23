@@ -14,7 +14,7 @@ import { log, error } from 'console';
 
 const testId = 'TableModule';
 
-const configWithCellContent: Array<TableConfiguration> = [
+const configWithCellContent: Array<TableConfiguration<any>> = [
   {
     header: {
       label: 'Description',
@@ -37,7 +37,7 @@ const configWithCellContent: Array<TableConfiguration> = [
   },
 ];
 
-const configWithCellValuePath: Array<TableConfiguration> = [
+const configWithCellValuePath: Array<TableConfiguration<any>> = [
   {
     header: {
       label: 'Description',
@@ -125,7 +125,7 @@ test('it renders the provided "noResultsMessage"', async () => {
 });
 
 test('it renders columns using "header.label"', async () => {
-  const config: Array<TableConfiguration> = [
+  const config: Array<TableConfiguration<any>> = [
     {
       header: {
         label: 'Description',
@@ -154,7 +154,7 @@ test('it renders columns using "header.label"', async () => {
 });
 
 test('it renders columns using "header.content"', async () => {
-  const config: Array<TableConfiguration> = [
+  const config: Array<TableConfiguration<any>> = [
     {
       header: {
         content: (header: TableHeader) => {
@@ -228,7 +228,7 @@ test('it renders a table with data using "cell.valuePath"', async () => {
 });
 
 test('it applies the provided class to a cell with data using "cell.className"', async () => {
-  const config: Array<TableConfiguration> = [
+  const config: Array<TableConfiguration<any>> = [
     {
       header: {
         label: 'foo',
@@ -261,7 +261,7 @@ test('it applies the provided class to a cell with data using "cell.className"',
 });
 
 test('it respects the "align" properties on "config"', async () => {
-  const config: Array<TableConfiguration> = [
+  const config: Array<TableConfiguration<any>> = [
     {
       header: {
         align: 'right',
@@ -310,7 +310,7 @@ test('it respects the "align" properties on "config"', async () => {
 });
 
 test('it renders a single column table appropriately', async () => {
-  const config: Array<TableConfiguration> = [
+  const config: Array<TableConfiguration<any>> = [
     {
       header: {
         label: 'Description',
@@ -414,7 +414,7 @@ test('it applies "maxCellWidth=2"', async () => {
 test('it sorts on column click from no sort => sort asc', async () => {
   const sortFn = jest.fn();
 
-  const config: Array<TableConfiguration> = [
+  const config: Array<TableConfiguration<any>> = [
     {
       header: {
         label: 'Description',
@@ -468,7 +468,7 @@ test('it sorts on column click from no sort => sort asc', async () => {
 test('it sorts on column click from no sort => sort asc => sort desc', async () => {
   const sortFn = jest.fn();
 
-  const config: Array<TableConfiguration> = [
+  const config: Array<TableConfiguration<any>> = [
     {
       header: {
         label: 'Description',
@@ -527,7 +527,7 @@ test('it sorts on column click from no sort => sort asc => sort desc', async () 
 test('it sorts on column click from no sort => sort asc => sort desc => no sort', async () => {
   const sortFn = jest.fn();
 
-  const config: Array<TableConfiguration> = [
+  const config: Array<TableConfiguration<any>> = [
     {
       header: {
         label: 'Description',
@@ -590,7 +590,7 @@ test('it sorts by first column click, then resets sort when a secondary column i
   const col1SortFn = jest.fn();
   const col2SortFn = jest.fn();
 
-  const config: Array<TableConfiguration> = [
+  const config: Array<TableConfiguration<any>> = [
     {
       header: {
         label: 'Description',
@@ -671,7 +671,7 @@ test('it uses the provided "sortState"', async () => {
 });
 
 test('it sets isSticky class on all sticky columns', async () => {
-  const config: Array<TableConfiguration> = configWithStickyColumns;
+  const config: Array<TableConfiguration<any>> = configWithStickyColumns;
 
   const { findByTestId } = renderWithTheme(
     <TableModule data-testid={testId} config={config} data={data} />
@@ -705,7 +705,7 @@ test('it sets isSticky class on all sticky columns', async () => {
 });
 
 test('it sets "isStickyLast" class on last sticky column', async () => {
-  const config: Array<TableConfiguration> = configWithStickyColumns;
+  const config: Array<TableConfiguration<any>> = configWithStickyColumns;
 
   const { findByTestId } = renderWithTheme(
     <TableModule data-testid={testId} config={config} data={data} />
