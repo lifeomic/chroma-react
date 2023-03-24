@@ -17,5 +17,5 @@ jobs:
         run: |
           yarn
           yarn lint
-          yarn test
+          yarn test --silent
           yarn build
