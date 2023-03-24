@@ -17,5 +17,5 @@ jobs:
         run: |
           yarn
           yarn lint
-          yarn test --silent
+          yarn test --ci --reporters="github-actions"
           yarn build
