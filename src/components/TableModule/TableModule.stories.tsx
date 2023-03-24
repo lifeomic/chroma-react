@@ -3,6 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import { TableModule } from './TableModule';
 import {
+  RowSelectionRow,
   RowSelectionState,
   TableConfiguration,
   TableSortClickProps,
@@ -453,13 +454,12 @@ export const RowSelection: ComponentStory<typeof TableModule> = (args) => {
   const tableRef = useRef<HTMLTableElement | null>(null);
   const initialRowSelection: RowSelectionState = { '0': true };
   const [rowSelection, setRowSelection] = React.useState(initialRowSelection);
-  const selectionColumn = {
-    id: 'select',
+  const selectionColumn: TableConfiguration<RowSelectionRow> = {
     header: {
       content: () => '',
     },
     cell: {
-      content: (rowData: any) => (
+      content: (rowData: RowSelectionRow) => (
         <Checkbox
           label=" "
           checked={rowData.getIsSelected()}
