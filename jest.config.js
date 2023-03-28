@@ -39,9 +39,5 @@ module.exports = {
     '\\.(jpg|jpeg|png|gif|svg)$': '<rootDir>/test/imageMock.js',
     '\\.(css)$': '<rootDir>/test/emptyMock.js',
   },
-  globals: {
-    'ts-jest': {
-      module: 'commonjs',
-    },
-  },
+  reporters: ['default', 'github-actions'],
 };

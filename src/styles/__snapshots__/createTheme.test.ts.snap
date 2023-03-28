@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`default theme 1`] = `
-Object {
-  "boxShadows": Object {
+{
+  "boxShadows": {
     "elevatedContent": "0px 10px 64px rgba(0, 0, 0, 0.15)",
     "focusVisible": "0 0 0 2px rgba(0, 150, 225, .3)",
     "focusVisibleInverse": "0 0 0 2px rgba(255, 255, 255, .3)",
@@ -11,10 +11,10 @@ Object {
     "table": "0px 2px 8px rgba(0, 0, 0, 0.13)",
     "tooltip": "0px 0px 24px rgba(0, 0, 0, 0.15)",
   },
-  "breakpoints": Object {
+  "breakpoints": {
     "between": [Function],
     "down": [Function],
-    "keys": Array [
+    "keys": [
       "xs",
       "sm",
       "md",
@@ -25,7 +25,7 @@ Object {
     "only": [Function],
     "unit": "px",
     "up": [Function],
-    "values": Object {
+    "values": {
       "lg": 1280,
       "md": 960,
       "sm": 600,
@@ -33,26 +33,26 @@ Object {
       "xs": 0,
     },
   },
-  "components": Object {
-    "MuiButton": Object {
-      "defaultProps": Object {
+  "components": {
+    "MuiButton": {
+      "defaultProps": {
         "color": "secondary",
       },
-      "styleOverrides": Object {
-        "containedPrimary": Object {
-          "&$focusVisible": Object {
+      "styleOverrides": {
+        "containedPrimary": {
+          "&$focusVisible": {
             "boxShadow": "0px 3px 5px -1px rgba(0,0,0,0.2),0px 6px 10px 0px rgba(0,0,0,0.14),0px 1px 18px 0px rgba(0,0,0,0.12)",
           },
-          "&:active": Object {
+          "&:active": {
             "boxShadow": "none",
           },
-          "&:disabled": Object {
+          "&:disabled": {
             "backgroundColor": "#006eb7",
             "color": "#ffffff",
             "opacity": 0.44,
           },
-          "&:hover, &:focus": Object {
-            "@media (hover: none)": Object {
+          "&:hover, &:focus": {
+            "@media (hover: none)": {
               "backgroundColor": "#e9e9e9",
             },
             "backgroundColor": "#006eb7",
@@ -61,25 +61,25 @@ Object {
           "boxShadow": "none",
           "color": "#ffffff",
         },
-        "outlinedPrimary": Object {
-          "&:disabled": Object {
+        "outlinedPrimary": {
+          "&:disabled": {
             "border": "1px solid #006eb7",
             "color": "#006eb7",
             "opacity": 0.44,
           },
-          "&:hover, &:focus": Object {
+          "&:hover, &:focus": {
             "backgroundColor": "transparent",
             "border": "1px solid #006eb7",
             "color": "#006eb7",
           },
           "border": "1px solid #006eb7",
         },
-        "root": Object {
-          "&:focus": Object {
+        "root": {
+          "&:focus": {
             "outline": 0,
           },
           "boxSizing": "border-box",
-          "fontFamily": "\\"Lato\\", Helvetica, Roboto, Arial, \\"Lucida Grande\\", sans-serif",
+          "fontFamily": ""Lato", Helvetica, Roboto, Arial, "Lucida Grande", sans-serif",
           "fontSize": "0.75rem",
           "fontWeight": 700,
           "letterSpacing": 0.5,
@@ -90,8 +90,8 @@ Object {
           "textTransform": "initial",
           "transition": "background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
         },
-        "sizeSmall": Object {
-          "fontFamily": "\\"Lato\\", Helvetica, Roboto, Arial, \\"Lucida Grande\\", sans-serif",
+        "sizeSmall": {
+          "fontFamily": ""Lato", Helvetica, Roboto, Arial, "Lucida Grande", sans-serif",
           "fontSize": "0.75rem",
           "fontWeight": 700,
           "letterSpacing": 0.5,
@@ -101,12 +101,12 @@ Object {
           "padding": "8px 11px",
           "textTransform": "initial",
         },
-        "textPrimary": Object {
-          "&:disabled": Object {
+        "textPrimary": {
+          "&:disabled": {
             "color": "#006eb7",
             "opacity": 0.44,
           },
-          "&:hover, &:focus": Object {
+          "&:hover, &:focus": {
             "backgroundColor": "inherit",
             "color": "#006eb7",
           },
@@ -115,41 +115,41 @@ Object {
         },
       },
     },
-    "MuiCheckbox": Object {
-      "defaultProps": Object {
+    "MuiCheckbox": {
+      "defaultProps": {
         "color": "secondary",
       },
     },
-    "MuiFormControl": Object {
-      "defaultProps": Object {
+    "MuiFormControl": {
+      "defaultProps": {
         "variant": "standard",
       },
     },
-    "MuiSelect": Object {
-      "defaultProps": Object {
+    "MuiSelect": {
+      "defaultProps": {
         "variant": "standard",
       },
     },
-    "MuiTab": Object {
-      "styleOverrides": Object {
-        "iconWrapper": Object {
+    "MuiTab": {
+      "styleOverrides": {
+        "iconWrapper": {
           "paddingLeft": "16px",
           "paddingRight": "16px",
         },
-        "root": Object {
-          "&$selected": Object {
+        "root": {
+          "&$selected": {
             "color": "#262c32",
           },
-          "&:disabled": Object {
+          "&:disabled": {
             "color": "#7b8996",
           },
-          "&:focus": Object {
+          "&:focus": {
             "outline": "none",
           },
-          "&:hover": Object {
+          "&:hover": {
             "color": "#637585",
           },
-          "@media (min-width:600px)": Object {
+          "@media (min-width:600px)": {
             "fontSize": "0.875rem",
           },
           "fontSize": "0.875rem",
@@ -159,19 +159,19 @@ Object {
           "textTransform": "initial",
           "transition": "color 0.5s ease",
         },
-        "textColorInherit": Object {
+        "textColorInherit": {
           "color": "#262c32",
           "opacity": "initial",
         },
       },
     },
-    "MuiTabs": Object {
-      "styleOverrides": Object {
-        "indicator": Object {
+    "MuiTabs": {
+      "styleOverrides": {
+        "indicator": {
           "backgroundColor": "#006eb7",
           "height": "0.1875rem",
         },
-        "root": Object {
+        "root": {
           "borderBottom": "1px solid #dbdbdb",
           "height": "initial",
           "minHeight": "initial",
@@ -179,17 +179,17 @@ Object {
         },
       },
     },
-    "MuiTextField": Object {
-      "defaultProps": Object {
+    "MuiTextField": {
+      "defaultProps": {
         "variant": "standard",
       },
     },
-    "MuiTooltip": Object {
-      "styleOverrides": Object {
-        "popper": Object {
+    "MuiTooltip": {
+      "styleOverrides": {
+        "popper": {
           "opacity": 1,
         },
-        "tooltip": Object {
+        "tooltip": {
           "backgroundColor": "#ffffff",
           "boxShadow": "0px 0px 24px rgba(0, 0, 0, 0.15)",
           "color": "#576674",
@@ -204,21 +204,21 @@ Object {
   },
   "direction": "ltr",
   "hexToRgba": [Function],
-  "mixins": Object {
-    "toolbar": Object {
-      "@media (min-width:0px)": Object {
-        "@media (orientation: landscape)": Object {
+  "mixins": {
+    "toolbar": {
+      "@media (min-width:0px)": {
+        "@media (orientation: landscape)": {
           "minHeight": 48,
         },
       },
-      "@media (min-width:600px)": Object {
+      "@media (min-width:600px)": {
         "minHeight": 64,
       },
       "minHeight": 56,
     },
   },
-  "palette": Object {
-    "action": Object {
+  "palette": {
+    "action": {
       "activatedOpacity": 0.12,
       "active": "rgba(0, 0, 0, 0.54)",
       "activeChannel": "0 0 0",
@@ -234,11 +234,11 @@ Object {
       "selectedOpacity": 0.08,
     },
     "augmentColor": [Function],
-    "background": Object {
+    "background": {
       "default": "#f5f8fa",
       "paper": "#fafafa",
     },
-    "black": Object {
+    "black": {
       "100": "#d1d5d8",
       "200": "#b2b9c0",
       "300": "#929da9",
@@ -253,7 +253,7 @@ Object {
       "light": "#47535e",
       "main": "#262c32",
     },
-    "blue": Object {
+    "blue": {
       "100": "#aae3f8",
       "200": "#6dd1f4",
       "300": "#0abff1",
@@ -268,7 +268,7 @@ Object {
       "light": "#0abff1",
       "main": "#006eb7",
     },
-    "charcoal": Object {
+    "charcoal": {
       "100": "#d6d7d8",
       "200": "#c2c3c5",
       "300": "#aeafb1",
@@ -283,12 +283,12 @@ Object {
       "light": "#717477",
       "main": "#35393d",
     },
-    "common": Object {
+    "common": {
       "black": "#262c32",
       "white": "#ffffff",
     },
     "contrastThreshold": 3,
-    "darkGraphite": Object {
+    "darkGraphite": {
       "100": "#dcdde1",
       "200": "#cbccd2",
       "300": "#b9bbc3",
@@ -304,7 +304,7 @@ Object {
       "main": "#52566a",
     },
     "divider": "#dbdbdb",
-    "error": Object {
+    "error": {
       "100": "#fccbd5",
       "200": "#eb969f",
       "300": "#e06e79",
@@ -321,7 +321,7 @@ Object {
       "main": "#c31533",
     },
     "getContrastText": [Function],
-    "graphite": Object {
+    "graphite": {
       "100": "#e6e7ed",
       "200": "#dadbe4",
       "300": "#cdcfdb",
@@ -336,7 +336,7 @@ Object {
       "light": "#a9acc0",
       "main": "#8489a6",
     },
-    "green": Object {
+    "green": {
       "100": "#d9f0c5",
       "200": "#c0e59f",
       "300": "#a6db77",
@@ -352,7 +352,7 @@ Object {
       "light": "#7dcb35",
       "main": "#387f15",
     },
-    "grey": Object {
+    "grey": {
       "100": "#f1f7f9",
       "200": "#f8f8f8",
       "300": "#e9e9e9",
@@ -370,14 +370,14 @@ Object {
       "light": "#9c9c9c",
       "main": "#292c2f",
     },
-    "info": Object {
+    "info": {
       "contrastText": "#fff",
       "dark": "#01579b",
       "light": "#03a9f4",
       "main": "#0288d1",
     },
     "mode": "light",
-    "navy": Object {
+    "navy": {
       "100": "#d9dde1",
       "200": "#c7ccd2",
       "300": "#b4bbc3",
@@ -392,11 +392,11 @@ Object {
       "light": "#6a7887",
       "main": "#455769",
     },
-    "negative": Object {
+    "negative": {
       "dark": "#b40027",
       "main": "#c31533",
     },
-    "orange": Object {
+    "orange": {
       "100": "#fce4cc",
       "200": "#fbd7b3",
       "300": "#f9c999",
@@ -411,11 +411,11 @@ Object {
       "light": "#f5a24d",
       "main": "#f27a00",
     },
-    "positive": Object {
+    "positive": {
       "dark": "#0f7000",
       "main": "#387f15",
     },
-    "primary": Object {
+    "primary": {
       "100": "#aae3f8",
       "200": "#6dd1f4",
       "300": "#0abff1",
@@ -431,7 +431,7 @@ Object {
       "light": "#0abff1",
       "main": "#006eb7",
     },
-    "purple": Object {
+    "purple": {
       "100": "#e8cffe",
       "200": "#ddb8fe",
       "300": "#d2a0fe",
@@ -446,7 +446,7 @@ Object {
       "light": "#b15afe",
       "main": "#9013fe",
     },
-    "red": Object {
+    "red": {
       "100": "#fccbd5",
       "200": "#eb969f",
       "300": "#e06e79",
@@ -462,7 +462,7 @@ Object {
       "light": "#e22941",
       "main": "#c31533",
     },
-    "secondary": Object {
+    "secondary": {
       "100": "#d9f0c5",
       "200": "#c0e59f",
       "300": "#a6db77",
@@ -478,13 +478,13 @@ Object {
       "light": "#7dcb35",
       "main": "#387f15",
     },
-    "success": Object {
+    "success": {
       "contrastText": "#fff",
       "dark": "#1b5e20",
       "light": "#4caf50",
       "main": "#2e7d32",
     },
-    "text": Object {
+    "text": {
       "contrast": "#f8f8f8",
       "dark": "#262c32",
       "disabled": "#7b8996",
@@ -495,13 +495,13 @@ Object {
       "secondaryChannel": "0 0 0",
     },
     "tonalOffset": 0.2,
-    "warning": Object {
+    "warning": {
       "contrastText": "#fff",
       "dark": "#e65100",
       "light": "#ff9800",
       "main": "#ed6c02",
     },
-    "yellow": Object {
+    "yellow": {
       "100": "#fdfad1",
       "200": "#fcf7bb",
       "300": "#fcf5a4",
@@ -518,7 +518,7 @@ Object {
     },
   },
   "pxToRem": [Function],
-  "shadows": Array [
+  "shadows": [
     "none",
     "0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12)",
     "0px 3px 1px -2px rgba(0,0,0,0.2),0px 2px 2px 0px rgba(0,0,0,0.14),0px 1px 5px 0px rgba(0,0,0,0.12)",
@@ -545,13 +545,13 @@ Object {
     "0px 11px 14px -7px rgba(0,0,0,0.2),0px 23px 36px 3px rgba(0,0,0,0.14),0px 9px 44px 8px rgba(0,0,0,0.12)",
     "0px 11px 15px -7px rgba(0,0,0,0.2),0px 24px 38px 3px rgba(0,0,0,0.14),0px 9px 46px 8px rgba(0,0,0,0.12)",
   ],
-  "shape": Object {
+  "shape": {
     "borderRadius": 4,
   },
   "spacing": [Function],
-  "transitions": Object {
+  "transitions": {
     "create": [Function],
-    "duration": Object {
+    "duration": {
       "complex": 375,
       "enteringScreen": 225,
       "leavingScreen": 195,
@@ -560,7 +560,7 @@ Object {
       "shortest": 150,
       "standard": 300,
     },
-    "easing": Object {
+    "easing": {
       "easeIn": "cubic-bezier(0.4, 0, 1, 1)",
       "easeInOut": "cubic-bezier(0.4, 0, 0.2, 1)",
       "easeOut": "cubic-bezier(0.0, 0, 0.2, 1)",
@@ -568,36 +568,36 @@ Object {
     },
     "getAutoHeightDuration": [Function],
   },
-  "typography": Object {
-    "body1": Object {
-      "fontFamily": "\\"Lato\\", Helvetica, Roboto, Arial, \\"Lucida Grande\\", sans-serif",
+  "typography": {
+    "body1": {
+      "fontFamily": ""Lato", Helvetica, Roboto, Arial, "Lucida Grande", sans-serif",
       "fontSize": "1rem",
       "fontWeight": 400,
       "lineHeight": 1.5,
     },
-    "body2": Object {
-      "fontFamily": "\\"Lato\\", Helvetica, Roboto, Arial, \\"Lucida Grande\\", sans-serif",
+    "body2": {
+      "fontFamily": ""Lato", Helvetica, Roboto, Arial, "Lucida Grande", sans-serif",
       "fontSize": "0.875rem",
       "fontWeight": 400,
       "lineHeight": 1.43,
     },
-    "button": Object {
-      "fontFamily": "\\"Lato\\", Helvetica, Roboto, Arial, \\"Lucida Grande\\", sans-serif",
+    "button": {
+      "fontFamily": ""Lato", Helvetica, Roboto, Arial, "Lucida Grande", sans-serif",
       "fontSize": "0.75rem",
       "fontWeight": 700,
       "letterSpacing": 0.5,
       "lineHeight": 1.4,
       "textTransform": "initial",
     },
-    "caption": Object {
-      "fontFamily": "\\"Lato\\", Helvetica, Roboto, Arial, \\"Lucida Grande\\", sans-serif",
+    "caption": {
+      "fontFamily": ""Lato", Helvetica, Roboto, Arial, "Lucida Grande", sans-serif",
       "fontSize": "0.75rem",
       "fontWeight": 400,
       "lineHeight": 1.66,
     },
-    "fontFamily": "\\"Lato\\", Helvetica, Roboto, Arial, \\"Lucida Grande\\", sans-serif",
-    "fontFamilyMonospace": "\\"Ubuntu Mono\\", Consolas, \\"Lucida Console\\", Monaco, Courier, monospace",
-    "fontFamilySecondary": "\\"Work Sans\\", Helvetica, Roboto, Arial, \\"Lucida Grande\\", sans-serif",
+    "fontFamily": ""Lato", Helvetica, Roboto, Arial, "Lucida Grande", sans-serif",
+    "fontFamilyMonospace": ""Ubuntu Mono", Consolas, "Lucida Console", Monaco, Courier, monospace",
+    "fontFamilySecondary": ""Work Sans", Helvetica, Roboto, Arial, "Lucida Grande", sans-serif",
     "fontSize": 14,
     "fontWeightBold": 700,
     "fontWeightBolder": 900,
@@ -605,67 +605,67 @@ Object {
     "fontWeightLighter": 100,
     "fontWeightMedium": 400,
     "fontWeightRegular": 400,
-    "h1": Object {
-      "fontFamily": "\\"Lato\\", Helvetica, Roboto, Arial, \\"Lucida Grande\\", sans-serif",
+    "h1": {
+      "fontFamily": ""Lato", Helvetica, Roboto, Arial, "Lucida Grande", sans-serif",
       "fontSize": "3rem",
       "fontWeight": 300,
       "lineHeight": 1.167,
     },
-    "h2": Object {
-      "fontFamily": "\\"Lato\\", Helvetica, Roboto, Arial, \\"Lucida Grande\\", sans-serif",
+    "h2": {
+      "fontFamily": ""Lato", Helvetica, Roboto, Arial, "Lucida Grande", sans-serif",
       "fontSize": "2.25rem",
       "fontWeight": 300,
       "lineHeight": 1.2,
     },
-    "h3": Object {
-      "fontFamily": "\\"Lato\\", Helvetica, Roboto, Arial, \\"Lucida Grande\\", sans-serif",
+    "h3": {
+      "fontFamily": ""Lato", Helvetica, Roboto, Arial, "Lucida Grande", sans-serif",
       "fontSize": "1.875rem",
       "fontWeight": 400,
       "lineHeight": 1.167,
     },
-    "h4": Object {
-      "fontFamily": "\\"Lato\\", Helvetica, Roboto, Arial, \\"Lucida Grande\\", sans-serif",
+    "h4": {
+      "fontFamily": ""Lato", Helvetica, Roboto, Arial, "Lucida Grande", sans-serif",
       "fontSize": "1.5rem",
       "fontWeight": 400,
       "lineHeight": 1.235,
     },
-    "h5": Object {
-      "fontFamily": "\\"Lato\\", Helvetica, Roboto, Arial, \\"Lucida Grande\\", sans-serif",
+    "h5": {
+      "fontFamily": ""Lato", Helvetica, Roboto, Arial, "Lucida Grande", sans-serif",
       "fontSize": "1.25rem",
       "fontWeight": 400,
       "lineHeight": 1.334,
     },
-    "h6": Object {
-      "fontFamily": "\\"Lato\\", Helvetica, Roboto, Arial, \\"Lucida Grande\\", sans-serif",
+    "h6": {
+      "fontFamily": ""Lato", Helvetica, Roboto, Arial, "Lucida Grande", sans-serif",
       "fontSize": "1.125rem",
       "fontWeight": 400,
       "lineHeight": 1.6,
     },
     "htmlFontSize": 16,
-    "overline": Object {
-      "fontFamily": "\\"Lato\\", Helvetica, Roboto, Arial, \\"Lucida Grande\\", sans-serif",
+    "overline": {
+      "fontFamily": ""Lato", Helvetica, Roboto, Arial, "Lucida Grande", sans-serif",
       "fontSize": "0.75rem",
       "fontWeight": 400,
       "lineHeight": 2.66,
       "textTransform": "uppercase",
     },
     "pxToRem": [Function],
-    "subtitle1": Object {
-      "fontFamily": "\\"Lato\\", Helvetica, Roboto, Arial, \\"Lucida Grande\\", sans-serif",
+    "subtitle1": {
+      "fontFamily": ""Lato", Helvetica, Roboto, Arial, "Lucida Grande", sans-serif",
       "fontSize": "0.875rem",
       "fontWeight": 400,
       "lineHeight": 1.75,
     },
-    "subtitle2": Object {
-      "fontFamily": "\\"Lato\\", Helvetica, Roboto, Arial, \\"Lucida Grande\\", sans-serif",
+    "subtitle2": {
+      "fontFamily": ""Lato", Helvetica, Roboto, Arial, "Lucida Grande", sans-serif",
       "fontSize": "0.875rem",
       "fontWeight": 400,
       "lineHeight": 1.57,
     },
   },
-  "zIndex": Object {
+  "zIndex": {
     "appBar": 1100,
-    "byValueUpTo20": Object {
+    "byValueUpTo20": {
       "0": 0,
       "1": 1,
       "10": 10,
@@ -706,8 +706,8 @@ Object {
 `;
 
 exports[`overridden theme 1`] = `
-Object {
-  "boxShadows": Object {
+{
+  "boxShadows": {
     "elevatedContent": "0px 10px 64px rgba(0, 0, 0, 0.15)",
     "focusVisible": "0 0 0 2px rgba(0, 150, 225, .3)",
     "focusVisibleInverse": "0 0 0 2px rgba(255, 255, 255, .3)",
@@ -716,10 +716,10 @@ Object {
     "table": "0px 2px 8px rgba(0, 0, 0, 0.13)",
     "tooltip": "0px 0px 24px rgba(0, 0, 0, 0.15)",
   },
-  "breakpoints": Object {
+  "breakpoints": {
     "between": [Function],
     "down": [Function],
-    "keys": Array [
+    "keys": [
       "xs",
       "sm",
       "md",
@@ -730,7 +730,7 @@ Object {
     "only": [Function],
     "unit": "px",
     "up": [Function],
-    "values": Object {
+    "values": {
       "lg": 1500,
       "md": 1000,
       "sm": 800,
@@ -738,33 +738,33 @@ Object {
       "xs": 100,
     },
   },
-  "components": Object {
-    "ChromaAlert": Object {
-      "styleOverrides": Object {
-        "root": Object {
+  "components": {
+    "ChromaAlert": {
+      "styleOverrides": {
+        "root": {
           "marginLeft": "8px",
         },
       },
     },
-    "MuiButton": Object {
-      "defaultProps": Object {
+    "MuiButton": {
+      "defaultProps": {
         "color": "secondary",
       },
-      "styleOverrides": Object {
-        "containedPrimary": Object {
-          "&$focusVisible": Object {
+      "styleOverrides": {
+        "containedPrimary": {
+          "&$focusVisible": {
             "boxShadow": "0px 3px 5px -1px rgba(0,0,0,0.2),0px 6px 10px 0px rgba(0,0,0,0.14),0px 1px 18px 0px rgba(0,0,0,0.12)",
           },
-          "&:active": Object {
+          "&:active": {
             "boxShadow": "none",
           },
-          "&:disabled": Object {
+          "&:disabled": {
             "backgroundColor": "#006eb7",
             "color": "#ffffff",
             "opacity": 0.44,
           },
-          "&:hover, &:focus": Object {
-            "@media (hover: none)": Object {
+          "&:hover, &:focus": {
+            "@media (hover: none)": {
               "backgroundColor": "#e9e9e9",
             },
             "backgroundColor": "#006eb7",
@@ -773,25 +773,25 @@ Object {
           "boxShadow": "none",
           "color": "#ffffff",
         },
-        "outlinedPrimary": Object {
-          "&:disabled": Object {
+        "outlinedPrimary": {
+          "&:disabled": {
             "border": "1px solid #006eb7",
             "color": "#006eb7",
             "opacity": 0.44,
           },
-          "&:hover, &:focus": Object {
+          "&:hover, &:focus": {
             "backgroundColor": "transparent",
             "border": "1px solid #006eb7",
             "color": "#006eb7",
           },
           "border": "1px solid #006eb7",
         },
-        "root": Object {
-          "&:focus": Object {
+        "root": {
+          "&:focus": {
             "outline": 0,
           },
           "boxSizing": "border-box",
-          "fontFamily": "\\"Lato\\", Helvetica, Roboto, Arial, \\"Lucida Grande\\", sans-serif",
+          "fontFamily": ""Lato", Helvetica, Roboto, Arial, "Lucida Grande", sans-serif",
           "fontSize": "0.75rem",
           "fontWeight": 700,
           "letterSpacing": 0.5,
@@ -803,8 +803,8 @@ Object {
           "textTransform": "initial",
           "transition": "background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
         },
-        "sizeSmall": Object {
-          "fontFamily": "\\"Lato\\", Helvetica, Roboto, Arial, \\"Lucida Grande\\", sans-serif",
+        "sizeSmall": {
+          "fontFamily": ""Lato", Helvetica, Roboto, Arial, "Lucida Grande", sans-serif",
           "fontSize": "0.75rem",
           "fontWeight": 700,
           "letterSpacing": 0.5,
@@ -814,12 +814,12 @@ Object {
           "padding": "8px 11px",
           "textTransform": "initial",
         },
-        "textPrimary": Object {
-          "&:disabled": Object {
+        "textPrimary": {
+          "&:disabled": {
             "color": "#006eb7",
             "opacity": 0.44,
           },
-          "&:hover, &:focus": Object {
+          "&:hover, &:focus": {
             "backgroundColor": "inherit",
             "color": "#006eb7",
           },
@@ -828,41 +828,41 @@ Object {
         },
       },
     },
-    "MuiCheckbox": Object {
-      "defaultProps": Object {
+    "MuiCheckbox": {
+      "defaultProps": {
         "color": "secondary",
       },
     },
-    "MuiFormControl": Object {
-      "defaultProps": Object {
+    "MuiFormControl": {
+      "defaultProps": {
         "variant": "standard",
       },
     },
-    "MuiSelect": Object {
-      "defaultProps": Object {
+    "MuiSelect": {
+      "defaultProps": {
         "variant": "standard",
       },
     },
-    "MuiTab": Object {
-      "styleOverrides": Object {
-        "iconWrapper": Object {
+    "MuiTab": {
+      "styleOverrides": {
+        "iconWrapper": {
           "paddingLeft": "16px",
           "paddingRight": "16px",
         },
-        "root": Object {
-          "&$selected": Object {
+        "root": {
+          "&$selected": {
             "color": "#262c32",
           },
-          "&:disabled": Object {
+          "&:disabled": {
             "color": "#7b8996",
           },
-          "&:focus": Object {
+          "&:focus": {
             "outline": "none",
           },
-          "&:hover": Object {
+          "&:hover": {
             "color": "#637585",
           },
-          "@media (min-width:800px)": Object {
+          "@media (min-width:800px)": {
             "fontSize": "0.875rem",
           },
           "fontSize": "0.875rem",
@@ -872,19 +872,19 @@ Object {
           "textTransform": "initial",
           "transition": "color 0.5s ease",
         },
-        "textColorInherit": Object {
+        "textColorInherit": {
           "color": "#262c32",
           "opacity": "initial",
         },
       },
     },
-    "MuiTabs": Object {
-      "styleOverrides": Object {
-        "indicator": Object {
+    "MuiTabs": {
+      "styleOverrides": {
+        "indicator": {
           "backgroundColor": "#006eb7",
           "height": "0.1875rem",
         },
-        "root": Object {
+        "root": {
           "borderBottom": "1px solid #dbdbdb",
           "height": "initial",
           "minHeight": "initial",
@@ -892,17 +892,17 @@ Object {
         },
       },
     },
-    "MuiTextField": Object {
-      "defaultProps": Object {
+    "MuiTextField": {
+      "defaultProps": {
         "variant": "standard",
       },
     },
-    "MuiTooltip": Object {
-      "styleOverrides": Object {
-        "popper": Object {
+    "MuiTooltip": {
+      "styleOverrides": {
+        "popper": {
           "opacity": 1,
         },
-        "tooltip": Object {
+        "tooltip": {
           "backgroundColor": "#ffffff",
           "boxShadow": "0px 0px 24px rgba(0, 0, 0, 0.15)",
           "color": "#576674",
@@ -917,21 +917,21 @@ Object {
   },
   "direction": "ltr",
   "hexToRgba": [Function],
-  "mixins": Object {
-    "toolbar": Object {
-      "@media (min-width:100px)": Object {
-        "@media (orientation: landscape)": Object {
+  "mixins": {
+    "toolbar": {
+      "@media (min-width:100px)": {
+        "@media (orientation: landscape)": {
           "minHeight": 48,
         },
       },
-      "@media (min-width:800px)": Object {
+      "@media (min-width:800px)": {
         "minHeight": 64,
       },
       "minHeight": 56,
     },
   },
-  "palette": Object {
-    "action": Object {
+  "palette": {
+    "action": {
       "activatedOpacity": 0.12,
       "active": "rgba(0, 0, 0, 0.54)",
       "activeChannel": "0 0 0",
@@ -947,11 +947,11 @@ Object {
       "selectedOpacity": 0.08,
     },
     "augmentColor": [Function],
-    "background": Object {
+    "background": {
       "default": "#f5f8fa",
       "paper": "#fafafa",
     },
-    "black": Object {
+    "black": {
       "100": "#d1d5d8",
       "200": "#b2b9c0",
       "300": "#929da9",
@@ -966,7 +966,7 @@ Object {
       "light": "#47535e",
       "main": "#262c32",
     },
-    "blue": Object {
+    "blue": {
       "100": "#aae3f8",
       "200": "#6dd1f4",
       "300": "#0abff1",
@@ -981,7 +981,7 @@ Object {
       "light": "#0abff1",
       "main": "#006eb7",
     },
-    "charcoal": Object {
+    "charcoal": {
       "100": "#d6d7d8",
       "200": "#c2c3c5",
       "300": "#aeafb1",
@@ -996,12 +996,12 @@ Object {
       "light": "#717477",
       "main": "#35393d",
     },
-    "common": Object {
+    "common": {
       "black": "#262c32",
       "white": "#ffffff",
     },
     "contrastThreshold": 3,
-    "darkGraphite": Object {
+    "darkGraphite": {
       "100": "#dcdde1",
       "200": "#cbccd2",
       "300": "#b9bbc3",
@@ -1017,7 +1017,7 @@ Object {
       "main": "#52566a",
     },
     "divider": "#dbdbdb",
-    "error": Object {
+    "error": {
       "100": "#fccbd5",
       "200": "#eb969f",
       "300": "#e06e79",
@@ -1034,7 +1034,7 @@ Object {
       "main": "#c31533",
     },
     "getContrastText": [Function],
-    "graphite": Object {
+    "graphite": {
       "100": "#e6e7ed",
       "200": "#dadbe4",
       "300": "#cdcfdb",
@@ -1049,7 +1049,7 @@ Object {
       "light": "#a9acc0",
       "main": "#8489a6",
     },
-    "green": Object {
+    "green": {
       "100": "#d9f0c5",
       "200": "#c0e59f",
       "300": "#a6db77",
@@ -1065,7 +1065,7 @@ Object {
       "light": "#7dcb35",
       "main": "#387f15",
     },
-    "grey": Object {
+    "grey": {
       "100": "#f1f7f9",
       "200": "#f8f8f8",
       "300": "#e9e9e9",
@@ -1083,14 +1083,14 @@ Object {
       "light": "#9c9c9c",
       "main": "#292c2f",
     },
-    "info": Object {
+    "info": {
       "contrastText": "#fff",
       "dark": "#01579b",
       "light": "#03a9f4",
       "main": "#0288d1",
     },
     "mode": "light",
-    "navy": Object {
+    "navy": {
       "100": "#d9dde1",
       "200": "#c7ccd2",
       "300": "#b4bbc3",
@@ -1105,11 +1105,11 @@ Object {
       "light": "#6a7887",
       "main": "#455769",
     },
-    "negative": Object {
+    "negative": {
       "dark": "#b40027",
       "main": "#c31533",
     },
-    "orange": Object {
+    "orange": {
       "100": "#fce4cc",
       "200": "#fbd7b3",
       "300": "#f9c999",
@@ -1124,11 +1124,11 @@ Object {
       "light": "#f5a24d",
       "main": "#f27a00",
     },
-    "positive": Object {
+    "positive": {
       "dark": "#0f7000",
       "main": "#387f15",
     },
-    "primary": Object {
+    "primary": {
       "100": "#aae3f8",
       "200": "#6dd1f4",
       "300": "#0abff1",
@@ -1144,7 +1144,7 @@ Object {
       "light": "#0abff1",
       "main": "#006eb7",
     },
-    "purple": Object {
+    "purple": {
       "100": "#e8cffe",
       "200": "#ddb8fe",
       "300": "#d2a0fe",
@@ -1159,7 +1159,7 @@ Object {
       "light": "#b15afe",
       "main": "#9013fe",
     },
-    "red": Object {
+    "red": {
       "100": "#fccbd5",
       "200": "#eb969f",
       "300": "#e06e79",
@@ -1175,7 +1175,7 @@ Object {
       "light": "#e22941",
       "main": "#c31533",
     },
-    "secondary": Object {
+    "secondary": {
       "100": "#d9f0c5",
       "200": "#c0e59f",
       "300": "#a6db77",
@@ -1191,13 +1191,13 @@ Object {
       "light": "#7dcb35",
       "main": "#387f15",
     },
-    "success": Object {
+    "success": {
       "contrastText": "#fff",
       "dark": "#1b5e20",
       "light": "#4caf50",
       "main": "#2e7d32",
     },
-    "text": Object {
+    "text": {
       "contrast": "#f8f8f8",
       "dark": "#262c32",
       "disabled": "#7b8996",
@@ -1208,13 +1208,13 @@ Object {
       "secondaryChannel": "0 0 0",
     },
     "tonalOffset": 0.2,
-    "warning": Object {
+    "warning": {
       "contrastText": "#fff",
       "dark": "#e65100",
       "light": "#ff9800",
       "main": "#ed6c02",
     },
-    "yellow": Object {
+    "yellow": {
       "100": "#fdfad1",
       "200": "#fcf7bb",
       "300": "#fcf5a4",
@@ -1231,7 +1231,7 @@ Object {
     },
   },
   "pxToRem": [Function],
-  "shadows": Array [
+  "shadows": [
     "none",
     "0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12)",
     "0px 3px 1px -2px rgba(0,0,0,0.2),0px 2px 2px 0px rgba(0,0,0,0.14),0px 1px 5px 0px rgba(0,0,0,0.12)",
@@ -1258,13 +1258,13 @@ Object {
     "0px 11px 14px -7px rgba(0,0,0,0.2),0px 23px 36px 3px rgba(0,0,0,0.14),0px 9px 44px 8px rgba(0,0,0,0.12)",
     "0px 11px 15px -7px rgba(0,0,0,0.2),0px 24px 38px 3px rgba(0,0,0,0.14),0px 9px 46px 8px rgba(0,0,0,0.12)",
   ],
-  "shape": Object {
+  "shape": {
     "borderRadius": 4,
   },
   "spacing": [Function],
-  "transitions": Object {
+  "transitions": {
     "create": [Function],
-    "duration": Object {
+    "duration": {
       "complex": 375,
       "enteringScreen": 225,
       "leavingScreen": 195,
@@ -1273,7 +1273,7 @@ Object {
       "shortest": 150,
       "standard": 300,
     },
-    "easing": Object {
+    "easing": {
       "easeIn": "cubic-bezier(0.4, 0, 1, 1)",
       "easeInOut": "cubic-bezier(0.4, 0, 0.2, 1)",
       "easeOut": "cubic-bezier(0.0, 0, 0.2, 1)",
@@ -1281,36 +1281,36 @@ Object {
     },
     "getAutoHeightDuration": [Function],
   },
-  "typography": Object {
-    "body1": Object {
-      "fontFamily": "\\"Lato\\", Helvetica, Roboto, Arial, \\"Lucida Grande\\", sans-serif",
+  "typography": {
+    "body1": {
+      "fontFamily": ""Lato", Helvetica, Roboto, Arial, "Lucida Grande", sans-serif",
       "fontSize": "1rem",
       "fontWeight": 400,
       "lineHeight": 1.5,
     },
-    "body2": Object {
-      "fontFamily": "\\"Lato\\", Helvetica, Roboto, Arial, \\"Lucida Grande\\", sans-serif",
+    "body2": {
+      "fontFamily": ""Lato", Helvetica, Roboto, Arial, "Lucida Grande", sans-serif",
       "fontSize": "0.875rem",
       "fontWeight": 400,
       "lineHeight": 1.43,
     },
-    "button": Object {
-      "fontFamily": "\\"Lato\\", Helvetica, Roboto, Arial, \\"Lucida Grande\\", sans-serif",
+    "button": {
+      "fontFamily": ""Lato", Helvetica, Roboto, Arial, "Lucida Grande", sans-serif",
       "fontSize": "0.75rem",
       "fontWeight": 700,
       "letterSpacing": 0.5,
       "lineHeight": 1.4,
       "textTransform": "initial",
     },
-    "caption": Object {
-      "fontFamily": "\\"Lato\\", Helvetica, Roboto, Arial, \\"Lucida Grande\\", sans-serif",
+    "caption": {
+      "fontFamily": ""Lato", Helvetica, Roboto, Arial, "Lucida Grande", sans-serif",
       "fontSize": "0.75rem",
       "fontWeight": 400,
       "lineHeight": 1.66,
     },
-    "fontFamily": "\\"Lato\\", Helvetica, Roboto, Arial, \\"Lucida Grande\\", sans-serif",
-    "fontFamilyMonospace": "\\"Ubuntu Mono\\", Consolas, \\"Lucida Console\\", Monaco, Courier, monospace",
-    "fontFamilySecondary": "\\"Work Sans\\", Helvetica, Roboto, Arial, \\"Lucida Grande\\", sans-serif",
+    "fontFamily": ""Lato", Helvetica, Roboto, Arial, "Lucida Grande", sans-serif",
+    "fontFamilyMonospace": ""Ubuntu Mono", Consolas, "Lucida Console", Monaco, Courier, monospace",
+    "fontFamilySecondary": ""Work Sans", Helvetica, Roboto, Arial, "Lucida Grande", sans-serif",
     "fontSize": 14,
     "fontWeightBold": 700,
     "fontWeightBolder": 900,
@@ -1318,67 +1318,67 @@ Object {
     "fontWeightLighter": 100,
     "fontWeightMedium": 400,
     "fontWeightRegular": 400,
-    "h1": Object {
-      "fontFamily": "\\"Lato\\", Helvetica, Roboto, Arial, \\"Lucida Grande\\", sans-serif",
+    "h1": {
+      "fontFamily": ""Lato", Helvetica, Roboto, Arial, "Lucida Grande", sans-serif",
       "fontSize": "3rem",
       "fontWeight": 300,
       "lineHeight": 1.167,
     },
-    "h2": Object {
-      "fontFamily": "\\"Lato\\", Helvetica, Roboto, Arial, \\"Lucida Grande\\", sans-serif",
+    "h2": {
+      "fontFamily": ""Lato", Helvetica, Roboto, Arial, "Lucida Grande", sans-serif",
       "fontSize": "2.25rem",
       "fontWeight": 300,
       "lineHeight": 1.2,
     },
-    "h3": Object {
-      "fontFamily": "\\"Lato\\", Helvetica, Roboto, Arial, \\"Lucida Grande\\", sans-serif",
+    "h3": {
+      "fontFamily": ""Lato", Helvetica, Roboto, Arial, "Lucida Grande", sans-serif",
       "fontSize": "1.875rem",
       "fontWeight": 400,
       "lineHeight": 1.167,
     },
-    "h4": Object {
-      "fontFamily": "\\"Lato\\", Helvetica, Roboto, Arial, \\"Lucida Grande\\", sans-serif",
+    "h4": {
+      "fontFamily": ""Lato", Helvetica, Roboto, Arial, "Lucida Grande", sans-serif",
       "fontSize": "1.5rem",
       "fontWeight": 400,
       "lineHeight": 1.235,
     },
-    "h5": Object {
-      "fontFamily": "\\"Lato\\", Helvetica, Roboto, Arial, \\"Lucida Grande\\", sans-serif",
+    "h5": {
+      "fontFamily": ""Lato", Helvetica, Roboto, Arial, "Lucida Grande", sans-serif",
       "fontSize": "1.25rem",
       "fontWeight": 400,
       "lineHeight": 1.334,
     },
-    "h6": Object {
-      "fontFamily": "\\"Lato\\", Helvetica, Roboto, Arial, \\"Lucida Grande\\", sans-serif",
+    "h6": {
+      "fontFamily": ""Lato", Helvetica, Roboto, Arial, "Lucida Grande", sans-serif",
       "fontSize": "1.125rem",
       "fontWeight": 400,
       "lineHeight": 1.6,
     },
     "htmlFontSize": 16,
-    "overline": Object {
-      "fontFamily": "\\"Lato\\", Helvetica, Roboto, Arial, \\"Lucida Grande\\", sans-serif",
+    "overline": {
+      "fontFamily": ""Lato", Helvetica, Roboto, Arial, "Lucida Grande", sans-serif",
       "fontSize": "0.75rem",
       "fontWeight": 400,
       "lineHeight": 2.66,
       "textTransform": "uppercase",
     },
     "pxToRem": [Function],
-    "subtitle1": Object {
-      "fontFamily": "\\"Lato\\", Helvetica, Roboto, Arial, \\"Lucida Grande\\", sans-serif",
+    "subtitle1": {
+      "fontFamily": ""Lato", Helvetica, Roboto, Arial, "Lucida Grande", sans-serif",
       "fontSize": "0.875rem",
       "fontWeight": 400,
       "lineHeight": 1.75,
     },
-    "subtitle2": Object {
-      "fontFamily": "\\"Lato\\", Helvetica, Roboto, Arial, \\"Lucida Grande\\", sans-serif",
+    "subtitle2": {
+      "fontFamily": ""Lato", Helvetica, Roboto, Arial, "Lucida Grande", sans-serif",
       "fontSize": "0.875rem",
       "fontWeight": 400,
       "lineHeight": 1.57,
     },
   },
-  "zIndex": Object {
+  "zIndex": {
     "appBar": 1100,
-    "byValueUpTo20": Object {
+    "byValueUpTo20": {
       "0": 0,
       "1": 1,
       "10": 10,
