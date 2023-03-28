@@ -3,6 +3,7 @@ import { renderWithTheme } from '../../testUtils/renderWithTheme';
 import { TableModuleRow } from './TableModuleRow';
 import * as React from 'react';
 import { testIds } from './TableModule';
+import { Checkbox } from '../Checkbox';
 
 test('it renders a TableModuleRow', async () => {
   const { findByTestId } = renderWithTheme(
@@ -125,4 +126,39 @@ test('it does not render row actions when the `rowActions` function returns null
 
   const td = await findByRole('cell');
   expect(td.innerHTML).toBe('');
+});
+
+test('it does not trigger row click when target is a checkbox input', async () => {
+  const mockFn = jest.fn();
+  const mockCheckboxClick = jest.fn();
+
+  const { findByLabelText } = renderWithTheme(
+    <table>
+      <tbody>
+        <TableModuleRow
+          data={{}}
+          row={{
+            id: 'row',
+          }}
+          cells={[
+            {
+              content: () => (
+                <Checkbox label="Select Row" onClick={mockCheckboxClick} />
+              ),
+            },
+          ]}
+          headingsLength={0}
+          onRowClick={mockFn}
+        />
+      </tbody>
+    </table>
+  );
+
+  const checkbox = await findByLabelText('Select Row');
+
+  fireEvent.click(checkbox);
+
+  expect(mockCheckboxClick).toBeCalledTimes(1);
+  // does not trigger row click
+  expect(mockFn).toBeCalledTimes(0);
 });

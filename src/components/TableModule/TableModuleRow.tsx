@@ -68,6 +68,10 @@ const TableModuleRow: React.FC<TableModuleRowProps> = React.memo(
           return;
         }
 
+        if (e.target?.tagName === 'INPUT' && e.target?.type === 'checkbox') {
+          return;
+        }
+
         e?.currentTarget?.blur();
 
         onRowClick?.(row);
