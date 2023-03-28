@@ -461,7 +461,8 @@ export const RowSelection: ComponentStory<typeof TableModule> = (args) => {
     cell: {
       content: (rowData: RowSelectionRow) => (
         <Checkbox
-          label=" "
+          label=""
+          aria-label="select row"
           checked={rowData.getIsSelected()}
           disabled={!rowData.getCanSelect()}
           onChange={rowData.getToggleSelectedHandler()}
