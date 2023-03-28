@@ -543,7 +543,9 @@ export const TableModule = React.memo(
               </tr>
             )}
             {data?.map((row, rowIndex) => {
-              const rowData = createRow(row, rowIndex);
+              const rowData = enableRowSelection
+                ? createRow(row, rowIndex)
+                : row;
               return (
                 <TableModuleRow
                   key={`tableRow-${rowIndex}`}
