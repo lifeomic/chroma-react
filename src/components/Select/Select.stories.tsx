@@ -3,7 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import { Select } from './Select';
 import { SelectOption } from './SelectOption';
-import { Edit } from '@lifeomic/chromicons';
+import { ChevronRight, Edit } from '@lifeomic/chromicons';
 import { GroupHeading } from './GroupHeading';
 
 export default {
@@ -13,19 +13,44 @@ export default {
   subcomponents: { SelectOption, GroupHeading },
 } as ComponentMeta<typeof Select>;
 
-const Template: ComponentStory<typeof Select> = (args) => (
-  <Select {...args}>
-    <SelectOption title="Option 1" value="option 1" />
-    <SelectOption
-      title="Option 2"
-      subtitle="This is a subtitle. For options that need a little extra description."
-      value="option 2"
-    />
-    <GroupHeading data-select-role="heading">Group 1</GroupHeading>
-    <SelectOption disabled title="Option 3" value="option 3" />
-    <SelectOption title="Option 4" value="option 4" />
-  </Select>
-);
+const Template: ComponentStory<typeof Select> = (args) => {
+  const [selected, setSelected] = React.useState<string>('');
+
+  return (
+    <Select
+      {...args}
+      value={selected}
+      onChange={(value) => {
+        setSelected(value);
+        console.log(value);
+      }}
+    >
+      <SelectOption
+        title="Option 1"
+        value="option 1"
+        secondaryAction={args.secondaryAction}
+      />
+      <SelectOption
+        title="Option 2"
+        subtitle="This is a subtitle. For options that need a little extra description."
+        value="option 2"
+        secondaryAction={args.secondaryAction}
+      />
+      <GroupHeading data-select-role="heading">Group 1</GroupHeading>
+      <SelectOption
+        disabled
+        title="Option 3"
+        value="option 3"
+        secondaryAction={args.secondaryAction}
+      />
+      <SelectOption
+        title="Option 4"
+        value="option 4"
+        secondaryAction={args.secondaryAction}
+      />
+    </Select>
+  );
+};
 
 export const Default = Template.bind({});
 Default.args = {
@@ -74,6 +99,19 @@ Tooltip.args = {
   label: 'Select',
   icon: Edit,
   tooltipMessage: 'Tooltip Message',
+};
+
+export const SecondaryAction = Template.bind({});
+SecondaryAction.args = {
+  label: 'Select',
+  secondaryAction: {
+    args: 'https://lifeomic.com/',
+    action: (args: string) => {
+      alert(`You can do something with arg "${args}"`);
+    },
+    label: 'Do something',
+    icon: ChevronRight,
+  },
 };
 
 export const InverseDark = Template.bind({});
