@@ -20,7 +20,7 @@ import {
 } from '../_private/forms';
 import { generateUniqueId } from '../_private/UniqueId';
 import { Text } from '../Text';
-import { SelectOptionProps } from './SelectOption';
+import { SelectOptionProps, SelectSecondaryAction } from './SelectOption';
 import { motion, useReducedMotion } from 'framer-motion';
 import { RoverOption } from './RoverOption';
 import { useRoverState } from 'reakit/Rover';
@@ -331,6 +331,7 @@ export interface SelectProps
     > {
   ['aria-label']?: string;
   children?: React.ReactNode;
+  secondaryAction?: SelectSecondaryAction;
   secondaryLabel?: string;
   fullWidth?: boolean;
   icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
@@ -395,6 +396,7 @@ export const Select: React.FC<SelectProps> = ({
   icon: Icon,
   id,
   label,
+  secondaryAction,
   secondaryLabel,
   onChange,
   placeholder,
