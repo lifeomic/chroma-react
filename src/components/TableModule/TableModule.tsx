@@ -433,6 +433,7 @@ export const TableModule = React.memo(
 
       const createRow = React.useCallback(
         (row: any, index: number): RowSelectionRow => ({
+          ...row,
           getIsSelected: () => {
             return isRowSelected(row, index);
           },
@@ -553,7 +554,7 @@ export const TableModule = React.memo(
                   onRowClick={onRowClick}
                   rowRole={rowRole}
                   maxCellWidth={maxCellWidth}
-                  row={Object.assign(row, rowData)}
+                  row={rowData}
                   headingsLength={headings?.length}
                   cells={cells}
                   rowActions={rowActions}

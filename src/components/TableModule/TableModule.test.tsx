@@ -187,25 +187,33 @@ test('it renders columns using "header.content"', async () => {
   expect(columns?.[1].textContent).toEqual('undefined1');
 });
 
-test('it renders a table with data using "cell.content"', async () => {
-  const { findAllByTestId } = renderWithTheme(
-    <TableModule
-      data-testid={testId}
-      config={configWithCellContent}
-      data={data}
-    />
-  );
+test.each`
+  config                   | data    | enableRowSelection
+  ${configWithCellContent} | ${data} | ${false}
+  ${configWithCellContent} | ${data} | ${true}
+`(
+  'it renders a table with data using "cell.content"',
+  async ({ config, data, enableRowSelection }) => {
+    const { findAllByTestId } = renderWithTheme(
+      <TableModule
+        data-testid={testId}
+        config={config}
+        data={data}
+        enableRowSelection={enableRowSelection}
+      />
+    );
 
-  const rows = await findAllByTestId(testIds.bodyRow);
-  expect(rows?.length).toEqual(2);
+    const rows = await findAllByTestId(testIds.bodyRow);
+    expect(rows?.length).toEqual(2);
 
-  const rowCells = await findAllByTestId(testIds.bodyCell);
-  expect(rowCells?.length).toEqual(4);
-  expect(rowCells?.[0]?.textContent).toEqual(data[0].description);
-  expect(rowCells?.[1]?.textContent).toEqual(data[0].calories);
-  expect(rowCells?.[2]?.textContent).toEqual(data[1].description);
-  expect(rowCells?.[3]?.textContent).toEqual(data[1].calories);
-});
+    const rowCells = await findAllByTestId(testIds.bodyCell);
+    expect(rowCells?.length).toEqual(4);
+    expect(rowCells?.[0]?.textContent).toEqual(data[0].description);
+    expect(rowCells?.[1]?.textContent).toEqual(data[0].calories);
+    expect(rowCells?.[2]?.textContent).toEqual(data[1].description);
+    expect(rowCells?.[3]?.textContent).toEqual(data[1].calories);
+  }
+);
 
 test('it renders a table with data using "cell.valuePath"', async () => {
   const { findAllByTestId } = renderWithTheme(
