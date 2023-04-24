@@ -92,8 +92,14 @@ export const SelectOption: React.FC<SelectOptionProps> = ({
 }) => {
   const classes = useStyles({});
   return (
-    <Box fullWidth justify="space-between" align="center">
-      <Box className={clsx(classes.root, className)} fullWidth {...rootProps}>
+    <Box
+      className={clsx(classes.root, className)}
+      fullWidth
+      justify="space-between"
+      align="center"
+      {...rootProps}
+    >
+      <Box fullWidth>
         {isChecked && (
           // This is required for a11y: we need to have some indicator for our screenreader friends
           <VisuallyHidden>&#x2713;</VisuallyHidden>
