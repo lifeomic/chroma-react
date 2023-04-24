@@ -6,6 +6,7 @@ import { GetClasses } from '../../typeUtils';
 import { Box } from '../Box';
 import { Text } from '../Text';
 import { IconButton } from '../IconButton';
+import { Tooltip } from '../Tooltip';
 
 export const SelectOptionStylesKey = 'ChromaSelectOption';
 
@@ -121,16 +122,18 @@ export const SelectOption: React.FC<SelectOptionProps> = ({
         {children}
       </Box>
       {secondaryAction && (
-        <IconButton
-          className={classes.obviousHover}
-          aria-label={secondaryAction?.label}
-          icon={secondaryAction?.icon}
-          onClick={(e) => {
-            e.stopPropagation();
-            secondaryAction.action(secondaryAction.args);
-          }}
+        <Tooltip title={`${title}: ${secondaryAction.label}`}>
+          <IconButton
+            className={classes.obviousHover}
+            aria-label={secondaryAction?.label}
+            icon={secondaryAction?.icon}
+            onClick={(e) => {
+              e.stopPropagation();
+              secondaryAction.action(secondaryAction.args);
+            }}
             size={0}
-        />
+          />
+        </Tooltip>
       )}
     </Box>
   );
