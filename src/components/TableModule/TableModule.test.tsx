@@ -1,7 +1,10 @@
 import { fireEvent } from '@testing-library/dom';
 import * as React from 'react';
 import { renderWithTheme } from '../../testUtils/renderWithTheme';
+import { Checkbox } from '../Checkbox';
 import {
+  RowSelectionRow,
+  RowSelectionState,
   TableConfiguration,
   TableHeader,
   TableModule,
@@ -96,6 +99,26 @@ const data = [
     description: 'Ice cream sandwich',
     calories: '237',
   },
+];
+
+const configWithSelection = [
+  {
+    header: {
+      content: () => '',
+    },
+    cell: {
+      content: (rowData: RowSelectionRow) => (
+        <Checkbox
+          label=""
+          aria-label="select row"
+          checked={rowData.getIsSelected()}
+          disabled={!rowData.getCanSelect()}
+          onChange={rowData.getToggleSelectedHandler()}
+        />
+      ),
+    },
+  },
+  ...configWithCellContent,
 ];
 
 test('it renders an empty table', async () => {
@@ -727,6 +750,73 @@ test('it sets "isStickyLast" class on last sticky column', async () => {
     } else {
       expect(cell.getAttribute('class')).not.toMatch(/isStickyLast/gi);
     }
+  });
+});
+
+describe('row selection', () => {
+  const config: Array<TableConfiguration> = configWithSelection;
+
+  const initialRowSelection: RowSelectionState = { '0': true };
+  const rowSelection = initialRowSelection;
+  const setRowSelection = jest.fn();
+
+  it('supports initial selection state', async () => {
+    const { findByTestId } = renderWithTheme(
+      <TableModule
+        data-testid={testId}
+        config={config}
+        data={data}
+        enableRowSelection={true}
+        state={{ rowSelection }}
+      />
+    );
+    const root = await findByTestId(testId);
+    const firstRowCheckbox = root.querySelector('input[type="checkbox"]');
+    expect(firstRowCheckbox).toHaveAttribute('aria-checked', 'true');
+  });
+
+  it('supports deselection', async () => {
+    const { findByTestId } = renderWithTheme(
+      <TableModule
+        data-testid={testId}
+        config={config}
+        data={data}
+        enableRowSelection={true}
+        state={{ rowSelection }}
+        onRowSelectionChange={setRowSelection}
+      />
+    );
+    const root = await findByTestId(testId);
+    const firstRowCheckbox = root.querySelector('input[type="checkbox"]');
+
+    fireEvent.click(firstRowCheckbox!);
+
+    expect(firstRowCheckbox).toHaveAttribute('aria-checked', 'false');
+    expect(setRowSelection).toHaveBeenCalledWith({});
+  });
+
+  it('supports multi selection', async () => {
+    const { findByTestId } = renderWithTheme(
+      <TableModule
+        data-testid={testId}
+        config={config}
+        data={data}
+        enableRowSelection={true}
+        state={{ rowSelection }}
+        onRowSelectionChange={setRowSelection}
+      />
+    );
+    const root = await findByTestId(testId);
+    const checkboxes = root.querySelectorAll('input[type="checkbox"]');
+
+    // select the second one
+    fireEvent.click(checkboxes[1]);
+
+    expect(checkboxes[1]).toHaveAttribute('aria-checked', 'true');
+    expect(setRowSelection).toHaveBeenCalledWith({
+      '0': true,
+      '1': true,
+    });
   });
 });
 

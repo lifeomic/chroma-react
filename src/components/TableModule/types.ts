@@ -45,7 +45,7 @@ export interface TableConfiguration<Item = any> {
   isSticky?: boolean;
 }
 
-// stanStack table core APIs
+// TanStack table core APIs
 export type RowSelectionState = Record<string, boolean>;
 
 export interface TableState {
