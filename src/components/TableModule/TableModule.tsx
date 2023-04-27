@@ -207,16 +207,7 @@ export const useStyles = makeStyles(
       willChange: 'transform',
     },
     isStickyLast: {
-      '&::before': {
-        background: theme.palette.graphite[300],
-        content: `''`,
-        display: 'block',
-        height: `calc(100% + ${theme.pxToRem(1)})`,
-        position: 'absolute',
-        right: 0,
-        top: 0,
-        width: theme.pxToRem(4),
-      },
+      boxShadow: `inset -4px 0 ${theme.palette.divider}`,
     },
   }),
   { name: TableModuleStylesKey }
