@@ -200,14 +200,23 @@ export const useStyles = makeStyles(
       right: 0,
     },
     isSticky: {
-      background: theme.palette.graphite[50],
+      background: lighten(theme.palette.graphite[50], 0.5),
       left: 0,
       position: 'sticky',
       zIndex: theme.zIndex.byValueUpTo20[4],
       willChange: 'transform',
     },
     isStickyLast: {
-      boxShadow: `inset -2px 0 ${theme.palette.primary.main}`,
+      '&::before': {
+        background: theme.palette.graphite[300],
+        content: `''`,
+        display: 'block',
+        height: `calc(100% + ${theme.pxToRem(1)})`,
+        position: 'absolute',
+        right: 0,
+        top: 0,
+        width: theme.pxToRem(4),
+      },
     },
   }),
   { name: TableModuleStylesKey }
