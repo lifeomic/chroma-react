@@ -460,10 +460,10 @@ export const TableModule = React.memo(
               onRowSelectionChange(newRowSelection);
             }
           },
-          getToggleSelectedHandler: () => {
+          getToggleSelectedHandler() {
             return (e: unknown) => {
               if (enableRowSelection) {
-                row.toggleSelected(
+                this.toggleSelected(
                   ((e as MouseEvent).target as HTMLInputElement).checked
                 );
               }
@@ -550,7 +550,6 @@ export const TableModule = React.memo(
               return (
                 <TableModuleRow
                   key={`tableRow-${rowIndex}`}
-                  data={row}
                   onRowClick={onRowClick}
                   rowRole={rowRole}
                   maxCellWidth={maxCellWidth}

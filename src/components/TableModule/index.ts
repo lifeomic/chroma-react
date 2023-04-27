@@ -19,6 +19,8 @@ export {
   TableCell,
   TableSortClickProps,
   TableSortState,
+  RowSelectionRow,
+  RowSelectionState,
 } from './types';
 
 export {
