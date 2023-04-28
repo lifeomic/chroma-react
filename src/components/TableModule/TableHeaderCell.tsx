@@ -4,6 +4,7 @@ import { ChevronDown } from '@lifeomic/chromicons';
 import { makeStyles } from '../../styles/index';
 import { GetClasses } from '../../typeUtils';
 import { TableSortDirection, TableHeader, TableSortClickProps } from './types';
+import { lighten } from '@mui/material/styles';
 
 export const TableHeaderCellStylesKey = 'ChromaTableHeaderCell';
 
@@ -81,7 +82,7 @@ export const useStyles = makeStyles(
       transform: 'rotate(180deg)',
     },
     isSticky: {
-      background: theme.palette.graphite[50],
+      background: lighten(theme.palette.graphite[50], 0.5),
       position: 'sticky',
       left: 0,
       zIndex: theme.zIndex.byValueUpTo20[10],
