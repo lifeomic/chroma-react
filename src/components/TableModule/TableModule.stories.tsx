@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import { TableModule } from './TableModule';
@@ -520,4 +520,42 @@ RowSelection.parameters = {
       handler.`,
     },
   },
+};
+
+export const RowAddRemove = () => {
+  const [tableData, setTableData] = useState(data);
+  const tableRef = useRef<HTMLTableElement>(null);
+  return (
+    <div style={{ overflow: 'auto', width: '80%' }}>
+      <Button
+        onClick={() => {
+          setTableData([...tableData, data[0]]);
+        }}
+      >
+        Add row
+      </Button>
+      <TableModule
+        data={tableData}
+        config={HoverActions.args.config}
+        ref={tableRef}
+        rowClickLabel="row-click-label"
+        rowActions={(row: any, index?: number) => (
+          <Button
+            variant="text"
+            color="inverse"
+            style={{ marginRight: '8px' }}
+            onClick={() => {
+              if (index !== undefined) {
+                setTableData(
+                  tableData.slice(0, index).concat(tableData.slice(index + 1))
+                );
+              }
+            }}
+          >
+            Remove
+          </Button>
+        )}
+      />
+    </div>
+  );
 };

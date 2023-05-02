@@ -228,7 +228,7 @@ export interface TableModuleProps<Item = any>
   noResultsMessage?: string;
   sortState?: TableSortState;
   maxCellWidth?: 1 | 2;
-  rowActions?: (row: any) => React.ReactNode;
+  rowActions?: (row: any, index?: number) => React.ReactNode;
   rowClickLabel?: string;
   state?: Partial<TableState>;
   enableRowSelection?: boolean;
@@ -557,6 +557,7 @@ export const TableModule = React.memo(
                   headingsLength={headings?.length}
                   cells={cells}
                   rowActions={rowActions}
+                  rowIndex={rowIndex}
                   rowClickLabel={rowClickLabel}
                   stickyCols={stickyCols}
                   stickyCellsLeft={stickyCellsLeft}
