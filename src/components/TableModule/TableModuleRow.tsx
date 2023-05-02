@@ -23,6 +23,7 @@ export interface TableModuleRowProps
   headingsLength: number;
   cells: Array<TableCell>;
   rowActions?: TableModuleProps['rowActions'];
+  rowIndex?: number;
   rowClickLabel?: TableModuleProps['rowClickLabel'];
   stickyCols?: Array<number>;
   stickyCellsLeft?: Array<number>;
@@ -37,6 +38,7 @@ const TableModuleRow: React.FC<TableModuleRowProps> = React.memo(
     headingsLength,
     cells,
     rowActions,
+    rowIndex,
     rowClickLabel,
     stickyCols = [],
     stickyCellsLeft = [],
@@ -107,7 +109,7 @@ const TableModuleRow: React.FC<TableModuleRowProps> = React.memo(
       [cells, headingsLength, maxCellWidth, row, stickyCols, stickyCellsLeft]
     );
 
-    const maybeRowActions = React.useMemo(() => rowActions?.(row), [
+    const maybeRowActions = React.useMemo(() => rowActions?.(row, rowIndex), [
       row,
       rowActions,
     ]);
