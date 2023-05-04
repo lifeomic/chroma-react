@@ -87,7 +87,7 @@ const TableModuleRow: React.FC<TableModuleRowProps> = React.memo(
       () =>
         cells?.map((cell, colIndex) => {
           const cellContent = cell.content
-            ? cell.content(row)
+            ? cell.content(row, rowIndex)
             : cell.valuePath && row[cell.valuePath];
           return (
             <TableModuleCell

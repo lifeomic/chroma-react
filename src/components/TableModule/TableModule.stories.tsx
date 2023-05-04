@@ -11,6 +11,7 @@ import {
 import { TableModuleActions } from './TableModuleActions';
 import { Checkbox } from '../Checkbox';
 import { IconButton } from '../IconButton';
+import { SpinButton } from '../SpinButton';
 import { Share, Trash } from '@lifeomic/chromicons';
 import { Button } from '../Button';
 import { TableActionDivider } from './TableActionDivider';
@@ -647,4 +648,88 @@ export const RowAddRemove = () => {
       />
     </div>
   );
+};
+
+export const RowManualOrder: ComponentStory<typeof TableModule> = (args) => {
+  const tableRef = useRef<HTMLTableElement | null>(null);
+  const [tableData, setTableData] = React.useState(data);
+  const spinColumn: TableConfiguration<Item> = {
+    header: {
+      content: () => '',
+    },
+    cell: {
+      content: (_, index) => (
+        <SpinButton
+          decrementDisabled={index === tableData.length - 1}
+          incrementDisabled={index === 0}
+          onIncrement={(e) => {
+            // swap row at index -1 and index
+            const targetIndex = index! - 1;
+            tableData[targetIndex] = tableData.splice(
+              index!,
+              1,
+              tableData[targetIndex]
+            )[0];
+            setTableData([...tableData]);
+          }}
+          onDecrement={(e) => {
+            // swap row at index and index + 1
+            const targetIndex = index! + 1;
+            tableData[targetIndex] = tableData.splice(
+              index!,
+              1,
+              tableData[targetIndex]
+            )[0];
+            setTableData([...tableData]);
+          }}
+        />
+      ),
+    },
+  };
+  return (
+    <TableModule
+      {...args}
+      data={tableData}
+      config={[
+        spinColumn,
+        {
+          header: {
+            label: 'Description',
+          },
+          cell: {
+            valuePath: 'description',
+          },
+        },
+        {
+          header: {
+            label: 'Calories',
+          },
+          cell: {
+            valuePath: 'calories',
+          },
+        },
+        {
+          header: {
+            label: 'Fat',
+          },
+          cell: {
+            valuePath: 'fat',
+          },
+        },
+      ]}
+      ref={tableRef}
+      rowClickLabel="row-click-label"
+    />
+  );
+};
+
+RowManualOrder.parameters = {
+  docs: {
+    description: {
+      story: `It supports manual row order via SpinButton. In this example, it
+      could either click the Up or Down button to adjust the order of a row.
+      When using keyboard, please use the Tab key to focus on a SpinButton then
+      use ArrowUp or ArrowDown button.`,
+    },
+  },
 };
