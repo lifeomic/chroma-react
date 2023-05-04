@@ -131,6 +131,9 @@ export const useStyles = makeStyles(
     tableRowCellMaxWidth2: {
       maxWidth: '10rem',
     },
+    tableRowCellMaxWidth3: {
+      maxWidth: '13.125rem',
+    },
     tableRowActionCell: {
       paddingTop: 0,
       paddingBottom: 0,
@@ -227,7 +230,7 @@ export interface TableModuleProps<Item = any>
   rowRole?: 'link';
   noResultsMessage?: string;
   sortState?: TableSortState;
-  maxCellWidth?: 1 | 2;
+  maxCellWidth?: 1 | 2 | 3;
   rowActions?: (row: any, index?: number) => React.ReactNode;
   rowClickLabel?: string;
   state?: Partial<TableState>;

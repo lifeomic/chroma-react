@@ -18,7 +18,7 @@ export interface TableModuleRowProps
   data?: any;
   onRowClick?: (row: any) => void;
   rowRole?: 'link';
-  maxCellWidth?: 1 | 2;
+  maxCellWidth?: 1 | 2 | 3;
   row: any;
   headingsLength: number;
   cells: Array<TableCell>;
