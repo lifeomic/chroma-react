@@ -131,6 +131,9 @@ export const useStyles = makeStyles(
     tableRowCellMaxWidth2: {
       maxWidth: '10rem',
     },
+    tableRowCellMaxWidth3: {
+      maxWidth: '13.125rem',
+    },
     tableRowActionCell: {
       paddingTop: 0,
       paddingBottom: 0,
@@ -209,6 +212,9 @@ export const useStyles = makeStyles(
     isStickyLast: {
       boxShadow: `inset -4px 0 ${theme.palette.divider}`,
     },
+    wrapContent: {
+      whiteSpace: 'pre-wrap',
+    },
   }),
   { name: TableModuleStylesKey }
 );
@@ -227,7 +233,8 @@ export interface TableModuleProps<Item = any>
   rowRole?: 'link';
   noResultsMessage?: string;
   sortState?: TableSortState;
-  maxCellWidth?: 1 | 2;
+  maxCellWidth?: 1 | 2 | 3;
+  wrapCellContent?: boolean;
   rowActions?: (row: any, index?: number) => React.ReactNode;
   rowClickLabel?: string;
   state?: Partial<TableState>;
@@ -268,6 +275,7 @@ export const TableModule = React.memo(
         noResultsMessage,
         sortState = { sortKey: null, sortDirection: null },
         maxCellWidth,
+        wrapCellContent,
         rowActions,
         rowClickLabel,
         state,
@@ -553,6 +561,7 @@ export const TableModule = React.memo(
                   onRowClick={onRowClick}
                   rowRole={rowRole}
                   maxCellWidth={maxCellWidth}
+                  wrapCellContent={wrapCellContent}
                   row={rowData}
                   headingsLength={headings?.length}
                   cells={cells}
