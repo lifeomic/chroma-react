@@ -11,6 +11,7 @@ export interface TableModuleCell
   > {
   children: any;
   maxCellWidth?: 1 | 2 | 3;
+  wrapCellContent?: boolean;
   isLastCellInRow: boolean;
   cell: TableCell;
   isSticky?: boolean;
@@ -20,6 +21,7 @@ export interface TableModuleCell
 export const TableModuleCell: React.FC<TableModuleCell> = React.memo(
   ({
     maxCellWidth,
+    wrapCellContent,
     isLastCellInRow,
     cell,
     children,
@@ -49,6 +51,7 @@ export const TableModuleCell: React.FC<TableModuleCell> = React.memo(
             [classes.tableRowCellMaxWidth2]: maxCellWidth === 2,
             [classes.tableRowCellMaxWidth3]: maxCellWidth === 3,
           },
+          wrapCellContent && classes.wrapContent,
           cell.className,
           isSticky && classes.isSticky,
           isSticky && 'sticky-cell-hook'

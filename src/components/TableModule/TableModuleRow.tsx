@@ -19,6 +19,7 @@ export interface TableModuleRowProps
   onRowClick?: (row: any) => void;
   rowRole?: 'link';
   maxCellWidth?: 1 | 2 | 3;
+  wrapCellContent?: boolean;
   row: any;
   headingsLength: number;
   cells: Array<TableCell>;
@@ -35,6 +36,7 @@ const TableModuleRow: React.FC<TableModuleRowProps> = React.memo(
     rowRole,
     row,
     maxCellWidth,
+    wrapCellContent,
     headingsLength,
     cells,
     rowActions,
@@ -96,6 +98,7 @@ const TableModuleRow: React.FC<TableModuleRowProps> = React.memo(
               }
               cell={cell}
               isSticky={stickyCols.indexOf(colIndex) >= 0}
+              wrapCellContent={wrapCellContent}
               left={
                 stickyCols.indexOf(colIndex) >= 0
                   ? stickyCellsLeft[stickyCols.indexOf(colIndex)]
@@ -106,7 +109,15 @@ const TableModuleRow: React.FC<TableModuleRowProps> = React.memo(
             </TableModuleCell>
           );
         }),
-      [cells, headingsLength, maxCellWidth, row, stickyCols, stickyCellsLeft]
+      [
+        cells,
+        headingsLength,
+        maxCellWidth,
+        wrapCellContent,
+        row,
+        stickyCols,
+        stickyCellsLeft,
+      ]
     );
 
     const maybeRowActions = React.useMemo(() => rowActions?.(row, rowIndex), [
