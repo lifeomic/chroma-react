@@ -35,7 +35,7 @@ export interface TableHeader extends TableAlignOptions {
 
 export interface TableCell<Item = any> extends TableAlignOptions {
   valuePath?: string;
-  content?(row: Item): any;
+  content?(row: Item, index?: number): any;
   className?: string;
 }
 
