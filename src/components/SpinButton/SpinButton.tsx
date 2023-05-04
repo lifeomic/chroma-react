@@ -62,6 +62,15 @@ export const SpinButton = React.forwardRef<HTMLDivElement, SpinButtonProps>(
       ...rootProps
     } = props;
     const classes = useStyles({});
+
+    const handleKeyBoard = (e: React.KeyboardEvent<HTMLElement>) => {
+      if (e.key === 'ArrowUp') {
+        onIncrement(e);
+      } else if (e.key === 'ArrowDown') {
+        onDecrement(e);
+      }
+    };
+
     return (
       <Box
         ref={ref}
@@ -69,6 +78,7 @@ export const SpinButton = React.forwardRef<HTMLDivElement, SpinButtonProps>(
         gap={0.125}
         direction="column"
         tabIndex={0}
+        onKeyDown={handleKeyBoard}
         {...rootProps}
       >
         <IconButton
