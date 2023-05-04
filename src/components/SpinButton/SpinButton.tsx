@@ -12,8 +12,6 @@ export const useStyles = makeStyles(
   (theme) => ({
     root: {
       alignItems: 'center',
-      backgroundColor: 'transparent',
-      border: `${theme.pxToRem(1)} solid transparent`,
       borderRadius: theme.pxToRem(4),
       color: theme.palette.common.white,
       cursor: 'pointer',
@@ -22,16 +20,16 @@ export const useStyles = makeStyles(
       margin: 0,
     },
     button: {
-      border: `${theme.pxToRem(1)} solid`,
-      paddingTop: 0,
-      paddingLeft: 0,
-      paddingRight: 0,
-      paddingBottom: 0,
+      borderRadius: theme.pxToRem(8),
+      padding: theme.spacing(0, 0.5),
+      '&:hover, &:focus': {
+        background: theme.palette.graphite[50],
+      },
     },
     size0: {
       '& > svg': {
-        width: 24,
-        height: 12,
+        width: theme.pxToRem(24),
+        height: theme.pxToRem(18),
       },
     },
   }),
@@ -68,6 +66,7 @@ export const SpinButton = React.forwardRef<HTMLDivElement, SpinButtonProps>(
       <Box
         ref={ref}
         className={clsx(classes.root)}
+        gap={0.125}
         direction="column"
         tabIndex={0}
         {...rootProps}
