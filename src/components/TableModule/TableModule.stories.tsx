@@ -142,6 +142,95 @@ Default.args = {
   ] as Array<TableConfiguration>,
 };
 
+export const WrappedCells = Template.bind({});
+WrappedCells.args = {
+  data,
+  maxCellWidth: 3,
+  wrapCellContent: true,
+  config: [
+    {
+      header: {
+        label: 'Description',
+      },
+      cell: {
+        content: (dataValue: any) => {
+          return dataValue.description;
+        },
+      },
+    },
+    {
+      header: {
+        label: 'Calories',
+      },
+      cell: {
+        content: (dataValue: any) => {
+          if (dataValue.calories === '159') {
+            return 'Vanilla: 250\nStrawberry: 175\nPlain: 80\n\nYogurt is known to provide probiotics through naturally included bacterial cultures. Beware of increaing your sugar intake though.\nNon-dairy options exist for those with lactose intolerance.';
+          }
+          return dataValue.calories;
+        },
+      },
+    },
+    {
+      header: {
+        label: 'Fat',
+      },
+      cell: {
+        content: (dataValue: any) => {
+          return dataValue.fat;
+        },
+      },
+    },
+    {
+      header: {
+        label: 'Carbs',
+      },
+      cell: {
+        content: (dataValue: any) => {
+          return dataValue.carbs;
+        },
+      },
+    },
+    {
+      header: {
+        label: 'Category',
+      },
+      cell: {
+        content: (dataValue: any) => {
+          return dataValue.category;
+        },
+      },
+    },
+    {
+      header: {
+        label: 'Category',
+      },
+      cell: {
+        content: (dataValue: any) => {
+          return dataValue.category;
+        },
+      },
+    },
+    {
+      header: {
+        label: 'Category',
+      },
+      cell: {
+        content: (dataValue: any) => {
+          return dataValue.category;
+        },
+      },
+    },
+  ] as Array<TableConfiguration>,
+};
+WrappedCells.parameters = {
+  docs: {
+    description: {
+      story: `If a table involves content that is very long and needs to be fully displayed, use wrapCellContent to show it all. This will also cover content that needs to honor new lines, i.e. a couple paragraphs with a break between or a list of items.`,
+    },
+  },
+};
+
 export const Sticky = Template.bind({});
 Sticky.args = {
   data: dataLong,
