@@ -116,6 +116,7 @@ test('it renders as a button', async () => {
 
   const root = await findByTestId(testId);
   expect(root.nodeName).toEqual('BUTTON');
+  expect(root).toHaveProperty('type', 'button');
 });
 
 test('it applies the correct classes for "active" as a div', async () => {

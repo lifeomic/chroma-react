@@ -261,6 +261,7 @@ export const Step: React.FC<StepProps> = ({
           )}
           disabled={disabled}
           onClick={handleClick}
+          type="button"
           {...rootProps}
         >
           {content}
