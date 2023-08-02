@@ -50,7 +50,7 @@ export const useStyles = makeStyles(
     titleContainer: {
       alignItems: 'center',
       display: 'flex',
-      maxWidth: '95%',
+      maxWidth: `calc(100% - ${theme.pxToRem(34)})`, // 34 = icon width of 18px + 16px padding
       flexGrow: 1,
     },
     title: {
