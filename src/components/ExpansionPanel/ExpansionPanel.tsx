@@ -56,6 +56,11 @@ export const useStyles = makeStyles(
       letterSpacing: 'initial',
       transition: 'color 0.5s ease, transform 0.5s ease',
     },
+    truncate: {
+      whiteSpace: 'nowrap',
+      overflow: 'hidden',
+      textOverflow: 'ellipsis',
+    },
     icon: {
       transition: 'transform 0.25s ease',
       color: theme.palette.primary.main,
@@ -101,6 +106,7 @@ export interface ExpansionPanelProps
   innerContentClassName?: string;
   title: string;
   leadingIcon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  truncateTitle?: boolean;
   onToggle?: (isExpanded: boolean) => void;
   isOpen?: boolean;
   contentDirection?: 'row' | 'column';
@@ -139,6 +145,7 @@ export const ExpansionPanel = React.forwardRef<
       contentDirection = 'column',
       title,
       leadingIcon: LeadingIcon,
+      truncateTitle = false,
       ...rootProps
     },
     ref
@@ -211,7 +218,11 @@ export const ExpansionPanel = React.forwardRef<
                 height={18}
               />
             )}
-            <Text className={classes.title} size="subbody" weight="bold">
+            <Text
+              className={clsx(classes.title, truncateTitle && classes.truncate)}
+              size="subbody"
+              weight="bold"
+            >
               {title}
             </Text>
           </div>
