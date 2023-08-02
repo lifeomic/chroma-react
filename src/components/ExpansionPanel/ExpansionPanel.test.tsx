@@ -31,6 +31,17 @@ test('it renders an ExpansionPanel with leadingIcon', async () => {
   expect(icon).toBeInTheDocument();
 });
 
+test('it renders an ExpansionPanel with truncated title', async () => {
+  const props = getBaseProps();
+  const { getByTestId } = renderWithTheme(
+    <ExpansionPanel {...props} data-testid={testId} truncateTitle={true} />
+  );
+
+  const title = getByTestId(testId).querySelector(`p`);
+  expect(title).toBeTruthy();
+  expect(title).toHaveClass('ChromaExpansionPanel-truncate');
+});
+
 test('it renders ExpansionPanel expanded content on-click', async () => {
   const props = getBaseProps();
   const { container, findByTestId } = renderWithTheme(

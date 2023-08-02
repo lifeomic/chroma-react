@@ -45,20 +45,28 @@ export const useStyles = makeStyles(
     },
     leadingIcon: {
       marginRight: theme.spacing(1),
+      minWidth: 'fit-content',
     },
     titleContainer: {
       alignItems: 'center',
       display: 'flex',
-      width: '100%',
+      maxWidth: `calc(100% - ${theme.pxToRem(34)})`, // 34 = icon width of 18px + 16px padding
+      flexGrow: 1,
     },
     title: {
       color: theme.palette.text.secondary,
       letterSpacing: 'initial',
       transition: 'color 0.5s ease, transform 0.5s ease',
     },
+    truncate: {
+      whiteSpace: 'nowrap',
+      overflow: 'hidden',
+      textOverflow: 'ellipsis',
+    },
     icon: {
       transition: 'transform 0.25s ease',
       color: theme.palette.primary.main,
+      minWidth: 'fit-content',
     },
     rotate: {
       transform: 'rotate(45deg)',
@@ -101,6 +109,7 @@ export interface ExpansionPanelProps
   innerContentClassName?: string;
   title: string;
   leadingIcon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  truncateTitle?: boolean;
   onToggle?: (isExpanded: boolean) => void;
   isOpen?: boolean;
   contentDirection?: 'row' | 'column';
@@ -139,6 +148,7 @@ export const ExpansionPanel = React.forwardRef<
       contentDirection = 'column',
       title,
       leadingIcon: LeadingIcon,
+      truncateTitle = false,
       ...rootProps
     },
     ref
@@ -211,7 +221,11 @@ export const ExpansionPanel = React.forwardRef<
                 height={18}
               />
             )}
-            <Text className={classes.title} size="subbody" weight="bold">
+            <Text
+              className={clsx(classes.title, truncateTitle && classes.truncate)}
+              size="subbody"
+              weight="bold"
+            >
               {title}
             </Text>
           </div>
