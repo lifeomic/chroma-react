@@ -45,11 +45,13 @@ export const useStyles = makeStyles(
     },
     leadingIcon: {
       marginRight: theme.spacing(1),
+      minWidth: 'fit-content',
     },
     titleContainer: {
       alignItems: 'center',
       display: 'flex',
-      width: '100%',
+      maxWidth: '95%',
+      flexGrow: 1,
     },
     title: {
       color: theme.palette.text.secondary,
@@ -64,6 +66,7 @@ export const useStyles = makeStyles(
     icon: {
       transition: 'transform 0.25s ease',
       color: theme.palette.primary.main,
+      minWidth: 'fit-content',
     },
     rotate: {
       transform: 'rotate(45deg)',
