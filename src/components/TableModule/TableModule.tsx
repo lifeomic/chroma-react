@@ -378,8 +378,9 @@ export const TableModule = React.memo(
           });
           setStickyCellsLeft(stickyCellsLeft);
         } else {
-          console.warn(
-            "Table's forwardRef is null, please set it if you want the sticky cell's left value to be set correctly"
+          warning(
+            process.env.NODE_ENV === 'development',
+            "Chroma Warning: Table's forwardRef is null, please set it in order to set the sticky cell's left value correctly"
           );
         }
       }, [forwardedRef, stickyCols]);
