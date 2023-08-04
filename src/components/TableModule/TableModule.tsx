@@ -361,6 +361,10 @@ export const TableModule = React.memo(
       });
 
       const setStickyCellLeftValues = React.useCallback(() => {
+        if (stickyCols.length === 0) {
+          return;
+        }
+
         let sum = 0;
         const stickyCellsLeft: Array<number> = [];
         // only need to grab column width from one row, since all rows should be the same in each column
