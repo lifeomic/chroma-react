@@ -289,9 +289,7 @@ export const TableModule = React.memo(
       const classes = useStyles({});
 
       warning(
-        Boolean(onRowClick) &&
-          !rowClickLabel &&
-          process.env.NODE_ENV === 'development',
+        Boolean(onRowClick) && !rowClickLabel,
         'Chroma Warning: It is recommended you provide "rowClickLabel" if specifying a "onRowClick" for the <TableModule> component. This will be a required prop in a future major version.'
       );
 
@@ -361,6 +359,10 @@ export const TableModule = React.memo(
       });
 
       const setStickyCellLeftValues = React.useCallback(() => {
+        if (stickyCols.length === 0) {
+          return;
+        }
+
         let sum = 0;
         const stickyCellsLeft: Array<number> = [];
         // only need to grab column width from one row, since all rows should be the same in each column
@@ -375,7 +377,7 @@ export const TableModule = React.memo(
           setStickyCellsLeft(stickyCellsLeft);
         } else {
           console.warn(
-            "Table's forwardRef is null, please set it if you want the sticky cell's left value to be set correctly"
+            "Chroma Warning: Table's forwardRef is null, please set it in order to set the sticky cell's left value correctly"
           );
         }
       }, [forwardedRef, stickyCols]);
