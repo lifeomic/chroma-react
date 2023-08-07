@@ -289,9 +289,7 @@ export const TableModule = React.memo(
       const classes = useStyles({});
 
       warning(
-        Boolean(onRowClick) &&
-          !rowClickLabel &&
-          process.env.NODE_ENV === 'development',
+        Boolean(onRowClick) && !rowClickLabel,
         'Chroma Warning: It is recommended you provide "rowClickLabel" if specifying a "onRowClick" for the <TableModule> component. This will be a required prop in a future major version.'
       );
 
@@ -378,8 +376,7 @@ export const TableModule = React.memo(
           });
           setStickyCellsLeft(stickyCellsLeft);
         } else {
-          warning(
-            process.env.NODE_ENV === 'development',
+          console.warn(
             "Chroma Warning: Table's forwardRef is null, please set it in order to set the sticky cell's left value correctly"
           );
         }
