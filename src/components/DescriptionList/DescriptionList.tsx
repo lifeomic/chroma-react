@@ -21,17 +21,31 @@ export const useStyles = makeStyles<DescriptionListProps>(
         display: 'grid',
         gap: theme.spacing(1),
         gridTemplateColumns: '1fr 3fr',
+        margin: 0,
         maxHeight: theme.pxToRem(432),
         minWidth: theme.pxToRem(224),
         overflowY: 'auto',
         listStyle: 'none',
-        paddingBottom: theme.spacing(1),
-        paddingLeft: 0,
-        paddingTop: theme.spacing(1),
+        padding: 0,
       },
       title: {
         color: theme.palette.text.primary,
         gridColumn: '1/-1',
+        marginBottom: theme.spacing(0.5),
+      },
+      hasTitleIcon: {
+        alignItems: 'center',
+        display: 'grid',
+        gap: theme.spacing(1),
+        gridTemplateColumns: `${theme.pxToRem(22)} 1fr`,
+        '& ~ li': {
+          marginLeft: theme.pxToRem(30),
+        },
+      },
+      titleIcon: {
+        color: theme.palette.text.hint,
+        height: theme.pxToRem(22),
+        width: theme.pxToRem(22),
       },
       margin: { margin: ({ margin }) => stringOrThemeSpacing(margin) },
       marginLeft: {
@@ -93,6 +107,7 @@ export interface DescriptionListProps {
     | React.ReactElement<DescriptionListGroupHeadingProps>
   >;
   title?: string;
+  titleIcon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   margin?: number | string;
   marginTop?: number | string;
   marginBottom?: number | string;
@@ -129,6 +144,7 @@ export const DescriptionList: React.FC<DescriptionListProps> = (props) => {
     className,
     items,
     title,
+    titleIcon: TitleIcon,
     margin,
     marginTop,
     marginBottom,
@@ -172,7 +188,12 @@ export const DescriptionList: React.FC<DescriptionListProps> = (props) => {
       {...rootProps}
     >
       {!!title && (
-        <li className={classes.title}>
+        <li
+          className={clsx(classes.title, !!TitleIcon && classes.hasTitleIcon)}
+        >
+          {!!TitleIcon && (
+            <TitleIcon role="img" aria-hidden className={classes.titleIcon} />
+          )}
           <Text weight="bold" size="body">
             {title}
           </Text>
