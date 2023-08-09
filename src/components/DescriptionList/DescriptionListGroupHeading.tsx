@@ -18,9 +18,13 @@ export const useStyles = makeStyles(
       fontWeight: theme.typography.fontWeightBold,
       gridColumn: '1/-1',
       letterSpacing: theme.pxToRem(1),
-      marginTop: theme.spacing(1),
       padding: theme.spacing(1.25, 0),
+      marginTop: theme.spacing(1),
       textTransform: 'uppercase',
+      '&:first-child, &:nth-child(2)': {
+        marginTop: 0,
+        paddingTop: 0,
+      },
     },
   }),
   { name: DescriptionListGroupHeadingStylesKey }
