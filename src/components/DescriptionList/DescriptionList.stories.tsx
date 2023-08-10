@@ -209,7 +209,7 @@ ColumnsWidth.parameters = {
   docs: {
     description: {
       story:
-        'The DescriptionList component takes a `columnsWidth` prop. If changing column widths is desired, `fr` and `px` units space-seperated are accepted, or a combination of both. Some examples include: `1fr 1fr`, `50px auto`, `minmax(10px, 1fr) 1fr`, `repeat(2, 1fr)`',
+        'The DescriptionList component takes a `columnsWidth` prop. If changing column widths is desired, `fr` and `px` units space-seperated are accepted, or a combination of both. Some examples include: `1fr 1fr`, `50px auto`, `minmax(10px, 1fr) 1fr`, `repeat(2, 1fr)`. Column widths default to `1fr 2fr`.',
     },
   },
 };
