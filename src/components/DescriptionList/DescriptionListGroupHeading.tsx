@@ -21,7 +21,7 @@ export const useStyles = makeStyles(
       padding: theme.spacing(1.25, 0),
       marginTop: theme.spacing(1),
       textTransform: 'uppercase',
-      '&:first-child, &:nth-child(2)': {
+      '&:first-child': {
         marginTop: 0,
         paddingTop: 0,
       },
