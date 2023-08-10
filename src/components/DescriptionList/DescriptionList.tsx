@@ -17,6 +17,10 @@ export const useStyles = makeStyles<DescriptionListProps>(
       if (typeof value === 'number') return theme.spacing(value);
     };
 
+    const string = (value: string | undefined) => {
+      if (typeof value === 'string') return value;
+    };
+
     return {
       title: {
         color: theme.palette.text.primary,
@@ -89,6 +93,9 @@ export const useStyles = makeStyles<DescriptionListProps>(
         paddingTop: ({ paddingY }) => stringOrThemeSpacing(paddingY),
         paddingBottom: ({ paddingY }) => stringOrThemeSpacing(paddingY),
       },
+      columnsLayout: {
+        gridTemplateColumns: ({ columnsLayout }) => string(columnsLayout),
+      },
     };
   },
   { name: DescriptionListStylesKey }
@@ -100,6 +107,7 @@ export interface DescriptionListProps {
   ['aria-label']: string;
   children?: React.ReactNode;
   className?: string;
+  columnsLayout?: string;
   items?: Array<
     | React.ReactElement<DescriptionTermProps>
     | React.ReactElement<DescriptionDetailsProps>
@@ -141,6 +149,7 @@ export const DescriptionList: React.FC<DescriptionListProps> = (props) => {
     'aria-label': ariaLabel,
     children,
     className,
+    columnsLayout,
     items,
     title,
     titleIcon: TitleIcon,
@@ -183,6 +192,7 @@ export const DescriptionList: React.FC<DescriptionListProps> = (props) => {
         className={clsx(
           classes.list,
           className,
+          columnsLayout && classes.columnsLayout,
           margin && classes.margin,
           marginTop && classes.marginTop,
           marginBottom && classes.marginBottom,
