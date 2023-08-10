@@ -6,7 +6,7 @@ import { DescriptionDetails } from './DescriptionDetails';
 import { DescriptionListGroupHeading } from './DescriptionListGroupHeading';
 import { DescriptionDivider } from './DescriptionDivider';
 import { Avatar } from '../Avatar';
-import { HeartCircle } from '@lifeomic/chromicons';
+import { Database, HeartCircle } from '@lifeomic/chromicons';
 import Avatar1 from '../../assets/example-avatar-1.jpg';
 import Avatar2 from '../../assets/example-avatar-2.jpg';
 
@@ -60,12 +60,62 @@ export default {
 } as ComponentMeta<typeof DescriptionList>;
 
 const Template: ComponentStory<typeof DescriptionList> = (args) => (
-  <DescriptionList title="Description List Title" {...args} />
+  <DescriptionList {...args} />
 );
 
 export const Default = Template.bind({});
 Default.args = {
   'aria-label': 'List with multiple items',
+  items: [
+    <DescriptionTerm key="term-1">Term 1</DescriptionTerm>,
+    <DescriptionDetails key="details-1">Details 1</DescriptionDetails>,
+    <DescriptionDivider key="divider-1" />,
+    <DescriptionTerm key="term-2">Term 2</DescriptionTerm>,
+    <DescriptionDetails key="details-2">Details 2</DescriptionDetails>,
+    <DescriptionDivider key="divider-2" />,
+    <DescriptionTerm key="term-3">Term 3</DescriptionTerm>,
+    <DescriptionDetails key="details-3">Details 3</DescriptionDetails>,
+  ],
+};
+
+export const Title = Template.bind({});
+Title.parameters = {
+  docs: {
+    description: {
+      story: 'The DescriptionList component takes an `title` prop.',
+    },
+  },
+};
+
+Title.args = {
+  'aria-label': 'List with a title',
+  title: 'Title',
+  items: [
+    <DescriptionTerm key="term-1">Term 1</DescriptionTerm>,
+    <DescriptionDetails key="details-1">Details 1</DescriptionDetails>,
+    <DescriptionDivider key="divider-1" />,
+    <DescriptionTerm key="term-2">Term 2</DescriptionTerm>,
+    <DescriptionDetails key="details-2">Details 2</DescriptionDetails>,
+    <DescriptionDivider key="divider-2" />,
+    <DescriptionTerm key="term-3">Term 3</DescriptionTerm>,
+    <DescriptionDetails key="details-3">Details 3</DescriptionDetails>,
+  ],
+};
+
+export const TitleIcon = Template.bind({});
+TitleIcon.parameters = {
+  docs: {
+    description: {
+      story:
+        "The DescriptionList component takes an `titleIcon` prop. It's recommended to use the [Chromicons](https://lifeomic.github.io/chromicons.com/) icon set.",
+    },
+  },
+};
+
+TitleIcon.args = {
+  'aria-label': 'List with title icon and title',
+  title: 'Title',
+  titleIcon: Database,
   items: [
     <DescriptionTerm key="term-1">Term 1</DescriptionTerm>,
     <DescriptionDetails key="details-1">Details 1</DescriptionDetails>,

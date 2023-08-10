@@ -6,6 +6,7 @@ import { DescriptionDetailsProps } from './DescriptionDetails';
 import { DescriptionListGroupHeadingProps } from './DescriptionListGroupHeading';
 import { Text } from '../Text';
 import clsx from 'clsx';
+import { Box } from '../Box';
 
 export const DescriptionListStylesKey = 'ChromaDescriptionList';
 
@@ -17,21 +18,33 @@ export const useStyles = makeStyles<DescriptionListProps>(
     };
 
     return {
-      root: {
+      title: {
+        color: theme.palette.text.primary,
+      },
+      hasTitleIcon: {
+        '& + $list': {
+          marginLeft: theme.pxToRem(30),
+        },
+        alignItems: 'center',
+        display: 'grid',
+        gap: theme.spacing(1),
+        gridTemplateColumns: `${theme.pxToRem(22)} 1fr`,
+      },
+      titleIcon: {
+        color: theme.palette.text.hint,
+        height: theme.pxToRem(22),
+        width: theme.pxToRem(22),
+      },
+      list: {
         display: 'grid',
         gap: theme.spacing(1),
         gridTemplateColumns: '1fr 3fr',
+        margin: 0,
         maxHeight: theme.pxToRem(432),
         minWidth: theme.pxToRem(224),
         overflowY: 'auto',
         listStyle: 'none',
-        paddingBottom: theme.spacing(1),
-        paddingLeft: 0,
-        paddingTop: theme.spacing(1),
-      },
-      title: {
-        color: theme.palette.text.primary,
-        gridColumn: '1/-1',
+        padding: 0,
       },
       margin: { margin: ({ margin }) => stringOrThemeSpacing(margin) },
       marginLeft: {
@@ -93,6 +106,7 @@ export interface DescriptionListProps {
     | React.ReactElement<DescriptionListGroupHeadingProps>
   >;
   title?: string;
+  titleIcon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   margin?: number | string;
   marginTop?: number | string;
   marginBottom?: number | string;
@@ -129,6 +143,7 @@ export const DescriptionList: React.FC<DescriptionListProps> = (props) => {
     className,
     items,
     title,
+    titleIcon: TitleIcon,
     margin,
     marginTop,
     marginBottom,
@@ -149,36 +164,44 @@ export const DescriptionList: React.FC<DescriptionListProps> = (props) => {
   const classes = useStyles(props);
 
   return (
-    <ul
-      aria-label={ariaLabel}
-      className={clsx(
-        classes.root,
-        className,
-        margin && classes.margin,
-        marginTop && classes.marginTop,
-        marginBottom && classes.marginBottom,
-        marginLeft && classes.marginLeft,
-        marginRight && classes.marginRight,
-        marginX && classes.marginX,
-        marginY && classes.marginY,
-        padding && classes.padding,
-        paddingTop && classes.paddingTop,
-        paddingBottom && classes.paddingBottom,
-        paddingLeft && classes.paddingLeft,
-        paddingRight && classes.paddingRight,
-        paddingX && classes.paddingX,
-        paddingY && classes.paddingY
-      )}
-      {...rootProps}
-    >
+    <>
       {!!title && (
-        <li className={classes.title}>
+        <Box
+          className={clsx(classes.title, !!TitleIcon && classes.hasTitleIcon)}
+          marginBottom={1.5}
+        >
+          {!!TitleIcon && (
+            <TitleIcon role="img" aria-hidden className={classes.titleIcon} />
+          )}
           <Text weight="bold" size="body">
             {title}
           </Text>
-        </li>
+        </Box>
       )}
-      {items}
-    </ul>
+      <ul
+        aria-label={ariaLabel}
+        className={clsx(
+          classes.list,
+          className,
+          margin && classes.margin,
+          marginTop && classes.marginTop,
+          marginBottom && classes.marginBottom,
+          marginLeft && classes.marginLeft,
+          marginRight && classes.marginRight,
+          marginX && classes.marginX,
+          marginY && classes.marginY,
+          padding && classes.padding,
+          paddingTop && classes.paddingTop,
+          paddingBottom && classes.paddingBottom,
+          paddingLeft && classes.paddingLeft,
+          paddingRight && classes.paddingRight,
+          paddingX && classes.paddingX,
+          paddingY && classes.paddingY
+        )}
+        {...rootProps}
+      >
+        {items}
+      </ul>
+    </>
   );
 };
