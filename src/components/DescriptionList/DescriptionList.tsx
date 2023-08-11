@@ -17,10 +17,6 @@ export const useStyles = makeStyles<DescriptionListProps>(
       if (typeof value === 'number') return theme.spacing(value);
     };
 
-    const string = (value: string | undefined) => {
-      if (typeof value === 'string') return value;
-    };
-
     return {
       title: {
         color: theme.palette.text.primary,
@@ -94,7 +90,7 @@ export const useStyles = makeStyles<DescriptionListProps>(
         paddingBottom: ({ paddingY }) => stringOrThemeSpacing(paddingY),
       },
       columnsWidth: {
-        gridTemplateColumns: ({ columnsWidth }) => string(columnsWidth),
+        gridTemplateColumns: ({ columnsWidth }) => columnsWidth,
       },
     };
   },
