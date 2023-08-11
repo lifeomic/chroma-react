@@ -37,7 +37,7 @@ export const useStyles = makeStyles<DescriptionListProps>(
       },
       list: {
         display: 'grid',
-        gap: theme.spacing(1),
+        gap: theme.spacing(1, 2),
         gridTemplateColumns: '1fr 3fr',
         margin: 0,
         maxHeight: theme.pxToRem(432),
