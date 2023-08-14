@@ -204,6 +204,31 @@ Sections.args = {
   ],
 };
 
+export const ColumnsWidth = Template.bind({});
+ColumnsWidth.parameters = {
+  docs: {
+    description: {
+      story:
+        'The DescriptionList component takes a `columnsWidth` prop. If changing column widths is desired, `fr` and `px` units space-seperated are accepted, or a combination of both. Some examples include: `1fr 1fr`, `50px auto`, `minmax(10px, 1fr) 1fr`, `repeat(2, 1fr)`. Column widths default to `1fr 2fr`.',
+    },
+  },
+};
+
+ColumnsWidth.args = {
+  'aria-label': 'List with multiple items',
+  columnsWidth: '1fr 1fr',
+  items: [
+    <DescriptionTerm key="term-1">Term 1</DescriptionTerm>,
+    <DescriptionDetails key="details-1">Details 1</DescriptionDetails>,
+    <DescriptionDivider key="divider-1" />,
+    <DescriptionTerm key="term-2">Term 2</DescriptionTerm>,
+    <DescriptionDetails key="details-2">Details 2</DescriptionDetails>,
+    <DescriptionDivider key="divider-2" />,
+    <DescriptionTerm key="term-3">Term 3</DescriptionTerm>,
+    <DescriptionDetails key="details-3">Details 3</DescriptionDetails>,
+  ],
+};
+
 export const SecondaryText = Template.bind({});
 SecondaryText.args = {
   'aria-label': 'List with some items with secondary text',
