@@ -229,6 +229,102 @@ ColumnsWidth.args = {
   ],
 };
 
+export const Align = Template.bind({});
+Align.args = {
+  'aria-label': 'List with multiple items with alignment',
+  items: [
+    <DescriptionTerm key="term-1">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi a
+      condimentum metus.
+    </DescriptionTerm>,
+    <DescriptionDetails key="details-1">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit
+    </DescriptionDetails>,
+    <DescriptionDivider key="divider-1" />,
+    <DescriptionTerm key="term-2" align="center">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit
+    </DescriptionTerm>,
+    <DescriptionDetails key="details-2" align="center">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi a
+      condimentum metus. In hac habitasse platea dictumst. Morbi tincidunt augue
+      vel dui bibendum, non pulvinar leo facilisis. Vivamus vel arcu sit amet
+      metus euismod mollis in eget nibh.
+    </DescriptionDetails>,
+    <DescriptionDivider key="divider-2" />,
+    <DescriptionTerm key="term-3" align="flex-end">
+      Lorem ipsum dolor sit amet
+    </DescriptionTerm>,
+    <DescriptionDetails key="details-3" align="flex-end">
+      Vivamus vel arcu sit amet metus euismod mollis in eget nibh. Consectetur
+      adipiscing elit. Morbi a condimentum metus.
+    </DescriptionDetails>,
+  ],
+};
+
+export const Justify = Template.bind({});
+Justify.args = {
+  'aria-label': 'List with multiple items with justification',
+  items: [
+    <DescriptionTerm key="term-1">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi a
+      condimentum metus.
+    </DescriptionTerm>,
+    <DescriptionDetails key="details-1">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit
+    </DescriptionDetails>,
+    <DescriptionDivider key="divider-1" />,
+    <DescriptionTerm key="term-2" justify="center">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit
+    </DescriptionTerm>,
+    <DescriptionDetails key="details-2" justify="center">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi a
+      condimentum metus. In hac habitasse platea dictumst. Morbi tincidunt augue
+      vel dui bibendum, non pulvinar leo facilisis. Vivamus vel arcu sit amet
+      metus euismod mollis in eget nibh.
+    </DescriptionDetails>,
+    <DescriptionDivider key="divider-2" />,
+    <DescriptionTerm key="term-3" justify="flex-end">
+      Lorem ipsum dolor sit amet
+    </DescriptionTerm>,
+    <DescriptionDetails key="details-3" justify="flex-end">
+      Vivamus vel arcu sit amet metus euismod mollis in eget nibh. Consectetur
+      adipiscing elit. Morbi a condimentum metus.
+    </DescriptionDetails>,
+  ],
+};
+
+export const TextAlign = Template.bind({});
+TextAlign.args = {
+  'aria-label': 'List with multiple items with text alignment',
+  items: [
+    <DescriptionTerm key="term-1">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi a
+      condimentum metus.
+    </DescriptionTerm>,
+    <DescriptionDetails key="details-1">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit
+    </DescriptionDetails>,
+    <DescriptionDivider key="divider-1" />,
+    <DescriptionTerm key="term-2" textAlign="center">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit
+    </DescriptionTerm>,
+    <DescriptionDetails key="details-2" textAlign="center">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi a
+      condimentum metus. In hac habitasse platea dictumst. Morbi tincidunt augue
+      vel dui bibendum, non pulvinar leo facilisis. Vivamus vel arcu sit amet
+      metus euismod mollis in eget nibh.
+    </DescriptionDetails>,
+    <DescriptionDivider key="divider-2" />,
+    <DescriptionTerm key="term-3" textAlign="right">
+      Lorem ipsum dolor sit amet
+    </DescriptionTerm>,
+    <DescriptionDetails key="details-3" textAlign="right">
+      Vivamus vel arcu sit amet metus euismod mollis in eget nibh. Consectetur
+      adipiscing elit. Morbi a condimentum metus.
+    </DescriptionDetails>,
+  ],
+};
+
 export const SecondaryText = Template.bind({});
 SecondaryText.args = {
   'aria-label': 'List with some items with secondary text',
