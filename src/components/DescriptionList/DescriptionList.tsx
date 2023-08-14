@@ -38,7 +38,7 @@ export const useStyles = makeStyles<DescriptionListProps>(
       list: {
         display: 'grid',
         gap: theme.spacing(1, 2),
-        gridTemplateColumns: '1fr 3fr',
+        gridTemplateColumns: '1fr 2fr',
         margin: 0,
         maxHeight: theme.pxToRem(432),
         minWidth: theme.pxToRem(224),
@@ -89,6 +89,9 @@ export const useStyles = makeStyles<DescriptionListProps>(
         paddingTop: ({ paddingY }) => stringOrThemeSpacing(paddingY),
         paddingBottom: ({ paddingY }) => stringOrThemeSpacing(paddingY),
       },
+      columnsWidth: {
+        gridTemplateColumns: ({ columnsWidth }) => columnsWidth,
+      },
     };
   },
   { name: DescriptionListStylesKey }
@@ -100,6 +103,7 @@ export interface DescriptionListProps {
   ['aria-label']: string;
   children?: React.ReactNode;
   className?: string;
+  columnsWidth?: string;
   items?: Array<
     | React.ReactElement<DescriptionTermProps>
     | React.ReactElement<DescriptionDetailsProps>
@@ -141,6 +145,7 @@ export const DescriptionList: React.FC<DescriptionListProps> = (props) => {
     'aria-label': ariaLabel,
     children,
     className,
+    columnsWidth,
     items,
     title,
     titleIcon: TitleIcon,
@@ -183,6 +188,7 @@ export const DescriptionList: React.FC<DescriptionListProps> = (props) => {
         className={clsx(
           classes.list,
           className,
+          columnsWidth && classes.columnsWidth,
           margin && classes.margin,
           marginTop && classes.marginTop,
           marginBottom && classes.marginBottom,
