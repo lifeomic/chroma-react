@@ -325,6 +325,31 @@ TextAlign.args = {
   ],
 };
 
+export const Gap = Template.bind({});
+Gap.parameters = {
+  docs: {
+    description: {
+      story:
+        'The DescriptionList component takes a `gap` prop. If changing gap sizes is desired, all units of measure (space-seperated) are accepted, or a combination of both. Some examples include: `24px 32px`, `20%`, and `21px 82%`. `gap` defaults to `8px 16px`. This property is specified as a value for row gap followed optionally by a value for column gap. If column gap is omitted, it’s set to the same value as row gap.',
+    },
+  },
+};
+
+Gap.args = {
+  'aria-label': 'List with a custom gap',
+  gap: '24px 32px',
+  items: [
+    <DescriptionTerm key="term-1">Term 1</DescriptionTerm>,
+    <DescriptionDetails key="details-1">Details 1</DescriptionDetails>,
+    <DescriptionDivider key="divider-1" />,
+    <DescriptionTerm key="term-2">Term 2</DescriptionTerm>,
+    <DescriptionDetails key="details-2">Details 2</DescriptionDetails>,
+    <DescriptionDivider key="divider-2" />,
+    <DescriptionTerm key="term-3">Term 3</DescriptionTerm>,
+    <DescriptionDetails key="details-3">Details 3</DescriptionDetails>,
+  ],
+};
+
 export const SecondaryText = Template.bind({});
 SecondaryText.args = {
   'aria-label': 'List with some items with secondary text',
