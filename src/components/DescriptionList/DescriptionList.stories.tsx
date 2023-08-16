@@ -142,14 +142,14 @@ Icons.args = {
     <DescriptionTerm key="term-2" icon={HeartCircle}>
       Term 2
     </DescriptionTerm>,
-    <DescriptionDetails key="details-5" icon={HeartCircle}>
+    <DescriptionDetails key="details-2" icon={HeartCircle}>
       Details 2
     </DescriptionDetails>,
     <DescriptionDivider key="divider-2" />,
-    <DescriptionTerm key="term-2" icon={HeartCircle}>
+    <DescriptionTerm key="term-3" icon={HeartCircle}>
       Term 3
     </DescriptionTerm>,
-    <DescriptionDetails key="details-2" icon={HeartCircle}>
+    <DescriptionDetails key="details-3" icon={HeartCircle}>
       Details 3
     </DescriptionDetails>,
   ],
@@ -162,7 +162,10 @@ Avatars.args = {
     <DescriptionTerm key="term-1" avatar={<Avatar name="1" src={Avatar1} />}>
       Term 1
     </DescriptionTerm>,
-    <DescriptionDetails key="term-1" avatar={<Avatar name="2" src={Avatar2} />}>
+    <DescriptionDetails
+      key="details-1"
+      avatar={<Avatar name="2" src={Avatar2} />}
+    >
       Details 1
     </DescriptionDetails>,
     <DescriptionDivider key="divider-1" />,
