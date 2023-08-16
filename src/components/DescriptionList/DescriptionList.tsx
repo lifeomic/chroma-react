@@ -47,7 +47,7 @@ export const useStyles = makeStyles<DescriptionListProps>(
         padding: 0,
       },
       gap: {
-        gap: ({ gap }) => gap,
+        gap: ({ gap }) => stringOrThemeSpacing(gap),
       },
       margin: { margin: ({ margin }) => stringOrThemeSpacing(margin) },
       marginLeft: {
@@ -107,7 +107,7 @@ export interface DescriptionListProps {
   children?: React.ReactNode;
   className?: string;
   columnsWidth?: string;
-  gap?: string;
+  gap?: number | string;
   items?: Array<
     | React.ReactElement<DescriptionTermProps>
     | React.ReactElement<DescriptionDetailsProps>
