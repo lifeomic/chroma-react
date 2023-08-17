@@ -5,6 +5,7 @@ import { ListItemProps } from './ListItem';
 import { ListGroupHeadingProps } from './ListGroupHeading';
 import { Text } from '../Text';
 import clsx from 'clsx';
+import { Box } from '../Box';
 
 export const ListStylesKey = 'ChromaList';
 
@@ -16,20 +17,32 @@ export const useStyles = makeStyles<ListProps>(
     };
 
     return {
-      root: {
+      title: {
+        color: theme.palette.text.primary,
+      },
+      hasTitleIcon: {
+        '& + $list': {
+          marginLeft: theme.pxToRem(30),
+        },
+        alignItems: 'center',
+        display: 'grid',
+        gap: theme.spacing(1),
+        gridTemplateColumns: `${theme.pxToRem(22)} 1fr`,
+      },
+      titleIcon: {
+        color: theme.palette.text.hint,
+        height: theme.pxToRem(22),
+        width: theme.pxToRem(22),
+      },
+      list: {
         backgroundColor: theme.palette.common.white,
+        margin: 0,
         maxHeight: theme.pxToRem(432),
         minWidth: theme.pxToRem(224),
         overflowY: 'auto',
         listStyle: 'none',
         paddingBottom: theme.spacing(1),
-        paddingLeft: 0,
-        paddingTop: theme.spacing(1),
-      },
-      title: {
-        paddingBottom: theme.spacing(2),
-        paddingLeft: theme.spacing(2.5),
-        paddingRight: theme.spacing(2.5),
+        padding: 0,
       },
       margin: { margin: ({ margin }) => stringOrThemeSpacing(margin) },
       marginLeft: {
@@ -90,6 +103,7 @@ export interface ListProps {
     | React.ReactElement<ListGroupHeadingProps>
   >;
   title?: string;
+  titleIcon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   margin?: number | string;
   marginTop?: number | string;
   marginBottom?: number | string;
@@ -126,6 +140,7 @@ export const List: React.FC<ListProps> = (props) => {
     className,
     items,
     title,
+    titleIcon: TitleIcon,
     margin,
     marginTop,
     marginBottom,
@@ -146,34 +161,44 @@ export const List: React.FC<ListProps> = (props) => {
   const classes = useStyles(props);
 
   return (
-    <ul
-      aria-label={ariaLabel}
-      className={clsx(
-        classes.root,
-        className,
-        margin && classes.margin,
-        marginTop && classes.marginTop,
-        marginBottom && classes.marginBottom,
-        marginLeft && classes.marginLeft,
-        marginRight && classes.marginRight,
-        marginX && classes.marginX,
-        marginY && classes.marginY,
-        padding && classes.padding,
-        paddingTop && classes.paddingTop,
-        paddingBottom && classes.paddingBottom,
-        paddingLeft && classes.paddingLeft,
-        paddingRight && classes.paddingRight,
-        paddingX && classes.paddingX,
-        paddingY && classes.paddingY
-      )}
-      {...rootProps}
-    >
+    <>
       {!!title && (
-        <Text className={classes.title} weight="bold" size="subbody">
-          {title}
-        </Text>
+        <Box
+          className={clsx(classes.title, !!TitleIcon && classes.hasTitleIcon)}
+          marginBottom={1.5}
+        >
+          {!!TitleIcon && (
+            <TitleIcon role="img" aria-hidden className={classes.titleIcon} />
+          )}
+          <Text weight="bold" size="body">
+            {title}
+          </Text>
+        </Box>
       )}
-      {items}
-    </ul>
+      <ul
+        aria-label={ariaLabel}
+        className={clsx(
+          classes.list,
+          className,
+          margin && classes.margin,
+          marginTop && classes.marginTop,
+          marginBottom && classes.marginBottom,
+          marginLeft && classes.marginLeft,
+          marginRight && classes.marginRight,
+          marginX && classes.marginX,
+          marginY && classes.marginY,
+          padding && classes.padding,
+          paddingTop && classes.paddingTop,
+          paddingBottom && classes.paddingBottom,
+          paddingLeft && classes.paddingLeft,
+          paddingRight && classes.paddingRight,
+          paddingX && classes.paddingX,
+          paddingY && classes.paddingY
+        )}
+        {...rootProps}
+      >
+        {items}
+      </ul>
+    </>
   );
 };
