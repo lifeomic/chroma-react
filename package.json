@@ -24,6 +24,9 @@
     "start": "yarn docs:start",
     "test": "TZ=UTC jest"
   },
+  "engines": {
+    "node": "16.x || 18.x"
+  },
   "husky": {
     "hooks": {
       "pre-commit": "pretty-quick --staged"
