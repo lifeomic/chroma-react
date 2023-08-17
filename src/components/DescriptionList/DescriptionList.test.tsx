@@ -1,11 +1,16 @@
 import { act, fireEvent } from '@testing-library/react';
 import * as React from 'react';
-import { IconComponent } from '../../testUtils/IconComponent';
+import {
+  IconComponent,
+  testId as iconTestId,
+} from '../../testUtils/IconComponent';
 import { renderWithTheme } from '../../testUtils/renderWithTheme';
 import {
   DescriptionList,
   DescriptionListGroupHeading,
   DescriptionDetails,
+  DescriptionDivider,
+  DescriptionTerm,
 } from './index';
 
 const testId = 'List';
@@ -196,4 +201,32 @@ test('renders a List item with secondary text', async () => {
 
   const option = await findByTestId('option');
   expect(option).toHaveTextContent('secondary text');
+});
+
+test('A List item with title icon, term, details and divider', async () => {
+  const { findByTestId } = renderWithTheme(
+    <DescriptionList
+      aria-label="List"
+      data-testid={testId}
+      title="Title"
+      titleIcon={IconComponent}
+      items={[
+        <DescriptionTerm key="term-1">Term 1</DescriptionTerm>,
+        <DescriptionDetails key="details-1">Details 1</DescriptionDetails>,
+        <DescriptionDivider key="divider-1" />,
+      ]}
+    />
+  );
+
+  const root = await findByTestId(testId);
+  // title icon
+  const titleIcon = await findByTestId(iconTestId);
+  expect(titleIcon).toBeTruthy();
+
+  const options = root.querySelectorAll('li');
+  expect(options.length).toEqual(3);
+
+  expect(options[0].textContent).toEqual('Term 1');
+  expect(options[1].textContent).toEqual('Details 1');
+  expect(options[2].textContent).toEqual(''); // divider has no text content
 });
