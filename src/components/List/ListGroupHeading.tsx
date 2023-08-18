@@ -12,7 +12,7 @@ export const useStyles = makeStyles(
       fontSize: theme.pxToRem(10),
       fontWeight: theme.typography.fontWeightBold,
       letterSpacing: theme.pxToRem(1),
-      padding: theme.spacing(0.25, 2, 0.5),
+      padding: theme.spacing(0.25, 0, 0.5),
       textTransform: 'uppercase',
       '&:not(:first-child)': {
         borderTop: `solid 1px ${theme.palette.divider}`,

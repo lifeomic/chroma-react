@@ -25,7 +25,7 @@ export const useStyles = makeStyles(
       margin: 0,
       outline: 'none',
       overflow: 'hidden',
-      padding: theme.spacing(1, 2),
+      padding: theme.spacing(1, 0),
       textAlign: 'left',
       userSelect: 'none',
       width: '100%',

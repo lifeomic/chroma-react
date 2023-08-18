@@ -4,7 +4,7 @@ import { List } from './List';
 import { ListItem } from './ListItem';
 import { ListGroupHeading } from './ListGroupHeading';
 import { Avatar } from '../Avatar';
-import { HeartCircle } from '@lifeomic/chromicons';
+import { Database, HeartCircle } from '@lifeomic/chromicons';
 import Avatar1 from '../../assets/example-avatar-1.jpg';
 import Avatar2 from '../../assets/example-avatar-2.jpg';
 
@@ -62,6 +62,46 @@ const Template: ComponentStory<typeof List> = (args) => <List {...args} />;
 export const Default = Template.bind({});
 Default.args = {
   'aria-label': 'List with multiple items',
+  items: [
+    <ListItem key="1">Option 1</ListItem>,
+    <ListItem key="2">Option 2</ListItem>,
+    <ListItem key="3">Option 3</ListItem>,
+  ],
+};
+
+export const Title = Template.bind({});
+Title.parameters = {
+  docs: {
+    description: {
+      story: 'The List component takes an `title` prop.',
+    },
+  },
+};
+
+Title.args = {
+  'aria-label': 'List with a title',
+  title: 'Title',
+  items: [
+    <ListItem key="1">Option 1</ListItem>,
+    <ListItem key="2">Option 2</ListItem>,
+    <ListItem key="3">Option 3</ListItem>,
+  ],
+};
+
+export const TitleIcon = Template.bind({});
+TitleIcon.parameters = {
+  docs: {
+    description: {
+      story:
+        "The List component takes an `titleIcon` prop. It's recommended to use the [Chromicons](https://lifeomic.github.io/chromicons.com/) icon set.",
+    },
+  },
+};
+
+TitleIcon.args = {
+  'aria-label': 'List with title icon and title',
+  title: 'Title',
+  titleIcon: Database,
   items: [
     <ListItem key="1">Option 1</ListItem>,
     <ListItem key="2">Option 2</ListItem>,
