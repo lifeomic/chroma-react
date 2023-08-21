@@ -9,15 +9,19 @@ module.exports = {
     '@storybook/addon-a11y',
     '@storybook/addon-interactions',
     '@storybook/addon-docs',
+    '@storybook/addon-mdx-gfm',
   ],
-  framework: '@storybook/react',
-  core: {
-    builder: '@storybook/builder-webpack5',
+  framework: {
+    name: '@storybook/react-webpack5',
+    options: {},
   },
   webpackFinal: async (config) => {
     config.module.rules.push({
       resolve: { fullySpecified: false },
     });
     return config;
+  },
+  docs: {
+    autodocs: true,
   },
 };
