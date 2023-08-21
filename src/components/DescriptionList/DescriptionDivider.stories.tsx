@@ -6,7 +6,7 @@ import { Check } from '@lifeomic/chromicons';
 import { makeStyles } from '../../styles';
 
 export default {
-  title: 'Components/DescriptionList/DescriptionDetails',
+  title: 'Components/DescriptionList/DescriptionDivider',
   component: DescriptionDetails,
 } as ComponentMeta<typeof DescriptionDetails>;
 
