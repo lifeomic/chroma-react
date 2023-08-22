@@ -10,16 +10,31 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [16.x, 18.x]
+        include:
+          - group: 1
+            node-version: 16.x
+            run: |
+              yarn test --ci --reporters="github-actions"
+              yarn build
+          - group: 2
+            node-version: 18.x
+            run: |
+              yarn test --ci --reporters="github-actions"
+              yarn build
+          - group: 3
+            node-version: 18.x
+            run: |
+              yarn run docs:build
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
+          cache-dependency-path: 'yarn.lock'
           cache: 'yarn'
-      - name: Build and Test
+      - name: Lint
         run: |
           yarn
           yarn lint
-          yarn test --ci --reporters="github-actions"
-          yarn build
+      - name: Test
+        run: ${{ matrix.run }}
