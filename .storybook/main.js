@@ -10,14 +10,17 @@ module.exports = {
     '@storybook/addon-interactions',
     '@storybook/addon-docs',
   ],
-  framework: '@storybook/react',
-  core: {
-    builder: '@storybook/builder-webpack5',
+  framework: {
+    name: '@storybook/react-webpack5',
+    options: {},
   },
   webpackFinal: async (config) => {
     config.module.rules.push({
       resolve: { fullySpecified: false },
     });
     return config;
+  },
+  docs: {
+    autodocs: true,
   },
 };

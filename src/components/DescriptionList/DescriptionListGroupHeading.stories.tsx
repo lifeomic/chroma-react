@@ -4,7 +4,7 @@ import { DescriptionListGroupHeading } from './DescriptionListGroupHeading';
 import { makeStyles } from '../../styles';
 
 export default {
-  title: 'Components/List/ListGroupHeading',
+  title: 'Components/DescriptionList/DescriptionListGroupHeading',
   component: DescriptionListGroupHeading,
 } as ComponentMeta<typeof DescriptionListGroupHeading>;
 
