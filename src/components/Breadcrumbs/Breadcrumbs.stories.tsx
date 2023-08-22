@@ -1,78 +1,49 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryObj, Meta } from '@storybook/react';
 import { MemoryRouter } from 'react-router-dom';
 
 import { Breadcrumbs } from './Breadcrumbs';
 
-export default {
-  title: 'Components/Breadcrumbs',
+const meta: Meta<typeof Breadcrumbs> = {
   component: Breadcrumbs,
-  argTypes: {},
+  args: {
+    crumbs: [
+      {
+        text: 'Parent',
+        url: 'root',
+      },
+      {
+        text: 'Child',
+        url: 'root/child',
+      },
+      {
+        text: 'GrandChild',
+        url: 'root/child/grand',
+      },
+    ],
+  },
   decorators: [(story) => <MemoryRouter>{story()}</MemoryRouter>],
-} as ComponentMeta<typeof Breadcrumbs>;
+};
+export default meta;
+type Story = StoryObj<typeof Breadcrumbs>;
 
-const Template: ComponentStory<typeof Breadcrumbs> = (args) => (
-  <Breadcrumbs {...args} />
-);
+export const Default: Story = {};
 
-export const Default = Template.bind({});
-Default.args = {
-  crumbs: [
-    {
-      text: 'Parent',
-      url: 'root',
-    },
-    {
-      text: 'Child',
-      url: 'root/child',
-    },
-    {
-      text: 'GrandChild',
-      url: 'root/child/grand',
-    },
-  ],
+export const InverseDark = {
+  parameters: {
+    backgrounds: { default: 'dark' },
+  },
+  args: {
+    color: 'inverse',
+  },
 };
 
-export const InverseDark = Template.bind({});
-InverseDark.parameters = {
-  backgrounds: { default: 'dark' },
-};
-InverseDark.args = {
-  crumbs: [
-    {
-      text: 'Parent',
-      url: 'root',
-    },
-    {
-      text: 'Child',
-      url: 'root/child',
-    },
-    {
-      text: 'GrandChild',
-      url: 'root/child/grand',
-    },
-  ],
-  color: 'inverse',
-};
+export const InverseBlue = {
+  parameters: {
+    backgrounds: { default: 'blue' },
+  },
 
-export const InverseBlue = Template.bind({});
-InverseBlue.parameters = {
-  backgrounds: { default: 'blue' },
-};
-InverseBlue.args = {
-  crumbs: [
-    {
-      text: 'Parent',
-      url: 'root',
-    },
-    {
-      text: 'Child',
-      url: 'root/child',
-    },
-    {
-      text: 'GrandChild',
-      url: 'root/child/grand',
-    },
-  ],
-  color: 'inverse',
+  args: {
+    color: 'inverse',
+  },
 };

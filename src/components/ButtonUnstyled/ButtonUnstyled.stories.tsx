@@ -1,19 +1,21 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryObj, StoryFn, Meta } from '@storybook/react';
 
 import { ButtonUnstyled } from './ButtonUnstyled';
 
-export default {
-  title: 'Components/ButtonUnstyled',
+const meta: Meta<typeof ButtonUnstyled> = {
   component: ButtonUnstyled,
   argTypes: {
     onClick: { action: 'clicked' },
   },
-} as ComponentMeta<typeof ButtonUnstyled>;
+};
+export default meta;
+type Story = StoryObj<typeof ButtonUnstyled>;
 
-const Template: ComponentStory<typeof ButtonUnstyled> = (args) => (
+const Template: StoryFn<typeof ButtonUnstyled> = (args) => (
   <ButtonUnstyled {...args}>Button Unstyled</ButtonUnstyled>
 );
 
-export const Default = Template.bind({});
-Default.args = {};
+export const Default: Story = {
+  render: Template,
+};

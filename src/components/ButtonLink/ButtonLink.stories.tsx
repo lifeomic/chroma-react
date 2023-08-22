@@ -1,102 +1,129 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryObj, StoryFn, Meta } from '@storybook/react';
 import { MemoryRouter } from 'react-router-dom';
 
 import { ButtonLink } from './ButtonLink';
 import { Edit } from '@lifeomic/chromicons';
 
-export default {
-  title: 'Components/ButtonLink',
+const meta: Meta<typeof ButtonLink> = {
   component: ButtonLink,
-  argTypes: {},
+  args: {
+    to: '/',
+  },
   decorators: [(story) => <MemoryRouter>{story()}</MemoryRouter>],
-} as ComponentMeta<typeof ButtonLink>;
+};
+export default meta;
+type Story = StoryObj<typeof ButtonLink>;
 
-const Template: ComponentStory<typeof ButtonLink> = (args) => (
+const Template: StoryFn<typeof ButtonLink> = (args) => (
   <ButtonLink {...args}>Button Link</ButtonLink>
 );
 
-export const Default = Template.bind({});
-Default.args = {
-  to: '/',
+export const Default: Story = {
+  render: Template,
 };
 
-export const InternalExternalToHref = Template.bind({});
-InternalExternalToHref.parameters = {
-  docs: {
-    description: {
-      story:
-        '#### Internal href\n' +
-        'The Button Link component requires a "to" prop for the URL it should link to. By ' +
-        'default, the component will generate a typical link.\n' +
-        '#### External href\n' +
-        'By default, the Button Link component will generate an "external" link when the ' +
-        '"to" prop begins with "https".' +
-        '',
+export const InternalExternalToHref: Story = {
+  render: Template,
+  parameters: {
+    docs: {
+      description: {
+        story:
+          '#### Internal href\n' +
+          'The Button Link component requires a "to" prop for the URL it should link to. By ' +
+          'default, the component will generate a typical link.\n' +
+          '#### External href\n' +
+          'By default, the Button Link component will generate an "external" link when the ' +
+          '"to" prop begins with "https".' +
+          '',
+      },
     },
   },
-};
-InternalExternalToHref.args = {
-  to: 'https://example.com',
-};
-
-export const TargetSelf = Template.bind({});
-TargetSelf.parameters = {
-  docs: {
-    description: {
-      story:
-        'When an external link is detected, it will auto-add the `target` and `rel` attributes as well. ' +
-        'To provide a link to an external href, but without opening a new tab, provide the "target" prop.',
-    },
+  args: {
+    to: 'https://example.com',
   },
 };
-TargetSelf.args = {
-  to: 'https://example.com',
-  target: '_self',
-};
 
-export const Icon = Template.bind({});
-Icon.parameters = {
-  docs: {
-    description: {
-      story:
-        "The Button Float component takes an icon prop. It's recommended to use the [Chromicons](https://lifeomic.github.io/chromicons.com/) icon set.",
+export const TargetSelf: Story = {
+  render: Template,
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'When an external link is detected, it will auto-add the `target` and `rel` attributes as well. ' +
+          'To provide a link to an external href, but without opening a new tab, provide the "target" prop.',
+      },
     },
   },
-};
-Icon.args = {
-  to: 'https://example.com',
-  icon: Edit,
-};
-
-export const TrailingIcon = Template.bind({});
-TrailingIcon.parameters = {
-  docs: {
-    description: {
-      story:
-        "The Button Float component takes a `trailingIcon` prop. This icon will be rendered after the text. It's recommended to use the Chroma icon set.",
-    },
+  args: {
+    to: 'https://example.com',
+    target: '_self',
   },
 };
-TrailingIcon.args = {
-  to: 'https://example.com',
-  trailingIcon: Edit,
+
+export const Disabled: Story = {
+  render: Template,
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "The Button Float component takes an icon prop. It's recommended to use the [Chromicons](https://lifeomic.github.io/chromicons.com/) icon set.",
+      },
+    },
+  },
+  args: {
+    disabled: true,
+  },
 };
 
-export const InverseDark = Template.bind({});
-InverseDark.parameters = {
-  backgrounds: { default: 'dark' },
-};
-InverseDark.args = {
-  to: '/',
-  color: 'inverse',
+export const Icon: Story = {
+  render: Template,
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "The Button Float component takes an icon prop. It's recommended to use the [Chromicons](https://lifeomic.github.io/chromicons.com/) icon set.",
+      },
+    },
+  },
+  args: {
+    to: 'https://example.com',
+    icon: Edit,
+  },
 };
 
-export const InverseBlue = Template.bind({});
-InverseBlue.parameters = {
-  backgrounds: { default: 'blue' },
+export const TrailingIcon: Story = {
+  render: Template,
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "The Button Float component takes a `trailingIcon` prop. This icon will be rendered after the text. It's recommended to use the Chroma icon set.",
+      },
+    },
+  },
+  args: {
+    to: 'https://example.com',
+    trailingIcon: Edit,
+  },
 };
-InverseBlue.args = {
-  to: '/',
-  color: 'inverse',
+
+export const InverseDark: Story = {
+  render: Template,
+  parameters: {
+    backgrounds: { default: 'dark' },
+  },
+  args: {
+    color: 'inverse',
+  },
+};
+
+export const InverseBlue: Story = {
+  render: Template,
+  parameters: {
+    backgrounds: { default: 'blue' },
+  },
+  args: {
+    color: 'inverse',
+  },
 };

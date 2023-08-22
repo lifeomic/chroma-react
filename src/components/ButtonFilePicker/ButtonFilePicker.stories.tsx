@@ -1,52 +1,67 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryObj, StoryFn, Meta } from '@storybook/react';
 
 import { ButtonFilePicker } from './ButtonFilePicker';
 import { Edit } from '@lifeomic/chromicons';
-
-export default {
-  title: 'Components/ButtonFilePicker',
+const meta: Meta<typeof ButtonFilePicker> = {
   component: ButtonFilePicker,
-  argTypes: {},
-} as ComponentMeta<typeof ButtonFilePicker>;
+};
+export default meta;
+type Story = StoryObj<typeof ButtonFilePicker>;
 
-const Template: ComponentStory<typeof ButtonFilePicker> = (args) => (
+const Template: StoryFn<typeof ButtonFilePicker> = (args) => (
   <ButtonFilePicker {...args}>Button File Picker</ButtonFilePicker>
 );
 
-export const Default = Template.bind({});
-Default.args = {};
+export const Default: Story = {
+  render: Template,
+};
 
-export const Accept = Template.bind({});
-Accept.parameters = {
-  docs: {
-    description: {
-      story:
-        'A CSV list of the type of file extension(s) the file picker should accept.',
+export const Accept: Story = {
+  render: Template,
+  args: {
+    accept: '.jpg,.jpeg',
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'A CSV list of the type of file extension(s) the file picker should accept.',
+      },
     },
   },
 };
-Accept.args = {
-  accept: '.jpg,.jpeg',
+
+export const Disabled: Story = {
+  render: Template,
+  args: {
+    disabled: true,
+  },
 };
 
-export const Icon = Template.bind({});
-Icon.args = {
-  icon: Edit,
+export const Icon: Story = {
+  render: Template,
+  args: {
+    icon: Edit,
+  },
 };
 
-export const InverseDark = Template.bind({});
-InverseDark.parameters = {
-  backgrounds: { default: 'dark' },
-};
-InverseDark.args = {
-  color: 'inverse',
+export const InverseDark: Story = {
+  render: Template,
+  args: {
+    color: 'inverse',
+  },
+  parameters: {
+    backgrounds: { default: 'dark' },
+  },
 };
 
-export const InverseBlue = Template.bind({});
-InverseBlue.parameters = {
-  backgrounds: { default: 'blue' },
-};
-InverseBlue.args = {
-  color: 'inverse',
+export const InverseBlue: Story = {
+  render: Template,
+  args: {
+    color: 'inverse',
+  },
+  parameters: {
+    backgrounds: { default: 'blue' },
+  },
 };
