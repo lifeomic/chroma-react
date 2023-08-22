@@ -1,91 +1,88 @@
-import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryObj, Meta } from '@storybook/react';
 
 import { Avatar } from './Avatar';
 import legoman from '../../../stories/assets/legoman.jpg';
 
-export default {
-  title: 'Components/Avatar',
+const meta: Meta<typeof Avatar> = {
   component: Avatar,
+  args: {
+    name: 'Tony',
+  },
   argTypes: {
     onClick: { action: 'clicked' },
     onError: { action: 'errored', control: false },
   },
-} as ComponentMeta<typeof Avatar>;
-
-const Template: ComponentStory<typeof Avatar> = (args) => <Avatar {...args} />;
-
-export const Default = Template.bind({});
-Default.args = {
-  name: 'Tony',
 };
+export default meta;
 
-export const Name = Template.bind({});
-Name.parameters = {
-  docs: {
-    description: {
-      story:
-        'The Avatar component is used to represent a user. It displays a profile picture, their name initials, or fallback icon.',
-    },
-  },
-};
-Name.args = {
-  name: 'Tony',
-};
+type Story = StoryObj<typeof Avatar>;
 
-export const ProfilePicture = Template.bind({});
-ProfilePicture.args = {
-  name: 'Tony',
-  src: legoman,
-};
-ProfilePicture.parameters = {
-  docs: {
-    description: {
-      story: 'A profile picture can be displayed by providing a `src`.',
+export const Default: Story = {};
+
+export const Name: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'The Avatar component is used to represent a user. It displays a profile picture, their name initials, or fallback icon.',
+      },
     },
   },
 };
 
-export const ImageLoadFailure = Template.bind({});
-ImageLoadFailure.args = {
-  name: 'Tony',
-  src: 'https://this-image-does-not-exist.biz/123.jpg',
-};
-ImageLoadFailure.parameters = {
-  docs: {
-    description: {
-      story:
-        'An onError handler can be added to capture errors loading the `src` image. By default, when a `src` fails to load, the avatar will fallback to initials.',
+export const ProfilePicture: Story = {
+  args: {
+    src: legoman,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'A profile picture can be displayed by providing a `src`.',
+      },
     },
   },
 };
 
-export const UseDefaultSrc = Template.bind({});
-UseDefaultSrc.args = {
-  name: 'Tony',
-  src: legoman,
-  UseDefaultSrc: true,
-};
-UseDefaultSrc.parameters = {
-  docs: {
-    description: {
-      story:
-        'This prop is leveraged when the information about the user needs to be "masked".  When this prop is provided, a default image will be used. Although their name is required, it will not be used with this prop.',
+export const ImageLoadFailure: Story = {
+  args: {
+    src: 'https://this-image-does-not-exist.biz/123.jpg',
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'An onError handler can be added to capture errors loading the `src` image. By default, when a `src` fails to load, the avatar will fallback to initials.',
+      },
     },
   },
 };
 
-export const Size = Template.bind({});
-Size.args = {
-  name: 'Tony',
-  src: legoman,
-  size: 2,
+export const UseDefaultSrc: Story = {
+  args: {
+    src: legoman,
+    useDefaultSrc: true,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'This prop is leveraged when the information about the user needs to be "masked".  When this prop is provided, a default image will be used. Although their name is required, it will not be used with this prop.',
+      },
+    },
+  },
 };
-Size.parameters = {
-  docs: {
-    description: {
-      story:
-        'There are size options exposed. Choose one that fits the best for your needs.',
+
+export const Size: Story = {
+  args: {
+    src: legoman,
+    size: 2,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'There are size options exposed. Choose one that fits the best for your needs.',
+      },
     },
   },
 };
