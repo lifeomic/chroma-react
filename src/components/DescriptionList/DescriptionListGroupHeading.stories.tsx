@@ -1,12 +1,14 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryObj, StoryFn, Meta } from '@storybook/react';
 import { DescriptionListGroupHeading } from './DescriptionListGroupHeading';
 import { makeStyles } from '../../styles';
 
-export default {
+const meta: Meta<typeof DescriptionListGroupHeading> = {
   title: 'Components/DescriptionList/DescriptionListGroupHeading',
   component: DescriptionListGroupHeading,
-} as ComponentMeta<typeof DescriptionListGroupHeading>;
+};
+export default meta;
+type Story = StoryObj<typeof DescriptionListGroupHeading>;
 
 const useStyles = makeStyles(() => ({
   storyList: {
@@ -16,9 +18,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const Template: ComponentStory<typeof DescriptionListGroupHeading> = ({
-  ...args
-}) => {
+const Template: StoryFn<typeof DescriptionListGroupHeading> = ({ ...args }) => {
   const classes = useStyles({});
   return (
     <ul className={classes.storyList}>
@@ -27,12 +27,14 @@ const Template: ComponentStory<typeof DescriptionListGroupHeading> = ({
   );
 };
 
-export const Default = Template.bind({});
-Default.args = {
-  children: 'Section 1',
+export const Default: Story = {
+  render: Template,
+  args: {
+    children: 'Section 1',
+  },
 };
 
-const TopBorderTemplate: ComponentStory<typeof DescriptionListGroupHeading> = ({
+const TopBorderTemplate: StoryFn<typeof DescriptionListGroupHeading> = ({
   ...args
 }) => {
   const classes = useStyles({});
@@ -44,7 +46,9 @@ const TopBorderTemplate: ComponentStory<typeof DescriptionListGroupHeading> = ({
   );
 };
 
-export const MultipleSections = TopBorderTemplate.bind({});
-MultipleSections.args = {
-  children: 'Section X',
+export const MultipleSections: Story = {
+  render: TopBorderTemplate,
+  args: {
+    children: 'Section X',
+  },
 };
