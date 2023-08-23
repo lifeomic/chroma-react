@@ -19,3 +19,5 @@ esm/
 docs/
 deploy/docs
 build/
+
+storybook-static/
