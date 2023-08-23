@@ -6,7 +6,6 @@ import { Check } from '@lifeomic/chromicons';
 import { makeStyles } from '../../styles';
 
 const meta: Meta<typeof DescriptionDetails> = {
-  title: 'Components/DescriptionList/DescriptionDetails',
   component: DescriptionDetails,
   args: {
     text: 'Option 1',

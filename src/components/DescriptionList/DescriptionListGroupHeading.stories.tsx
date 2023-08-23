@@ -4,7 +4,6 @@ import { DescriptionListGroupHeading } from './DescriptionListGroupHeading';
 import { makeStyles } from '../../styles';
 
 const meta: Meta<typeof DescriptionListGroupHeading> = {
-  title: 'Components/DescriptionList/DescriptionListGroupHeading',
   component: DescriptionListGroupHeading,
 };
 export default meta;

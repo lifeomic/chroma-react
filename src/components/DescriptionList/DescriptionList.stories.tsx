@@ -11,7 +11,6 @@ import Avatar1 from '../../assets/example-avatar-1.jpg';
 import Avatar2 from '../../assets/example-avatar-2.jpg';
 
 const meta: Meta<typeof DescriptionList> = {
-  title: 'Components/DescriptionList/DescriptionList',
   component: DescriptionList,
   args: {
     items: [
