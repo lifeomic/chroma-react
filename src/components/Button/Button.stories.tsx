@@ -1,87 +1,118 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryObj, StoryFn, Meta } from '@storybook/react';
 
 import { Button } from './Button';
 import { ChevronDown, Edit } from '@lifeomic/chromicons';
 
-export default {
-  title: 'Components/Button',
+const meta: Meta<typeof Button> = {
   component: Button,
   argTypes: {
     onClick: { action: 'clicked' },
   },
-} as ComponentMeta<typeof Button>;
+};
+export default meta;
+type Story = StoryObj<typeof Button>;
 
-const Template: ComponentStory<typeof Button> = (args) => (
+const Template: StoryFn<typeof Button> = (args) => (
   <Button {...args}>Button</Button>
 );
 
-export const Default = Template.bind({});
+export const Default: Story = {
+  render: Template,
+};
 
-export const Icon = Template.bind({});
-Icon.parameters = {
-  docs: {
-    description: {
-      story:
-        "The Button component takes an `icon` prop. It's recommended to use the [Chromicons](https://lifeomic.github.io/chromicons.com/) icon set.",
+export const Outlined: Story = {
+  render: Template,
+  args: {
+    variant: 'outlined',
+  },
+};
+
+export const TextOnly: Story = {
+  render: Template,
+  args: {
+    variant: 'text',
+  },
+};
+
+export const Disabled: Story = {
+  render: Template,
+  args: {
+    disabled: true,
+  },
+};
+
+export const Icon: Story = {
+  render: Template,
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "The Button component takes an `icon` prop. It's recommended to use the [Chromicons](https://lifeomic.github.io/chromicons.com/) icon set.",
+      },
+    },
+  },
+  args: {
+    icon: Edit,
+  },
+};
+
+export const TrailingIcon: Story = {
+  render: Template,
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "The Button component takes an `icon` prop. It's recommended to use the [Chromicons](https://lifeomic.github.io/chromicons.com/) icon set.",
+      },
+    },
+  },
+  args: {
+    trailingIcon: ChevronDown,
+  },
+};
+
+export const Color: Story = {
+  render: Template,
+  args: {
+    color: 'negative',
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'The button component takes multiple different colors, for different styled ' +
+          'buttons. Typically, the `inverse` color is used when a button needs to be ' +
+          'on a dark-colored background. When the action of the button will have a ' +
+          'negative or positive impact, `negative` or `positive` color are used.',
+      },
     },
   },
 };
-Icon.args = {
-  icon: Edit,
-};
 
-export const TrailingIcon = Template.bind({});
-TrailingIcon.parameters = {
-  docs: {
-    description: {
-      story:
-        "The Button component takes an `icon` prop. It's recommended to use the [Chromicons](https://lifeomic.github.io/chromicons.com/) icon set.",
-    },
+export const FullWidth: Story = {
+  render: Template,
+  args: {
+    fullWidth: true,
   },
 };
-TrailingIcon.args = {
-  trailingIcon: ChevronDown,
-};
 
-export const Color = Template.bind({});
-Color.parameters = {
-  docs: {
-    description: {
-      story:
-        'The button component takes multiple different colors, for different styled ' +
-        'buttons. Typically, the `inverse` color is used when a button needs to be ' +
-        'on a dark-colored background. When the action of the button will have a ' +
-        'negative or positive impact, `negative` or `positive` color are used.',
-    },
+export const InverseDark: Story = {
+  render: Template,
+  parameters: {
+    backgrounds: { default: 'dark' },
+  },
+  args: {
+    color: 'inverse',
   },
 };
-Color.args = {
-  color: 'inverse',
-};
 
-export const FullWidth = Template.bind({});
-FullWidth.args = {
-  fullWidth: true,
-};
-
-export const Disabled = Template.bind({});
-Disabled.args = {
-  disabled: true,
-};
-
-export const InverseDark = Template.bind({});
-InverseDark.parameters = {
-  backgrounds: { default: 'dark' },
-};
-InverseDark.args = {
-  color: 'inverse',
-};
-
-export const InverseBlue = Template.bind({});
-InverseBlue.parameters = {
-  backgrounds: { default: 'blue' },
-};
-InverseBlue.args = {
-  color: 'inverse',
+export const InverseBlue: Story = {
+  render: Template,
+  parameters: {
+    backgrounds: { default: 'blue' },
+  },
+  args: {
+    color: 'inverse',
+  },
 };
