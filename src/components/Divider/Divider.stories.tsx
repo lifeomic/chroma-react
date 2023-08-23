@@ -1,33 +1,40 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryObj, Meta } from '@storybook/react';
 
 import { Divider } from './Divider';
 
-export default {
+const meta: Meta<typeof Divider> = {
   title: 'Layout/Divider',
   component: Divider,
-  argTypes: {},
-} as ComponentMeta<typeof Divider>;
-
-const Template: ComponentStory<typeof Divider> = (args) => (
-  <Divider {...args} />
-);
-
-export const Default = Template.bind({});
-Default.args = {};
-
-export const InverseDark = Template.bind({});
-InverseDark.parameters = {
-  backgrounds: { default: 'dark' },
 };
-InverseDark.args = {
-  color: 'inverse',
+export default meta;
+type Story = StoryObj<typeof Divider>;
+
+export const Default: Story = {};
+
+export const InverseDark: Story = {
+  parameters: {
+    backgrounds: { default: 'dark' },
+  },
+  args: {
+    color: 'inverse',
+  },
 };
 
-export const InverseBlue = Template.bind({});
-InverseBlue.parameters = {
-  backgrounds: { default: 'blue' },
+export const InverseBlue: Story = {
+  parameters: {
+    backgrounds: { default: 'blue' },
+  },
+  args: {
+    color: 'inverse',
+  },
 };
-InverseBlue.args = {
-  color: 'inverse',
+
+export const Direction: Story = {
+  args: {
+    direction: 'row',
+  },
+  decorators: [
+    (story: Function) => <div style={{ height: '50px' }}>{story()}</div>,
+  ],
 };
