@@ -13,13 +13,6 @@ const meta: Meta<typeof IconButtonLink> = {
     to: '/',
   },
   argTypes: {
-    disabled: {
-      description: '`boolean`',
-      table: {
-        defaultValue: { summary: false },
-      },
-      control: { type: 'boolean' },
-    },
     onClick: { action: 'clicked' },
   },
   decorators: [(story) => <MemoryRouter>{story()}</MemoryRouter>],
