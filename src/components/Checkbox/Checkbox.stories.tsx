@@ -1,11 +1,13 @@
-import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryObj, Meta } from '@storybook/react';
 
 import { Checkbox } from './Checkbox';
 
-export default {
+const meta: Meta<typeof Checkbox> = {
   title: 'Form Components/Checkbox',
   component: Checkbox,
+  args: {
+    label: 'Checkbox',
+  },
   argTypes: {
     checked: {
       description: '`boolean`',
@@ -23,149 +25,151 @@ export default {
     },
     onChange: { action: 'clicked' },
   },
-} as ComponentMeta<typeof Checkbox>;
+};
+export default meta;
+type Story = StoryObj<typeof Checkbox>;
 
-const Template: ComponentStory<typeof Checkbox> = (args) => (
-  <Checkbox {...args} />
-);
-
-export const Unchecked = Template.bind({});
-Unchecked.parameters = {
-  docs: {
-    description: {
-      story:
-        'A checkbox component for form usage. Under the covers, this is an input element with `type="checkbox"`.',
+export const Unchecked: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'A checkbox component for form usage. Under the covers, this is an input element with `type="checkbox"`.',
+      },
     },
   },
-};
-Unchecked.args = {
-  checked: false,
-  label: 'Checkbox',
-};
-
-export const Checked = Template.bind({});
-Checked.parameters = {
-  docs: {
-    description: {
-      story:
-        'The checked state of the checkbox. Normally this is controlled in combination with `onChange` handler.',
-    },
+  args: {
+    checked: false,
   },
 };
-Checked.args = {
-  checked: true,
-  label: 'Checkbox',
-};
 
-export const DisabledChecked = Template.bind({});
-DisabledChecked.parameters = {
-  docs: {
-    description: {
-      story: 'Applies the disabled state to the element.',
+export const Checked: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'The checked state of the checkbox. Normally this is controlled in combination with `onChange` handler.',
+      },
     },
   },
-};
-DisabledChecked.args = {
-  disabled: true,
-  checked: true,
-  label: 'Checkbox',
-};
-
-export const DisabledUnchecked = Template.bind({});
-DisabledUnchecked.args = {
-  disabled: true,
-  checked: false,
-  label: 'Checkbox',
-};
-
-export const HelpMessage = Template.bind({});
-HelpMessage.parameters = {
-  docs: {
-    description: {
-      story:
-        'Caption, help text to display underneath the element. This should be supplemental text to the label, typically an expanded description of the option.',
-    },
+  args: {
+    checked: true,
   },
 };
-HelpMessage.args = {
-  label: 'Checkbox',
-  helpMessage: 'This is some helper text.',
-};
 
-export const WithError = Template.bind({});
-WithError.parameters = {
-  docs: {
-    description: {
-      story: 'Sets an error style on the element.',
+export const DisabledChecked: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Applies the disabled state to the element.',
+      },
     },
   },
-};
-WithError.args = {
-  label: 'Checkbox',
-  hasError: true,
-};
-
-export const WithErrorText = Template.bind({});
-WithErrorText.args = {
-  label: 'Checkbox',
-  hasError: true,
-  errorMessage: 'This is an error!',
-};
-
-export const ShowRequiredLabel = Template.bind({});
-ShowRequiredLabel.args = {
-  label: 'Checkbox',
-  showRequiredLabel: true,
-};
-
-export const WithHelpAndErrorText = Template.bind({});
-WithHelpAndErrorText.args = {
-  label: 'Checkbox',
-  hasError: true,
-  errorMessage: 'This is an error!',
-  helpMessage: 'This is some helper text.',
-};
-
-export const Indeterminate = Template.bind({});
-Indeterminate.parameters = {
-  docs: {
-    description: {
-      story:
-        'Applies the indeterminate state to the element. Primarily used when a parent checkbox has a mix of checked and unchecked children checkboxes.',
-    },
+  args: {
+    disabled: true,
+    checked: true,
   },
 };
-Indeterminate.args = {
-  label: 'Checkbox',
-  indeterminate: true,
+
+export const DisabledUnchecked: Story = {
+  args: {
+    disabled: true,
+    checked: false,
+  },
 };
 
-export const IndeterminateDisabled = Template.bind({});
-IndeterminateDisabled.args = {
-  label: 'Checkbox',
-  indeterminate: true,
+export const HelpMessage: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Caption, help text to display underneath the element. This should be supplemental text to the label, typically an expanded description of the option.',
+      },
+    },
+  },
+  args: {
+    helpMessage: 'This is some helper text.',
+  },
 };
 
-export const NoLabel = Template.bind({});
-NoLabel.args = {
-  label: '',
-  'aria-label': 'Checkbox with no label',
+export const WithError: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Sets an error style on the element.',
+      },
+    },
+  },
+  args: {
+    hasError: true,
+  },
 };
 
-export const InverseDark = Template.bind({});
-InverseDark.parameters = {
-  backgrounds: { default: 'dark' },
-};
-InverseDark.args = {
-  label: 'Checkbox',
-  color: 'inverse',
+export const WithErrorText: Story = {
+  args: {
+    hasError: true,
+    errorMessage: 'This is an error!',
+  },
 };
 
-export const InverseBlue = Template.bind({});
-InverseBlue.parameters = {
-  backgrounds: { default: 'blue' },
+export const ShowRequiredLabel: Story = {
+  args: {
+    showRequiredLabel: true,
+  },
 };
-InverseBlue.args = {
-  label: 'Checkbox',
-  color: 'inverse',
+
+export const WithHelpAndErrorText: Story = {
+  args: {
+    hasError: true,
+    errorMessage: 'This is an error!',
+    helpMessage: 'This is some helper text.',
+  },
+};
+
+export const Indeterminate: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Applies the indeterminate state to the element. Primarily used when a parent checkbox has a mix of checked and unchecked children checkboxes.',
+      },
+    },
+  },
+  args: {
+    checked: true,
+    indeterminate: true,
+  },
+};
+
+export const IndeterminateDisabled: Story = {
+  args: {
+    checked: true,
+    disabled: true,
+    indeterminate: true,
+  },
+};
+
+export const NoLabel: Story = {
+  args: {
+    label: '',
+    'aria-label': 'Checkbox with no label',
+  },
+};
+
+export const InverseDark: Story = {
+  parameters: {
+    backgrounds: { default: 'dark' },
+  },
+  args: {
+    color: 'inverse',
+  },
+};
+
+export const InverseBlue: Story = {
+  parameters: {
+    backgrounds: { default: 'blue' },
+  },
+  args: {
+    color: 'inverse',
+  },
 };
