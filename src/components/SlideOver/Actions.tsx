@@ -10,10 +10,6 @@ export const useStyles = makeStyles(
   (theme) => ({
     root: {
       borderTop: `1px solid ${theme.palette.divider}`,
-      paddingBottom: theme.spacing(1),
-      paddingLeft: theme.spacing(2),
-      paddingRight: theme.spacing(2),
-      paddingTop: theme.spacing(1),
     },
   }),
   { name: ActionsStylesKey }
@@ -30,7 +26,12 @@ export const Actions: React.FC<ActionsProps> = ({
 }) => {
   const classes = useStyles({});
   return (
-    <Box className={clsx(classes.root, className)} {...rootProps}>
+    <Box
+      className={clsx(classes.root, className)}
+      gap={1}
+      padding={2}
+      {...rootProps}
+    >
       {children}
     </Box>
   );

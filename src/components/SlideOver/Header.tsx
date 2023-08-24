@@ -5,18 +5,22 @@ import { Text } from '../Text';
 import { X } from '@lifeomic/chromicons';
 import * as React from 'react';
 import clsx from 'clsx';
+import { Box } from '../Box';
 
 export const HeaderStylesKey = 'ChromaSlideOverHeader';
 
 export const useStyles = makeStyles(
   (theme) => ({
     root: {
-      alignItems: 'center',
-      display: 'flex',
-      flexDirection: 'row',
-      justifyContent: 'space-between',
       backgroundColor: theme.palette.black[50],
-      padding: theme.spacing(2),
+    },
+    titleIcon: {
+      color: theme.palette.text.hint,
+      height: theme.pxToRem(22),
+      width: theme.pxToRem(22),
+    },
+    button: {
+      marginRight: theme.pxToRem(-10),
     },
   }),
   { name: HeaderStylesKey }
@@ -29,6 +33,7 @@ export interface HeaderProps {
   children?: React.ReactNode;
   onClose: () => any;
   title?: string;
+  titleIcon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   classes?: {
     root?: string;
     text?: string;
@@ -42,31 +47,40 @@ export const Header: React.FC<HeaderProps> = ({
   className,
   onClose,
   title,
+  titleIcon: TitleIcon,
   ...rootProps
 }) => {
   const classes = useStyles({});
   return (
-    <div
+    <Box
+      align="center"
+      justify="space-between"
+      padding={2}
       className={clsx(classes.root, additionalClasses?.root, className)}
       {...rootProps}
     >
       {children}
       {title && (
-        <Text
-          className={clsx(additionalClasses?.text)}
-          size="body"
-          weight="bold"
-        >
-          {title}
-        </Text>
+        <Box align="center" gap={1}>
+          {!!TitleIcon && (
+            <TitleIcon role="img" aria-hidden className={classes.titleIcon} />
+          )}
+          <Text
+            className={clsx(additionalClasses?.text)}
+            size="body"
+            weight="bold"
+          >
+            {title}
+          </Text>
+        </Box>
       )}
       <IconButton
-        className={additionalClasses?.button}
+        className={clsx(classes.button, additionalClasses?.button)}
         aria-label="Close panel"
         icon={X}
         onClick={onClose}
         size={0}
       />
-    </div>
+    </Box>
   );
 };

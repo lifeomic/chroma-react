@@ -2,6 +2,10 @@ import * as React from 'react';
 import { renderWithTheme } from '../../testUtils/renderWithTheme';
 import { Header, HeaderProps } from './index';
 import { fireEvent } from '@testing-library/dom';
+import {
+  IconComponent,
+  testId as iconComponentTestId,
+} from '../../testUtils/IconComponent';
 
 const testId = 'Header';
 
@@ -67,4 +71,22 @@ test('it renders the provided children', async () => {
 
   const children = await findByTestId(testId);
   expect(children).toBeInTheDocument();
+});
+
+test('it renders title and title icon', async () => {
+  const { findByTestId } = renderWithTheme(
+    <Header
+      {...getBaseProps()}
+      data-testid={testId}
+      title="SlideOverTitle"
+      titleIcon={IconComponent}
+      onClose={() => {}}
+    />
+  );
+
+  const title = await findByTestId(testId);
+  expect(title).toBeInTheDocument();
+  const titleIcon = await findByTestId(iconComponentTestId);
+  expect(titleIcon).toBeInTheDocument();
+  expect(titleIcon).toHaveClass('ChromaSlideOverHeader-titleIcon');
 });

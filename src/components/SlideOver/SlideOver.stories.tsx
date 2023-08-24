@@ -8,6 +8,7 @@ import { Text } from '../Text';
 import { Body } from './Body';
 import { Actions } from './Actions';
 import { Button } from '../Button';
+import { Settings } from '@lifeomic/chromicons';
 
 export default {
   title: 'Components/SlideOver',
@@ -25,6 +26,19 @@ Default.args = {
   children: (
     <>
       <Header title="Panel Title" onClose={() => {}} />
+      <Body>
+        <Text>Content</Text>
+      </Body>
+    </>
+  ),
+  isOpen: true,
+};
+
+export const HeaderWithIcon = Template.bind({});
+HeaderWithIcon.args = {
+  children: (
+    <>
+      <Header title="Panel Title" titleIcon={Settings} onClose={() => {}} />
       <Body>
         <Text>Content</Text>
       </Body>
