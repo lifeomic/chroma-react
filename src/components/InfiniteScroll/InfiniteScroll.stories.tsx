@@ -1,12 +1,10 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryObj, StoryFn, Meta } from '@storybook/react';
 
 import { InfiniteScroll } from './InfiniteScroll';
 
-export default {
-  title: 'Components/InfiniteScroll',
+const meta: Meta<typeof InfiniteScroll> = {
   component: InfiniteScroll,
-  argTypes: {},
   decorators: [
     (story) => (
       <div
@@ -28,11 +26,13 @@ export default {
       </div>
     ),
   ],
-} as ComponentMeta<typeof InfiniteScroll>;
+};
+export default meta;
+type Story = StoryObj<typeof InfiniteScroll>;
 
-let i = 0;
-const getPage = () => new Array(30).fill(null).map(() => i++);
-const Template: ComponentStory<typeof InfiniteScroll> = (args) => {
+const Template: StoryFn<typeof InfiniteScroll> = (args) => {
+  let i = 0;
+  const getPage = () => new Array(30).fill(null).map(() => i++);
   const [items, setItems] = React.useState(getPage());
   const [loading, setLoading] = React.useState(false);
 
@@ -52,8 +52,10 @@ const Template: ComponentStory<typeof InfiniteScroll> = (args) => {
   );
 };
 
-export const Default = Template.bind({});
-Default.args = {
-  scrollContainer: 'parent',
-  hasNextPage: true,
+export const Default: Story = {
+  render: Template,
+  args: {
+    scrollContainer: 'parent',
+    hasNextPage: true,
+  },
 };

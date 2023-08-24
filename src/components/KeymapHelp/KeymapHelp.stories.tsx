@@ -1,12 +1,10 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryObj, Meta } from '@storybook/react';
 
 import { KeymapHelp } from './KeymapHelp';
 
-export default {
-  title: 'Components/KeymapHelp',
+const meta: Meta<typeof KeymapHelp> = {
   component: KeymapHelp,
-  argTypes: {},
   decorators: [
     (story) => (
       <div
@@ -20,21 +18,19 @@ export default {
       </div>
     ),
   ],
-} as ComponentMeta<typeof KeymapHelp>;
+};
+export default meta;
+type Story = StoryObj<typeof KeymapHelp>;
 
-const Template: ComponentStory<typeof KeymapHelp> = (args) => (
-  <KeymapHelp {...args} />
-);
+export const Default: Story = {};
 
-export const Default = Template.bind({});
-Default.args = {};
-
-export const AdditionalKeys = Template.bind({});
-AdditionalKeys.args = {
-  keyMapDocs: [
-    {
-      sequences: ['ctrl', 'alt', 'delete'],
-      description: 'Bring up the help menu',
-    },
-  ],
+export const AdditionalKeys: Story = {
+  args: {
+    keyMapDocs: [
+      {
+        sequences: ['ctrl', 'alt', 'delete'],
+        description: 'Bring up the help menu',
+      },
+    ],
+  },
 };
