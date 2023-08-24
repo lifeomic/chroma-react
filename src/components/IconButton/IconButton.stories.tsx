@@ -1,12 +1,14 @@
-import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryObj, Meta } from '@storybook/react';
 
 import { IconButton } from './IconButton';
 import { Edit } from '@lifeomic/chromicons';
 
-export default {
-  title: 'Components/IconButton',
+const meta: Meta<typeof IconButton> = {
   component: IconButton,
+  args: {
+    'aria-label': 'Edit',
+    icon: Edit,
+  },
   argTypes: {
     disabled: {
       description: '`boolean`',
@@ -17,41 +19,32 @@ export default {
     },
     onClick: { action: 'clicked' },
   },
-} as ComponentMeta<typeof IconButton>;
+};
+export default meta;
+type Story = StoryObj<typeof IconButton>;
 
-const Template: ComponentStory<typeof IconButton> = (args) => (
-  <IconButton {...args} />
-);
+export const Default: Story = {};
 
-export const Default = Template.bind({});
-Default.args = {
-  'aria-label': 'Edit',
-  icon: Edit,
+export const Disabled: Story = {
+  args: {
+    disabled: true,
+  },
 };
 
-export const Disabled = Template.bind({});
-Disabled.args = {
-  'aria-label': 'Edit',
-  icon: Edit,
-  disabled: true,
+export const InverseDark: Story = {
+  parameters: {
+    backgrounds: { default: 'dark' },
+  },
+  args: {
+    color: 'inverse',
+  },
 };
 
-export const InverseDark = Template.bind({});
-InverseDark.parameters = {
-  backgrounds: { default: 'dark' },
-};
-InverseDark.args = {
-  'aria-label': 'Edit',
-  icon: Edit,
-  color: 'inverse',
-};
-
-export const InverseBlue = Template.bind({});
-InverseBlue.parameters = {
-  backgrounds: { default: 'blue' },
-};
-InverseBlue.args = {
-  'aria-label': 'Edit',
-  icon: Edit,
-  color: 'inverse',
+export const InverseBlue: Story = {
+  parameters: {
+    backgrounds: { default: 'blue' },
+  },
+  args: {
+    color: 'inverse',
+  },
 };

@@ -1,12 +1,15 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryObj, Meta } from '@storybook/react';
 
 import { IconButtonFloat } from './IconButtonFloat';
 import { Edit } from '@lifeomic/chromicons';
 
-export default {
-  title: 'Components/IconButtonFloat',
+const meta: Meta<typeof IconButtonFloat> = {
   component: IconButtonFloat,
+  args: {
+    'aria-label': 'Edit',
+    icon: Edit,
+  },
   argTypes: {
     disabled: {
       description: '`boolean`',
@@ -35,21 +38,14 @@ export default {
       </div>
     ),
   ],
-} as ComponentMeta<typeof IconButtonFloat>;
-
-const Template: ComponentStory<typeof IconButtonFloat> = (args) => (
-  <IconButtonFloat {...args} />
-);
-
-export const Default = Template.bind({});
-Default.args = {
-  'aria-label': 'Edit',
-  icon: Edit,
 };
+export default meta;
+type Story = StoryObj<typeof IconButtonFloat>;
 
-export const Disabled = Template.bind({});
-Disabled.args = {
-  'aria-label': 'Edit',
-  icon: Edit,
-  disabled: true,
+export const Default: Story = {};
+
+export const Disabled: Story = {
+  args: {
+    disabled: true,
+  },
 };
