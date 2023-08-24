@@ -2,28 +2,14 @@ import clsx from 'clsx';
 import * as React from 'react';
 import { makeStyles } from '../../styles';
 import { GetClasses } from '../../typeUtils';
+import { Box } from '../Box';
 
 export const ModalActionsStylesKey = 'ChromaModalActions';
 
 export const useStyles = makeStyles(
   (theme) => ({
     root: {
-      display: 'flex',
-      borderTop: `1px solid ${theme.palette.divider}`,
-      paddingTop: theme.spacing(2),
-      paddingBottom: theme.spacing(1.75),
-      '& > button': {
-        marginRight: theme.spacing(1),
-        '&:last-of-type': {
-          marginRight: 0,
-        },
-      },
-    },
-    justifyEnd: {
-      justifyContent: 'flex-end',
-    },
-    justifyBetween: {
-      justifyContent: 'space-between',
+      borderTop: `${theme.pxToRem(1)} solid ${theme.palette.divider}`,
     },
   }),
   { name: ModalActionsStylesKey }
@@ -45,18 +31,15 @@ export const ModalActions: React.FC<ModalActionsProps> = ({
 }) => {
   const classes = useStyles({});
   return (
-    <div
-      className={clsx(
-        classes.root,
-        {
-          [classes.justifyBetween]: justify === 'space-between',
-          [classes.justifyEnd]: justify === 'flex-end',
-        },
-        className
-      )}
+    <Box
+      className={clsx(classes.root, className)}
+      gap={1}
+      justify={justify === 'space-between' ? 'space-between' : 'flex-end'}
+      paddingTop={2}
+      paddingBottom={1.75}
       {...rootProps}
     >
       {children}
-    </div>
+    </Box>
   );
 };
