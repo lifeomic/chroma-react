@@ -2,7 +2,7 @@ import React from 'react';
 import { StoryObj, Meta } from '@storybook/react';
 
 import { IconButtonLink } from './IconButtonLink';
-import { Edit } from '@lifeomic/chromicons';
+import { Edit, Settings } from '@lifeomic/chromicons';
 import { MemoryRouter } from 'react-router-dom';
 
 const meta: Meta<typeof IconButtonLink> = {
@@ -21,6 +21,20 @@ export default meta;
 type Story = StoryObj<typeof IconButtonLink>;
 
 export const Default: Story = {};
+
+export const Icon: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'For a list of available icons, see our <a href="https://lifeomic.github.io/chromicons.com/">Chrōmicons catalog</a>.',
+      },
+    },
+  },
+  args: {
+    icon: Settings,
+  },
+};
 
 export const InternalLink: Story = {
   parameters: {
@@ -64,6 +78,18 @@ export const ExternalLinkSameTab: Story = {
   args: {
     to: 'https://www.lifeomic.com',
     target: '_self',
+  },
+};
+
+export const Size: Story = {
+  args: {
+    size: 0,
+  },
+};
+
+export const Color: Story = {
+  args: {
+    color: 'negative',
   },
 };
 
