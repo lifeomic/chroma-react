@@ -23,6 +23,12 @@ export const NewTab: Story = {
   },
 };
 
+export const Color: Story = {
+  args: {
+    color: 'negative',
+  },
+};
+
 export const InverseDark: Story = {
   parameters: {
     backgrounds: { default: 'dark' },
