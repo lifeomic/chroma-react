@@ -1,120 +1,120 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryObj, Meta } from '@storybook/react';
 
 import { DayPicker } from './DayPicker';
 
-export default {
+const meta: Meta<typeof DayPicker> = {
   title: 'Form Components/DayPicker',
   component: DayPicker,
-  argTypes: {},
-} as ComponentMeta<typeof DayPicker>;
-
-const Template: ComponentStory<typeof DayPicker> = (args) => (
-  <DayPicker {...args} />
-);
-
-export const Default = Template.bind({});
-Default.args = {
-  label: 'Day Picker',
+  args: {
+    label: 'Day Picker',
+  },
+  decorators: [
+    (story) => <div style={{ width: '460px', height: '350px' }}>{story()}</div>,
+  ],
 };
+export default meta;
+type Story = StoryObj<typeof DayPicker>;
 
-export const ValueAndOnDayChange = Template.bind({});
-ValueAndOnDayChange.parameters = {
-  docs: {
-    description: {
-      story: `\`DayPicker\` is a controlled component, and uses the \`value\` and \`onDayChange\` props
-to facilitate input.
+export const Default: Story = {};
 
-If \`value\` is set to \`undefined\`, the provided \`placeholder\` message will be shown.
+export const ValueAndOnDayChange: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: `\`DayPicker\` is a controlled component, and uses the \`value\` and \`onDayChange\` props
+  to facilitate input.
 
-\`onDayChange\` is called in two scenarios:
+  If \`value\` is set to \`undefined\`, the provided \`placeholder\` message will be shown.
 
-- a date was selected in the calendar UI
-- if manual input is enabled (via \`parseDate\`), and the input is updated to a valid date string.`,
+  \`onDayChange\` is called in two scenarios:
+
+  - a date was selected in the calendar UI
+  - if manual input is enabled (via \`parseDate\`), and the input is updated to a valid date string.`,
+      },
     },
   },
-};
-ValueAndOnDayChange.args = {
-  label: 'Day Picker',
-  value: new Date(),
-};
-
-export const FormatDate = Template.bind({});
-FormatDate.parameters = {
-  docs: {
-    description: {
-      story: `Custom text formats can be supported via the \`formatDate\` prop`,
-    },
+  args: {
+    value: new Date(),
   },
 };
-FormatDate.args = {
-  label: 'Day Picker',
-  value: new Date(),
-  formatDate: (date: Date) => date.toISOString().slice(0, 10),
-};
 
-export const ManualInput = Template.bind({});
-ManualInput.parameters = {
-  docs: {
-    description: {
-      story: `By default, \`DayPicker\` does not allow for manual input into the text field.
-
-Providing the \`parseDate\` prop will enable this behavior.
-
-You can use the \`onTextChange\` prop to visually handle malformed strings, e.g. via an error message.`,
+export const FormatDate: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: `Custom text formats can be supported via the \`formatDate\` prop`,
+      },
     },
   },
-};
-ManualInput.args = {
-  label: 'Day Picker',
-  value: new Date(),
-  formatDate: (date: Date) => date.toISOString().slice(0, 10),
-  parseDate: (_text: string) => new Date(),
-  onTextChange: (_text: string) => {},
+  args: {
+    value: new Date(),
+    formatDate: (date: Date) => date.toISOString().slice(0, 10),
+  },
 };
 
-export const MinDate = Template.bind({});
-MinDate.args = {
-  label: 'Day Picker',
-  value: new Date(),
-  minDate: new Date(),
+export const ManualInput: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: `By default, \`DayPicker\` does not allow for manual input into the text field.
+
+  Providing the \`parseDate\` prop will enable this behavior.
+
+  You can use the \`onTextChange\` prop to visually handle malformed strings, e.g. via an error message.`,
+      },
+    },
+  },
+  args: {
+    value: new Date(),
+    formatDate: (date: Date) => date.toISOString().slice(0, 10),
+    parseDate: (_text: string) => new Date(),
+    onTextChange: (_text: string) => {},
+  },
 };
 
-export const MaxDate = Template.bind({});
-MaxDate.args = {
-  label: 'Day Picker',
-  value: new Date(),
-  maxDate: new Date(),
+export const MinDate: Story = {
+  args: {
+    value: new Date(),
+    minDate: new Date(),
+  },
 };
 
-export const DisableDay = Template.bind({});
-DisableDay.args = {
-  label: 'Day Picker',
-  value: new Date(),
-  disableDay: (date: Date) => date.getDate() % 2 === 0,
+export const MaxDate: Story = {
+  args: {
+    value: new Date(),
+    maxDate: new Date(),
+  },
 };
 
-export const AnchorPosition = Template.bind({});
-AnchorPosition.args = {
-  label: 'Day Picker',
-  value: new Date(),
-  anchorPosition: 'top-right',
+export const DisableDay: Story = {
+  args: {
+    value: new Date(),
+    disableDay: (date: Date) => date.getDate() % 2 === 0,
+  },
 };
 
-export const InverseDark = Template.bind({});
-InverseDark.parameters = {
-  backgrounds: { default: 'dark' },
-};
-InverseDark.args = {
-  label: 'Day Picker',
-  color: 'inverse',
+export const AnchorPosition: Story = {
+  args: {
+    value: new Date(),
+    anchorPosition: 'bottom-right',
+  },
 };
 
-export const InverseBlue = Template.bind({});
-InverseBlue.parameters = {
-  backgrounds: { default: 'blue' },
+export const InverseDark: Story = {
+  parameters: {
+    backgrounds: { default: 'dark' },
+  },
+  args: {
+    color: 'inverse',
+  },
 };
-InverseBlue.args = {
-  label: 'Day Picker',
-  color: 'inverse',
+
+export const InverseBlue: Story = {
+  parameters: {
+    backgrounds: { default: 'blue' },
+  },
+  args: {
+    color: 'inverse',
+  },
 };
