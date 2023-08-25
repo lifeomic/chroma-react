@@ -142,9 +142,7 @@ test('it renders actions with "justifyActions"', async () => {
   );
 
   const actions = await findByTestId(testId);
-  expect(actions?.parentElement).toHaveClass(
-    'ChromaModalActions-justifyBetween'
-  );
+  expect(actions?.parentElement).toHaveClass('ChromaBox-justifyBetween');
 });
 
 // #endregion
