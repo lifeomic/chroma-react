@@ -16,8 +16,19 @@ export const useStyles = makeStyles(
     },
     titleIcon: {
       color: theme.palette.text.hint,
+      minHeight: theme.pxToRem(22),
+      minWidth: theme.pxToRem(22),
       height: theme.pxToRem(22),
       width: theme.pxToRem(22),
+    },
+    overflow: {
+      flex: 1,
+      overflow: 'hidden',
+    },
+    text: {
+      textOverflow: 'ellipsis',
+      overflow: 'hidden',
+      whiteSpace: 'nowrap',
     },
     button: {
       marginRight: theme.pxToRem(-10),
@@ -54,19 +65,19 @@ export const Header: React.FC<HeaderProps> = ({
   return (
     <Box
       align="center"
+      gap={1}
       justify="space-between"
       padding={2}
       className={clsx(classes.root, additionalClasses?.root, className)}
       {...rootProps}
     >
-      {children}
       {title && (
-        <Box align="center" gap={1}>
+        <Box align="center" gap={1} className={classes.overflow}>
           {!!TitleIcon && (
             <TitleIcon role="img" aria-hidden className={classes.titleIcon} />
           )}
           <Text
-            className={clsx(additionalClasses?.text)}
+            className={clsx(classes.text, additionalClasses?.text)}
             size="body"
             weight="bold"
           >
@@ -74,13 +85,18 @@ export const Header: React.FC<HeaderProps> = ({
           </Text>
         </Box>
       )}
-      <IconButton
-        className={clsx(classes.button, additionalClasses?.button)}
-        aria-label="Close panel"
-        icon={X}
-        onClick={onClose}
-        size={0}
-      />
+      <Box align="center" gap={1}>
+        <Box justify="flex-end" align="center" gap={1}>
+          {children}
+        </Box>
+        <IconButton
+          className={clsx(classes.button, additionalClasses?.button)}
+          aria-label="Close panel"
+          icon={X}
+          onClick={onClose}
+          size={0}
+        />
+      </Box>
     </Box>
   );
 };
