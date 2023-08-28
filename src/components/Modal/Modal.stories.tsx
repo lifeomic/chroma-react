@@ -1,17 +1,17 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryObj, StoryFn, Meta } from '@storybook/react';
 
 import { Modal } from './Modal';
 import { Button } from '../Button';
 import { Checkbox } from '../Checkbox';
 
-export default {
-  title: 'Components/Modal',
+const meta: Meta<typeof Modal> = {
   component: Modal,
-  argTypes: {},
-} as ComponentMeta<typeof Modal>;
+};
+export default meta;
+type Story = StoryObj<typeof Modal>;
 
-export const Default: ComponentStory<typeof Modal> = (args) => {
+const Template: StoryFn<typeof Modal> = (args) => {
   const [isOpen, setIsOpen] = React.useState(false);
 
   return (
@@ -33,13 +33,9 @@ export const Default: ComponentStory<typeof Modal> = (args) => {
     </>
   );
 };
-Default.args = {
-  title: 'Modal Example',
-};
 
-export const ActionsModal: ComponentStory<typeof Modal> = (args) => {
+const Template2: StoryFn<typeof Modal> = (args) => {
   const [isOpen, setIsOpen] = React.useState(false);
-
   return (
     <>
       <Button
@@ -72,14 +68,9 @@ export const ActionsModal: ComponentStory<typeof Modal> = (args) => {
     </>
   );
 };
-ActionsModal.args = {
-  title: 'Actions Example',
-  justifyActions: 'flex-end',
-};
 
-export const CustomHeader: ComponentStory<typeof Modal> = (args) => {
+const Template3: StoryFn<typeof Modal> = (args) => {
   const [isOpen, setIsOpen] = React.useState(false);
-
   return (
     <>
       <Button
@@ -98,6 +89,10 @@ export const CustomHeader: ComponentStory<typeof Modal> = (args) => {
               display: 'flex',
               flexDirection: 'row',
               justifyContent: 'space-between',
+              padding: '1rem',
+              paddingTop: '19px', // to accommodate for margin
+              marginTop: '-3px',
+              backgroundColor: 'lightblue',
             }}
           >
             <div>Hello, World!</div>
@@ -115,6 +110,25 @@ export const CustomHeader: ComponentStory<typeof Modal> = (args) => {
     </>
   );
 };
-CustomHeader.args = {
-  title: 'CustomHeader',
+
+export const Default: Story = {
+  render: Template,
+  args: {
+    title: 'Modal Example',
+  },
+};
+
+export const ActionsModal: Story = {
+  render: Template2,
+  args: {
+    title: 'Actions Example',
+    justifyActions: 'flex-end',
+  },
+};
+
+export const CustomHeader: Story = {
+  render: Template3,
+  args: {
+    title: 'CustomHeader',
+  },
 };
