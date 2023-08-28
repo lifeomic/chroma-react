@@ -1,45 +1,48 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryObj, Meta } from '@storybook/react';
 
 import { Link } from './Link';
 import { MemoryRouter } from 'react-router-dom';
 
-export default {
-  title: 'Components/Link',
+const meta: Meta<typeof Link> = {
   component: Link,
-  argTypes: {},
+  args: {
+    to: '/',
+    children: 'Link',
+  },
   decorators: [(story) => <MemoryRouter>{story()}</MemoryRouter>],
-} as ComponentMeta<typeof Link>;
+};
+export default meta;
+type Story = StoryObj<typeof Link>;
 
-const Template: ComponentStory<typeof Link> = (args) => (
-  <Link {...args}>Link</Link>
-);
+export const Default: Story = {};
 
-export const Default = Template.bind({});
-Default.args = {
-  to: '/',
+export const NewTab: Story = {
+  args: {
+    newTab: true,
+  },
 };
 
-export const NewTab = Template.bind({});
-NewTab.args = {
-  to: '/',
-  newTab: true,
+export const Color: Story = {
+  args: {
+    color: 'negative',
+  },
 };
 
-export const InverseDark = Template.bind({});
-InverseDark.parameters = {
-  backgrounds: { default: 'dark' },
-};
-InverseDark.args = {
-  to: '/',
-  color: 'inverse',
+export const InverseDark: Story = {
+  parameters: {
+    backgrounds: { default: 'dark' },
+  },
+  args: {
+    color: 'inverse',
+  },
 };
 
-export const InverseBlue = Template.bind({});
-InverseBlue.parameters = {
-  backgrounds: { default: 'blue' },
-};
-InverseBlue.args = {
-  to: '/',
-  color: 'inverse',
+export const InverseBlue: Story = {
+  parameters: {
+    backgrounds: { default: 'blue' },
+  },
+  args: {
+    color: 'inverse',
+  },
 };

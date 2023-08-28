@@ -1,5 +1,5 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryObj, StoryFn, Meta } from '@storybook/react';
 
 import { LayoutManager } from './LayoutManager';
 import { MemoryRouter } from 'react-router-dom';
@@ -17,14 +17,15 @@ import { Logo } from '../../assets/Logo';
 import { Insights } from '../../assets/Insights';
 import { Subjects } from '../../assets/Subjects';
 
-export default {
+const meta: Meta<typeof LayoutManager> = {
   title: 'Layout/LayoutManager',
   component: LayoutManager,
-  argTypes: {},
   decorators: [(story) => <MemoryRouter>{story()}</MemoryRouter>],
-} as ComponentMeta<typeof LayoutManager>;
+};
+export default meta;
+type Story = StoryObj<typeof LayoutManager>;
 
-export const Default: ComponentStory<typeof LayoutManager> = (args) => (
+const Template: StoryFn<typeof LayoutManager> = (args) => (
   <LayoutManager
     {...args}
     header={<Header logo={<Logo />} />}
@@ -61,6 +62,12 @@ export const Default: ComponentStory<typeof LayoutManager> = (args) => (
       </PrimaryNavigation>
     }
   >
-    <p>Main Content</p>
+    <div style={{ padding: '1rem' }}>
+      <p>Main Content</p>
+    </div>
   </LayoutManager>
 );
+
+export const Default: Story = {
+  render: Template,
+};
