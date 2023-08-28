@@ -1,5 +1,5 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryObj, StoryFn, Meta } from '@storybook/react';
 
 import { IconTile } from './IconTile';
 import { IconTileHero } from './IconTileHero';
@@ -8,20 +8,23 @@ import { IconTileContent } from './IconTileContent';
 import { Edit2 } from '@lifeomic/chromicons';
 import sampleBackground from '../../../stories/assets/sampleBackground.svg';
 
-export default {
-  title: 'Components/IconTile',
+const meta: Meta<typeof IconTile> = {
   component: IconTile,
   argTypes: {
     onClick: { action: 'clicked' },
   },
-} as ComponentMeta<typeof IconTile>;
+};
+export default meta;
+type Story = StoryObj<typeof IconTile>;
 
-export const Default: ComponentStory<typeof IconTile> = (args) => {
-  return (
-    <IconTile {...args}>
-      <IconTileHero backgroundUrl={sampleBackground} />
-      <IconTileBadge icon={Edit2} />
-      <IconTileContent text="Text" caption="caption" />
-    </IconTile>
-  );
+const Template: StoryFn<typeof IconTile> = (args) => (
+  <IconTile {...args}>
+    <IconTileHero backgroundUrl={sampleBackground} />
+    <IconTileBadge icon={Edit2} />
+    <IconTileContent text="Text" caption="caption" />
+  </IconTile>
+);
+
+export const Default: Story = {
+  render: Template,
 };
