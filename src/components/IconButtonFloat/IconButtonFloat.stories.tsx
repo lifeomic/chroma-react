@@ -1,12 +1,15 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryObj, Meta } from '@storybook/react';
 
 import { IconButtonFloat } from './IconButtonFloat';
-import { Edit } from '@lifeomic/chromicons';
+import { Edit, Settings } from '@lifeomic/chromicons';
 
-export default {
-  title: 'Components/IconButtonFloat',
+const meta: Meta<typeof IconButtonFloat> = {
   component: IconButtonFloat,
+  args: {
+    'aria-label': 'Edit',
+    icon: Edit,
+  },
   argTypes: {
     disabled: {
       description: '`boolean`',
@@ -19,37 +22,58 @@ export default {
   },
   decorators: [
     (story) => (
-      <div
-        style={{
-          position: 'fixed',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          top: 0,
-          right: 0,
-          bottom: 0,
-          left: 0,
-        }}
-      >
-        {story()}
+      <div style={{ height: '50px' }}>
+        <div
+          style={{
+            position: 'fixed',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            top: 0,
+            right: 0,
+            bottom: 0,
+            left: 0,
+          }}
+        >
+          {story()}
+        </div>
       </div>
     ),
   ],
-} as ComponentMeta<typeof IconButtonFloat>;
+};
+export default meta;
+type Story = StoryObj<typeof IconButtonFloat>;
 
-const Template: ComponentStory<typeof IconButtonFloat> = (args) => (
-  <IconButtonFloat {...args} />
-);
+export const Default: Story = {};
 
-export const Default = Template.bind({});
-Default.args = {
-  'aria-label': 'Edit',
-  icon: Edit,
+export const Icon: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'For a list of available icons, see our <a href="https://lifeomic.github.io/chromicons.com/">Chrōmicons catalog</a>.',
+      },
+    },
+  },
+  args: {
+    icon: Settings,
+  },
 };
 
-export const Disabled = Template.bind({});
-Disabled.args = {
-  'aria-label': 'Edit',
-  icon: Edit,
-  disabled: true,
+export const Size: Story = {
+  args: {
+    size: 0,
+  },
+};
+
+export const Justify: Story = {
+  args: {
+    justify: 'left',
+  },
+};
+
+export const Disabled: Story = {
+  args: {
+    disabled: true,
+  },
 };
