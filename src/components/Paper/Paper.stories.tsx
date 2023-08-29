@@ -1,15 +1,26 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryObj, Meta } from '@storybook/react';
 
 import { Paper } from './Paper';
+import { Box } from '../Box';
+import { Text } from '../Text';
 
-export default {
-  title: 'Components/Paper',
+const meta: Meta<typeof Paper> = {
   component: Paper,
-  argTypes: {},
-} as ComponentMeta<typeof Paper>;
+};
+export default meta;
+type Story = StoryObj<typeof Paper>;
 
-const Template: ComponentStory<typeof Paper> = (args) => <Paper {...args} />;
-
-export const Default = Template.bind({});
-Default.args = {};
+export const Default: Story = {
+  args: {
+    children: (
+      <Box direction="column" gap={1}>
+        <Text size="headline">Content</Text>
+        <Text size="body">
+          This is example content inside a Paper component
+        </Text>
+        <Text size="subbody">Truly astounding content</Text>
+      </Box>
+    ),
+  },
+};
