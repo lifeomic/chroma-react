@@ -23,9 +23,10 @@ export const Placeholder: Story = {
   },
 };
 
-export const Error: Story = {
+export const RequiredAndError: Story = {
   args: {
     hasError: true,
+    showRequiredLabel: true,
     errorMessage: 'This is required',
   },
 };

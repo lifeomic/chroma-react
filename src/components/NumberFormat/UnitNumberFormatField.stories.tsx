@@ -1,6 +1,8 @@
+import React from 'react';
 import { StoryObj, Meta } from '@storybook/react';
 
 import { UnitNumberFormatField } from './UnitNumberFormatField';
+import { Apple, HelpCircle, TrendingUp } from '@lifeomic/chromicons';
 
 const meta: Meta<typeof UnitNumberFormatField> = {
   title: 'Form Components/NumberFormat/UnitNumberFormatField',
@@ -43,6 +45,36 @@ export const DecimalScale: Story = {
 export const PrefixUnits: Story = {
   args: {
     prefixUnits: true,
+  },
+};
+
+export const Adornments: Story = {
+  args: {
+    startAdornment: <Apple />,
+    endAdornment: <TrendingUp />,
+  },
+};
+
+export const TooltipMessage: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Icon and Tooltip Message must be used at the same time for either of them to render.',
+      },
+    },
+  },
+  args: {
+    icon: HelpCircle,
+    tooltipMessage: 'Tooltip Message',
+  },
+};
+
+export const RequiredAndError: Story = {
+  args: {
+    hasError: true,
+    showRequiredLabel: true,
+    errorMessage: 'This is required',
   },
 };
 
