@@ -1,59 +1,52 @@
-import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryObj, Meta } from '@storybook/react';
 
 import { PriceFormatField } from './UnitNumberFormatField';
 
-export default {
+const meta: Meta<typeof PriceFormatField> = {
   title: 'Form Components/NumberFormat/PriceFormatField',
   component: PriceFormatField,
+  args: {
+    label: 'Price Format Field',
+    value: 50,
+  },
   argTypes: {
     color: {
       control: 'radio',
       options: ['default', 'inverse'],
     },
   },
-} as ComponentMeta<typeof PriceFormatField>;
+};
+export default meta;
+type Story = StoryObj<typeof PriceFormatField>;
 
-const Template: ComponentStory<typeof PriceFormatField> = (args) => (
-  <PriceFormatField {...args} />
-);
+export const Default: Story = {};
 
-export const Default = Template.bind({});
-Default.args = {
-  label: 'Price Format Field',
-  value: 50,
+export const Min: Story = {
+  args: {
+    min: 20,
+  },
 };
 
-export const Min = Template.bind({});
-Min.args = {
-  label: 'Price Format Field',
-  value: 50,
-  min: 20,
+export const Max: Story = {
+  args: {
+    max: 70,
+  },
 };
 
-export const Max = Template.bind({});
-Max.args = {
-  label: 'Price Format Field',
-  value: 50,
-  max: 70,
+export const InverseDark: Story = {
+  parameters: {
+    backgrounds: { default: 'dark' },
+  },
+  args: {
+    color: 'inverse',
+  },
 };
 
-export const InverseDark = Template.bind({});
-InverseDark.parameters = {
-  backgrounds: { default: 'dark' },
-};
-InverseDark.args = {
-  label: 'Price Format Field',
-  value: 50,
-  color: 'inverse',
-};
-
-export const InverseBlue = Template.bind({});
-InverseBlue.parameters = {
-  backgrounds: { default: 'blue' },
-};
-InverseBlue.args = {
-  label: 'Price Format Field',
-  value: 50,
-  color: 'inverse',
+export const InverseBlue: Story = {
+  parameters: {
+    backgrounds: { default: 'blue' },
+  },
+  args: {
+    color: 'inverse',
+  },
 };
