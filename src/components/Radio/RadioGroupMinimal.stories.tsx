@@ -27,3 +27,23 @@ const Template: StoryFn<typeof RadioGroupMinimal> = (args) => (
 export const Default: Story = {
   render: Template,
 };
+
+export const InverseDark: Story = {
+  render: Template,
+  parameters: {
+    backgrounds: { default: 'dark' },
+  },
+  args: {
+    color: 'inverse',
+  },
+};
+
+export const InverseBlue: Story = {
+  render: Template,
+  parameters: {
+    backgrounds: { default: 'blue' },
+  },
+  args: {
+    color: 'inverse',
+  },
+};
