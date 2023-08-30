@@ -159,7 +159,7 @@ test('it does not set aria-current attribute on non active steps', async () => {
   expect(step.parentElement).not.toHaveAttribute('aria-current', 'step');
 });
 
-test('it renders a Box with combined CSS props', async () => {
+test('it renders with combined CSS props', async () => {
   const testId = 'step';
   const { findByTestId } = renderWithTheme(
     <Stepper
@@ -183,26 +183,26 @@ test('it renders a Box with combined CSS props', async () => {
       bgColor="primary.main"
       data-testid={testId}
     >
-      <Step data-testid={testId} icon={IconComponent} title="foo" />
-      <Step data-testid={testId} icon={IconComponent} title="bar" />
+      <Step icon={IconComponent} title="foo" />
+      <Step icon={IconComponent} title="bar" />
     </Stepper>
   );
   const root = await findByTestId(testId);
-  expect(root).toHaveClass('ChromaBox-height');
-  expect(root).toHaveClass('ChromaBox-width');
-  expect(root).toHaveClass('ChromaBox-margin');
-  expect(root).toHaveClass('ChromaBox-marginTop');
-  expect(root).toHaveClass('ChromaBox-marginBottom');
-  expect(root).toHaveClass('ChromaBox-marginLeft');
-  expect(root).toHaveClass('ChromaBox-marginRight');
-  expect(root).toHaveClass('ChromaBox-marginX');
-  expect(root).toHaveClass('ChromaBox-marginY');
-  expect(root).toHaveClass('ChromaBox-padding');
-  expect(root).toHaveClass('ChromaBox-paddingTop');
-  expect(root).toHaveClass('ChromaBox-paddingBottom');
-  expect(root).toHaveClass('ChromaBox-paddingLeft');
-  expect(root).toHaveClass('ChromaBox-paddingRight');
-  expect(root).toHaveClass('ChromaBox-paddingX');
-  expect(root).toHaveClass('ChromaBox-paddingY');
-  expect(root).toHaveClass('ChromaBox-bgColor');
+  expect(root).toHaveClass('ChromaStepper-height');
+  expect(root).toHaveClass('ChromaStepper-width');
+  expect(root).toHaveClass('ChromaStepper-bgColor');
+  expect(root.firstChild).toHaveClass('ChromaStepper-margin');
+  expect(root.firstChild).toHaveClass('ChromaStepper-marginTop');
+  expect(root.firstChild).toHaveClass('ChromaStepper-marginBottom');
+  expect(root.firstChild).toHaveClass('ChromaStepper-marginLeft');
+  expect(root.firstChild).toHaveClass('ChromaStepper-marginRight');
+  expect(root.firstChild).toHaveClass('ChromaStepper-marginX');
+  expect(root.firstChild).toHaveClass('ChromaStepper-marginY');
+  expect(root.firstChild).toHaveClass('ChromaStepper-padding');
+  expect(root.firstChild).toHaveClass('ChromaStepper-paddingTop');
+  expect(root.firstChild).toHaveClass('ChromaStepper-paddingBottom');
+  expect(root.firstChild).toHaveClass('ChromaStepper-paddingLeft');
+  expect(root.firstChild).toHaveClass('ChromaStepper-paddingRight');
+  expect(root.firstChild).toHaveClass('ChromaStepper-paddingX');
+  expect(root.firstChild).toHaveClass('ChromaStepper-paddingY');
 });
