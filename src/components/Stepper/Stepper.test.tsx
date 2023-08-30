@@ -158,3 +158,51 @@ test('it does not set aria-current attribute on non active steps', async () => {
   expect(step.parentElement).toBeInTheDocument();
   expect(step.parentElement).not.toHaveAttribute('aria-current', 'step');
 });
+
+test('it renders with combined CSS props', async () => {
+  const testId = 'step';
+  const { findByTestId } = renderWithTheme(
+    <Stepper
+      activeStep={1}
+      margin="20px"
+      marginTop={1}
+      marginBottom={1}
+      marginLeft={1}
+      marginRight={1}
+      marginX={1}
+      marginY={1}
+      padding="20rem"
+      paddingTop={1}
+      paddingBottom={1}
+      paddingLeft={1}
+      paddingRight={1}
+      paddingX={1}
+      paddingY={1}
+      height="50%"
+      width="50%"
+      bgColor="primary.main"
+      data-testid={testId}
+    >
+      <Step icon={IconComponent} title="foo" />
+      <Step icon={IconComponent} title="bar" />
+    </Stepper>
+  );
+  const root = await findByTestId(testId);
+  expect(root).toHaveClass('ChromaStepper-height');
+  expect(root).toHaveClass('ChromaStepper-width');
+  expect(root).toHaveClass('ChromaStepper-bgColor');
+  expect(root.firstChild).toHaveClass('ChromaStepper-margin');
+  expect(root.firstChild).toHaveClass('ChromaStepper-marginTop');
+  expect(root.firstChild).toHaveClass('ChromaStepper-marginBottom');
+  expect(root.firstChild).toHaveClass('ChromaStepper-marginLeft');
+  expect(root.firstChild).toHaveClass('ChromaStepper-marginRight');
+  expect(root.firstChild).toHaveClass('ChromaStepper-marginX');
+  expect(root.firstChild).toHaveClass('ChromaStepper-marginY');
+  expect(root.firstChild).toHaveClass('ChromaStepper-padding');
+  expect(root.firstChild).toHaveClass('ChromaStepper-paddingTop');
+  expect(root.firstChild).toHaveClass('ChromaStepper-paddingBottom');
+  expect(root.firstChild).toHaveClass('ChromaStepper-paddingLeft');
+  expect(root.firstChild).toHaveClass('ChromaStepper-paddingRight');
+  expect(root.firstChild).toHaveClass('ChromaStepper-paddingX');
+  expect(root.firstChild).toHaveClass('ChromaStepper-paddingY');
+});
