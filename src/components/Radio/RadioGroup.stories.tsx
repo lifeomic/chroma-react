@@ -1,25 +1,29 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryFn, Meta, StoryObj } from '@storybook/react';
 
 import { RadioGroup } from './RadioGroup';
 import { Radio } from './Radio';
 
-export default {
+const meta: Meta<typeof RadioGroup> = {
   title: 'Form Components/Radio/RadioGroup',
   component: RadioGroup,
+  args: {
+    title: 'Radio Group',
+  },
   argTypes: {
     onChange: { action: 'clicked' },
   },
-} as ComponentMeta<typeof RadioGroup>;
+};
+export default meta;
+type Story = StoryObj<typeof RadioGroup>;
 
-const Template: ComponentStory<typeof RadioGroup> = (args) => (
+const Template: StoryFn<typeof RadioGroup> = (args) => (
   <RadioGroup {...args}>
     <Radio value="opt1" label="Option 1" />
     <Radio value="opt2" label="Option 2" />
   </RadioGroup>
 );
 
-export const Default = Template.bind({});
-Default.args = {
-  title: 'Radio Group',
+export const Default: Story = {
+  render: Template,
 };
