@@ -5,7 +5,7 @@ import { GetClasses } from '../../typeUtils';
 import { Box } from '../Box';
 import { StepConnector } from './StepConnector';
 import { warning } from '../../utils';
-import colorOptions from './colorOptions';
+import colorOptions from '../../colors/colorOptions';
 
 export const StepperStylesKey = 'ChromaStepper';
 

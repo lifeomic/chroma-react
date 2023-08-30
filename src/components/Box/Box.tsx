@@ -3,7 +3,7 @@ import * as React from 'react';
 import { makeStyles } from '../../styles';
 import { GetClasses } from '../../typeUtils';
 import { warning } from '../../utils';
-import colorOptions from './colorOptions';
+import colorOptions from '../../colors/colorOptions';
 
 export const BoxStylesKey = 'ChromaBox';
 
