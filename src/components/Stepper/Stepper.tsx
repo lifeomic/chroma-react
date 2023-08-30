@@ -4,28 +4,51 @@ import { makeStyles } from '../../styles';
 import { GetClasses } from '../../typeUtils';
 import { Box } from '../Box';
 import { StepConnector } from './StepConnector';
+import { warning } from '../../utils';
+import colorOptions from './colorOptions';
 
 export const StepperStylesKey = 'ChromaStepper';
 
-export const useStyles = makeStyles(
-  (theme) => ({
-    root: {
-      backgroundColor: theme.palette.common.white,
-    },
-    innerRoot: {
-      alignItems: 'center',
-      display: 'flex',
-      justifyContent: 'space-between',
-      listStyleType: 'none',
-      margin: theme.spacing(4, 4, 0, 4),
-      padding: 0,
-      width: '100%',
-    },
-  }),
+export type StepperClasses = GetClasses<typeof useStyles>;
+
+export const useStyles = makeStyles<StepperProps>(
+  (theme) => {
+    const stringOrThemeColor = (value?: string) => {
+      if (!value) return;
+      const palette: any = theme.palette;
+
+      const valueParts = value.split('.');
+      if (valueParts.length > 1) {
+        if (colorOptions.includes(value)) {
+          return palette[valueParts[0]][valueParts[1]];
+        } else {
+          warning(true, `Stepper color property ${value} is invalid`);
+        }
+      }
+
+      return value;
+    };
+
+    return {
+      root: {
+        backgroundColor: theme.palette.common.white,
+      },
+      bgColor: {
+        backgroundColor: ({ bgColor }) => stringOrThemeColor(bgColor),
+      },
+      innerRoot: {
+        alignItems: 'center',
+        display: 'flex',
+        justifyContent: 'space-between',
+        listStyleType: 'none',
+        margin: theme.spacing(4, 4, 0, 4),
+        padding: 0,
+        width: '100%',
+      },
+    };
+  },
   { name: StepperStylesKey }
 );
-
-export type StepperClasses = GetClasses<typeof useStyles>;
 
 export interface StepperProps {
   activeStep: number;
@@ -35,6 +58,7 @@ export interface StepperProps {
   connectorClassName?: string;
   onClick?: (index: number) => void;
   ref?: React.Ref<HTMLDivElement>;
+  bgColor?: string;
 }
 
 /**
@@ -46,19 +70,19 @@ export interface StepperProps {
  * - [Story Source](https://github.com/lifeomic/chroma-react/blob/master/stories/components/Stepper/Stepper.stories.tsx)
  */
 export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
-  (
-    {
+  (props, ref) => {
+    const {
       activeStep,
       as = 'button',
       children,
       className,
       connectorClassName,
+      bgColor,
       onClick,
       ...rootProps
-    },
-    ref
-  ) => {
-    const classes = useStyles({});
+    } = props;
+
+    const classes = useStyles(props);
     const childrenArray = Array.isArray(children)
       ? children
       : React.Children.toArray(children);
@@ -100,7 +124,7 @@ export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
     return (
       <Box
         fullWidth
-        className={clsx(classes.root, className)}
+        className={clsx(classes.root, bgColor && classes.bgColor, className)}
         ref={ref}
         role="group"
         {...rootProps}
