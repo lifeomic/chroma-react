@@ -1,59 +1,84 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryObj, Meta } from '@storybook/react';
 
 import { PriceFormatField } from './UnitNumberFormatField';
+import { Apple, HelpCircle, TrendingUp } from '@lifeomic/chromicons';
 
-export default {
+const meta: Meta<typeof PriceFormatField> = {
   title: 'Form Components/NumberFormat/PriceFormatField',
   component: PriceFormatField,
+  args: {
+    label: 'Price Format Field',
+    value: 50,
+  },
   argTypes: {
     color: {
       control: 'radio',
       options: ['default', 'inverse'],
     },
   },
-} as ComponentMeta<typeof PriceFormatField>;
+};
+export default meta;
+type Story = StoryObj<typeof PriceFormatField>;
 
-const Template: ComponentStory<typeof PriceFormatField> = (args) => (
-  <PriceFormatField {...args} />
-);
+export const Default: Story = {};
 
-export const Default = Template.bind({});
-Default.args = {
-  label: 'Price Format Field',
-  value: 50,
+export const Min: Story = {
+  args: {
+    min: 20,
+  },
 };
 
-export const Min = Template.bind({});
-Min.args = {
-  label: 'Price Format Field',
-  value: 50,
-  min: 20,
+export const Max: Story = {
+  args: {
+    max: 70,
+  },
 };
 
-export const Max = Template.bind({});
-Max.args = {
-  label: 'Price Format Field',
-  value: 50,
-  max: 70,
+export const Adornments: Story = {
+  args: {
+    startAdornment: <Apple />,
+    endAdornment: <TrendingUp />,
+  },
 };
 
-export const InverseDark = Template.bind({});
-InverseDark.parameters = {
-  backgrounds: { default: 'dark' },
-};
-InverseDark.args = {
-  label: 'Price Format Field',
-  value: 50,
-  color: 'inverse',
+export const TooltipMessage: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Icon and Tooltip Message must be used at the same time for either of them to render.',
+      },
+    },
+  },
+  args: {
+    icon: HelpCircle,
+    tooltipMessage: 'Tooltip Message',
+  },
 };
 
-export const InverseBlue = Template.bind({});
-InverseBlue.parameters = {
-  backgrounds: { default: 'blue' },
+export const RequiredAndError: Story = {
+  args: {
+    hasError: true,
+    showRequiredLabel: true,
+    errorMessage: 'This is required',
+  },
 };
-InverseBlue.args = {
-  label: 'Price Format Field',
-  value: 50,
-  color: 'inverse',
+
+export const InverseDark: Story = {
+  parameters: {
+    backgrounds: { default: 'dark' },
+  },
+  args: {
+    color: 'inverse',
+  },
+};
+
+export const InverseBlue: Story = {
+  parameters: {
+    backgrounds: { default: 'blue' },
+  },
+  args: {
+    color: 'inverse',
+  },
 };

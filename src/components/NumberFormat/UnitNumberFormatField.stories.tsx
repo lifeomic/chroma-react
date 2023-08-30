@@ -1,80 +1,97 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryObj, Meta } from '@storybook/react';
 
 import { UnitNumberFormatField } from './UnitNumberFormatField';
+import { Apple, HelpCircle, TrendingUp } from '@lifeomic/chromicons';
 
-export default {
+const meta: Meta<typeof UnitNumberFormatField> = {
   title: 'Form Components/NumberFormat/UnitNumberFormatField',
   component: UnitNumberFormatField,
+  args: {
+    label: 'Unit Number Format Field',
+    value: 50,
+    units: 'units',
+  },
   argTypes: {
     color: {
       control: 'radio',
       options: ['default', 'inverse'],
     },
   },
-} as ComponentMeta<typeof UnitNumberFormatField>;
+};
+export default meta;
+type Story = StoryObj<typeof UnitNumberFormatField>;
 
-const Template: ComponentStory<typeof UnitNumberFormatField> = (args) => (
-  <UnitNumberFormatField {...args} />
-);
+export const Default: Story = {};
 
-export const Default = Template.bind({});
-Default.args = {
-  label: 'Unit Number Format Field',
-  value: 50,
-  units: 'units',
+export const Min: Story = {
+  args: {
+    min: 20,
+  },
 };
 
-export const Min = Template.bind({});
-Min.args = {
-  label: 'Unit Number Format Field',
-  value: 50,
-  units: 'units',
-  min: 20,
+export const Max: Story = {
+  args: {
+    max: 70,
+  },
 };
 
-export const Max = Template.bind({});
-Max.args = {
-  label: 'Unit Number Format Field',
-  value: 50,
-  units: 'units',
-  max: 70,
+export const DecimalScale: Story = {
+  args: {
+    decimalScale: 2,
+  },
 };
 
-export const DecimalScale = Template.bind({});
-DecimalScale.args = {
-  label: 'Unit Number Format Field',
-  value: 50,
-  units: 'units',
-  decimalScale: 2,
+export const PrefixUnits: Story = {
+  args: {
+    prefixUnits: true,
+  },
 };
 
-export const PrefixUnits = Template.bind({});
-PrefixUnits.args = {
-  label: 'Unit Number Format Field',
-  value: 50,
-  units: 'units',
-  prefixUnits: true,
+export const Adornments: Story = {
+  args: {
+    startAdornment: <Apple />,
+    endAdornment: <TrendingUp />,
+  },
 };
 
-export const InverseDark = Template.bind({});
-InverseDark.parameters = {
-  backgrounds: { default: 'dark' },
-};
-InverseDark.args = {
-  label: 'Unit Number Format Field',
-  value: 50,
-  units: 'units',
-  color: 'inverse',
+export const TooltipMessage: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Icon and Tooltip Message must be used at the same time for either of them to render.',
+      },
+    },
+  },
+  args: {
+    icon: HelpCircle,
+    tooltipMessage: 'Tooltip Message',
+  },
 };
 
-export const InverseBlue = Template.bind({});
-InverseBlue.parameters = {
-  backgrounds: { default: 'blue' },
+export const RequiredAndError: Story = {
+  args: {
+    hasError: true,
+    showRequiredLabel: true,
+    errorMessage: 'This is required',
+  },
 };
-InverseBlue.args = {
-  label: 'Unit Number Format Field',
-  value: 50,
-  units: 'units',
-  color: 'inverse',
+
+export const InverseDark: Story = {
+  parameters: {
+    backgrounds: { default: 'dark' },
+  },
+  args: {
+    color: 'inverse',
+  },
+};
+
+export const InverseBlue: Story = {
+  parameters: {
+    backgrounds: { default: 'blue' },
+  },
+  args: {
+    color: 'inverse',
+  },
 };
