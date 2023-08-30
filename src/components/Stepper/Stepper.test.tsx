@@ -158,3 +158,51 @@ test('it does not set aria-current attribute on non active steps', async () => {
   expect(step.parentElement).toBeInTheDocument();
   expect(step.parentElement).not.toHaveAttribute('aria-current', 'step');
 });
+
+test('it renders a Box with combined CSS props', async () => {
+  const testId = 'step';
+  const { findByTestId } = renderWithTheme(
+    <Stepper
+      activeStep={1}
+      margin="20px"
+      marginTop={1}
+      marginBottom={1}
+      marginLeft={1}
+      marginRight={1}
+      marginX={1}
+      marginY={1}
+      padding="20rem"
+      paddingTop={1}
+      paddingBottom={1}
+      paddingLeft={1}
+      paddingRight={1}
+      paddingX={1}
+      paddingY={1}
+      height="50%"
+      width="50%"
+      bgColor="primary.main"
+      data-testid={testId}
+    >
+      <Step data-testid={testId} icon={IconComponent} title="foo" />
+      <Step data-testid={testId} icon={IconComponent} title="bar" />
+    </Stepper>
+  );
+  const root = await findByTestId(testId);
+  expect(root).toHaveClass('ChromaBox-height');
+  expect(root).toHaveClass('ChromaBox-width');
+  expect(root).toHaveClass('ChromaBox-margin');
+  expect(root).toHaveClass('ChromaBox-marginTop');
+  expect(root).toHaveClass('ChromaBox-marginBottom');
+  expect(root).toHaveClass('ChromaBox-marginLeft');
+  expect(root).toHaveClass('ChromaBox-marginRight');
+  expect(root).toHaveClass('ChromaBox-marginX');
+  expect(root).toHaveClass('ChromaBox-marginY');
+  expect(root).toHaveClass('ChromaBox-padding');
+  expect(root).toHaveClass('ChromaBox-paddingTop');
+  expect(root).toHaveClass('ChromaBox-paddingBottom');
+  expect(root).toHaveClass('ChromaBox-paddingLeft');
+  expect(root).toHaveClass('ChromaBox-paddingRight');
+  expect(root).toHaveClass('ChromaBox-paddingX');
+  expect(root).toHaveClass('ChromaBox-paddingY');
+  expect(root).toHaveClass('ChromaBox-bgColor');
+});
