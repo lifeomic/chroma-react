@@ -1,19 +1,22 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryObj, StoryFn, Meta } from '@storybook/react';
 
 import { Select } from './Select';
 import { SelectOption } from './SelectOption';
 import { ChevronRight, Edit } from '@lifeomic/chromicons';
 import { GroupHeading } from './GroupHeading';
 
-export default {
+const meta: Meta<typeof Select> = {
   title: 'Form Components/Select',
   component: Select,
-  argTypes: {},
-  subcomponents: { SelectOption, GroupHeading },
-} as ComponentMeta<typeof Select>;
+  args: {
+    label: 'Select',
+  },
+};
+export default meta;
+type Story = StoryObj<typeof Select>;
 
-const Template: ComponentStory<typeof Select> = (args) => {
+const Template: StoryFn<typeof Select> = (args) => {
   const [selected, setSelected] = React.useState<string>('');
 
   return (
@@ -52,82 +55,91 @@ const Template: ComponentStory<typeof Select> = (args) => {
   );
 };
 
-export const Default = Template.bind({});
-Default.args = {
-  label: 'Select',
+export const Default: Story = {
+  render: Template,
 };
 
-export const Placeholder = Template.bind({});
-Placeholder.args = {
-  label: 'Select',
-  placeholder: 'Placeholder',
-};
-
-export const SecondaryLabel = Template.bind({});
-SecondaryLabel.args = {
-  label: 'Select',
-  secondaryLabel: 'Secondary Label',
-};
-
-export const HelpMessage = Template.bind({});
-HelpMessage.args = {
-  label: 'Select',
-  helpMessage: 'Help Message',
-};
-
-export const Error = Template.bind({});
-Error.args = {
-  label: 'Select',
-  errorMessage: 'Error Message',
-  hasError: true,
-};
-
-export const Disabled = Template.bind({});
-Disabled.args = {
-  label: 'Select',
-  disabled: true,
-};
-
-export const FullWidth = Template.bind({});
-FullWidth.args = {
-  label: 'Select',
-  fullWidth: true,
-};
-
-export const Tooltip = Template.bind({});
-Tooltip.args = {
-  label: 'Select',
-  icon: Edit,
-  tooltipMessage: 'Tooltip Message',
-};
-
-export const SecondaryAction = Template.bind({});
-SecondaryAction.args = {
-  label: 'Select',
-  secondaryAction: {
-    args: 'https://lifeomic.com/',
-    action: (args: string) => {
-      alert(`You can do something with arg "${args}"`);
-    },
-    label: 'Do something',
-    icon: ChevronRight,
+export const Placeholder: Story = {
+  render: Template,
+  args: {
+    placeholder: 'Placeholder',
   },
 };
 
-export const InverseDark = Template.bind({});
-InverseDark.parameters = {
-  backgrounds: { default: 'dark' },
-};
-InverseDark.args = {
-  label: 'Select',
-  color: 'inverse',
+export const SecondaryLabel: Story = {
+  render: Template,
+  args: {
+    secondaryLabel: 'Secondary Label',
+  },
 };
 
-export const InverseBlue = Template.bind({});
-InverseBlue.parameters = {
-  backgrounds: { default: 'blue' },
+export const HelpMessage: Story = {
+  render: Template,
+  args: {
+    helpMessage: 'Help Message',
+  },
 };
-InverseBlue.args = {
-  label: 'Select',
-  color: 'inverse',
+
+export const Error: Story = {
+  render: Template,
+  args: {
+    errorMessage: 'Error Message',
+    hasError: true,
+  },
+};
+
+export const Disabled: Story = {
+  render: Template,
+  args: {
+    disabled: true,
+  },
+};
+
+export const FullWidth: Story = {
+  render: Template,
+  args: {
+    fullWidth: true,
+  },
+};
+
+export const Tooltip: Story = {
+  render: Template,
+  args: {
+    icon: Edit,
+    tooltipMessage: 'Tooltip Message',
+  },
+};
+
+export const SecondaryAction: Story = {
+  render: Template,
+  args: {
+    secondaryAction: {
+      args: 'https://lifeomic.com/',
+      action: (args: string) => {
+        alert(`You can do something with arg "${args}"`);
+      },
+      label: 'Do something',
+      icon: ChevronRight,
+    },
+  },
+};
+
+export const InverseDark: Story = {
+  render: Template,
+  parameters: {
+    backgrounds: { default: 'dark' },
+  },
+  args: {
+    color: 'inverse',
+  },
+};
+
+export const InverseBlue: Story = {
+  render: Template,
+  parameters: {
+    backgrounds: { default: 'blue' },
+  },
+  args: {
+    color: 'inverse',
+  },
 };
