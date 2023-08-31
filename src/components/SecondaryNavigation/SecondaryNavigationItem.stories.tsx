@@ -1,22 +1,18 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryObj, Meta } from '@storybook/react';
 
 import { MemoryRouter } from 'react-router-dom';
 import { SecondaryNavigationItem } from './SecondaryNavigationItem';
 
-export default {
-  title: 'Components/SecondaryNavigation/SecondaryNavigationItem',
+const meta: Meta<typeof SecondaryNavigationItem> = {
   component: SecondaryNavigationItem,
-  argTypes: {},
+  args: {
+    to: '/',
+    label: 'Default',
+  },
   decorators: [(story) => <MemoryRouter>{story()}</MemoryRouter>],
-} as ComponentMeta<typeof SecondaryNavigationItem>;
-
-const Template: ComponentStory<typeof SecondaryNavigationItem> = (args) => (
-  <SecondaryNavigationItem {...args} />
-);
-
-export const Default = Template.bind({});
-Default.args = {
-  to: '/',
-  label: 'Default',
 };
+export default meta;
+type Story = StoryObj<typeof SecondaryNavigationItem>;
+
+export const Default: Story = {};
