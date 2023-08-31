@@ -1,88 +1,83 @@
-import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryObj, Meta } from '@storybook/react';
 
 import { Slider } from './Slider';
 
-export default {
-  title: 'Components/Slider',
+const meta: Meta<typeof Slider> = {
   component: Slider,
-  argTypes: {},
-} as ComponentMeta<typeof Slider>;
+  args: {
+    label: 'Slider',
+  },
+};
+export default meta;
+type Story = StoryObj<typeof Slider>;
 
-const Template: ComponentStory<typeof Slider> = (args) => <Slider {...args} />;
+export const Default: Story = {};
 
-export const Default = Template.bind({});
-Default.args = {
-  label: 'Slider',
+export const LabelPlacement: Story = {
+  args: {
+    labelPlacement: 'bottom',
+  },
 };
 
-export const LabelPlacement = Template.bind({});
-LabelPlacement.args = {
-  label: 'Slider',
-  labelPlacement: 'bottom',
+export const HelpMessage: Story = {
+  args: {
+    helpMessage: 'Help Message',
+  },
 };
 
-export const HelpMessage = Template.bind({});
-HelpMessage.args = {
-  label: 'Slider',
-  helpMessage: 'Help Message',
+export const Value: Story = {
+  args: {
+    value: 40,
+  },
 };
 
-export const Value = Template.bind({});
-Value.args = {
-  label: 'Slider',
-  value: 40,
+export const ShowValue: Story = {
+  args: {
+    value: 40,
+    showValue: true,
+  },
 };
 
-export const ShowValue = Template.bind({});
-ShowValue.args = {
-  label: 'Slider',
-  value: 40,
-  showValue: true,
+export const FormatValue: Story = {
+  args: {
+    value: 40,
+    formatValue: (value: number | undefined) => `${value} cm`,
+  },
 };
 
-export const FormatValue = Template.bind({});
-FormatValue.args = {
-  label: 'Slider',
-  value: 40,
-  formatValue: (value: number | undefined) => `${value} cm`,
+export const Disabled: Story = {
+  args: {
+    disabled: true,
+  },
 };
 
-export const Disabled = Template.bind({});
-Disabled.args = {
-  label: 'Slider',
-  disabled: true,
+export const Error: Story = {
+  args: {
+    hasError: true,
+    errorMessage: 'Error Message',
+  },
 };
 
-export const Error = Template.bind({});
-Error.args = {
-  label: 'Slider',
-  hasError: true,
-  errorMessage: 'Error Message',
+export const InverseDark: Story = {
+  parameters: {
+    backgrounds: { default: 'dark' },
+  },
+  args: {
+    value: 40,
+    color: 'inverse',
+    helpMessage: 'Help Message',
+    showValue: true,
+  },
 };
 
-export const InverseDark = Template.bind({});
-InverseDark.parameters = {
-  backgrounds: { default: 'dark' },
-};
-InverseDark.args = {
-  label: 'Slider',
-  value: 40,
-  color: 'inverse',
-  helpMessage: 'Help Message',
-  showValue: true,
-  formatValue: (value: number | undefined) => `${value} cm`,
-};
-
-export const InverseBlue = Template.bind({});
-InverseBlue.parameters = {
-  backgrounds: { default: 'blue' },
-};
-InverseBlue.args = {
-  label: 'Slider',
-  value: 40,
-  color: 'inverse',
-  helpMessage: 'Help Message',
-  showValue: true,
-  formatValue: (value: number | undefined) => `${value} cm`,
+export const InverseBlue: Story = {
+  parameters: {
+    backgrounds: { default: 'blue' },
+  },
+  args: {
+    value: 40,
+    color: 'inverse',
+    helpMessage: 'Help Message',
+    showValue: true,
+  },
 };
