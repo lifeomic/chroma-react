@@ -11,7 +11,7 @@ import {
 import { Checkbox } from '../Checkbox';
 import { IconButton } from '../IconButton';
 import { SpinButton } from '../SpinButton';
-import { Share, Trash } from '@lifeomic/chromicons';
+import { Share, Trash, Smile } from '@lifeomic/chromicons';
 import { Button } from '../Button';
 import { TableActionDivider } from './TableActionDivider';
 import { Tooltip } from '../Tooltip';
@@ -260,38 +260,7 @@ export const HoverActions: Story = {
   render: Template,
   args: {
     data,
-    config: [
-      {
-        header: {
-          label: 'Description',
-        },
-        cell: {
-          content: (dataValue: any) => {
-            return dataValue.description;
-          },
-        },
-      },
-      {
-        header: {
-          label: 'Calories',
-        },
-        cell: {
-          content: (dataValue: any) => {
-            return dataValue.calories;
-          },
-        },
-      },
-      {
-        header: {
-          label: 'Fat',
-        },
-        cell: {
-          content: (dataValue: any) => {
-            return dataValue.fat;
-          },
-        },
-      },
-    ] as Array<TableConfiguration>,
+    config: configBasic as Array<TableConfiguration>,
     rowActions: (row: any) => (
       <>
         <Button variant="text" color="inverse" style={{ marginRight: '8px' }}>
@@ -306,21 +275,23 @@ export const HoverActions: Story = {
             onClick={() => console.log(`search ${row}!`)}
           />
         </Tooltip>
-        <Tooltip title="Trash">
-          <IconButton
-            aria-label="Trash"
-            icon={Trash}
-            color="inverse"
-            onClick={() => console.log(`trash ${row}!`)}
-          />
-        </Tooltip>
-        {row.fat === '9.0' && (
+        {row.description !== 'Cupcake' && (
           <Tooltip title="Trash">
             <IconButton
               aria-label="Trash"
               icon={Trash}
               color="inverse"
               onClick={() => console.log(`trash ${row}!`)}
+            />
+          </Tooltip>
+        )}
+        {row.fat === '9.0' && (
+          <Tooltip title="Amaze">
+            <IconButton
+              aria-label="Amaze"
+              icon={Smile}
+              color="inverse"
+              onClick={() => console.log(`Amaze ${row}!`)}
             />
           </Tooltip>
         )}
@@ -332,7 +303,8 @@ export const HoverActions: Story = {
       description: {
         story: `It is a common design pattern to include actionable buttons for a table row. The
   Table Module exposes a \`rowActions\` prop to help. Hover over a row to view the
-  actions toolbar.`,
+  actions toolbar.\nActions can be different per row, in this example the row where fat = 9.0 has 
+  an extra action "Amaze" and the row where description = "Cupcake" does not have a "Trash" action.`,
       },
     },
   },
