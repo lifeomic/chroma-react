@@ -259,7 +259,7 @@ export const RowSelection: Story = {
   },
 };
 
-export const RowAddRemove: StoryFn<typeof TableModule> = () => {
+const TemplateRowAddRemove: StoryFn<typeof TableModule> = (args) => {
   const [tableData, setTableData] = React.useState(data);
   const tableRef = React.useRef<HTMLTableElement>(null);
   return (
@@ -272,8 +272,9 @@ export const RowAddRemove: StoryFn<typeof TableModule> = () => {
         Add row
       </Button>
       <TableModule
+        {...args}
         data={tableData}
-        config={HoverActions.args.config}
+        config={configBasic}
         ref={tableRef}
         rowClickLabel="row-click-label"
         rowActions={(row: any, index?: number) => (
@@ -295,6 +296,10 @@ export const RowAddRemove: StoryFn<typeof TableModule> = () => {
       />
     </div>
   );
+};
+
+export const RowAddRemove: Story = {
+  render: TemplateRowAddRemove,
 };
 
 export const RowManualOrder: Story = {
