@@ -277,7 +277,7 @@ const TemplateRowAddRemove: StoryFn<typeof TableModule> = (args) => {
         config={configBasic}
         ref={tableRef}
         rowClickLabel="row-click-label"
-        rowActions={(row: any, index?: number) => (
+        rowActions={(_row: any, index?: number) => (
           <Button
             variant="text"
             color="inverse"
@@ -315,7 +315,7 @@ export const RowManualOrder: Story = {
           <SpinButton
             decrementDisabled={index === tableData.length - 1}
             incrementDisabled={index === 0}
-            onIncrement={(e) => {
+            onIncrement={(_e) => {
               // swap row at index -1 and index
               const targetIndex = index! - 1;
               tableData[targetIndex] = tableData.splice(
@@ -325,7 +325,7 @@ export const RowManualOrder: Story = {
               )[0];
               setTableData([...tableData]);
             }}
-            onDecrement={(e) => {
+            onDecrement={(_e) => {
               // swap row at index and index + 1
               const targetIndex = index! + 1;
               tableData[targetIndex] = tableData.splice(
