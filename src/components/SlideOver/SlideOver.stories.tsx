@@ -1,5 +1,5 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryObj, StoryFn, Meta } from '@storybook/react';
 
 import { SlideOver } from './SlideOver';
 import { Header } from './Header';
@@ -10,72 +10,93 @@ import { Actions } from './Actions';
 import { Button } from '../Button';
 import { Settings } from '@lifeomic/chromicons';
 
-export default {
-  title: 'Components/SlideOver',
+const meta: Meta<typeof SlideOver> = {
   component: SlideOver,
-  argTypes: {},
-  subcomponents: { Header, Body, Actions },
-} as ComponentMeta<typeof SlideOver>;
+  decorators: [
+    (story: Function) => <div style={{ height: '200px' }}>{story()}</div>,
+  ],
+};
+export default meta;
+type Story = StoryObj<typeof SlideOver>;
 
-const Template: ComponentStory<typeof SlideOver> = (args) => (
-  <SlideOver {...args} />
-);
+const Template: StoryFn<typeof SlideOver> = (args) => {
+  const [isOpen, setIsOpen] = React.useState(false);
 
-export const Default = Template.bind({});
-Default.args = {
-  children: (
+  return (
     <>
-      <Header title="Panel Title" onClose={() => {}} />
-      <Body>
-        <Text>Content</Text>
-      </Body>
+      <Button
+        onClick={() => {
+          setIsOpen(!isOpen);
+        }}
+      >
+        Toggle SlideOver
+      </Button>
+      <SlideOver {...args} isOpen={isOpen}>
+        {args.children}
+      </SlideOver>
     </>
-  ),
-  isOpen: true,
+  );
 };
 
-export const HeaderWithIcon = Template.bind({});
-HeaderWithIcon.args = {
-  children: (
-    <>
-      <Header title="Panel Title" titleIcon={Settings} onClose={() => {}} />
-      <Body>
-        <Text>Content</Text>
-      </Body>
-    </>
-  ),
-  isOpen: true,
+export const Default: Story = {
+  render: Template,
+  args: {
+    children: (
+      <>
+        <Header title="Panel Title" onClose={() => {}} />
+        <Body>
+          <Text>Content</Text>
+        </Body>
+      </>
+    ),
+  },
 };
 
-export const CustomHeader = Template.bind({});
-CustomHeader.args = {
-  children: (
-    <>
-      <Header onClose={() => {}}>
-        <Avatar name="Chroma" />
-        <Text>Custom Header</Text>
-      </Header>
-      <Body>
-        <Text>Content</Text>
-      </Body>
-    </>
-  ),
-  isOpen: true,
+export const HeaderWithIcon: Story = {
+  render: Template,
+  args: {
+    children: (
+      <>
+        <Header title="Panel Title" titleIcon={Settings} onClose={() => {}} />
+        <Body>
+          <Text>Content</Text>
+        </Body>
+      </>
+    ),
+  },
 };
 
-export const PanelActions = Template.bind({});
-PanelActions.args = {
-  children: (
-    <>
-      <Header title="Panel Title" onClose={() => {}} />
-      <Body>
-        <Text>Content</Text>
-      </Body>
-      <Actions justify="flex-end">
-        <Button variant="text">Cancel</Button>
-        <Button>Save</Button>
-      </Actions>
-    </>
-  ),
-  isOpen: true,
+export const CustomHeader: Story = {
+  render: Template,
+  args: {
+    children: (
+      <>
+        <Header onClose={() => {}}>
+          <Avatar name="Chroma" />
+          <Text>Custom Header</Text>
+        </Header>
+        <Body>
+          <Text>Content</Text>
+        </Body>
+      </>
+    ),
+  },
+};
+
+export const PanelActions: Story = {
+  render: Template,
+  args: {
+    children: (
+      <>
+        <Header title="Panel Title" onClose={() => {}} />
+        <Body>
+          <Text>Content</Text>
+        </Body>
+        <Actions justify="flex-end">
+          <Button variant="text">Cancel</Button>
+          <Button>Save</Button>
+        </Actions>
+      </>
+    ),
+  },
 };
