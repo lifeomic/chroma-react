@@ -1,30 +1,26 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryObj, Meta } from '@storybook/react';
 
 import { SmallTile } from './SmallTile';
 import { SmallTileContent } from './SmallTileContent';
 import { SmallTileFooter } from './SmallTileFooter';
 
-export default {
-  title: 'Components/SmallTile',
+const meta: Meta<typeof SmallTile> = {
   component: SmallTile,
-  argTypes: {},
+  args: {
+    children: (
+      <>
+        <SmallTileContent text="Title Text" />
+        <SmallTileFooter text="Footer Text" />
+      </>
+    ),
+  },
   subcomponents: {
     SmallTileContent,
     SmallTileFooter,
   },
-} as ComponentMeta<typeof SmallTile>;
-
-const Template: ComponentStory<typeof SmallTile> = (args) => (
-  <SmallTile {...args} />
-);
-
-export const Default = Template.bind({});
-Default.args = {
-  children: (
-    <>
-      <SmallTileContent text="Title Text" />
-      <SmallTileFooter text="Footer Text" />
-    </>
-  ),
 };
+export default meta;
+type Story = StoryObj<typeof SmallTile>;
+
+export const Default: Story = {};

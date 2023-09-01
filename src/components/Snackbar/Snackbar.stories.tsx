@@ -1,26 +1,50 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryObj, Meta } from '@storybook/react';
 
 import { Snackbar } from './Snackbar';
 import { Button } from '../Button';
+import { AlertTriangle } from '@lifeomic/chromicons';
 
-export default {
-  title: 'Components/Snackbar',
+const meta: Meta<typeof Snackbar> = {
   component: Snackbar,
-  argTypes: {},
-} as ComponentMeta<typeof Snackbar>;
+  args: {
+    isOpen: true,
+    children: (
+      <>
+        <span>This is child text with a call to action</span>
+        <Button style={{ marginLeft: 8 }}>Button</Button>
+      </>
+    ),
+  },
+  decorators: [
+    (story: Function) => (
+      <div
+        style={{
+          height: '100px',
+        }}
+      >
+        {story()}
+      </div>
+    ),
+  ],
+};
+export default meta;
+type Story = StoryObj<typeof Snackbar>;
 
-const Template: ComponentStory<typeof Snackbar> = (args) => (
-  <Snackbar {...args} />
-);
-
-export const Default = Template.bind({});
-Default.args = {
-  isOpen: true,
-  children: (
-    <>
-      <span>This is child text with a call to action</span>
-      <Button style={{ marginLeft: 8 }}>Button</Button>
-    </>
-  ),
+export const Default: Story = {};
+export const Icon: Story = {
+  args: {
+    icon: AlertTriangle,
+    statusType: 'error',
+    role: 'alert',
+    allowDismiss: true,
+    children: (
+      <>
+        <span>Warning</span>
+        <Button style={{ marginLeft: 8 }} color="negative">
+          Button
+        </Button>
+      </>
+    ),
+  },
 };
