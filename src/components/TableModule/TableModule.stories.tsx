@@ -186,66 +186,42 @@ export const HoverActions: Story = {
   },
 };
 
+const TemplateRowSelection: StoryFn<typeof TableModule> = (args) => {
+  const tableRef = React.useRef<HTMLTableElement | null>(null);
+  const initialRowSelection: RowSelectionState = { '0': true };
+  const [rowSelection, setRowSelection] = React.useState(initialRowSelection);
+  const selectionColumn: TableConfiguration<RowSelectionRow> = {
+    header: {
+      content: () => '',
+    },
+    cell: {
+      content: (rowData: RowSelectionRow) => (
+        <Checkbox
+          label=""
+          aria-label="select row"
+          checked={rowData.getIsSelected()}
+          disabled={!rowData.getCanSelect()}
+          onChange={rowData.getToggleSelectedHandler()}
+        />
+      ),
+    },
+  };
+  return (
+    <TableModule
+      {...args}
+      data={data}
+      config={[selectionColumn, ...configBasic]}
+      ref={tableRef}
+      rowClickLabel="row-click-label"
+      enableRowSelection={true}
+      state={{ rowSelection }}
+      onRowSelectionChange={setRowSelection}
+    />
+  );
+};
+
 export const RowSelection: Story = {
-  render: (args) => {
-    const tableRef = React.useRef<HTMLTableElement | null>(null);
-    const initialRowSelection: RowSelectionState = { '0': true };
-    const [rowSelection, setRowSelection] = React.useState(initialRowSelection);
-    const selectionColumn: TableConfiguration<RowSelectionRow> = {
-      header: {
-        content: () => '',
-      },
-      cell: {
-        content: (rowData: RowSelectionRow) => (
-          <Checkbox
-            label=""
-            aria-label="select row"
-            checked={rowData.getIsSelected()}
-            disabled={!rowData.getCanSelect()}
-            onChange={rowData.getToggleSelectedHandler()}
-          />
-        ),
-      },
-    };
-    return (
-      <TableModule
-        {...args}
-        data={data}
-        config={[
-          selectionColumn,
-          {
-            header: {
-              label: 'Description',
-            },
-            cell: {
-              valuePath: 'description',
-            },
-          },
-          {
-            header: {
-              label: 'Calories',
-            },
-            cell: {
-              valuePath: 'calories',
-            },
-          },
-          {
-            header: {
-              label: 'Fat',
-            },
-            cell: {
-              valuePath: 'fat',
-            },
-          },
-        ]}
-        ref={tableRef}
-        rowClickLabel="row-click-label"
-        enableRowSelection={true}
-        state={{ rowSelection }}
-        onRowSelectionChange={setRowSelection}
-      />
-    );
-  },
+  render: TemplateRowSelection,
   parameters: {
     docs: {
       description: {
@@ -302,79 +278,55 @@ export const RowAddRemove: Story = {
   render: TemplateRowAddRemove,
 };
 
+const TemplateRowManualOrder: StoryFn<typeof TableModule> = (args) => {
+  const tableRef = React.useRef<HTMLTableElement | null>(null);
+  const [tableData, setTableData] = React.useState(data);
+  const spinColumn: TableConfiguration = {
+    header: {
+      content: () => '',
+    },
+    cell: {
+      content: (_, index) => (
+        <SpinButton
+          decrementDisabled={index === tableData.length - 1}
+          incrementDisabled={index === 0}
+          onIncrement={(_e) => {
+            // swap row at index -1 and index
+            const targetIndex = index! - 1;
+            tableData[targetIndex] = tableData.splice(
+              index!,
+              1,
+              tableData[targetIndex]
+            )[0];
+            setTableData([...tableData]);
+          }}
+          onDecrement={(_e) => {
+            // swap row at index and index + 1
+            const targetIndex = index! + 1;
+            tableData[targetIndex] = tableData.splice(
+              index!,
+              1,
+              tableData[targetIndex]
+            )[0];
+            setTableData([...tableData]);
+          }}
+        />
+      ),
+    },
+  };
+  return (
+    <TableModule
+      {...args}
+      data={tableData}
+      config={[spinColumn, ...configBasic]}
+      ref={tableRef}
+      rowClickLabel="row-click-label"
+    />
+  );
+};
+
 export const RowManualOrder: Story = {
-  render: (args) => {
-    const tableRef = React.useRef<HTMLTableElement | null>(null);
-    const [tableData, setTableData] = React.useState(data);
-    const spinColumn: TableConfiguration<Item> = {
-      header: {
-        content: () => '',
-      },
-      cell: {
-        content: (_, index) => (
-          <SpinButton
-            decrementDisabled={index === tableData.length - 1}
-            incrementDisabled={index === 0}
-            onIncrement={(_e) => {
-              // swap row at index -1 and index
-              const targetIndex = index! - 1;
-              tableData[targetIndex] = tableData.splice(
-                index!,
-                1,
-                tableData[targetIndex]
-              )[0];
-              setTableData([...tableData]);
-            }}
-            onDecrement={(_e) => {
-              // swap row at index and index + 1
-              const targetIndex = index! + 1;
-              tableData[targetIndex] = tableData.splice(
-                index!,
-                1,
-                tableData[targetIndex]
-              )[0];
-              setTableData([...tableData]);
-            }}
-          />
-        ),
-      },
-    };
-    return (
-      <TableModule
-        {...args}
-        data={tableData}
-        config={[
-          spinColumn,
-          {
-            header: {
-              label: 'Description',
-            },
-            cell: {
-              valuePath: 'description',
-            },
-          },
-          {
-            header: {
-              label: 'Calories',
-            },
-            cell: {
-              valuePath: 'calories',
-            },
-          },
-          {
-            header: {
-              label: 'Fat',
-            },
-            cell: {
-              valuePath: 'fat',
-            },
-          },
-        ]}
-        ref={tableRef}
-        rowClickLabel="row-click-label"
-      />
-    );
-  },
+  render: TemplateRowManualOrder,
   parameters: {
     docs: {
       description: {
