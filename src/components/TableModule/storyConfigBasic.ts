@@ -78,4 +78,21 @@ configSticky.forEach((_item) => {
   });
 });
 
-export { configBasic, configSticky };
+const configWrapped = configBasic.map((item, index) => {
+  if (item.header.label === 'Calories') {
+    return {
+      ...item,
+      cell: {
+        content: (dataValue: any) => {
+          if (dataValue.description === 'Frozen yoghurt') {
+            return 'Vanilla: 250\nStrawberry: 175\nPlain: 80\n\nYogurt is known to provide probiotics through naturally included bacterial cultures. Beware of increaing your sugar intake though.\n\nNon-dairy options exist for those with lactose intolerance.';
+          }
+          return dataValue.calories;
+        },
+      },
+    };
+  }
+  return { ...item };
+});
+
+export { configBasic, configSticky, configWrapped };
