@@ -1,26 +1,23 @@
-import React, { useState } from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import React from 'react';
+import { StoryObj, StoryFn, Meta } from '@storybook/react';
 
 import { SpinButton } from './SpinButton';
 import { Box } from '../Box';
 import { TextField } from '../TextField';
 
-export default {
-  title: 'Components/SpinButton',
+const meta: Meta<typeof SpinButton> = {
   component: SpinButton,
   argTypes: {
     onClick: { action: 'clicked' },
   },
-} as ComponentMeta<typeof SpinButton>;
+};
+export default meta;
+type Story = StoryObj<typeof SpinButton>;
 
-const Template: ComponentStory<typeof SpinButton> = (args) => (
-  <SpinButton {...args}></SpinButton>
-);
+export const Default: Story = {};
 
-export const Default = Template.bind({});
-
-export const KeyboardSupport = () => {
-  const [valueNow, setValueNow] = useState(0);
+export const KeyboardSupport: StoryFn<typeof SpinButton> = () => {
+  const [valueNow, setValueNow] = React.useState(0);
   return (
     <Box style={{ overflow: 'auto', width: '80%' }} direction="row">
       <TextField
