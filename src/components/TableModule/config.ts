@@ -64,7 +64,7 @@ const configSticky = configBasic.map((item, index) => {
 });
 
 // double the items in configSticky so it is wide enough to scroll horizontally on most screens, so the sticky columns can be easily demoed
-configSticky.forEach((_item) => {
+configSticky.forEach((_item, index) => {
   configSticky.push({
     header: {
       label: 'Lorem Ipsum',
@@ -74,11 +74,12 @@ configSticky.forEach((_item) => {
         return dataValue.misc;
       },
     },
-    isSticky: false,
+    // index is arbitrary here, just trying to show sticky columns don't have to be consecutive
+    isSticky: index === 0 ? true : false,
   });
 });
 
-const configWrapped = configBasic.map((item, index) => {
+const configWrapped = configBasic.map((item) => {
   if (item.header.label === 'Calories') {
     return {
       ...item,
