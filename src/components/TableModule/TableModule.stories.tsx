@@ -6,7 +6,6 @@ import {
   RowSelectionRow,
   RowSelectionState,
   TableConfiguration,
-  TableSortClickProps,
 } from './types';
 import { Checkbox } from '../Checkbox';
 import { IconButton } from '../IconButton';
@@ -26,6 +25,7 @@ import { data } from './storyData';
 const dataLong = [...data, ...data, ...data, ...data];
 
 import { configBasic, configSticky, configWrapped } from './storyConfigBasic';
+import { buildSortConfig } from './configSort';
 
 const Template: StoryFn<typeof TableModule> = (args) => {
   const tableRef = React.useRef<HTMLTableElement>(null);
@@ -81,92 +81,42 @@ export const Sticky: Story = {
   },
 };
 
+const TemplateSort: StoryFn<typeof TableModule> = (args) => {
+  const [sort, setSort] = React.useState({ key: null, direction: null });
+
+  const handleSortClick = ({ key, direction }: any) => {
+    setSort({ key, direction });
+  };
+  let sortedData: any = data;
+
+  if (sort.direction && sort.key) {
+    sortedData = [...data].sort((a: any, b: any) => {
+      if (sort.direction === 'asc') {
+        return a[sort.key!] - b[sort.key!];
+      }
+
+      if (sort.direction === 'desc') {
+        return b[sort.key!] - a[sort.key!];
+      }
+
+      return 0;
+    });
+  }
+  const sortConfig = buildSortConfig(handleSortClick);
+  const tableRef = React.useRef<HTMLTableElement | null>(null);
+  return (
+    <TableModule
+      {...args}
+      data={sortedData}
+      config={sortConfig}
+      ref={tableRef}
+      rowClickLabel="row-click-label"
+    />
+  );
+};
+
 export const Sort: Story = {
-  render: (args) => {
-    const [sort, setSort] = React.useState({ key: null, direction: null });
-
-    const handleSortClick = ({ key, direction }: any) => {
-      setSort({ key, direction });
-    };
-    let sortedData: any = data;
-
-    if (sort.direction && sort.key) {
-      sortedData = [...data].sort((a: any, b: any) => {
-        if (sort.direction === 'asc') {
-          return a[sort.key!] - b[sort.key!];
-        }
-
-        if (sort.direction === 'desc') {
-          return b[sort.key!] - a[sort.key!];
-        }
-
-        return 0;
-      });
-    }
-
-    const sortConfig: Array<TableConfiguration> = [
-      {
-        header: {
-          label: 'Description',
-          onSort: (header: TableSortClickProps) => {
-            handleSortClick({
-              key: 'description',
-              direction: header.sortDirection,
-            });
-          },
-        },
-        cell: {
-          valuePath: 'description',
-        },
-      },
-      {
-        header: {
-          label: 'Calories',
-          onSort: (header: TableSortClickProps) => {
-            handleSortClick({
-              key: 'calories',
-              direction: header.sortDirection,
-            });
-          },
-        },
-        cell: {
-          valuePath: 'calories',
-        },
-      },
-      {
-        header: {
-          label: 'Fat',
-          onSort: (header: TableSortClickProps) => {
-            handleSortClick({ key: 'fat', direction: header.sortDirection });
-          },
-        },
-        cell: {
-          valuePath: 'fat',
-        },
-      },
-      {
-        header: {
-          label: 'Carbs',
-          onSort: (header: TableSortClickProps) => {
-            handleSortClick({ key: 'carbs', direction: header.sortDirection });
-          },
-        },
-        cell: {
-          valuePath: 'carbs',
-        },
-      },
-    ];
-    const tableRef = React.useRef<HTMLTableElement | null>(null);
-    return (
-      <TableModule
-        {...args}
-        data={sortedData}
-        config={sortConfig}
-        ref={tableRef}
-        rowClickLabel="row-click-label"
-      />
-    );
-  },
+  render: TemplateSort,
   parameters: {
     docs: {
       description: {
