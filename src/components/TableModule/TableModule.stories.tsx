@@ -24,7 +24,7 @@ type Story = StoryObj<typeof TableModule>;
 import { data } from './storyData';
 const dataLong = [...data, ...data, ...data, ...data];
 
-import { configBasic, configSticky, configWrapped } from './storyConfigBasic';
+import { configBasic, configSticky, configWrapped } from './config';
 import { buildSortConfig } from './configSort';
 
 const Template: StoryFn<typeof TableModule> = (args) => {
