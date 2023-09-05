@@ -1,106 +1,103 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryObj, Meta } from '@storybook/react';
 
 import { TextField } from './TextField';
 import { HelpCircle, User } from '@lifeomic/chromicons';
 
-export default {
+const meta: Meta<typeof TextField> = {
   title: 'Form Components/TextField',
   component: TextField,
-  argTypes: {},
-} as ComponentMeta<typeof TextField>;
+  args: {
+    label: 'Text Field',
+  },
+};
+export default meta;
+type Story = StoryObj<typeof TextField>;
 
-const Template: ComponentStory<typeof TextField> = (args) => (
-  <TextField {...args} />
-);
+export const Default: Story = {};
 
-export const Default = Template.bind({});
-Default.args = {
-  label: 'Text Field',
+export const Disabled: Story = {
+  args: {
+    disabled: true,
+  },
 };
 
-export const Disabled = Template.bind({});
-Disabled.args = {
-  label: 'Text Field',
-  disabled: true,
+export const ReadOnly: Story = {
+  args: {
+    readOnly: true,
+  },
 };
 
-export const ReadOnly = Template.bind({});
-ReadOnly.args = {
-  label: 'Text Field',
-  readOnly: true,
+export const Password: Story = {
+  args: {
+    type: 'password',
+  },
 };
 
-export const Password = Template.bind({});
-Password.args = {
-  label: 'Text Field',
-  type: 'password',
+export const Placeholder: Story = {
+  args: {
+    placeholder: 'Required',
+  },
 };
 
-export const Placeholder = Template.bind({});
-Placeholder.args = {
-  label: 'Text Field',
-  placeholder: 'Required',
+export const Error: Story = {
+  args: {
+    hasError: true,
+    errorMessage: 'This is required!',
+  },
 };
 
-export const Error = Template.bind({});
-Error.args = {
-  label: 'Text Field',
-  hasError: true,
-  errorMessage: 'This is required!',
+export const RequiredLabel: Story = {
+  args: {
+    showRequiredLabel: true,
+  },
 };
 
-export const RequiredLabel = Template.bind({});
-RequiredLabel.args = {
-  label: 'Text Field',
-  showRequiredLabel: true,
+export const StartAdornment: Story = {
+  args: {
+    startAdornment: <User aria-hidden />,
+  },
 };
 
-export const StartAdornment = Template.bind({});
-StartAdornment.args = {
-  label: 'Text Field',
-  startAdornment: <User aria-hidden />,
+export const EndAdornment: Story = {
+  args: {
+    endAdornment: <User aria-hidden />,
+  },
 };
 
-export const EndAdornment = Template.bind({});
-EndAdornment.args = {
-  label: 'Text Field',
-  endAdornment: <User aria-hidden />,
+export const HelpMessage: Story = {
+  args: {
+    helpMessage: 'Help Message',
+  },
 };
 
-export const HelpMessage = Template.bind({});
-HelpMessage.args = {
-  label: 'Text Field',
-  helpMessage: 'Help Message',
+export const Tooltip: Story = {
+  args: {
+    icon: HelpCircle,
+    tooltipMessage: 'Tooltip Message',
+  },
 };
 
-export const Tooltip = Template.bind({});
-Tooltip.args = {
-  label: 'Text Field',
-  icon: HelpCircle,
-  tooltipMessage: 'Tooltip Message',
+export const SecondaryLabel: Story = {
+  args: {
+    secondaryLabel: 'Secondary Label',
+  },
 };
 
-export const SecondaryLabel = Template.bind({});
-SecondaryLabel.args = {
-  label: 'Text Field',
-  secondaryLabel: 'Secondary Label',
+export const InverseDark: Story = {
+  parameters: {
+    backgrounds: { default: 'dark' },
+  },
+  args: {
+    color: 'inverse',
+  },
 };
 
-export const InverseDark = Template.bind({});
-InverseDark.parameters = {
-  backgrounds: { default: 'dark' },
-};
-InverseDark.args = {
-  label: 'Text Field',
-  color: 'inverse',
-};
-
-export const InverseBlue = Template.bind({});
-InverseBlue.parameters = {
-  backgrounds: { default: 'blue' },
-};
-InverseBlue.args = {
-  label: 'Text Field',
-  color: 'inverse',
+export const InverseBlue: Story = {
+  parameters: {
+    backgrounds: { default: 'blue' },
+  },
+  args: {
+    color: 'inverse',
+  },
 };
