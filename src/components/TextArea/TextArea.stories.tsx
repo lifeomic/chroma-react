@@ -1,81 +1,79 @@
-import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryObj, Meta } from '@storybook/react';
 
 import { TextArea } from './TextArea';
 import { HelpCircle } from '@lifeomic/chromicons';
 
-export default {
+const meta: Meta<typeof TextArea> = {
   title: 'Form Components/TextArea',
   component: TextArea,
-  argTypes: {},
-} as ComponentMeta<typeof TextArea>;
+  args: {
+    label: 'TextArea',
+  },
+};
+export default meta;
+type Story = StoryObj<typeof TextArea>;
 
-const Template: ComponentStory<typeof TextArea> = (args) => (
-  <TextArea {...args} />
-);
+export const Default: Story = {};
 
-export const Default = Template.bind({});
-Default.args = {
-  label: 'TextArea',
+export const NoLabel: Story = {
+  args: {
+    label: '',
+    'aria-label': 'TextArea',
+  },
 };
 
-export const NoLabel = Template.bind({});
-NoLabel.args = {
-  'aria-label': 'TextArea',
+export const SecondaryLabel: Story = {
+  args: {
+    secondaryLabel: 'Secondary Label',
+  },
 };
 
-export const SecondaryLabel = Template.bind({});
-SecondaryLabel.args = {
-  label: 'TextArea',
-  secondaryLabel: 'Secondary Label',
+export const HelpMessage: Story = {
+  args: {
+    helpMessage: 'Help Message',
+  },
 };
 
-export const HelpMessage = Template.bind({});
-HelpMessage.args = {
-  label: 'TextArea',
-  helpMessage: 'Help Message',
+export const Tooltip: Story = {
+  args: {
+    icon: HelpCircle,
+    tooltipMessage: 'Here is descriptive text',
+  },
 };
 
-export const Tooltip = Template.bind({});
-Tooltip.args = {
-  label: 'TextArea',
-  icon: HelpCircle,
-  tooltipMessage: 'Here is descriptive text',
+export const Required: Story = {
+  args: {
+    showRequiredLabel: true,
+  },
 };
 
-export const Required = Template.bind({});
-Required.args = {
-  label: 'TextArea',
-  showRequiredLabel: true,
+export const Error: Story = {
+  args: {
+    hasError: true,
+    errorMessage: 'This is required',
+  },
 };
 
-export const Error = Template.bind({});
-Error.args = {
-  label: 'TextArea',
-  hasError: true,
-  errorMessage: 'This is required',
+export const ReadOnly: Story = {
+  args: {
+    readOnly: true,
+  },
 };
 
-export const ReadOnly = Template.bind({});
-ReadOnly.args = {
-  label: 'TextArea',
-  readOnly: true,
+export const InverseDark: Story = {
+  parameters: {
+    backgrounds: { default: 'dark' },
+  },
+  args: {
+    color: 'inverse',
+  },
 };
 
-export const InverseDark = Template.bind({});
-InverseDark.parameters = {
-  backgrounds: { default: 'dark' },
-};
-InverseDark.args = {
-  label: 'TextArea',
-  color: 'inverse',
-};
-
-export const InverseBlue = Template.bind({});
-InverseBlue.parameters = {
-  backgrounds: { default: 'blue' },
-};
-InverseBlue.args = {
-  label: 'TextArea',
-  color: 'inverse',
+export const InverseBlue: Story = {
+  parameters: {
+    backgrounds: { default: 'blue' },
+  },
+  args: {
+    color: 'inverse',
+  },
 };
