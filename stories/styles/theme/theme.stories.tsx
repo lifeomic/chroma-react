@@ -20,6 +20,7 @@ import {
   StyledEngineProvider,
   ThemeProvider,
 } from '../../../src/styles';
+import { makeStyles } from '@mui/styles';
 
 const paletteOptions = {
   black,
@@ -94,8 +95,19 @@ type Story = StoryObj<any>;
 
 const palette = createPalette();
 
+const useStyles = makeStyles(() => ({
+  container: {
+    display: 'flex',
+    justifyContent: 'center',
+    padding: '1rem',
+    backgroundColor: palette.common.white,
+  },
+}));
+
 const TemplateTheme: StoryFn<any> = (args) => {
   console.log('ARGS', args);
+  const classes = useStyles({});
+
   const theme = React.useMemo(
     () =>
       createTheme({
@@ -116,36 +128,15 @@ const TemplateTheme: StoryFn<any> = (args) => {
   return (
     <StyledEngineProvider injectFirst>
       <ThemeProvider theme={theme}>
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            padding: '1rem',
-            backgroundColor: palette.common.white,
-          }}
-        >
+        <div className={classes.container}>
           <Button>Text Button</Button>
           <Button>Text Button</Button>
         </div>
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            padding: '1rem',
-            backgroundColor: palette.common.white,
-          }}
-        >
+        <div className={classes.container}>
           <Button variant="outlined">Outlined Button</Button>
           <Button variant="outlined">Outlined Button</Button>
         </div>
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            padding: '1rem',
-            backgroundColor: palette.common.white,
-          }}
-        >
+        <div className={classes.container}>
           <Button variant="contained">Contained Button</Button>
           <Button variant="contained">Contained Button</Button>
         </div>
