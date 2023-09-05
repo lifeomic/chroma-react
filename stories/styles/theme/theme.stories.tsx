@@ -1,4 +1,4 @@
-import { ComponentStory } from '@storybook/react';
+import { StoryObj, StoryFn, Meta } from '@storybook/react';
 import * as React from 'react';
 import JSONTree from 'react-json-tree';
 import black from '../../../src/colors/black';
@@ -36,7 +36,7 @@ const paletteOptions = {
   yellow,
 };
 
-export default {
+const meta: Meta<any> = {
   title: 'Styles/Theme',
   parameters: {
     docs: {
@@ -89,10 +89,12 @@ const App: React.FC = () => (
     },
   },
 };
+export default meta;
+type Story = StoryObj<any>;
 
 const palette = createPalette();
 
-export const ThemeStory: ComponentStory<any> = (args) => {
+const TemplateTheme: StoryFn<any> = (args) => {
   console.log('ARGS', args);
   const theme = React.useMemo(
     () =>
@@ -151,9 +153,13 @@ export const ThemeStory: ComponentStory<any> = (args) => {
     </StyledEngineProvider>
   );
 };
-ThemeStory.args = {
-  'Primary Palette': 'blue',
-  'Secondary Palette': 'green',
+
+export const ThemeStory: Story = {
+  render: TemplateTheme,
+  args: {
+    'Primary Palette': 'blue',
+    'Secondary Palette': 'green',
+  },
 };
 
 export const ThemeExplorer = () => <JSONTree data={createTheme()} />;
