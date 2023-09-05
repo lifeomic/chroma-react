@@ -1,22 +1,35 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryObj, Meta } from '@storybook/react';
 
 import { Tooltip } from './Tooltip';
 import { Button } from '../Button';
+import { IconButton } from '../IconButton';
+import { Info } from '@lifeomic/chromicons';
 
-export default {
-  title: 'Components/Tooltip',
+const meta: Meta<typeof Tooltip> = {
   component: Tooltip,
-  argTypes: {},
-} as ComponentMeta<typeof Tooltip>;
+  args: {
+    title: 'Tooltip',
+    children: <Button>Tooltip on hover</Button>,
+  },
+};
+export default meta;
+type Story = StoryObj<typeof Tooltip>;
 
-const Template: ComponentStory<typeof Tooltip> = (args) => (
-  <Tooltip {...args}>
-    <Button>Tooltip on hover</Button>
-  </Tooltip>
-);
+export const Default: Story = {};
 
-export const Default = Template.bind({});
-Default.args = {
-  title: 'Tooltip',
+export const Children: Story = {
+  args: {
+    children: (
+      <p style={{ width: 'fit-content' }}>Other elements can be children too</p>
+    ),
+    title: 'Like this paragraph',
+  },
+};
+
+export const IconChild: Story = {
+  args: {
+    children: <IconButton aria-label="Info icon tooltip" icon={Info} />,
+    title: 'Icons are a common tooltip paradigm',
+  },
 };

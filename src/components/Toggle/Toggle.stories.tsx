@@ -1,60 +1,58 @@
-import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { StoryObj, Meta } from '@storybook/react';
 
 import { Toggle } from './Toggle';
 
-export default {
+const meta: Meta<typeof Toggle> = {
   title: 'Form Components/Toggle',
   component: Toggle,
-  argTypes: {},
-} as ComponentMeta<typeof Toggle>;
+  args: {
+    label: 'Toggle',
+  },
+};
+export default meta;
+type Story = StoryObj<typeof Toggle>;
 
-const Template: ComponentStory<typeof Toggle> = (args) => <Toggle {...args} />;
+export const Default: Story = {};
 
-export const Default = Template.bind({});
-Default.args = {
-  label: 'Toggle',
+export const Placement: Story = {
+  args: {
+    placement: 'right',
+  },
 };
 
-export const Placement = Template.bind({});
-Placement.args = {
-  label: 'Toggle',
-  placement: 'right',
+export const ShowRequiredLabel: Story = {
+  args: {
+    showRequiredLabel: true,
+  },
 };
 
-export const ShowRequiredLabel = Template.bind({});
-ShowRequiredLabel.args = {
-  label: 'Toggle',
-  showRequiredLabel: true,
+export const Error: Story = {
+  args: {
+    hasError: true,
+    errorMessage: 'Error Message',
+  },
 };
 
-export const Error = Template.bind({});
-Error.args = {
-  label: 'Toggle',
-  hasError: true,
-  errorMessage: 'Error Message',
+export const HelpMessage: Story = {
+  args: {
+    helpMessage: 'Error Message',
+  },
 };
 
-export const HelpMessage = Template.bind({});
-HelpMessage.args = {
-  label: 'Toggle',
-  helpMessage: 'Error Message',
+export const InverseDark: Story = {
+  parameters: {
+    backgrounds: { default: 'dark' },
+  },
+  args: {
+    color: 'inverse',
+  },
 };
 
-export const InverseDark = Template.bind({});
-InverseDark.parameters = {
-  backgrounds: { default: 'dark' },
-};
-InverseDark.args = {
-  label: 'Toggle',
-  color: 'inverse',
-};
-
-export const InverseBlue = Template.bind({});
-InverseBlue.parameters = {
-  backgrounds: { default: 'blue' },
-};
-InverseBlue.args = {
-  label: 'Toggle',
-  color: 'inverse',
+export const InverseBlue: Story = {
+  parameters: {
+    backgrounds: { default: 'blue' },
+  },
+  args: {
+    color: 'inverse',
+  },
 };
