@@ -83,10 +83,8 @@ const App: React.FC = () => (
   },
   argTypes: {
     'Primary Palette': {
-      control: { type: 'radio', options: Object.keys(paletteOptions) },
-    },
-    'Secondary Palette': {
-      control: { type: 'radio', options: Object.keys(paletteOptions) },
+      control: 'select',
+      options: [...Object.keys(paletteOptions)],
     },
   },
 };
@@ -115,10 +113,6 @@ const TemplateTheme: StoryFn<any> = (args) => {
           primary:
             paletteOptions[
               args['Primary Palette'] as keyof typeof paletteOptions
-            ],
-          secondary:
-            paletteOptions[
-              args['Secondary Palette'] as keyof typeof paletteOptions
             ],
         },
       }),
@@ -149,7 +143,6 @@ export const ThemeStory: Story = {
   render: TemplateTheme,
   args: {
     'Primary Palette': 'blue',
-    'Secondary Palette': 'green',
   },
 };
 
