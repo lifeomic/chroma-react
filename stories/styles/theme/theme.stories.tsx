@@ -1,4 +1,4 @@
-import { ComponentStory } from '@storybook/react';
+import { StoryObj, StoryFn, Meta } from '@storybook/react';
 import * as React from 'react';
 import JSONTree from 'react-json-tree';
 import black from '../../../src/colors/black';
@@ -20,6 +20,7 @@ import {
   StyledEngineProvider,
   ThemeProvider,
 } from '../../../src/styles';
+import { makeStyles } from '@mui/styles';
 
 const paletteOptions = {
   black,
@@ -36,7 +37,7 @@ const paletteOptions = {
   yellow,
 };
 
-export default {
+const meta: Meta<any> = {
   title: 'Styles/Theme',
   parameters: {
     docs: {
@@ -82,18 +83,29 @@ const App: React.FC = () => (
   },
   argTypes: {
     'Primary Palette': {
-      control: { type: 'radio', options: Object.keys(paletteOptions) },
-    },
-    'Secondary Palette': {
-      control: { type: 'radio', options: Object.keys(paletteOptions) },
+      control: 'select',
+      options: [...Object.keys(paletteOptions)],
     },
   },
 };
+export default meta;
+type Story = StoryObj<any>;
 
 const palette = createPalette();
 
-export const ThemeStory: ComponentStory<any> = (args) => {
+const useStyles = makeStyles(() => ({
+  container: {
+    display: 'flex',
+    justifyContent: 'center',
+    padding: '1rem',
+    backgroundColor: palette.common.white,
+  },
+}));
+
+const TemplateTheme: StoryFn<any> = (args) => {
   console.log('ARGS', args);
+  const classes = useStyles({});
+
   const theme = React.useMemo(
     () =>
       createTheme({
@@ -101,10 +113,6 @@ export const ThemeStory: ComponentStory<any> = (args) => {
           primary:
             paletteOptions[
               args['Primary Palette'] as keyof typeof paletteOptions
-            ],
-          secondary:
-            paletteOptions[
-              args['Secondary Palette'] as keyof typeof paletteOptions
             ],
         },
       }),
@@ -114,36 +122,15 @@ export const ThemeStory: ComponentStory<any> = (args) => {
   return (
     <StyledEngineProvider injectFirst>
       <ThemeProvider theme={theme}>
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            padding: '1rem',
-            backgroundColor: palette.common.white,
-          }}
-        >
+        <div className={classes.container}>
           <Button>Text Button</Button>
           <Button>Text Button</Button>
         </div>
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            padding: '1rem',
-            backgroundColor: palette.common.white,
-          }}
-        >
+        <div className={classes.container}>
           <Button variant="outlined">Outlined Button</Button>
           <Button variant="outlined">Outlined Button</Button>
         </div>
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            padding: '1rem',
-            backgroundColor: palette.common.white,
-          }}
-        >
+        <div className={classes.container}>
           <Button variant="contained">Contained Button</Button>
           <Button variant="contained">Contained Button</Button>
         </div>
@@ -151,9 +138,35 @@ export const ThemeStory: ComponentStory<any> = (args) => {
     </StyledEngineProvider>
   );
 };
-ThemeStory.args = {
-  'Primary Palette': 'blue',
-  'Secondary Palette': 'green',
+
+export const ThemeStory: Story = {
+  render: TemplateTheme,
+  args: {
+    'Primary Palette': 'blue',
+  },
 };
 
-export const ThemeExplorer = () => <JSONTree data={createTheme()} />;
+const explorerTheme = {
+  scheme: 'chalk',
+  author: 'chris kempson (http://chriskempson.com)',
+  base00: '#151515',
+  base01: '#202020',
+  base02: '#303030',
+  base03: '#505050',
+  base04: '#b0b0b0',
+  base05: '#d0d0d0',
+  base06: '#e0e0e0',
+  base07: '#f5f5f5',
+  base08: '#fb9fb1',
+  base09: '#eda987',
+  base0A: '#ddb26f',
+  base0B: '#acc267',
+  base0C: '#12cfc0',
+  base0D: '#6fc2ef',
+  base0E: '#e1a3ee',
+  base0F: '#deaf8f',
+};
+
+export const ThemeExplorer = () => (
+  <JSONTree data={createTheme()} theme={explorerTheme} />
+);
