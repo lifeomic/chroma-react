@@ -21,6 +21,7 @@ import {
 import clsx from 'clsx';
 import FocusLock from 'react-focus-lock';
 import * as React from 'react';
+import { Tooltip } from '../Tooltip';
 
 const popoverVariants = {
   open: {
@@ -98,6 +99,8 @@ export interface ComboBoxProps
   value?: Array<string> | undefined;
   /** This property shows the required asterisk (*). Required validation needs to be implemented separately. */
   showRequiredLabel?: boolean;
+  icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  tooltipMessage?: string;
 }
 
 /**
@@ -137,6 +140,7 @@ export const ComboBox: React.FC<ComboBoxProps> = ({
   fullWidth,
   hasError,
   helpMessage,
+  icon: Icon,
   id,
   label,
   secondaryLabel,
@@ -145,6 +149,7 @@ export const ComboBox: React.FC<ComboBoxProps> = ({
   placement,
   popoverAriaLabel,
   selectedOptionDisplay,
+  tooltipMessage,
   value,
   showRequiredLabel,
   ...rootProps
@@ -253,6 +258,22 @@ export const ComboBox: React.FC<ComboBoxProps> = ({
           </span>
         )}
         {label || ariaLabel}
+        {!!Icon && tooltipMessage && (
+          <Tooltip title={tooltipMessage}>
+            <span className={classes.tooltipContainer}>
+              <Icon
+                className={clsx(
+                  classes.labelIcon,
+                  color === 'inverse' && classes.labelIconInverse
+                )}
+                width={16}
+                height={16}
+                role="img"
+                aria-hidden
+              />
+            </span>
+          </Tooltip>
+        )}
         {secondaryLabel ? (
           <span
             className={clsx(

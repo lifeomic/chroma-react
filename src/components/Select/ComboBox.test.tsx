@@ -4,6 +4,10 @@ import { fireEvent, waitFor, within } from '@testing-library/dom';
 import { renderWithTheme } from '../../testUtils/renderWithTheme';
 import * as React from 'react';
 import { press } from 'reakit-test-utils';
+import {
+  IconComponent,
+  testId as iconComponentTestId,
+} from '../../testUtils/IconComponent';
 
 const testId = 'ComboBox';
 const optionId = 'SelectOption';
@@ -412,4 +416,19 @@ test('it renders an inverse color * when the field is required', async () => {
   expect(asterisk).toHaveClass(
     'ChromaSelect-required ChromaSelect-requiredInverse'
   );
+});
+
+test('it renders an icon when icon and tooltipMessage are provided', async () => {
+  const props = getBaseProps();
+  const { findByTestId } = renderWithTheme(
+    <ComboBox
+      {...props}
+      icon={IconComponent}
+      tooltipMessage="tooltipMessage"
+      data-testid={testId}
+    />
+  );
+
+  const icon = await findByTestId(iconComponentTestId);
+  expect(icon).toHaveClass('ChromaSelect-labelIcon');
 });
