@@ -1,5 +1,6 @@
 import React from 'react';
 import { StoryObj, StoryFn, Meta } from '@storybook/react';
+import { HelpCircle } from '@lifeomic/chromicons';
 
 import { ComboBox } from './ComboBox';
 import { SelectOption } from './SelectOption';
@@ -105,6 +106,22 @@ export const HelpMessage: Story = {
   },
   args: {
     helpMessage: 'Help Message',
+  },
+};
+
+export const TooltipMessage: Story = {
+  render: Template,
+  parameters: {
+    docs: {
+      description: {
+        story: `Text to display on hover over a small icon. This should be
+  supplemental text to the label, typically an expanded description of the option.`,
+      },
+    },
+  },
+  args: {
+    icon: HelpCircle,
+    tooltipMessage: 'Tooltip Message',
   },
 };
 
