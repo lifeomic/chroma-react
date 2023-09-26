@@ -112,6 +112,7 @@ export interface DescriptionListProps {
     | React.ReactElement<DescriptionTermProps>
     | React.ReactElement<DescriptionDetailsProps>
     | React.ReactElement<DescriptionListGroupHeadingProps>
+    | null // allows items to be added programatically and made null if a condition doesn't apply
   >;
   title?: string;
   titleIcon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
