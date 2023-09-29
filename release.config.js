@@ -1,5 +1,8 @@
 module.exports = {
-  branches: ['master'],
+  branches: [
+    { name: '1.x', range: '1.x', channel: 'release-1.x' },
+    { name: 'master' },
+  ],
   plugins: [
     ['@semantic-release/commit-analyzer', { preset: 'conventionalcommits' }],
     ['@semantic-release/npm', { pkgRoot: 'dist/' }],
