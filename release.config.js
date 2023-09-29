@@ -1,6 +1,6 @@
 module.exports = {
   branches: [
-    { name: '1.x', range: '1.x', channel: 'release-1.x' },
+    { name: 'release-1.x', range: '1.x', channel: '1.x' },
     { name: 'master' },
   ],
   plugins: [
