@@ -14,12 +14,17 @@ jobs:
           - group: 1
             node-version: 16.x
             run: |
-              yarn test --ci --reporters="github-actions"
+              yarn test --ci --reporters="github-actions" --color
               yarn build
           - group: 2
             node-version: 18.x
             run: |
-              yarn test --ci --reporters="github-actions"
+              yarn test --ci --reporters="github-actions" --color
+              yarn build
+          - group: 2
+            node-version: 20.x
+            run: |
+              yarn test --ci --reporters="github-actions" --color
               yarn build
           - group: 3
             node-version: 18.x
