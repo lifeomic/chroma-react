@@ -45,7 +45,7 @@ export const useStyles = makeStyles(
     },
     leadingIcon: {
       marginRight: theme.spacing(1),
-      minWidth: 'fit-content',
+      minWidth: theme.pxToRem(18),
     },
     titleContainer: {
       alignItems: 'center',
@@ -66,7 +66,7 @@ export const useStyles = makeStyles(
     icon: {
       transition: 'transform 0.25s ease',
       color: theme.palette.primary.main,
-      minWidth: 'fit-content',
+      minWidth: theme.pxToRem(18),
     },
     rotate: {
       transform: 'rotate(45deg)',
