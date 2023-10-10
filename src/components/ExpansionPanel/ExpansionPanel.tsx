@@ -107,6 +107,7 @@ export interface ExpansionPanelProps
   children?: React.ReactNode;
   contentClassName?: string;
   innerContentClassName?: string;
+  leadingIconClassName?: string;
   title: string;
   leadingIcon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   truncateTitle?: boolean;
@@ -143,6 +144,7 @@ export const ExpansionPanel = React.forwardRef<
       className,
       contentClassName,
       innerContentClassName,
+      leadingIconClassName,
       onToggle,
       isOpen = false,
       contentDirection = 'column',
@@ -216,7 +218,7 @@ export const ExpansionPanel = React.forwardRef<
               <LeadingIcon
                 role="img"
                 aria-hidden
-                className={classes.leadingIcon}
+                className={clsx(classes.leadingIcon, leadingIconClassName)}
                 width={18}
                 height={18}
               />
