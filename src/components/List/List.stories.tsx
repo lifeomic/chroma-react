@@ -4,7 +4,7 @@ import { List } from './List';
 import { ListItem } from './ListItem';
 import { ListGroupHeading } from './ListGroupHeading';
 import { Avatar } from '../Avatar';
-import { Database, HeartCircle } from '@lifeomic/chromicons';
+import { Database, HeartCircle, ChevronRight } from '@lifeomic/chromicons';
 import Avatar1 from '../../assets/example-avatar-1.jpg';
 import Avatar2 from '../../assets/example-avatar-2.jpg';
 
@@ -112,6 +112,23 @@ export const Icons: Story = {
         Option 2
       </ListItem>,
       <ListItem key="3" icon={HeartCircle}>
+        Option 3
+      </ListItem>,
+    ],
+  },
+};
+
+export const TrailingIcons: Story = {
+  args: {
+    'aria-label': 'List with trailing icons',
+    items: [
+      <ListItem key="1" trailingIcon={ChevronRight}>
+        Option 1
+      </ListItem>,
+      <ListItem key="2" trailingIcon={ChevronRight}>
+        Option 2
+      </ListItem>,
+      <ListItem key="3" trailingIcon={ChevronRight}>
         Option 3
       </ListItem>,
     ],
