@@ -21,6 +21,7 @@ export const useStyles = makeStyles(
       display: 'flex',
       fontFamily: theme.typography.fontFamily,
       fontSize: theme.pxToRem(14),
+      gap: theme.spacing(1),
       letterSpacing: '0.015625em',
       margin: 0,
       outline: 'none',
@@ -53,12 +54,14 @@ export const useStyles = makeStyles(
     },
     avatar: {
       alignSelf: 'flex-start',
-      marginRight: theme.spacing(1),
     },
     icon: {
       alignSelf: 'flex-start',
-      marginRight: theme.spacing(1),
       minWidth: theme.pxToRem(18),
+    },
+    trailingIcon: {
+      marginRight: 0,
+      marginLeft: 'auto',
     },
     text: {
       lineHeight: 1.35,
@@ -79,8 +82,9 @@ export interface ListItemProps extends React.ComponentPropsWithoutRef<'li'> {
   disabled?: boolean;
   icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   onClick?: any;
-  text?: string;
   secondaryText?: string;
+  text?: string;
+  trailingIcon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
 }
 
 export const ListItem = React.forwardRef<HTMLLIElement, ListItemProps>(
@@ -92,8 +96,9 @@ export const ListItem = React.forwardRef<HTMLLIElement, ListItemProps>(
       disabled,
       icon: Icon,
       onClick,
-      text,
       secondaryText,
+      text,
+      trailingIcon: TrailingIcon,
       ...rootProps
     },
     ref
@@ -136,6 +141,16 @@ export const ListItem = React.forwardRef<HTMLLIElement, ListItemProps>(
               <Box className={classes.secondaryText}>{secondaryText}</Box>
             )}
           </Box>
+
+          {!!TrailingIcon && (
+            <TrailingIcon
+              role="img"
+              aria-hidden
+              className={clsx(classes.icon, classes.trailingIcon)}
+              width={18}
+              height={18}
+            />
+          )}
         </Tag>
       </li>
     );
