@@ -81,10 +81,12 @@ export interface ListItemProps extends React.ComponentPropsWithoutRef<'li'> {
   children?: React.ReactNode;
   disabled?: boolean;
   icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  iconClassName?: string;
   onClick?: any;
   secondaryText?: string;
   text?: string;
   trailingIcon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  trailingIconClassName?: string;
 }
 
 export const ListItem = React.forwardRef<HTMLLIElement, ListItemProps>(
@@ -95,10 +97,12 @@ export const ListItem = React.forwardRef<HTMLLIElement, ListItemProps>(
       children,
       disabled,
       icon: Icon,
+      iconClassName,
       onClick,
       secondaryText,
       text,
       trailingIcon: TrailingIcon,
+      trailingIconClassName,
       ...rootProps
     },
     ref
@@ -121,7 +125,7 @@ export const ListItem = React.forwardRef<HTMLLIElement, ListItemProps>(
             <Icon
               role="img"
               aria-hidden
-              className={classes.icon}
+              className={clsx(classes.icon, iconClassName)}
               width={18}
               height={18}
             />
@@ -146,7 +150,11 @@ export const ListItem = React.forwardRef<HTMLLIElement, ListItemProps>(
             <TrailingIcon
               role="img"
               aria-hidden
-              className={clsx(classes.icon, classes.trailingIcon)}
+              className={clsx(
+                classes.icon,
+                classes.trailingIcon,
+                trailingIconClassName
+              )}
               width={18}
               height={18}
             />
