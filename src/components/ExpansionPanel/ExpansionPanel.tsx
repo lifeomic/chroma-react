@@ -38,7 +38,7 @@ export const useStyles = makeStyles(
       outline: 'none',
       overflow: 'hidden',
       paddingLeft: theme.spacing(2),
-      paddingRight: theme.spacing(2),
+      paddingRight: 0,
       paddingTop: theme.spacing(1.25),
       paddingBottom: theme.spacing(1.25),
       position: 'relative',
