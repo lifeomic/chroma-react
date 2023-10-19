@@ -54,8 +54,9 @@ export const SecondaryHeader: Story = {
   render: Template,
   args: {
     title:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit ex ea commodo consequat.',
-    secondaryHeaderChildren: <Button variant="text">Button</Button>,
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+    leadingIcon: ArrowRight,
+    secondaryHeader: <Button variant="text">Secondary Button</Button>,
     truncateTitle: true,
   },
   parameters: {
