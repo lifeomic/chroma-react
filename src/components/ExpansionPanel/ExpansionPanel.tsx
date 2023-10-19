@@ -28,20 +28,21 @@ export const useStyles = makeStyles(
       boxShadow: theme.boxShadows.table,
     },
     button: {
-      background: theme.palette.common.white,
-      width: '100%',
-      display: 'flex',
-      justifyContent: 'space-between',
       alignItems: 'center',
-      position: 'relative',
-      textAlign: 'left',
+      background: theme.palette.common.white,
       border: 'none',
+      cursor: 'pointer',
+      display: 'flex',
+      flex: 1,
+      justifyContent: 'space-between',
       outline: 'none',
+      overflow: 'hidden',
       paddingLeft: theme.spacing(2),
       paddingRight: theme.spacing(2),
       paddingTop: theme.spacing(1.25),
       paddingBottom: theme.spacing(1.25),
-      cursor: 'pointer',
+      position: 'relative',
+      textAlign: 'left',
       '&:focus': {
         outline: 'none',
       },
@@ -50,15 +51,11 @@ export const useStyles = makeStyles(
         transform: 'translate3d(2px, 0, 0)',
       },
     },
-    leadingIcon: {
-      marginRight: theme.spacing(1),
-      minWidth: theme.pxToRem(18),
-    },
     titleContainer: {
       alignItems: 'center',
       display: 'flex',
-      maxWidth: `calc(100% - ${theme.pxToRem(34)})`, // 34 = icon width of 18px + 16px padding
-      flexGrow: 1,
+      flex: 1,
+      minWidth: 0,
     },
     title: {
       color: theme.palette.text.secondary,
@@ -69,6 +66,10 @@ export const useStyles = makeStyles(
       whiteSpace: 'nowrap',
       overflow: 'hidden',
       textOverflow: 'ellipsis',
+    },
+    leadingIcon: {
+      marginRight: theme.spacing(1),
+      minWidth: theme.pxToRem(18),
     },
     iconButton: {
       transition: 'transform 0.25s ease',
@@ -124,7 +125,7 @@ export interface ExpansionPanelProps
   title: string;
   leadingIcon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   secondaryHeaderClassName?: string;
-  secondaryHeaderChildren?: React.ReactNode;
+  secondaryHeader?: React.ReactNode;
   truncateTitle?: boolean;
   onToggle?: (isExpanded: boolean) => void;
   isOpen?: boolean;
@@ -166,7 +167,7 @@ export const ExpansionPanel = React.forwardRef<
       title,
       leadingIcon: LeadingIcon,
       secondaryHeaderClassName,
-      secondaryHeaderChildren,
+      secondaryHeader,
       truncateTitle = false,
       ...rootProps
     },
@@ -230,7 +231,7 @@ export const ExpansionPanel = React.forwardRef<
           <button
             aria-expanded={isExpanded}
             aria-owns={ariaId}
-            className={classes.button}
+            className={clsx(classes.button)}
             onClick={handleClick}
             tabIndex={0}
           >
@@ -256,10 +257,8 @@ export const ExpansionPanel = React.forwardRef<
               </Text>
             </div>
           </button>
-          <Box
-            className={clsx(classes.secondaryHeader, secondaryHeaderClassName)}
-          >
-            {secondaryHeaderChildren}
+          <Box className={secondaryHeaderClassName} align="center" gap={1}>
+            {secondaryHeader}
           </Box>
           <IconButton
             aria-label="Expand/collapse"
