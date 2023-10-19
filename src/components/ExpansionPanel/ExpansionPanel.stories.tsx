@@ -3,6 +3,7 @@ import { StoryObj, StoryFn, Meta } from '@storybook/react';
 
 import { ExpansionPanel } from './ExpansionPanel';
 import { Check, ArrowRight } from '@lifeomic/chromicons';
+import { Button } from '../Button';
 
 const meta: Meta<typeof ExpansionPanel> = {
   title: 'Components/ExpansionPanel',
@@ -44,6 +45,23 @@ export const TruncatedTitle: Story = {
     docs: {
       description: {
         story: `The title can be set to truncate with an ellipsis if it is too long for the expansion panel.`,
+      },
+    },
+  },
+};
+
+export const SecondaryHeader: Story = {
+  render: Template,
+  args: {
+    title:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit ex ea commodo consequat.',
+    secondaryHeaderChildren: <Button variant="text">Button</Button>,
+    truncateTitle: true,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: `Secondary content or actions can be placed in the expansion panel header.`,
       },
     },
   },
