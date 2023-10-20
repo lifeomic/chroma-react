@@ -5,6 +5,8 @@ import { makeStyles } from '../../styles';
 import { GetClasses } from '../../typeUtils';
 import { generateUniqueId } from '../_private/UniqueId';
 import { Text } from '../Text';
+import { Box } from '../Box';
+import { IconButton } from '../IconButton';
 
 export const ExpansionPanelStylesKey = 'ChromaExpansionPanel';
 
@@ -17,21 +19,30 @@ export const useStyles = makeStyles(
     rootOpen: {
       maxHeight: 'inherit',
     },
-    button: {
-      width: '100%',
+    header: {
       background: theme.palette.common.white,
-      display: 'flex',
-      justifyContent: 'space-between',
-      alignItems: 'center',
       position: 'relative',
-      textAlign: 'left',
+      zIndex: 2,
+    },
+    headerShadow: {
+      boxShadow: theme.boxShadows.table,
+    },
+    button: {
+      alignItems: 'center',
+      background: theme.palette.common.white,
       border: 'none',
+      cursor: 'pointer',
+      display: 'flex',
+      flex: 1,
+      justifyContent: 'space-between',
       outline: 'none',
+      overflow: 'hidden',
       paddingLeft: theme.spacing(2),
-      paddingRight: theme.spacing(2),
+      paddingRight: 0,
       paddingTop: theme.spacing(1.25),
       paddingBottom: theme.spacing(1.25),
-      cursor: 'pointer',
+      position: 'relative',
+      textAlign: 'left',
       '&:focus': {
         outline: 'none',
       },
@@ -40,18 +51,11 @@ export const useStyles = makeStyles(
         transform: 'translate3d(2px, 0, 0)',
       },
     },
-    buttonShadow: {
-      boxShadow: theme.boxShadows.table,
-    },
-    leadingIcon: {
-      marginRight: theme.spacing(1),
-      minWidth: theme.pxToRem(18),
-    },
     titleContainer: {
       alignItems: 'center',
       display: 'flex',
-      maxWidth: `calc(100% - ${theme.pxToRem(34)})`, // 34 = icon width of 18px + 16px padding
-      flexGrow: 1,
+      flex: 1,
+      minWidth: 0,
     },
     title: {
       color: theme.palette.text.secondary,
@@ -63,10 +67,20 @@ export const useStyles = makeStyles(
       overflow: 'hidden',
       textOverflow: 'ellipsis',
     },
-    icon: {
+    leadingIcon: {
+      marginRight: theme.spacing(1),
+      minWidth: theme.pxToRem(18),
+    },
+    iconButton: {
       transition: 'transform 0.25s ease',
       color: theme.palette.primary.main,
       minWidth: theme.pxToRem(18),
+      paddingRight: theme.spacing(2),
+      paddingLeft: theme.spacing(2),
+      '& > svg': {
+        maxHeight: theme.pxToRem(18),
+        maxWidth: theme.pxToRem(18),
+      },
     },
     rotate: {
       transform: 'rotate(45deg)',
@@ -110,6 +124,8 @@ export interface ExpansionPanelProps
   leadingIconClassName?: string;
   title: string;
   leadingIcon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  secondaryHeaderClassName?: string;
+  secondaryHeader?: React.ReactNode;
   truncateTitle?: boolean;
   onToggle?: (isExpanded: boolean) => void;
   isOpen?: boolean;
@@ -150,6 +166,8 @@ export const ExpansionPanel = React.forwardRef<
       contentDirection = 'column',
       title,
       leadingIcon: LeadingIcon,
+      secondaryHeaderClassName,
+      secondaryHeader,
       truncateTitle = false,
       ...rootProps
     },
@@ -206,39 +224,49 @@ export const ExpansionPanel = React.forwardRef<
         ref={ref}
         {...rootProps}
       >
-        <button
-          aria-expanded={isExpanded}
-          aria-owns={ariaId}
-          className={clsx(classes.button, isExpanded && classes.buttonShadow)}
-          onClick={handleClick}
-          tabIndex={0}
+        <Box
+          align="center"
+          className={clsx(classes.header, isExpanded && classes.headerShadow)}
         >
-          <div className={classes.titleContainer}>
-            {LeadingIcon && (
-              <LeadingIcon
-                role="img"
-                aria-hidden
-                className={clsx(classes.leadingIcon, leadingIconClassName)}
-                width={18}
-                height={18}
-              />
-            )}
-            <Text
-              className={clsx(classes.title, truncateTitle && classes.truncate)}
-              size="subbody"
-              weight="bold"
-            >
-              {title}
-            </Text>
-          </div>
-
-          <Plus
-            className={clsx(classes.icon, isExpanded && classes.rotate)}
-            aria-hidden="true"
-            width={18}
-            height={18}
+          <button
+            aria-expanded={isExpanded}
+            aria-owns={ariaId}
+            className={clsx(classes.button)}
+            onClick={handleClick}
+            tabIndex={0}
+          >
+            <div className={classes.titleContainer}>
+              {LeadingIcon && (
+                <LeadingIcon
+                  role="img"
+                  aria-hidden
+                  className={clsx(classes.leadingIcon, leadingIconClassName)}
+                  width={18}
+                  height={18}
+                />
+              )}
+              <Text
+                className={clsx(
+                  classes.title,
+                  truncateTitle && classes.truncate
+                )}
+                size="subbody"
+                weight="bold"
+              >
+                {title}
+              </Text>
+            </div>
+          </button>
+          <Box className={secondaryHeaderClassName} align="center" gap={1}>
+            {secondaryHeader}
+          </Box>
+          <IconButton
+            aria-label="Expand/collapse"
+            icon={Plus}
+            className={clsx(classes.iconButton, isExpanded && classes.rotate)}
+            onClick={handleClick}
           />
-        </button>
+        </Box>
         <div
           aria-hidden={!isExpanded}
           id={ariaId}
