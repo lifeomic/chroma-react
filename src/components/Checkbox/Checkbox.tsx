@@ -425,9 +425,10 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
                 d="M1,5.524A4.523,4.523,0,0,1,5.524,1h9.952A4.523,4.523,0,0,1,20,5.524v9.952A4.523,4.523,0,0,1,15.476,20H5.524A4.523,4.523,0,0,1,1,15.476Z"
                 fill="transparent"
                 stroke="var(--checkbox-secondary-emphasis)"
-                strokeOpacity="0"
+                strokeOpacity={0}
                 strokeMiterlimit="10"
-                strokeWidth="2"
+                strokeWidth={2}
+                initial={false}
                 variants={getBoxVariants({
                   disabled,
                   hasError,
@@ -438,12 +439,13 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
                 <motion.path
                   d="M6.5,10.458h8"
                   fill="transparent"
-                  strokeWidth="2.25"
+                  strokeWidth={2.25}
                   stroke="#FFFFFF"
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   style={{ pathLength, opacity }}
                   custom={checked}
+                  initial={false}
                   variants={getTickVariants({
                     disabled,
                     indeterminate,
@@ -455,12 +457,13 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
                   <motion.path
                     d="M10.5,10.458h-4"
                     fill="transparent"
-                    strokeWidth="2.25"
+                    strokeWidth={2.25}
                     stroke="#FFFFFF"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     style={{ pathLength, opacity }}
                     custom={checked}
+                    initial={false}
                     variants={getTickVariants({
                       disabled,
                       indeterminate,
@@ -470,12 +473,13 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
                   <motion.path
                     d="M10.5,10.458h4"
                     fill="transparent"
-                    strokeWidth="2.25"
+                    strokeWidth={2.25}
                     stroke="#FFFFFF"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     style={{ pathLength, opacity }}
                     custom={checked}
+                    initial={false}
                     variants={getTickVariants({
                       disabled,
                       indeterminate,
@@ -487,13 +491,14 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
                 <motion.path
                   d="M5.761,11.962l2.187,2.187,7.291-7.3"
                   fill="transparent"
-                  strokeWidth="2.25"
+                  strokeWidth={2.25}
                   stroke="#FFFFFF"
-                  strokeOpacity="1"
+                  strokeOpacity={1}
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   style={{ pathLength, opacity }}
                   custom={checked}
+                  initial={false}
                   variants={getTickVariants({ disabled, indeterminate, color })}
                 />
               )}

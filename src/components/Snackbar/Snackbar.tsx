@@ -175,7 +175,6 @@ export const Snackbar: React.FC<SnackbarProps> = React.forwardRef<
             role={role}
             onMouseEnter={onMouseEnter}
             onMouseLeave={onMouseLeave}
-            positionTransition
             initial={
               shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: -40 }
             }
