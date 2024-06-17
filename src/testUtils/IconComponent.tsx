@@ -2,9 +2,7 @@ import * as React from 'react';
 
 export const testId = 'iconComponent';
 
-export const IconComponent: React.FC<React.SVGProps<SVGSVGElement>> = (
-  props
-) => (
+const IconSvg = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
     width="12"
     height="12"
@@ -15,3 +13,7 @@ export const IconComponent: React.FC<React.SVGProps<SVGSVGElement>> = (
     {...props}
   />
 );
+
+export const IconComponent: React.MemoExoticComponent<(
+  props: React.SVGProps<SVGSVGElement>
+) => JSX.Element> = React.memo(IconSvg);
