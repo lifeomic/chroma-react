@@ -33,7 +33,7 @@
     }
   },
   "peerDependencies": {
-    "@lifeomic/chromicons": ">=1.2.1",
+    "@lifeomic/chromicons": ">=3.0.0",
     "react": "16",
     "react-dom": "16",
     "react-router-dom": ">=5.1.2"
