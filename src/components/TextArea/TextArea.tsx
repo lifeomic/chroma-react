@@ -171,7 +171,9 @@ export interface TextAreaProps
   label?: BaseFormElement['label'];
   fullWidth?: boolean;
   secondaryLabel?: string;
-  icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  icon?: React.MemoExoticComponent<
+    (props: React.SVGProps<SVGSVGElement>) => JSX.Element
+  >;
   tooltipMessage?: string;
   textAreaClassName?: string;
   /** This property shows the required asterisk (*). Required validation needs to be implemented separately. */

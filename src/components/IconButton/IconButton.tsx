@@ -148,7 +148,9 @@ export interface IconButtonProps
   extends React.ComponentPropsWithoutRef<'button'> {
   ['aria-label']: string;
   color?: 'default' | 'inverse' | 'negative' | 'positive';
-  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  icon: React.MemoExoticComponent<
+    (props: React.SVGProps<SVGSVGElement>) => JSX.Element
+  >;
   size?: 0 | 1;
   paddingTop?: 0 | 1 | 2 | 3;
   paddingBottom?: 0 | 1 | 2 | 3;

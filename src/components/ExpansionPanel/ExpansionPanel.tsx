@@ -123,7 +123,9 @@ export interface ExpansionPanelProps
   innerContentClassName?: string;
   leadingIconClassName?: string;
   title: string;
-  leadingIcon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  leadingIcon?: React.MemoExoticComponent<
+    (props: React.SVGProps<SVGSVGElement>) => JSX.Element
+  >;
   secondaryHeaderClassName?: string;
   secondaryHeader?: React.ReactNode;
   truncateTitle?: boolean;

@@ -115,7 +115,9 @@ export interface DescriptionListProps {
     | null // allows items to be added programatically and made null if a condition doesn't apply
   >;
   title?: string;
-  titleIcon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  titleIcon?: React.MemoExoticComponent<
+    (props: React.SVGProps<SVGSVGElement>) => JSX.Element
+  >;
   margin?: number | string;
   marginTop?: number | string;
   marginBottom?: number | string;

@@ -68,7 +68,9 @@ export interface SnackbarProps {
   duration?: number;
   children?: React.ReactNode;
   className?: string;
-  icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  icon?: React.MemoExoticComponent<
+    (props: React.SVGProps<SVGSVGElement>) => JSX.Element
+  >;
   isOpen?: boolean;
   allowDismiss?: boolean;
   onClose?: () => void;

@@ -227,7 +227,7 @@ export interface ButtonLinkProps extends LinkProps {
   disabled?: ButtonProps['disabled'];
   fullWidth?: ButtonProps['fullWidth'];
   icon?: ButtonProps['icon'];
-  trailingIcon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  trailingIcon?: ButtonProps['trailingIcon'];
   variant?: ButtonProps['variant'];
 }
 

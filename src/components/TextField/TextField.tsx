@@ -232,7 +232,9 @@ export interface TextFieldProps
   fullWidth?: boolean;
   hasError?: BaseFormElement['hasError'];
   helpMessage?: BaseFormElement['helpMessage'];
-  icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  icon?: React.MemoExoticComponent<
+    (props: React.SVGProps<SVGSVGElement>) => JSX.Element
+  >;
   label?: BaseFormElement['label'];
   secondaryLabel?: string;
   tooltipMessage?: string;

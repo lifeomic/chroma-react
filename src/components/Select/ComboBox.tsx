@@ -99,7 +99,9 @@ export interface ComboBoxProps
   value?: Array<string> | undefined;
   /** This property shows the required asterisk (*). Required validation needs to be implemented separately. */
   showRequiredLabel?: boolean;
-  icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  icon?: React.MemoExoticComponent<
+    (props: React.SVGProps<SVGSVGElement>) => JSX.Element
+  >;
   tooltipMessage?: string;
 }
 
@@ -433,7 +435,7 @@ export const ComboBox: React.FC<ComboBoxProps> = ({
               aria-multiselectable={true}
             >
               {React.Children.map(children, (child) => {
-                if (!React.isValidElement(child)) {
+                if (!React.isValidElement<SelectOptionProps>(child)) {
                   return null;
                 }
 

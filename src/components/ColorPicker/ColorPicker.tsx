@@ -271,7 +271,9 @@ export interface ColorPickerProps
   fullWidth?: boolean;
   hasError?: BaseFormElement['hasError'];
   helpMessage?: BaseFormElement['helpMessage'];
-  icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  icon?: React.MemoExoticComponent<
+    (props: React.SVGProps<SVGSVGElement>) => JSX.Element
+  >;
   invalidColorText?: string;
   label?: BaseFormElement['label'];
   onChange?: (color: string) => void;

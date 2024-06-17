@@ -134,7 +134,9 @@ export interface StepProps {
   className?: string;
   completed?: boolean;
   disabled?: boolean;
-  icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  icon?: React.MemoExoticComponent<
+    (props: React.SVGProps<SVGSVGElement>) => JSX.Element
+  >;
   index?: number;
   numberOfSteps?: number;
   onClick?: (index: number | undefined) => void;

@@ -64,7 +64,9 @@ export interface MenuItemProps
   extends React.ComponentPropsWithoutRef<'button'> {
   children?: React.ReactNode;
   color?: 'default' | 'negative' | 'positive';
-  icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  icon?: React.MemoExoticComponent<
+    (props: React.SVGProps<SVGSVGElement>) => JSX.Element
+  >;
   text?: string;
   secondaryText?: string;
 }

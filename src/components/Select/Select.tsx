@@ -334,7 +334,9 @@ export interface SelectProps
   secondaryAction?: SelectSecondaryAction;
   secondaryLabel?: string;
   fullWidth?: boolean;
-  icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  icon?: React.MemoExoticComponent<
+    (props: React.SVGProps<SVGSVGElement>) => JSX.Element
+  >;
   onChange?: (value: string, meta: any) => void;
   placeholder?: string;
   placement?:
@@ -622,7 +624,7 @@ export const Select: React.FC<SelectProps> = ({
             >
               {popover.visible &&
                 React.Children.map(children, (child) => {
-                  if (!React.isValidElement(child)) {
+                  if (!React.isValidElement<SelectOptionProps>(child)) {
                     return null;
                   }
 

@@ -80,12 +80,16 @@ export interface ListItemProps extends React.ComponentPropsWithoutRef<'li'> {
   avatar?: React.ReactElement<AvatarProps>;
   children?: React.ReactNode;
   disabled?: boolean;
-  icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  icon?: React.MemoExoticComponent<
+    (props: React.SVGProps<SVGSVGElement>) => JSX.Element
+  >;
   iconClassName?: string;
   onClick?: any;
   secondaryText?: string;
   text?: string;
-  trailingIcon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  trailingIcon?: React.MemoExoticComponent<
+    (props: React.SVGProps<SVGSVGElement>) => JSX.Element
+  >;
   trailingIconClassName?: string;
 }
 

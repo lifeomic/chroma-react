@@ -103,7 +103,9 @@ export interface ListProps {
     | React.ReactElement<ListGroupHeadingProps>
   >;
   title?: string;
-  titleIcon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  titleIcon?: React.MemoExoticComponent<
+    (props: React.SVGProps<SVGSVGElement>) => JSX.Element
+  >;
   margin?: number | string;
   marginTop?: number | string;
   marginBottom?: number | string;

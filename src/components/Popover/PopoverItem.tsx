@@ -64,7 +64,9 @@ export interface PopoverItemOwnProps
   extends StandardProps<HTMLLIElement, PopoverItemClasses> {
   children?: React.ReactNode;
   clipText?: boolean;
-  icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  icon?: React.MemoExoticComponent<
+    (props: React.SVGProps<SVGSVGElement>) => JSX.Element
+  >;
   text?: string;
   justify?: 'flex-start' | 'center' | 'space-between' | 'flex-end';
   direction?: 'row' | 'row-reverse';
