@@ -25,7 +25,9 @@ export type AlertIconClasses = GetClasses<typeof useStyles>;
 export interface AlertIconProps {
   children?: React.ReactNode;
   className?: string;
-  icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  icon?: React.MemoExoticComponent<
+    (props: React.SVGProps<SVGSVGElement>) => JSX.Element
+  >;
 }
 
 export const AlertIcon: React.FC<AlertIconProps> = ({

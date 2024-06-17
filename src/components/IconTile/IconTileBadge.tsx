@@ -37,7 +37,9 @@ export interface IconTileBadgeOwnProps
     HTMLDivElement
   > {
   children?: React.ReactNode;
-  icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  icon?: React.MemoExoticComponent<
+    (props: React.SVGProps<SVGSVGElement>) => JSX.Element
+  >;
 }
 
 export type IconTileBadgeClasses = GetClasses<typeof useStyles>;

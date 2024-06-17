@@ -99,7 +99,9 @@ export type IconButtonFloatClasses = GetClasses<typeof useStyles>;
 export interface IconButtonFloatProps
   extends React.ComponentPropsWithoutRef<'button'> {
   ['aria-label']: string;
-  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  icon: React.MemoExoticComponent<
+    (props: React.SVGProps<SVGSVGElement>) => JSX.Element
+  >;
   align?: 'top' | 'center' | 'bottom';
   justify?: 'left' | 'center' | 'right';
   size?: 0 | 1 | 2;

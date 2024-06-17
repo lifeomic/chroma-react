@@ -230,9 +230,13 @@ export interface ButtonProps extends React.ComponentPropsWithoutRef<'button'> {
   color?: 'default' | 'inverse' | 'negative' | 'positive';
   disabled?: boolean;
   fullWidth?: boolean;
-  icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  icon?: React.MemoExoticComponent<
+    (props: React.SVGProps<SVGSVGElement>) => JSX.Element
+  >;
   variant?: 'contained' | 'outlined' | 'text';
-  trailingIcon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  trailingIcon?: React.MemoExoticComponent<
+    (props: React.SVGProps<SVGSVGElement>) => JSX.Element
+  >;
 }
 
 /**

@@ -44,7 +44,9 @@ export interface HeaderProps {
   children?: React.ReactNode;
   onClose: () => any;
   title?: string;
-  titleIcon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  titleIcon?: React.MemoExoticComponent<
+    (props: React.SVGProps<SVGSVGElement>) => JSX.Element
+  >;
   classes?: {
     root?: string;
     text?: string;

@@ -121,11 +121,15 @@ export interface ButtonFloatProps
   extends React.ComponentPropsWithoutRef<'button'> {
   align?: 'top' | 'center' | 'bottom';
   children?: React.ReactNode;
-  icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  icon?: React.MemoExoticComponent<
+    (props: React.SVGProps<SVGSVGElement>) => JSX.Element
+  >;
   fullWidth?: boolean;
   justify?: 'left' | 'center' | 'right';
   size?: 0 | 1 | 2;
-  trailingIcon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  trailingIcon?: React.MemoExoticComponent<
+    (props: React.SVGProps<SVGSVGElement>) => JSX.Element
+  >;
 }
 
 /**

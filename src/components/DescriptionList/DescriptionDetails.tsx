@@ -103,7 +103,9 @@ export interface DescriptionDetailsProps
   avatar?: React.ReactElement<AvatarProps>;
   children?: React.ReactNode;
   disabled?: boolean;
-  icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  icon?: React.MemoExoticComponent<
+    (props: React.SVGProps<SVGSVGElement>) => JSX.Element
+  >;
   justify?:
     | 'center'
     | 'flex-start'

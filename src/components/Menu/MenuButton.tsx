@@ -23,7 +23,9 @@ export type MenuButtonClasses = GetClasses<typeof useStyles>;
 
 export interface MenuButtonProps extends ButtonProps {
   children?: React.ReactNode;
-  trailingIcon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  trailingIcon?: React.MemoExoticComponent<
+    (props: React.SVGProps<SVGSVGElement>) => JSX.Element
+  >;
 }
 
 /** @deprecated Please use `trailingIcon` from Button instead. This will be removed in a future release */

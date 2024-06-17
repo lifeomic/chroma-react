@@ -64,7 +64,9 @@ export type SelectOptionClasses = GetClasses<typeof useStyles>;
 export type SelectSecondaryAction = {
   action: (args: any | undefined) => void;
   args: any | undefined;
-  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  icon: React.MemoExoticComponent<
+    (props: React.SVGProps<SVGSVGElement>) => JSX.Element
+  >;
   label: string;
 };
 

@@ -137,7 +137,9 @@ export type RadioClasses = GetClasses<typeof useStyles>;
 
 export interface RadioProps extends BaseFormElement {
   children?: React.ReactNode;
-  icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  icon?: React.MemoExoticComponent<
+    (props: React.SVGProps<SVGSVGElement>) => JSX.Element
+  >;
 }
 
 /**
