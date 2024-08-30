@@ -21,7 +21,7 @@ import {
 import { generateUniqueId } from '../_private/UniqueId';
 import { Text } from '../Text';
 import { SelectOptionProps, SelectSecondaryAction } from './SelectOption';
-import { motion, useReducedMotion } from 'framer-motion';
+import { motion, MotionStyle, useReducedMotion } from 'framer-motion';
 import { RoverOption } from './RoverOption';
 import { useRoverState } from 'reakit/Rover';
 import { getTestProps } from '../../testUtils/getTestProps';
@@ -359,6 +359,7 @@ export interface SelectProps
   tooltipMessage?: string;
   /** This property shows the required asterisk (*). Required validation needs to be implemented separately. */
   showRequiredLabel?: boolean;
+  popoverStyle?: MotionStyle;
 }
 
 /**
@@ -408,6 +409,7 @@ export const Select: React.FC<SelectProps> = ({
   tooltipMessage,
   value,
   showRequiredLabel,
+  popoverStyle,
   ...rootProps
 }) => {
   const classes = useStyles({});
@@ -606,7 +608,7 @@ export const Select: React.FC<SelectProps> = ({
             aria-label={label || ariaLabel || popoverAriaLabel}
             className={classes.popover}
             {...popover}
-            style={{ width }}
+            style={{ width, ...(popoverStyle || {}) }}
             as={motion.div}
             animate={popover.visible ? 'open' : 'closed'}
             variants={
