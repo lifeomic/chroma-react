@@ -9,59 +9,137 @@ export const ChipStylesKey = 'ChromaChip';
 export const useStyles = makeStyles(
   (theme) => ({
     root: {
-      margin: theme.spacing(1.25, 1.25, 0, 0),
-      height: theme.pxToRem(30),
-      borderRadius: theme.pxToRem(4),
-      backgroundColor: theme.palette.black[50],
-      display: 'inline-flex',
       alignItems: 'center',
-      color: theme.palette.black[600],
+      backgroundColor: theme.palette.black[50],
+      borderRadius: theme.pxToRem(4),
+      color: theme.palette.text.primary,
+      display: 'inline-flex',
+      height: theme.pxToRem(30),
+      gap: theme.spacing(0.375),
       paddingLeft: theme.spacing(1),
-      paddingRight: theme.spacing(1),
+      paddingRight: theme.spacing(0.5),
+    },
+    inverseColor: {
+      backgroundColor: theme.palette.common.white,
+    },
+    negativeColor: {
+      backgroundColor: theme.palette.red[50],
+      color: theme.palette.red[900],
+      '& $deleteButton': {
+        '&:hover': {
+          backgroundColor: theme.palette.negative.main,
+          color: theme.palette.common.white,
+        },
+        '&:disabled': {
+          color: theme.palette.red[100],
+        },
+        '&:focus': {
+          background: theme.palette.red[500],
+          borderColor: theme.palette.negative.main,
+          color: theme.palette.common.white,
+        },
+      },
+    },
+    primaryColor: {
+      backgroundColor: theme.palette.blue[50],
+      color: theme.palette.primary[800],
+      '& $deleteButton': {
+        '&:hover': {
+          background: theme.palette.primary.main,
+          color: theme.palette.common.white,
+        },
+        '&:disabled': {
+          color: theme.palette.primary[100],
+        },
+        '&:focus': {
+          background: theme.palette.primary[400],
+          borderColor: theme.palette.primary.main,
+          color: theme.palette.common.white,
+        },
+      },
+    },
+    positiveColor: {
+      backgroundColor: theme.palette.green[100],
+      color: theme.palette.green[900],
+      '& $deleteButton': {
+        '&:hover': {
+          backgroundColor: theme.palette.positive.main,
+          color: theme.palette.common.white,
+        },
+        '&:disabled': {
+          color: theme.palette.green[400],
+        },
+        '&:focus': {
+          background: theme.palette.green[500],
+          borderColor: theme.palette.green.main,
+          color: theme.palette.common.white,
+        },
+      },
+    },
+    warningColor: {
+      backgroundColor: theme.palette.yellow[100],
+      color: theme.palette.yellow[900],
+      '& $deleteButton': {
+        '&:hover': {
+          background: theme.palette.yellow[900],
+          color: theme.palette.common.white,
+        },
+        '&:disabled': {
+          color: theme.palette.yellow[700],
+        },
+        '&:focus': {
+          background: theme.palette.yellow[700],
+          borderColor: theme.palette.yellow.main,
+          color: theme.palette.yellow[900],
+        },
+      },
     },
     label: {
       fontSize: theme.typography.caption.fontSize,
-      fontWeight: theme.typography.fontWeightBold,
-      paddingRight: theme.pxToRem(10),
       whiteSpace: 'nowrap',
       overflow: 'hidden',
       textOverflow: 'ellipsis',
       maxWidth: theme.spacing(37.5),
-      letterSpacing: '0.4px',
+      letterSpacing: theme.pxToRem(0.4),
     },
     noDeleteButtonLabel: {
       paddingRight: 0,
     },
     svgStyle: {
-      width: theme.pxToRem(10),
-      height: theme.pxToRem(10),
+      width: theme.pxToRem(13),
+      height: theme.pxToRem(13),
+      strokeWidth: theme.pxToRem(1.85),
     },
     deleteButton: {
       alignItems: 'center',
-      background: theme.palette.black[600],
-      borderRadius: 9999,
+      background: 'none',
       border: 'none',
+      borderRadius: 9999,
       display: 'inline-flex',
       justifyContent: 'center',
-      color: theme.palette.common.white,
+      color: 'currentcolor',
       cursor: 'pointer',
-      height: theme.pxToRem(14),
-      minHeight: theme.pxToRem(10),
-      minWidth: theme.pxToRem(10),
+      height: theme.pxToRem(18),
+      minHeight: theme.pxToRem(13),
+      minWidth: theme.pxToRem(13),
       padding: 0,
-      width: theme.pxToRem(14),
-      transition: 'background 0.25s ease, opacity 0.25s ease',
+      width: theme.pxToRem(18),
+      transition: 'background 0.25s ease-out',
       '&:hover': {
-        background: theme.palette.black[600],
-        opacity: 0.85,
+        color: theme.palette.black[50],
+        background: theme.palette.black[300],
+        '&:disabled': {
+          background: 'none',
+        },
       },
       '&:disabled': {
-        background: theme.palette.black[300],
-        color: theme.palette.common.white,
-        cursor: 'initial',
+        color: theme.palette.black[200],
+        cursor: 'not-allowed',
       },
       '&:focus': {
-        background: theme.palette.black[400],
+        background: theme.palette.black[300],
+        border: `solid ${theme.pxToRem(1.5)} ${theme.palette.primary.main}`,
+        color: theme.palette.black[50],
         outline: 'none',
       },
     },
@@ -77,6 +155,13 @@ export interface ChipOwnProps
     HTMLDivElement
   > {
   children?: React.ReactNode;
+  color?:
+    | 'default'
+    | 'primary'
+    | 'inverse'
+    | 'negative'
+    | 'positive'
+    | 'warning';
   label?: string;
   onDelete?(): void;
   disableDelete?: boolean;
@@ -102,7 +187,15 @@ export interface ChipProps extends ChipOwnProps {}
  */
 export const Chip = React.forwardRef<HTMLDivElement, ChipProps>(
   (
-    { children, label = '', disableDelete, onDelete, className, ...rootProps },
+    {
+      children,
+      label = '',
+      disableDelete,
+      onDelete,
+      className,
+      color = 'default',
+      ...rootProps
+    },
     ref
   ) => {
     const classes = useStyles({});
@@ -110,7 +203,17 @@ export const Chip = React.forwardRef<HTMLDivElement, ChipProps>(
     return (
       <div
         ref={ref}
-        className={clsx(classes.root, className)}
+        className={clsx(
+          classes.root,
+          {
+            [classes.primaryColor]: color === 'primary',
+            [classes.inverseColor]: color === 'inverse',
+            [classes.negativeColor]: color === 'negative',
+            [classes.positiveColor]: color === 'positive',
+            [classes.warningColor]: color === 'warning',
+          },
+          className
+        )}
         tabIndex={0}
         aria-label={label}
         {...rootProps}
