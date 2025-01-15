@@ -19,6 +19,81 @@ export const useStyles = makeStyles(
       paddingLeft: theme.spacing(1),
       paddingRight: theme.spacing(0.5),
     },
+    inverseColor: {
+      backgroundColor: theme.palette.common.white,
+    },
+    negativeColor: {
+      backgroundColor: theme.palette.red[50],
+      color: theme.palette.red[900],
+      '& $deleteButton': {
+        '&:hover': {
+          backgroundColor: theme.palette.negative.main,
+          color: theme.palette.common.white,
+        },
+        '&:disabled': {
+          color: theme.palette.red[100],
+        },
+        '&:focus': {
+          background: theme.palette.red[500],
+          borderColor: theme.palette.negative.main,
+          color: theme.palette.common.white,
+        },
+      },
+    },
+    primaryColor: {
+      backgroundColor: theme.palette.blue[50],
+      color: theme.palette.primary[800],
+      '& $deleteButton': {
+        '&:hover': {
+          background: theme.palette.primary.main,
+          color: theme.palette.common.white,
+        },
+        '&:disabled': {
+          color: theme.palette.primary[100],
+        },
+        '&:focus': {
+          background: theme.palette.primary[400],
+          borderColor: theme.palette.primary.main,
+          color: theme.palette.common.white,
+        },
+      },
+    },
+    positiveColor: {
+      backgroundColor: theme.palette.green[100],
+      color: theme.palette.green[900],
+      '& $deleteButton': {
+        '&:hover': {
+          backgroundColor: theme.palette.positive.main,
+          color: theme.palette.common.white,
+        },
+        '&:disabled': {
+          color: theme.palette.green[400],
+        },
+        '&:focus': {
+          background: theme.palette.green[500],
+          borderColor: theme.palette.green.main,
+          color: theme.palette.common.white,
+        },
+      },
+    },
+    warningColor: {
+      backgroundColor: theme.palette.yellow[100],
+      color: theme.palette.yellow[900],
+      '& $deleteButton': {
+        '&:hover': {
+          background: theme.palette.yellow[900],
+          color: theme.palette.common.white,
+        },
+        '&:disabled': {
+          color: theme.palette.yellow[700],
+        },
+        '&:focus': {
+          background: theme.palette.yellow[700],
+          borderColor: theme.palette.yellow.main,
+          color: theme.palette.yellow[900],
+        },
+      },
+    },
     label: {
       fontSize: theme.typography.caption.fontSize,
       whiteSpace: 'nowrap',
@@ -37,10 +112,12 @@ export const useStyles = makeStyles(
     },
     deleteButton: {
       alignItems: 'center',
+      background: 'none',
       border: 'none',
       borderRadius: 9999,
       display: 'inline-flex',
       justifyContent: 'center',
+      color: 'currentcolor',
       cursor: 'pointer',
       height: theme.pxToRem(18),
       minHeight: theme.pxToRem(13),
@@ -78,6 +155,13 @@ export interface ChipOwnProps
     HTMLDivElement
   > {
   children?: React.ReactNode;
+  color?:
+    | 'default'
+    | 'primary'
+    | 'inverse'
+    | 'negative'
+    | 'positive'
+    | 'warning';
   label?: string;
   onDelete?(): void;
   disableDelete?: boolean;
@@ -103,7 +187,15 @@ export interface ChipProps extends ChipOwnProps {}
  */
 export const Chip = React.forwardRef<HTMLDivElement, ChipProps>(
   (
-    { children, label = '', disableDelete, onDelete, className, ...rootProps },
+    {
+      children,
+      label = '',
+      disableDelete,
+      onDelete,
+      className,
+      color = 'default',
+      ...rootProps
+    },
     ref
   ) => {
     const classes = useStyles({});
@@ -111,7 +203,17 @@ export const Chip = React.forwardRef<HTMLDivElement, ChipProps>(
     return (
       <div
         ref={ref}
-        className={clsx(classes.root, className)}
+        className={clsx(
+          classes.root,
+          {
+            [classes.primaryColor]: color === 'primary',
+            [classes.inverseColor]: color === 'inverse',
+            [classes.negativeColor]: color === 'negative',
+            [classes.positiveColor]: color === 'positive',
+            [classes.warningColor]: color === 'warning',
+          },
+          className
+        )}
         tabIndex={0}
         aria-label={label}
         {...rootProps}
