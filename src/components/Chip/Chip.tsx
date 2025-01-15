@@ -10,7 +10,7 @@ export const useStyles = makeStyles(
   (theme) => ({
     root: {
       alignItems: 'center',
-      backgroundColor: theme.palette.black[50],
+      background: theme.hexToRgba(theme.palette.graphite[900], 0.1),
       borderRadius: theme.pxToRem(4),
       color: theme.palette.text.primary,
       display: 'inline-flex',
