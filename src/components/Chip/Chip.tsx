@@ -17,7 +17,7 @@ export const useStyles = makeStyles(
       height: theme.pxToRem(30),
       gap: theme.spacing(0.375),
       paddingLeft: theme.spacing(1),
-      paddingRight: theme.spacing(0.75),
+      paddingRight: theme.spacing(0.5),
     },
     label: {
       fontSize: theme.typography.caption.fontSize,
