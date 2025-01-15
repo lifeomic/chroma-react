@@ -10,7 +10,7 @@ export const useStyles = makeStyles(
   (theme) => ({
     root: {
       alignItems: 'center',
-      backgroundColor: theme.palette.black[50],
+      background: theme.hexToRgba(theme.palette.graphite[900], 0.1),
       borderRadius: theme.pxToRem(4),
       color: theme.palette.text.primary,
       display: 'inline-flex',
@@ -119,11 +119,11 @@ export const useStyles = makeStyles(
       justifyContent: 'center',
       color: 'currentcolor',
       cursor: 'pointer',
-      height: theme.pxToRem(18),
-      minHeight: theme.pxToRem(13),
-      minWidth: theme.pxToRem(13),
+      maxHeight: theme.pxToRem(18),
+      maxWidth: theme.pxToRem(18),
+      minHeight: theme.pxToRem(18),
+      minWidth: theme.pxToRem(18),
       padding: 0,
-      width: theme.pxToRem(18),
       transition: 'background 0.25s ease-out',
       '&:hover': {
         color: theme.palette.black[50],
