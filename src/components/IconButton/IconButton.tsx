@@ -81,7 +81,7 @@ export const useStyles = makeStyles(
     primary: {
       color: theme.palette.primary.main,
       '&:hover, &:focus': {
-        color: theme.palette.primary.dark,
+        color: theme.palette.primary[900],
       },
       '&:disabled': {
         color: theme.palette.primary.main,
