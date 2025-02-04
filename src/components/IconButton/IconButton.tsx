@@ -78,6 +78,16 @@ export const useStyles = makeStyles(
         opacity: 0.44,
       },
     },
+    primary: {
+      color: theme.palette.primary.main,
+      '&:hover, &:focus': {
+        color: theme.palette.primary.dark,
+      },
+      '&:disabled': {
+        color: theme.palette.primary.main,
+        opacity: 0.44,
+      },
+    },
     size0: {
       '& > svg': {
         width: 18,
@@ -147,7 +157,7 @@ export type IconButtonClasses = GetClasses<typeof useStyles>;
 export interface IconButtonProps
   extends React.ComponentPropsWithoutRef<'button'> {
   ['aria-label']: string;
-  color?: 'default' | 'inverse' | 'negative' | 'positive';
+  color?: 'default' | 'inverse' | 'negative' | 'positive' | 'primary';
   icon: React.MemoExoticComponent<
     (props: React.SVGProps<SVGSVGElement>) => JSX.Element
   >;
@@ -204,6 +214,7 @@ export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
             [classes.inverse]: color === 'inverse',
             [classes.negative]: color === 'negative',
             [classes.positive]: color === 'positive',
+            [classes.primary]: color === 'primary',
           },
           {
             [classes.paddingTop0]: paddingTop === 0,
