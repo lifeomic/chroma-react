@@ -143,18 +143,6 @@ export const useStyles = makeStyles(
       textAlign: 'right',
       width: theme.pxToRem(1),
       zIndex: theme.zIndex.byValueUpTo20[6],
-      // Add bottom border to table action row
-      // when actions are hidden
-      '&::after': {
-        background: theme.palette.divider,
-        content: `''`,
-        display: 'block',
-        height: theme.pxToRem(1),
-        left: 0,
-        position: 'absolute',
-        width: '100%',
-        bottom: theme.pxToRem(-1),
-      },
     },
     tableModuleActions: {
       background: `linear-gradient(135deg,
