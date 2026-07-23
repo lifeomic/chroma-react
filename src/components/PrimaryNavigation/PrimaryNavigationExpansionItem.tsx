@@ -201,10 +201,18 @@ export const PrimaryNavigationExpansionItem = React.forwardRef<
     );
 
     React.useEffect(() => {
-      if (innerRef && innerRef.current && children) {
-        setContentHeight(innerRef.current.scrollHeight);
-      }
-    }, [children, innerRef?.current?.scrollHeight]);
+      const el = innerRef.current;
+      if (!el || !children) return;
+
+      setContentHeight(el.scrollHeight);
+
+      const observer = new ResizeObserver(() => {
+        setContentHeight(el.scrollHeight);
+      });
+      observer.observe(el);
+
+      return () => observer.disconnect();
+    }, [children]);
 
     return (
       <motion.li
