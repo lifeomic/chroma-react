@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { renderWithTheme } from '../../testUtils/renderWithTheme';
+import { renderWithTheme, theme } from '../../testUtils/renderWithTheme';
 import { Box } from './index';
 
 const testId = 'Box';
@@ -224,4 +224,100 @@ test('it renders a Box with combined CSS props', async () => {
   expect(root).toHaveClass('ChromaBox-bgColor');
   expect(root).toHaveClass('ChromaBox-flexWrap');
   expect(root).toHaveClass('ChromaBox-flexChildren');
+});
+
+test('it applies spacing, sizing, and color props as inline styles', async () => {
+  const { findByTestId } = renderWithTheme(
+    <Box
+      gap={2}
+      margin="20px"
+      padding={1}
+      height="50%"
+      width={10}
+      color="#fff"
+      bgColor="primary.main"
+      data-testid={testId}
+    />
+  );
+  const root = await findByTestId(testId);
+  expect(root).toHaveStyle({
+    gap: theme.spacing(2),
+    margin: '20px',
+    padding: theme.spacing(1),
+    height: '50%',
+    width: theme.spacing(10),
+    color: '#fff',
+    backgroundColor: theme.palette.primary.main,
+  });
+});
+
+test('it gives axis props precedence over side props, and side props over the shorthand', async () => {
+  const { findByTestId } = renderWithTheme(
+    <Box
+      margin={1}
+      marginLeft={2}
+      marginX={3}
+      padding={1}
+      paddingTop={2}
+      data-testid={testId}
+    />
+  );
+  const root = await findByTestId(testId);
+  expect(root).toHaveStyle({
+    marginTop: theme.spacing(1),
+    marginLeft: theme.spacing(3),
+    marginRight: theme.spacing(3),
+    paddingTop: theme.spacing(2),
+    paddingBottom: theme.spacing(1),
+  });
+});
+
+test('it ignores zero-valued spacing props', async () => {
+  const { findByTestId } = renderWithTheme(
+    <Box padding={0} margin={0} data-testid={testId} />
+  );
+  const root = await findByTestId(testId);
+  expect(root).not.toHaveClass('ChromaBox-padding');
+  expect(root.style.padding).toBe('');
+  expect(root.style.margin).toBe('');
+});
+
+test('it lets fullWidth and fullHeight win over width and height', async () => {
+  const { findByTestId } = renderWithTheme(
+    <Box width={10} height={10} fullWidth fullHeight data-testid={testId} />
+  );
+  const root = await findByTestId(testId);
+  expect(root.style.width).toBe('');
+  expect(root.style.height).toBe('');
+});
+
+test('it lets the style prop override computed styles', async () => {
+  const { findByTestId } = renderWithTheme(
+    <Box
+      padding={2}
+      style={{ padding: '3px', zIndex: 2 }}
+      data-testid={testId}
+    />
+  );
+  const root = await findByTestId(testId);
+  expect(root).toHaveStyle({ padding: '3px', zIndex: 2 });
+});
+
+test('it does not attach a stylesheet per Box instance', () => {
+  const countBoxSheets = () =>
+    document.head.querySelectorAll('style[data-meta="ChromaBox"]').length;
+
+  const { unmount } = renderWithTheme(<Box margin={1} />);
+  const sheetsForOneBox = countBoxSheets();
+  unmount();
+
+  renderWithTheme(
+    <>
+      {Array.from({ length: 20 }, (_, i) => (
+        <Box key={i} margin={i + 1} padding={i + 1} gap={i + 1} />
+      ))}
+    </>
+  );
+  expect(sheetsForOneBox).toBeGreaterThan(0);
+  expect(countBoxSheets()).toBe(sheetsForOneBox);
 });
