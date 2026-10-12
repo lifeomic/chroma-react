@@ -135,48 +135,106 @@ export const useStyles = makeStyles<BoxProps>(
   { name: BoxStylesKey }
 );
 
+type Sides = [
+  top: string | undefined,
+  right: string | undefined,
+  bottom: string | undefined,
+  left: string | undefined
+];
+
+/** Splits on whitespace outside parentheses so `calc(1px + 2px)` stays whole. */
+const splitCssValue = (value: string) => {
+  const parts: string[] = [];
+  let current = '';
+  let depth = 0;
+  for (const char of value.trim()) {
+    if (char === '(') depth += 1;
+    if (char === ')') depth -= 1;
+    if (/\s/.test(char) && depth === 0) {
+      if (current) parts.push(current);
+      current = '';
+    } else {
+      current += char;
+    }
+  }
+  if (current) parts.push(current);
+  return parts;
+};
+
+/** Expands a CSS box shorthand ("8px", "0 auto", "1px 2px 3px") into sides. */
+export const expandShorthand = (value: string | undefined): Sides => {
+  if (value === undefined) return [undefined, undefined, undefined, undefined];
+  const parts = splitCssValue(value);
+  const [top, right = top, bottom = top, left = right] = parts;
+  return parts.length > 4
+    ? [value, value, value, value]
+    : [top, right, bottom, left];
+};
+
 /**
  * Builds the inline style for the spacing, sizing, and color props. Follows
  * the precedence the old stylesheet had: falsy values (including `0`) are
  * ignored, axis props (`marginX`) win over side props (`marginLeft`), which win
  * over the shorthand (`margin`), and `fullWidth`/`fullHeight` win over
  * `width`/`height`.
+ *
+ * `margin` and `padding` are always emitted as longhands: React does not
+ * reapply an unchanged shorthand when a longhand next to it is removed, so
+ * mixing the two would zero a side whenever a side prop is dropped.
  */
 const getBoxStyle = (theme: Theme, props: BoxProps): React.CSSProperties => {
   const spacing = (value: string | number | undefined) =>
     stringOrThemeSpacing(theme, value);
+  const sides = (
+    all: string | number | undefined,
+    top: string | number | undefined,
+    right: string | number | undefined,
+    bottom: string | number | undefined,
+    left: string | number | undefined,
+    x: string | number | undefined,
+    y: string | number | undefined
+  ): Sides => {
+    const result = expandShorthand(all ? spacing(all) : undefined);
+    if (top) result[0] = spacing(top);
+    if (right) result[1] = spacing(right);
+    if (bottom) result[2] = spacing(bottom);
+    if (left) result[3] = spacing(left);
+    if (x) result[1] = result[3] = spacing(x);
+    if (y) result[0] = result[2] = spacing(y);
+    return result;
+  };
   const style: React.CSSProperties = {};
 
   if (props.height && !props.fullHeight) style.height = spacing(props.height);
   if (props.width && !props.fullWidth) style.width = spacing(props.width);
 
-  if (props.margin) style.margin = spacing(props.margin);
-  if (props.marginLeft) style.marginLeft = spacing(props.marginLeft);
-  if (props.marginRight) style.marginRight = spacing(props.marginRight);
-  if (props.marginTop) style.marginTop = spacing(props.marginTop);
-  if (props.marginBottom) style.marginBottom = spacing(props.marginBottom);
-  if (props.marginX) {
-    style.marginLeft = spacing(props.marginX);
-    style.marginRight = spacing(props.marginX);
-  }
-  if (props.marginY) {
-    style.marginTop = spacing(props.marginY);
-    style.marginBottom = spacing(props.marginY);
-  }
+  const [marginTop, marginRight, marginBottom, marginLeft] = sides(
+    props.margin,
+    props.marginTop,
+    props.marginRight,
+    props.marginBottom,
+    props.marginLeft,
+    props.marginX,
+    props.marginY
+  );
+  if (marginTop) style.marginTop = marginTop;
+  if (marginRight) style.marginRight = marginRight;
+  if (marginBottom) style.marginBottom = marginBottom;
+  if (marginLeft) style.marginLeft = marginLeft;
 
-  if (props.padding) style.padding = spacing(props.padding);
-  if (props.paddingLeft) style.paddingLeft = spacing(props.paddingLeft);
-  if (props.paddingRight) style.paddingRight = spacing(props.paddingRight);
-  if (props.paddingTop) style.paddingTop = spacing(props.paddingTop);
-  if (props.paddingBottom) style.paddingBottom = spacing(props.paddingBottom);
-  if (props.paddingX) {
-    style.paddingLeft = spacing(props.paddingX);
-    style.paddingRight = spacing(props.paddingX);
-  }
-  if (props.paddingY) {
-    style.paddingTop = spacing(props.paddingY);
-    style.paddingBottom = spacing(props.paddingY);
-  }
+  const [paddingTop, paddingRight, paddingBottom, paddingLeft] = sides(
+    props.padding,
+    props.paddingTop,
+    props.paddingRight,
+    props.paddingBottom,
+    props.paddingLeft,
+    props.paddingX,
+    props.paddingY
+  );
+  if (paddingTop) style.paddingTop = paddingTop;
+  if (paddingRight) style.paddingRight = paddingRight;
+  if (paddingBottom) style.paddingBottom = paddingBottom;
+  if (paddingLeft) style.paddingLeft = paddingLeft;
 
   if (props.gap) style.gap = spacing(props.gap);
   if (props.color) style.color = stringOrThemeColor(theme, props.color);

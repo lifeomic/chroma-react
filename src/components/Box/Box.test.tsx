@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { renderWithTheme, theme } from '../../testUtils/renderWithTheme';
 import { Box } from './index';
+import { expandShorthand } from './Box';
 
 const testId = 'Box';
 
@@ -242,8 +243,10 @@ test('it applies spacing, sizing, and color props as inline styles', async () =>
   const root = await findByTestId(testId);
   expect(root).toHaveStyle({
     gap: theme.spacing(2),
-    margin: '20px',
-    padding: theme.spacing(1),
+    marginTop: '20px',
+    marginLeft: '20px',
+    paddingTop: theme.spacing(1),
+    paddingRight: theme.spacing(1),
     height: '50%',
     width: theme.spacing(10),
     color: '#fff',
@@ -270,6 +273,43 @@ test('it gives axis props precedence over side props, and side props over the sh
     paddingTop: theme.spacing(2),
     paddingBottom: theme.spacing(1),
   });
+});
+
+test('it expands margin and padding shorthands into sides', async () => {
+  const { findByTestId } = renderWithTheme(
+    <Box
+      margin="1px 2px 3px"
+      padding="6px 5px"
+      paddingLeft={1}
+      data-testid={testId}
+    />
+  );
+  const root = await findByTestId(testId);
+  expect(root.style.marginTop).toBe('1px');
+  expect(root.style.marginRight).toBe('2px');
+  expect(root.style.marginBottom).toBe('3px');
+  expect(root.style.marginLeft).toBe('2px');
+  expect(root.style.paddingTop).toBe('6px');
+  expect(root.style.paddingRight).toBe('5px');
+  expect(root.style.paddingBottom).toBe('6px');
+  expect(root.style.paddingLeft).toBe(theme.spacing(1));
+});
+
+test('it falls back to the shorthand when a side prop is removed', async () => {
+  const { findByTestId, rerender } = renderWithTheme(
+    <Box
+      margin={1}
+      marginLeft={2}
+      paddingX={2}
+      padding={1}
+      data-testid={testId}
+    />
+  );
+  rerender(<Box margin={1} padding={1} data-testid={testId} />);
+  const root = await findByTestId(testId);
+  expect(root.style.marginLeft).toBe(theme.spacing(1));
+  expect(root.style.paddingLeft).toBe(theme.spacing(1));
+  expect(root.style.paddingRight).toBe(theme.spacing(1));
 });
 
 test('it ignores zero-valued spacing props', async () => {
@@ -320,4 +360,28 @@ test('it does not attach a stylesheet per Box instance', () => {
   );
   expect(sheetsForOneBox).toBeGreaterThan(0);
   expect(countBoxSheets()).toBe(sheetsForOneBox);
+});
+
+test('expandShorthand follows CSS box shorthand rules', () => {
+  expect(expandShorthand('1px')).toEqual(['1px', '1px', '1px', '1px']);
+  expect(expandShorthand('0 auto')).toEqual(['0', 'auto', '0', 'auto']);
+  expect(expandShorthand('1px 2px 3px')).toEqual(['1px', '2px', '3px', '2px']);
+  expect(expandShorthand(' 1px  2px 3px 4px ')).toEqual([
+    '1px',
+    '2px',
+    '3px',
+    '4px',
+  ]);
+  expect(expandShorthand('calc(var(--gutter) + 4px) 5px')).toEqual([
+    'calc(var(--gutter) + 4px)',
+    '5px',
+    'calc(var(--gutter) + 4px)',
+    '5px',
+  ]);
+  expect(expandShorthand(undefined)).toEqual([
+    undefined,
+    undefined,
+    undefined,
+    undefined,
+  ]);
 });
